@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1600px"
+   height="1200px"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="webcontab.svg">
+  <defs
+     id="defs2987">
+    <linearGradient
+       id="linearGradient3841">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3843" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3845" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3831">
+      <stop
+         style="stop-color:#b3b3b3;stop-opacity:1;"
+         offset="0"
+         id="stop3833" />
+      <stop
+         style="stop-color:#b3b3b3;stop-opacity:0;"
+         offset="1"
+         id="stop3835" />
+    </linearGradient>
+    <filter
+       id="filter3029"
+       inkscape:label="Drop shadow"
+       inkscape:menu="Shadows and Glows"
+       inkscape:menu-tooltip="Glow of object's own color at the edges"
+       color-interpolation-filters="sRGB"
+       width="1.5"
+       height="1.5"
+       x="-.25"
+       y="-.25">
+      <feGaussianBlur
+         id="feGaussianBlur3031"
+         stdDeviation="5"
+         result="result91" />
+      <feComposite
+         id="feComposite3033"
+         in2="result91"
+         in="SourceGraphic"
+         operator="over"
+         result="fbSourceGraphic" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix3035" />
+      <feGaussianBlur
+         id="feGaussianBlur3037"
+         in="fbSourceGraphicAlpha"
+         stdDeviation="2"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix3039"
+         result="bluralpha"
+         type="matrix"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.5 0 " />
+      <feOffset
+         id="feOffset3041"
+         in="bluralpha"
+         dx="4"
+         dy="4"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge3043"
+         result="fbSourceGraphic">
+        <feMergeNode
+           id="feMergeNode3045"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3047"
+           in="fbSourceGraphic" />
+      </feMerge>
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix3049" />
+      <feGaussianBlur
+         id="feGaussianBlur3051"
+         in="fbSourceGraphicAlpha"
+         stdDeviation="2"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix3053"
+         result="bluralpha"
+         type="matrix"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.5 0 " />
+      <feOffset
+         id="feOffset3055"
+         in="bluralpha"
+         dx="4"
+         dy="4"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge3057">
+        <feMergeNode
+           id="feMergeNode3059"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3061"
+           in="fbSourceGraphic" />
+      </feMerge>
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3831"
+       id="linearGradient3837"
+       x1="1416.6666"
+       y1="1386.6666"
+       x2="-383.33334"
+       y2="-586.66669"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3841"
+       id="linearGradient3847"
+       x1="953.90002"
+       y1="636.66669"
+       x2="1209.4332"
+       y2="880"
+       gradientUnits="userSpaceOnUse"
+       spreadMethod="reflect" />
+    <filter
+       inkscape:collect="always"
+       id="filter3883">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="9.5578227"
+         id="feGaussianBlur3885" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3940"
+       x="-0.38357481"
+       width="1.7671496"
+       y="-0.46506692"
+       height="1.9301338">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="176.33787"
+         id="feGaussianBlur3942" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.3"
+     inkscape:cx="641.30824"
+     inkscape:cy="600"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="943"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata2990">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <rect
+       style="fill:url(#linearGradient3837);stroke:#000000;stroke-width:12;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
+       id="rect2993"
+       width="1990"
+       height="1490"
+       x="-153.33333"
+       y="-120"
+       rx="16.666666"
+       ry="12.902359" />
+    <rect
+       style="fill:none;stroke:url(#linearGradient3847);stroke-width:12.19999980999999956;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;opacity:0.67241379000000001;filter:url(#filter3883)"
+       id="rect3839"
+       width="1603.3333"
+       height="1206.6666"
+       x="-3.3333385"
+       y="3.3333442"
+       rx="16.666666"
+       ry="12.902359" />
+    <rect
+       style="fill:#f5f5f5;fill-opacity:0.01090909000000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3946"
+       width="1613.3334"
+       height="1220"
+       x="-3.3333333"
+       y="-3.3333333"
+       rx="16.666666"
+       ry="12.902359" />
+    <text
+       xml:space="preserve"
+       style="font-size:61.26820755000001384px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;filter:url(#filter3029);font-family:Bitstream Vera Sans"
+       x="278.52411"
+       y="436.62198"
+       id="text2995-6"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.93383566,-0.35770234,0.35770234,0.93383566,60,706.66667)"><tspan
+         sodipodi:role="line"
+         id="tspan3001-7"
+         style="font-size:306.34103393999998843px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:PakTypeNaqsh;-inkscape-font-specification:PakTypeNaqsh;fill:#666666;fill-opacity:1"
+         x="278.52411"
+         y="436.62198">Web </tspan><tspan
+         sodipodi:role="line"
+         id="tspan3003-5"
+         style="font-size:306.34103393999998843px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:PakTypeNaqsh;-inkscape-font-specification:PakTypeNaqsh;fill:#666666;fill-opacity:1"
+         x="278.52411"
+         y="819.54828"> Contab</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none;opacity:0.63448276000000003;filter:url(#filter3940)"
+       id="path3922"
+       sodipodi:cx="1131.6666"
+       sodipodi:cy="955"
+       sodipodi:rx="551.66669"
+       sodipodi:ry="455"
+       d="m 1683.3333,955 a 551.66669,455 0 1 1 -1103.33336,0 551.66669,455 0 1 1 1103.33336,0 z" />
+    <text
+       xml:space="preserve"
+       style="font-size:61.26820755000001384px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;"
+       x="67.112427"
+       y="1099.9583"
+       id="text2995"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.93383566,-0.35770234,0.35770234,0.93383566,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan3001"
+         style="font-size:306.34103394px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:PakTypeNaqsh;-inkscape-font-specification:PakTypeNaqsh"
+         x="67.112427"
+         y="1099.9583">Web </tspan><tspan
+         sodipodi:role="line"
+         id="tspan3003"
+         style="font-size:306.34103394px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:PakTypeNaqsh;-inkscape-font-specification:PakTypeNaqsh"
+         x="67.112427"
+         y="1482.8846"> Contab</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:13;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;opacity:1"
+       id="path3944"
+       sodipodi:sides="5"
+       sodipodi:cx="193.33333"
+       sodipodi:cy="-383.33334"
+       sodipodi:r1="271.33414"
+       sodipodi:r2="135.66708"
+       sodipodi:arg1="0.92483822"
+       sodipodi:arg2="1.5531568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 356.66665,-166.66669 -160.94034,-81.02068 -157.982442,86.64693 27.32194,-178.10013 -131.225379,-123.47486 177.826231,-29.05126 76.8807,-162.95858 82.58071,160.14547 178.74026,22.76091 -126.78854,128.0266 z"
+       inkscape:transform-center-x="23.857312"
+       inkscape:transform-center-y="-2.1494741"
+       transform="matrix(0.96353549,-0.26758056,0.26758056,0.96353549,292.95569,817.75418)" />
+  </g>
+</svg>

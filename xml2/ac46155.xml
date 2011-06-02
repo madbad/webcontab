@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Rimorchio AC46155</nome>
+	<marca>Cardi</marca>
+	<modello>152</modello>
+	<anno_fabbricazione>2004</anno_fabbricazione>
+	<anno_acquisto></anno_acquisto>
+	<matricola>Telaio: ZB352725ATZE43971</matricola>
+	<localizzazione>parco automezzi</localizzazione>
+	<id>2</id>
+	<ditta_fabbricatrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>New Carviper Srl</ragionesociale>
+		<via>Via Brugnoli, 4</via>
+		<citta>Isola della Scala</citta>
+		<provincia>VR</provincia>
+		<telefono>045-7300527</telefono>
+		<fax>045-6639091</fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Autocarro</oggetto>
+			<attivita>Tagliando completo per revisione</attivita>
+			<periodicita>Annuale</periodicita>
+			<data>Luglio</data>
+		</manutenzione>
+		<manutenzione>
+			<oggetto>Autocarro</oggetto>
+			<attivita>Rinnovo ATP</attivita>
+			<periodicita>BIENNALE</periodicita>
+			<data>ottobre 2012</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Officine Cailotto di Cailotto Silvio</ragionesociale>
+				<via>Via Sommacampagna, 59/c</via>
+				<citta>Verona</citta>
+				<provincia>VR</provincia>
+				<telefono>045-8624211</telefono>
+				<fax>045-8622618</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>15/10/2009</data>
+			<descrizione>	
+				Rinnovo ATP
+			</descrizione>
+			<fattura>
+				<numero>910389</numero>
+				<data>15/10/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Officine Cailotto di Cailotto Silvio</ragionesociale>
+				<via>Via Sommacampagna, 59/c</via>
+				<citta>Verona</citta>
+				<provincia>VR</provincia>
+				<telefono>045-8624211</telefono>
+				<fax>045-8622618</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>12/05/2010</data>
+			<descrizione>	
+				Tagliando completo con sostituzione cinghie tendicinghia e boccole gruppo frigorifero
+			</descrizione>
+			<fattura>
+				<numero>4578fr</numero>
+				<data>12/05/2010</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>WebContab</title>
+<meta name="generator" content="Bluefish 2.0.3" >
+<meta name="author" content="madbad" >
+<meta name="date" content="2011-03-27T18:13:02+0200" >
+<meta name="copyright" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="./favicon.ico" />
+
+<!--jQuery-->
+<script type="text/javascript" src="./jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="./jquery/jquery-ui-1.8.1.custom.min.js"></script>
+<!--
+<link type="text/css" rel="stylesheet" href="./jquery/css/ui-darkness/jquery-ui-1.8.1.custom.css">
+-->
+
+<!--myLibs-->
+<script type="text/javascript" src="./my/js/menu.js"></script>
+<script type="text/javascript" src="./my/js/script.js"></script>
+<script type="text/javascript" src="./my/js/windowsManager.js"></script>
+<script type="text/javascript" src="./my/js/MyWindows/drag.js"></script>
+<script type="text/javascript" src="./my/js/MyWindows/MyWindow.js"></script>
+<script type="text/javascript" src="./my/js/appsManager.js"></script>
+<link href="./my/css/MyWindows.css" rel="stylesheet" type="text/css">
+<link href="./my/css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="./apps/main/main.js"></script>
+</head>
+<body>
+<!--
+<div id="logger">prova<div>
+-->
+
+
+
+
+
+
+<div id="windowsSelector" class="windowsSelector">
+	<button onclick="if(menu.isVisible){menu.hide()}else{menu.setActive();}" id="mainMenu">Main menu</button>
+</div>
+<script type="text/javascript">
+
+test=0;
+function apriNuova(){
+var $opt=new Array();
+$opt['name']='bfooo';
+$opt['title']='Titolo fighissimo';
+$opt['width']=400;
+$opt['height']=400;
+//$opt['top']=37;
+//$opt['left']=10;
+//$opt['position']='bottom-left';
+
+
+$opt['txt']='Fatto sta che mi ritrovo a smontare i tasti uno per uno. Non vi dico cose cera sotto.<br>Lo sempre sospettato ma mai avrei immaginato che sotto quei tasti si stesse ripetendo quanto successo dopo il Big Bang: la nascita della vita. Un intero ecosistema di creature viventi (o almeno presumo che fossero tali) si era creato dal nulla.<br><br>Ore 10.45: Finito.<br>Devo dire che il risultato è stato incoraggiante.<br>Dopo un ora e quaranta minuti la tastiera sembr';
+/*
+$opt['isVisible']		-> Indica se a finestra deve essere visualizzata o meno alla creazione | valore [true|false]
+$opt['isTip']			-> Indica se a finestra deve avere o meno la freccetta tips | valore [true|false]
+$opt['isPermanent']	-> Se impostato a true la finestra non viene chiusa ma solo nascosta | valore [true|false]
+$opt['autoCloseTime']-> Chiusura automatica onmouseout | valore [millisecondi]
+*/
+
+
+	test++;
+	$opt['title']='['+test+'] '+'Titolo fighissimo';
+	
+	var old=new MyWindow($opt);
+	//old.fadeOut();
+	//old.fadeIn();
+	
+	old.windows.onmouseover=function(){
+		//old.fadeIn();	
+	}
+	old.windows.onmouseout=function(){
+		//old.fadeOut();	
+	}
+}
+</script>
+
+<script type="text/javascript">
+
+menu= new Menu({
+launcher:document.getElementById('mainMenu'),
+title:'Menu principale',
+items:new Array(
+		new MenuItem({
+			txt:'Anagrafiche',
+			action:function(){alert('te fao vedar le anagrfiche')},
+		}),
+		new MenuItem({
+			txt:'Apri nuova',
+			action:function(){apriNuova()},
+		}),
+		new Menu({
+			title:'Anagrafiche',
+			items:new Array(
+				new MenuItem({
+					txt:'Clienti e Fornitori',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Articoli',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Banche',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Codici IVA',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Codici Pagamento',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Codici Imballaggio',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Altri codici',
+					action:function(){alert('arda che belo el grafico')},
+				})
+			)
+		}),
+		new Menu({
+			title:'Fatturazione',
+			items:new Array(
+				new MenuItem({
+					txt:'Crea fattura',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Modifica fattura',
+					action:function(){alert('arda che belo el grafico')},
+				})
+			)
+		}),
+		new Menu({
+			title:'Magazzino',
+			items:new Array(
+				new MenuItem({
+					txt:'DDT di vendita',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'DDT altre causali',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Carico magazzino',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Scarico magazzino',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Stampe magazzino (ent/usc)',
+					action:function(){alert('arda che belo el grafico')},
+				}),
+				new MenuItem({
+					txt:'Saldi magazzino',
+					action:function(){alert('arda che belo el grafico')},
+				})
+			)
+		})	
+	)
+});
+am.add(menu, 'Desktop Menu');
+menu.setActive();
+</script>
+
+</body>
+</html>

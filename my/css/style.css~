@@ -1,0 +1,83 @@
+body{
+background-color:#a1a1a1;
+margin:0px;
+padding:0px;
+}
+/*#######################################################################################
+  #   MENU
+  #
+  #######################################################################################
+*/
+.menu{
+	border:2px solid grey;
+	width:200px;
+	background-color: #666666;
+	padding:10px;
+	/*opacity:0.5;*/
+	z-index:10;
+	/*-moz-box-shadow: 4px 4px 6px rgba(135, 139, 144, 0.4); *//*box-shadow:*/
+   /*-moz-border-radius: 10px;*//*border-radius*/
+
+}
+.menu > span{
+	color:#C4C4C4;
+	font-style:italic;
+}
+
+.menu ul{
+	border:2px #ffffff solid;
+	background-color: #DEDEDE;
+	list-style:none;
+	margin:0em; padding:0em;
+}
+
+.menu ul li{
+	display:block;
+	overflow : hidden;
+	border-bottom: 1px #b1b1b1 dashed;
+}
+
+.menu ul li a{
+	height:37px;line-height:37px; /* altezza del link: height e line-height devono avere il medesimo valore */
+	padding:0 0.5em;
+	display:block;
+	color:#4A4A4A;
+	text-decoration:none;
+}
+
+.menu ul li a:hover, div ul li a:focus, .activeItem{
+	background-color: #929292;
+	color: #ffffff;
+}
+.active {
+	/*opacity:1;*/
+	z-index:20;
+}
+/*#######################################################################################
+  #   WINDOWS MANAGER
+  #
+  #######################################################################################
+*/
+.windowsSelector{
+	width:99%;
+	color:orange;
+	height:1.7em;;
+	position:absolute;
+	background-color:grey;
+	border-top:2px #666666 solid;
+	margin:0px;
+	padding:0.1em;
+	bottom:0px;
+	-moz-border-radius:5px;
+}
+.windowsSelector > button{
+	color:black;
+	font-size:1.1em;
+}
+.windowsSelector > button:hover{
+	color:green;
+}
+.windowsSelector > button.minimized{
+	color:gray;
+}
+

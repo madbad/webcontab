@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Impianto gas</nome>
+	<marca></marca>
+	<modello></modello>
+	<anno_fabbricazione>1994</anno_fabbricazione>
+	<anno_acquisto>1994</anno_acquisto>
+	<matricola></matricola>
+	<localizzazione>intero stabilimento</localizzazione>
+	<id>41</id>
+	<ditta_fabbricatrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Rossi impianti Infrageo di Rossi Simone</ragionesociale>
+				<via>Via Primula, 6</via>
+				<citta>Cerea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-321025</telefono>
+				<fax>0442-321025</fax>
+				<mail>info@infrageo.it</mail>			
+			</manutentore>
+			<data>28/02/2011</data>
+			<descrizione>	
+				Ricerca falle per eventuale perdita gas metano occulta.
+			</descrizione>
+			<fattura>
+				<numero>16</numero>
+				<data>28/02/2011</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

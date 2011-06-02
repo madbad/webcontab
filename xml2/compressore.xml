@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Elettro compressore</nome>
+	<marca>FIAC</marca>
+	<modello></modello>
+	<anno_fabbricazione>2000</anno_fabbricazione>
+	<anno_acquisto></anno_acquisto>
+	<matricola>1463241000</matricola>
+	<localizzazione>officina</localizzazione>
+	<id>36</id>
+	<ditta_fabbricatrice>
+		<ragionesociale>Fiac Srl</ragionesociale>
+		<via>Via Vizzano, 23</via>
+		<citta>Pontecchio Marconi</citta>
+		<provincia>BO</provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<interventi>
+		<intervento>
+			<manutentore></manutentore>
+			<data></data>
+			<descrizione>	
+			
+			</descrizione>
+			<fattura>
+				<numero></numero>
+				<data></data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

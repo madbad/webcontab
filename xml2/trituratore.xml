@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Trituratore</nome>
+	<marca></marca>
+	<modello>TR800</modello>
+	<anno_fabbricazione></anno_fabbricazione>
+	<anno_acquisto></anno_acquisto>
+	<matricola></matricola>
+	<localizzazione>magazzino B</localizzazione>
+	<id>35</id>
+	<ditta_fabbricatrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>M.G.P. Srl</ragionesociale>
+		<via>Via Canove di sopra, 2</via>
+		<citta>Gazzo Veronese</citta>
+		<provincia>VR</provincia>
+		<telefono>0442-550399</telefono>
+		<fax>0442-558126</fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Trituratore</oggetto>
+			<attivita>Controllo usura cuscinetti e lame coltelli con eventuale sostituzione</attivita>
+			<periodicita>Annuale</periodicita>
+			<data>Luglio</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>30/11/10</data>
+			<descrizione>	
+				Riparazione albero mulino con sostituzione coltelli e cuscinetti.
+			</descrizione>
+			<fattura>
+				<numero>223</numero>
+				<data>31/12/2010</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

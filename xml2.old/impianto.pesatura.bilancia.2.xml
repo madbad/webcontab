@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Impianto di pesatura</nome>
+	<marca></marca>
+	<modello>ISCALE</modello>
+	<anno_fabbricazione>2006</anno_fabbricazione>
+	<anno_acquisto>10/05/2006</anno_acquisto>
+	<matricola>002030</matricola>
+	<localizzazione>magazzino A</localizzazione>
+	<id>23</id>
+	<ditta_fabbricatrice>
+		<ragionesociale>Eurobill Srl</ragionesociale>
+		<via>Via Olona, 183/c</via>
+		<citta>Gallarate</citta>
+		<provincia>VA</provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>Soc.Coop.Bilanciai</ragionesociale>
+		<via>Via S.ferrari, 16</via>
+		<citta>Campogalliano</citta>
+		<provincia>MO</provincia>
+		<telefono>059-893611</telefono>
+		<fax>059-527079</fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Bilancia</oggetto>
+			<attivita>Verifica funzionamento con bollatura ed eventuale taratura</attivita>
+			<periodicita>Triennale</periodicita>
+			<data>Aprile 2012</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Soc.Coop.Bilanciai</ragionesociale>
+				<via>Via S.ferrari, 16</via>
+				<citta>Campogalliano</citta>
+				<provincia>MO</provincia>
+				<telefono>059-893611</telefono>
+				<fax>059-527079</fax>
+				<mail></mail>		
+			</manutentore>
+			<data>11/06/09</data>
+			<descrizione>	
+				Verifica periodica
+			</descrizione>
+			<fattura>
+				<numero>05114</numero>
+				<data>15/06/2009</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

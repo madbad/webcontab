@@ -1,0 +1,40 @@
+body{
+   width:200%;
+}
+table{
+   border:1px #a1a1a1 solid;
+   font-size:0.8em;
+}
+th{
+   background-color:#e1e1e1;
+}
+tr{
+   max-height:1em;
+   }
+td{
+   border-left:1px #a1a1a1 solid;
+   text-align:left;
+   vertical-align:top;
+   BORDER-TOP:1px #000000 solid;
+   margin:0px;
+   padding:0px;
+   padding-left:4px;
+   padding-right:2px;
+   height:1em;
+   width:auto;
+   
+   }
+a{
+   font-size:1em;
+   text-decoration:none;
+}
+a:hover{
+	color:orange;	
+}
+th:hover{
+	background-color:c8e1a7;
+	cursor:default;	
+}
+tfoot{
+	background-color:orange;
+}

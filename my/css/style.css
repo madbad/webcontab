@@ -1,0 +1,119 @@
+body{
+background-color:#a1a1a1;
+	background-image:url('./../img/webcontab.jpg');} 
+margin:0px;
+padding:0px;
+}
+/*#######################################################################################
+  #   MENU
+  #
+  #######################################################################################
+*/
+.active{
+
+}
+.menu {
+	border:2px solid grey;
+	width:200px;
+	background-color: #666666;
+	padding:10px;
+	opacity:0.95;
+	z-index:10;
+	-moz-border-radius: 5px;
+
+
+}
+.menu > span{
+	color:#C4C4C4;
+	font-style:italic;
+}
+
+.menu ul{
+	border:2px #ffffff solid;
+	background-color: #DEDEDE;
+	list-style:none;
+	margin:0em; padding:0em;
+}
+
+.menu ul li{
+	display:block;
+	overflow : hidden;
+	border-bottom: 1px #b1b1b1 dashed;
+}
+
+.menu ul li a{
+	height:37px;line-height:37px; /* altezza del link: height e line-height devono avere il medesimo valore */
+	padding:0 0.5em;
+	display:block;
+	color:#4A4A4A;
+	text-decoration:none;
+}
+
+.menu ul li a:hover, div ul li a:focus, .activeItem{
+	background-color: #929292;
+	color: #ffffff;
+}
+.active {
+	/*opacity:1;*/
+	z-index:20;
+}
+/*#######################################################################################
+  #   WINDOWS MANAGER
+  #
+  #######################################################################################
+*/
+.windowsSelector{
+	width:99.98%;
+	color:orange;
+	height:1.7em;;
+	position:absolute;
+	background-color:grey;
+	border-bottom:2px #666666 solid;
+	margin:0px;
+	padding:0.2em;
+	top:0px;
+  -moz-box-shadow: 1px 1px 1px #666;
+		background: -moz-linear-gradient(100% 100% 90deg, #c7c7c7, #dbdbdb);
+	height:34px;
+	z-index:10;
+}
+.windowsSelector > button{
+	color:#000000;
+     padding: 5px 10px 5px 10px;
+     text-align: center;
+     color: #fff;
+     text-decoration: none; border: 1px inset #666;
+     -moz-border-radius: 4px;
+     -moz-box-shadow: 1px 1px 1px #666;
+
+
+      border-top: inset 1px #ccc; border-left: inset 1px #ccc; border-bottom: solid 1px solid #000; border-right: 1px solid #666;
+
+		background: -moz-linear-gradient(100% 100% 90deg, #b8b8b8, #dbdbdb);
+
+margin:1px;
+
+
+}
+
+.windowsSelector > button:hover{
+
+		background: -moz-linear-gradient(100% 100% 90deg, #c7c7c7, #dbdbdb);
+
+
+}
+.windowsSelector > button.minimized{
+	color:rgba(255,255,255, .5);
+     text-shadow: rgba(0,0,0, .1) 0px -1px 0px;
+		background: -moz-linear-gradient(100% 100% 90deg, #b8b8b8, #dbdbdb); 
+}
+.windowsSelector > button.current{
+     text-shadow: rgba(0,0,0, .5) 0px -1px 0px;
+background: -moz-linear-gradient(
+    center bottom,
+    rgb(153,153,153) 26%,
+    rgb(143,143,143) 75%,
+    rgb(84,84,84) 97%
+)
+
+}

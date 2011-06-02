@@ -1,0 +1,811 @@
+<tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span><tbody><tr>
+    <td class="c" colspan="4">
+
+     <a href="index.php?page=renameplanet&amp;session=c216135b00f4&amp;pl=34187345" title="Menù pianeta">Luna "Luna" alle coordinate di [1:355:5]</a>     (AlterA Style)
+     OgameId: 121110</td>
+  </tr>
+    <tr>
+   <th>
+    Ora del server   </th>
+
+   <th colspan="3">Mon Jan 18 20:56:23</th>
+  </tr>
+  <tr class="times"><th class="l">Ultimo login</th><th class="l" colspan="3">17:47:59 <span class="logintime" id="times_logintimeelapsed">(3:08:29)</span>  <span class="lagseconds">(lag: 0 secondi)</span> </th></tr><tr>
+   <td colspan="4" class="c">
+    Eventi   - Per svuotare la colonia servono  <b><font color="#ffffaa">(Totale '5.837')</font></b> <a onclick="javascript:numcargo_JSCargoP();javascript:numcargo_ShowCapacity()"><b><font color="#ffff00">1 Cargo pesante</font></b></a><b><font color="#ffff00"></font></b> oppure <a onclick="javascript:numcargo_JSCargoL();javascript:numcargo_ShowCapacity()"><b><font color="#aaaa00">2 Cargo leggero</font></b></a><b><font color="#aaaa00"></font></b></td>
+
+  </tr>
+<tr class="flight">
+<th><div id="bxx1" title="28502" star="1263873090">7:55:03</div><font class="overviewfleettime" color="lime">19/1 4:51:30</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a pianeta Security Center <a href="javascript:showGalaxy(1,325,5)" owndeploy="">[1:325:5]</a>. La missione è: schieramento</span>
+</th>
+
+</tr>
+<tr class="flight">
+<th><div id="bxx2" title="28821" star="1263873409">8:00:22</div><font class="overviewfleettime" color="lime">19/1 4:56:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,386,5)" owndeploy="">[1:386:5]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+
+<tr class="flight">
+<th><div id="bxx3" title="39981" star="1263884569">11:06:22</div><font class="overviewfleettime" color="lime">19/1 8:02:49</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta Tengo La Flotta Qui <a href="javascript:showGalaxy(4,458,6)" owndeploy="">[4:458:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+
+<th><div id="bxx4" title="40674" star="1263885262">11:17:55</div><font class="overviewfleettime" color="lime">19/1 8:14:22</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a pianeta ErPosto <a href="javascript:showGalaxy(4,449,4)" owndeploy="">[4:449:4]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx5" title="43913" star="1263888501">12:11:54</div><font class="overviewfleettime" color="lime">19/1 9:08:21</font></th>
+
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna (Luna) <a href="javascript:showGalaxy(1,355,5)" owndeploy="">[1:355:5]</a> giunge a  Luna <a href="javascript:showGalaxy(1,359,6)" owndeploy="">[1:359:6]</a>. La missione è: schieramento</span>
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx6" title="52824" star="1263897412">14:40:25</div><font class="overviewfleettime" color="lime">19/1 11:36:52</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 50<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 50"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: schieramento</span>
+
+</th>
+</tr>
+<tr class="flight">
+<th><div id="bxx7" title="57359" star="1263901947">15:56:00</div><font class="overviewfleettime" color="lime">19/1 12:52:27</font></th>
+<th colspan="3"><span class="flight owndeploy">Una delle tue <a href="#" onmouseover='return overlib("<font color=white><b>Cargo pesante 123<br></b></font>");' onmouseout="return nd();" class="owndeploy">flotte</a><a href="#" title="Cargo pesante 123"></a> da  Luna <a href="javascript:showGalaxy(4,454,4)" owndeploy="">[4:454:4]</a> giunge a  Luna <a href="javascript:showGalaxy(5,356,4)" owndeploy="">[5:356:4]</a>. La missione è: <a href="#" onmouseover='return overlib("<font color=white><b>trasporto: <br /> Metallo: 2.069.289<br />Cristallo: 844.244<br />Deuterio: 120.000</b></font>");' onmouseout="return nd();" class="owndeploy">schieramento</a><a href="#" title="trasporto: Metallo: 2.069.289 Cristallo: 844.244 Deuterio: 120.000"></a></span>

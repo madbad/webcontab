@@ -1,0 +1,85 @@
+
+<!--
+<link href="./style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="./domUtils.js"></script>
+<script type="text/javascript" src="./tabelle.js"></script>
+<script type="text/javascript" src="./script.js"></script>
+<script type="text/javascript" src="./db.js"></script>
+-->
+<div id="infoBar">
+	<script type="text/javascript">
+	<!--
+		$today=new Date();
+		document.write($today.toLocaleString());
+	// -->
+	</script>
+	<br>La Favorita di Brun G. & G. Srl Unipersonale
+	<br>Tasti disponibili: [F1][F2][F3][F4][F5][F6]
+</div>
+<div id="dataDisplay">
+	<table>
+		<thead>
+			<td>Riga</td>
+			<td>Prodotto</td>
+			<td>Peso Lordo</td>
+			<td>Peso Netto</td>
+			<td>Prezzo</td>
+			<td>Colli</td>
+			<td>Tipo imballo</td>
+		</thead>	
+		<tfoot>
+			<td>-</td>
+			<td>Totali</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tfoot>	
+		<tr>
+			<td>001</td>
+			<td>Indivia Riccia</td>
+			<td>500</td>
+			<td>300</td>
+			<td>1,25</td>
+			<td>70</td>
+			<td>Casse rosse Isoalg</td>
+		</tr>	
+	</table>
+</div>
+<div id="dataInput">
+	<table valign="top">
+		<tr>
+			<td valign="top">Riga
+				<br><input type="text" name="codRiga" value="01" size="4" title="Codice riga" onchange="LoadRow(this.value);">
+			</td>
+			<td valign="top">Prodotto
+				<br><input type="text" name="codProdotto" value="" size="10" title="Codice prodotto" onkeyup="formUpdateProd(this.value);">
+				<br><input type="text" name="descrProdotto" value="" size="20" title="">
+				<br><input type="text" name="qualProdotto" value="" size="20" title="">
+			</td>
+			<td valign="top">Imballo/Colli
+				<br><input type="text" name="codImballo" value="" size="5" title="Codice imballo">
+				<input type="text"     name="numImballo" value="" size="10" title="Numero imballaggi">
+				<br><input type="text" name="descrImballo" value="" size="20" title="Descrizione Imballo">
+				<br><input type="text" name="taraImballo" value="" size="20" title="Tara singolo imballaggio">
+			</td>
+			<td valign="top">Quantità
+				<br><input type="text" name="unitaPeso" value="" size="2" title="Unità di misura">
+				<br><input type="text" name="lordoPeso" value="" size="8" title="Peso Lordo">
+				<br><input type="text" name="nettoPeso" value="" size="8" title="Peso Netto">
+				<br><input type="text" name="taraPeso" value="" size="5" title="Tara">
+			</td>
+			<td valign="top">Prezzo
+				<br><input type="text" name="prezzoValuta" value="" size="10" title="Prezzo">
+				<br><input type="text" name="prezzoPrezzo" value="" size="10" title="Prezzo">
+				<br><input type="text" name="scontoPrezzo" value="" size="2" title="Sconto in percentuale">
+			</td>
+			<td valign="top">Iva
+				<br><input type="text" name="codIva" value="" size="10" title="Prezzo">
+				<br><input type="text" name="descrIva" value="" size="20" title="" onkeyup="SaveCurrentRow();ResetForms();Reposition();return;">
+			</td>
+		</tr>
+</table>
+</div>
