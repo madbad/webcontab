@@ -1,0 +1,94 @@
+This is the FONTLOG file for the ConsolaMono.
+
+
+This file provides detailed information on the ConsolaMono Font Software.
+This information should be distributed along with the ConsolaMono fonts
+and any derivative works.
+
+
+Basic Font Information
+
+ConsolaMono is the monospace font especially created for programming,
+text editors and for terminal-use.
+
+ConsolaMono font you'll find at: http://openfontlibrary.org.
+
+ConsolaMono is created with FontForge.
+
+ConsolaMono is a Unicode typeface font that supports all languages that
+use the Latin, Greek, Cyrillic script and its variants, and could be expanded
+to support other scripts.
+
+More specifically, this release supports the following Unicode ranges:
+
+ - Controls and Basic Latin - 0000-007F (all)
+
+ - Latin 1 Supplement And Controls - 00A0-00FF (all)
+
+ - Latin Extended A - 0100-017F (all)
+
+ - Latin Extended B - 0180, 0191, 0192, 0197, 019A, 01A0, 01A1, 01AF, 01B0,
+                      01B5, 01B6, 01CD-01DC, 01DE-01ED, 01F0, 01F4, 01F5,
+                      01F8-021B, 021E, 021F, 0226-0233, 0237, 023A-023E,
+                      0243-0249, 024C-024F, 025F, 0268, 0289, 028C
+
+ - Greek and Coptic - 0370-03FF (all)
+
+ - Cyrillic - 0400-045F, 0462, 0463, 0490-049B, 04A2, 04A3, 04AA-04B3, 04BA,
+              04BB, 04C0-04C4, 04C7, 04C8, 04CB, 04CC, 04CF, 04D0-04F9
+
+ - Cyrillic Supplement - 0510, 0511, 051A-051D
+
+ - Latin Extended Additional - 1E00-1EFF (all)
+
+ - General Punctuation - 2010-2027, 2030-2037, 2039, 2040, 203C-203E, 2043-2049,
+                         204E
+
+ - Superscripts and Subscripts - 2070-209F (all)
+
+ - Currency Symbols - 20A3, 20A4, 20A7, 20AC
+
+ - Letterlike Symbols - 2105, 2113, 2116, 2122, 2126, 212e
+
+ - Number Forms - 2153-215F, 2180-2184
+
+ - Mathematical Operators - 2202, 2206, 220F, 2211, 2212, 2215, 2217-221C, 221E,
+                            222B, 2248, 2260, 2261, 2264, 2265
+
+ - Geometric Shapes - 25CA
+
+ - Ligatures - FB00-FB06
+
+ - FEFF, FFFC, FFFD
+
+
+This release contains:
+
+ - ConsolaMono.ttf
+ - ConsolaMono.sfd
+ - FONTLOG.txt
+ - SIL - OpenFont License.txt - official license text
+ - ConsolaMono.png - the PNG demo
+
+
+ChangeLog
+
+10 Jun 2011 wmk69 (wmk69@o2.pl) ConsolaMono Version 1.000
+- Initial release
+
+
+Acknowledgements
+
+If you make modifications be sure to add your name (N), email (E), web-address
+(if you have one) (W) and description (D).
+
+
+History
+
+It's my old unfinnished font. I made some sketches of several glyphs 5-6 years
+ago, and I never finnished this. Now I made missing glyphs, did changes of some
+glyphs and turn into monospaced font.
+
+
+10 Jun 2011 wmk69 (wmk69@o2.pl)
+
