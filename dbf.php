@@ -2,7 +2,7 @@
 $sFile='./FILEDBF/03BORIGD.DBF';
 //$sFile='./FILEDBF/03ANFORD.DBF';
 //$sFile='./FILEDBF/03ANCLID.DBF';
-/*
+/*  
 $db=dbase_open($sFile,2);
 if($db)
 {
