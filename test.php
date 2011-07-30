@@ -28,9 +28,12 @@ $query = odbc_exec($odbc, $strsql) or die (odbc_errormsg());
 
 while($row = odbc_fetch_array($query))
 {
-    echo 'ddt n.: '.$row['F_NUMBOL'].' : '.$row['F_DATBOL'].' : '.$row['F_PROGRE'].'<br>';
+if ($row['F_CODPRO']=='           801'){
+    echo "$row[F_DATBOL] cliente:$row[F_CODCLI] ddt:$row[F_NUMBOL] prod:$row[F_CODPRO]<br>";
+    //echo 'ddt n.: '.$row['F_NUMBOL'].' : '.$row['F_DATBOL'].' : '.$row['F_PROGRE'].'<br>';
     //echo 'Client Phone Number: '.$row['phone'].'';
-    //echo '<hr />';
+    //echo '<hr />';.
+}	
 }
 odbc_close($odbc);
 

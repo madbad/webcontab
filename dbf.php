@@ -47,7 +47,7 @@ function echo_dbf($dbfname) {
         if (substr($buf,0,1)==chr(13)) {$goon=false;} // end of field list
         else {
             $field=unpack( "a11fieldname/A1fieldtype/Voffset/Cfieldlen/Cfielddec", substr($buf,0,18));
-            //echo 'Field: '.json_encode($field).'<br/>';
+            echo 'Field: '.json_encode($field).'<br/>';
             $unpackString.="A$field[fieldlen]$field[fieldname]/";
             array_push($fields, $field);}}
 	
