@@ -1,5 +1,5 @@
 <?php
-$sFile='./FILEDBF/03BORIGD.DBF';
+$sFile='./FILEDBF/CONTAB/03BORIGD.DBF';
 //$sFile='./FILEDBF/03ANFORD.DBF';
 //$sFile='./FILEDBF/03ANCLID.DBF';
 /*  
