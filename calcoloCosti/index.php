@@ -4,16 +4,17 @@
 		<title>WebContab Calcolo costi</title>
 		<meta charset="utf-8">
 		<style type="text/css">
-			@media print{@page {size: landscape}}
-
+@PAGE landscape {size: landscape;}
+TABLE {PAGE: landscape;} 
 			body{
-				column-count: 3;
-				-moz-column-count: 3;
-				-webkit-column-count: 3;
-				column-rule: 2px solid black;
-				-moz-column-rule: 2px solid black;
-				-webkit-column-rule: 2px solid black;
-				font-size:x-small;
+			
+			//	column-count: 3;
+			//	-moz-column-count: 3;
+			//	-webkit-column-count: 3;
+			//	column-rule: 2px solid black;
+			//	-moz-column-rule: 2px solid black;
+			//	-webkit-column-rule: 2px solid black;
+			//	font-size:x-small;
 			}
 			table, tr, td , th{
 				font-size:x-small;
@@ -36,8 +37,11 @@
 			}
 			#rimanenze td{
 				height:2em;
-				width:10em;
+				width:9em;
 				text-align:left;
+			}
+			div {
+				float:left;
 			}
 		</style>
 	</head>
@@ -61,8 +65,8 @@ function getArticleTable($articlesCode, $startDate, $endDate, $calopesoAlCollo){
 	//query execution
 	$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
 
-	$out.="<table><tr><th colspan='5'>Product(s):".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
-	$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>media</th></tr>';
+	$out.="<table><tr><th colspan='5'>cod:".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
+	$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th></tr>';
 	//this will containt table totals
 	$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
 	$dbClienti=getDbClienti();
@@ -109,17 +113,19 @@ $table.='<tr><td></td><td></td></tr>';
 $table.='<tr><td></td><td></td></tr>';
 $table.='<tr><td></td><td></td></tr>';
 $table.='<tr><td></td><td></td></tr>';
-$table.='<tr><td></td><td></td></tr>';
+$table.='<tr><td>Tot.</td><td></td></tr>';
 $table.='</table>';
 
 $startDate='08-02-2011';
 $endDate='08-02-2011';
-$html="<h1>Riccia</h1>";
+
+$html="<div>";
+$html.="<h1>Riccia</h1>";
 $html.=getArticleTable(array('01'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('701','801'),$startDate,$endDate,0.7);
 $html.=$table;
 
-$html.='<hr>';
+$html.="</div><div>";
 $html.="<h1>Scarola</h1>";
 $html.=getArticleTable(array('03'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('703','803'),$startDate,$endDate,0.7);
@@ -127,20 +133,22 @@ $html.=$table;
 
 $startDate='08-01-2011';
 $endDate='08-02-2011';
-$html.='<div style="page-break-before: always"></div>';
+//$html.='<div style="page-break-before: always"></div>';
+$html.="</div><div>";
 $html.="<h1>Tondo</h1>";
 $html.=getArticleTable(array('08'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('708','808'),$startDate,$endDate,0.4);
 $html.=$table;
 
-$html.='<hr>';
+$html.="</div><div>";
 $html.="<h1>Lungo</h1>";
 $html.=getArticleTable(array('29'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('729','829'),$startDate,$endDate,0.4);
 $html.=$table;
 
-$html.='<div style="page-break-before: always"></div>';
-$html.="<h1>Pan di Zucchero</h1>";
+//$html.='<div style="page-break-before: always"></div>';
+$html.="</div><div>";
+$html.="<h1>P.di Zucchero</h1>";
 $html.=getArticleTable(array('31'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('731','831'),$startDate,$endDate,.4);
 $html.=$table;
