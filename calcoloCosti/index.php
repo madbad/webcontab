@@ -4,6 +4,8 @@
 		<title>WebContab Calcolo costi</title>
 		<meta charset="utf-8">
 		<style type="text/css">
+			@media print{@page {size: landscape}}
+
 			body{
 				column-count: 3;
 				-moz-column-count: 3;
@@ -31,6 +33,11 @@
 			}
 			hr{
 				margin-top:150px;
+			}
+			#rimanenze td{
+				height:2em;
+				width:10em;
+				text-align:left;
 			}
 		</style>
 	</head>
@@ -95,35 +102,48 @@ function getDbClienti(){
 	return $db;
 }
 
+$table='<table id="rimanenze">';
+$table.='<tr><td>Rimanenze</td><td></td></tr>';
+$table.='<tr><td></td><td></td></tr>';
+$table.='<tr><td></td><td></td></tr>';
+$table.='<tr><td></td><td></td></tr>';
+$table.='<tr><td></td><td></td></tr>';
+$table.='<tr><td></td><td></td></tr>';
+$table.='<tr><td></td><td></td></tr>';
+$table.='</table>';
 
-$startDate='08-01-2011';
-$endDate='08-01-2011';
+$startDate='08-02-2011';
+$endDate='08-02-2011';
 $html="<h1>Riccia</h1>";
 $html.=getArticleTable(array('01'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('701','801'),$startDate,$endDate,0.7);
+$html.=$table;
 
 $html.='<hr>';
 $html.="<h1>Scarola</h1>";
 $html.=getArticleTable(array('03'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('703','803'),$startDate,$endDate,0.7);
+$html.=$table;
 
-
-$startDate='29-07-2011';
-$endDate='30-07-2011';
+$startDate='08-01-2011';
+$endDate='08-02-2011';
 $html.='<div style="page-break-before: always"></div>';
 $html.="<h1>Tondo</h1>";
 $html.=getArticleTable(array('08'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('708','808'),$startDate,$endDate,0.4);
+$html.=$table;
 
 $html.='<hr>';
 $html.="<h1>Lungo</h1>";
 $html.=getArticleTable(array('29'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('729','829'),$startDate,$endDate,0.4);
+$html.=$table;
 
 $html.='<div style="page-break-before: always"></div>';
 $html.="<h1>Pan di Zucchero</h1>";
 $html.=getArticleTable(array('31'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('731','831'),$startDate,$endDate,.4);
+$html.=$table;
 
 echo $html;
 
