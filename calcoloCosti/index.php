@@ -6,6 +6,7 @@
 		<style type="text/css">
 @PAGE landscape {size: landscape;}
 TABLE {PAGE: landscape;} 
+@page rotated { size : landscape }
 			body{
 			
 			//	column-count: 3;
