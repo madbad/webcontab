@@ -21,7 +21,7 @@ TABLE {PAGE: landscape;}
 				padding:0px;
 				margin:0;
 				text-align:right;
-				border:1px solid #e1e1e1;
+				border:1px solid #000000;
 				    border-collapse: collapse;
 			}
 			td, th{
@@ -116,8 +116,8 @@ $table.='<tr><td></td><td></td></tr>';
 $table.='<tr><td>Tot.</td><td></td></tr>';
 $table.='</table>';
 
-$startDate='08-02-2011';
-$endDate='08-02-2011';
+$startDate='08-04-2011';
+$endDate='08-04-2011';
 
 $html="<div>";
 $html.="<h1>Riccia</h1>";
@@ -131,8 +131,8 @@ $html.=getArticleTable(array('03'),$startDate,$endDate,0.3);
 $html.=getArticleTable(array('703','803'),$startDate,$endDate,0.7);
 $html.=$table;
 
-$startDate='08-01-2011';
-$endDate='08-02-2011';
+$startDate='08-03-2011';
+$endDate='08-04-2011';
 //$html.='<div style="page-break-before: always"></div>';
 $html.="</div><div>";
 $html.="<h1>Tondo</h1>";
