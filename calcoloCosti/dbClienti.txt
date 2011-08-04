@@ -116,4 +116,5 @@ CHIE3, CHIESOLE SRL  , grezzo      ,     00
 GUIZZ, AZ.AGR.GUIZZAR, grezzo      ,     00
 ORTCO, ORTOCOM SRL CO, mercato     ,     00
 BELFR, BELFRUTTA SRL , mercato     ,     00
-4MYSE, 4MY SELECTION , mercato     ,     00  
+4MYSE, 4MY SELECTION , mercato     ,     00 
+VARA , VARA SNC      , grezzo      ,     00  
