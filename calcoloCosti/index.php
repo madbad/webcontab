@@ -30,6 +30,7 @@ TABLE {PAGE: landscape;}
 				text-align:right;
 				border:1px solid #000000;
 				    border-collapse: collapse;
+				margin-left:0.5em;
 			}
 			td, th{
 				padding-left:4px;
@@ -54,6 +55,9 @@ TABLE {PAGE: landscape;}
 display:block;
 font-weight:bold;
 width:15 em;
+			}
+			.totali{
+			 	 font-size:1.5em;
 			}
 		</style>
 	</head>
@@ -117,7 +121,7 @@ if (@$_GET['mode']=='print'){
 		}	
 		}
 
-		$out.="<tr><th>Totali</th><th>-</th><th>".round($sum['F_NUMCOL'])."</th><th>".$sum['NETTO']."</th></tr>";
+		$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='2'>".$sum['NETTO']."</th></tr>";
 		$out.='</table><BR>';
 
 		//DISCONNECT FROM DATABASE
