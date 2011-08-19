@@ -119,3 +119,4 @@ BELFR, BELFRUTTA SRL , mercato     ,     00
 4MYSE, 4MY SELECTION , mercato     ,     00 
 VARA , VARA SNC      , grezzo      ,     00  
 GARLE, GARLETTI SNC D, mercato     ,     00  
+CAMPF, CAMPOFIORE GRO, grezzo      ,     00  

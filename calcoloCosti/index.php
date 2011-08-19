@@ -152,9 +152,9 @@ if (@$_GET['mode']=='print'){
 	$table.='<tr><td></td><td></td></tr>';
 	$table.='<tr><td>Tot.</td><td></td></tr>';
 	$table.='</table>';
-	
+	$html='';
 
-	$html="<div>";
+	$html.="<div>";
 	$html.="<h1>Riccia</h1>";
 	$html.=getArticleTable(array('01'),$startDate,$endDate,0.3);
 	$html.=getArticleTable(array('701','801'),$startDate,$endDate,0.7);
@@ -186,13 +186,38 @@ if (@$_GET['mode']=='print'){
 		$html.=getArticleTable(array('31'),$startDateR,$endDateR,0.3);
 		$html.=getArticleTable(array('731','831'),$startDateR,$endDateR,.4);
 		$html.=$table;
+		
+		$html.="</div><div>";
+		$html.="<h1>Finocchio</h1>";
+		$html.=getArticleTable(array('26'),$startDateR,$endDateR,0.3);
+		$html.=getArticleTable(array('726','826'),$startDateR,$endDateR,.4);
+		$html.=$table;
+		
+
 	}
+
+	/*
+	$html.="</div><div>";
+	$html.="<h1>Zucche</h1>";
+	$html.=getArticleTable(array('50'),$startDate,$endDate,0);
+	$html.=getArticleTable(array('750','850'),$startDate,$endDate,0);
+	$html.=$table;
+	*/
+	
+/*	
+	$html.="</div><div>";
+	$html.="<h1>Sedano</h1>";
+	$html.=getArticleTable(array('36'),$startDate,$endDate,0);
+	$html.=getArticleTable(array('736','836'),$startDate,$endDate,0);
+	$html.=$table;
+*/	
+	$html.='</div>';
 	echo $html;
 
 	 //log end date for time execution calc
 	$end = (float) array_sum(explode(' ',microtime()));
 	 //print execution time
-	echo "<br><br>Processing time: ". sprintf("%.4f", ($end-$start))." seconds"; 
+	echo "<br><br>Exec time: ". sprintf("%.4f", ($end-$start))." seconds"; 
 }
 ?>
 </body>
