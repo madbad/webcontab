@@ -1,7 +1,7 @@
 
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    1
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    1
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
@@ -9,8 +9,8 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
 
 EData Doc.: 01.10.2010F
-    2944 BV   3 C FABBR FABBRI MARIO   03             IND.SCAROLA IT             KG - 4852,00        -4,850 01 01.10.10   7023  BOL     
-    2944 BV   7 C FABBR FABBRI MARIO   01             IND.RICCIA IT              KG - 2884,00        -2,880 01 01.10.10   7023  BOL     
+    2944 BV   3 C FABBR FABBRI MARIO   03             IND.SCAROLA IT             KG - 4852,00    -1.018,920 01 01.10.10   7023  BOL     
+    2944 BV   7 C FABBR FABBRI MARIO   01             IND.RICCIA IT              KG - 2884,00      -605,640 01 01.10.10   7023  BOL     
     2945 BV   3 C MORAN MORANDINI AMEL 01             IND.RICCIA IT              KG -  712,00      -178,000 01 01.10.10   7024  BOL     
     2945 BV   7 C MORAN MORANDINI AMEL 03             IND.SCAROLA IT             KG -  672,00      -168,000 01 01.10.10   7024  BOL     
     2946 BV   3 C AZGI  AZ.AGRICOLA GI 12             ANELLO PARA                KG -   80,00      -248,000 01 01.10.10   7025  BOL     
@@ -22,10 +22,9 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2950 BV   5 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   51,00       -61,200 01 01.10.10   7029  BOL     
     2950 BV   7 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -   63,00       -53,550 01 01.10.10   7029  BOL     
     2950 BV   9 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   54,00       -83,700 01 01.10.10   7029  BOL     
-    2951 BV   3 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  132,00        -0,130 01 01.10.10   7030  BOL     
-    2951 BV   5 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   55,00        -0,060 01 01.10.10   7030  BOL     
-    2951 BV   7 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   55,00        -0,060 01 01.10.10   7030  BOL     
-    2951 BV   9 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 01.10.10   7030  BOL     
+    2951 BV   3 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  122,00      -110,290 01 01.10.10   7030  BOL     
+    2951 BV   5 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   52,40       -47,160 01 01.10.10   7030  BOL     
+    2951 BV   7 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   52,20       -49,590 01 01.10.10   7030  BOL     
     2952 BV   3 C SOLEN AZ.AGR. SOLE N 31             INS.PAN DI ZUCCHERO IT     KG - 5210,00    -1.823,500 01 01.10.10   7031  BOL     
     2953 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  301,00      -451,500 01 01.10.10   7032  BOL     
     2953 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -   71,00      -106,500 01 01.10.10   7032  BOL     
@@ -56,16 +55,16 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2958 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  237,00      -355,500 01 02.10.10   7037  BOL     
     2958 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  164,00      -246,000 01 02.10.10   7037  BOL     
     2958 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  154,00      -169,400 01 02.10.10   7037  BOL     
-    2958 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  921,00    -1.013,100 01 02.10.10   7037  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    2
+    2958 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  921,00    -1.013,100 01 02.10.10   7037  BOL     
+    2958 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  538,00      -807,000 01 02.10.10   7037  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    2
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
 Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-    2958 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  538,00      -807,000 01 02.10.10   7037  BOL     
     2958 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  151,00      -347,300 01 02.10.10   7037  BOL     
     2958 BV  15 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  210,00      -147,000 01 02.10.10   7037  BOL     
     2958 BV  17 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -  151,00       -83,050 01 02.10.10   7037  BOL     
@@ -74,23 +73,20 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2958 BV  23 C SEVEN SEVEN SPA      854            PREZZEMOLO IT IFCO 6410    KG -   99,00      -158,400 01 02.10.10   7037  BOL     
     2958 BV  25 C SEVEN SEVEN SPA      847            ZUCCHINE IT IFCO 4314      KG -  248,00      -210,800 01 02.10.10   7037  BOL     
     2958 BV  27 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   74,00       -44,400 01 02.10.10   7037  BOL     
-    2959 BV   3 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   67,50        -0,070 01 02.10.10   7038  BOL     
-    2959 BV   5 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -   55,00        -0,060 01 02.10.10   7038  BOL     
-    2959 BV   7 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -   60,00        -0,060 01 02.10.10   7038  BOL     
-    2959 BV   9 C AMATO AMATO S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -   72,00        -0,070 01 02.10.10   7038  BOL     
-    2959 BV  11 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 02.10.10   7038  BOL     
-    2960 BV   3 C PRIMF PRIMO FIORE SR 08             RAD.ROSSO TONDO IT         KG -  223,00        -0,220 01 02.10.10   7039  BOL     
-    2960 BV   5 C PRIMF PRIMO FIORE SR 05             RAD.ROSSO SEMILUNGO IT     KG -  146,00        -0,150 01 02.10.10   7039  BOL     
-    2960 BV   7 C PRIMF PRIMO FIORE SR 29             RAD.ROSSO LUNGO IT         KG -  171,00        -0,170 01 02.10.10   7039  BOL     
-    2960 BV   9 C PRIMF PRIMO FIORE SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 02.10.10   7039  BOL     
+    2959 BV   3 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   56,00       -63,280 01 02.10.10   7038  BOL     
+    2959 BV   5 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -   52,00       -49,400 01 02.10.10   7038  BOL     
+    2959 BV   7 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -   55,00       -52,250 01 02.10.10   7038  BOL     
+    2959 BV   9 C AMATO AMATO S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -   69,00       -53,820 01 02.10.10   7038  BOL     
+    2960 BV   3 C PRIMF PRIMO FIORE SR 08             RAD.ROSSO TONDO IT         KG -  213,90      -186,090 01 02.10.10   7039  BOL     
+    2960 BV   5 C PRIMF PRIMO FIORE SR 05             RAD.ROSSO SEMILUNGO IT     KG -  168,00      -277,700 01 02.10.10   7039  BOL     
+    2960 BV   7 C PRIMF PRIMO FIORE SR 29             RAD.ROSSO LUNGO IT         KG -  169,00      -198,580 01 02.10.10   7039  BOL     
     2961 BV   3 C FTESI F.LLI TESI AND 01             IND.RICCIA IT              KG -   51,00       -56,100 01 02.10.10   7040  BOL     
     2961 BV   5 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   50,00       -55,000 01 02.10.10   7040  BOL     
     2961 BV   7 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -   61,00       -51,850 01 02.10.10   7040  BOL     
     2961 BV   9 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   57,00       -83,220 01 02.10.10   7040  BOL     
-    2962 BV   3 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   67,00        -0,070 01 02.10.10   7041  BOL     
-    2962 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   67,00        -0,070 01 02.10.10   7041  BOL     
-    2962 BV   7 C DANFR DAN FRUTTA SNC 08             RAD.ROSSO TONDO IT         KG -  157,00        -0,160 01 02.10.10   7041  BOL     
-    2962 BV   9 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 02.10.10   7041  BOL     
+    2962 BV   3 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   60,70       -33,390 01 02.10.10   7041  BOL     
+    2962 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   61,70       -37,020 01 02.10.10   7041  BOL     
+    2962 BV   7 C DANFR DAN FRUTTA SNC 08             RAD.ROSSO TONDO IT         KG -  151,60      -121,280 01 02.10.10   7041  BOL     
     2963 BV   3 C COREX COREX S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  123,00      -110,700 01 02.10.10   7042  BOL     
     2963 BV   5 C COREX COREX S.R.L.   08             RAD.ROSSO TONDO IT         KG -  154,00      -154,000 01 02.10.10   7042  BOL     
     2963 BV   7 C COREX COREX S.R.L.   29             RAD.ROSSO LUNGO IT         KG -   29,00       -49,300 01 02.10.10   7042  BOL     
@@ -114,33 +110,32 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2968 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  109,00      -139,520 01 02.10.10   7047  BOL     
     2969 BV   3 C OROF2 OROFRUIT SRL   01             IND.RICCIA IT              KG -   58,50       -76,050 01 02.10.10   7048  BOL     
     2969 BV   5 C OROF2 OROFRUIT SRL   03             IND.SCAROLA IT             KG -  119,80      -152,150 01 02.10.10   7048  BOL     
-    2969 BV   7 C OROF2 OROFRUIT SRL   29             RAD.ROSSO LUNGO IT         KG -   28,30       -48,960 01 02.10.10   7048  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    3
+    2969 BV   7 C OROF2 OROFRUIT SRL   29             RAD.ROSSO LUNGO IT         KG -   28,30       -48,960 01 02.10.10   7048  BOL     
+    2970 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -   95,00      -133,000 01 02.10.10   7049  BOL     
+    2970 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  100,00      -140,000 01 02.10.10   7049  BOL     
+    2971 BV   3 C EUROA EUROARICI S.N. 29             RAD.ROSSO LUNGO IT         KG -   56,00       -78,850 01 02.10.10   7050  BOL     
+    2971 BV   5 C EUROA EUROARICI S.N. 08             RAD.ROSSO TONDO IT         KG -   77,00       -71,150 01 02.10.10   7050  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    3
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
 Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-    2970 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -   95,00      -133,000 01 02.10.10   7049  BOL     
-    2970 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  100,00      -140,000 01 02.10.10   7049  BOL     
-    2971 BV   3 C EUROA EUROARICI S.N. 29             RAD.ROSSO LUNGO IT         KG -   56,00       -78,850 01 02.10.10   7050  BOL     
-    2971 BV   5 C EUROA EUROARICI S.N. 08             RAD.ROSSO TONDO IT         KG -   77,00       -71,150 01 02.10.10   7050  BOL     
     2971 BV   7 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   73,00       -83,510 01 02.10.10   7050  BOL     
     2971 BV   9 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  128,00      -135,170 01 02.10.10   7050  BOL     
     2971 BV  11 C EUROA EUROARICI S.N. 31             INS.PAN DI ZUCCHERO IT     KG -  141,00       -99,260 01 02.10.10   7050  BOL     
-    2972 BV   3 C VERDE VERDE EUROPA I 903            IND.SCAROLA IT CAT.II      KG -   25,50        -0,030 01 02.10.10   7051  BOL     
-    2972 BV   5 C VERDE VERDE EUROPA I 42             PORRO IT                   KG -   83,00        -0,080 01 02.10.10   7051  BOL     
-    2972 BV   7 C VERDE VERDE EUROPA I 31             INS.PAN DI ZUCCHERO IT     KG -   82,00        -0,080 01 02.10.10   7051  BOL     
-    2972 BV   9 C VERDE VERDE EUROPA I 01             IND.RICCIA IT              KG -   29,00        -0,030 01 02.10.10   7051  BOL     
-    2972 BV  11 C VERDE VERDE EUROPA I 03             IND.SCAROLA IT             KG -   32,00        -0,030 01 02.10.10   7051  BOL     
-    2972 BV  13 C VERDE VERDE EUROPA I 36             SEDANO VERDE IT            KG -   57,00        -0,060 01 02.10.10   7051  BOL     
-    2972 BV  15 C VERDE VERDE EUROPA I 29             RAD.ROSSO LUNGO IT         KG -   48,00        -0,050 01 02.10.10   7051  BOL     
-    2972 BV  17 C VERDE VERDE EUROPA I 47             ZUCCHINE IT                KG -   59,00        -0,060 01 02.10.10   7051  BOL     
-    2972 BV  19 C VERDE VERDE EUROPA I 901            IND.RICCIA IT CAT.II       KG -   36,00        -0,040 01 02.10.10   7051  BOL     
-    2972 BV  21 C VERDE VERDE EUROPA I 908            RAD.ROSSO TONDO IT CAT.II  KG -   40,00        -0,040 01 02.10.10   7051  BOL     
-    2972 BV  23 C VERDE VERDE EUROPA I ALBOTRANS      ***************** DATI VET -- -    1,00               01 02.10.10   7051  BOL     
+    2972 BV   3 C VERDE VERDE EUROPA I 903            IND.SCAROLA IT CAT.II      KG -   24,00        -7,200 01 02.10.10   7051  BOL     
+    2972 BV   5 C VERDE VERDE EUROPA I 42             PORRO IT                   KG -   83,00       -83,000 01 02.10.10   7051  BOL     
+    2972 BV   7 C VERDE VERDE EUROPA I 31             INS.PAN DI ZUCCHERO IT     KG -   83,00       -78,020 01 02.10.10   7051  BOL     
+    2972 BV   9 C VERDE VERDE EUROPA I 01             IND.RICCIA IT              KG -   33,00       -39,600 01 02.10.10   7051  BOL     
+    2972 BV  11 C VERDE VERDE EUROPA I 03             IND.SCAROLA IT             KG -   29,00       -34,800 01 02.10.10   7051  BOL     
+    2972 BV  13 C VERDE VERDE EUROPA I 36             SEDANO VERDE IT            KG -   38,00       -22,800 01 02.10.10   7051  BOL     
+    2972 BV  15 C VERDE VERDE EUROPA I 29             RAD.ROSSO LUNGO IT         KG -   38,00       -38,000 01 02.10.10   7051  BOL     
+    2972 BV  17 C VERDE VERDE EUROPA I 47             ZUCCHINE IT                KG -   48,00       -16,800 01 02.10.10   7051  BOL     
+    2972 BV  19 C VERDE VERDE EUROPA I 901            IND.RICCIA IT CAT.II       KG -   30,00        -9,000 01 02.10.10   7051  BOL     
+    2972 BV  21 C VERDE VERDE EUROPA I 908            RAD.ROSSO TONDO IT CAT.II  KG -   32,00       -12,800 01 02.10.10   7051  BOL     
     2973 BV   3 C LAME2 LA MEDIGLIA FR 08             RAD.ROSSO TONDO IT         KG - 1190,00      -833,000 01 02.10.10   7052  BOL     
     2973 BV   7 C LAME2 LA MEDIGLIA FR 01             IND.RICCIA IT              KG -  411,00      -328,800 01 02.10.10   7052  BOL     
 
@@ -150,9 +145,8 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2975 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -   90,00      -126,000 01 04.10.10   7054  BOL     
     2976 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  107,00      -140,170 01 04.10.10   7055  BOL     
     2976 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  107,00      -131,610 01 04.10.10   7055  BOL     
-    2977 BV   3 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  165,00        -0,170 01 04.10.10   7056  BOL     
-    2977 BV   5 C DANFR DAN FRUTTA SNC 29             RAD.ROSSO LUNGO IT         KG -   88,00        -0,090 01 04.10.10   7056  BOL     
-    2977 BV   7 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 04.10.10   7056  BOL     
+    2977 BV   3 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  161,50      -100,130 01 04.10.10   7056  BOL     
+    2977 BV   5 C DANFR DAN FRUTTA SNC 29             RAD.ROSSO LUNGO IT         KG -   84,00       -68,880 01 04.10.10   7056  BOL     
     2978 BV   3 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   52,00       -56,680 01 04.10.10   7057  BOL     
     2978 BV   5 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -   60,00       -65,400 01 04.10.10   7057  BOL     
     2978 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   68,00       -33,320 01 04.10.10   7057  BOL     
@@ -172,15 +166,7 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2980 BV  13 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  208,00      -145,600 01 04.10.10   7059  BOL     
     2980 BV  15 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -   96,00       -52,800 01 04.10.10   7059  BOL     
     2980 BV  17 C SEVEN SEVEN SPA      826            FINOCCHIO IT IFCO 6410     KG -  708,00      -814,200 01 04.10.10   7059  BOL     
-    2980 BV  19 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  277,00      -304,700 01 04.10.10   7059  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    4
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    2980 BV  19 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  277,00      -304,700 01 04.10.10   7059  BOL     
     2980 BV  21 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   71,00       -42,600 01 04.10.10   7059  BOL     
     2980 BV  23 C SEVEN SEVEN SPA      854            PREZZEMOLO IT IFCO 6410    KG -   71,00      -113,600 01 04.10.10   7059  BOL     
     2980 BV  25 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  275,00      -165,000 01 04.10.10   7059  BOL     
@@ -188,7 +174,15 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2980 BV  29 C SEVEN SEVEN SPA      847            ZUCCHINE IT IFCO 4314      KG -  273,00      -232,050 01 04.10.10   7059  BOL     
 
 EData Doc.: 05.10.2010F
-    2981 BV   3 C MASSI MASSIMO TERAZZ 08             RAD.ROSSO TONDO IT         KG - 7120,00    -2.705,600 01 05.10.10   7060  BOL     
+    2981 BV   3 C MASSI MASSIMO TERAZZ 08             RAD.ROSSO TONDO IT         KG - 7120,00    -2.705,600 01 05.10.10   7060  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    4
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
     2982 BV   3 C MORAN MORANDINI AMEL 03             IND.SCAROLA IT             KG -  760,00      -228,000 01 05.10.10   7061  BOL     
     2982 BV   7 C MORAN MORANDINI AMEL 01             IND.RICCIA IT              KG -  329,00       -98,700 01 05.10.10   7061  BOL     
     2983 BV   3 C TIEFF ORTOFRUTTICOLA 31             INS.PAN DI ZUCCHERO IT     KG - 2277,00    -1.593,900 01 05.10.10   7062  BOL     
@@ -230,15 +224,7 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2993 BV   7 C ORTO3 ORTOROSA DI RO 08             RAD.ROSSO TONDO IT         KG -  200,00       -80,000 01 06.10.10   7073  BOL     
     2994 BV   3 C MARTI MARTINELLI SUP 05             RAD.ROSSO SEMILUNGO IT     KG -  265,00      -371,000 01 06.10.10   7074  BOL     
     2994 BV   5 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   43,00       -86,000 01 06.10.10   7074  BOL     
-    2994 BV   7 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  196,00      -215,600 01 06.10.10   7074  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    5
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    2994 BV   7 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  196,00      -215,600 01 06.10.10   7074  BOL     
     2994 BV   9 C MARTI MARTINELLI SUP 01             IND.RICCIA IT              KG -   93,00      -130,200 01 06.10.10   7074  BOL     
     2994 BV  11 C MARTI MARTINELLI SUP 03             IND.SCAROLA IT             KG -  120,00      -168,000 01 06.10.10   7074  BOL     
     2995 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  259,00      -388,500 01 06.10.10   7075  BOL     
@@ -246,17 +232,24 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2995 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  195,00      -195,000 01 06.10.10   7075  BOL     
     2995 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  984,00    -1.082,400 01 06.10.10   7075  BOL     
     2995 BV  11 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -   82,00      -164,000 01 06.10.10   7075  BOL     
-    2995 BV  13 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  168,00      -117,600 01 06.10.10   7075  BOL     
+    2995 BV  13 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  168,00      -117,600 01 06.10.10   7075  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    5
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
     2995 BV  15 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -  158,00       -86,900 01 06.10.10   7075  BOL     
     2995 BV  17 C SEVEN SEVEN SPA      849            MELANZANE IT IFCO 6416     KG -  149,00      -119,200 01 06.10.10   7075  BOL     
     2995 BV  19 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  147,00      -161,700 01 06.10.10   7075  BOL     
     2995 BV  21 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  136,00       -95,200 01 06.10.10   7075  BOL     
     2995 BV  23 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  220,00      -154,000 01 06.10.10   7075  BOL     
-    2996 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  105,00        -0,110 01 06.10.10   7076  BOL     
-    2996 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  110,00        -0,110 01 06.10.10   7076  BOL     
-    2996 BV   7 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   87,00        -0,090 01 06.10.10   7076  BOL     
-    2996 BV   9 C AMATO AMATO S.R.L.   08             RAD.ROSSO TONDO IT         KG -  187,00        -0,190 01 06.10.10   7076  BOL     
-    2996 BV  11 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 06.10.10   7076  BOL     
+    2996 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  100,00       -87,000 01 06.10.10   7076  BOL     
+    2996 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  100,00       -87,000 01 06.10.10   7076  BOL     
+    2996 BV   7 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   85,00       -96,050 01 06.10.10   7076  BOL     
+    2996 BV   9 C AMATO AMATO S.R.L.   08             RAD.ROSSO TONDO IT         KG -  171,00      -140,220 01 06.10.10   7076  BOL     
     2997 BV   3 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  115,00      -111,550 01 06.10.10   7077  BOL     
     2997 BV   5 C NIZZ2 NELLO NIZZO SR 908            RAD.ROSSO TONDO IT CAT.II  KG -   27,00       -10,800 01 06.10.10   7077  BOL     
     2997 BV   7 C NIZZ2 NELLO NIZZO SR 49             MELANZANE IT               KG -  106,00       -37,100 01 06.10.10   7077  BOL     
@@ -265,11 +258,10 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     2998 BV   7 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -   67,00       -51,590 01 06.10.10   7078  BOL     
     2998 BV   9 C FTESI F.LLI TESI AND 05             RAD.ROSSO SEMILUNGO IT     KG -   57,00       -68,970 01 06.10.10   7078  BOL     
     2999 BV   3 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG - 1688,00      -506,400 01 06.10.10   7079  BOL     
-    3001 BV   3 C VERDE VERDE EUROPA I 01             IND.RICCIA IT              KG -   39,00        -0,040 01 06.10.10   7081  BOL     
-    3001 BV   5 C VERDE VERDE EUROPA I 03             IND.SCAROLA IT             KG -   35,50        -0,040 01 06.10.10   7081  BOL     
-    3001 BV   7 C VERDE VERDE EUROPA I 05             RAD.ROSSO SEMILUNGO IT     KG -   35,00        -0,040 01 06.10.10   7081  BOL     
-    3001 BV   9 C VERDE VERDE EUROPA I 47             ZUCCHINE IT                KG -  179,00        -0,180 01 06.10.10   7081  BOL     
-    3001 BV  11 C VERDE VERDE EUROPA I ALBOTRANS      ***************** DATI VET -- -    1,00               01 06.10.10   7081  BOL     
+    3001 BV   3 C VERDE VERDE EUROPA I 01             IND.RICCIA IT              KG -   33,00       -26,400 01 06.10.10   7081  BOL     
+    3001 BV   5 C VERDE VERDE EUROPA I 03             IND.SCAROLA IT             KG -   32,00       -35,200 01 06.10.10   7081  BOL     
+    3001 BV   7 C VERDE VERDE EUROPA I 05             RAD.ROSSO SEMILUNGO IT     KG -   28,00       -36,400 01 06.10.10   7081  BOL     
+    3001 BV   9 C VERDE VERDE EUROPA I 47             ZUCCHINE IT                KG -  177,00       -53,100 01 06.10.10   7081  BOL     
     3002 BV   3 C L'OR  L'ORTOLANA DI  03             IND.SCAROLA IT             KG -   55,00       -55,000 01 06.10.10   7082  BOL     
     3002 BV   5 C L'OR  L'ORTOLANA DI  01             IND.RICCIA IT              KG -   39,00       -39,000 01 06.10.10   7082  BOL     
     3002 BV   7 C L'OR  L'ORTOLANA DI  31             INS.PAN DI ZUCCHERO IT     KG -   50,00       -25,000 01 06.10.10   7082  BOL     
@@ -288,15 +280,7 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3006 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  372,00      -558,000 01 07.10.10   7086  BOL     
     3006 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  199,00      -298,500 01 07.10.10   7086  BOL     
     3006 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  154,00      -154,000 01 07.10.10   7086  BOL     
-    3006 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  651,00      -716,100 01 07.10.10   7086  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    6
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3006 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  651,00      -716,100 01 07.10.10   7086  BOL     
     3006 BV  11 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  255,00      -510,000 01 07.10.10   7086  BOL     
     3006 BV  13 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  286,00      -200,200 01 07.10.10   7086  BOL     
     3006 BV  15 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -  128,00       -70,400 01 07.10.10   7086  BOL     
@@ -306,7 +290,15 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3006 BV  23 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  126,00       -88,200 01 07.10.10   7086  BOL     
     3006 BV  25 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  335,00      -234,500 01 07.10.10   7086  BOL     
     3006 BV  27 C SEVEN SEVEN SPA      847            ZUCCHINE IT IFCO 4314      KG -  323,00      -274,550 01 07.10.10   7086  BOL     
-    3007 BV   3 C MAEST MAESTRI ORTOFR 01             IND.RICCIA IT              KG -  126,00      -153,720 01 07.10.10   7087  BOL     
+    3007 BV   3 C MAEST MAESTRI ORTOFR 01             IND.RICCIA IT              KG -  126,00      -153,720 01 07.10.10   7087  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    6
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
     3007 BV   5 C MAEST MAESTRI ORTOFR 03             IND.SCAROLA IT             KG -  128,00      -156,160 01 07.10.10   7087  BOL     
     3007 BV   7 C MAEST MAESTRI ORTOFR 05             RAD.ROSSO SEMILUNGO IT     KG -   40,00       -56,000 01 07.10.10   7087  BOL     
     3007 BV   9 C MAEST MAESTRI ORTOFR 08             RAD.ROSSO TONDO IT         KG -  305,00      -262,300 01 07.10.10   7087  BOL     
@@ -321,16 +313,15 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3010 BV   7 C EUROA EUROARICI S.N. 29             RAD.ROSSO LUNGO IT         KG -   55,00       -58,080 01 07.10.10   7096  BOL     
     3010 BV   9 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  127,00       -78,230 01 07.10.10   7096  BOL     
     3010 BV  11 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   75,00       -52,800 01 07.10.10   7096  BOL     
-    3011 BV   3 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   93,00        -0,090 01 07.10.10   7091  BOL     
-    3011 BV   5 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  152,00        -0,150 01 07.10.10   7091  BOL     
-    3011 BV   7 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   85,00        -0,090 01 07.10.10   7091  BOL     
-    3011 BV   9 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   85,00        -0,090 01 07.10.10   7091  BOL     
-    3011 BV  11 C DANFR DAN FRUTTA SNC 29             RAD.ROSSO LUNGO IT         KG -   61,00        -0,060 01 07.10.10   7091  BOL     
-    3011 BV  13 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 07.10.10   7091  BOL     
+    3011 BV   3 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   83,00       -80,510 01 07.10.10   7091  BOL     
+    3011 BV   5 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  147,20      -113,930 01 07.10.10   7091  BOL     
+    3011 BV   7 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   80,60       -70,930 01 07.10.10   7091  BOL     
+    3011 BV   9 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   80,50       -56,350 01 07.10.10   7091  BOL     
+    3011 BV  11 C DANFR DAN FRUTTA SNC 29             RAD.ROSSO LUNGO IT         KG -   57,30       -43,090 01 07.10.10   7091  BOL     
+    3011 BV  13 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   46,00       -14,720 01 07.10.10   7091  BOL     
     3012 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  110,00      -147,400 01 07.10.10   7092  BOL     
     3012 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  107,00      -133,750 01 07.10.10   7092  BOL     
-    3013 BV   3 C DICAM CAMPAGNARO GIO 08             RAD.ROSSO TONDO IT         KG -  345,00        -0,350 01 07.10.10   7093  BOL     
-    3013 BV   5 C DICAM CAMPAGNARO GIO ALBOTRANS      ***************** DATI VET -- -    1,00               01 07.10.10   7093  BOL     
+    3013 BV   3 C DICAM CAMPAGNARO GIO 08             RAD.ROSSO TONDO IT         KG -  318,00      -318,000 01 07.10.10   7093  BOL     
     3014 BV   3 C L'OR  L'ORTOLANA DI  01             IND.RICCIA IT              KG -   96,00      -115,200 01 07.10.10   7094  BOL     
     3014 BV   5 C L'OR  L'ORTOLANA DI  03             IND.SCAROLA IT             KG -   62,00       -74,400 01 07.10.10   7094  BOL     
     3014 BV   7 C L'OR  L'ORTOLANA DI  05             RAD.ROSSO SEMILUNGO IT     KG -   37,00       -37,000 01 07.10.10   7094  BOL     
@@ -346,26 +337,26 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3016 BV  13 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  249,00      -174,300 01 08.10.10   7099  BOL     
     3016 BV  15 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -  187,00      -102,850 01 08.10.10   7099  BOL     
     3016 BV  17 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  195,00      -214,500 01 08.10.10   7099  BOL     
-    3016 BV  19 C SEVEN SEVEN SPA      849            MELANZANE IT IFCO 6416     KG -  418,00      -334,400 01 08.10.10   7099  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    7
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3016 BV  19 C SEVEN SEVEN SPA      849            MELANZANE IT IFCO 6416     KG -  418,00      -334,400 01 08.10.10   7099  BOL     
     3016 BV  21 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  249,00      -174,300 01 08.10.10   7099  BOL     
     3016 BV  23 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  265,00      -185,500 01 08.10.10   7099  BOL     
     3016 BV  25 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  116,00      -174,000 01 08.10.10   7099  BOL     
 
 EData Doc.: 09.10.2010F
-    3017 BV   3 C ORTO2 ORTOGREEN S.R. 31             INS.PAN DI ZUCCHERO IT     KG - 1004,00      -301,200 01 09.10.10   7100  BOL     
+    3017 BV   3 C ORTO2 ORTOGREEN S.R. 31             INS.PAN DI ZUCCHERO IT     KG -  989,00      -296,700 01 09.10.10   7100  BOL     
     3018 BV   3 C MORAN MORANDINI AMEL 03             IND.SCAROLA IT             KG - 1147,00      -344,100 01 09.10.10   7101  BOL     
     3018 BV   7 C MORAN MORANDINI AMEL 01             IND.RICCIA IT              KG -  592,00      -177,600 01 09.10.10   7101  BOL     
     3019 BV   3 C MARTI MARTINELLI SUP 05             RAD.ROSSO SEMILUNGO IT     KG -  216,00      -302,400 01 09.10.10   7102  BOL     
     3019 BV   5 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  184,00      -202,400 01 09.10.10   7102  BOL     
-    3019 BV   7 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   41,50       -83,000 01 09.10.10   7102  BOL     
+    3019 BV   7 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   41,50       -83,000 01 09.10.10   7102  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    7
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
     3019 BV   9 C MARTI MARTINELLI SUP 01             IND.RICCIA IT              KG -   57,00       -79,800 01 09.10.10   7102  BOL     
     3019 BV  11 C MARTI MARTINELLI SUP 03             IND.SCAROLA IT             KG -   83,00      -116,200 01 09.10.10   7102  BOL     
     3020 BV   3 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG -  870,00      -261,000 01 09.10.10   7103  BOL     
@@ -401,33 +392,29 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3026 BV  15 C VERDE VERDE EUROPA I 31             INS.PAN DI ZUCCHERO IT     KG -   49,00        -0,050 01 09.10.10   7109  BOL     
     3026 BV  17 C VERDE VERDE EUROPA I 47             ZUCCHINE IT                KG -   59,00        -0,060 01 09.10.10   7109  BOL     
     3026 BV  19 C VERDE VERDE EUROPA I ALBOTRANS      ***************** DATI VET -- -    1,00               01 09.10.10   7109  BOL     
-    3027 BV   3 C COREX COREX S.R.L.   01             IND.RICCIA IT              KG -   37,00        -0,040 01 09.10.10   7110  BOL     
-    3027 BV   5 C COREX COREX S.R.L.   03             IND.SCAROLA IT             KG -   37,00        -0,040 01 09.10.10   7110  BOL     
-    3027 BV   7 C COREX COREX S.R.L.   29             RAD.ROSSO LUNGO IT         KG -   31,00        -0,030 01 09.10.10   7110  BOL     
-    3027 BV   9 C COREX COREX S.R.L.   08             RAD.ROSSO TONDO IT         KG -  144,50        -0,140 01 09.10.10   7110  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    8
+    3027 BV   3 C COREX COREX S.R.L.   01             IND.RICCIA IT              KG -   36,00       -43,200 01 09.10.10   7110  BOL     
+    3027 BV   5 C COREX COREX S.R.L.   03             IND.SCAROLA IT             KG -   36,00       -43,200 01 09.10.10   7110  BOL     
+    3027 BV   7 C COREX COREX S.R.L.   29             RAD.ROSSO LUNGO IT         KG -   30,00       -45,000 01 09.10.10   7110  BOL     
+    3027 BV   9 C COREX COREX S.R.L.   08             RAD.ROSSO TONDO IT         KG -  140,00      -126,000 01 09.10.10   7110  BOL     
+    3027 BV  11 C COREX COREX S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  112,00       -78,400 01 09.10.10   7110  BOL     
+    3027 BV  13 C COREX COREX S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   27,00       -35,100 01 09.10.10   7110  BOL     
+    3028 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  105,00       -91,350 01 09.10.10   7111  BOL     
+    3028 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  105,00       -91,350 01 09.10.10   7111  BOL     
+    3028 BV   7 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   88,00       -83,600 01 09.10.10   7111  BOL     
+    3028 BV   9 C AMATO AMATO S.R.L.   08             RAD.ROSSO TONDO IT         KG -  185,00      -144,300 01 09.10.10   7111  BOL     
+    3029 BV   3 C PRIMF PRIMO FIORE SR 08             RAD.ROSSO TONDO IT         KG -  246,40      -235,800 01 09.10.10   7112  BOL     
+    3029 BV   5 C PRIMF PRIMO FIORE SR 05             RAD.ROSSO SEMILUNGO IT     KG -  162,30      -233,060 01 09.10.10   7112  BOL     
+    3029 BV   7 C PRIMF PRIMO FIORE SR 29             RAD.ROSSO LUNGO IT         KG -  101,10      -110,000 01 09.10.10   7112  BOL     
+    3030 BV   3 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -  123,80      -111,540 01 09.10.10   7113  BOL     
+    3030 BV   5 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   73,60       -64,770 01 09.10.10   7113  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    8
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
 Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-    3027 BV  11 C COREX COREX S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  121,00        -0,120 01 09.10.10   7110  BOL     
-    3027 BV  13 C COREX COREX S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   29,00        -0,030 01 09.10.10   7110  BOL     
-    3027 BV  15 C COREX COREX S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 09.10.10   7110  BOL     
-    3028 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  107,00        -0,110 01 09.10.10   7111  BOL     
-    3028 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  107,00        -0,110 01 09.10.10   7111  BOL     
-    3028 BV   7 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   95,00        -0,100 01 09.10.10   7111  BOL     
-    3028 BV   9 C AMATO AMATO S.R.L.   08             RAD.ROSSO TONDO IT         KG -  188,00        -0,190 01 09.10.10   7111  BOL     
-    3028 BV  11 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 09.10.10   7111  BOL     
-    3029 BV   3 C PRIMF PRIMO FIORE SR 08             RAD.ROSSO TONDO IT         KG -  271,00        -0,270 01 09.10.10   7112  BOL     
-    3029 BV   5 C PRIMF PRIMO FIORE SR 05             RAD.ROSSO SEMILUNGO IT     KG -   97,00        -0,100 01 09.10.10   7112  BOL     
-    3029 BV   7 C PRIMF PRIMO FIORE SR 29             RAD.ROSSO LUNGO IT         KG -  166,00        -0,170 01 09.10.10   7112  BOL     
-    3029 BV   9 C PRIMF PRIMO FIORE SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 09.10.10   7112  BOL     
-    3030 BV   3 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -  127,00        -0,130 01 09.10.10   7113  BOL     
-    3030 BV   5 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   76,00        -0,080 01 09.10.10   7113  BOL     
-    3030 BV   7 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 09.10.10   7113  BOL     
     3031 BV   3 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -  108,00       -66,530 01 09.10.10   7114  BOL     
     3031 BV   5 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  111,00       -68,380 01 09.10.10   7114  BOL     
     3032 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -  103,00      -139,050 01 09.10.10   7115  BOL     
@@ -462,15 +449,7 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3038 BV   3 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   51,00       -48,450 01 11.10.10   7121  BOL     
     3038 BV   5 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  157,00      -158,570 01 11.10.10   7121  BOL     
     3039 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -   84,00      -100,800 01 11.10.10   7122  BOL     
-    3039 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -   84,00      -100,800 01 11.10.10   7122  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    9
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3039 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -   84,00      -100,800 01 11.10.10   7122  BOL     
     3040 BV   3 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG - 2867,00      -917,440 01 11.10.10   7123  BOL     
     3040 BV   7 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG - 1433,00      -458,560 01 11.10.10   7123  BOL     
 
@@ -485,7 +464,15 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3043 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  166,00      -249,000 01 12.10.10   7126  BOL     
     3043 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  110,00       -99,000 01 12.10.10   7126  BOL     
     3043 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  214,00      -235,400 01 12.10.10   7126  BOL     
-    3043 BV  11 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -   57,00      -102,600 01 12.10.10   7126  BOL     
+    3043 BV  11 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -   57,00      -102,600 01 12.10.10   7126  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :    9
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
     3043 BV  13 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  276,00      -193,200 01 12.10.10   7126  BOL     
     3043 BV  15 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -  250,00      -137,500 01 12.10.10   7126  BOL     
     3043 BV  17 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  421,00      -463,100 01 12.10.10   7126  BOL     
@@ -503,10 +490,9 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3045 BV   5 C FTESI F.LLI TESI AND 01             IND.RICCIA IT              KG -   78,00       -79,560 01 12.10.10   7128  BOL     
     3045 BV   7 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   30,00       -39,000 01 12.10.10   7128  BOL     
     3045 BV   9 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  100,00       -70,000 01 12.10.10   7128  BOL     
-    3046 BV   3 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   76,00        -0,080 01 12.10.10   7129  BOL     
-    3046 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   80,00        -0,080 01 12.10.10   7129  BOL     
-    3046 BV   7 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -   82,00        -0,080 01 12.10.10   7129  BOL     
-    3046 BV   9 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 12.10.10   7129  BOL     
+    3046 BV   3 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   74,30       -40,870 01 12.10.10   7129  BOL     
+    3046 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   76,80       -48,380 01 12.10.10   7129  BOL     
+    3046 BV   7 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -   80,10       -64,080 01 12.10.10   7129  BOL     
     3047 BV   3 C D'ELI AZ. AGR. D'ELI 31             INS.PAN DI ZUCCHERO IT     KG - 6270,00    -2.006,400 01 12.10.10   7155  BOL     
     3047 BV   7 C D'ELI AZ. AGR. D'ELI 31             INS.PAN DI ZUCCHERO IT     KG -  834,00      -266,880 01 12.10.10   7155  BOL     
     3048 BV   3 C SOLEN AZ.AGR. SOLE N 31             INS.PAN DI ZUCCHERO IT     KG - 6264,00    -2.004,480 01 12.10.10   7131  BOL     
@@ -520,24 +506,14 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3051 BV   5 C MARTI MARTINELLI SUP 01             IND.RICCIA IT              KG -  100,00      -140,000 01 13.10.10   7134  BOL     
     3051 BV   7 C MARTI MARTINELLI SUP 03             IND.SCAROLA IT             KG -  161,00      -225,400 01 13.10.10   7134  BOL     
     3051 BV   9 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  209,00      -229,900 01 13.10.10   7134  BOL     
-    3051 BV  11 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   63,00      -113,400 01 13.10.10   7134  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   10
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3051 BV  11 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   63,00      -113,400 01 13.10.10   7134  BOL     
     3052 BV   3 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG - 1261,00      -378,300 01 13.10.10   7135  BOL     
     3052 BV   7 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG -  444,00      -133,200 01 13.10.10   7135  BOL     
-    3053 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  111,00        -0,110 01 13.10.10   7136  BOL     
-    3053 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  113,00        -0,110 01 13.10.10   7136  BOL     
-    3053 BV   7 C AMATO AMATO S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  253,00        -0,250 01 13.10.10   7136  BOL     
-    3053 BV   9 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 13.10.10   7136  BOL     
-    3054 BV   3 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  165,00        -0,170 01 13.10.10   7137  BOL     
-    3054 BV   5 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   93,00        -0,090 01 13.10.10   7137  BOL     
-    3054 BV   7 C NIZZ2 NELLO NIZZO SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 13.10.10   7137  BOL     
+    3053 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  104,00       -81,120 01 13.10.10   7136  BOL     
+    3053 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  105,00       -81,900 01 13.10.10   7136  BOL     
+    3053 BV   7 C AMATO AMATO S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  243,00      -104,490 01 13.10.10   7136  BOL     
+    3054 BV   3 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  155,00      -162,750 01 13.10.10   7137  BOL     
+    3054 BV   5 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   86,00       -38,700 01 13.10.10   7137  BOL     
     3055 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  215,00      -322,500 01 13.10.10   7138  BOL     
     3055 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -   72,00      -108,000 01 13.10.10   7138  BOL     
     3055 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -   92,00       -82,800 01 13.10.10   7138  BOL     
@@ -546,7 +522,15 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3055 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  103,00      -185,400 01 13.10.10   7138  BOL     
     3055 BV  15 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  306,00      -214,200 01 13.10.10   7138  BOL     
     3055 BV  17 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -   97,00       -53,350 01 13.10.10   7138  BOL     
-    3055 BV  19 C SEVEN SEVEN SPA      849            MELANZANE IT IFCO 6416     KG -  324,00      -259,200 01 13.10.10   7138  BOL     
+    3055 BV  19 C SEVEN SEVEN SPA      849            MELANZANE IT IFCO 6416     KG -  324,00      -259,200 01 13.10.10   7138  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   10
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
     3055 BV  21 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  270,00      -297,000 01 13.10.10   7138  BOL     
     3055 BV  23 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  253,00      -177,100 01 13.10.10   7138  BOL     
     3055 BV  25 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  247,00      -172,900 01 13.10.10   7138  BOL     
@@ -578,15 +562,7 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3062 BV  11 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  131,00      -235,800 01 14.10.10   7145  BOL     
     3062 BV  13 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  183,00      -128,100 01 14.10.10   7145  BOL     
     3062 BV  15 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -  118,00       -64,900 01 14.10.10   7145  BOL     
-    3062 BV  17 C SEVEN SEVEN SPA      849            MELANZANE IT IFCO 6416     KG -  326,00      -260,800 01 14.10.10   7145  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   11
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3062 BV  17 C SEVEN SEVEN SPA      849            MELANZANE IT IFCO 6416     KG -  326,00      -260,800 01 14.10.10   7145  BOL     
     3062 BV  19 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  211,00      -232,100 01 14.10.10   7145  BOL     
     3062 BV  21 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   64,00       -38,400 01 14.10.10   7145  BOL     
     3062 BV  23 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  129,00       -90,300 01 14.10.10   7145  BOL     
@@ -594,10 +570,9 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3063 BV   3 C ORTO3 ORTOROSA DI RO 31             INS.PAN DI ZUCCHERO IT     KG - 2087,00      -626,100 01 14.10.10   7146  BOL     
     3064 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -  100,00      -140,000 01 14.10.10   7147  BOL     
     3064 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  100,00      -140,000 01 14.10.10   7147  BOL     
-    3065 BV   3 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  251,00        -0,250 01 14.10.10   7148  BOL     
-    3065 BV   5 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   99,00        -0,100 01 14.10.10   7148  BOL     
-    3065 BV   7 C DANFR DAN FRUTTA SNC 08             RAD.ROSSO TONDO IT         KG -  191,00        -0,190 01 14.10.10   7148  BOL     
-    3065 BV   9 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 14.10.10   7148  BOL     
+    3065 BV   3 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  241,00      -130,380 01 14.10.10   7148  BOL     
+    3065 BV   5 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   96,30       -48,150 01 14.10.10   7148  BOL     
+    3065 BV   7 C DANFR DAN FRUTTA SNC 08             RAD.ROSSO TONDO IT         KG -  189,10       -85,850 01 14.10.10   7148  BOL     
     3066 BV   3 C MAEST MAESTRI ORTOFR 01             IND.RICCIA IT              KG -  144,00      -158,400 01 14.10.10   7149  BOL     
     3066 BV   5 C MAEST MAESTRI ORTOFR 03             IND.SCAROLA IT             KG -   86,00       -94,600 01 14.10.10   7149  BOL     
     3066 BV   7 C MAEST MAESTRI ORTOFR 08             RAD.ROSSO TONDO IT         KG -  148,00      -103,600 01 14.10.10   7149  BOL     
@@ -605,15 +580,22 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3066 BV  11 C MAEST MAESTRI ORTOFR 29             RAD.ROSSO LUNGO IT         KG -  127,00      -177,800 01 14.10.10   7149  BOL     
     3067 BV   3 C FTESI F.LLI TESI AND 01             IND.RICCIA IT              KG -   24,00       -22,320 01 14.10.10   7150  BOL     
     3067 BV   5 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   51,00       -47,430 01 14.10.10   7150  BOL     
-    3067 BV   7 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   30,00       -36,000 01 14.10.10   7150  BOL     
+    3067 BV   7 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   30,00       -36,000 01 14.10.10   7150  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   11
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
     3067 BV   9 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  146,00       -97,820 01 14.10.10   7150  BOL     
     3068 BV   3 C L'OR  L'ORTOLANA DI  01             IND.RICCIA IT              KG -   73,00       -36,500 01 14.10.10   7151  BOL     
     3068 BV   5 C L'OR  L'ORTOLANA DI  03             IND.SCAROLA IT             KG -   70,00       -35,000 01 14.10.10   7151  BOL     
-    3069 BV   3 C DICAM CAMPAGNARO GIO 08             RAD.ROSSO TONDO IT         KG -   79,00        -0,080 01 14.10.10   7152  BOL     
-    3069 BV   5 C DICAM CAMPAGNARO GIO 05             RAD.ROSSO SEMILUNGO IT     KG -   52,00        -0,050 01 14.10.10   7152  BOL     
-    3069 BV   7 C DICAM CAMPAGNARO GIO 01             IND.RICCIA IT              KG -   57,00        -0,060 01 14.10.10   7152  BOL     
-    3069 BV   9 C DICAM CAMPAGNARO GIO 03             IND.SCAROLA IT             KG -   51,00        -0,050 01 14.10.10   7152  BOL     
-    3069 BV  11 C DICAM CAMPAGNARO GIO ALBOTRANS      ***************** DATI VET -- -    1,00               01 14.10.10   7152  BOL     
+    3069 BV   3 C DICAM CAMPAGNARO GIO 08             RAD.ROSSO TONDO IT         KG -   77,50       -77,500 01 14.10.10   7152  BOL     
+    3069 BV   5 C DICAM CAMPAGNARO GIO 05             RAD.ROSSO SEMILUNGO IT     KG -   46,50       -79,050 01 14.10.10   7152  BOL     
+    3069 BV   7 C DICAM CAMPAGNARO GIO 01             IND.RICCIA IT              KG -   55,00       -71,500 01 14.10.10   7152  BOL     
+    3069 BV   9 C DICAM CAMPAGNARO GIO 03             IND.SCAROLA IT             KG -   50,50       -68,180 01 14.10.10   7152  BOL     
 
 EData Doc.: 15.10.2010F
     3070 BV   3 C MORAN MORANDINI AMEL 01             IND.RICCIA IT              KG -  635,00      -190,500 01 15.10.10   7153  BOL     
@@ -637,15 +619,7 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3073 BV   7 C LAME2 LA MEDIGLIA FR 08             RAD.ROSSO TONDO IT         KG -  513,00      -359,100 01 15.10.10   7157  BOL     
 
 EData Doc.: 16.10.2010F
-    3074 BV   3 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  175,00      -192,500 01 16.10.10   7158  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   12
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3074 BV   3 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  175,00      -192,500 01 16.10.10   7158  BOL     
     3074 BV   5 C MARTI MARTINELLI SUP 03             IND.SCAROLA IT             KG -   64,00       -89,600 01 16.10.10   7158  BOL     
     3074 BV   7 C MARTI MARTINELLI SUP 01             IND.RICCIA IT              KG -   50,00       -70,000 01 16.10.10   7158  BOL     
     3074 BV   9 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   39,00       -70,200 01 16.10.10   7158  BOL     
@@ -664,29 +638,29 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3076 BV  23 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -   73,00       -80,300 01 16.10.10   7160  BOL     
     3076 BV  25 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  432,00      -561,600 01 16.10.10   7160  BOL     
     3076 BV  27 C SEVEN SEVEN SPA      845            RAD.BIANCO IT IFCO 6416    KG -  130,00      -221,000 01 16.10.10   7160  BOL     
-    3076 BV  29 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   61,00       -36,600 01 16.10.10   7160  BOL     
-    3077 BV   3 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   87,00        -0,090 01 16.10.10   7161  BOL     
-    3077 BV   5 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -   59,00        -0,060 01 16.10.10   7161  BOL     
-    3077 BV   7 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -   65,00        -0,070 01 16.10.10   7161  BOL     
-    3077 BV   9 C AMATO AMATO S.R.L.   908            RAD.ROSSO TONDO IT CAT.II  KG -  114,00        -0,110 01 16.10.10   7161  BOL     
-    3077 BV  11 C AMATO AMATO S.R.L.   905            RAD.ROSSO SEMILUNGO IT CAT KG -    8,00        -0,010 01 16.10.10   7161  BOL     
-    3077 BV  13 C AMATO AMATO S.R.L.   929            RAD.ROSSO LUNGO IT CAT.II  KG -   28,00        -0,030 01 16.10.10   7161  BOL     
-    3077 BV  15 C AMATO AMATO S.R.L.   901            IND.RICCIA IT CAT.II       KG -   27,00        -0,030 01 16.10.10   7161  BOL     
-    3077 BV  17 C AMATO AMATO S.R.L.   903            IND.SCAROLA IT CAT.II      KG -   13,00        -0,010 01 16.10.10   7161  BOL     
-    3077 BV  19 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 16.10.10   7161  BOL     
+    3076 BV  29 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   61,00       -36,600 01 16.10.10   7160  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   12
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3077 BV   3 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   87,00       -75,690 01 16.10.10   7161  BOL     
+    3077 BV   5 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -   59,00       -51,330 01 16.10.10   7161  BOL     
+    3077 BV   7 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -   58,00       -50,460 01 16.10.10   7161  BOL     
+    3077 BV   9 C AMATO AMATO S.R.L.   25             ORTAGGI MISTI IT CAT.II    KG -  180,00       -77,400 01 16.10.10   7161  BOL     
     3078 BV   3 C FTESI F.LLI TESI AND 01             IND.RICCIA IT              KG -   25,00       -25,750 01 16.10.10   7162  BOL     
     3078 BV   5 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   26,00       -26,780 01 16.10.10   7162  BOL     
     3078 BV   7 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   30,00       -39,000 01 16.10.10   7162  BOL     
     3078 BV   9 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  191,00      -137,520 01 16.10.10   7162  BOL     
-    3079 BV   3 C PRIMF PRIMO FIORE SR 05             RAD.ROSSO SEMILUNGO IT     KG -  219,00        -0,220 01 16.10.10   7163  BOL     
-    3079 BV   5 C PRIMF PRIMO FIORE SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 16.10.10   7163  BOL     
-    3080 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -   99,00        -0,100 01 16.10.10   7164  BOL     
-    3080 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  110,00        -0,110 01 16.10.10   7164  BOL     
-    3080 BV   7 C CALIM CALIMERO ORTOF ALBOTRANS      ***************** DATI VET -- -    1,00               01 16.10.10   7164  BOL     
-    3081 BV   3 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  160,00        -0,160 01 16.10.10   7165  BOL     
-    3081 BV   5 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   65,00        -0,070 01 16.10.10   7165  BOL     
-    3081 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -  253,00        -0,250 01 16.10.10   7165  BOL     
-    3081 BV   9 C NIZZ2 NELLO NIZZO SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 16.10.10   7165  BOL     
+    3079 BV   3 C PRIMF PRIMO FIORE SR 05             RAD.ROSSO SEMILUNGO IT     KG -  171,00      -133,890 01 16.10.10   7163  BOL     
+    3080 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  100,00      -130,000 01 16.10.10   7164  BOL     
+    3080 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  108,00      -144,720 01 16.10.10   7164  BOL     
+    3081 BV   3 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  160,00      -163,200 01 16.10.10   7165  BOL     
+    3081 BV   5 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   56,00       -57,120 01 16.10.10   7165  BOL     
+    3081 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -  265,00      -116,600 01 16.10.10   7165  BOL     
     3082 BV   3 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   75,00       -82,500 01 16.10.10   7166  BOL     
     3082 BV   5 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  126,00      -138,600 01 16.10.10   7166  BOL     
     3083 BV   3 C MAEST MAESTRI ORTOFR 01             IND.RICCIA IT              KG -  138,00      -138,000 01 16.10.10   7167  BOL     
@@ -695,21 +669,12 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3083 BV   9 C MAEST MAESTRI ORTOFR 08             RAD.ROSSO TONDO IT         KG -  135,00      -108,000 01 16.10.10   7167  BOL     
     3083 BV  11 C MAEST MAESTRI ORTOFR 05             RAD.ROSSO SEMILUNGO IT     KG -  119,00      -154,700 01 16.10.10   7167  BOL     
     3083 BV  13 C MAEST MAESTRI ORTOFR 31             INS.PAN DI ZUCCHERO IT     KG -  137,00       -68,500 01 16.10.10   7167  BOL     
-    3084 BV   3 C COREX COREX S.R.L.   01             IND.RICCIA IT              KG -   18,00        -0,020 01 16.10.10   7168  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   13
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-    3084 BV   5 C COREX COREX S.R.L.   03             IND.SCAROLA IT             KG -   35,00        -0,040 01 16.10.10   7168  BOL     
-    3084 BV   7 C COREX COREX S.R.L.   08             RAD.ROSSO TONDO IT         KG -  145,00        -0,140 01 16.10.10   7168  BOL     
-    3084 BV   9 C COREX COREX S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  143,00        -0,140 01 16.10.10   7168  BOL     
-    3084 BV  11 C COREX COREX S.R.L.   29             RAD.ROSSO LUNGO IT         KG -   46,00        -0,050 01 16.10.10   7168  BOL     
-    3084 BV  13 C COREX COREX S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   39,00        -0,040 01 16.10.10   7168  BOL     
-    3084 BV  15 C COREX COREX S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 16.10.10   7168  BOL     
+    3084 BV   3 C COREX COREX S.R.L.   01             IND.RICCIA IT              KG -   18,00       -21,600 01 16.10.10   7168  BOL     
+    3084 BV   5 C COREX COREX S.R.L.   03             IND.SCAROLA IT             KG -   32,00       -35,200 01 16.10.10   7168  BOL     
+    3084 BV   7 C COREX COREX S.R.L.   08             RAD.ROSSO TONDO IT         KG -  140,00      -112,000 01 16.10.10   7168  BOL     
+    3084 BV   9 C COREX COREX S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  132,00       -92,400 01 16.10.10   7168  BOL     
+    3084 BV  11 C COREX COREX S.R.L.   29             RAD.ROSSO LUNGO IT         KG -   40,00       -50,000 01 16.10.10   7168  BOL     
+    3084 BV  13 C COREX COREX S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   30,00       -36,000 01 16.10.10   7168  BOL     
     3085 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -   90,00      -117,000 01 16.10.10   7169  BOL     
     3085 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  115,00      -149,500 01 16.10.10   7169  BOL     
     3086 BV   3 C LAZZA LAZZARINI FRAN 01             IND.RICCIA IT              KG -   61,00       -79,910 01 16.10.10   7170  BOL     
@@ -722,22 +687,26 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3088 BV   3 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG - 1466,00      -469,120 01 18.10.10   7172  BOL     
     3088 BV   7 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG - 2200,00      -704,000 01 18.10.10   7172  BOL     
     3088 BV  11 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG -  734,00      -198,180 01 18.10.10   7172  BOL     
-    3089 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  108,00        -0,110 01 18.10.10   7173  BOL     
-    3089 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  108,00        -0,110 01 18.10.10   7173  BOL     
-    3089 BV   7 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 18.10.10   7173  BOL     
-    3090 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  107,00        -0,110 01 18.10.10   7174  BOL     
-    3090 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  107,00        -0,110 01 18.10.10   7174  BOL     
-    3090 BV   7 C CALIM CALIMERO ORTOF ALBOTRANS      ***************** DATI VET -- -    1,00               01 18.10.10   7174  BOL     
+    3089 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  100,00       -87,000 01 18.10.10   7173  BOL     
+    3089 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  105,00       -91,350 01 18.10.10   7173  BOL     
+    3090 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  100,00      -109,000 01 18.10.10   7174  BOL     
+    3090 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  103,00      -116,390 01 18.10.10   7174  BOL     
     3091 BV   3 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  305,00      -213,500 01 18.10.10   7175  BOL     
     3092 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -   85,00      -110,500 01 18.10.10   7176  BOL     
     3092 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -   85,00      -110,500 01 18.10.10   7176  BOL     
-    3093 BV   3 C NIZZO NELLO NIZZO S. 03             IND.SCAROLA IT             KG -  162,00        -0,160 01 18.10.10   7177  BOL     
-    3093 BV   5 C NIZZO NELLO NIZZO S. 908            RAD.ROSSO TONDO IT CAT.II  KG -   32,00        -0,030 01 18.10.10   7177  BOL     
-    3093 BV   7 C NIZZO NELLO NIZZO S. 901            IND.RICCIA IT CAT.II       KG -    3,90               01 18.10.10   7177  BOL     
-    3093 BV   9 C NIZZO NELLO NIZZO S. 931            INS.PAN DI ZUCCHERO IT CAT KG -    4,50               01 18.10.10   7177  BOL     
-    3093 BV  11 C NIZZO NELLO NIZZO S. 901            IND.RICCIA IT CAT.II       KG -    7,00        -0,010 01 18.10.10   7177  BOL     
-    3093 BV  13 C NIZZO NELLO NIZZO S. 903            IND.SCAROLA IT CAT.II      KG -   14,50        -0,010 01 18.10.10   7177  BOL     
-    3093 BV  15 C NIZZO NELLO NIZZO S. ALBOTRANS      ***************** DATI VET -- -    1,00               01 18.10.10   7177  BOL     
+    3093 BV   3 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  158,00      -159,580 01 18.10.10   7349  BOL     
+    3093 BV   5 C NIZZ2 NELLO NIZZO SR 908            RAD.ROSSO TONDO IT CAT.II  KG -   30,00        -6,000 01 18.10.10   7349  BOL     
+    3093 BV   7 C NIZZ2 NELLO NIZZO SR 901            IND.RICCIA IT CAT.II       KG -   10,50        -3,150 01 18.10.10   7349  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   13
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3093 BV   9 C NIZZ2 NELLO NIZZO SR 931            INS.PAN DI ZUCCHERO IT CAT KG -    3,50        -1,050 01 18.10.10   7349  BOL     
+    3093 BV  11 C NIZZ2 NELLO NIZZO SR 903            IND.SCAROLA IT CAT.II      KG -   17,00        -5,100 01 18.10.10   7349  BOL     
     3094 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  142,00      -213,000 01 18.10.10   7178  BOL     
     3094 BV   5 C SEVEN SEVEN SPA      01             IND.RICCIA IT              KG -   82,00      -123,000 01 18.10.10   7178  BOL     
     3094 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  179,00      -161,100 01 18.10.10   7178  BOL     
@@ -754,15 +723,7 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3095 BV   3 C LAME2 LA MEDIGLIA FR 08             RAD.ROSSO TONDO IT         KG - 1046,00      -784,500 01 18.10.10   7179  BOL     
 
 EData Doc.: 19.10.2010F
-    3096 BV   3 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   78,00       -68,640 01 19.10.10   7180  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   14
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3096 BV   3 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   78,00       -68,640 01 19.10.10   7180  BOL     
     3096 BV   5 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  131,00      -115,280 01 19.10.10   7180  BOL     
     3097 BV   3 C MAEST MAESTRI ORTOFR 29             RAD.ROSSO LUNGO IT         KG -  153,00      -206,550 01 19.10.10   7181  BOL     
     3097 BV   5 C MAEST MAESTRI ORTOFR 08             RAD.ROSSO TONDO IT         KG -  294,00      -235,200 01 19.10.10   7181  BOL     
@@ -771,16 +732,14 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3098 BV   5 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   24,00       -24,480 01 19.10.10   7182  BOL     
     3098 BV   7 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   98,00      -129,360 01 19.10.10   7182  BOL     
     3098 BV   9 C FTESI F.LLI TESI AND 05             RAD.ROSSO SEMILUNGO IT     KG -   75,00       -76,500 01 19.10.10   7182  BOL     
-    3099 BV   3 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   54,00        -0,050 01 19.10.10   7183  BOL     
-    3099 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   54,00        -0,050 01 19.10.10   7183  BOL     
-    3099 BV   7 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  160,00        -0,160 01 19.10.10   7183  BOL     
-    3099 BV   9 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 19.10.10   7183  BOL     
+    3099 BV   3 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   51,60       -40,250 01 19.10.10   7183  BOL     
+    3099 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   52,00       -40,560 01 19.10.10   7183  BOL     
+    3099 BV   7 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  150,00       -90,000 01 19.10.10   7183  BOL     
     3100 BV   3 C LAZZA LAZZARINI FRAN 01             IND.RICCIA IT              KG -   60,00       -64,800 01 19.10.10   7184  BOL     
     3100 BV   5 C LAZZA LAZZARINI FRAN 03             IND.SCAROLA IT             KG -  149,00      -163,900 01 19.10.10   7184  BOL     
-    3101 BV   3 C VERDE VERDE EUROPA I 47             ZUCCHINE IT                KG -  180,50        -0,180 01 19.10.10   7185  BOL     
-    3101 BV   5 C VERDE VERDE EUROPA I 03             IND.SCAROLA IT             KG -   31,00        -0,030 01 19.10.10   7185  BOL     
-    3101 BV   7 C VERDE VERDE EUROPA I 42             PORRO IT                   KG -   70,00        -0,070 01 19.10.10   7185  BOL     
-    3101 BV   9 C VERDE VERDE EUROPA I ALBOTRANS      ***************** DATI VET -- -    1,00               01 19.10.10   7185  BOL     
+    3101 BV   3 C VERDE VERDE EUROPA I 47             ZUCCHINE IT                KG -  294,00      -176,400 01 19.10.10   7185  BOL     
+    3101 BV   5 C VERDE VERDE EUROPA I 03             IND.SCAROLA IT             KG -   27,00       -33,750 01 19.10.10   7185  BOL     
+    3101 BV   7 C VERDE VERDE EUROPA I 42             PORRO IT                   KG -   45,50       -45,500 01 19.10.10   7185  BOL     
     3102 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  214,00      -321,000 01 19.10.10   7186  BOL     
     3102 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -   79,00      -118,500 01 19.10.10   7186  BOL     
     3102 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  146,00      -131,400 01 19.10.10   7186  BOL     
@@ -795,7 +754,15 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3102 BV  25 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   57,00       -34,200 01 19.10.10   7186  BOL     
     3102 BV  27 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  267,00      -186,900 01 19.10.10   7186  BOL     
     3102 BV  29 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  270,00      -189,000 01 19.10.10   7186  BOL     
-    3102 BV  31 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -   91,00      -100,100 01 19.10.10   7186  BOL     
+    3102 BV  31 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -   91,00      -100,100 01 19.10.10   7186  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   14
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
 
 EData Doc.: 20.10.2010F
     3103 BV   3 C MARTI MARTINELLI SUP 03             IND.SCAROLA IT             KG -  138,00      -193,200 01 20.10.10   7187  BOL     
@@ -803,27 +770,14 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3103 BV   7 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   64,00       -96,000 01 20.10.10   7187  BOL     
     3103 BV   9 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  225,00      -247,500 01 20.10.10   7187  BOL     
     3103 BV  11 C MARTI MARTINELLI SUP 05             RAD.ROSSO SEMILUNGO IT     KG -  140,00      -168,000 01 20.10.10   7187  BOL     
-    3104 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -   58,00        -0,060 01 20.10.10   7188  BOL     
-    3104 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -   67,00        -0,070 01 20.10.10   7188  BOL     
-    3104 BV   7 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -  109,00        -0,110 01 20.10.10   7188  BOL     
-    3104 BV   9 C AMATO AMATO S.R.L.   08             RAD.ROSSO TONDO IT         KG -  122,00        -0,120 01 20.10.10   7188  BOL     
-    3104 BV  11 C AMATO AMATO S.R.L.   908            RAD.ROSSO TONDO IT CAT.II  KG -   37,00        -0,040 01 20.10.10   7188  BOL     
-    3104 BV  13 C AMATO AMATO S.R.L.   929            RAD.ROSSO LUNGO IT CAT.II  KG -   17,00        -0,020 01 20.10.10   7188  BOL     
-    3104 BV  15 C AMATO AMATO S.R.L.   905            RAD.ROSSO SEMILUNGO IT CAT KG -   33,00        -0,030 01 20.10.10   7188  BOL     
-    3104 BV  17 C AMATO AMATO S.R.L.   900            INS.RICCIA E SCAROLA IT CA KG -   31,50        -0,030 01 20.10.10   7188  BOL     
-    3104 BV  19 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 20.10.10   7188  BOL     
-    3105 BV   3 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   51,00        -0,050 01 20.10.10   7189  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   15
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-    3105 BV   5 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  137,00        -0,140 01 20.10.10   7189  BOL     
-    3105 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   32,00        -0,030 01 20.10.10   7189  BOL     
-    3105 BV   9 C NIZZ2 NELLO NIZZO SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 20.10.10   7189  BOL     
+    3104 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -   57,00       -49,590 01 20.10.10   7188  BOL     
+    3104 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -   62,00       -53,940 01 20.10.10   7188  BOL     
+    3104 BV   7 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -  105,00       -91,350 01 20.10.10   7188  BOL     
+    3104 BV   9 C AMATO AMATO S.R.L.   08             RAD.ROSSO TONDO IT         KG -  110,00       -80,300 01 20.10.10   7188  BOL     
+    3104 BV  11 C AMATO AMATO S.R.L.   25             ORTAGGI MISTI IT CAT.II    KG -  106,00       -45,580 01 20.10.10   7188  BOL     
+    3105 BV   3 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   48,00       -50,400 01 20.10.10   7189  BOL     
+    3105 BV   5 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  132,00      -133,320 01 20.10.10   7189  BOL     
+    3105 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   35,00       -21,700 01 20.10.10   7189  BOL     
     3106 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  172,00      -258,000 01 20.10.10   7190  BOL     
     3106 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  106,00      -159,000 01 20.10.10   7190  BOL     
     3106 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  191,00      -171,900 01 20.10.10   7190  BOL     
@@ -841,9 +795,8 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3106 BV  31 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -   89,00       -97,900 01 20.10.10   7190  BOL     
     3107 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -   93,00      -130,200 01 20.10.10   7191  BOL     
     3107 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  100,00      -140,000 01 20.10.10   7191  BOL     
-    3108 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  101,00        -0,100 01 20.10.10   7192  BOL     
-    3108 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  113,00        -0,110 01 20.10.10   7192  BOL     
-    3108 BV   7 C CALIM CALIMERO ORTOF ALBOTRANS      ***************** DATI VET -- -    1,00               01 20.10.10   7192  BOL     
+    3108 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  105,00      -141,750 01 20.10.10   7192  BOL     
+    3108 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  110,00      -149,600 01 20.10.10   7192  BOL     
     3109 BV   3 C L'OR  L'ORTOLANA DI  31             INS.PAN DI ZUCCHERO IT     KG -   69,00       -41,400 01 20.10.10   7193  BOL     
     3109 BV   5 C L'OR  L'ORTOLANA DI  05             RAD.ROSSO SEMILUNGO IT     KG -   37,00       -35,150 01 20.10.10   7193  BOL     
     3109 BV   7 C L'OR  L'ORTOLANA DI  01             IND.RICCIA IT              KG -   47,00       -32,900 01 20.10.10   7193  BOL     
@@ -859,26 +812,25 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3112 BV   9 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  212,00      -233,200 01 21.10.10   7196  BOL     
     3112 BV  11 C MARTI MARTINELLI SUP 05             RAD.ROSSO SEMILUNGO IT     KG -  149,00      -178,800 01 21.10.10   7196  BOL     
     3113 BV   3 C BICEG AZ.AGR.BICEGO  12             ANELLO PARA                KG -   20,00       -62,000 01 21.10.10   7197  BOL     
-    3114 BV   3 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG -  960,00      -288,000 01 21.10.10   7198  BOL     
+    3114 BV   3 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG -  960,00      -288,000 01 21.10.10   7198  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   15
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
     3114 BV   7 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG -  756,00      -189,000 01 21.10.10   7198  BOL     
-    3115 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  107,00        -0,110 01 21.10.10   7199  BOL     
-    3115 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  117,00        -0,120 01 21.10.10   7199  BOL     
-    3115 BV   7 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 21.10.10   7199  BOL     
+    3115 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  107,00       -93,090 01 21.10.10   7199  BOL     
+    3115 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  117,00      -101,790 01 21.10.10   7199  BOL     
     3116 BV   3 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  228,00      -155,040 01 21.10.10   7200  BOL     
     3116 BV   5 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   62,00       -74,400 01 21.10.10   7200  BOL     
     3117 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  229,00      -343,500 01 21.10.10   7201  BOL     
     3117 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  110,00      -165,000 01 21.10.10   7201  BOL     
     3117 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  246,00      -221,400 01 21.10.10   7201  BOL     
     3117 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  141,00      -141,000 01 21.10.10   7201  BOL     
-    3117 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG - 1038,00    -1.245,600 01 21.10.10   7201  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   16
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3117 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG - 1038,00    -1.245,600 01 21.10.10   7201  BOL     
     3117 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  158,00      -237,000 01 21.10.10   7201  BOL     
     3117 BV  15 C SEVEN SEVEN SPA      845            RAD.BIANCO IT IFCO 6416    KG -   72,00      -122,400 01 21.10.10   7201  BOL     
     3117 BV  17 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  299,00      -209,300 01 21.10.10   7201  BOL     
@@ -889,27 +841,23 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3117 BV  27 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  280,00      -196,000 01 21.10.10   7201  BOL     
     3117 BV  29 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  267,00      -186,900 01 21.10.10   7201  BOL     
     3117 BV  31 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -   87,00       -95,700 01 21.10.10   7201  BOL     
-    3118 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -  101,00        -0,100 01 21.10.10   7202  BOL     
-    3118 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  108,00        -0,110 01 21.10.10   7202  BOL     
-    3118 BV   7 C ULISS ULISSE SRL     ALBOTRANS      ***************** DATI VET -- -    1,00               01 21.10.10   7202  BOL     
+    3118 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -   96,00      -131,520 01 21.10.10   7202  BOL     
+    3118 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  100,00      -137,000 01 21.10.10   7202  BOL     
     3119 BV   3 C MAEST MAESTRI ORTOFR 05             RAD.ROSSO SEMILUNGO IT     KG -  145,00      -188,500 01 21.10.10   7203  BOL     
     3119 BV   5 C MAEST MAESTRI ORTOFR 29             RAD.ROSSO LUNGO IT         KG -   61,00       -82,350 01 21.10.10   7203  BOL     
-    3120 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  101,00        -0,100 01 21.10.10   7204  BOL     
-    3120 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  116,00        -0,120 01 21.10.10   7204  BOL     
-    3120 BV   7 C CALIM CALIMERO ORTOF ALBOTRANS      ***************** DATI VET -- -    1,00               01 21.10.10   7204  BOL     
-    3121 BV   3 C DICAM CAMPAGNARO GIO 05             RAD.ROSSO SEMILUNGO IT     KG -   67,50        -0,070 01 21.10.10   7205  BOL     
-    3121 BV   5 C DICAM CAMPAGNARO GIO 08             RAD.ROSSO TONDO IT         KG -   72,50        -0,070 01 21.10.10   7205  BOL     
-    3121 BV   7 C DICAM CAMPAGNARO GIO 01             IND.RICCIA IT              KG -   52,00        -0,050 01 21.10.10   7205  BOL     
-    3121 BV   9 C DICAM CAMPAGNARO GIO 03             IND.SCAROLA IT             KG -   52,00        -0,050 01 21.10.10   7205  BOL     
-    3121 BV  11 C DICAM CAMPAGNARO GIO ALBOTRANS      ***************** DATI VET -- -    1,00               01 21.10.10   7205  BOL     
-    3122 BV   3 C VERDE VERDE EUROPA I 42             PORRO IT                   KG -  106,00        -0,110 01 21.10.10   7206  BOL     
-    3122 BV   5 C VERDE VERDE EUROPA I 01             IND.RICCIA IT              KG -   29,00        -0,030 01 21.10.10   7206  BOL     
-    3122 BV   7 C VERDE VERDE EUROPA I 36             SEDANO VERDE IT            KG -   56,00        -0,060 01 21.10.10   7206  BOL     
-    3122 BV   9 C VERDE VERDE EUROPA I 03             IND.SCAROLA IT             KG -   65,00        -0,070 01 21.10.10   7206  BOL     
-    3122 BV  11 C VERDE VERDE EUROPA I 903            IND.SCAROLA IT CAT.II      KG -   27,00        -0,030 01 21.10.10   7206  BOL     
-    3122 BV  13 C VERDE VERDE EUROPA I 931            INS.PAN DI ZUCCHERO IT CAT KG -    5,00        -0,010 01 21.10.10   7206  BOL     
-    3122 BV  15 C VERDE VERDE EUROPA I 901            IND.RICCIA IT CAT.II       KG -    4,00               01 21.10.10   7206  BOL     
-    3122 BV  17 C VERDE VERDE EUROPA I ALBOTRANS      ***************** DATI VET -- -    1,00               01 21.10.10   7206  BOL     
+    3120 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  101,00      -131,300 01 21.10.10   7204  BOL     
+    3120 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  105,00      -133,350 01 21.10.10   7204  BOL     
+    3121 BV   3 C DICAM CAMPAGNARO GIO 05             RAD.ROSSO SEMILUNGO IT     KG -   58,00       -81,200 01 21.10.10   7205  BOL     
+    3121 BV   5 C DICAM CAMPAGNARO GIO 08             RAD.ROSSO TONDO IT         KG -   72,00       -72,000 01 21.10.10   7205  BOL     
+    3121 BV   7 C DICAM CAMPAGNARO GIO 01             IND.RICCIA IT              KG -   48,00       -48,000 01 21.10.10   7205  BOL     
+    3121 BV   9 C DICAM CAMPAGNARO GIO 03             IND.SCAROLA IT             KG -   47,00       -47,000 01 21.10.10   7205  BOL     
+    3122 BV   3 C VERDE VERDE EUROPA I 42             PORRO IT                   KG -  102,00      -112,200 01 21.10.10   7206  BOL     
+    3122 BV   5 C VERDE VERDE EUROPA I 01             IND.RICCIA IT              KG -   24,00       -27,600 01 21.10.10   7206  BOL     
+    3122 BV   7 C VERDE VERDE EUROPA I 36             SEDANO VERDE IT            KG -   36,00       -18,000 01 21.10.10   7206  BOL     
+    3122 BV   9 C VERDE VERDE EUROPA I 03             IND.SCAROLA IT             KG -   47,00       -51,700 01 21.10.10   7206  BOL     
+    3122 BV  11 C VERDE VERDE EUROPA I 903            IND.SCAROLA IT CAT.II      KG -   26,00       -10,400 01 21.10.10   7206  BOL     
+    3122 BV  13 C VERDE VERDE EUROPA I 931            INS.PAN DI ZUCCHERO IT CAT KG -    5,40        -2,160 01 21.10.10   7206  BOL     
+    3122 BV  15 C VERDE VERDE EUROPA I 901            IND.RICCIA IT CAT.II       KG -    4,00        -1,600 01 21.10.10   7206  BOL     
 
 EData Doc.: 22.10.2010F
     3123 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  256,00      -384,000 01 22.10.10   7207  BOL     
@@ -922,21 +870,21 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3123 BV  17 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  279,00      -195,300 01 22.10.10   7207  BOL     
     3123 BV  19 C SEVEN SEVEN SPA      852            CETRIOLI IT IFCO 6410      KG -   48,00       -26,400 01 22.10.10   7207  BOL     
     3123 BV  21 C SEVEN SEVEN SPA      820            VERZE IT IFCO 6416         KG -  149,00       -77,480 01 22.10.10   7207  BOL     
-    3123 BV  23 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  365,00      -401,500 01 22.10.10   7207  BOL     
-    3123 BV  25 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   65,00       -39,000 01 22.10.10   7207  BOL     
-    3123 BV  27 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  276,00      -193,200 01 22.10.10   7207  BOL     
-    3123 BV  29 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  217,00      -151,900 01 22.10.10   7207  BOL     
-    3123 BV  31 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -  120,00      -132,000 01 22.10.10   7207  BOL     
-    3123 BV  35 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -    1,00               01 22.10.10   7207  BOL     
-    3124 BV   3 C LAME2 LA MEDIGLIA FR 08             RAD.ROSSO TONDO IT         KG - 1096,00      -822,000 01 22.10.10   7208  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   17
+    3123 BV  23 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  365,00      -401,500 01 22.10.10   7207  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   16
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
 Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3123 BV  25 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   65,00       -39,000 01 22.10.10   7207  BOL     
+    3123 BV  27 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  276,00      -193,200 01 22.10.10   7207  BOL     
+    3123 BV  29 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  217,00      -151,900 01 22.10.10   7207  BOL     
+    3123 BV  31 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -  120,00      -132,000 01 22.10.10   7207  BOL     
+    3123 BV  35 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -    1,00               01 22.10.10   7207  BOL     
+    3124 BV   3 C LAME2 LA MEDIGLIA FR 08             RAD.ROSSO TONDO IT         KG - 1096,00      -822,000 01 22.10.10   7208  BOL     
 
 EData Doc.: 23.10.2010F
     3125 BV   3 C MARTI MARTINELLI SUP 05             RAD.ROSSO SEMILUNGO IT     KG -   81,00       -97,200 01 23.10.10   7209  BOL     
@@ -966,55 +914,42 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3129 BV   3 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   27,00       -27,810 01 23.10.10   7213  BOL     
     3129 BV   5 C FTESI F.LLI TESI AND 01             IND.RICCIA IT              KG -   28,00       -28,840 01 23.10.10   7213  BOL     
     3129 BV   7 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  236,00      -160,480 01 23.10.10   7213  BOL     
-    3130 BV   3 C LAZZA LAZZARINI FRAN 01             IND.RICCIA IT              KG -   57,00        -0,060 01 23.10.10   7214  BOL     
-    3130 BV   5 C LAZZA LAZZARINI FRAN 03             IND.SCAROLA IT             KG -  114,00        -0,110 01 23.10.10   7214  BOL     
-    3130 BV   7 C LAZZA LAZZARINI FRAN 31             INS.PAN DI ZUCCHERO IT     KG -   82,00        -0,080 01 23.10.10   7214  BOL     
-    3130 BV   9 C LAZZA LAZZARINI FRAN ALBOTRANS      ***************** DATI VET -- -    1,00               01 23.10.10   7214  BOL     
+    3130 BV   3 C LAZZA LAZZARINI FRAN 01             IND.RICCIA IT              KG -   57,00       -62,700 01 23.10.10   7214  BOL     
+    3130 BV   5 C LAZZA LAZZARINI FRAN 03             IND.SCAROLA IT             KG -  114,00      -125,400 01 23.10.10   7214  BOL     
+    3130 BV   7 C LAZZA LAZZARINI FRAN 31             INS.PAN DI ZUCCHERO IT     KG -   82,00       -57,400 01 23.10.10   7214  BOL     
     3131 BV   3 C L'OR  L'ORTOLANA DI  01             IND.RICCIA IT              KG -   85,00       -85,000 01 23.10.10   7215  BOL     
     3131 BV   5 C L'OR  L'ORTOLANA DI  03             IND.SCAROLA IT             KG -   88,00       -88,000 01 23.10.10   7215  BOL     
     3131 BV   7 C L'OR  L'ORTOLANA DI  05             RAD.ROSSO SEMILUNGO IT     KG -   48,00       -45,600 01 23.10.10   7215  BOL     
-    3132 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -  113,00        -0,110 01 23.10.10   7216  BOL     
-    3132 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  122,00        -0,120 01 23.10.10   7216  BOL     
-    3132 BV   7 C ULISS ULISSE SRL     ALBOTRANS      ***************** DATI VET -- -    1,00               01 23.10.10   7216  BOL     
-    3133 BV   3 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   85,00        -0,090 01 23.10.10   7217  BOL     
-    3133 BV   5 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  141,00        -0,140 01 23.10.10   7217  BOL     
-    3133 BV   7 C EUROA EUROARICI S.N. ALBOTRANS      ***************** DATI VET -- -    1,00               01 23.10.10   7217  BOL     
-    3134 BV   3 C COREX COREX S.R.L.   29             RAD.ROSSO LUNGO IT         KG -   29,50        -0,030 01 23.10.10   7218  BOL     
-    3134 BV   5 C COREX COREX S.R.L.   08             RAD.ROSSO TONDO IT         KG -  136,50        -0,140 01 23.10.10   7218  BOL     
-    3134 BV   7 C COREX COREX S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  122,00        -0,120 01 23.10.10   7218  BOL     
-    3134 BV   9 C COREX COREX S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 23.10.10   7218  BOL     
+    3132 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -  105,00      -128,100 01 23.10.10   7216  BOL     
+    3132 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  115,00      -140,300 01 23.10.10   7216  BOL     
+    3133 BV   3 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   84,00       -81,310 01 23.10.10   7217  BOL     
+    3133 BV   5 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  137,00      -132,620 01 23.10.10   7217  BOL     
+    3134 BV   3 C COREX COREX S.R.L.   29             RAD.ROSSO LUNGO IT         KG -   29,00       -34,800 01 23.10.10   7218  BOL     
+    3134 BV   5 C COREX COREX S.R.L.   08             RAD.ROSSO TONDO IT         KG -  130,00      -110,500 01 23.10.10   7218  BOL     
+    3134 BV   7 C COREX COREX S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -  119,00       -77,350 01 23.10.10   7218  BOL     
     3135 BV   3 C ORTOB ORTOBERGAMO S. 01             IND.RICCIA IT              KG -   33,00       -20,460 01 23.10.10   7219  BOL     
-    3135 BV   5 C ORTOB ORTOBERGAMO S. 03             IND.SCAROLA IT             KG -   34,00       -21,080 01 23.10.10   7219  BOL     
-    3135 BV   7 C ORTOB ORTOBERGAMO S. 31             INS.PAN DI ZUCCHERO IT     KG -  171,00       -75,240 01 23.10.10   7219  BOL     
-    3136 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  114,00        -0,110 01 23.10.10   7220  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   18
+    3135 BV   5 C ORTOB ORTOBERGAMO S. 03             IND.SCAROLA IT             KG -   34,00       -21,080 01 23.10.10   7219  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   17
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
 Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-    3136 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  107,00        -0,110 01 23.10.10   7220  BOL     
-    3136 BV   7 C AMATO AMATO S.R.L.   936            SEDANO VERDE IT CAT.II     KG -   15,00        -0,020 01 23.10.10   7220  BOL     
-    3136 BV   9 C AMATO AMATO S.R.L.   929            RAD.ROSSO LUNGO IT CAT.II  KG -    4,00               01 23.10.10   7220  BOL     
-    3136 BV  11 C AMATO AMATO S.R.L.   905            RAD.ROSSO SEMILUNGO IT CAT KG -    4,00               01 23.10.10   7220  BOL     
-    3136 BV  13 C AMATO AMATO S.R.L.   901            IND.RICCIA IT CAT.II       KG -    4,00               01 23.10.10   7220  BOL     
-    3136 BV  15 C AMATO AMATO S.R.L.   903            IND.SCAROLA IT CAT.II      KG -   77,00        -0,080 01 23.10.10   7220  BOL     
-    3136 BV  17 C AMATO AMATO S.R.L.   908            RAD.ROSSO TONDO IT CAT.II  KG -   87,00        -0,090 01 23.10.10   7220  BOL     
-    3136 BV  19 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 23.10.10   7220  BOL     
-    3137 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  125,00        -0,130 01 23.10.10   7221  BOL     
-    3137 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  106,00        -0,110 01 23.10.10   7221  BOL     
-    3137 BV   7 C CALIM CALIMERO ORTOF ALBOTRANS      ***************** DATI VET -- -    1,00               01 23.10.10   7221  BOL     
-    3138 BV   3 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  318,00        -0,320 01 23.10.10   7222  BOL     
-    3138 BV   5 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -  121,00        -0,120 01 23.10.10   7222  BOL     
-    3138 BV   7 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   63,00        -0,060 01 23.10.10   7222  BOL     
-    3138 BV   9 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   53,00        -0,050 01 23.10.10   7222  BOL     
-    3138 BV  11 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 23.10.10   7222  BOL     
-    3139 BV   3 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   63,00        -0,060 01 23.10.10   7223  BOL     
-    3139 BV   5 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  139,00        -0,140 01 23.10.10   7223  BOL     
-    3139 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   40,00        -0,040 01 23.10.10   7223  BOL     
-    3139 BV   9 C NIZZ2 NELLO NIZZO SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 23.10.10   7223  BOL     
+    3135 BV   7 C ORTOB ORTOBERGAMO S. 31             INS.PAN DI ZUCCHERO IT     KG -  171,00       -75,240 01 23.10.10   7219  BOL     
+    3136 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  107,00       -93,090 01 23.10.10   7220  BOL     
+    3136 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  105,00       -91,350 01 23.10.10   7220  BOL     
+    3136 BV   7 C AMATO AMATO S.R.L.   25             ORTAGGI MISTI IT CAT.II    KG -  180,00       -77,400 01 23.10.10   7220  BOL     
+    3137 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  112,00      -154,560 01 23.10.10   7221  BOL     
+    3137 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  110,00      -148,500 01 23.10.10   7221  BOL     
+    3138 BV   3 C DANFR DAN FRUTTA SNC 31             INS.PAN DI ZUCCHERO IT     KG -  310,00      -167,400 01 23.10.10   7222  BOL     
+    3138 BV   5 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -  118,80      -118,800 01 23.10.10   7222  BOL     
+    3138 BV   7 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   60,40       -62,820 01 23.10.10   7222  BOL     
+    3138 BV   9 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   50,30       -51,810 01 23.10.10   7222  BOL     
+    3139 BV   3 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   54,00       -55,080 01 23.10.10   7223  BOL     
+    3139 BV   5 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  138,00      -139,380 01 23.10.10   7223  BOL     
+    3139 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   39,00       -20,280 01 23.10.10   7223  BOL     
     3140 BV   3 C AZGI  AZ.AGRICOLA GI 12             ANELLO PARA                KG -   20,00       -62,000 01 23.10.10   7224  BOL     
 
 EData Doc.: 25.10.2010F
@@ -1035,49 +970,42 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3144 BV  19 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  526,00      -368,200 01 25.10.10   7228  BOL     
     3145 BV   3 C SMA   SMA SPA        701            IND.RICCIA IT IFCO 6416    KG -  219,53      -285,390 01 25.10.10   7229  BOL     
     3145 BV   5 C SMA   SMA SPA        703            IND.SCAROLA IT IFCO 6416   KG -  355,45      -462,090 01 25.10.10   7229  BOL     
-    3147 BV   3 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   58,00        -0,060 01 25.10.10   7231  BOL     
-    3147 BV   5 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  202,00        -0,200 01 25.10.10   7231  BOL     
-    3147 BV   7 C NIZZ2 NELLO NIZZO SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 25.10.10   7231  BOL     
+    3147 BV   3 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   58,00       -59,160 01 25.10.10   7231  BOL     
+    3147 BV   5 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  192,00      -195,840 01 25.10.10   7231  BOL     
     3148 BV   3 C FTESI F.LLI TESI AND 01             IND.RICCIA IT              KG -   56,00       -57,120 01 25.10.10   7232  BOL     
     3148 BV   5 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   60,00       -61,200 01 25.10.10   7232  BOL     
     3148 BV   7 C FTESI F.LLI TESI AND 05             RAD.ROSSO SEMILUNGO IT     KG -   61,00       -56,730 01 25.10.10   7232  BOL     
     3148 BV   9 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -   75,00       -50,250 01 25.10.10   7232  BOL     
-    3149 BV   3 C AMATO AMATO S.R.L.   08             RAD.ROSSO TONDO IT         KG -  121,00        -0,120 01 25.10.10   7233  BOL     
-    3149 BV   5 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -  113,00        -0,110 01 25.10.10   7233  BOL     
-    3149 BV   7 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  107,00        -0,110 01 25.10.10   7233  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   19
+    3149 BV   3 C AMATO AMATO S.R.L.   08             RAD.ROSSO TONDO IT         KG -  110,00       -80,300 01 25.10.10   7233  BOL     
+    3149 BV   5 C AMATO AMATO S.R.L.   05             RAD.ROSSO SEMILUNGO IT     KG -   86,00       -59,340 01 25.10.10   7233  BOL     
+    3149 BV   7 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  103,00       -89,610 01 25.10.10   7233  BOL     
+    3149 BV   9 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  105,00       -91,350 01 25.10.10   7233  BOL     
+    3150 BV   3 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   59,50       -70,210 01 25.10.10   7234  BOL     
+    3150 BV   5 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   86,70       -81,500 01 25.10.10   7234  BOL     
+    3150 BV   7 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   89,50       -85,030 01 25.10.10   7234  BOL     
+    3151 BV   3 C DICAM CAMPAGNARO GIO 05             RAD.ROSSO SEMILUNGO IT     KG -   59,00       -82,600 01 25.10.10   7235  BOL     
+    3151 BV   5 C DICAM CAMPAGNARO GIO 08             RAD.ROSSO TONDO IT         KG -  227,00      -215,650 01 25.10.10   7235  BOL     
+
+EData Doc.: 26.10.2010F
+    3152 BV   3 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  199,00      -218,900 01 26.10.10   7236  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   18
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
 Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-    3149 BV   9 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  110,00        -0,110 01 25.10.10   7233  BOL     
-    3149 BV  11 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 25.10.10   7233  BOL     
-    3150 BV   3 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   64,00        -0,060 01 25.10.10   7234  BOL     
-    3150 BV   5 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   88,00        -0,090 01 25.10.10   7234  BOL     
-    3150 BV   7 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   93,00        -0,090 01 25.10.10   7234  BOL     
-    3150 BV   9 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 25.10.10   7234  BOL     
-    3151 BV   3 C DICAM CAMPAGNARO GIO 05             RAD.ROSSO SEMILUNGO IT     KG -   64,50        -0,060 01 25.10.10   7235  BOL     
-    3151 BV   5 C DICAM CAMPAGNARO GIO 08             RAD.ROSSO TONDO IT         KG -  234,00        -0,230 01 25.10.10   7235  BOL     
-    3151 BV   7 C DICAM CAMPAGNARO GIO ALBOTRANS      ***************** DATI VET -- -    1,00               01 25.10.10   7235  BOL     
-
-EData Doc.: 26.10.2010F
-    3152 BV   3 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  199,00      -218,900 01 26.10.10   7236  BOL     
     3152 BV   5 C MARTI MARTINELLI SUP 05             RAD.ROSSO SEMILUNGO IT     KG -  133,00      -146,300 01 26.10.10   7236  BOL     
     3152 BV   7 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   60,00       -84,000 01 26.10.10   7236  BOL     
     3152 BV   9 C MARTI MARTINELLI SUP 03             IND.SCAROLA IT             KG -   64,00       -89,600 01 26.10.10   7236  BOL     
-    3153 BV   3 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  180,00        -0,180 01 26.10.10   7237  BOL     
-    3153 BV   5 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   61,00        -0,060 01 26.10.10   7237  BOL     
-    3153 BV   7 C EUROA EUROARICI S.N. ALBOTRANS      ***************** DATI VET -- -    1,00               01 26.10.10   7237  BOL     
-    3154 BV   3 C LAZZA LAZZARINI FRAN 31             INS.PAN DI ZUCCHERO IT     KG -   80,00        -0,080 01 26.10.10   7238  BOL     
-    3154 BV   5 C LAZZA LAZZARINI FRAN 01             IND.RICCIA IT              KG -   60,00        -0,060 01 26.10.10   7238  BOL     
-    3154 BV   7 C LAZZA LAZZARINI FRAN 03             IND.SCAROLA IT             KG -  120,00        -0,120 01 26.10.10   7238  BOL     
-    3154 BV   9 C LAZZA LAZZARINI FRAN ALBOTRANS      ***************** DATI VET -- -    1,00               01 26.10.10   7238  BOL     
-    3155 BV   3 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -  189,00        -0,190 01 26.10.10   7239  BOL     
-    3155 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   89,00        -0,090 01 26.10.10   7239  BOL     
-    3155 BV   7 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 26.10.10   7239  BOL     
+    3153 BV   3 C EUROA EUROARICI S.N. 03             IND.SCAROLA IT             KG -  170,00      -134,640 01 26.10.10   7237  BOL     
+    3153 BV   5 C EUROA EUROARICI S.N. 01             IND.RICCIA IT              KG -   52,00       -41,180 01 26.10.10   7237  BOL     
+    3154 BV   3 C LAZZA LAZZARINI FRAN 31             INS.PAN DI ZUCCHERO IT     KG -   77,00       -53,900 01 26.10.10   7238  BOL     
+    3154 BV   5 C LAZZA LAZZARINI FRAN 01             IND.RICCIA IT              KG -   57,00       -60,990 01 26.10.10   7238  BOL     
+    3154 BV   7 C LAZZA LAZZARINI FRAN 03             IND.SCAROLA IT             KG -  112,00      -114,240 01 26.10.10   7238  BOL     
+    3155 BV   3 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -  176,00      -179,520 01 26.10.10   7239  BOL     
+    3155 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   86,40       -83,030 01 26.10.10   7239  BOL     
     3156 BV   3 C MAEST MAESTRI ORTOFR 31             INS.PAN DI ZUCCHERO IT     KG -   38,00       -26,600 01 26.10.10   7240  BOL     
     3156 BV   5 C MAEST MAESTRI ORTOFR 05             RAD.ROSSO SEMILUNGO IT     KG -   71,00       -88,750 01 26.10.10   7240  BOL     
     3156 BV   7 C MAEST MAESTRI ORTOFR 08             RAD.ROSSO TONDO IT         KG -  141,00       -90,240 01 26.10.10   7240  BOL     
@@ -1102,73 +1030,54 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
 EData Doc.: 27.10.2010F
     3159 BV   3 C MARTI MARTINELLI SUP 03             IND.SCAROLA IT             KG -  156,00      -218,400 01 27.10.10   7245  BOL     
     3159 BV   5 C MARTI MARTINELLI SUP 01             IND.RICCIA IT              KG -  104,00      -145,600 01 27.10.10   7245  BOL     
-    3159 BV   7 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   69,00       -96,600 01 27.10.10   7245  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   20
-03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
-                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
-Stampa Dettagliata            Valorizzazione a :  Valore Movimento
-
-Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3159 BV   7 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   69,00       -96,600 01 27.10.10   7245  BOL     
     3159 BV   9 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  195,00      -214,500 01 27.10.10   7245  BOL     
     3159 BV  11 C MARTI MARTINELLI SUP 05             RAD.ROSSO SEMILUNGO IT     KG -  235,00      -258,500 01 27.10.10   7245  BOL     
     3160 BV   3 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG -  842,00      -252,600 01 27.10.10   7246  BOL     
     3160 BV   7 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG -  867,00      -260,100 01 27.10.10   7246  BOL     
     3161 BV   3 C SMA   SMA SPA        703            IND.SCAROLA IT IFCO 6416   KG -  382,82      -497,670 01 27.10.10   7247  BOL     
     3161 BV   7 C SMA   SMA SPA        701            IND.RICCIA IT IFCO 6416    KG -  269,43      -350,260 01 27.10.10   7247  BOL     
-    3162 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -   83,00        -0,080 01 27.10.10   7248  BOL     
-    3162 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -   83,00        -0,080 01 27.10.10   7248  BOL     
-    3162 BV   7 C AMATO AMATO S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -   82,00        -0,080 01 27.10.10   7248  BOL     
-    3162 BV   9 C AMATO AMATO S.R.L.   900            INS.RICCIA E SCAROLA IT CA KG -   88,50        -0,090 01 27.10.10   7248  BOL     
-    3162 BV  11 C AMATO AMATO S.R.L.   936            SEDANO VERDE IT CAT.II     KG -    8,50        -0,010 01 27.10.10   7248  BOL     
-    3162 BV  13 C AMATO AMATO S.R.L.   929            RAD.ROSSO LUNGO IT CAT.II  KG -   13,00        -0,010 01 27.10.10   7248  BOL     
-    3162 BV  15 C AMATO AMATO S.R.L.   931            INS.PAN DI ZUCCHERO IT CAT KG -    5,50        -0,010 01 27.10.10   7248  BOL     
-    3162 BV  17 C AMATO AMATO S.R.L.   905            RAD.ROSSO SEMILUNGO IT CAT KG -    3,90               01 27.10.10   7248  BOL     
-    3162 BV  19 C AMATO AMATO S.R.L.   908            RAD.ROSSO TONDO IT CAT.II  KG -  126,50        -0,130 01 27.10.10   7248  BOL     
-    3162 BV  21 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 27.10.10   7248  BOL     
-    3163 BV   3 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  144,00        -0,140 01 27.10.10   7249  BOL     
-    3163 BV   5 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   29,00        -0,030 01 27.10.10   7249  BOL     
-    3163 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   81,00        -0,080 01 27.10.10   7249  BOL     
-    3163 BV   9 C NIZZ2 NELLO NIZZO SR ALBOTRANS      ***************** DATI VET -- -    1,00               01 27.10.10   7249  BOL     
-    3164 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -  103,00        -0,100 01 27.10.10   7250  BOL     
-    3164 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  103,00        -0,100 01 27.10.10   7250  BOL     
-    3164 BV   7 C CALIM CALIMERO ORTOF 31             INS.PAN DI ZUCCHERO IT     KG -   46,00        -0,050 01 27.10.10   7250  BOL     
-    3164 BV   9 C CALIM CALIMERO ORTOF ALBOTRANS      ***************** DATI VET -- -    1,00               01 27.10.10   7250  BOL     
-    3165 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -  100,00        -0,100 01 27.10.10   7251  BOL     
-    3165 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -   99,00        -0,100 01 27.10.10   7251  BOL     
-    3165 BV   7 C ULISS ULISSE SRL     31             INS.PAN DI ZUCCHERO IT     KG -   46,00        -0,050 01 27.10.10   7251  BOL     
-    3165 BV   9 C ULISS ULISSE SRL     ALBOTRANS      ***************** DATI VET -- -    1,00               01 27.10.10   7251  BOL     
-    3166 BV   3 C L'OR  L'ORTOLANA DI  03             IND.SCAROLA IT             KG -   82,00        -0,080 01 27.10.10   7252  BOL     
-    3166 BV   5 C L'OR  L'ORTOLANA DI  01             IND.RICCIA IT              KG -   58,00        -0,060 01 27.10.10   7252  BOL     
-    3166 BV   7 C L'OR  L'ORTOLANA DI  05             RAD.ROSSO SEMILUNGO IT     KG -   68,00        -0,070 01 27.10.10   7252  BOL     
-    3166 BV   9 C L'OR  L'ORTOLANA DI  31             INS.PAN DI ZUCCHERO IT     KG -   40,00        -0,040 01 27.10.10   7252  BOL     
-    3166 BV  11 C L'OR  L'ORTOLANA DI  ALBOTRANS      ***************** DATI VET -- -    1,00               01 27.10.10   7252  BOL     
-    3167 BV   3 C ORTOB ORTOBERGAMO S. 01             IND.RICCIA IT              KG -   26,00       -16,120 01 27.10.10   7253  BOL     
-    3167 BV   5 C ORTOB ORTOBERGAMO S. 03             IND.SCAROLA IT             KG -   22,00       -13,640 01 27.10.10   7253  BOL     
-    3167 BV   7 C ORTOB ORTOBERGAMO S. 31             INS.PAN DI ZUCCHERO IT     KG -  212,00       -97,520 01 27.10.10   7253  BOL     
-    3168 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  212,00      -318,000 01 27.10.10   7254  BOL     
-    3168 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  176,00      -264,000 01 27.10.10   7254  BOL     
-    3168 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  115,00      -103,500 01 27.10.10   7254  BOL     
-    3168 BV   9 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  145,00      -217,500 01 27.10.10   7254  BOL     
-    3168 BV  11 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  174,00      -121,800 01 27.10.10   7254  BOL     
-    3168 BV  13 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -  421,00      -210,500 01 27.10.10   7254  BOL     
-    3168 BV  15 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  271,00      -298,100 01 27.10.10   7254  BOL     
-    3168 BV  17 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  545,00      -381,500 01 27.10.10   7254  BOL     
-    3168 BV  19 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -  116,00      -127,600 01 27.10.10   7254  BOL     
-    3168 BV  21 C SEVEN SEVEN SPA      820            VERZE IT IFCO 6416         KG -    1,00               01 27.10.10   7254  BOL     
-    3168 BV  25 C SEVEN SEVEN SPA      ALBOBLUE       ***************** DATI VET -- -    1,00               01 27.10.10   7254  BOL     
-
-EData Doc.: 28.10.2010F
-    3169 BV   3 C BICEG AZ.AGR.BICEGO  12             ANELLO PARA                KG -   20,00       -62,000 01 28.10.10   7274  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   21
+    3162 BV   3 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -   83,00       -86,320 01 27.10.10   7248  BOL     
+    3162 BV   5 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -   83,00       -83,000 01 27.10.10   7248  BOL     
+    3162 BV   7 C AMATO AMATO S.R.L.   31             INS.PAN DI ZUCCHERO IT     KG -   77,00       -50,050 01 27.10.10   7248  BOL     
+    3162 BV   9 C AMATO AMATO S.R.L.   25             ORTAGGI MISTI IT CAT.II    KG -  245,00       -83,300 01 27.10.10   7248  BOL     
+    3163 BV   3 C NIZZ2 NELLO NIZZO SR 03             IND.SCAROLA IT             KG -  143,00      -145,860 01 27.10.10   7249  BOL     
+    3163 BV   5 C NIZZ2 NELLO NIZZO SR 01             IND.RICCIA IT              KG -   22,00       -22,440 01 27.10.10   7249  BOL     
+    3163 BV   7 C NIZZ2 NELLO NIZZO SR 31             INS.PAN DI ZUCCHERO IT     KG -   72,00       -33,120 01 27.10.10   7249  BOL     
+    3164 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -   96,00      -127,680 01 27.10.10   7250  BOL     
+    3164 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -   96,00      -124,800 01 27.10.10   7250  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   19
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
 Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3164 BV   7 C CALIM CALIMERO ORTOF 31             INS.PAN DI ZUCCHERO IT     KG -   40,00       -20,000 01 27.10.10   7250  BOL     
+    3165 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -   91,00      -118,300 01 27.10.10   7251  BOL     
+    3165 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -   92,00      -119,600 01 27.10.10   7251  BOL     
+    3165 BV   7 C ULISS ULISSE SRL     31             INS.PAN DI ZUCCHERO IT     KG -   45,00       -18,000 01 27.10.10   7251  BOL     
+    3166 BV   3 C L'OR  L'ORTOLANA DI  03             IND.SCAROLA IT             KG -   78,00       -85,800 01 27.10.10   7252  BOL     
+    3166 BV   5 C L'OR  L'ORTOLANA DI  01             IND.RICCIA IT              KG -   55,00       -60,500 01 27.10.10   7252  BOL     
+    3166 BV   7 C L'OR  L'ORTOLANA DI  05             RAD.ROSSO SEMILUNGO IT     KG -   57,00       -59,850 01 27.10.10   7252  BOL     
+    3166 BV   9 C L'OR  L'ORTOLANA DI  31             INS.PAN DI ZUCCHERO IT     KG -   37,00       -22,200 01 27.10.10   7252  BOL     
+    3167 BV   3 C ORTOB ORTOBERGAMO S. 01             IND.RICCIA IT              KG -   26,00       -16,120 01 27.10.10   7253  BOL     
+    3167 BV   5 C ORTOB ORTOBERGAMO S. 03             IND.SCAROLA IT             KG -   22,00       -13,640 01 27.10.10   7253  BOL     
+    3167 BV   7 C ORTOB ORTOBERGAMO S. 31             INS.PAN DI ZUCCHERO IT     KG -  212,00       -97,520 01 27.10.10   7253  BOL     
+    3168 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  200,00      -300,000 01 27.10.10   7254  BOL     
+    3168 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  170,00      -255,000 01 27.10.10   7254  BOL     
+    3168 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  110,00       -99,000 01 27.10.10   7254  BOL     
+    3168 BV   9 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  140,00      -210,000 01 27.10.10   7254  BOL     
+    3168 BV  11 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  175,00      -122,500 01 27.10.10   7254  BOL     
+    3168 BV  13 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -  422,00      -211,000 01 27.10.10   7254  BOL     
+    3168 BV  15 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  272,00      -299,200 01 27.10.10   7254  BOL     
+    3168 BV  17 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  471,00      -329,700 01 27.10.10   7254  BOL     
+    3168 BV  19 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -   95,00      -104,500 01 27.10.10   7254  BOL     
+    3168 BV  21 C SEVEN SEVEN SPA      820            VERZE IT IFCO 6416         KG -    1,00               01 27.10.10   7254  BOL     
+
+EData Doc.: 28.10.2010F
+    3169 BV   3 C BICEG AZ.AGR.BICEGO  12             ANELLO PARA                KG -   20,00       -62,000 01 28.10.10   7274  BOL     
     3170 BV   3 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG -  871,00      -261,300 01 28.10.10   7256  BOL     
     3170 BV   7 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG - 1259,00      -377,700 01 28.10.10   7256  BOL     
     3171 BV   3 C MARTI MARTINELLI SUP 08             RAD.ROSSO TONDO IT         KG -  238,00      -261,800 01 28.10.10   7257  BOL     
@@ -1176,101 +1085,99 @@ Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                 
     3171 BV   7 C MARTI MARTINELLI SUP 01             IND.RICCIA IT              KG -  111,00      -155,400 01 28.10.10   7257  BOL     
     3171 BV   9 C MARTI MARTINELLI SUP 03             IND.SCAROLA IT             KG -  172,00      -240,800 01 28.10.10   7257  BOL     
     3171 BV  11 C MARTI MARTINELLI SUP 29             RAD.ROSSO LUNGO IT         KG -   65,00       -91,000 01 28.10.10   7257  BOL     
-    3172 BV   3 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  198,00        -0,200 01 28.10.10   7258  BOL     
-    3172 BV   5 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   32,00        -0,030 01 28.10.10   7258  BOL     
-    3172 BV   7 C FTESI F.LLI TESI AND 01             IND.RICCIA IT              KG -   30,00        -0,030 01 28.10.10   7258  BOL     
-    3172 BV   9 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   29,00        -0,030 01 28.10.10   7258  BOL     
-    3172 BV  11 C FTESI F.LLI TESI AND ALBOTRANS      ***************** DATI VET -- -    1,00               01 28.10.10   7258  BOL     
-    3173 BV   3 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  118,00        -0,120 01 28.10.10   7259  BOL     
-    3173 BV   5 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  118,00        -0,120 01 28.10.10   7259  BOL     
-    3173 BV   7 C AMATO AMATO S.R.L.   ALBOTRANS      ***************** DATI VET -- -    1,00               01 28.10.10   7259  BOL     
+    3172 BV   3 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  192,00      -130,560 01 28.10.10   7258  BOL     
+    3172 BV   5 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   30,00       -39,000 01 28.10.10   7258  BOL     
+    3172 BV   7 C FTESI F.LLI TESI AND 01             IND.RICCIA IT              KG -   29,00       -29,000 01 28.10.10   7258  BOL     
+    3172 BV   9 C FTESI F.LLI TESI AND 03             IND.SCAROLA IT             KG -   28,00       -28,840 01 28.10.10   7258  BOL     
+    3173 BV   3 C AMATO AMATO S.R.L.   03             IND.SCAROLA IT             KG -  113,00      -102,830 01 28.10.10   7259  BOL     
+    3173 BV   5 C AMATO AMATO S.R.L.   01             IND.RICCIA IT              KG -  114,00      -103,740 01 28.10.10   7259  BOL     
     3174 BV   3 C SMA   SMA SPA        703            IND.SCAROLA IT IFCO 6416   KG -  459,90      -597,870 01 28.10.10   7260  BOL     
     3174 BV   7 C SMA   SMA SPA        701            IND.RICCIA IT IFCO 6416    KG -  298,76      -388,390 01 28.10.10   7260  BOL     
-    3175 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  524,00      -786,000 01 28.10.10   7261  BOL     
-    3175 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  366,00      -549,000 01 28.10.10   7261  BOL     
-    3175 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  244,00      -219,600 01 28.10.10   7261  BOL     
-    3175 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  241,00      -241,000 01 28.10.10   7261  BOL     
-    3175 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  622,00      -746,400 01 28.10.10   7261  BOL     
-    3175 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  208,00      -312,000 01 28.10.10   7261  BOL     
-    3175 BV  15 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  363,00      -254,100 01 28.10.10   7261  BOL     
+    3175 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  492,00      -738,000 01 28.10.10   7261  BOL     
+    3175 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  345,00      -517,500 01 28.10.10   7261  BOL     
+    3175 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  228,00      -205,200 01 28.10.10   7261  BOL     
+    3175 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  228,00      -228,000 01 28.10.10   7261  BOL     
+    3175 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  605,00      -726,000 01 28.10.10   7261  BOL     
+    3175 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  197,00      -295,500 01 28.10.10   7261  BOL     
+    3175 BV  15 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  360,00      -252,000 01 28.10.10   7261  BOL     
     3175 BV  17 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -  437,00      -218,500 01 28.10.10   7261  BOL     
-    3175 BV  19 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  375,00      -412,500 01 28.10.10   7261  BOL     
+    3175 BV  19 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  372,00      -409,200 01 28.10.10   7261  BOL     
     3175 BV  21 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   63,00       -37,800 01 28.10.10   7261  BOL     
-    3175 BV  23 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  276,00      -193,200 01 28.10.10   7261  BOL     
-    3175 BV  25 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  403,00      -282,100 01 28.10.10   7261  BOL     
-    3175 BV  27 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -  114,00      -125,400 01 28.10.10   7261  BOL     
-    3175 BV  29 C SEVEN SEVEN SPA      ALBOBLUE       ***************** DATI VET -- -    1,00               01 28.10.10   7261  BOL     
-    3176 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -   65,00        -0,070 01 28.10.10   7262  BOL     
-    3176 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  164,00        -0,160 01 28.10.10   7262  BOL     
-    3176 BV   7 C CALIM CALIMERO ORTOF ALBOTRANS      ***************** DATI VET -- -    1,00               01 28.10.10   7262  BOL     
-    3177 BV   3 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   84,00        -0,080 01 28.10.10   7263  BOL     
-    3177 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   55,00        -0,060 01 28.10.10   7263  BOL     
-    3177 BV   7 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   55,00        -0,060 01 28.10.10   7263  BOL     
-    3177 BV   9 C DANFR DAN FRUTTA SNC 08             RAD.ROSSO TONDO IT         KG -   55,50        -0,060 01 28.10.10   7263  BOL     
-    3177 BV  11 C DANFR DAN FRUTTA SNC ALBOTRANS      ***************** DATI VET -- -    1,00               01 28.10.10   7263  BOL     
-    3178 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -  109,00        -0,110 01 28.10.10   7264  BOL     
-    3178 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  110,00        -0,110 01 28.10.10   7264  BOL     
-    3178 BV   7 C ULISS ULISSE SRL     ALBOTRANS      ***************** DATI VET -- -    1,00               01 28.10.10   7264  BOL     
-    3179 BV   3 C MAEST MAESTRI ORTOFR 08             RAD.ROSSO TONDO IT         KG -  196,00      -127,400 01 28.10.10   7265  BOL     
-    3179 BV   5 C MAEST MAESTRI ORTOFR 05             RAD.ROSSO SEMILUNGO IT     KG -  138,00      -172,500 01 28.10.10   7265  BOL     
-    3179 BV   7 C MAEST MAESTRI ORTOFR 29             RAD.ROSSO LUNGO IT         KG -  139,00      -173,750 01 28.10.10   7265  BOL     
-    3180 BV   3 C LAZZA LAZZARINI FRAN 01             IND.RICCIA IT              KG -   83,00        -0,080 01 28.10.10   7266  BOL     
-    3180 BV   5 C LAZZA LAZZARINI FRAN 03             IND.SCAROLA IT             KG -   84,00        -0,080 01 28.10.10   7266  BOL     
-    3180 BV   7 C LAZZA LAZZARINI FRAN 31             INS.PAN DI ZUCCHERO IT     KG -   79,00        -0,080 01 28.10.10   7266  BOL     
-    3180 BV   9 C LAZZA LAZZARINI FRAN ALBOTRANS      ***************** DATI VET -- -    1,00               01 28.10.10   7266  BOL     
-
-EData Doc.: 29.10.2010F
-    3181 BV   3 C SMA   SMA SPA        703            IND.SCAROLA IT IFCO 6416   KG -  770,13    -1.001,170 01 29.10.10   7267  BOL     
-02.11.2010                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   22
+    3175 BV  23 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  239,00      -167,300 01 28.10.10   7261  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   20
 03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
-Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:IBANCARIVENETO  Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
                                    Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
 Stampa Dettagliata            Valorizzazione a :  Valore Movimento
 
 Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3175 BV  25 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  344,00      -240,800 01 28.10.10   7261  BOL     
+    3175 BV  27 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -   91,00      -100,100 01 28.10.10   7261  BOL     
+    3176 BV   3 C CALIM CALIMERO ORTOF 01             IND.RICCIA IT              KG -   64,00       -86,400 01 28.10.10   7262  BOL     
+    3176 BV   5 C CALIM CALIMERO ORTOF 03             IND.SCAROLA IT             KG -  160,00      -200,000 01 28.10.10   7262  BOL     
+    3177 BV   3 C DANFR DAN FRUTTA SNC 05             RAD.ROSSO SEMILUNGO IT     KG -   80,40       -88,440 01 28.10.10   7263  BOL     
+    3177 BV   5 C DANFR DAN FRUTTA SNC 03             IND.SCAROLA IT             KG -   53,00       -49,130 01 28.10.10   7263  BOL     
+    3177 BV   7 C DANFR DAN FRUTTA SNC 01             IND.RICCIA IT              KG -   53,50       -53,500 01 28.10.10   7263  BOL     
+    3177 BV   9 C DANFR DAN FRUTTA SNC 08             RAD.ROSSO TONDO IT         KG -   53,20       -31,920 01 28.10.10   7263  BOL     
+    3178 BV   3 C ULISS ULISSE SRL     01             IND.RICCIA IT              KG -  100,00      -130,000 01 28.10.10   7264  BOL     
+    3178 BV   5 C ULISS ULISSE SRL     03             IND.SCAROLA IT             KG -  101,00      -131,300 01 28.10.10   7264  BOL     
+    3179 BV   3 C MAEST MAESTRI ORTOFR 08             RAD.ROSSO TONDO IT         KG -  196,00      -127,400 01 28.10.10   7265  BOL     
+    3179 BV   5 C MAEST MAESTRI ORTOFR 05             RAD.ROSSO SEMILUNGO IT     KG -  138,00      -172,500 01 28.10.10   7265  BOL     
+    3179 BV   7 C MAEST MAESTRI ORTOFR 29             RAD.ROSSO LUNGO IT         KG -  139,00      -173,750 01 28.10.10   7265  BOL     
+    3180 BV   3 C LAZZA LAZZARINI FRAN 01             IND.RICCIA IT              KG -   82,00       -96,760 01 28.10.10   7266  BOL     
+    3180 BV   5 C LAZZA LAZZARINI FRAN 03             IND.SCAROLA IT             KG -   81,00       -97,200 01 28.10.10   7266  BOL     
+    3180 BV   7 C LAZZA LAZZARINI FRAN 31             INS.PAN DI ZUCCHERO IT     KG -   74,00       -44,400 01 28.10.10   7266  BOL     
+
+EData Doc.: 29.10.2010F
+    3181 BV   3 C SMA   SMA SPA        703            IND.SCAROLA IT IFCO 6416   KG -  770,13    -1.001,170 01 29.10.10   7267  BOL     
     3181 BV   7 C SMA   SMA SPA        701            IND.RICCIA IT IFCO 6416    KG -  577,71      -751,020 01 29.10.10   7267  BOL     
-    3182 BV   3 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  156,00        -0,160 01 29.10.10   7268  BOL     
-    3182 BV   5 C FTESI F.LLI TESI AND 05             RAD.ROSSO SEMILUNGO IT     KG -   65,00        -0,070 01 29.10.10   7268  BOL     
-    3182 BV   7 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   65,00        -0,070 01 29.10.10   7268  BOL     
-    3182 BV   9 C FTESI F.LLI TESI AND ALBOTRANS      ***************** DATI VET -- -    1,00               01 29.10.10   7268  BOL     
-    3183 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  247,00      -370,500 01 29.10.10   7269  BOL     
-    3183 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  210,00      -315,000 01 29.10.10   7269  BOL     
-    3183 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  245,00      -220,500 01 29.10.10   7269  BOL     
-    3183 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  504,00      -504,000 01 29.10.10   7269  BOL     
-    3183 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  554,00      -664,800 01 29.10.10   7269  BOL     
-    3183 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  189,00      -283,500 01 29.10.10   7269  BOL     
-    3183 BV  15 C SEVEN SEVEN SPA      845            RAD.BIANCO IT IFCO 6416    KG -  161,00      -273,700 01 29.10.10   7269  BOL     
-    3183 BV  17 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  291,00      -203,700 01 29.10.10   7269  BOL     
-    3183 BV  19 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -  477,00      -238,500 01 29.10.10   7269  BOL     
-    3183 BV  21 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  425,00      -467,500 01 29.10.10   7269  BOL     
-    3183 BV  23 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  145,00      -101,500 01 29.10.10   7269  BOL     
-    3183 BV  25 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  540,00      -378,000 01 29.10.10   7269  BOL     
-    3183 BV  27 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -  116,00      -127,600 01 29.10.10   7269  BOL     
+    3182 BV   3 C FTESI F.LLI TESI AND 31             INS.PAN DI ZUCCHERO IT     KG -  142,00       -96,560 01 29.10.10   7268  BOL     
+    3182 BV   5 C FTESI F.LLI TESI AND 05             RAD.ROSSO SEMILUNGO IT     KG -   64,00       -71,680 01 29.10.10   7268  BOL     
+    3182 BV   7 C FTESI F.LLI TESI AND 29             RAD.ROSSO LUNGO IT         KG -   63,00       -81,900 01 29.10.10   7268  BOL     
+    3183 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  372,00      -558,000 01 29.10.10   7269  BOL     
+    3183 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  199,00      -298,500 01 29.10.10   7269  BOL     
+    3183 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  232,00      -208,800 01 29.10.10   7269  BOL     
+    3183 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  493,00      -493,000 01 29.10.10   7269  BOL     
+    3183 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  533,00      -639,600 01 29.10.10   7269  BOL     
+    3183 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  182,00      -273,000 01 29.10.10   7269  BOL     
+    3183 BV  15 C SEVEN SEVEN SPA      845            RAD.BIANCO IT IFCO 6416    KG -  158,00      -268,600 01 29.10.10   7269  BOL     
+    3183 BV  17 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  290,00      -203,000 01 29.10.10   7269  BOL     
+    3183 BV  19 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -  471,00      -235,500 01 29.10.10   7269  BOL     
+    3183 BV  21 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  422,00      -464,200 01 29.10.10   7269  BOL     
+    3183 BV  23 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  129,00       -90,300 01 29.10.10   7269  BOL     
+    3183 BV  25 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  455,00      -318,500 01 29.10.10   7269  BOL     
+    3183 BV  27 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -   99,00      -108,900 01 29.10.10   7269  BOL     
     3183 BV  29 C SEVEN SEVEN SPA      820            VERZE IT IFCO 6416         KG -   65,00       -33,800 01 29.10.10   7269  BOL     
-    3183 BV  31 C SEVEN SEVEN SPA      ALBOBLUE       ***************** DATI VET -- -    1,00               01 29.10.10   7269  BOL     
 
 EData Doc.: 30.10.2010F
     3184 BV   3 C AZGI  AZ.AGRICOLA GI 12             ANELLO PARA                KG -   20,00       -62,000 01 30.10.10   7270  BOL     
     3185 BV   3 C TESI  TESINI & GHIRL 03             IND.SCAROLA IT             KG - 1144,00      -343,200 01 30.10.10   7271  BOL     
     3185 BV   7 C TESI  TESINI & GHIRL 01             IND.RICCIA IT              KG -  787,00      -236,100 01 30.10.10   7271  BOL     
-    3186 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  336,00      -504,000 01 30.10.10   7272  BOL     
-    3186 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  283,00      -424,500 01 30.10.10   7272  BOL     
-    3186 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  155,00      -139,500 01 30.10.10   7272  BOL     
-    3186 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  531,00      -531,000 01 30.10.10   7272  BOL     
-    3186 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  505,00      -606,000 01 30.10.10   7272  BOL     
-    3186 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  103,00      -154,500 01 30.10.10   7272  BOL     
-    3186 BV  15 C SEVEN SEVEN SPA      845            RAD.BIANCO IT IFCO 6416    KG -  158,00      -268,600 01 30.10.10   7272  BOL     
-    3186 BV  17 C SEVEN SEVEN SPA      820            VERZE IT IFCO 6416         KG -  128,00       -66,560 01 30.10.10   7272  BOL     
-    3186 BV  19 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -  604,00      -302,000 01 30.10.10   7272  BOL     
+    3186 BV   3 C SEVEN SEVEN SPA      803            IND.SCAROLA IT IFCO 6416   KG -  317,00      -475,500 01 30.10.10   7272  BOL     
+    3186 BV   5 C SEVEN SEVEN SPA      801            IND.RICCIA IT IFCO 6416    KG -  269,00      -403,500 01 30.10.10   7272  BOL     
+    3186 BV   7 C SEVEN SEVEN SPA      831            INS.P.DI ZUCCHERO IT IFCO  KG -  147,00      -132,300 01 30.10.10   7272  BOL     
+    3186 BV   9 C SEVEN SEVEN SPA      808            RAD.ROSSO TONDO IT IFCO 64 KG -  511,00      -511,000 01 30.10.10   7272  BOL     
+    3186 BV  11 C SEVEN SEVEN SPA      805            RAD.R. SEMILUNGO IT IFCO 6 KG -  491,00      -589,200 01 30.10.10   7272  BOL     
+    3186 BV  13 C SEVEN SEVEN SPA      829            RAD.ROSSO LUNGO IT IFCO 64 KG -  100,00      -150,000 01 30.10.10   7272  BOL     
+    3186 BV  15 C SEVEN SEVEN SPA      845            RAD.BIANCO IT IFCO 6416    KG -  152,00      -258,400 01 30.10.10   7272  BOL     
+    3186 BV  17 C SEVEN SEVEN SPA      820            VERZE IT IFCO 6416         KG -  129,00       -67,080 01 30.10.10   7272  BOL     
+21.07.2011                      ESTAMPA MOVIMENTI DI MAGAZZINOF                      Pagina :   21
+03 LA FAVORITA DI BRUN G. & G.SRL (Prn=_OTTOBRE.PRN)
+Data dal 01.10.2010 Data al 31.10.2010                                   Dal prod.:01             a prod.:NOTIFICA        Dal mag.:   a mag.:ÿÿ  Dalla caus.:   a caus.:ÿÿ
+                                   Dal ragg.:   a ragg.:ÿÿ  Dalla categ.:   a categ.:ÿÿ  Dalla zona.:   a zona.:ÿÿ
+Stampa Dettagliata            Valorizzazione a :  Valore Movimento
+
+Nø Doc Cau.  Pr Cli/For Ragione Soc.   Prodotto                                  UM      Qta`        Valore Mg Data Reg N.Reg.  Rifer.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+    3186 BV  19 C SEVEN SEVEN SPA      819            CAPUCCI IT IFCO 6416       KG -  602,00      -301,000 01 30.10.10   7272  BOL     
     3186 BV  21 C SEVEN SEVEN SPA      842            PORRO IT IFCO 6416         KG -  205,00      -225,500 01 30.10.10   7272  BOL     
-    3186 BV  23 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   66,50       -39,900 01 30.10.10   7272  BOL     
-    3186 BV  25 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  284,00      -198,800 01 30.10.10   7272  BOL     
-    3186 BV  27 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  337,00      -235,900 01 30.10.10   7272  BOL     
-    3186 BV  29 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -  118,00      -129,800 01 30.10.10   7272  BOL     
+    3186 BV  23 C SEVEN SEVEN SPA      850            ZUCCA IT IFCO 6416         KG -   66,00       -39,600 01 30.10.10   7272  BOL     
+    3186 BV  25 C SEVEN SEVEN SPA      839            INS.LATTUGA IT IFCO 6416   KG -  246,00      -172,200 01 30.10.10   7272  BOL     
+    3186 BV  27 C SEVEN SEVEN SPA      840            INS.GENTILE IT IFCO 6416   KG -  297,00      -207,900 01 30.10.10   7272  BOL     
+    3186 BV  29 C SEVEN SEVEN SPA      841            INS.GENTILE ROSSA IT IFCO  KG -  100,00      -110,000 01 30.10.10   7272  BOL     
     3186 BV  31 C SEVEN SEVEN SPA      836            SEDANO VERDE IT IFCO 6410  KG -  238,00      -166,600 01 30.10.10   7272  BOL     
-    3186 BV  33 C SEVEN SEVEN SPA      ALBOBLUE       ***************** DATI VET -- -    1,00               01 30.10.10   7272  BOL     
     3187 BV   3 C BICEG AZ.AGR.BICEGO  12             ANELLO PARA                KG -   20,00       -62,000 01 30.10.10   7273  BOL     
                                                                                   ___________ _____________
-                                                            TOTALE GENERALE          -275.849   -166.649,75
+                                                            TOTALE GENERALE          -274.307   -184.719,06
 *** Ultima Pagina ***
