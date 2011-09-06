@@ -211,6 +211,14 @@ if (@$_GET['mode']=='print'){
 	$html.=getArticleTable(array('736','836'),$startDate,$endDate,0);
 	$html.=$table;
 */	
+
+/*
+	$html.="</div><div>";
+	$html.="<h1>Capucci</h1>";
+	$html.=getArticleTable(array('19'),$startDate,$endDate,0);
+	$html.=getArticleTable(array('719','819'),$startDate,$endDate,0);
+	$html.=$table;
+*/	
 	$html.='</div>';
 	echo $html;
 

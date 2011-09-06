@@ -155,4 +155,7 @@ dbClienti.add('CHIE3', 'CHIESOLE SRL  ',  'grezzo      ',    00);
 dbClienti.add('GUIZZ', 'AZ.AGR.GUIZZAR',  'grezzo      ',    00);
 //dbClienti.add('ORTCO', 'ORTOCOM SRL CO',  'mercato     ',    00);
 dbClienti.add('BELFR', 'BELFRUTTA SRL ',  'mercato     ',    00);
-dbClienti.add('4MYSE', '4MY SELECTION ',  'mercato     ',    00);  
+dbClienti.add('4MYSE', '4MY SELECTION ',  'mercato     ',    00);
+dbClienti.add('GARLE', 'GARLETTI SNC D',  'mercato     ',    00);
+dbClienti.add('CAMPF', 'CAMPOFINO GROU',  'grezzo      ',    00);
+dbClienti.add('MIGRO', 'MIGROSS SPA   ',  'supermercato',    00);

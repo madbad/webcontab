@@ -7,14 +7,19 @@ e lei ne prepara la stampa
 
 ----------------------------------------------------------------------------------------------------------
 */
+require_once('./classes.php');
+$ddt=getDDT();
+
+$style='';
+$GLOBALS['img_file']='';
 
 $def_font='helvetica';
 $def_size=8;
 $def_verde= array(168,236,134);
 $def_bianco= array(999,999,999);
  /*-----------------------------------------------------*/
-require_once('./my/php/tcpdf/config/lang/eng.php');
-require_once('./my/php/tcpdf/tcpdf.php');
+require_once('./tcpdf/config/lang/eng.php');
+require_once('./tcpdf/tcpdf.php');
 
 
 // Extend the TCPDF class to create custom Header and Footer
@@ -71,7 +76,8 @@ $pdf->setLanguageArray($l);
 $pdf->SetFont($def_font, 'I', $def_size-1);
 $pdf->AddPage();
 //logo + intestazione
-$html = '<img src="./img/logo.gif" width="265" height="100"><br><span style="font-size:40px;font-weight:bold;">DI BRUN G. & G. S.R.L. Unipersonale</span>';
+$html ='';
+$html.= '<img src="./img/logo.gif" width="265" height="100"><br><span style="font-size:40px;font-weight:bold;">DI BRUN G. & G. S.R.L. Unipersonale</span>';
 $html.= '<br>Via Camagre 38/B - 37063 Isola della Scala (Verona)';
 $html.= '<br>Telefono 045 6630397 - Fax 045 7302598';
 $html.= '<br>Capitale Sociale € 41.600,00 i.v.';
@@ -130,12 +136,12 @@ $pdf->writeHTMLCell($w=175, $h=30, $x=18, $y=74, $html, $border=0, $ln=1, $fill=
 $pdf->SetFont($def_font, '', $def_size-3);
 $pdf->Text(98, 71, 'Numero Doc.');
 $pdf->SetFont($def_font, '', $def_size+5);
-$pdf->Text(98, 74, '2507');
+$pdf->Text(98, 74, $ddt['numero']);
 //
 $pdf->SetFont($def_font, '', $def_size-3);
 $pdf->Text(125, 71, 'Data Doc.');
 $pdf->SetFont($def_font, '', $def_size+5);
-$pdf->Text(125, 74, '20/08/2010');
+$pdf->Text(125, 74, $ddt['data']);
 //
 $pdf->SetFont($def_font, '', $def_size-3);
 $pdf->Text(177, 71, 'Pagina');
@@ -170,7 +176,7 @@ $pdf->Text(125, 86, 'il 20/08/2010 alle 11:47');
 //**********************************************************
 
 function MyOwnRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
-	$out= "</tr><tr><td width='70px;'>$a1</td><td  width='200px;'>$a2</td><td width='40px;'>$a3</td><td width='60px;'>$a4</td><td width='40px;'>$a5</td><td width='80px;'>$a6</td><td  width='50px;'>$a7</td><td  width='80px;'>$a8</td>";
+	$out= "</tr><tr  style='text-align:right;'><td width='70px;'>$a1</td><td  width='200px;'>$a2</td><td width='40px;'>$a3</td><td width='60px;'>$a4</td><td width='40px;'>$a5</td><td width='80px;'>$a6</td><td  width='50px;'>$a7</td><td  width='80px;'>$a8</td>";
 	if ($a9!=''){
 		$out.="</tr><tr><td></td><td colspan='3'><span style='font-size:4px;'>         Lotto: $a9</span></td><td></td><td></td><td></td><td></td>";
 	}
@@ -186,20 +192,23 @@ $html.= '<td width="70px;">Cod.Articolo</td><td  width="200px;">Descrizione dei 
 $pdf->SetFont($def_font, '', $def_size);
 $html.= MyOwnRow('','','','','','','','','' );
 
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15Aooo999999999999999' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
+//$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
+foreach ($ddt['righe'] as $key => $value) {
+	$myDDT=$ddt['righe'][$key];
+    //echo "Key: $key; Value: $value<br />\n";
+	// number_format($number, 2, ',', ' ');
+	$html.= MyOwnRow(	$myDDT['prodotto']['codice'],
+						$myDDT['prodotto']['descrizione'],
+						number_format ($myDDT['colli'],2),
+						'€ '.number_format ($myDDT['prezzo'],3),
+						$myDDT['unitamisura'],
+						number_format ($myDDT['quantita'],1), //peso lordo
+						number_format ($myDDT['quantita']-$myDDT['pesonetto'],1), //todoTara
+						number_format ($myDDT['pesonetto'],1),
+						'' ); //lotto se presente todo
+}
+
+
 
 $html.= '</tr></table>';
 
@@ -214,7 +223,7 @@ $pdf->RoundedRect(15, 215, 175, 10, 5.0, '1010', 'DF', $style, $def_bianco);
 $html = '<table style="border:0px solid #000000;margin:0px;padding:0px;text-align:left;"><tr>';
 $html.= '<td width="70px;"> </td><td  width="200px;"> </td><td width="40px;">Colli</td><td width="100px;" colspan="2">Imponibile</td><td width="80px;">Peso Lordo</td><td  width="50px;">Tara</td><td  width="80px;">Peso netto</td>';
 
-$html.= MyOwnRow('<b>Totali</b>','','1.000','€ 11.521,20','','10.548','1.456','10.999','' );
+$html.= MyOwnRow('<b>Totali</b>','',$ddt['totali']['colli'],'todoTotaleImporto','',$ddt['totali']['pesolordo'],'1.456',$ddt['totali']['pesonetto'],'' );
 
 $html.= '</tr></table>';
 $pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=216, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
@@ -296,7 +305,7 @@ $pdf->RoundedRect(15, 277, 120, 13, 5.0, '0000', 'DF', $style, $def_bianco);
 $pdf->SetFont($def_font, '', $def_size-4);
 $pdf->Text(15, 278, 'Annotazioni');
 $pdf->SetFont($def_font, '', $def_size-2);
-$html= '- Contributo CONAI assolto ove dovuto<br>- Peso da verificare all\'arrivo.';
+$html= '- Contributo CONAI assolto ove dovuto<br>- Peso da verificare all\'arrivo.<br>- '.$ddt['note'];
 $pdf->writeHTMLCell($w=120, $h=10, $x=15, $y=280, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 //**********************************************************
 //**********************************************************
