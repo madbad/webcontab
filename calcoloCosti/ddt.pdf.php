@@ -96,15 +96,15 @@ $pdf->RoundedRect(110, 30+$mod, 80, 24, 5.0, '1010', 'DF', $style, $def_bianco);
 $pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 $pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(200,200,200));
 $pdf->SetFont($def_font, 'b', $def_size+3);
-$pdf->Text(114, 11+$mod, 'La Favorita di Brun G. & G. Srl');
-$pdf->Text(114, 15+$mod, 'Unipersonale');
+$pdf->Text(114, 11+$mod, $ddt['cliente']['ragionesociale']);
+//$pdf->Text(114, 15+$mod, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
 $pdf->SetFont($def_font, '', $def_size);
-$pdf->Text(114, 20+$mod, 'Via camagre 38/b');
-$pdf->Text(114, 23+$mod, '37063 Isola della Scala (VERONA)');
+$pdf->Text(114, 20+$mod, $ddt['cliente']['via']);
+$pdf->Text(114, 23+$mod, $ddt['cliente']['cap'].' '.$ddt['cliente']['paese']. ' ('.$ddt['cliente']['provincia'].')');
 $pdf->SetFont($def_font, 'b', $def_size+1);
-$pdf->Text(114, 27+$mod, 'Partitita IVA: 01588530236');
+$pdf->Text(114, 27+$mod, 'Partitita IVA: '.$ddt['cliente']['partitaiva']);
 $pdf->SetFont($def_font, '', $def_size);
-$pdf->Text(114, 31+$mod, 'Codice Fiscale: 01588530236');
+$pdf->Text(114, 31+$mod, 'Codice Fiscale: '.$ddt['cliente']['codicefiscale']);
 
 $pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def_size-5);
 $html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>T<BR>A<BR>R<BR>I<BR>O';
@@ -115,11 +115,11 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=44+4, $html, $border=0, $ln=1, $fil
 
 //dati intestazione ddt
 $pdf->SetFont($def_font, 'b', $def_size+3);
-$pdf->Text(114, 37+$mod, 'La Favorita di Brun G. & G. Srl');
-$pdf->Text(114, 41+$mod, 'Unipersonale');
+$pdf->Text(114, 37+$mod, $ddt['cliente']['destinazione']['ragionesociale']);
+//$pdf->Text(114, 41+$mod, 'Unipersonale');
 $pdf->SetFont($def_font, '', $def_size);
-$pdf->Text(114, 45+$mod, 'Via camagre 38/b');
-$pdf->Text(114, 49+$mod, '37063 Isola della Scala (VERONA)');
+$pdf->Text(114, 45+$mod, $ddt['cliente']['destinazione']['via']);
+$pdf->Text(114, 49+$mod, $ddt['cliente']['destinazione']['cap'].' '.$ddt['cliente']['destinazione']['paese']. ' ('.$ddt['cliente']['destinazione']['provincia'].')');
 //**********************************************************
 //**********************************************************
 $pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
@@ -155,7 +155,7 @@ $pdf->RoundedRect(15, 82, 175, 10, 5.0, '0101', 'DF', $style, $def_verde);
 $pdf->SetFont($def_font, '', $def_size-3);
 $pdf->Text(18, 83, 'Causale del trasporto');
 $pdf->SetFont($def_font, '', $def_size+5);
-$pdf->Text(18, 86, 'Vendita');
+$pdf->Text(18, 86, $ddt['causale']['descrizione']);
 //
 $pdf->SetFont($def_font, '', $def_size-3);
 $pdf->Text(58, 83, 'Aspetto dei beni');
@@ -165,7 +165,7 @@ $pdf->Text(58, 86, 'Visibile');
 $pdf->SetFont($def_font, '', $def_size-3);
 $pdf->Text(98, 83, 'Trasporto a mezzo');
 $pdf->SetFont($def_font, '', $def_size+5);
-$pdf->Text(98, 86, 'Vettore');
+$pdf->Text(98, 86, $ddt['spedizione']['descrizione']);
 //
 $pdf->SetFont($def_font, '', $def_size-3);
 $pdf->Text(125, 83, 'Inizio trasporto');
@@ -260,12 +260,12 @@ $html.= '<tr><td>Cod.Fiscale: 01588530236</td></tr>';
 $html.= '</table></td>';
 
 $html.= '<td><table><tr><td><b>Vettore</b></td></tr>';
-$html.= '<tr><td>La Favorita di Brun G. & G. Srl Unip.</td></tr>';
-$html.= '<tr><td>Via San rocco, 14</td></tr>';
-$html.= '<tr><td>37063 Pellegrina di Isola della Scala VR</td></tr>';
-$html.= '<tr><td>P.Iva: 01588530236</td></tr>';
-$html.= '<tr><td>Cod.Fiscale: 01588530236</td></tr>';
-$html.= '<tr><td>Albo trasportatori: TN2052205L</td></tr>';
+$html.= '<tr><td>'.$ddt['vettore']['ragionesociale'].'</td></tr>';
+$html.= '<tr><td>'.$ddt['vettore']['via'].'</td></tr>';
+$html.= '<tr><td>'.$ddt['vettore']['paese'].'</td></tr>';
+$html.= '<tr><td>P.Iva: -</td></tr>';
+$html.= '<tr><td>Cod.Fiscale: -</td></tr>';
+$html.= '<tr><td>Albo trasportatori: -</td></tr>';
 $html.= '</table></td>';
 
 $html.= '</tr></table>';
