@@ -170,5 +170,118 @@ function getDDT (){
 	}
 	return $ddt;
 }
-//echo '==='+$test;
+
+	function getArticleTable($articlesCode, $startDate, $endDate, $calopesoAlCollo){
+		$out=null;
+
+		//database connection string
+		$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\calcoloCosti\FILEDBF\CONTAB;Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
+		//connect to database
+		$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
+		//query string
+		$query= "SELECT * FROM 03BORIGD.DBF WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
+		//query execution
+		$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
+
+		$out.="<table><tr><th colspan='5'>cod:".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
+		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th></tr>';
+		//this will containt table totals
+		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
+		$dbClienti=getDbClienti();
+		while($row = odbc_fetch_array($result))
+		{
+		$codCliente=$row['F_CODCLI'];
+		$tipoCliente=$dbClienti["$codCliente"];
+		if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
+			$calopeso=round(round($row['F_NUMCOL'])*$calopesoAlCollo);
+			$netto=$row['F_PESNET']-$calopeso;
+			$media=round($netto/$row['F_NUMCOL'],1);
+			$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td></tr>";
+			$sum['NETTO']+=$netto;
+			$sum['F_NUMCOL']+=$row['F_NUMCOL'];
+		}	
+		}
+
+		$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='2'>".$sum['NETTO']."</th></tr>";
+		$out.='</table><BR>';
+
+		//DISCONNECT FROM DATABASE
+		odbc_close($odbc);
+		return $out;
+	}
+	function getDbClienti(){
+		$db=array();
+		$news=fopen("./dbClienti.txt","r");  //apre il file
+		while (!feof($news)) {
+			$buffer = fgets($news, 4096);
+			$arr=explode(', ',$buffer);
+			$codCliente=trim($arr[0]);
+			$tipoCliente=trim($arr[2]);
+			$provvigione=trim($arr[3]);
+			$db["$codCliente"]['tipo']=$tipoCliente;
+			$db["$codCliente"]['provvigione']=$provvigione;
+			//echo "$codCliente=$tipoCliente<br>"; //riga letta
+		}
+		fclose ($news); #chiude il file
+		return $db;
+	}
+	function getArticleTable2($articlesCode, $startDate, $endDate, $calopesoAlCollo){
+		$out=null;
+
+		//database connection string
+		$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\calcoloCosti\FILEDBF\CONTAB;Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
+		//connect to database
+		$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
+		//query string
+		$query= "SELECT * FROM 03BORIGD.DBF WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
+		//query execution
+		$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
+
+		$out.="<table><tr><th colspan='5'>cod:".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
+		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th><th>prezzo lordo</th></tr>';
+		//this will containt table totals
+		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
+		$dbClienti=getDbClienti();
+		$mediaPrezzo='';
+		while($row = odbc_fetch_array($result)){
+			$codCliente=$row['F_CODCLI'];
+			$tipoCliente=$dbClienti["$codCliente"]['tipo'];
+			$provvigione=$dbClienti["$codCliente"]['provvigione']*1;
+
+
+
+
+			if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
+				$calopeso=round(round($row['F_NUMCOL'])*$calopesoAlCollo);
+				$netto=$row['F_PESNET']-$calopeso;
+				$mediaPeso=round($netto/$row['F_NUMCOL'],1);
+				if($provvigione==0){
+					$row['F_PREUNI']=round($row['F_PREUNI']*100/87,2);
+				}
+				
+				$data=$row['F_DATBOL'];
+@				$mediaPrezzo[$data];
+@				$mediaPrezzo[$data]['data']=$data;
+@				$mediaPrezzo[$data]['valore']+=+$netto*$row['F_PREUNI'];
+@				$mediaPrezzo[$data]['peso']+=+$netto;
+
+
+
+				//$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$mediaPeso</td><td>".$row['F_PREUNI'].'('.round($mediaPrezzo[$data]['valore']/$mediaPrezzo[$data]['peso'],2).')'."</td></tr>";
+				$sum['NETTO']+=$netto;
+				$sum['F_NUMCOL']+=$row['F_NUMCOL'];
+			}
+
+		}
+
+		//$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='2'>".$sum['NETTO']."</th></tr>";
+		//$out.='</table><BR>';
+		foreach ($mediaPrezzo as $value) {
+			$out.= $value['data'].': '.round($value['valore']/$value['peso'],2).'<br>';
+			//$out.=$value.'<br>';
+		}
+		//DISCONNECT FROM DATABASE
+		odbc_close($odbc);
+		return $out;
+	}
 ?>
