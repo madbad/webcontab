@@ -191,8 +191,9 @@ function getDDT (){
 		while($row = odbc_fetch_array($result))
 		{
 		$codCliente=$row['F_CODCLI'];
-		$tipoCliente=$dbClienti["$codCliente"];
+		$tipoCliente=$dbClienti["$codCliente"]['tipo'];
 		if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
+
 			$calopeso=round(round($row['F_NUMCOL'])*$calopesoAlCollo);
 			$netto=$row['F_PESNET']-$calopeso;
 			$media=round($netto/$row['F_NUMCOL'],1);
