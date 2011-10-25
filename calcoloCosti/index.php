@@ -133,14 +133,18 @@ if (@$_GET['mode']=='print'){
 		$html.=getArticleTable(array('31'),$startDateR,$endDateR,0.3);
 		$html.=getArticleTable(array('731','831'),$startDateR,$endDateR,.4);
 		$html.=$table;
-		
+		/*
 		$html.="</div><div>";
 		$html.="<h1>Finocchio</h1>";
 		$html.=getArticleTable(array('26'),$startDateR,$endDateR,0.3);
 		$html.=getArticleTable(array('726','826'),$startDateR,$endDateR,.4);
 		$html.=$table;
-		
-
+		*/
+		$html.="</div><div>";
+		$html.="<h1>Semil.</h1>";
+		$html.=getArticleTable(array('05'),$startDateR,$endDateR,0.3);
+		$html.=getArticleTable(array('705','805'),$startDateR,$endDateR,0.4);
+		$html.=$table;
 	}
 
 	/*
