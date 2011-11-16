@@ -226,8 +226,8 @@ function getDDT (){
 		fclose ($news); #chiude il file
 		return $db;
 	}
-	function getArticleTable2($articlesCode, $startDate, $endDate, $calopesoAlCollo){
-		$out=null;
+	function getArticleTable2($articlesCode, $startDate, $endDate){
+		$out='';
 
 		//database connection string
 		$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\calcoloCosti\FILEDBF\CONTAB;Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
@@ -239,7 +239,7 @@ function getDDT (){
 		$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
 
 		$out.="<table><tr><th colspan='5'>cod:".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
-		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th><th>prezzo lordo</th></tr>';
+		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th><th>prezzo</th><th>pr. lordo</th><th>provv.</th><th>pr. netto</th><th>imp. netto</th></tr>';
 		//this will containt table totals
 		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
 		$dbClienti=getDbClienti();
@@ -252,13 +252,13 @@ function getDDT (){
 
 
 
-			if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
-				$calopeso=round(round($row['F_NUMCOL'])*$calopesoAlCollo);
-				$netto=$row['F_PESNET']-$calopeso;
+			//if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
+			if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato')){
+				$netto=$row['F_PESNET'];
 				$mediaPeso=round($netto/$row['F_NUMCOL'],1);
-				if($provvigione==0){
-					$row['F_PREUNI']=round($row['F_PREUNI']*100/87,2);
-				}
+				//if($provvigione==0){
+				//	$row['F_PREUNI']=round($row['F_PREUNI']*100/87,2);
+				//}
 				
 				$data=$row['F_DATBOL'];
 @				$mediaPrezzo[$data];
@@ -266,21 +266,28 @@ function getDDT (){
 @				$mediaPrezzo[$data]['valore']+=+$netto*$row['F_PREUNI'];
 @				$mediaPrezzo[$data]['peso']+=+$netto;
 
+@				$prezzo=$row['F_PREUNI'];
+@				$prezzoNetto=round($row['F_PREUNI']*((100-$provvigione)/100),2);
+@				$prezzoLordo=round($row['F_PREUNI']*(100/88),2);
+@				$importoNetto=round($row['F_IMPONI']*((100-$provvigione)/100),2);
 
-
-				//$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$mediaPeso</td><td>".$row['F_PREUNI'].'('.round($mediaPrezzo[$data]['valore']/$mediaPrezzo[$data]['peso'],2).')'."</td></tr>";
-				$sum['NETTO']+=$netto;
-				$sum['F_NUMCOL']+=$row['F_NUMCOL'];
+				$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$mediaPeso</td><td>$prezzo</td><td>$prezzoLordo</td><td>$provvigione%</td><td>$prezzoNetto</td><td>$importoNetto</td></tr>";
+				//$sum['NETTO']+=$netto;
+				//$sum['F_NUMCOL']+=$row['F_NUMCOL'];
+@				$sum['importoNetto']+=$importoNetto;
+@				$sum['pesoNetto']+=$netto;
+@				$sum['colli']+=$row['F_NUMCOL'];
 			}
 
 		}
+		$out.="\n".'<tr><th>-</th><th>-</th><th>'.$sum['colli'].'</th><th>'.$sum['pesoNetto'].'</th><th>'.round($sum['pesoNetto']/$sum['colli'],3).'</th><th>-</th><th>-</th><th>-</th><th>'.round($sum['importoNetto']/$sum['pesoNetto'],3).'</th><th>'.$sum['importoNetto'].'</th></tr></table>';
 
 		//$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='2'>".$sum['NETTO']."</th></tr>";
 		//$out.='</table><BR>';
-		foreach ($mediaPrezzo as $value) {
-			$out.= $value['data'].': '.round($value['valore']/$value['peso'],2).'<br>';
+		//foreach ($mediaPrezzo as $value) {
+			//$out.= $value['data'].': '.round($value['valore']/$value['peso'],2).'<br>';
 			//$out.=$value.'<br>';
-		}
+		//}
 		//DISCONNECT FROM DATABASE
 		odbc_close($odbc);
 		return $out;

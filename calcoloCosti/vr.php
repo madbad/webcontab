@@ -59,6 +59,7 @@ width:15 em;
 			.totali{
 			 	 font-size:1.5em;
 			}
+tr:nth-child(odd) { background-color: #e1e1e1;}
 		</style>
 	</head>
 
@@ -83,14 +84,9 @@ require_once('./classes.php');
 if (@$_GET['mode']=='print'){
 	//log start date for time execution calc
 	$start = (float) array_sum(explode(' ',microtime()));
-
-	$html="<div>";
-	$html.="<h1>Semil.</h1>";
-	$html.=getArticleTable(array('05'),$startDateR,$endDateR,0);
-	$html.=getArticleTable(array('705','805'),$startDateR,$endDateR,0);
-	$html.=$table;
-
-	$html.='</div>';
+	$html="<h1>Semil.</h1>";
+	$html.=getArticleTable2(array('05'),$startDateR,$endDateR);
+	//$html.=getArticleTable2(array('705','805'),$startDateR,$endDateR);
 	echo $html;
 
 	 //log end date for time execution calc
