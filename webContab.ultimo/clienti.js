@@ -160,5 +160,6 @@ dbClienti.add('GARLE', 'GARLETTI SNC D',  'mercato     ',    00);
 dbClienti.add('CAMPF', 'CAMPOFINO GROU',  'grezzo      ',    00);
 dbClienti.add('MIGRO', 'MIGROSS SPA   ',  'supermercato',    00);
 dbClienti.add('BENIN', 'AZ. AGR. BENIN',  'grezzo      ',    00);
-dbClienti.add('ORTOL', 'L\'ORTOLANO S.R',  'grezzo      ',    00);
-
+dbClienti.add('ORTOL', 'L\'ORTOLANO S.R', 'grezzo      ',    00);
+dbClienti.add('ORVER', 'ORTO VERDE SNC', 'mercato     ',    00);
+dbClienti.add('TRAN2', 'CONSORZIO AUTO', 'mercato     ',    00);

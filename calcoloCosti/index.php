@@ -112,13 +112,18 @@ if (@$_GET['mode']=='print'){
 	$html.=getArticleTable(array('03'),$startDate,$endDate,0.3);
 	$html.=getArticleTable(array('703','803'),$startDate,$endDate,0.7);
 	$html.=$table;
-
+/*
+	$html.="<div>";
+	$html.="<h1>Riccia</h1>";
+	$html.=getArticleTable(array('836'),$startDate,$endDate,0);
+	$html.=$table;
+*/
 	if(@$_GET['extraProducts']){
 		//$html.='<div style="page-break-before: always"></div>';
 		$html.="</div><div>";
 		$html.="<h1>Tondo</h1>";
 		$html.=getArticleTable(array('08'),$startDateR,$endDateR,0.3);
-		$html.=getArticleTable(array('708','808'),$startDateR,$endDateR,0.4);
+		$html.=getArticleTable(array('708','808','708-','808-','708--'),$startDateR,$endDateR,0.4);
 		$html.=$table;
 
 		$html.="</div><div>";

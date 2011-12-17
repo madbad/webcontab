@@ -253,7 +253,11 @@ function getDDT (){
 
 
 			//if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
-			if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato')){
+			//DEFAULT:
+			//if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato')){
+			//MARTINELLI:
+			if (in_array($row['F_CODPRO'],$articlesCode) && ($codCliente=='MARTI')){
+			
 				$netto=$row['F_PESNET'];
 				$mediaPeso=round($netto/$row['F_NUMCOL'],1);
 				//if($provvigione==0){
