@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Autocarro VR825384</nome>
+	<marca>Fiat</marca>
+	<modello>145</modello>
+	<anno_fabbricazione>1998</anno_fabbricazione>
+	<anno_acquisto></anno_acquisto>
+	<matricola>Telaio: ZCFA1KD0001120216</matricola>
+	<localizzazione>parco automezzi</localizzazione>
+	<id>5</id>
+	<ditta_fabbricatrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>New Carviper Srl</ragionesociale>
+		<via>Via Brugnoli, 4</via>
+		<citta>Isola della Scala</citta>
+		<provincia>VR</provincia>
+		<telefono>045-7300527</telefono>
+		<fax>045-6639091</fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Autocarro</oggetto>
+			<attivita>Tagliando completo per revisione</attivita>
+			<periodicita>Annuale</periodicita>
+			<data>Aprile</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>New Carviper Srl</ragionesociale>
+				<via>Via Brugnoli, 4</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7300527</telefono>
+				<fax>045-6639091</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>20/04/2009</data>
+			<descrizione>	
+				Controllo per revisione.
+				Riparazione maniglia porta e bloccasterzo
+			</descrizione>
+			<fattura>
+				<numero>394</numero>
+				<data>13/05/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>New Carviper Srl</ragionesociale>
+				<via>Via Brugnoli, 4</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7300527</telefono>
+				<fax>045-6639091</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>14/12/2009</data>
+			<descrizione>	
+				Esecuzione tagliando.
+			</descrizione>
+			<fattura>
+				<numero>1017</numero>
+				<data>17/12/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via>-</via>
+				<citta>-</citta>
+				<provincia>-</provincia>
+				<telefono>-</telefono>
+				<fax>-</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>26/01/2010</data>
+			<descrizione>	
+				Sostituzione batteria.
+			</descrizione>
+			<fattura>
+				<numero>119</numero>
+				<data>27/01/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>New Carviper Srl</ragionesociale>
+				<via>Via Brugnoli, 4</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7300527</telefono>
+				<fax>045-6639091</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>10/05/2010</data>
+			<descrizione>	
+				Controllo completo per revisione.Sostituzione freni ruota posteriore destra.
+			</descrizione>
+			<fattura>
+				<numero>383</numero>
+				<data>14/05/2010</data>		
+			</fattura>
+		</intervento>
+		
+		
+		<intervento>
+			<manutentore>
+				<ragionesociale>Nicoini Marco Group Srl</ragionesociale>
+				<via>Piazzetta Giovanni Cotta, 5</via>
+				<citta>Legnago</citta>
+				<provincia>VR</provincia>
+				<telefono>334-6137602</telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>30/06/2010</data>
+			<descrizione>	
+				Sostituzione radiatore acqua.
+			</descrizione>
+			<fattura>
+				<numero>421</numero>
+				<data>30/06/2010</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

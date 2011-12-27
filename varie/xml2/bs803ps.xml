@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Autovettura BS803PS</nome>
+	<marca>Mercedes</marca>
+	<modello>(DAIMLERCHRYSLER AG MB 220)</modello>
+	<anno_fabbricazione></anno_fabbricazione>
+	<anno_acquisto></anno_acquisto>
+	<matricola>Telaio: WDB2200261A109288</matricola>
+	<localizzazione>parco automezzi</localizzazione>
+	<id>9</id>
+	<ditta_fabbricatrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>Autozeta di Zanda Gilberto</ragionesociale>
+		<via>Via Verona, 49</via>
+		<citta>Isola della Scala</citta>
+		<provincia>VR</provincia>
+		<telefono>045-7302663</telefono>
+		<fax>045-7302663</fax>
+		<mail></mail>	
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Autocarro</oggetto>
+			<attivita>Tagliando completo per revisione</attivita>
+			<periodicita>Annuale</periodicita>
+			<data>Aprile</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Autozeta di Zanda Gilberto</ragionesociale>
+				<via>Via Verona, 49</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7302663</telefono>
+				<fax>045-7302663</fax>
+				<mail></mail>	
+			</manutentore>
+			<data>16/03/2009</data>
+			<descrizione>	
+				Sostituzione iniettori.
+			</descrizione>
+			<fattura>
+				<numero>83</numero>
+				<data>24/03/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Autozeta di Zanda Gilberto</ragionesociale>
+				<via>Via Verona, 49</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7302663</telefono>
+				<fax>045-7302663</fax>
+				<mail></mail>	
+			</manutentore>
+			<data>30/04/2009</data>
+			<descrizione>
+				Revisione.
+				Sostituzione pastiglie freni anteriori e controllo generale.
+			</descrizione>
+			<fattura>
+				<numero>131</numero>
+				<data>04/05/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Autozeta di Zanda Gilberto</ragionesociale>
+				<via>Via Verona, 49</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7302663</telefono>
+				<fax>045-7302663</fax>
+				<mail></mail>	
+			</manutentore>
+			<data>07/08/2009</data>
+			<descrizione>
+				Sostituzione braccetti sospensioni ed elettrovalvola turbina
+			</descrizione>
+			<fattura>
+				<numero>239</numero>
+				<data>17/08/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Autozeta di Zanda Gilberto</ragionesociale>
+				<via>Via Verona, 49</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7302663</telefono>
+				<fax>045-7302663</fax>
+				<mail></mail>	
+			</manutentore>
+			<data>22/10/2009</data>
+			<descrizione>
+				Modifica testata.
+			</descrizione>
+			<fattura>
+				<numero>336</numero>
+				<data>03/11/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Autozeta di Zanda Gilberto</ragionesociale>
+				<via>Via Verona, 49</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7302663</telefono>
+				<fax>045-7302663</fax>
+				<mail></mail>	
+			</manutentore>
+			<data>12/11/2009</data>
+			<descrizione>
+				Riparazione Idroguida
+			</descrizione>
+			<fattura>
+				<numero>352</numero>
+				<data>16/11/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Autozeta di Zanda Gilberto</ragionesociale>
+				<via>Via Verona, 49</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7302663</telefono>
+				<fax>045-7302663</fax>
+				<mail></mail>	
+			</manutentore>
+			<data>18/05/2010</data>
+			<descrizione>
+				Sostituzione pompa sostituzione filtri olio aria e rabbocco livelli.
+			</descrizione>
+			<fattura>
+				<numero>187</numero>
+				<data>21/05/2010</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Spazzatrice</nome>
+	<marca>Tennant Nv</marca>
+	<modello>6400D</modello>
+	<anno_fabbricazione>1998</anno_fabbricazione>
+	<anno_acquisto>1998</anno_acquisto>
+	<matricola>640041145</matricola>
+	<localizzazione>Magazzino A</localizzazione>
+	<id>31</id>
+	<ditta_fabbricatrice>
+		<ragionesociale>Tennant Nv</ragionesociale>
+		<via>Industrieland 6 - 5405 AB</via>
+		<citta>Uden - The Netherlands</citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>Borin Srl</ragionesociale>
+		<via>Via Europa</via>
+		<citta>Sanguinetto</citta>
+		<provincia>VR</provincia>
+		<telefono>0442-365505</telefono>
+		<fax>0442-365506</fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Spazzatrice</oggetto>
+			<attivita>Pulizia generale con aria compressa, ingrassaggio e lubrificazione, controllo livello liquidi.Sostituzione spazzola laterale</attivita>
+			<periodicita>annuale</periodicita>
+			<data>ottobre</data>
+		</manutenzione>
+		<manutenzione>
+			<oggetto>Spazzatrice</oggetto>
+			<attivita>Sostituzione filtro polveri e spazzola centrale.</attivita>
+			<periodicita>biennale</periodicita>
+			<data>ottobre</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Borin Srl</ragionesociale>
+				<via>Via Europa</via>
+				<citta>Sanguinetto</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-365505</telefono>
+				<fax>0442-365506</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>30/06/2010</data>
+			<descrizione>	
+				Sostituzione spazzola laterale.
+			</descrizione>
+			<fattura>
+				<numero>1516</numero>
+				<data>30/06/2010</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

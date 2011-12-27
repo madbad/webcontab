@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Impianto elettrico</nome>
+	<marca></marca>
+	<modello></modello>
+	<anno_fabbricazione></anno_fabbricazione>
+	<anno_acquisto></anno_acquisto>
+	<matricola></matricola>
+	<localizzazione>intero stabilimento</localizzazione>
+	<id>40</id>
+	<ditta_fabbricatrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Impianto elettrico</oggetto>
+			<attivita>Verifica funzionamento con prove di messa a terra.</attivita>
+			<periodicita>Biennale</periodicita>
+			<data>Aprile</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Segala Romano Elettricista</ragionesociale>
+				<via>Via Frescà, 47</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>08/02/2010</data>
+			<descrizione>	
+				Riparazione impianto di illuminazione fari esterni
+			</descrizione>
+			<fattura>
+				<numero>06</numero>
+				<data>08/02/2010</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Impianto Lavorazione</nome>
+	<marca></marca>
+	<modello></modello>
+	<anno_fabbricazione></anno_fabbricazione>
+	<anno_acquisto></anno_acquisto>
+	<matricola></matricola>
+	<localizzazione>magazzino B</localizzazione>
+	<id>27</id>
+	<ditta_fabbricatrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Nastri 1,2,3,4,5,6,7 Catenaria 1,2,3</oggetto>
+			<attivita>Controllo e sostituzione lubrificatori automatici esausti</attivita>
+			<periodicita>Trimestrale</periodicita>
+			<data>Febbraio</data>
+		</manutenzione>
+		<manutenzione>
+			<oggetto>Nastro 1,2,4,5,6,7</oggetto>
+			<attivita>Verifica con sostituzione rulli guasti, centratura.</attivita>
+			<periodicita>Biennale</periodicita>
+			<data>Luglio</data>
+		</manutenzione>
+		<manutenzione>
+			<oggetto>Nastro 3</oggetto>
+			<attivita>Centratura</attivita>
+			<periodicita>semestrale</periodicita>
+			<data>Giugno</data>
+		</manutenzione>
+		<manutenzione>
+			<oggetto>Nastro 3</oggetto>
+			<attivita>Sostituzione rulli</attivita>
+			<periodicita>Annuale</periodicita>
+			<data>Luglio</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>07/01/2009</data>
+			<descrizione>	
+				Sistemazione nastro corto radicchi.
+			</descrizione>
+			<fattura>
+				<numero>1</numero>
+				<data>31/01/2009</data>			
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>09/01/2009</data>
+			<descrizione>	
+				Ripristino nastro esterno salita e sostituzione nastro sotto pedana finiture e rulli.
+			</descrizione>
+			<fattura>
+				<numero>1</numero>
+				<data>31/01/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>13/01/2009</data>
+			<descrizione>	
+				Revisione taglierina e controllo cuscinetti.
+			</descrizione>
+			<fattura>
+				<numero>1</numero>
+				<data>31/01/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>16/02/2009</data>
+			<descrizione>	
+				Ripristino nastro salita esterno.
+			</descrizione>
+			<fattura>
+				<numero>3</numero>
+				<data>28/02/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>10/03/2009</data>
+			<descrizione>	
+				Ripristino taglierina con sostituzione materiali vari.
+			</descrizione>
+			<fattura>
+				<numero>5</numero>
+				<data>10/03/2009</data>		
+			</fattura>
+		</intervento>		
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>26/03/2009</data>
+			<descrizione>	
+				Ripristino manovia girevole con sostituzione materiali vari.
+			</descrizione>
+			<fattura>
+				<numero>6</numero>
+				<data>26/03/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>03/07/2009</data>
+			<descrizione>	
+				Riparazione portoni
+			</descrizione>
+			<fattura>
+				<numero>11</numero>
+				<data>31/07/09</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>13/07/2009</data>
+			<descrizione>	
+				Ripristino nastro radicchi e sotto pedana, ripristino nastro piccolo e riparato nastro salita grnade.
+			</descrizione>
+			<fattura>
+				<numero>11</numero>
+				<data>31/07/09</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>13/07/2009</data>
+			<descrizione>	
+				Sistemazione porta portone lato sud e sistemazione taglierina.
+			</descrizione>
+			<fattura>
+				<numero>9</numero>
+				<data>31/07/09</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>06/08/2009</data>
+			<descrizione>	
+				Ripristino motore trituratore, rullo nastro esterno salita e protezioni piattaforma
+			</descrizione>
+			<fattura>
+				<numero>12</numero>
+				<data>31/08/09</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>18/08/2009</data>
+			<descrizione>	
+				Ripristino portoni scorrevoli.
+			</descrizione>
+			<fattura>
+				<numero>12</numero>
+				<data>31/08/09</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 59</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>06/08/2009</data>
+			<descrizione>	
+				Ripristino nastro corto radicchi.
+			</descrizione>
+			<fattura>
+				<numero>12</numero>
+				<data>25/08/09</data>		
+			</fattura>
+		</intervento>	
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Infissi di Vicentini Santo</ragionesociale>
+				<via>Via Camagre, 57</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7301311</telefono>
+				<fax>045-7300085</fax>
+				<mail></mail>
+			</manutentore>
+			<data>15/02/2010</data>
+			<descrizione>	
+				Sistemazione nastro interno e nastro radicchi. Sostituzione motore catenaria.
+			</descrizione>
+			<fattura>
+				<numero>11</numero>
+				<data>27/04/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Alessandro</ragionesociale>
+				<via>Via Caselle, 206</via>
+				<citta>Nogara</citta>
+				<provincia>VR</provincia>
+				<telefono>335-7568259</telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>aprile 2010</data>
+			<descrizione>	
+				Sostituzione pignone motore catenaria. Ripristino porta bagni. Revisione serratura spogliatoio
+			</descrizione>
+			<fattura>
+				<numero>02</numero>
+				<data>30/04/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Infissi di Vicentini Roberto</ragionesociale>
+				<via>Via Camagre, 57</via>
+				<citta>Isola della Scala</citta>
+				<provincia>VR</provincia>
+				<telefono>045-7301311</telefono>
+				<fax>045-7300085</fax>
+				<mail></mail>
+			</manutentore>
+			<data>17,18/06/2010</data>
+			<descrizione>	
+				Sistemazione nastro interno e nastro radicchi. Sostituzione rulli nastro.
+			</descrizione>
+			<fattura>
+				<numero>14</numero>
+				<data>30/06/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>30/07/10</data>
+			<descrizione>	
+				Montate protezioni nastro scarto insalata e taglierina. 
+				Regolazione nastri con sostituzione ingrassatori. 
+				Girati coltelli taglierina. 
+			</descrizione>
+			<fattura>
+				<numero>104</numero>
+				<data>37/07/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Alessandro</ragionesociale>
+				<via>Via Caselle, 206</via>
+				<citta>Nogara</citta>
+				<provincia>VR</provincia>
+				<telefono>335-7568259</telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>4,5,7,9,10,12,14/07/2010</data>
+			<descrizione>	
+				Intervento su catena girevole, con installazione terza catena e protezione in lamiera di acciaio.
+			</descrizione>
+			<fattura>
+				<numero>03</numero>
+				<data>31/07/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>30/07/10</data>
+			<descrizione>	
+				Regolazione nastri e riparazione catenaria.
+			</descrizione>
+			<fattura>
+				<numero>228</numero>
+				<data>31/08/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Vicentini Alessandro</ragionesociale>
+				<via>Via Caselle, 206</via>
+				<citta>Nogara</citta>
+				<provincia>VR</provincia>
+				<telefono>335-7568259</telefono>
+				<fax></fax>
+				<mail></mail>
+			</manutentore>
+			<data>31/08/2010</data>
+			<descrizione>	
+				Intervento su catena (parte dritta), sostituzione catena PVC e installazione protezioni in lamiera di acciaio.
+			</descrizione>
+			<fattura>
+				<numero>07</numero>
+				<data>31/08/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>29/10/10</data>
+			<descrizione>	
+				Sostituzione pignoni nastro terminale radicchi.
+			</descrizione>
+			<fattura>
+				<numero>169</numero>
+				<data>31/10/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>31/12/10</data>
+			<descrizione>	
+				Sistemazione giunzione nastro terminale radicchi.
+			</descrizione>
+			<fattura>
+				<numero>210</numero>
+				<data>31/12/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>31/01/11</data>
+			<descrizione>	
+				Saldatura vasca che perdeva. Sistemazione nastro rampa radicchi.
+			</descrizione>
+			<fattura>
+				<numero>9</numero>
+				<data>31/01/2011</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>28/02/11</data>
+			<descrizione>	
+				Riparazione telaio nastro e tappeto esterno. Riparazione nastro scarto.
+			</descrizione>
+			<fattura>
+				<numero>28</numero>
+				<data>28/02/2011</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>31/03/11</data>
+			<descrizione>	
+				Riparazione tappeto aperto nella giunzione. Tiratura tappeto per spostamento.
+			</descrizione>
+			<fattura>
+				<numero>52</numero>
+				<data>31/03/2011</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

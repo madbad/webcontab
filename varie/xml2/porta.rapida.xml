@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Porta rapida ad impacchettamento verticale</nome>
+	<marca>Dainese</marca>
+	<modello></modello>
+	<anno_fabbricazione>2005</anno_fabbricazione>
+	<anno_acquisto>2005</anno_acquisto>
+	<matricola>251421</matricola>
+	<localizzazione>magazzino A e B</localizzazione>
+	<id>28</id>
+	<ditta_fabbricatrice>
+		<ragionesociale>A.T.I. di Dainese Roberto</ragionesociale>
+		<via>Via Vittorio, 95/b</via>
+		<citta>Ponso</citta>
+		<provincia>PD</provincia>
+		<telefono>0429-656742</telefono>
+		<fax>0429-656740</fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Porta impacch.</oggetto>
+			<attivita>Ingrassaggio/Lubrificazione. Verifica funzionamento con eventuale sostituzione parti logore.</attivita>
+			<periodicita>Annuale</periodicita>
+			<data>Ottobre</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore></manutentore>
+			<data></data>
+			<descrizione>	
+			
+			</descrizione>
+			<fattura>
+				<numero></numero>
+				<data></data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

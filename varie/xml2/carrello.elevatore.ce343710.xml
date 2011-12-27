@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Carrello elevatore</nome>
+	<marca>BT Cesab</marca>
+	<modello>Blitz 316 FN</modello>
+	<anno_fabbricazione>2009</anno_fabbricazione>
+	<anno_acquisto>2009</anno_acquisto>
+	<matricola>CE343710</matricola>
+	<localizzazione>magazzino A</localizzazione>
+	<id>17</id>
+	<ditta_fabbricatrice>
+		<ragionesociale>Cesab Carrelli Elevatori Spa</ragionesociale>
+		<via>Via Persicettana veccchia, 10</via>
+		<citta>Bologna</citta>
+		<provincia>Bologna</provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>Colmac Srl</ragionesociale>
+		<via>Via Chioda, 76</via>
+		<citta>Verona</citta>
+		<provincia>VR</provincia>
+		<telefono>045-6152490</telefono>
+		<fax>045-6152505</fax>
+		<mail></mail>	
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Carrello</oggetto>
+			<attivita>Pulizia generale con aria compressa, ingrassaggio e lubrificazione, controllo integrita catene e forche, controllo livello acqua distillata batteria ed eventuale rabbocco. </attivita>
+			<periodicita>trimestrale</periodicita>
+			<data>marzo</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Colmac Srl</ragionesociale>
+				<via>Via Chioda, 76</via>
+				<citta>Verona</citta>
+				<provincia>VR</provincia>
+				<telefono>045-6152490</telefono>
+				<fax>045-6152505</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>17/08/2009</data>
+			<descrizione>	
+				Tagliando 50 ore. Sostituzione olio riduttori.
+			</descrizione>
+			<fattura>
+				<numero>5238</numero>
+				<data>31/08/2009</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via></via>
+				<citta></citta>
+				<provincia></provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>18/03/2010</data>
+			<descrizione>	
+				Pulizia con aria compressa. Ingrassaggio. Controllo Livello liquidi batteria. Controllo integrità catene e forche.
+			</descrizione>
+			<fattura>
+				<numero>--</numero>
+				<data>--</data>		
+			</fattura>
+		</intervento>
+		
+		<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via></via>
+				<citta></citta>
+				<provincia></provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>09/06/2010</data>
+			<descrizione>	
+				Pulizia con aria compressa. Ingrassaggio. Controllo Livello liquidi batteria. Controllo integrità catene e forche.
+			</descrizione>
+			<fattura>
+				<numero>--</numero>
+				<data>--</data>		
+			</fattura>
+		</intervento>
+		
+		<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via></via>
+				<citta></citta>
+				<provincia></provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>10/09/2010</data>
+			<descrizione>	
+				Pulizia con aria compressa. Ingrassaggio. Controllo Livello liquidi batteria. Controllo integrità catene e forche.
+			</descrizione>
+			<fattura>
+				<numero>--</numero>
+				<data>--</data>		
+			</fattura>
+		</intervento>
+
+		<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via></via>
+				<citta></citta>
+				<provincia></provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>08/12/2010</data>
+			<descrizione>	
+				Pulizia con aria compressa. Ingrassaggio. Controllo Livello liquidi batteria. Controllo integrità catene e forche.
+			</descrizione>
+			<fattura>
+				<numero>--</numero>
+				<data>--</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Colmac Srl</ragionesociale>
+				<via>Via Chioda, 76</via>
+				<citta>Verona</citta>
+				<provincia>VR</provincia>
+				<telefono>045-6152490</telefono>
+				<fax>045-6152505</fax>
+				<mail></mail>			
+			</manutentore>
+			<data>14/02/2011</data>
+			<descrizione>	
+				Controllo malfuzionamento elettrico.
+			</descrizione>
+			<fattura>
+				<numero>647</numero>
+				<data>17/02/2011</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

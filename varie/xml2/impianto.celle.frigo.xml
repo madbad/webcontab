@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Impianto celle frigorifere</nome>
+	<marca>Frigoveneta</marca>
+	<modello></modello>
+	<anno_fabbricazione>2004</anno_fabbricazione>
+	<anno_acquisto>2004</anno_acquisto>
+	<matricola>25104</matricola>
+	<localizzazione>magazzino A, magaziino C</localizzazione>
+	<id>26</id>
+	<ditta_fabbricatrice>
+		<ragionesociale>Frigoveneta Srl</ragionesociale>
+		<via>Via Caduti sul Lavoro, 5</via>
+		<citta>Villa Bartolomea</citta>
+		<provincia>VR</provincia>
+		<telefono>0442-659030</telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>Frigoveneta service srl</ragionesociale>
+		<via>Via Caduti del lavoro, 5</via>
+		<citta>Villa Bartolomea</citta>
+		<provincia>Verona</provincia>
+		<telefono>0442-659030</telefono>
+		<fax>0442-659011</fax>
+		<mail>service@frigoveneta.it</mail>	
+	</ditta_manutentrice>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>05/01/2010</data>
+			<descrizione>	
+				Riscontrato smev3 cella 3 intervenuto, dovuto a morsetti su scatola evaporatore guasti. Sostituiti morsetti e ripristinato funzionamento.
+			</descrizione>
+			<fattura>
+				<numero>93</numero>
+				<data>31/01/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>08/01/2010</data>
+			<descrizione>	
+				Sostituita scheda cella 1 perchè guasta
+			</descrizione>
+			<fattura>
+				<numero>58</numero>
+				<data>26/01/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>08/01/2010</data>
+			<descrizione>	
+				Sostituito rubinetto sbrinamento su cella 2 e corpo valvola perchè guasti. Su cella 1 sostituito servocomando perchè guasto.
+			</descrizione>
+			<fattura>
+				<numero>93</numero>
+				<data>31/01/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>03/02/2010</data>
+			<descrizione>	
+				Controllo sbrinamento cella 3.Motorizzazione serranda guasta. Sostituzione motorizzazione e sbrinamento evaporatore.
+			</descrizione>
+			<fattura>
+				<numero>219</numero>
+				<data>28/02/2010</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>13/02/2010</data>
+			<descrizione>	
+				Sostituzione schda cella 3 perchè guasta.
+			</descrizione>
+			<fattura>
+				<numero>219</numero>
+				<data>28/02/2010</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>12/04/10</data>
+			<descrizione>	
+				Sistemazione perdita liquido refrigerante e rabbocco.
+			</descrizione>
+			<fattura>
+				<numero>424</numero>
+				<data>30/04/2010</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>30/07/10</data>
+			<descrizione>	
+				Sostituzione strisce porta cella frigo n° 1,3.
+			</descrizione>
+			<fattura>
+				<numero>104</numero>
+				<data>37/07/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>21/07/2010</data>
+			<descrizione>	
+				Sostituzione teleruttore comp4 sulla centrale frigorifera
+			</descrizione>
+			<fattura>
+				<numero>937</numero>
+				<data>31/07/2010</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>01/09/2010</data>
+			<descrizione>	
+				Sostituzione sonda evaporatore su cella 4.
+			</descrizione>
+			<fattura>
+				<numero>1262</numero>
+				<data>30/09/2010</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>M.G.P. Srl</ragionesociale>
+				<via>Via Canove di sopra, 2</via>
+				<citta>Gazzo Veronese</citta>
+				<provincia>VR</provincia>
+				<telefono>0442-550399</telefono>
+				<fax>0442-558126</fax>
+				<mail></mail>
+			</manutentore>
+			<data>29/10/10</data>
+			<descrizione>	
+				Installazione tende su porta cella frigo n.2
+			</descrizione>
+			<fattura>
+				<numero>169</numero>
+				<data>31/10/2010</data>		
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>15/12/2010</data>
+			<descrizione>	
+				Sostituzione sonda evaporatore su cella 4.
+			</descrizione>
+			<fattura>
+				<numero>1646</numero>
+				<data>31/12/2010</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>16/12/2010</data>
+			<descrizione>	
+				Sostituzione motore valvola motorizzata sbrinamenti su cella 3. Riscontrati tubi sbrinamento ghiacciati; scaldati con fiamma ossidrica per ripristinare il funzionamento.
+			</descrizione>
+			<fattura>
+				<numero>1646</numero>
+				<data>31/12/2010</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>07/02/2011</data>
+			<descrizione>	
+				Sostituzione sonda evaporatore e sonda tubo guaste su cella 4. Sistemazione morsettiera all'interno dell'evaporatore. Controllo generale impianto frigo.
+			</descrizione>
+			<fattura>
+				<numero>218</numero>
+				<data>28/02/2011</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>07/02/2011</data>
+			<descrizione>	
+				Sostituzione sonda evaporatore e sonda tubo guaste su cella 4. Sistemazione morsettiera all'interno dell'evaporatore. Controllo generale impianto frigo.
+			</descrizione>
+			<fattura>
+				<numero>218</numero>
+				<data>28/02/2011</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>09/02/2011</data>
+			<descrizione>	
+				Sostituzione ventilatore 4 su cella n. 3
+			</descrizione>
+			<fattura>
+				<numero>218</numero>
+				<data>28/02/2011</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>15/02/2011</data>
+			<descrizione>	
+				Smontato motore porta cella 2 guasto.
+			</descrizione>
+			<fattura>
+				<numero>218</numero>
+				<data>28/02/2011</data>
+			</fattura>
+		</intervento>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Frigoveneta service srl</ragionesociale>
+				<via>Via Caduti del lavoro, 5</via>
+				<citta>Villa Bartolomea</citta>
+				<provincia>Verona</provincia>
+				<telefono>0442-659030</telefono>
+				<fax>0442-659011</fax>
+				<mail>service@frigoveneta.it</mail>			
+			</manutentore>
+			<data>23/02/2011</data>
+			<descrizione>	
+				Rimontato motore porta cella 2 riparato con ripristino funzionamento.
+			</descrizione>
+			<fattura>
+				<numero>218</numero>
+				<data>28/02/2011</data>
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

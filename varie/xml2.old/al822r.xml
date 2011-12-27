@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Rimorchio agricolo spandiletame AL822R</nome>
+	<marca>F.lli Annovi</marca>
+	<modello>A110</modello>
+	<anno_fabbricazione>2009</anno_fabbricazione>
+	<anno_acquisto>2009</anno_acquisto>
+	<matricola>Telaio: RS140AD00216</matricola>
+	<localizzazione>parco automezzi</localizzazione>
+	<id>13</id>
+	<ditta_fabbricatrice>
+		<ragionesociale>F.lli Annovi di Annovi Marino</ragionesociale>
+		<via>Via Corletto, 10A</via>
+		<citta>Corlo di Formigine</citta>
+		<provincia>Modena</provincia>
+		<telefono>059-558082</telefono>
+		<fax>059-573598</fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale></ragionesociale>
+		<via></via>
+		<citta></citta>
+		<provincia></provincia>
+		<telefono></telefono>
+		<fax></fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Rimorchio</oggetto>
+			<attivita>Tagliando completo</attivita>
+			<periodicita>Annuale</periodicita>
+			<data>ottobre</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+		<intervento>
+			<manutentore>
+				<ragionesociale>Ortolani Bruno e Trevenzuli Luigino snc</ragionesociale>
+				<via>Via Libero Grassi, 1</via>
+				<citta>Isola della Scala</citta>
+				<provincia>Verona</provincia>
+				<telefono>045-6630580</telefono>
+				<fax>045-7300848</fax>
+				<mail></mail>		
+			</manutentore>
+			<data>17/11/09</data>
+			<descrizione>	
+				Installazione lampeggiante flex.
+			</descrizione>
+			<fattura>
+				<numero>182/f</numero>
+				<data>30/11/09</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>

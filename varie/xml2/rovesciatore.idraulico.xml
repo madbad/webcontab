@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./simple.xsl" ?>
+<attrezzo>
+	<nome>Rovvesciatore idraulico</nome>
+	<marca>A. Psenner</marca>
+	<modello></modello>
+	<anno_fabbricazione></anno_fabbricazione>
+	<anno_acquisto>2002</anno_acquisto>
+	<matricola></matricola>
+	<localizzazione>magazzino A</localizzazione>
+	<id>18</id>
+	<ditta_fabbricatrice>
+		<ragionesociale>A. Psenner</ragionesociale>
+		<via>Via Max Valier, 1</via>
+		<citta>Tramin Termeno</citta>
+		<provincia>BZ</provincia>
+		<telefono>0471-860459</telefono>
+		<fax>0471-860786</fax>
+		<mail></mail>
+	</ditta_fabbricatrice>
+	<ditta_manutentrice>
+		<ragionesociale>Colmac Srl</ragionesociale>
+		<via>Via Chioda, 76</via>
+		<citta>Verona</citta>
+		<provincia>VR</provincia>
+		<telefono>045-8620924</telefono>
+		<fax>045-8620922</fax>
+		<mail></mail>
+	</ditta_manutentrice>
+	<manutenzioni_programmate>
+		<manutenzione>
+			<oggetto>Rovesciatore</oggetto>
+			<attivita>Pulizia generale con aria compressa, ingrassaggio e lubrificazione.</attivita>
+			<periodicita>trimestrale</periodicita>
+			<data>marzo</data>
+		</manutenzione>
+	</manutenzioni_programmate>
+	<interventi>
+				<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via></via>
+				<citta></citta>
+				<provincia></provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>18/03/2010</data>
+			<descrizione>	
+				Pulizia con aria compressa. Ingrassaggio. Controllo integrità forche.
+			</descrizione>
+			<fattura>
+				<numero>--</numero>
+				<data>--</data>		
+			</fattura>
+		</intervento>
+		
+		<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via></via>
+				<citta></citta>
+				<provincia></provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>09/06/2010</data>
+			<descrizione>	
+				Pulizia con aria compressa. Ingrassaggio. Controllo integrità forche.
+			</descrizione>
+			<fattura>
+				<numero>--</numero>
+				<data>--</data>		
+			</fattura>
+		</intervento>
+		
+		<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via></via>
+				<citta></citta>
+				<provincia></provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>10/09/2010</data>
+			<descrizione>	
+				Pulizia con aria compressa. Ingrassaggio. Controllo integrità forche.
+			</descrizione>
+			<fattura>
+				<numero>--</numero>
+				<data>--</data>		
+			</fattura>
+		</intervento>
+
+		<intervento>
+			<manutentore>
+				<ragionesociale>Interno</ragionesociale>
+				<via></via>
+				<citta></citta>
+				<provincia></provincia>
+				<telefono></telefono>
+				<fax></fax>
+				<mail></mail>			
+			</manutentore>
+			<data>08/12/2010</data>
+			<descrizione>	
+				Pulizia con aria compressa. Ingrassaggio. Controllo integrità forche.
+			</descrizione>
+			<fattura>
+				<numero>--</numero>
+				<data>--</data>		
+			</fattura>
+		</intervento>
+	</interventi>
+</attrezzo>
