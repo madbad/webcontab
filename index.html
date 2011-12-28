@@ -23,12 +23,78 @@ Ext.onReady(function(){
 		renderTo: document.body,
 		items: [
 			{
-				// xtype: 'button', // default for Toolbars
-				text: '	Web Contab'
-			},
-			{
-				xtype: 'splitbutton',
-				text : 'Split Button'
+				text: '	Web Contab',
+				scale   : 'large',
+				menu: {
+						items: [
+							{
+							   text: 'Anagrafiche',
+							   menu: {
+								       items:[
+											{
+												text: 'Clienti e Fornitori',
+											},{
+												text: 'Articoli',
+											},{
+												text: 'Codici IVA',
+											},{
+												text: 'Codici Pagamento',
+											},{
+												text: 'Codici Imballaggio',
+											},{
+												text: 'Banche',
+											},
+									   ]
+							   }
+						   },{
+							   text: 'Magazzino',
+							   menu: {
+								       items:[
+											{
+												text: 'DDT di Vendita',
+											},{
+												text: 'DDT altre causali',
+											},{
+												text: 'Saldi di magazzino',
+											},{
+												text: 'Carico a magazzino',
+											},{
+												text: 'Scarico da magazzino',
+											},{
+												text: 'Stampe',
+											},
+									   ]
+							   }
+						   },{
+							   text: 'Fatturazione',
+							   menu: {
+								       items:[
+											{
+												text: 'Crea/modifica Fattura',
+											},{
+												text: 'Stampa fatture in serie',
+											},
+									   ]
+							   }
+						   },{
+							   text: 'Configurazione',
+							   handler: function() {
+									alert('Apro la finestra di configurazione!')
+							   }
+						   },{
+							   text: 'Utilita',
+							   menu: {
+								       items:[
+											{
+												text: 'Back-Up',
+											},{
+												text: 'Altro',
+											},
+									   ]
+							   }
+						   }
+						]
+					}
 			},
 			// begin using the right-justified button container
 			'->', // same as { xtype: 'tbfill' }
@@ -47,6 +113,20 @@ Ext.onReady(function(){
 		]
 	});
 
+	
+	
+Ext.create('Ext.window.Window', {
+    title: 'Hello',
+    height: 200,
+    width: 400,
+    layout: 'fit',
+    items: {  // Let's put an empty grid in just to illustrate fit layout
+        xtype: 'grid',
+        border: false,
+        columns: [{header: 'World'},{header: 'test'}],                 // One header just for show. There's no data,
+        store: Ext.create('Ext.data.ArrayStore', {}) // A dummy empty data store
+    }
+}).show();
 
    
 });
