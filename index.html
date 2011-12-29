@@ -12,11 +12,17 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="./favicon.ico" />
 
-<!--myLibs-->
+<!--ExtJs-->
 <script src="./my/js/ext.js/ext-all.js" type="text/javascript"></script>
 <link href="./my/js/ext.js/resources/css/ext-all.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 Ext.require(['*']);
+</script>
+
+<!--myLibs-->
+<script src="./my/js/apps.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 Ext.onReady(function(){
 	//Toolbar principale
 	Ext.create('Ext.toolbar.Toolbar', {
@@ -79,7 +85,7 @@ Ext.onReady(function(){
 						   },{
 							   text: 'Configurazione',
 							   handler: function() {
-									alert('Apro la finestra di configurazione!')
+									ddtWindow();
 							   }
 						   },{
 							   text: 'Utilita',
@@ -113,23 +119,9 @@ Ext.onReady(function(){
 		]
 	});
 
-	
-	
-Ext.create('Ext.window.Window', {
-    title: 'Hello',
-    height: 200,
-    width: 400,
-    layout: 'fit',
-    items: {  // Let's put an empty grid in just to illustrate fit layout
-        xtype: 'grid',
-        border: false,
-        columns: [{header: 'World'},{header: 'test'}],                 // One header just for show. There's no data,
-        store: Ext.create('Ext.data.ArrayStore', {}) // A dummy empty data store
-    }
-}).show();
 
-   
 });
+
 
 
 
