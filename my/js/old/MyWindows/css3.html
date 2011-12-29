@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>MyWindow test page</title>
+<meta name="author" content="Unknown" >
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link href="./style.css" rel="stylesheet" type="text/css">
+<script src="MyWindow.js" language="Javascript" type="text/javascript"></script>
+<script src="drag.js" language="Javascript" type="text/javascript"></script>
+
+</head>
+<style>
+
+</style>
+<body>
+<!--
+<div class="MyWindow">
+   <h2 class="titleBar">
+      <b class="title">Title</b>
+      <b class="button">&#10005;</b> chiudi   &#10006;  
+      <b class="button">&#58129;</b> &#58128;  //riduci /ingrandisci / 
+      <b class="button">&#58127;</b>  iconizza 
+   </h2>
+   <p class="content">ipsdo oadiaos doas doas dias djasi das dioasm dasmd asdmiaso jdadmas das dasmdoas dmasdo asmd asmdoa mdoasm </p>
+</div>
+-->
+
+
+
+
+
+<script language="Javascript" type="text/javascript">
+var $opt=new Array();
+$opt['name']='bfooo';
+$opt['title']='Titolo fighissimo';
+$opt['width']=400;
+$opt['height']=400;
+//$opt['top']=10;
+//$opt['left']=10;
+$opt['position']='bottom-left';
+$opt['this']=document.body;
+
+
+$opt['txt']='Fatto sta che mi ritrovo a smontare i tasti uno per uno. Non vi dico cose cera sotto.<br>Lo sempre sospettato ma mai avrei immaginato che sotto quei tasti si stesse ripetendo quanto successo dopo il Big Bang: la nascita della vita. Un intero ecosistema di creature viventi (o almeno presumo che fossero tali) si era creato dal nulla.<br><br>Ore 10.45: Finito.<br>Devo dire che il risultato è stato incoraggiante.<br>Dopo un ora e quaranta minuti la tastiera sembr';
+/*
+$opt['isVisible']		-> Indica se a finestra deve essere visualizzata o meno alla creazione | valore [true|false]
+$opt['isTip']			-> Indica se a finestra deve avere o meno la freccetta tips | valore [true|false]
+$opt['isPermanent']	-> Se impostato a true la finestra non viene chiusa ma solo nascosta | valore [true|false]
+$opt['autoCloseTime']-> Chiusura automatica onmouseout | valore [millisecondi]
+*/
+
+test=0;
+function apriNuova(){
+	test++;
+	$opt['title']='['+test+'] '+'Titolo fighissimo';
+	
+	var old=new MyWindow($opt);
+	//old.fadeOut();
+	//old.fadeIn();
+	
+	old.windows.onmouseover=function(){
+		//old.fadeIn();	
+	}
+	old.windows.onmouseout=function(){
+		//old.fadeOut();	
+	}
+}
+</script>
+<a style="float:right;z-index: 30;position:absolute" onclick="javascript:apriNuova();return null;">Apri nuova</a>
+</body>
+</html>
