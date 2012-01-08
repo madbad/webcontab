@@ -2,25 +2,25 @@ function ddtWindow (){
 Ext.define('ddtList', {
     extend: 'Ext.data.Model',
     fields: [
-        { name: 'Numero', type: 'string' },
-        { name: 'Data', type: 'string' },
-        { name: 'Cliente', type: 'string' }
+        { name: 'numero', type: 'string' },
+        { name: 'data', type: 'string' },
+        { name: 'cliente', type: 'string' }
     ]
 });
 
 	return Ext.create('Ext.window.Window', {
 		title: 'Elenco DDT',
 		renderTo: document.body,
-		height: 200,
-		width: 400,
+		height: 400,
+		width: 600,
 		layout: 'fit',
 		items: {
 			xtype: 'grid',
 			id: 'ddtList',
 			border: false,
-			columns: [{header: 'Numero', dataIndex: 'Numero'}, //dataIndex serve per legare i campi della griglia ai dati nell'array
-			          {header: 'Data', dataIndex: 'Data'},
-					  {header: 'Cliente', dataIndex: 'Cliente'}],
+			columns: [{header: 'numero', dataIndex: 'numero', flex: 0.5}, //dataIndex serve per legare i campi della griglia ai dati nell'array
+			          {header: 'data', dataIndex: 'data', flex: 1},
+					  {header: 'cliente', dataIndex: 'cliente', flex: 4}],
 /*			
 			store: Ext.create('Ext.data.Store', {
 				model: 'ddtList',
@@ -37,7 +37,8 @@ Ext.define('ddtList', {
 				model: 'ddtList',
 				proxy: {
 					type: 'ajax',
-					url : './my/js/ddtList.json.php',
+					//url : './my/js/ddtList.json.php',
+					url : './my/php/server.php',
 					reader: {
 						type: 'json',
 						root: 'ddtList'

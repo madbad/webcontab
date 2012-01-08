@@ -1,17 +1,6 @@
 <?php
-/* :::::::::::::::::::::::::::::::::::::
-   ::  Informazioni accesso MySQL     ::
-   :::::::::::::::::::::::::::::::::::::*/
-
-$TD_db['host'] =         "localhost";       			// l'host del database
-$TD_db['user'] =         "madbad";       				// l'user name per la connessione al database
-$TD_db['password'] =     "faggod50";   				// la password per la connessione al database
-$TD_db['name'] =         "LaFavorita";       			// il nome del tuo database
-
-
-/* :::::::::::::::::::::::::::::::::::::
-   ::  Prefisso usato per le tabelle  ::
-   :::::::::::::::::::::::::::::::::::::*/
-
-$table_prefix =             "Contab_";              			// il prefisso per tutte le tabelle che verranno create nel database
+//$config['pathToDbFiles']='C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\my\php\FILEDBF\CONTAB';
+$config['pathToDbFiles']='C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\my\php\FILEDBF';
+$config['debugger']=0;//1=acceso 0=spento
+error_reporting(0); //0=spento -1=acceso
 ?>
