@@ -185,7 +185,7 @@ function getDDT ($numero,$data){
 
 	function getArticleTable($articlesCode, $startDate, $endDate, $calopesoAlCollo){
 		$out=null;
-
+/*
 		//database connection string
 		$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\calcoloCosti\FILEDBF\CONTAB;Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
 		//connect to database
@@ -194,7 +194,10 @@ function getDDT ($numero,$data){
 		$query= "SELECT * FROM 03BORIGD.DBF WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
 		//query execution
 		$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
+*/
 
+		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+		
 		$out.="<table><tr><th colspan='5'>cod:".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
 		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th></tr>';
 		//this will containt table totals
@@ -708,6 +711,7 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('lettera_intento_numinterno','','VARCHAR',FALSE,10);
 		$this->addProp('provvigione','','VARCHAR',FALSE,3);
 		
+		//$params['codice']= str_ireplace("'", "/'", $params['codice']);
 		$this->codice->setVal($params['codice']);
 		$this->getDataFromDb();
 	}
@@ -721,7 +725,7 @@ class ClienteFornitore extends MyClass {
 	}
 	*/
 	public function getDataFromDb(){
-		$result=dbFrom('ANAGRAFICACLIENTI', 'SELECT *', "WHERE F_CODCLI='".$this->codice->getVal()."'");
+		$result=dbFrom('ANAGRAFICACLIENTI', 'SELECT *', "WHERE F_CODCLI='".odbc_access_escape_str($this->codice->getVal())."'");
 		while($row = odbc_fetch_array($result)){
 		    foreach($this as $key => $value) {
 				$val=$code=$row[$value->campoDbf];
@@ -821,4 +825,54 @@ class WebContab {
 $wc=new WebContab();
 //eseguo il setup/instllazione iniziale  di webContab sul database
 //$wc->setup();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function odbc_access_escape_str($str) {
+ $out="";
+ for($a=0; $a<strlen($str); $a++) {
+  if($str[$a]=="'") {
+   $out.="''";
+  } else
+  if($str[$a]!=chr(10)) {
+   $out.=$str[$a];
+  }
+ }
+ return $out;
+}
 ?>
