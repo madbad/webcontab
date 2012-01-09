@@ -254,9 +254,9 @@ function getDDT (){
 
 			//if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
 			//DEFAULT:
-			//if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato')){
+			if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato')){
 			//MARTINELLI:
-			if (in_array($row['F_CODPRO'],$articlesCode) && ($codCliente=='MARTI')){
+			//if (in_array($row['F_CODPRO'],$articlesCode) && ($codCliente=='MARTI')){
 			
 				$netto=$row['F_PESNET'];
 				$mediaPeso=round($netto/$row['F_NUMCOL'],1);
