@@ -55,7 +55,7 @@ function getDdtList($params){
 }
 
 
-$data='08-20-2011';
+$data='07-20-2011';
 $numero='     794';
 //getDdtList(array("numero" => $numero, data => $data));
 $myList=getDdtList(array(data => $data));
