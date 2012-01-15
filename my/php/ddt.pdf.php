@@ -6,7 +6,29 @@
 	e lei ne prepara la stampa
 ----------------------------------------------------------------------------------------------------------
 */
+
+
+include('./classes.php');
+/*
+echo "<pre>'".$_GET['numero']."' :: '".$_GET['data']."'";
+echo "<pre>'".$_POST['numero']."' :: '".$_POST['data']."'";
+echo "<pre>'".'     794'."' :: '".'11-03-2008'."'";
+*/
+//printDdt($_POST['numero'], $_POST['data']);
+printDdt($_GET['numero'], $_GET['data']);
+//printDdt('     794','11-03-2008');
+
 function printDdt($numero, $data){
+	//header('Content-type: application/pdf');
+
+	// It will be called downloaded.pdf
+	//header('Content-Disposition: attachment; filename="downloaded.pdf"');
+
+	// The PDF source is in original.pdf
+	//readfile('original.pdf');
+
+
+
 	$ddt=getDDT($numero,$data);
 
 	$style='';

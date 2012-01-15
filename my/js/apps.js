@@ -43,27 +43,60 @@ Ext.define('ddtList', {
 						//quando i dati sono stati caricati seleziono la prima colonna e gli assegno il focus
 						grid.getSelectionModel().select(0);
 						grid.getView().focus();
-					  });                      
+					  });
+					var map = new Ext.util.KeyMap(grid.getEl( ), {
+						key: Ext.EventObject.ENTER,
+						fn: function (){
+							//this return an array of the current selected(s) row(s)	
+							var selected=grid.getSelectionModel().getSelection( )[0];
+							alert('You have selected :'+selected.get('data')+' - '+selected.get('numero')+"1n We are now try to print it");
+							//send the print request
+							/*
+							Ext.Ajax.request({
+								url: './my/php/ddt.pdf.php',
+								params: {
+									numero: selected.get('numero'),
+									data: selected.get('data'),
+								},
+								success: function(response){
+									var text = response.responseText;
+									console.log(text+'**********');
+									//window.open('/pdfservlet');
+
+									// process server response here
+								}
+							});
+							*/
+							window.open('./my/php/ddt.pdf.php?data='+selected.get('data')+'&numero='+selected.get('numero'));
+
+						},
+						scope: grid
+					});
 				},
-			cellclick: function(grid, rowIndex, columnIndex, e) {
-			alert('asdasdasd');
-				if (colIndex > 0) {
-					//var rec = grid.store.getAt(rowIndex);
-					//rec.set('value', colIndex);
-				}
-			}
-				
-				
 			}
 		}
 	}).show()
 }
 
 
-function handleRowSelect(selectionModel, rowIndex, selectedRecord) {
-    //assuming the record has a field named 'url' or build it as you need to
-    var url = selectedRecord.get('url');
-    //if you want to open another window
-    window.open(url);
-}
-//grid.getSelectionModel().on('rowselect', handleRowSelect);
+
+
+
+/*
+
+
+var mConfig = { 
+       mediaType   :'PDFFRAME',   //this is the most reliable cross-browser 
+       url         : 'servlet/PdfServlet?invoice=2319283',
+       unsupportedText : 'Acrobat Viewer is not Installed',
+       autoSize : true
+    };                  
+var p = new Ext.ux.MediaWindow({  
+        id            : 'PDFViewerWin',
+        bodyStyle    : 'position:relative; padding:0px;',
+        width        : 600,
+        height        : 400,
+        mediaCfg    : mConfig,
+        title        : 'Printer'
+ }).show();
+ */

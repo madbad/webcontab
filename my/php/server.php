@@ -1,6 +1,6 @@
 <?php
 include('./classes.php');
-include('./ddt.pdf.php');
+//include('./ddt.pdf.php');
 
 
          //numero	//data
