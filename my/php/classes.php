@@ -243,7 +243,7 @@ function getDDT ($numero,$data){
 	}
 	function getArticleTable2($articlesCode, $startDate, $endDate){
 		$out='';
-
+/*
 		//database connection string
 		$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\calcoloCosti\FILEDBF\CONTAB;Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
 		//connect to database
@@ -252,7 +252,11 @@ function getDDT ($numero,$data){
 		$query= "SELECT * FROM 03BORIGD.DBF WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
 		//query execution
 		$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
+*/
+//		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."#");
 
+		
 		$out.="<table><tr><th colspan='5'>cod:".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
 		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th><th>prezzo</th><th>pr. lordo</th><th>provv.</th><th>pr. netto</th><th>imp. netto</th></tr>';
 		//this will containt table totals

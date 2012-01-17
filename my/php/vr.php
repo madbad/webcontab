@@ -85,8 +85,9 @@ if (@$_GET['mode']=='print'){
 	//log start date for time execution calc
 	$start = (float) array_sum(explode(' ',microtime()));
 	$html="<h1>Semil.</h1>";
-	$html.=getArticleTable2(array('905'),$startDateR,$endDateR);
-	//$html.=getArticleTable2(array('705','805'),$startDateR,$endDateR);
+	//$html.=getArticleTable2(array('905'),$startDateR,$endDateR);
+	$html.=getArticleTable2(array('05'),$startDateR,$endDateR);
+	$html.=getArticleTable2(array('705','805'),$startDateR,$endDateR);
 	echo $html;
 
 	 //log end date for time execution calc
