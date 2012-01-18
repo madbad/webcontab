@@ -24,7 +24,7 @@ TABLE {PAGE: landscape;}
 			//	font-size:x-small;
 			}
 			table, tr, td , th{
-				font-size:x-small;
+				font-size:small;
 				padding:0px;
 				margin:0;
 				text-align:right;
@@ -85,9 +85,10 @@ if (@$_GET['mode']=='print'){
 	//log start date for time execution calc
 	$start = (float) array_sum(explode(' ',microtime()));
 	$html="<h1>Semil.</h1>";
-	//$html.=getArticleTable2(array('905'),$startDateR,$endDateR);
-	$html.=getArticleTable2(array('05'),$startDateR,$endDateR);
-	$html.=getArticleTable2(array('705','805'),$startDateR,$endDateR);
+	$html.=getArticleTable2(array('05'),$startDateR,$endDateR, 'martinelli');
+	$html.=getArticleTable2(array('05'),$startDateR,$endDateR, 'mercato');
+	$html.=getArticleTable2(array('905'),$startDateR,$endDateR, 'mercato');
+	$html.=getArticleTable2(array('705','805'),$startDateR,$endDateR, 'supermercato');
 	echo $html;
 
 	 //log end date for time execution calc

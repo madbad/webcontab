@@ -241,7 +241,7 @@ function getDDT ($numero,$data){
 		fclose ($news); #chiude il file
 		return $db;
 	}
-	function getArticleTable2($articlesCode, $startDate, $endDate){
+	function getArticleTable2($articlesCode, $startDate, $endDate, $type){
 		$out='';
 /*
 		//database connection string
@@ -254,9 +254,9 @@ function getDDT ($numero,$data){
 		$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
 */
 //		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
-		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."#");
+		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 
-		
+		$out.=$type."<br>";
 		$out.="<table><tr><th colspan='5'>cod:".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
 		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th><th>prezzo</th><th>pr. lordo</th><th>provv.</th><th>pr. netto</th><th>imp. netto</th></tr>';
 		//this will containt table totals
@@ -268,15 +268,24 @@ function getDDT ($numero,$data){
 			$tipoCliente=$dbClienti["$codCliente"]['tipo'];
 			$provvigione=$dbClienti["$codCliente"]['provvigione']*1;
 
+			$condition=false;
+			if ($type=='martinelli') {
+				if (in_array($row['F_CODPRO'],$articlesCode) && ($codCliente=='MARTI')){
+					$condition=true;
+				}
+			}
+			if ($type=='supermercato') {
+				if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='supermercato')){
+					$condition=true;
+				}
+			}
+			if ($type=='mercato') {
+				if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato')){
+					$condition=true;
+				}
+			}
 
-
-
-			//if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
-			//DEFAULT:
-			//if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato')){
-			//MARTINELLI:
-			if (in_array($row['F_CODPRO'],$articlesCode) && ($codCliente=='MARTI')){
-			
+			if ($condition){
 				$netto=$row['F_PESNET'];
 				$mediaPeso=round($netto/$row['F_NUMCOL'],1);
 				//if($provvigione==0){
