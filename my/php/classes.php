@@ -183,22 +183,22 @@ function getDDT ($numero,$data){
 	return $ddt;
 }
 
-	function getArticleTable($articlesCode, $startDate, $endDate, $calopesoAlCollo){
+	function getArticleTable($params){
+	/*
+		$params = array("articles" => "31",
+						"startDate" => $startDate,
+						"endDate" => $endDate,
+						"abbuonoPerCollo" => 0.3,
+						"costoPedana" => 31,
+						"colliPedana" => 104,
+						"costoCassa" => 0.43);
+	*/
+	//$articlesCode=$params['articles'];
 		$out=null;
-/*
-		//database connection string
-		$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\calcoloCosti\FILEDBF\CONTAB;Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
-		//connect to database
-		$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
-		//query string
-		$query= "SELECT * FROM 03BORIGD.DBF WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
-		//query execution
-		$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
-*/
 
-		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 		
-		$out.="<table><tr><th colspan='5'>cod:".join(",", $articlesCode)." ( $startDate > $endDate )</th></tr>";	
+		$out.="<table><tr><th colspan='5'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
 		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th></tr>';
 		//this will containt table totals
 		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
@@ -207,9 +207,9 @@ function getDDT ($numero,$data){
 		{
 		$codCliente=$row['F_CODCLI'];
 		$tipoCliente=$dbClienti["$codCliente"]['tipo'];
-		if (in_array($row['F_CODPRO'],$articlesCode) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
+		if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
 
-			$calopeso=round(round($row['F_NUMCOL'])*$calopesoAlCollo);
+			$calopeso=round(round($row['F_NUMCOL'])*$params['abbuono']);
 			$netto=$row['F_PESNET']-$calopeso;
 			$media=round($netto/$row['F_NUMCOL'],1);
 			$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td></tr>";
@@ -219,7 +219,11 @@ function getDDT ($numero,$data){
 		}
 
 		$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='2'>".$sum['NETTO']."</th></tr>";
-		$out.='</table><BR>';
+		$out.='</table>';
+		
+		$out.=' Imballo: '.round($params['costoCassa']*$sum['F_NUMCOL']/$sum['NETTO'],3);
+		$out.='<br> Trasporto: '.round($params['costoPedana']/(($sum['NETTO']/$sum['F_NUMCOL'])*$params['colliPedana']),3);
+		$out.='<br>';
 
 		//DISCONNECT FROM DATABASE
 		odbc_close($odbc);
@@ -241,19 +245,14 @@ function getDDT ($numero,$data){
 		fclose ($news); #chiude il file
 		return $db;
 	}
+/*
+###########################################################################################
+###########################################################################################
+###########################################################################################
+###########################################################################################
+*/	
 	function getArticleTable2($articlesCode, $startDate, $endDate, $type){
 		$out='';
-/*
-		//database connection string
-		$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=C:\Programmi\EasyPHP-5.3.6.0\www\WebContab\calcoloCosti\FILEDBF\CONTAB;Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
-		//connect to database
-		$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
-		//query string
-		$query= "SELECT * FROM 03BORIGD.DBF WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
-		//query execution
-		$result = odbc_exec($odbc, $query) or die (odbc_errormsg());
-*/
-//		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 
 		$out.=$type."<br>";
