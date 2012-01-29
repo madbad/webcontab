@@ -10,7 +10,64 @@
 		<script type="text/javascript">
 		Ext.require(['*']);
 		</script>
+ 
+         <style type="text/css">
+@PAGE landscape {size: landscape;}
+TABLE {PAGE: landscape;}
+@page rotated { size : landscape }
+            body{
+             
+            //  column-count: 3;
+            //  -moz-column-count: 3;
+            //  -webkit-column-count: 3;
+            //  column-rule: 2px solid black;
+            //  -moz-column-rule: 2px solid black;
+            //  -webkit-column-rule: 2px solid black;
+            //  font-size:x-small;
+            }
+            span table, span table tr, span table tr td , th{
+                font-size:x-small;
+                padding:0px;
+                margin:0;
+                text-align:right;
+                border:1px solid #000000;
+                    border-collapse: collapse;
+                margin-left:0.5em;
+            }
+            td, th{
+                padding-left:4px;
+                padding-right:4px;
+            }
+            th{
+                font-weight:bold;
+                text-align:left;
+            }
+            hr{
+                margin-top:150px;
+            }
+            #rimanenze td{
+                height:2em;
+                width:9em;
+                text-align:left;
+            }
+            span div {
+                float:left;
+            }
+
+            .totali{
+                 font-size:1.5em;
+            }
+        </style>
 		
+		
+		<style type="text/css" media="print" />      
+		 .hideOnPrint{
+			display:none;
+		 }
+		 @PAGE landscape {size: landscape;}
+TABLE {PAGE: landscape;}
+@page rotated { size : landscape }
+</style>		
 
          
     </head>
@@ -25,15 +82,17 @@ if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$toda
 if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
   
 ?>
+<span class="hideOnPrint" id="myForm">
 <script>
 
 Ext.create('Ext.form.Panel', {
-    renderTo: Ext.getBody(),
+//    renderTo: Ext.getBody(),
+	renderTo: document.getElementById('myForm'),
     width: 400,
     bodyPadding: 10,
 	name: 'input',
 	method: 'GET',
-	url: './calcoloCosti.php?mode=print',
+	url: './calcoloCosti2.php',
 	standardSubmit: true,
     title: 'Dates',
     items: [{
@@ -86,7 +145,8 @@ Ext.create('Ext.form.Panel', {
 });
 
 </script>
-
+</span>
+<span>
 
 <!--
 <form name="input" action="./calcoloCosti.php?mode=print" method="get">
@@ -264,4 +324,5 @@ if (@$_GET['mode']=='print'){
     echo "<br>Exec time: ". sprintf("%.4f", ($end-$start))." seconds";
 }
 ?>
+</span>
 </body>
