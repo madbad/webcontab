@@ -209,7 +209,7 @@ function getDDT ($numero,$data){
 		$tipoCliente=$dbClienti["$codCliente"]['tipo'];
 		if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
 
-			$calopeso=round(round($row['F_NUMCOL'])*$params['abbuono']);
+			$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
 			$netto=$row['F_PESNET']-$calopeso;
 			$media=round($netto/$row['F_NUMCOL'],1);
 			$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td></tr>";
