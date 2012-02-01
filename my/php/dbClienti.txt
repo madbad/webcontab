@@ -126,3 +126,4 @@ BENIE, AZ.AGR. BENINC, mat.consumo ,     00
 ORTOL, L'ORTOLANO SRL, grezzo      ,     00
 ORVER, ORTO VERDE SNC, mercato     ,     00
 TERR3, TERRAMORE SOC., grezzo      ,     00
+DI.CO, DI.CO SRL     , semilavorato,     00

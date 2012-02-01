@@ -224,8 +224,8 @@ if (@$_POST['mode']=='print'){
 //chioggia
 		// mercato
 		$params = array("articles" => array('08'),
-						"startDate" => $startDate,
-						"endDate" => $endDate,
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3,
 						"costoPedana" => 31,
 						"colliPedana" => 112,
@@ -233,8 +233,8 @@ if (@$_POST['mode']=='print'){
 		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('708','808','708-','808-','708--'),
-						"startDate" => $startDate,
-						"endDate" => $endDate,
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
 						"costoPedana" => 31,
 						"colliPedana" => 80,
@@ -247,8 +247,8 @@ if (@$_POST['mode']=='print'){
 //treviso
 		// mercato
 		$params = array("articles" => array('29'),
-						"startDate" => $startDate,
-						"endDate" => $endDate,
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3,
 						"costoPedana" => 31,
 						"colliPedana" => 112,
@@ -256,8 +256,8 @@ if (@$_POST['mode']=='print'){
 		$html.=getArticleTable($params);		
 		// supermercati
 		$params = array("articles" => array('729','829'),
-						"startDate" => $startDate,
-						"endDate" => $endDate,
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
 						"costoPedana" => 31,
 						"colliPedana" => 80,
@@ -270,16 +270,16 @@ if (@$_POST['mode']=='print'){
         $html.="<h1>P.di Zucchero</h1>";
 //pan di zucchero
 		$params = array("articles" => array('31'),
-						"startDate" => $startDate,
-						"endDate" => $endDate,
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3,
 						"costoPedana" => 31,
 						"colliPedana" => 104,
 						"costoCassa" => 0.43);
 		$html.=getArticleTable($params);		
 		$params = array("articles" => array('731','831'),
-						"startDate" => $startDate,
-						"endDate" => $endDate,
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
 						"costoPedana" => 31,
 						"colliPedana" => 60,
@@ -291,8 +291,8 @@ if (@$_POST['mode']=='print'){
 //verona
 		// mercato
 		$params = array('articles' => array('05'),
-						"startDate" => $startDate,
-						"endDate" => $endDate,
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3,
 						"costoPedana" => 31,
 						"colliPedana" => 112,
@@ -300,8 +300,8 @@ if (@$_POST['mode']=='print'){
 		$html.=getArticleTable($params);		
 		// supermercati
 		$params = array("articles" => array('705','805'),
-						"startDate" => $startDate,
-						"endDate" => $endDate,
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
 						"costoPedana" => 31,
 						"colliPedana" => 80,

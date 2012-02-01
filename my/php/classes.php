@@ -722,6 +722,7 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('lettera_intento_data','','VARCHAR',FALSE,15);
 		$this->addProp('lettera_intento_numinterno','','VARCHAR',FALSE,10);
 		$this->addProp('provvigione','','VARCHAR',FALSE,3);
+		$this->addProp('tipo','','VARCHAR',FALSE,3);
 		
 		//$params['codice']= str_ireplace("'", "/'", $params['codice']);
 		$this->codice->setVal($params['codice']);
@@ -743,7 +744,12 @@ class ClienteFornitore extends MyClass {
 				$val=$code=$row[$value->campoDbf];
 				$this->$key->setVal($val);
 			}
-		}	
+		}
+		
+		$dbClienti=getDbClienti();
+		$codCliente=$this->codice->getVal();
+		$this->tipo->setVal($dbClienti["$codCliente"]['tipo']);
+		
 		return $this->ragionesociale;
 		
 	}
