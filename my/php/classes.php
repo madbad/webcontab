@@ -630,22 +630,41 @@ class Fattura extends MyClass{
 /*----------------------------------------------------
 
 */
+/*
+TODO: FATTURA FATESD // FARIGD
+*/
+
 class Ddt  extends MyClass {
 	function __construct() {
-		$this->addProp('id','','VARCHAR',TRUE,10);
-		$this->addProp('numero','','VARCHAR',FALSE,6);
-  		$this->addProp('data','','VARCHAR',FALSE,15);
-		$this->addProp('cod_destinatario','','VARCHAR',FALSE,7);
-		$this->addProp('cod_destinazione','','VARCHAR',FALSE,7);
-		$this->addProp('cod_causale','','VARCHAR',FALSE,7);
-		$this->addProp('cod_mezzo','','VARCHAR',FALSE,7);
-		$this->addProp('cod_vettore','','VARCHAR',FALSE,7);
-		$this->addProp('ora_inizio_trasporto','','VARCHAR',FALSE,15);
-		$this->addProp('aspetto_beni','','VARCHAR',FALSE,30);
-		$this->addProp('annotazioni','','VARCHAR',FALSE,1000);
-		$this->addProp('tot_colli','','VARCHAR',FALSE,20);
-		$this->addProp('tot_peso','','VARCHAR',FALSE,20);
-		$this->addProp('righe','','VARCHAR',FALSE,1000);//contiene un array con gli id delle righe della fattura
+		$this->addProp('numero',					'','VARCHAR',FALSE,6,	'','F_NUMBOL');
+  		$this->addProp('data',						'','VARCHAR',FALSE,15,	'','F_DATBOL');
+		$this->addProp('cod_destinatario',			'','VARCHAR',FALSE,7,	'','F_CODCLI');
+		$this->addProp('cod_destinazione',			'','VARCHAR',FALSE,7,	'','F_SUFCLI');
+		$this->addProp('cod_causale',				'','VARCHAR',FALSE,7,	'','F_TIPODOC');//V=VENDITA D=DEPOSITO
+		$this->addProp('cod_mezzo',					'','VARCHAR',FALSE,7,	'','F_SPEDIZ');
+		$this->addProp('cod_vettore',				'','VARCHAR',FALSE,7,	'','F_VET');
+		$this->addProp('ora_inizio_trasporto',		'','VARCHAR',FALSE,15,	'','F_');
+		$this->addProp('aspetto_beni',				'','VARCHAR',FALSE,30,	'','F_');
+		$this->addProp('annotazioni',				'','VARCHAR',FALSE,1000,'','F_');
+		$this->addProp('peso_lordo',				'','VARCHAR',FALSE,20,	'','F_PLORDO');
+		$this->addProp('peso_netto',				'','VARCHAR',FALSE,20,	'','F_PNETTO');
+		$this->addProp('tot_colli',					'','VARCHAR',FALSE,20,	'','F_TOTCOLLI');
+		$this->addProp('tot_peso',					'','VARCHAR',FALSE,20,	'','F_QTATOT');
+		$this->addProp('cod_pagamento',				'','VARCHAR',FALSE,7,	'','F_CONPAG');
+		$this->addProp('cod_banca',					'','VARCHAR',FALSE,7,	'','F_BANCA');
+		$this->addProp('stato',						'','VARCHAR',FALSE,7,	'','F_STATO');
+		$this->addProp('valuta',					'','VARCHAR',FALSE,3,	'','F_CODVAL');
+		$this->addProp('fatturabile',				'','VARCHAR',FALSE,3,	'','F_SINOFATT');
+		$this->addProp('tipocodiceclientefornitore','','VARCHAR',FALSE,3,	'','F_TIPOCF');
+		$this->addProp('fattura_numero',			'','VARCHAR',FALSE,3,	'','F_NUMFATT');
+		$this->addProp('fattura_data',				'','VARCHAR',FALSE,3,	'','F_DATFATT');
+		$this->addProp('note',						'','VARCHAR',FALSE,3,	'','F_NOTE');
+		$this->addProp('note1',						'','VARCHAR',FALSE,3,	'','F_NOTE1');
+		$this->addProp('note2',						'','VARCHAR',FALSE,3,	'','F_NOTE2');
+
+		
+		
+		$this->addProp('righe',						'','VARCHAR',FALSE,1000,'','F_');//contiene un array con gli id delle righe della fattura
 	}
   	public function getChildObjects(){
 		//get RIGHE
@@ -664,18 +683,28 @@ class Ddt  extends MyClass {
 */
 class Riga extends MyClass {
 	function __construct() {
-		$this->addProp('id','','VARCHAR',TRUE,10);
-		$this->addProp('cod_articolo','','VARCHAR',FALSE,7);
-		$this->addProp('unita_misura','','VARCHAR',FALSE,2);
-		$this->addProp('colli','','VARCHAR',FALSE,20);
-		$this->addProp('cod_imballo','','VARCHAR',FALSE,7);
-		$this->addProp('peso_lordo','','VARCHAR',FALSE,20);
-		$this->addProp('peso_netto','','VARCHAR',FALSE,20);
-		$this->addProp('tara','','VARCHAR',FALSE,20);
-		$this->addProp('origine','','VARCHAR',FALSE,2);
-		$this->addProp('categoria','','VARCHAR',FALSE,2);
-		$this->addProp('lotto','','VARCHAR',FALSE,50);
-		$this->addProp('cod_iva','','VARCHAR',FALSE,7);
+		$this->addProp('numero',					'','VARCHAR',FALSE,7,	'','F_PROGRE');	
+		$this->addProp('cod_articolo',				'','VARCHAR',FALSE,7,	'','F_CODPRO');
+		$this->addProp('descrizione',				'','VARCHAR',FALSE,7,	'','F_DESPRO');
+		$this->addProp('unita_misura',				'','VARCHAR',FALSE,2,	'','F_UM');
+		$this->addProp('prezzo',					'','VARCHAR',FALSE,20,	'','F_PREUNI');
+		$this->addProp('imponibile',				'','VARCHAR',FALSE,20,	'','F_IMPONI');
+		$this->addProp('importo_iva',				'','VARCHAR',FALSE,20,	'','F_IMPIVA');
+		$this->addProp('importo_totale',			'','VARCHAR',FALSE,20,	'','F_IMPORTO');		
+		$this->addProp('colli',						'','VARCHAR',FALSE,20,	'','F_NUMCOL');
+		$this->addProp('cod_imballo',				'','VARCHAR',FALSE,7,	'','F_');
+		$this->addProp('peso_lordo',				'','VARCHAR',FALSE,20,	'','F_');
+		$this->addProp('peso_netto',				'','VARCHAR',FALSE,20,	'','F_PESNET');
+		$this->addProp('peso_netto',				'','VARCHAR',FALSE,20,	'','F_QTA');
+		$this->addProp('tara',						'','VARCHAR',FALSE,20,	'','F_');
+		$this->addProp('origine',					'','VARCHAR',FALSE,2,	'','F_');
+		$this->addProp('categoria',					'','VARCHAR',FALSE,2,	'','F_');
+		$this->addProp('lotto',						'','VARCHAR',FALSE,50,	'','F_');
+		$this->addProp('ddt_data',					'','VARCHAR',FALSE,7,	'','F_DATBOL');
+		$this->addProp('ddt_numero',				'','VARCHAR',FALSE,7,	'','F_NUMBOL');
+		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_CODIVA');
+		$this->addProp('stato',						'','VARCHAR',FALSE,7,	'','F_STATO');
+		$this->addProp('cod_cliente',				'','VARCHAR',FALSE,7,	'','F_CODCLI');		
 	}
 }
 /*----------------------------------------------------
@@ -683,9 +712,11 @@ class Riga extends MyClass {
 */
 class Articolo extends MyClass {
 	function __construct() {
-		$this->addProp('id','','VARCHAR',TRUE,10);
-		$this->addProp('codice','','VARCHAR',FALSE,7);
-		$this->addProp('descrizione','','VARCHAR',FALSE,30);
+		$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODPRO');
+		$this->addProp('descrizione',				'','VARCHAR',FALSE,30,	'','F_DESPRO');
+		$this->addProp('descrizione2',				'','VARCHAR',FALSE,30,	'','F_DESPR2');
+		$this->addProp('unitadimisura',				'','VARCHAR',FALSE,30,	'','F_UMACQ');
+		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_CODIVA');		
 	}
 }
 /*----------------------------------------------------
@@ -693,11 +724,10 @@ class Articolo extends MyClass {
 */
 class Imballaggio extends MyClass {
 	function __construct() {
-		$this->addProp('id','','VARCHAR',TRUE,10);
-		$this->addProp('codice','','VARCHAR',FALSE,7);
-		$this->addProp('descrizione','','VARCHAR',FALSE,100);
-		$this->addProp('tara_acquisto','','VARCHAR',FALSE,20);
-		$this->addProp('tara_vendita','','VARCHAR',FALSE,20);
+		$this->addProp('codice',					'','VARCHAR',FALSE,		'','F_CODCLI');
+		$this->addProp('descrizione',				'','VARCHAR',FALSE,100,	'','F_CODCLI');
+		$this->addProp('tara_acquisto',				'','VARCHAR',FALSE,20,	'','F_CODCLI');
+		$this->addProp('tara_vendita',				'','VARCHAR',FALSE,20,	'','F_CODCLI');
 	}
 }
 /*----------------------------------------------------
@@ -706,23 +736,33 @@ class Imballaggio extends MyClass {
 class ClienteFornitore extends MyClass {
 	function __construct($params) {
 
-		$this->addProp('codice','','VARCHAR',FALSE,7,'','F_CODCLI');
-		$this->addProp('ragionesociale','','VARCHAR',FALSE,100,'','F_RAGSOC');
-		$this->addProp('via','','VARCHAR',FALSE,100,'','F_INDIRI');
-		$this->addProp('paese','','VARCHAR',FALSE,100,'','F_LOCALI');
-		$this->addProp('citta','','VARCHAR',FALSE,2,'','F_PROV');
-		$this->addProp('cod_pagamento','','VARCHAR',FALSE,7);
-		$this->addProp('cod_banca','','VARCHAR',FALSE,7);
-		$this->addProp('cod_mezzo','','VARCHAR',FALSE,7);
-		$this->addProp('cod_vettore','','VARCHAR',FALSE,7);
-		$this->addProp('p_iva','','VARCHAR',FALSE,11);
-		$this->addProp('cod_fiscale','','VARCHAR',FALSE,16,'','F_CODFIS');
-		$this->addProp('cod_iva','','VARCHAR',FALSE,7,'','F_PIVA');
-		$this->addProp('lettera_intento_num','','VARCHAR',FALSE,10);
-		$this->addProp('lettera_intento_data','','VARCHAR',FALSE,15);
-		$this->addProp('lettera_intento_numinterno','','VARCHAR',FALSE,10);
-		$this->addProp('provvigione','','VARCHAR',FALSE,3);
-		$this->addProp('tipo','','VARCHAR',FALSE,3);
+		//$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODFOR');	
+		$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODCLI');
+		$this->addProp('ragionesociale',			'','VARCHAR',FALSE,100,	'','F_RAGSOC');
+		$this->addProp('via',						'','VARCHAR',FALSE,100,	'','F_INDIRI');
+		$this->addProp('paese',						'','VARCHAR',FALSE,100,	'','F_LOCALI');
+		$this->addProp('citta',						'','VARCHAR',FALSE,2,	'','F_PROV');
+		$this->addProp('cap',						'','VARCHAR',FALSE,2,	'','F_CAP');
+		$this->addProp('cod_destinazione',			'','VARCHAR',FALSE,7,	'','F_CODDESTABI');
+		$this->addProp('cod_pagamento',				'','VARCHAR',FALSE,7,	'','F_CONPAG');
+		$this->addProp('cod_banca',					'','VARCHAR',FALSE,7,	'','F_BANCA');
+		$this->addProp('cod_mezzo',					'','VARCHAR',FALSE,7,	'','F_SPEDIZ');
+		$this->addProp('cod_vettore',				'','VARCHAR',FALSE,7,	'','F_VET');
+		$this->addProp('p_iva',						'','VARCHAR',FALSE,11,	'','F_PIVA');
+		$this->addProp('cod_fiscale',				'','VARCHAR',FALSE,16,	'','F_CODFIS');
+		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_CODIVA');
+		$this->addProp('lettera_intento_num',		'','VARCHAR',FALSE,10,	'','F_NUMINTEN');
+		$this->addProp('lettera_intento_data',		'','VARCHAR',FALSE,15,	'','F_DATINTEN');
+		$this->addProp('lettera_intento_numinterno','','VARCHAR',FALSE,10,	'','F_REGIS');
+		$this->addProp('provvigione',				'','VARCHAR',FALSE,3,	'','F_CODPROVV');
+		$this->addProp('tipo',						'','VARCHAR',FALSE,3,	'','F_GRCOCLI'); //15==CLIENTE //61==FORNITORE
+		$this->addProp('telefono',					'','VARCHAR',FALSE,3,	'','F_TELEF');
+		$this->addProp('cellulare',					'','VARCHAR',FALSE,3,	'','F_TELEX');
+		$this->addProp('fax',						'','VARCHAR',FALSE,3,	'','F_TELEFAX');
+		$this->addProp('email',						'','VARCHAR',FALSE,3,	'','F_EMAIL');
+		$this->addProp('website',					'','VARCHAR',FALSE,3,	'','F_HOMEPAGE');
+		$this->addProp('valuta',					'','VARCHAR',FALSE,3,	'','F_CODVAL');		
+
 		
 		//$params['codice']= str_ireplace("'", "/'", $params['codice']);
 		$this->codice->setVal($params['codice']);
