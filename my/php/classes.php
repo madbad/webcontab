@@ -16,7 +16,7 @@ function dbFrom($dbName, $toSelect, $conditions){
 		case 'INTESTAIONEFT': 			$dbFile='03FATESD.DBF' ;break; 
 		case 'ANAGRAFICAFORNITORI': 	$dbFile='03ANFORD.DBF' ;break; 
 		case 'ANAGRAFICACLIENTI': 		$dbFile='03ANCLID.DBF' ;break; 
-		case 'ANAGRAFICAPRODOTTI': 		$dbFile='03ANPROD.DBF' ;break; 
+		case 'ANAGRAFICAARTICOLI': 		$dbFile='03ANPROD.DBF' ;break; 
 		case 'DESTINAZIONICLIENTI': 	$dbFile='03TBDESD.DBF' ;break; 
 		case 'ANAGRAFICAVETTORI': 		$dbFile='03TBVETD.DBF' ;break; 
 		case 'CONDIZIONIPAGAMENTO': 	$dbFile='03TBPAGD.DBF' ;break; 
@@ -49,7 +49,6 @@ function dbFrom($dbName, $toSelect, $conditions){
 	$result = odbc_exec($odbc, $query) or die ( debugger($query.odbc_errormsg()) );
 	return $result;
 }
-
 function getDDT ($numero,$data){
 	$numeroDDT=$numero;
 	$dataDDT=$data;
@@ -182,8 +181,7 @@ function getDDT ($numero,$data){
 	
 	return $ddt;
 }
-
-	function getArticleTable($params){
+function getArticleTable($params){
 	/*
 		$params = array("articles" => "31",
 						"startDate" => $startDate,
@@ -229,29 +227,7 @@ function getDDT ($numero,$data){
 		odbc_close($odbc);
 		return $out;
 	}
-	function getDbClienti(){
-		$db=array();
-		$news=fopen("./dbClienti.txt","r");  //apre il file
-		while (!feof($news)) {
-			$buffer = fgets($news, 4096);
-			$arr=explode(', ',$buffer);
-			$codCliente=trim($arr[0]);
-			$tipoCliente=trim($arr[2]);
-			$provvigione=trim($arr[3]);
-			$db["$codCliente"]['tipo']=$tipoCliente;
-			$db["$codCliente"]['provvigione']=$provvigione;
-			//echo "$codCliente=$tipoCliente<br>"; //riga letta
-		}
-		fclose ($news); #chiude il file
-		return $db;
-	}
-/*
-###########################################################################################
-###########################################################################################
-###########################################################################################
-###########################################################################################
-*/	
-	function getArticleTable2($articlesCode, $startDate, $endDate, $type){
+function getArticleTable2($articlesCode, $startDate, $endDate, $type){
 		$out='';
 		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 
@@ -323,56 +299,35 @@ function getDDT ($numero,$data){
 		odbc_close($odbc);
 		return $out;
 	}
+function getDbClienti(){
+		$db=array();
+		$news=fopen("./dbClienti.txt","r");  //apre il file
+		while (!feof($news)) {
+			$buffer = fgets($news, 4096);
+			$arr=explode(', ',$buffer);
+			$codCliente=trim($arr[0]);
+			$tipoCliente=trim($arr[2]);
+			$provvigione=trim($arr[3]);
+			$db["$codCliente"]['tipo']=$tipoCliente;
+			$db["$codCliente"]['provvigione']=$provvigione;
+			//echo "$codCliente=$tipoCliente<br>"; //riga letta
+		}
+		fclose ($news); #chiude il file
+		return $db;
+	}
+function odbc_access_escape_str($str) {
+ $out="";
+ for($a=0; $a<strlen($str); $a++) {
+  if($str[$a]=="'") {
+   $out.="''";
+  } else
+  if($str[$a]!=chr(10)) {
+   $out.=$str[$a];
+  }
+ }
+ return $out;
+}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -383,9 +338,7 @@ Questa libreria cotiene alcune classi/funzioni relativa a
 con validazione dei dati inseriti
 ----------------------------------------------------------------------------------------------------------
 */
-
-/*----------------------------------------------------
-*/
+/*########################################################################################*/
 function Validate($obj, $params){
 /*
 $params['notEmpty']=true; // il campo non deve essere vuoto
@@ -438,7 +391,7 @@ $params['rexExp']=regular expression
 
 	return $result;
 }
-//
+
 class DefaultClass {
     public function __call($method, $args)     {
         if (isset($this->$method)) {
@@ -451,8 +404,8 @@ class DefaultClass {
     }
 }
 
-//la mia classe di base con proprietà e metodi aggiuntivi
 class MyClass extends DefaultClass{
+//la mia classe di base con proprietà e metodi aggiuntivi
    public function addProp($nome, $validatore, $dbTipo, $dbIndice, $dbLunghezza, $valore, $campoDbf) {
       $this->$nome=new Proprietà($nome, $validatore, $dbTipo, $dbIndice, $dbLunghezza, $valore, $campoDbf);
 		return $this;
@@ -531,11 +484,7 @@ class MyClass extends DefaultClass{
    */
 }
 
-/*----------------------------------------------------
-
-*/
-class Proprietà extends DefaultClass
-{
+class Proprietà extends DefaultClass {
 	function __construct($nome, $validatore, $dbTipo='varchar', $dbIndice=false, $dbLunghezza, $valore, $campoDbf) {
 	 	$this->nome=$nome;
 	 	$this->valore=$valore;
@@ -556,28 +505,38 @@ class Proprietà extends DefaultClass
   {
      return $this->valore;
   }
-
+  public function extend()
+  {
+		//provo a estendere la corrente proprietà in un oggetto completo (esempio: da un codice pagamento creo un oggetto pagamento)
+		$params=Array(codice=>$this->valore);
+		return new ClienteFornitore($params);
+//     return $this->valore;
+  }
+  
   public function validate()
   {
      //echo ' sto validando valido '.$this->nome;
      return Validate($this,$this->ValidateParams);
   }
 }
-/*----------------------------------------------------
+/*########################################################################################*/
 
-*/
 class Fattura extends MyClass{
 	function __construct() {
-		$this->addProp('id','','VARCHAR',TRUE,10);
-		$this->addProp('numero','','VARCHAR',FALSE,6);
-  		$this->addProp('data','','VARCHAR',FALSE,15);
-  		$this->addProp('tipo','','VARCHAR',FALSE,5);
-		$this->addProp('cod_destinatario','','VARCHAR',FALSE,7);
-		$this->addProp('cod_destinazione','','VARCHAR',FALSE,7);
-		$this->addProp('ddt','','VARCHAR',FALSE,1000);
-		//$this->addProp('tot_fattura','','VARCHAR',FALSE,20);
-		$this->addProp('cod_banca','','VARCHAR',FALSE,7);
-		$this->addProp('cod_condizioni_pagamento','','VARCHAR',FALSE,7);
+		$this->addProp('numero',					'','VARCHAR',FALSE,6,	'','F_NUMFAT');
+  		$this->addProp('data',						'','VARCHAR',FALSE,15,	'','F_DATFAT');
+		$this->addProp('cod_pagamento',				'','VARCHAR',FALSE,7,	'','F_CONPAG');
+		$this->addProp('cod_mezzo',					'','VARCHAR',FALSE,7,	'','F_SPEDIZ');
+		$this->addProp('cod_banca',					'','VARCHAR',FALSE,7,	'','F_BANCA');
+		$this->addProp('cod_cliente',				'','VARCHAR',FALSE,7,	'','F_CODCLI');
+		$this->addProp('stato',						'','VARCHAR',FALSE,7,	'','F_STATO'); // =fattura // N=nota credito
+		$this->addProp('tipo',						'','VARCHAR',FALSE,7,	'','F_TIPODOC');// F=fattura // N=nota credito
+		$this->addProp('valuta',					'','VARCHAR',FALSE,3,	'','F_CODVAL');
+		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_ESECLI');//codice iva esenzione cliente
+		$this->addProp('peso_netto',				'','VARCHAR',FALSE,20,	'','F_PNETTO');
+		$this->addProp('peso_lordo',				'','VARCHAR',FALSE,20,	'','F_PLORDO');
+		$this->addProp('tot_colli',					'','VARCHAR',FALSE,20,	'','F_TOTCOLLI');
+		$this->addProp('tot_peso',					'','VARCHAR',FALSE,20,	'','F_QTATOT');
 
 		$this->data->ValidateParams=array(
 			'minLength'=>9,
@@ -627,12 +586,6 @@ class Fattura extends MyClass{
   		echo $this->cod_destinatario->getVal();	
   	}
 }
-/*----------------------------------------------------
-
-*/
-/*
-TODO: FATTURA FATESD // FARIGD
-*/
 
 class Ddt  extends MyClass {
 	function __construct() {
@@ -652,7 +605,7 @@ class Ddt  extends MyClass {
 		$this->addProp('tot_peso',					'','VARCHAR',FALSE,20,	'','F_QTATOT');
 		$this->addProp('cod_pagamento',				'','VARCHAR',FALSE,7,	'','F_CONPAG');
 		$this->addProp('cod_banca',					'','VARCHAR',FALSE,7,	'','F_BANCA');
-		$this->addProp('stato',						'','VARCHAR',FALSE,7,	'','F_STATO');
+		$this->addProp('stato',						'','VARCHAR',FALSE,7,	'','F_STATO'); //fatturato non fatturato
 		$this->addProp('valuta',					'','VARCHAR',FALSE,3,	'','F_CODVAL');
 		$this->addProp('fatturabile',				'','VARCHAR',FALSE,3,	'','F_SINOFATT');
 		$this->addProp('tipocodiceclientefornitore','','VARCHAR',FALSE,3,	'','F_TIPOCF');
@@ -661,10 +614,7 @@ class Ddt  extends MyClass {
 		$this->addProp('note',						'','VARCHAR',FALSE,3,	'','F_NOTE');
 		$this->addProp('note1',						'','VARCHAR',FALSE,3,	'','F_NOTE1');
 		$this->addProp('note2',						'','VARCHAR',FALSE,3,	'','F_NOTE2');
-
-		
-		
-		$this->addProp('righe',						'','VARCHAR',FALSE,1000,'','F_');//contiene un array con gli id delle righe della fattura
+		//$this->addProp('righe',						'','VARCHAR',FALSE,1000,'','F_');//contiene un array con gli id delle righe della fattura
 	}
   	public function getChildObjects(){
 		//get RIGHE
@@ -678,9 +628,7 @@ class Ddt  extends MyClass {
 		return $this->numero;
   	}
 }
-/*----------------------------------------------------
 
-*/
 class Riga extends MyClass {
 	function __construct() {
 		$this->addProp('numero',					'','VARCHAR',FALSE,7,	'','F_PROGRE');	
@@ -707,21 +655,29 @@ class Riga extends MyClass {
 		$this->addProp('cod_cliente',				'','VARCHAR',FALSE,7,	'','F_CODCLI');		
 	}
 }
-/*----------------------------------------------------
 
-*/
 class Articolo extends MyClass {
-	function __construct() {
+	function __construct($params) {
 		$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODPRO');
 		$this->addProp('descrizione',				'','VARCHAR',FALSE,30,	'','F_DESPRO');
 		$this->addProp('descrizione2',				'','VARCHAR',FALSE,30,	'','F_DESPR2');
 		$this->addProp('unitadimisura',				'','VARCHAR',FALSE,30,	'','F_UMACQ');
-		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_CODIVA');		
+		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_CODIVA');
+
+		$this->codice->setVal($params['codice']);
+		$this->getDataFromDb();		
+	}
+	public function getDataFromDb(){
+		$result=dbFrom('ANAGRAFICAARTICOLI', 'SELECT *', "WHERE F_CODPRO='".odbc_access_escape_str($this->codice->getVal())."'");
+		while($row = odbc_fetch_array($result)){
+		    foreach($this as $key => $value) {
+				$val=$code=$row[$value->campoDbf];
+				$this->$key->setVal($val);
+			}
+		}
 	}
 }
-/*----------------------------------------------------
 
-*/
 class Imballaggio extends MyClass {
 	function __construct() {
 		$this->addProp('codice',					'','VARCHAR',FALSE,		'','F_CODCLI');
@@ -730,12 +686,9 @@ class Imballaggio extends MyClass {
 		$this->addProp('tara_vendita',				'','VARCHAR',FALSE,20,	'','F_CODCLI');
 	}
 }
-/*----------------------------------------------------
 
-*/
 class ClienteFornitore extends MyClass {
 	function __construct($params) {
-
 		//$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODFOR');	
 		$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODCLI');
 		$this->addProp('ragionesociale',			'','VARCHAR',FALSE,100,	'','F_RAGSOC');
@@ -763,20 +716,10 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('website',					'','VARCHAR',FALSE,3,	'','F_HOMEPAGE');
 		$this->addProp('valuta',					'','VARCHAR',FALSE,3,	'','F_CODVAL');		
 
-		
 		//$params['codice']= str_ireplace("'", "/'", $params['codice']);
 		$this->codice->setVal($params['codice']);
 		$this->getDataFromDb();
 	}
-	/*
-	public function getRagioneSociale($codice){
-		$result=dbFrom('ANAGRAFICACLIENTI', 'SELECT *', "WHERE F_CODCLI='".$this->codice->getVal()."'");
-		while($row = odbc_fetch_array($result)){
-			$this->ragionesociale->setVal($row['F_RAGSOC']);
-		}	
-		return $this->ragionesociale->getVal();
-	}
-	*/
 	public function getDataFromDb(){
 		$result=dbFrom('ANAGRAFICACLIENTI', 'SELECT *', "WHERE F_CODCLI='".odbc_access_escape_str($this->codice->getVal())."'");
 		while($row = odbc_fetch_array($result)){
@@ -785,19 +728,16 @@ class ClienteFornitore extends MyClass {
 				$this->$key->setVal($val);
 			}
 		}
-		
+		//imposto il tipo cliente ricavandolo dal mio file db
 		$dbClienti=getDbClienti();
 		$codCliente=$this->codice->getVal();
 		$this->tipo->setVal($dbClienti["$codCliente"]['tipo']);
-		
-		return $this->ragionesociale;
-		
 	}
 }
 
-/*----------------------------------------------------
 
-*/
+
+/*########################################################################################*/
 class Database {
 	function __construct($host, $name, $user, $password) {
 		$this->host=$host;
@@ -842,10 +782,6 @@ class Database {
     }
 }
 
-
-/*----------------------------------------------------
-
-*/
 class WebContab {
 	public $fattura='sssss';
 	public $ddt;
@@ -860,7 +796,7 @@ class WebContab {
 		$this->obj->fattura=new Fattura();
 		$this->obj->ddt=new Ddt();
 		$this->obj->riga=new Riga();
-		$this->obj->articolo=new Articolo();
+		$this->obj->articolo=new Articolo();					
 		$this->obj->imballaggio=new Imballaggio();
 		$this->obj->clienteFornitore=new ClienteFornitore();
       
@@ -880,10 +816,26 @@ class WebContab {
 }
 
 
-$wc=new WebContab();
+
+
+//$wc=new WebContab();
+
 //eseguo il setup/instllazione iniziale  di webContab sul database
 //$wc->setup();
 
+/*
+$test=new Fattura();
+$test->cod_cliente->setVal('GRUPP');
+//$test->cod_cliente->extend();
+//echo $test->cod_cliente->extend()->ragionesociale->getVal();
+echo '<pre>';
+print_r($test->cod_cliente->extend()->ragionesociale->getVal());
+echo '</pre>';
+*/
+/*
+$mioArticolo= new Articolo(array('codice'=>'01'));
+echo $mioArticolo->descrizione->getVal();
+*/
 
 
 
@@ -908,29 +860,4 @@ $wc=new WebContab();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-function odbc_access_escape_str($str) {
- $out="";
- for($a=0; $a<strlen($str); $a++) {
-  if($str[$a]=="'") {
-   $out.="''";
-  } else
-  if($str[$a]!=chr(10)) {
-   $out.=$str[$a];
-  }
- }
- return $out;
-}
 ?>
