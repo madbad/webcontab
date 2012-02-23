@@ -10,33 +10,32 @@ function debugger ($txt){
 }
 function dbFrom($dbName, $toSelect, $conditions){
 	switch ($dbName){
-		case 'RIGHEDDT': 				$dbFile='03BORIGD.DBF' ;break;
-		case 'RIGHEFT': 				$dbFile='03FARIGD.DBF' ;break; 
-		case 'INTESTAZIONEDDT':			$dbFile='03BOTESD.DBF' ;break; 
-		case 'INTESTAIONEFT': 			$dbFile='03FATESD.DBF' ;break; 
-		case 'ANAGRAFICAFORNITORI': 	$dbFile='03ANFORD.DBF' ;break; 
-		case 'ANAGRAFICACLIENTI': 		$dbFile='03ANCLID.DBF' ;break; 
-		case 'ANAGRAFICAARTICOLI': 		$dbFile='03ANPROD.DBF' ;break; 
-		case 'DESTINAZIONICLIENTI': 	$dbFile='03TBDESD.DBF' ;break; 
-		case 'ANAGRAFICAVETTORI': 		$dbFile='03TBVETD.DBF' ;break; 
-		case 'CONDIZIONIPAGAMENTO': 	$dbFile='03TBPAGD.DBF' ;break; 
-		case 'CAUSALICONTABILITA': 		$dbFile='03TBCAUD.DBF' ;break;  // FATTURE
-		case 'CODICIIVA': 				$dbFile='03TBALID.DBF' ;break; 
-		case 'LISTINOPRODOTTI': 		$dbFile='03MALISD.DBF' ;break; 
-		case 'PAGAMENTI': 				$dbFile='03FASEFD.DBF' ;break; 
-		case 'MOVIMENTIMAGAZZINO': 		$dbFile='03MAMOVD.DBF' ;break; 
-		case 'PIANODEICONTI': 			$dbFile='03ANPIAD.DBF' ;break; 
-	}
-	/*
-	03CONFID.DBF == CONFIGURAZIONE
-	03CODOCD.DBF
-	03BAPROD.DBF
-	03SOSPBL.DBF
-	03INTERD.DBF
-	03MOSTOD.DBF
-	03FASCAD.DBF
-	03ESTRAD.DBF
-	*/
+		case 'RIGHEDDT': 				$dbFile='03BORIGD.DBF' ;break;  //*
+		case 'RIGHEFT': 				$dbFile='03FARIGD.DBF' ;break;  //* 
+		case 'INTESTAZIONEDDT':			$dbFile='03BOTESD.DBF' ;break;  //* 
+		case 'INTESTAIONEFT': 			$dbFile='03FATESD.DBF' ;break;  //* 
+		case 'ANAGRAFICAFORNITORI': 	$dbFile='03ANFORD.DBF' ;break;  //* 
+		case 'ANAGRAFICACLIENTI': 		$dbFile='03ANCLID.DBF' ;break;  //* 
+		case 'ANAGRAFICAARTICOLI': 		$dbFile='03ANPROD.DBF' ;break;  //* 
+		case 'DESTINAZIONICLIENTI': 	$dbFile='03TBDESD.DBF' ;break;  //*
+		case 'ANAGRAFICAVETTORI': 		$dbFile='03TBVETD.DBF' ;break;  //*
+		case 'CAUSALIPAGAMENTO': 		$dbFile='03TBPAGD.DBF' ;break;  //*
+		//case 'CAUSALICONTABILITA': 		$dbFile='03TBCAUD.DBF' ;break;  // FATTURE
+		case 'CAUSALIIVA': 				$dbFile='03TBALID.DBF' ;break;  //*
+		case 'LISTINOPREZZI': 			$dbFile='03MALISD.DBF' ;break;  //*
+		case 'ANAGRAFICABANCHE': 		$dbFile='03TBBAND.DBF' ;break;  //*
+		case 'CAUSALIMAGAZZINO': 		$dbFile='03TBCMAD.DBF' ;break;  //*
+		case 'CAUSALISPEDIZIONE': 		$dbFile='03TBSPED.DBF' ;break;  //*
+		//case 'NUMERAZIONEDDT': 			$dbFile='03TBGRUD.DBF' ;break;  
+		case 'ANNOTAZIONIDDT': 			$dbFile='03TBTESD.DBF' ;break;  		
+		//case 'PAGAMENTI': 				$dbFile='03FASEFD.DBF' ;break; 
+		//case 'MOVIMENTIMAGAZZINO': 		$dbFile='03MAMOVD.DBF' ;break; 
+		//case 'SALDIMAGAZZINO': 			$dbFile='03MAMAGD.DBF' ;break; 
+		//case 'PIANODEICONTI': 			$dbFile='03ANPIAD.DBF' ;break; 
+		//A4PHONED.DBf                  //TELEFONI
+		//03CONFID.DBF 					//CONFIGURAZIONE	
+ 	}
+
 	//database connection string
 	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
 	//connect to database
@@ -47,6 +46,17 @@ function dbFrom($dbName, $toSelect, $conditions){
 	//echo '<br>'.$query;
 	//query execution
 	$result = odbc_exec($odbc, $query) or die ( debugger($query.odbc_errormsg()) );
+
+	/* 
+	//da informazioni in merito al tipo di campo che accetta il database
+     $result = odbc_gettypeinfo($odbc);
+     odbc_result_all($result,"border=1");
+	*/
+	/*
+	//da informazioni in merito al tipo di campo che accetta il database
+     $result = odbc_columns($odbc);
+     odbc_result_all($result,"border=1");	
+	*/
 	return $result;
 }
 function getDDT ($numero,$data){
@@ -328,9 +338,7 @@ function odbc_access_escape_str($str) {
  return $out;
 }
 
-	
-	
-	
+
 /* -------------------------------------------------------------------------------------------------------
 Questa libreria cotiene alcune classi/funzioni relativa a 
 - fatture
@@ -406,13 +414,40 @@ class DefaultClass {
 
 class MyClass extends DefaultClass{
 //la mia classe di base con proprietà e metodi aggiuntivi
-   public function addProp($nome, $validatore, $dbTipo, $dbIndice, $dbLunghezza, $valore, $campoDbf) {
-      $this->$nome=new Proprietà($nome, $validatore, $dbTipo, $dbIndice, $dbLunghezza, $valore, $campoDbf);
+   public function addProp($nome, $campoDbf, $validatore='') {
+      $this->$nome=new Proprietà($nome, $campoDbf, $validatore);
 		return $this;
   	}
   	public function getName(){
   		return get_class($this);	
 	}
+	public function getDataFromDb(){
+		$result=dbFrom($this->dbName->getVal(), 'SELECT *', "WHERE ".$this->codice->campoDbf."='".odbc_access_escape_str($this->codice->getVal())."'");
+		while($row = odbc_fetch_array($result)){
+			//todo:better fix! devo escludere manualmente la key dbName in quanto non è presente nel database e genera uno warning
+		    foreach($this as $key => $value) {
+				if($key!='dbName'){
+					$val=$code=$row[$value->campoDbf];
+					$this->$key->setVal($val);
+				}
+			}
+		}
+		echo "<table style='border:1px solid #000000'>";
+    for($i = 1;$i <= odbc_num_fields($result);$i++)
+    {
+		echo "<tr>";
+        echo "<td style='border:1px solid #000000'>".odbc_field_name($result,$i);//nome del campo
+        echo "</td><td style='border:1px solid #000000'>".odbc_field_num($result,$i);
+        echo "</td><td style='border:1px solid #000000'>".odbc_field_scale($result,$i);
+		echo "</td><td style='border:1px solid #000000'>".odbc_field_len($result,$i);//lunghezza
+		echo "</td><td style='border:1px solid #000000'>".odbc_field_type($result,$i);//tipo
+		echo "</td></tr>";
+    }
+	echo "</table>";
+    unset($i);
+	}	
+	
+	
 	/*
    public function getFromDbByID ($id){
 		$tableName=$this->getName();
@@ -485,66 +520,83 @@ class MyClass extends DefaultClass{
 }
 
 class Proprietà extends DefaultClass {
-	function __construct($nome, $validatore, $dbTipo='varchar', $dbIndice=false, $dbLunghezza, $valore, $campoDbf) {
+	function __construct($nome, $campoDbf, $validatore=''){
 	 	$this->nome=$nome;
-	 	$this->valore=$valore;
-	 	$this->validatore=$validatore;
-	 	$this->dbTipo=$dbTipo;
-	 	$this->dbIndice=$dbIndice;
-	 	$this->dbLunghezza=$dbLunghezza;
-	 	$this->ValidateParams=array();
 		$this->campoDbf=$campoDbf;
+	 	$this->validatore=$validatore;
+	 	$this->valore='';
 	}
 	
-  public function setVal($newVal)
-  {
-     return $this->valore=$newVal;
-  }
+	public function setVal($newVal){
+		return $this->valore=$newVal;
+	}
 
-  public function getVal()
-  {
-     return $this->valore;
-  }
-  public function extend()
-  {
+	public function getVal(){
+		return $this->valore;
+	}
+	public function extend(){
+		switch ($this->nome){
+			case 'cod_mezzo':			$params=Array('codice'=>$this->valore); return new CausaliSpedizione($params);
+			case 'cod_vettore':			$params=Array('codice'=>$this->valore); return new Vettore($params);
+			case 'cod_pagamento':		$params=Array('codice'=>$this->valore); return new CausalePagamento($params);
+			case 'cod_banca':			$params=Array('codice'=>$this->valore); return new Banca($params);
+			case 'cod_iva':				$params=Array('codice'=>$this->valore); return new CausaleIva($params);
+			case 'cod_cliente':			$params=Array('codice'=>$this->valore); return new ClienteFornitore($params);
+			case 'cod_destinatario':	$params=Array('codice'=>$this->valore); return new ClienteFornitore($params);
+			case 'cod_destinazione':	$params=Array('codice'=>$this->valore); return new DestinazioneCliente($params);
+			case 'cod_articolo':		$params=Array('codice'=>$this->valore); return new Articolo($params);
+		}
+		/*
+		$this->nome 
 		//provo a estendere la corrente proprietà in un oggetto completo (esempio: da un codice pagamento creo un oggetto pagamento)
 		$params=Array(codice=>$this->valore);
 		return new ClienteFornitore($params);
-//     return $this->valore;
-  }
+		//     return $this->valore;
+		*/
+	}
   
-  public function validate()
-  {
-     //echo ' sto validando valido '.$this->nome;
-     return Validate($this,$this->ValidateParams);
-  }
+	public function validate(){
+		//echo ' sto validando valido '.$this->nome;
+		return Validate($this,$this->ValidateParams);
+	}
 }
 /*########################################################################################*/
 
 class Fattura extends MyClass{
 	function __construct() {
-		$this->addProp('numero',					'','VARCHAR',FALSE,6,	'','F_NUMFAT');
-  		$this->addProp('data',						'','VARCHAR',FALSE,15,	'','F_DATFAT');
-		$this->addProp('cod_pagamento',				'','VARCHAR',FALSE,7,	'','F_CONPAG');
-		$this->addProp('cod_mezzo',					'','VARCHAR',FALSE,7,	'','F_SPEDIZ');
-		$this->addProp('cod_banca',					'','VARCHAR',FALSE,7,	'','F_BANCA');
-		$this->addProp('cod_cliente',				'','VARCHAR',FALSE,7,	'','F_CODCLI');
-		$this->addProp('stato',						'','VARCHAR',FALSE,7,	'','F_STATO'); // =fattura // N=nota credito
-		$this->addProp('tipo',						'','VARCHAR',FALSE,7,	'','F_TIPODOC');// F=fattura // N=nota credito
-		$this->addProp('valuta',					'','VARCHAR',FALSE,3,	'','F_CODVAL');
-		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_ESECLI');//codice iva esenzione cliente
-		$this->addProp('peso_netto',				'','VARCHAR',FALSE,20,	'','F_PNETTO');
-		$this->addProp('peso_lordo',				'','VARCHAR',FALSE,20,	'','F_PLORDO');
-		$this->addProp('tot_colli',					'','VARCHAR',FALSE,20,	'','F_TOTCOLLI');
-		$this->addProp('tot_peso',					'','VARCHAR',FALSE,20,	'','F_QTATOT');
+		$this->addProp('numero',		'F_NUMFAT');
+  		$this->addProp('data',			'F_DATFAT');
+		$this->addProp('cod_pagamento',	'F_CONPAG');
+		$this->addProp('cod_mezzo',		'F_SPEDIZ');
+		$this->addProp('cod_banca',		'F_BANCA');
+		$this->addProp('cod_cliente',	'F_CODCLI');
+		$this->addProp('stato',			'F_STATO'); // =fattura // N=nota credito
+		$this->addProp('tipo',			'F_TIPODOC');// F=fattura // N=nota credito
+		$this->addProp('valuta',		'F_CODVAL');
+		$this->addProp('cod_iva',		'F_ESECLI');//codice iva esenzione cliente
+		$this->addProp('peso_netto',	'F_PNETTO');
+		$this->addProp('peso_lordo',	'F_PLORDO');
+		$this->addProp('tot_colli',		'F_TOTCOLLI');
+		$this->addProp('tot_peso',		'F_QTATOT');
 
+		//configurazione database
+		$this->addProp('dbName','');
+		$this->dbName->setVal('INTESTAZIONEFT');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
+		
+		
+/*
 		$this->data->ValidateParams=array(
 			'minLength'=>9,
 			'isNumeric'=>true,
 		);	
 		$this->cod_destinazione->ValidateParams=array(
 			'notEmpty'=>false,
-		);	
+		);
+*/
   	}
   	public function validate(){
   		$GLOBALS['log']->log("Tento di validare la Fattura n.[".$this->numero->getVal()."]  con id [".$this->id->getVal()."]");
@@ -582,144 +634,149 @@ class Fattura extends MyClass{
   			$this->oDdt[$key]=$GLOBALS['wc']->obj->ddt->getFromDbById($value);
   		}
   	}
-  	public function stampa(){
-  		echo $this->cod_destinatario->getVal();	
-  	}
 }
 
 class Ddt  extends MyClass {
 	function __construct() {
-		$this->addProp('numero',					'','VARCHAR',FALSE,6,	'','F_NUMBOL');
-  		$this->addProp('data',						'','VARCHAR',FALSE,15,	'','F_DATBOL');
-		$this->addProp('cod_destinatario',			'','VARCHAR',FALSE,7,	'','F_CODCLI');
-		$this->addProp('cod_destinazione',			'','VARCHAR',FALSE,7,	'','F_SUFCLI');
-		$this->addProp('cod_causale',				'','VARCHAR',FALSE,7,	'','F_TIPODOC');//V=VENDITA D=DEPOSITO
-		$this->addProp('cod_mezzo',					'','VARCHAR',FALSE,7,	'','F_SPEDIZ');
-		$this->addProp('cod_vettore',				'','VARCHAR',FALSE,7,	'','F_VET');
-		$this->addProp('ora_inizio_trasporto',		'','VARCHAR',FALSE,15,	'','F_');
-		$this->addProp('aspetto_beni',				'','VARCHAR',FALSE,30,	'','F_');
-		$this->addProp('annotazioni',				'','VARCHAR',FALSE,1000,'','F_');
-		$this->addProp('peso_lordo',				'','VARCHAR',FALSE,20,	'','F_PLORDO');
-		$this->addProp('peso_netto',				'','VARCHAR',FALSE,20,	'','F_PNETTO');
-		$this->addProp('tot_colli',					'','VARCHAR',FALSE,20,	'','F_TOTCOLLI');
-		$this->addProp('tot_peso',					'','VARCHAR',FALSE,20,	'','F_QTATOT');
-		$this->addProp('cod_pagamento',				'','VARCHAR',FALSE,7,	'','F_CONPAG');
-		$this->addProp('cod_banca',					'','VARCHAR',FALSE,7,	'','F_BANCA');
-		$this->addProp('stato',						'','VARCHAR',FALSE,7,	'','F_STATO'); //fatturato non fatturato
-		$this->addProp('valuta',					'','VARCHAR',FALSE,3,	'','F_CODVAL');
-		$this->addProp('fatturabile',				'','VARCHAR',FALSE,3,	'','F_SINOFATT');
-		$this->addProp('tipocodiceclientefornitore','','VARCHAR',FALSE,3,	'','F_TIPOCF');
-		$this->addProp('fattura_numero',			'','VARCHAR',FALSE,3,	'','F_NUMFATT');
-		$this->addProp('fattura_data',				'','VARCHAR',FALSE,3,	'','F_DATFATT');
-		$this->addProp('note',						'','VARCHAR',FALSE,3,	'','F_NOTE');
-		$this->addProp('note1',						'','VARCHAR',FALSE,3,	'','F_NOTE1');
-		$this->addProp('note2',						'','VARCHAR',FALSE,3,	'','F_NOTE2');
-		//$this->addProp('righe',						'','VARCHAR',FALSE,1000,'','F_');//contiene un array con gli id delle righe della fattura
+		$this->addProp('numero',					'F_NUMBOL');
+  		$this->addProp('data',						'F_DATBOL');
+		$this->addProp('cod_destinatario',			'F_CODCLI');
+		$this->addProp('cod_destinazione',			'F_SUFCLI');
+		$this->addProp('cod_causale',				'F_TIPODOC');//V=VENDITA D=DEPOSITO
+		$this->addProp('cod_mezzo',					'F_SPEDIZ');
+		$this->addProp('cod_vettore',				'F_VET');
+		$this->addProp('ora_inizio_trasporto',		'F_');
+		$this->addProp('aspetto_beni',				'F_');
+		$this->addProp('annotazioni',				'F_');
+		$this->addProp('peso_lordo',				'F_PLORDO');
+		$this->addProp('peso_netto',				'F_PNETTO');
+		$this->addProp('tot_colli',					'F_TOTCOLLI');
+		$this->addProp('tot_peso',					'F_QTATOT');
+		$this->addProp('cod_pagamento',				'F_CONPAG');
+		$this->addProp('cod_banca',					'F_BANCA');
+		$this->addProp('stato',						'F_STATO'); //fatturato non fatturato
+		$this->addProp('valuta',					'F_CODVAL');
+		$this->addProp('fatturabile',				'F_SINOFATT');
+		$this->addProp('tipocodiceclientefornitore','F_TIPOCF');
+		$this->addProp('fattura_numero',			'F_NUMFATT');
+		$this->addProp('fattura_data',				'F_DATFATT');
+		$this->addProp('note',						'F_NOTE');
+		$this->addProp('note1',						'F_NOTE1');
+		$this->addProp('note2',						'F_NOTE2');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('INTESTAZIONEDDT');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
 	}
-  	public function getChildObjects(){
-		//get RIGHE
-  		$riga=split(',', $this->righe->getVal());
-  		foreach ($riga as $key => $value){
-  			$this->oRiga[$key]=$GLOBALS['wc']->obj->riga->getFromDbById($value);
-  		}
-  	}
-  	public function getNumber(){
-		$this->numero=8;
-		return $this->numero;
-  	}
 }
 
 class Riga extends MyClass {
 	function __construct() {
-		$this->addProp('numero',					'','VARCHAR',FALSE,7,	'','F_PROGRE');	
-		$this->addProp('cod_articolo',				'','VARCHAR',FALSE,7,	'','F_CODPRO');
-		$this->addProp('descrizione',				'','VARCHAR',FALSE,7,	'','F_DESPRO');
-		$this->addProp('unita_misura',				'','VARCHAR',FALSE,2,	'','F_UM');
-		$this->addProp('prezzo',					'','VARCHAR',FALSE,20,	'','F_PREUNI');
-		$this->addProp('imponibile',				'','VARCHAR',FALSE,20,	'','F_IMPONI');
-		$this->addProp('importo_iva',				'','VARCHAR',FALSE,20,	'','F_IMPIVA');
-		$this->addProp('importo_totale',			'','VARCHAR',FALSE,20,	'','F_IMPORTO');		
-		$this->addProp('colli',						'','VARCHAR',FALSE,20,	'','F_NUMCOL');
-		$this->addProp('cod_imballo',				'','VARCHAR',FALSE,7,	'','F_');
-		$this->addProp('peso_lordo',				'','VARCHAR',FALSE,20,	'','F_');
-		$this->addProp('peso_netto',				'','VARCHAR',FALSE,20,	'','F_PESNET');
-		$this->addProp('peso_netto',				'','VARCHAR',FALSE,20,	'','F_QTA');
-		$this->addProp('tara',						'','VARCHAR',FALSE,20,	'','F_');
-		$this->addProp('origine',					'','VARCHAR',FALSE,2,	'','F_');
-		$this->addProp('categoria',					'','VARCHAR',FALSE,2,	'','F_');
-		$this->addProp('lotto',						'','VARCHAR',FALSE,50,	'','F_');
-		$this->addProp('ddt_data',					'','VARCHAR',FALSE,7,	'','F_DATBOL');
-		$this->addProp('ddt_numero',				'','VARCHAR',FALSE,7,	'','F_NUMBOL');
-		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_CODIVA');
-		$this->addProp('stato',						'','VARCHAR',FALSE,7,	'','F_STATO');
-		$this->addProp('cod_cliente',				'','VARCHAR',FALSE,7,	'','F_CODCLI');		
+		$this->addProp('numero',					'F_PROGRE');	
+		$this->addProp('cod_articolo',				'F_CODPRO');
+		$this->addProp('descrizione',				'F_DESPRO');
+		$this->addProp('unita_misura',				'F_UM');
+		$this->addProp('prezzo',					'F_PREUNI');
+		$this->addProp('imponibile',				'F_IMPONI');
+		$this->addProp('importo_iva',				'F_IMPIVA');
+		$this->addProp('importo_totale',			'F_IMPORTO');		
+		$this->addProp('colli',						'F_NUMCOL');
+		$this->addProp('cod_imballo',				'F_');
+		$this->addProp('peso_lordo',				'F_');
+		$this->addProp('peso_netto',				'F_PESNET');
+		$this->addProp('peso_netto',				'F_QTA');
+		$this->addProp('tara',						'F_');
+		$this->addProp('origine',					'F_');
+		$this->addProp('categoria',					'F_');
+		$this->addProp('lotto',						'F_');
+		$this->addProp('ddt_data',					'F_DATBOL');
+		$this->addProp('ddt_numero',				'F_NUMBOL');
+		$this->addProp('cod_iva',					'F_CODIVA');
+		$this->addProp('stato',						'F_STATO');
+		$this->addProp('cod_cliente',				'F_CODCLI');
+
+		/* TODO= FIX RIGHE FATTURE*/
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('RIGHEDDT');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
 	}
 }
 
 class Articolo extends MyClass {
 	function __construct($params) {
-		$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODPRO');
-		$this->addProp('descrizione',				'','VARCHAR',FALSE,30,	'','F_DESPRO');
-		$this->addProp('descrizione2',				'','VARCHAR',FALSE,30,	'','F_DESPR2');
-		$this->addProp('unitadimisura',				'','VARCHAR',FALSE,30,	'','F_UMACQ');
-		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_CODIVA');
+		$this->addProp('codice',					'F_CODPRO');
+		$this->addProp('descrizione',				'F_DESPRO');
+		$this->addProp('descrizione2',				'F_DESPR2');
+		$this->addProp('descrizionelunga',			'F_MEMO');		
+		$this->addProp('unitadimisura',				'F_UMACQ');
+		$this->addProp('cod_iva',					'F_CODIVA');
 
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('ANAGRAFICAARTICOLI');
+		//imposto il codice che mi sono passato nel costruttore
 		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
 		$this->getDataFromDb();		
-	}
-	public function getDataFromDb(){
-		$result=dbFrom('ANAGRAFICAARTICOLI', 'SELECT *', "WHERE F_CODPRO='".odbc_access_escape_str($this->codice->getVal())."'");
-		while($row = odbc_fetch_array($result)){
-		    foreach($this as $key => $value) {
-				$val=$code=$row[$value->campoDbf];
-				$this->$key->setVal($val);
-			}
-		}
 	}
 }
 
 class Imballaggio extends MyClass {
 	function __construct() {
-		$this->addProp('codice',					'','VARCHAR',FALSE,		'','F_CODCLI');
-		$this->addProp('descrizione',				'','VARCHAR',FALSE,100,	'','F_CODCLI');
-		$this->addProp('tara_acquisto',				'','VARCHAR',FALSE,20,	'','F_CODCLI');
-		$this->addProp('tara_vendita',				'','VARCHAR',FALSE,20,	'','F_CODCLI');
+		$this->addProp('codice',					'F_');
+		$this->addProp('descrizione',				'F_');
+		$this->addProp('tara_acquisto',				'F_');
+		$this->addProp('tara_vendita',				'F_');
 	}
 }
 
 class ClienteFornitore extends MyClass {
 	function __construct($params) {
-		//$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODFOR');	
-		$this->addProp('codice',					'','VARCHAR',FALSE,7,	'','F_CODCLI');
-		$this->addProp('ragionesociale',			'','VARCHAR',FALSE,100,	'','F_RAGSOC');
-		$this->addProp('via',						'','VARCHAR',FALSE,100,	'','F_INDIRI');
-		$this->addProp('paese',						'','VARCHAR',FALSE,100,	'','F_LOCALI');
-		$this->addProp('citta',						'','VARCHAR',FALSE,2,	'','F_PROV');
-		$this->addProp('cap',						'','VARCHAR',FALSE,2,	'','F_CAP');
-		$this->addProp('cod_destinazione',			'','VARCHAR',FALSE,7,	'','F_CODDESTABI');
-		$this->addProp('cod_pagamento',				'','VARCHAR',FALSE,7,	'','F_CONPAG');
-		$this->addProp('cod_banca',					'','VARCHAR',FALSE,7,	'','F_BANCA');
-		$this->addProp('cod_mezzo',					'','VARCHAR',FALSE,7,	'','F_SPEDIZ');
-		$this->addProp('cod_vettore',				'','VARCHAR',FALSE,7,	'','F_VET');
-		$this->addProp('p_iva',						'','VARCHAR',FALSE,11,	'','F_PIVA');
-		$this->addProp('cod_fiscale',				'','VARCHAR',FALSE,16,	'','F_CODFIS');
-		$this->addProp('cod_iva',					'','VARCHAR',FALSE,7,	'','F_CODIVA');
-		$this->addProp('lettera_intento_num',		'','VARCHAR',FALSE,10,	'','F_NUMINTEN');
-		$this->addProp('lettera_intento_data',		'','VARCHAR',FALSE,15,	'','F_DATINTEN');
-		$this->addProp('lettera_intento_numinterno','','VARCHAR',FALSE,10,	'','F_REGIS');
-		$this->addProp('provvigione',				'','VARCHAR',FALSE,3,	'','F_CODPROVV');
-		$this->addProp('tipo',						'','VARCHAR',FALSE,3,	'','F_GRCOCLI'); //15==CLIENTE //61==FORNITORE
-		$this->addProp('telefono',					'','VARCHAR',FALSE,3,	'','F_TELEF');
-		$this->addProp('cellulare',					'','VARCHAR',FALSE,3,	'','F_TELEX');
-		$this->addProp('fax',						'','VARCHAR',FALSE,3,	'','F_TELEFAX');
-		$this->addProp('email',						'','VARCHAR',FALSE,3,	'','F_EMAIL');
-		$this->addProp('website',					'','VARCHAR',FALSE,3,	'','F_HOMEPAGE');
-		$this->addProp('valuta',					'','VARCHAR',FALSE,3,	'','F_CODVAL');		
+		//$this->addProp('codice',					'F_CODFOR');	
+		$this->addProp('codice',					'F_CODCLI');
+		$this->addProp('ragionesociale',			'F_RAGSOC');
+		$this->addProp('via',						'F_INDIRI');
+		$this->addProp('paese',						'F_LOCALI');
+		$this->addProp('citta',						'F_PROV');
+		$this->addProp('cap',						'F_CAP');
+		$this->addProp('cod_destinazione',			'F_DESTABI');
+		$this->addProp('cod_pagamento',				'F_CONPAG');
+		$this->addProp('cod_banca',					'F_BANCA');
+		//F_AGENZI
+		$this->addProp('cod_mezzo',					'F_SPEDIZ');
+		$this->addProp('cod_vettore',				'F_VET');
+		$this->addProp('p_iva',						'F_PIVA');
+		$this->addProp('cod_fiscale',				'F_CODFIS');
+		$this->addProp('cod_iva',					'F_CODIVA');
+		$this->addProp('lettera_intento_num',		'F_NUMINTEN');
+		$this->addProp('lettera_intento_data',		'F_DATINTEN');
+		$this->addProp('lettera_intento_numinterno','F_NREGIS');
+		$this->addProp('provvigione',				'F_CODPROVV');
+		$this->addProp('tipo',						'F_GRCOCLI'); //15==CLIENTE //61==FORNITORE
+		$this->addProp('telefono',					'F_TELEF');
+		$this->addProp('cellulare',					'F_TELEX');
+		$this->addProp('fax',						'F_TELEFAX');
+		$this->addProp('email',						'F_EMAIL');
+		$this->addProp('website',					'F_HOMEPAGE');
+		$this->addProp('valuta',					'F_CODVAL');		
 
-		//$params['codice']= str_ireplace("'", "/'", $params['codice']);
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('ANAGRAFICACLIENTI');
+		//imposto il codice che mi sono passato nel costruttore
 		$this->codice->setVal($params['codice']);
-		$this->getDataFromDb();
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
 	}
+	/* == TOTO == FIX TIPO CLIENTE
 	public function getDataFromDb(){
 		$result=dbFrom('ANAGRAFICACLIENTI', 'SELECT *', "WHERE F_CODCLI='".odbc_access_escape_str($this->codice->getVal())."'");
 		while($row = odbc_fetch_array($result)){
@@ -733,9 +790,166 @@ class ClienteFornitore extends MyClass {
 		$codCliente=$this->codice->getVal();
 		$this->tipo->setVal($dbClienti["$codCliente"]['tipo']);
 	}
+	*/
 }
 
+class DestinazioneCliente extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_SUFCLI');
+		$this->addProp('cod_cliente',				'F_CODCLI');
+		$this->addProp('ragionesociale',			'F_RAGSOC');	
+		$this->addProp('via',						'F_INDIRI');
+		$this->addProp('paese',						'F_LOCALI');
+		$this->addProp('citta',						'F_PROV');
+		$this->addProp('cap',						'F_CAP');
+		$this->addProp('note',						'F_NOTE');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('DESTINAZIONICLIENTI');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();			
+	}
+}
 
+class Vettore extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_CODVET');
+		$this->addProp('ragionesociale',			'F_DESVET');	
+		$this->addProp('via',						'F_INDIRI');
+		$this->addProp('paese',						'F_LOCALI');
+		$this->addProp('cap',						'F_CAP');
+		$this->addProp('note',						'F_TEL');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('ANAGRAFICAVETTORI');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();			
+	}
+}
+
+class CausalePagamento extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_CODPAG');
+		$this->addProp('descrizione',				'F_DESPAG');	
+		$this->addProp('tipo',						'F_TIPPAG'); //1=RIMESSA DIRETTA // 3=RICEVUTA BANCARIA // 5=BONIFICO	
+		$this->addProp('scadenza',					'F_SCAD_1');
+		$this->addProp('finemese',					'F_FIMESE');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('CAUSALIPAGAMENTO');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
+	}
+}
+
+class CausaleIva extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_CODIVA');
+		$this->addProp('descrizione',				'F_DESIVA');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('CAUSALIIVA');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
+	}
+}
+
+class ListinoPrezzi extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_CODPRO');
+		$this->addProp('prezzo',					'F_PREZZO');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('LISTINOPREZZI');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
+	}
+}
+
+class Banca extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_CODBAN');
+		$this->addProp('ragionesociale',			'F_DESBAN');
+		$this->addProp('filiale',					'F_AGENZI');
+		$this->addProp('abi',						'F_ABI');
+		$this->addProp('cab',						'F_CAB');
+		$this->addProp('contocorrente',				'F_CONTOCOR');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('ANAGRAFICABANCHE');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
+	}
+}
+
+class CausaliMagazzino extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_CODCAU');
+		$this->addProp('descrizione',				'F_DESCAU');
+		$this->addProp('causale_trasporto',			'F_CAUTRA');
+		$this->addProp('segno',						'F_SEGGIA');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('CAUSALIMAGAZZINO');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
+	}
+}
+
+class CausaliSpedizione extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_CODSPE');
+		$this->addProp('descrizione',				'F_DESSPE');
+				
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('CAUSALISPEDIZIONE');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
+	}
+}
+
+class AnnotazioniDdt extends MyClass {
+	function __construct($params) {
+		$this->addProp('codice',					'F_CODTES');
+		$this->addProp('descrizione',				'F_DESTES1');
+		$this->addProp('descrizione1',				'F_DESTES2');
+		$this->addProp('descrizione2',				'F_DESTES3');
+		$this->addProp('descrizione3',				'F_DESTES4');
+		$this->addProp('descrizione4',				'F_DESTES5');
+		
+		//configurazione database
+		$this->addProp('dbName','','','','','','');
+		$this->dbName->setVal('ANNOTAZIONIDDT');
+		//imposto il codice che mi sono passato nel costruttore
+		$this->codice->setVal($params['codice']);
+		//ricavo i dati dal database
+		$this->getDataFromDb();	
+	}
+}
 
 /*########################################################################################*/
 class Database {
@@ -816,8 +1030,6 @@ class WebContab {
 }
 
 
-
-
 //$wc=new WebContab();
 
 //eseguo il setup/instllazione iniziale  di webContab sul database
@@ -832,32 +1044,12 @@ echo '<pre>';
 print_r($test->cod_cliente->extend()->ragionesociale->getVal());
 echo '</pre>';
 */
-/*
-$mioArticolo= new Articolo(array('codice'=>'01'));
+
+
+$mioArticolo= new Articolo(array('codice'=>'ALBOTRANS'));
 echo $mioArticolo->descrizione->getVal();
-*/
+echo "<pre>".$mioArticolo->descrizionelunga->getVal()."</pre>";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+echo $mioArticolo->cod_iva->extend()->descrizione->getVal();
 
 ?>
