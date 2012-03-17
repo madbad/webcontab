@@ -179,7 +179,7 @@ if (@$_POST['mode']=='print'){
 	$params = array("articles" => array('01'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.3,
+					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 31,
 					"colliPedana" => 104,
 					"costoCassa" => 0.43);	
@@ -201,7 +201,7 @@ if (@$_POST['mode']=='print'){
 	$params = array("articles" => array('03'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.3,
+					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 31,
 					"colliPedana" => 104,
 					"costoCassa" => 0.43);
@@ -226,7 +226,7 @@ if (@$_POST['mode']=='print'){
 		$params = array("articles" => array('08'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.3,
+						"abbuonoPerCollo" => 0.5, //0.3
 						"costoPedana" => 31,
 						"colliPedana" => 112,
 						"costoCassa" => 0.39);
@@ -249,7 +249,7 @@ if (@$_POST['mode']=='print'){
 		$params = array("articles" => array('29'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.3,
+						"abbuonoPerCollo" => 0.5, //0.3
 						"costoPedana" => 31,
 						"colliPedana" => 112,
 						"costoCassa" => 0.34);
@@ -272,7 +272,7 @@ if (@$_POST['mode']=='print'){
 		$params = array("articles" => array('31'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.3,
+						"abbuonoPerCollo" => 0.5, //0.3
 						"costoPedana" => 31,
 						"colliPedana" => 104,
 						"costoCassa" => 0.43);
@@ -293,7 +293,7 @@ if (@$_POST['mode']=='print'){
 		$params = array('articles' => array('05'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.3,
+						"abbuonoPerCollo" => 0.5, //0.3
 						"costoPedana" => 31,
 						"colliPedana" => 112,
 						"costoCassa" => 0.39);

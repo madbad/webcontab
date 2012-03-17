@@ -84,11 +84,16 @@ require_once('./classes.php');
 if (@$_GET['mode']=='print'){
 	//log start date for time execution calc
 	$start = (float) array_sum(explode(' ',microtime()));
+	
 	$html="<h1>Semil.</h1>";
 	$html.=getArticleTable2(array('05'),$startDateR,$endDateR, 'martinelli');
 	$html.=getArticleTable2(array('05'),$startDateR,$endDateR, 'mercato');
 	$html.=getArticleTable2(array('905'),$startDateR,$endDateR, 'mercato');
 	$html.=getArticleTable2(array('705','805'),$startDateR,$endDateR, 'supermercato');
+	/*
+	$html.=getArticleTable2(array('19','919'),$startDateR,$endDateR, 'mercato');
+	*/
+	
 	echo $html;
 
 	 //log end date for time execution calc
