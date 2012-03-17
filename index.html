@@ -58,6 +58,9 @@ Ext.onReady(function(){
 								       items:[
 											{
 												text: 'DDT di Vendita',
+												handler: function() {
+													gestioneDdt();
+												},
 											},{
 												text: 'DDT altre causali',
 											},{
@@ -122,12 +125,21 @@ Ext.onReady(function(){
 
 });
 
+function gestioneDdt(){
+	Ext.create('Ext.window.Window', {
+		title: 'Gestione Ddt',
+		
+		height: 200,
+		width: 400,
+		//maximizable: true,
+		layout: 'fit',
+	}).show().maximize();
 
+}
 
 
 </script>
 </head>
 <body>
-
 </body>
 </html>
