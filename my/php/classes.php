@@ -38,6 +38,10 @@ class execStats {
 $queryStats= new execStats('query');
 $pageStats= new execStats('page');
 $pageStats->start();
+$cache=array();
+$cached=0;
+$executed=0;
+global $out;
 
 include ('./config.inc.php');
 function myEcho($myArray){
@@ -50,6 +54,13 @@ function debugger ($txt){
 }
 function dbFrom($dbName, $toSelect, $conditions){
 	global $queryStats;
+	global $cached;
+	global $executed;
+	global $cache;
+	global $out;
+	$thisqueryStats= new execStats('thisquery');
+	$thisqueryStats->start();
+		
 	$queryStats->start();
 	switch ($dbName){
 		case 'RIGHEDDT': 				$dbFile='03BORIGD.DBF' ;break;  //*
@@ -77,17 +88,38 @@ function dbFrom($dbName, $toSelect, $conditions){
 		//A4PHONED.DBf                  //TELEFONI
 		//03CONFID.DBF 					//CONFIGURAZIONE	
  	}
-
+	//$toSelect=str_replace('SELECT ', 'SELECT {static} ', $toSelect);
+	//echo $toSelect;
 	//database connection string
-	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";Exclusive=YES;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=true;"; //DELETTED=1??
+//	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";Exclusive=NO;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=false;"; //DELETTED=1??
+	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";collate=Machine;NULL=NO;DELETED=1;"; //DELETTED=1??
 	//connect to database
-	$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
+	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_IF_NEEDED ) or die('Could Not Connect to ODBC Database!');
+	$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_DRIVER ) or die('Could Not Connect to ODBC Database!');
+	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_ODBC ) or die('Could Not Connect to ODBC Database!');
+	//$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
+
 	//query string
 	//	$query= "SELECT * FROM ".$dbFile." WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
 	$query= $toSelect." FROM ".$dbFile." $conditions";
-	//echo '<br>'.$query;
-	//query execution
-	$result = odbc_exec($odbc, $query) or die ( debugger($query.odbc_errormsg()) );
+
+
+//	if($cache[$query]){
+	$cacheEnabled=TRUE;
+	if(array_key_exists($query, $cache) && $cacheEnabled){
+		//uso il risultato della cache
+		$result=$cache[$query];
+		$cached++;
+	}else{
+		//query execution
+		$result = odbc_exec($odbc, $query) or die ( debugger($query.odbc_errormsg()) );
+		$executed++;
+		$cache[$query]=$result;
+		$thisqueryStats->stop();
+		$out.= '<br>'.$query.' ***** '.$thisqueryStats->printStats();
+	}
+	//chiudo la connessione al databse
+	//odbc_close($odbc);
 
 	/* 
 	//da informazioni in merito al tipo di campo che accetta il database
@@ -99,6 +131,8 @@ function dbFrom($dbName, $toSelect, $conditions){
      $result = odbc_columns($odbc);
      odbc_result_all($result,"border=1");	
 	*/
+	//inserisco la query nella cache
+
 	$queryStats->stop();
 	return $result;
 }
@@ -549,7 +583,8 @@ class Ddt  extends MyClass {
 			array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
 			/*todo fix righe*/
 			//echo 'test';
-		}	
+		}
+
 	}
 }
 
@@ -871,8 +906,51 @@ class AnnotazioniDdt extends MyClass {
 	}
 }
 
+class MyList {
+	function __construct() {
+		$this->arr=array();
+  	}
+	function createFromQuery(){
+		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'.">#".'07-29-2011'."#");
+		while($row = odbc_fetch_array($result)){
+			$newObj=new Ddt(array('numero'=>$row['F_NUMBOL'],'data'=>$row['F_DATBOL']));
+			$this->add($newObj);
+		}
+	}
+	function sum($prop){
+		//restituisce la somma della proprietà indicata degli oggetti della lista
+		foreach ($this->arr as $key => $value){
+			/*
+			echo $value->numero->getVal();
+			echo ' '.$value->data->getVal();
+			echo ' '.$value->cod_destinatario->extend()->ragionesociale->getVal();
+			echo '<br>';
+			*/
+			echo $value->$prop->getVal().'<br>';
+		}
+	}
+	function add($newObj){
+		//add a new object to the current array
+		array_push($this->arr, $newObj);
+	}
+	function remove(){
+	}
+	function iterate($function){
+		//restituisce la somma della proprietà indicata degli oggetti della lista
+		foreach ($this->arr as $key => $value){
+			$function($value);
+		}
+	}
+}
+$ddtList=new MyList();
+$ddtList->createFromQuery();
+//$ddtList->sum('numero');
 
-
+$ddtList->iterate(
+	function($obj){
+		echo $obj->cod_destinatario->extend()->ragionesociale->getVal().'<br>';
+	}
+);
 
 //$wc=new WebContab();
 
@@ -900,18 +978,22 @@ $mioArticolo->cod_iva->extend()->descrizione->getDataType();
 */
 
 //$mio= new Ddt(array('numero'=>'908','data'=>'11-19-2008'));
-$mio= new Ddt(array('numero'=>'908','data'=>'19/11/2008'));
+
+//$mio= new Ddt(array('numero'=>'908','data'=>'19/11/2008'));
 
 //echo $mioArticolo->descrizione->getVal();
 //echo "<pre>".$mioArticolo->descrizionelunga->getVal()."</pre>";
 
 //echo $mioArticolo->cod_iva->extend()->descrizione->getVal();
 //$mio->data->getDataType();
-header('Content-type: application/json');
+//header('Content-type: application/json');
 
 $log->info($queryStats->printStats());
+$log->info('Queri Eseguite: '.$executed.' | Query Risparmiate (cache): '.$cached);
+
 $pageStats->stop();
 $log->info($pageStats->printStats());
+echo $out;
 
-echo $mio->toJson();
+//echo $mio->toJson();
 ?>
