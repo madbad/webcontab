@@ -1,3 +1,75 @@
+<?php
+include ('./config.inc.php');
+
+	function getArticleTable($params){
+	/*
+		$params = array("articles" => "31",
+						"startDate" => $startDate,
+						"endDate" => $endDate,
+						"abbuonoPerCollo" => 0.3,
+						"costoPedana" => 31,
+						"colliPedana" => 104,
+						"costoCassa" => 0.43);
+	*/
+	//$articlesCode=$params['articles'];
+		$out=null;
+
+		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+		
+		$out.="<table class=\"righe\"><tr><th colspan='5'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
+		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th></tr>';
+		//this will containt table totals
+		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
+		$dbClienti=getDbClienti();
+		while($row = odbc_fetch_array($result))
+		{
+		$codCliente=$row['F_CODCLI'];
+		$tipoCliente=$dbClienti["$codCliente"]['tipo'];
+		if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
+
+			$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
+			$netto=$row['F_PESNET']-$calopeso;
+			$media=round($netto/$row['F_NUMCOL'],1);
+			$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td></tr>";
+			$sum['NETTO']+=$netto;
+			$sum['F_NUMCOL']+=$row['F_NUMCOL'];
+		}	
+		}
+
+		$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='2'>".$sum['NETTO']."</th></tr>";
+		$out.='</table>';
+		
+		$out.=' Imballo: '.round($params['costoCassa']*$sum['F_NUMCOL']/$sum['NETTO'],3);
+		$out.='<br> Trasporto: '.round($params['costoPedana']/(($sum['NETTO']/$sum['F_NUMCOL'])*$params['colliPedana']),3);
+		$out.='<br>';
+
+		//DISCONNECT FROM DATABASE
+		//odbc_close($odbc);
+		return $out;
+	}
+	/*
+	function getDbClienti(){
+		$db=array();
+		$news=fopen("./dbClienti.txt","r");  //apre il file
+		while (!feof($news)) {
+			$buffer = fgets($news, 4096);
+			$arr=explode(', ',$buffer);
+			$codCliente=trim($arr[0]);
+			$tipoCliente=trim($arr[2]);
+			$provvigione=trim($arr[3]);
+			$db["$codCliente"]['tipo']=$tipoCliente;
+			$db["$codCliente"]['provvigione']=$provvigione;
+			//echo "$codCliente=$tipoCliente<br>"; //riga letta
+		}
+		fclose ($news); #chiude il file
+		return $db;
+	}
+*/
+
+?>
+
+
+
 <!DOCTYPE HTML>
 <html lang="IT">
     <head>
@@ -176,6 +248,7 @@ if (@$_POST['mode']=='print'){
     $html.="<h1>Riccia</h1>";
 //riccia
 	// mercato
+	
 	$params = array("articles" => array('01'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
@@ -184,6 +257,7 @@ if (@$_POST['mode']=='print'){
 					"colliPedana" => 104,
 					"costoCassa" => 0.43);	
     $html.=getArticleTable($params);
+	
 	//supermercati
 	$params = array("articles" => array('701','801'),
 					"startDate" => $startDate,
@@ -194,6 +268,7 @@ if (@$_POST['mode']=='print'){
 					"costoCassa" => 0.70);
     $html.=getArticleTable($params);					
     $html.=$table;
+	
 //scarola  
     $html.="</div><div class='tableContainer'>";
     $html.="<h1>Scarola</h1>";

@@ -91,21 +91,22 @@ function dbFrom($dbName, $toSelect, $conditions){
 	//$toSelect=str_replace('SELECT ', 'SELECT {static} ', $toSelect);
 	//echo $toSelect;
 	//database connection string
-//	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";Exclusive=NO;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=false;"; //DELETTED=1??
-	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";collate=Machine;NULL=NO;DELETED=1;"; //DELETTED=1??
+	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";Exclusive=NO;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=false;"; //DELETTED=1??
+	//$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";collate=Machine;NULL=NO;DELETED=1;"; //DELETTED=1??
+	//echo $dsn;
 	//connect to database
 	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_IF_NEEDED ) or die('Could Not Connect to ODBC Database!');
-	$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_DRIVER ) or die('Could Not Connect to ODBC Database!');
+	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_DRIVER ) or die('Could Not Connect to ODBC Database!');
 	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_ODBC ) or die('Could Not Connect to ODBC Database!');
-	//$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
+	$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
 
 	//query string
 	//	$query= "SELECT * FROM ".$dbFile." WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
 	$query= $toSelect." FROM ".$dbFile." $conditions";
 
-
+//echo '<br>'.$query;
 //	if($cache[$query]){
-	$cacheEnabled=TRUE;
+	$cacheEnabled=FALSE;
 	if(array_key_exists($query, $cache) && $cacheEnabled){
 		//uso il risultato della cache
 		$result=$cache[$query];
@@ -942,6 +943,7 @@ class MyList {
 		}
 	}
 }
+/*
 $ddtList=new MyList();
 $ddtList->createFromQuery();
 //$ddtList->sum('numero');
@@ -951,6 +953,8 @@ $ddtList->iterate(
 		echo $obj->cod_destinatario->extend()->ragionesociale->getVal().'<br>';
 	}
 );
+*/
+
 
 //$wc=new WebContab();
 
