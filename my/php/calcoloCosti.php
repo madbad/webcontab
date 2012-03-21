@@ -1,8 +1,14 @@
 <?php
 include ('./config.inc.php');
+require_once('./classes.php');
+page_start();
+		
+//mi memorizzo il database clienti	(dove ho salvato se sono mercati supermercati o altro)	
+$dbClienti=getDbClienti();
 
 	function getArticleTable($params){
-	/*
+		global $dbClienti;
+		/*
 		$params = array("articles" => "31",
 						"startDate" => $startDate,
 						"endDate" => $endDate,
@@ -10,30 +16,38 @@ include ('./config.inc.php');
 						"costoPedana" => 31,
 						"colliPedana" => 104,
 						"costoCassa" => 0.43);
-	*/
-	//$articlesCode=$params['articles'];
-		$out=null;
+		*/
 
-		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+		$out=null;
+		//preparo la stringa di query con le condizioni di query per i prodotti
+		$condizioniProdotti='';
+		foreach ($params['articles'] as $value){
+			$condizioniProdotti.="OR F_CODPRO='$value'";
+		}
+		//rimuovo il primo 'OR ' nella parte iniziale della stringa
+		$condizioniProdotti=substr($condizioniProdotti, 3);
+		$condizioniProdotti="($condizioniProdotti) AND";
+		//decommentare la linea seguente per usare il vecchio metodo che selezionava tutti i prodotti (anche quelli che non ci interesavano)
+		//$condizioniProdotti='';
+		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE $condizioniProdotti F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 		
 		$out.="<table class=\"righe\"><tr><th colspan='5'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
 		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th></tr>';
 		//this will containt table totals
 		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
-		$dbClienti=getDbClienti();
-		while($row = odbc_fetch_array($result))
-		{
-		$codCliente=$row['F_CODCLI'];
-		$tipoCliente=$dbClienti["$codCliente"]['tipo'];
-		if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
 
-			$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
-			$netto=$row['F_PESNET']-$calopeso;
-			$media=round($netto/$row['F_NUMCOL'],1);
-			$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td></tr>";
-			$sum['NETTO']+=$netto;
-			$sum['F_NUMCOL']+=$row['F_NUMCOL'];
-		}	
+		while($row = odbc_fetch_array($result)){
+			$codCliente=$row['F_CODCLI'];
+			$tipoCliente=$dbClienti["$codCliente"]['tipo'];
+			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
+
+				$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
+				$netto=$row['F_PESNET']-$calopeso;
+				$media=round($netto/$row['F_NUMCOL'],1);
+				$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td></tr>";
+				$sum['NETTO']+=$netto;
+				$sum['F_NUMCOL']+=$row['F_NUMCOL'];
+			}	
 		}
 
 		$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='2'>".$sum['NETTO']."</th></tr>";
@@ -43,33 +57,9 @@ include ('./config.inc.php');
 		$out.='<br> Trasporto: '.round($params['costoPedana']/(($sum['NETTO']/$sum['F_NUMCOL'])*$params['colliPedana']),3);
 		$out.='<br>';
 
-		//DISCONNECT FROM DATABASE
-		//odbc_close($odbc);
 		return $out;
 	}
-	/*
-	function getDbClienti(){
-		$db=array();
-		$news=fopen("./dbClienti.txt","r");  //apre il file
-		while (!feof($news)) {
-			$buffer = fgets($news, 4096);
-			$arr=explode(', ',$buffer);
-			$codCliente=trim($arr[0]);
-			$tipoCliente=trim($arr[2]);
-			$provvigione=trim($arr[3]);
-			$db["$codCliente"]['tipo']=$tipoCliente;
-			$db["$codCliente"]['provvigione']=$provvigione;
-			//echo "$codCliente=$tipoCliente<br>"; //riga letta
-		}
-		fclose ($news); #chiude il file
-		return $db;
-	}
-*/
-
 ?>
-
-
-
 <!DOCTYPE HTML>
 <html lang="IT">
     <head>
@@ -227,12 +217,9 @@ height:230,
 <span>
 
 <?php
-require_once('./classes.php');
+
 
 if (@$_POST['mode']=='print'){
-    //log start date for time execution calc
-    $start = (float) array_sum(explode(' ',microtime()));
-  
     $table='<table class="rimanenze">';
     $table.='<tr><td colspan="2">Rimanenze</td></tr>';
     $table.='<tr><td style="width:30%"></td><td></td></tr>';
@@ -386,12 +373,8 @@ if (@$_POST['mode']=='print'){
     }
     $html.='</div>';
     echo $html;
-  
-     //log end date for time execution calc
-    $end = (float) array_sum(explode(' ',microtime()));
-     //print execution time
-    echo "<br>Exec time: ". sprintf("%.4f", ($end-$start))." seconds";
 }
+page_end();
 ?>
 </span>
 </body>

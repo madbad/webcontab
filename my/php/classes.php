@@ -1,6 +1,7 @@
 <?php
 require_once('FirePHPCore/FirePHP.class.php');
-$log = FirePHP::getInstance(true);
+include ('./config.inc.php');
+
 /*
 $firephp->log('Plain MessagePHP');     // or FB::
 $firephp->info('Info MessagePHP');     // or FB::
@@ -35,15 +36,9 @@ class execStats {
 		return $out;
     }
 }
-$queryStats= new execStats('query');
-$pageStats= new execStats('page');
-$pageStats->start();
-$cache=array();
-$cached=0;
-$executed=0;
-global $out;
 
-include ('./config.inc.php');
+
+
 function myEcho($myArray){
 	echo '<pre style="font-size:12px;">';
 	print_r(odbc_fetch_array($myArray));
@@ -58,6 +53,8 @@ function dbFrom($dbName, $toSelect, $conditions){
 	global $executed;
 	global $cache;
 	global $out;
+	global $log;
+	
 	$thisqueryStats= new execStats('thisquery');
 	$thisqueryStats->start();
 		
@@ -88,24 +85,21 @@ function dbFrom($dbName, $toSelect, $conditions){
 		//A4PHONED.DBf                  //TELEFONI
 		//03CONFID.DBF 					//CONFIGURAZIONE	
  	}
-	//$toSelect=str_replace('SELECT ', 'SELECT {static} ', $toSelect);
-	//echo $toSelect;
 	//database connection string
 	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";Exclusive=NO;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=false;"; //DELETTED=1??
 	//$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";collate=Machine;NULL=NO;DELETED=1;"; //DELETTED=1??
 	//echo $dsn;
 	//connect to database
-	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_IF_NEEDED ) or die('Could Not Connect to ODBC Database!');
+	$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_IF_NEEDED ) or die('Could Not Connect to ODBC Database!');
 	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_DRIVER ) or die('Could Not Connect to ODBC Database!');
 	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_ODBC ) or die('Could Not Connect to ODBC Database!');
-	$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
+	//$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
 
 	//query string
 	//	$query= "SELECT * FROM ".$dbFile." WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
 	$query= $toSelect." FROM ".$dbFile." $conditions";
 
-//echo '<br>'.$query;
-//	if($cache[$query]){
+	//echo '<br>'.$query;
 	$cacheEnabled=FALSE;
 	if(array_key_exists($query, $cache) && $cacheEnabled){
 		//uso il risultato della cache
@@ -117,8 +111,9 @@ function dbFrom($dbName, $toSelect, $conditions){
 		$executed++;
 		$cache[$query]=$result;
 		$thisqueryStats->stop();
-		$out.= '<br>'.$query.' ***** '.$thisqueryStats->printStats();
+		$log->info($query.' ***** '.$thisqueryStats->printStats());
 	}
+
 	//chiudo la connessione al databse
 	//odbc_close($odbc);
 
@@ -406,10 +401,11 @@ class Proprietà extends DefaultClass {
 		//prima di impostare il valore eseguo dei controlli per verificare che sia corretto e delle trasformazioni se necessarie
 		if($this->nome[0]!='_'){
 			$type=$this->getDataType();
+			
 			//se il campo è un numero di bolla o di fattura
+			//riempio di spazi da sinistra verso destra prima del numero fino ad arrivare 
+			//al numero di caratteri richiesto dal campo del database
 			if($type['name']=='F_NUMBOL' || $type['name']=='F_NUMFAT'){
-				//riempio di spazi da sinistra verso destra prima del numero fino ad arrivare 
-				//al numero di caratteri richiesto dal campo del database
 				$newVal=str_pad($newVal, $type['len'], " ", STR_PAD_LEFT);  
 			}
 
@@ -943,61 +939,27 @@ class MyList {
 		}
 	}
 }
-/*
-$ddtList=new MyList();
-$ddtList->createFromQuery();
-//$ddtList->sum('numero');
 
-$ddtList->iterate(
-	function($obj){
-		echo $obj->cod_destinatario->extend()->ragionesociale->getVal().'<br>';
-	}
-);
-*/
+function page_start(){
+	ob_start();
+	global $log, $queryStats, $pageStats, $cache, $cached, $executed, $out;
+	$log = FirePHP::getInstance(true);
+	$queryStats= new execStats('query');
+	$pageStats= new execStats('page');
+	$pageStats->start();
+	$cache=array();
+	$cached=0;
+	$executed=0;
+}
+function page_end(){
+	global $log, $queryStats, $pageStats, $cache, $cached, $executed, $out;
 
+	$log->info($queryStats->printStats());
+	$log->info('Queri Eseguite: '.$executed.' | Query Risparmiate (cache): '.$cached);
 
-//$wc=new WebContab();
-
-//eseguo il setup/instllazione iniziale  di webContab sul database
-//$wc->setup();
-
-/*
-$test=new Fattura();
-$test->cod_cliente->setVal('GRUPP');
-//$test->cod_cliente->extend();
-//echo $test->cod_cliente->extend()->ragionesociale->getVal();
-echo '<pre>';
-print_r($test->cod_cliente->extend()->ragionesociale->getVal());
-echo '</pre>';
-*/
-
-/*
-$mioArticolo= new Articolo(array('codice'=>'ALBOTRANS'));
-//echo $mioArticolo->descrizione->getVal();
-//echo "<pre>".$mioArticolo->descrizionelunga->getVal()."</pre>";
-
-//echo $mioArticolo->cod_iva->extend()->descrizione->getVal();
-$mioArticolo->cod_iva->getDataType();
-$mioArticolo->cod_iva->extend()->descrizione->getDataType();
-*/
-
-//$mio= new Ddt(array('numero'=>'908','data'=>'11-19-2008'));
-
-//$mio= new Ddt(array('numero'=>'908','data'=>'19/11/2008'));
-
-//echo $mioArticolo->descrizione->getVal();
-//echo "<pre>".$mioArticolo->descrizionelunga->getVal()."</pre>";
-
-//echo $mioArticolo->cod_iva->extend()->descrizione->getVal();
-//$mio->data->getDataType();
-//header('Content-type: application/json');
-
-$log->info($queryStats->printStats());
-$log->info('Queri Eseguite: '.$executed.' | Query Risparmiate (cache): '.$cached);
-
-$pageStats->stop();
-$log->info($pageStats->printStats());
-echo $out;
-
-//echo $mio->toJson();
+	$pageStats->stop();
+	$log->info($pageStats->printStats());
+	ob_flush() ;
+	ob_end_flush ();
+}
 ?>
