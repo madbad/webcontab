@@ -100,11 +100,12 @@ function dbFrom($dbName, $toSelect, $conditions){
 	$query= $toSelect." FROM ".$dbFile." $conditions";
 
 	//echo '<br>'.$query;
-	$cacheEnabled=FALSE;
+	$cacheEnabled=TRUE;
 	if(array_key_exists($query, $cache) && $cacheEnabled){
 		//uso il risultato della cache
 		$result=$cache[$query];
 		$cached++;
+		$log->info($query.' ***** [CACHED]');
 	}else{
 		//query execution
 		$result = odbc_exec($odbc, $query) or die ( debugger($query.odbc_errormsg()) );
@@ -243,6 +244,41 @@ class MyClass extends DefaultClass{
   	}
   	public function getName(){
   		return get_class($this);	
+	}
+	public function mergeParams($params){
+		//importo eventuali valori delle proprietà che mi sono passato come $params nell'oggetto principale
+		$this->_params=$params;
+		foreach ($params as $key => $value){
+			if($key[0]!='_'){
+				$this->$key->setVal($value);
+			}
+		}
+	}
+	public function autoExtend(){
+		if(!isset($this->_params['_autoExtend'])){$this->_params['_autoExtend']=1;}
+		switch ($this->_params['_autoExtend']) {
+			case -1://-1= non fare niente.
+				echo "i equals -1";
+				break;
+			case 'intestazione'://-1= recupera solo l'intestazione
+				$this->getDataFromDb();
+				break;
+			case 0:// 0= recupera solo i dati dal database
+				$this->getDataFromDb();
+				break;
+			case 1:// 1= estendi di un livello //default
+				$this->getDataFromDb();
+				break;
+			case 2:// 2=estendi di 2 livelli
+				echo "i equals 2";
+				break;
+			case 3:// 3=estendi di 3 livelli
+				echo "i equals 3";
+				break;
+			case 10://10=estendi all'infinito	
+				echo "i equals 10";
+				break;
+		}
 	}
 	public function getDataFromDb(){
 		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->codice->campoDbf."='".odbc_access_escape_str($this->codice->getVal())."'");
@@ -503,11 +539,12 @@ class Fattura extends MyClass{
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('INTESTAZIONEFT');
-		//imposto il codice che mi sono passato nel costruttore
-		//todo
-		//$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		//$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
   	}
 }
 
@@ -538,7 +575,6 @@ class Ddt  extends MyClass {
 		$this->addProp('note',						'F_NOTE');
 		$this->addProp('note1',						'F_NOTE1');
 		$this->addProp('note2',						'F_NOTE2');
-	
 		
 		$this->righe=array();
 		
@@ -547,13 +583,12 @@ class Ddt  extends MyClass {
 		$this->_dbName->setVal('INTESTAZIONEDDT');
 		$this->addProp('_dbName2','');
 		$this->_dbName2->setVal('RIGHEDDT');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->numero->setVal($params['numero']);		
-		$this->data->setVal($params['data']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();
-		//echo '<pre>';
-		//print_r($this);
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 	
 	public function getDataFromDb(){
@@ -573,13 +608,14 @@ class Ddt  extends MyClass {
 				}
 			}
 		}
-		
-		//recupero le righe del ddt
-		$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
-		while($row = odbc_fetch_array($result)){
-			array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
-			/*todo fix righe*/
-			//echo 'test';
+		if ($this->_params['_autoExtend']!='intestazione'){
+			//recupero le righe del ddt
+			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
+			while($row = odbc_fetch_array($result)){
+				array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
+				/*todo fix righe*/
+				//echo 'test';
+			}
 		}
 
 	}
@@ -615,14 +651,12 @@ class Riga extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('RIGHEDDT');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->numero->setVal($params['numero']);		
-		$this->ddt_data->setVal($params['ddt_data']);
-		$this->ddt_numero->setVal($params['ddt_numero']);
 		
-		//ricavo i dati dal database
-		$this->getDataFromDb();
-		//todo
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 	public function getDataFromDb(){
 		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
@@ -655,10 +689,12 @@ class Articolo extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('ANAGRAFICAARTICOLI');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();		
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();	
 	}
 }
 
@@ -704,10 +740,12 @@ class ClienteFornitore extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('ANAGRAFICACLIENTI');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 	/* == TOTO == FIX TIPO CLIENTE
 	public function getDataFromDb(){
@@ -740,12 +778,12 @@ class DestinazioneCliente extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('DESTINAZIONICLIENTI');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		$this->cod_cliente->setVal($params['cod_cliente']);
 		
-		//ricavo i dati dal database
-		$this->getDataFromDb();			
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();		
 	}
 	public function getDataFromDb(){
 		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
@@ -778,10 +816,12 @@ class Vettore extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('ANAGRAFICAVETTORI');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();			
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();		
 	}
 }
 
@@ -796,10 +836,12 @@ class CausalePagamento extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('CAUSALIPAGAMENTO');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();	
 	}
 }
 
@@ -811,10 +853,12 @@ class CausaleIva extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('CAUSALIIVA');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 }
 
@@ -826,10 +870,12 @@ class ListinoPrezzi extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('LISTINOPREZZI');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 }
 
@@ -845,10 +891,12 @@ class Banca extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('ANAGRAFICABANCHE');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 }
 
@@ -862,10 +910,12 @@ class CausaliMagazzino extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('CAUSALIMAGAZZINO');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 }
 
@@ -877,10 +927,12 @@ class CausaliSpedizione extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('CAUSALISPEDIZIONE');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 }
 
@@ -896,10 +948,12 @@ class AnnotazioniDdt extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('ANNOTAZIONIDDT');
-		//imposto il codice che mi sono passato nel costruttore
-		$this->codice->setVal($params['codice']);
-		//ricavo i dati dal database
-		$this->getDataFromDb();	
+		
+		//importo eventuali valori delle proprietà che mi sono passato come $params
+		$this->mergeParams($params);
+		
+		//avvio il recupero dei dati
+		$this->autoExtend();
 	}
 }
 
@@ -908,9 +962,11 @@ class MyList {
 		$this->arr=array();
   	}
 	function createFromQuery(){
-		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'.">#".'07-29-2011'."#");
+		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'.">#".'07-26-2011'."#");
 		while($row = odbc_fetch_array($result)){
-			$newObj=new Ddt(array('numero'=>$row['F_NUMBOL'],'data'=>$row['F_DATBOL']));
+			$newObj=new Ddt(array('numero'=>$row['F_NUMBOL'],
+			                      'data'=>$row['F_DATBOL'],
+								  '_autoExtend'=>'intestazione'));
 			$this->add($newObj);
 		}
 	}
