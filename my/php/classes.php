@@ -108,7 +108,9 @@ function dbFrom($dbName, $toSelect, $conditions){
 		$log->info($query.' ***** [CACHED]');
 	}else{
 		//query execution
-		$result = odbc_exec($odbc, $query) or die ( debugger($query.odbc_errormsg()) );
+//		$result = odbc_exec($odbc, $query) or die ( function (){echo 'miaoooooooooooooo'; debugger($query.odbc_errormsg())};);
+		$result = odbc_exec($odbc, $query) or die (odbc_errormsg().'<br><br>La query da eseguire era:<br>'.$query);
+
 		$executed++;
 		$cache[$query]=$result;
 		$thisqueryStats->stop();
@@ -443,11 +445,25 @@ class Proprietà extends DefaultClass {
 			//al numero di caratteri richiesto dal campo del database
 			if($type['name']=='F_NUMBOL' || $type['name']=='F_NUMFAT'){
 				$newVal=str_pad($newVal, $type['len'], " ", STR_PAD_LEFT);  
+			}/*
+			if($type['type']=='Date'){
+			ECHO 'TEST2222';
+			ECHO $newVal;
+			}*/
+			//se la data ha il formato aaaa/mm/gg la trasformo in mm-gg-aaaa
+			//come richiesto dal database
+			
+			if($type['type']=='Date' && preg_match('/....-.*-.*/',$newVal)){
+				$arr=explode("-", $newVal);
+										//mese    //giorno //anno
+				$newVal=mktime(0, 0, 0, $arr[1], $arr[2], $arr[0]);
+				$newVal=date ( 'm-d-Y' , $newVal);
 			}
-
+			
 			//se la data ha il formato gg/mm/aaaa la trasformo in mm-gg-aaaa
 			//come richiesto dal database
 			if($type['type']=='Date' && preg_match('/.*\/.*\/.*/',$newVal)){
+			ECHO 'TEST';
 				$arr=explode("/", $newVal);
 										//mese    //giorno //anno
 				$newVal=mktime(0, 0, 0, $arr[1], $arr[0], $arr[2]);
@@ -962,7 +978,11 @@ class MyList {
 		$this->arr=array();
   	}
 	function createFromQuery(){
-		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'.">#".'07-26-2011'."#");
+//		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >#".'07-26-2011'."#");
+//		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".'01-01-2011'."#");
+//		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_NUMBOL'."=".'\'       1\''."");
+		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." = #".'01-02-2010'."#");
+
 		while($row = odbc_fetch_array($result)){
 			$newObj=new Ddt(array('numero'=>$row['F_NUMBOL'],
 			                      'data'=>$row['F_DATBOL'],

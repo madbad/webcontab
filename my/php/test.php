@@ -9,6 +9,8 @@ $ddtList->createFromQuery();
 
 $ddtList->iterate(
 	function($obj){
+		echo $obj->data->getVal().' ** ';
+		echo $obj->numero->getVal().' ** ';		
 		echo $obj->cod_destinatario->extend()->ragionesociale->getVal().'<br>';
 	}
 );
