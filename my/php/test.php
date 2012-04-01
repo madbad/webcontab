@@ -3,10 +3,10 @@ include ('./config.inc.php');
 require_once('./classes.php');
 page_start();
 
+
 $ddtList=new MyList();
 $ddtList->createFromQuery();
 //$ddtList->sum('numero');
-
 $ddtList->iterate(
 	function($obj){
 		echo $obj->data->getVal().' ** ';
@@ -14,8 +14,8 @@ $ddtList->iterate(
 		echo $obj->cod_destinatario->extend()->ragionesociale->getVal().'<br>';
 	}
 );
-echo $out;
-page_end();
+
+
 
 //$wc=new WebContab();
 
@@ -23,12 +23,14 @@ page_end();
 //$wc->setup();
 
 /*
-$test=new Fattura();
-$test->cod_cliente->setVal('GRUPP');
+$params = array("_autoExtend" => -1);
+
+$test=new Ddt($params);
+$test->cod_destinatario->setVal('GRUPP');
 //$test->cod_cliente->extend();
 //echo $test->cod_cliente->extend()->ragionesociale->getVal();
 echo '<pre>';
-print_r($test->cod_cliente->extend()->ragionesociale->getVal());
+print_r($test->cod_destinatario->extend()->ragionesociale->getVal());
 echo '</pre>';
 */
 
@@ -52,4 +54,6 @@ $mioArticolo->cod_iva->extend()->descrizione->getDataType();
 //echo $mioArticolo->cod_iva->extend()->descrizione->getVal();
 //$mio->data->getDataType();
 //header('Content-type: application/json');
+
+page_end();
 ?>

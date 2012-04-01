@@ -3,14 +3,14 @@ require_once('FirePHPCore/FirePHP.class.php');
 include ('./config.inc.php');
 
 /*
-$firephp->log('Plain MessagePHP');     // or FB::
-$firephp->info('Info MessagePHP');     // or FB::
-$firephp->warn('Warn MessagePHP');     // or FB::
-$firephp->error('Error MessagePHP');   // or FB::
+$log->log('Plain MessagePHP');     // or FB::
+$log->info('Info MessagePHP');     // or FB::
+$log->warn('Warn MessagePHP');     // or FB::
+$log->error('Error MessagePHP');   // or FB::
  
-$firephp->log('Message','Optional Label');
+$log->log('Message','Optional Label');
  
-//$firephp->fb('Message', FirePHP::*);
+$log->fb('Message', FirePHP::*);
 */
 
 class execStats {
@@ -19,7 +19,7 @@ class execStats {
 		$this->startTime=0;
 	 	$this->stopTime=0;
 	 	$this->totalExecTime=0;
-	 	$this->numberOfCalls=0;		
+	 	$this->numberOfCalls=0;
 	}
     public function start()     {
 	 	$this->numberOfCalls++;
@@ -88,9 +88,9 @@ function dbFrom($dbName, $toSelect, $conditions){
 	//database connection string
 	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";Exclusive=NO;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=false;"; //DELETTED=1??
 	//$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";collate=Machine;NULL=NO;DELETED=1;"; //DELETTED=1??
-	//echo $dsn;
+
 	//connect to database
-	$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_IF_NEEDED ) or die('Could Not Connect to ODBC Database!');
+	$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_IF_NEEDED ) or die('Non riesco a connettermi al database:<br>'.$GLOBALS['config']['pathToDbFiles'].'<br><br>Dns:<br>'.$dns);
 	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_DRIVER ) or die('Could Not Connect to ODBC Database!');
 	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_ODBC ) or die('Could Not Connect to ODBC Database!');
 	//$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
@@ -103,65 +103,76 @@ function dbFrom($dbName, $toSelect, $conditions){
 	$cacheEnabled=TRUE;
 	if(array_key_exists($query, $cache) && $cacheEnabled){
 		//uso il risultato della cache
-		$result=$cache[$query];
+		$records=$cache[$query];
 		$cached++;
 		$log->info($query.' ***** [CACHED]');
 	}else{
 		//query execution
-//		$result = odbc_exec($odbc, $query) or die ( function (){echo 'miaoooooooooooooo'; debugger($query.odbc_errormsg())};);
 		$result = odbc_exec($odbc, $query) or die (odbc_errormsg().'<br><br>La query da eseguire era:<br>'.$query);
 
 		$executed++;
-		$cache[$query]=$result;
+		$result = odbc_exec($odbc, $query) or die ( debugger($query.odbc_errormsg()) );
+
+		//caching
+		$records=array();
+		while($record = odbc_fetch_array($result)){
+			$records[] = $record;
+		}
+		$cache[$query]=$records;
+
 		$thisqueryStats->stop();
 		$log->info($query.' ***** '.$thisqueryStats->printStats());
 	}
 
-	//chiudo la connessione al databse
-	//odbc_close($odbc);
-
-	/* 
+	
 	//da informazioni in merito al tipo di campo che accetta il database
-     $result = odbc_gettypeinfo($odbc);
-     odbc_result_all($result,"border=1");
-	*/
+    //print_r(odbc_gettypeinfo($odbc));
+    //odbc_result_all($result,"border=1");
+	
 	/*
 	//da informazioni in merito al tipo di campo che accetta il database
      $result = odbc_columns($odbc);
      odbc_result_all($result,"border=1");	
-	*/
-	//inserisco la query nella cache
+	*/	
+	
+	
+	
+	//chiudo la connessione al databse
+	odbc_close($odbc);
+
 
 	$queryStats->stop();
-	return $result;
+	return $records;
 }
+
+
 function getDbClienti(){
-		$db=array();
-		$news=fopen("./dbClienti.txt","r");  //apre il file
-		while (!feof($news)) {
-			$buffer = fgets($news, 4096);
-			$arr=explode(', ',$buffer);
-			$codCliente=trim($arr[0]);
-			$tipoCliente=trim($arr[2]);
-			$provvigione=trim($arr[3]);
-			$db["$codCliente"]['tipo']=$tipoCliente;
-			$db["$codCliente"]['provvigione']=$provvigione;
-			//echo "$codCliente=$tipoCliente<br>"; //riga letta
-		}
-		fclose ($news); #chiude il file
-		return $db;
+	$db=array();
+	$news=fopen("./dbClienti.txt","r");  //apre il file
+	while (!feof($news)) {
+		$buffer = fgets($news, 4096);
+		$arr=explode(', ',$buffer);
+		$codCliente=trim($arr[0]);
+		$tipoCliente=trim($arr[2]);
+		$provvigione=trim($arr[3]);
+		$db["$codCliente"]['tipo']=$tipoCliente;
+		$db["$codCliente"]['provvigione']=$provvigione;
+		//echo "$codCliente=$tipoCliente<br>"; //riga letta
 	}
+	//chiude il file
+	fclose ($news);
+	return $db;
+}
 function odbc_access_escape_str($str) {
- $out="";
- for($a=0; $a<strlen($str); $a++) {
-  if($str[$a]=="'") {
-   $out.="''";
-  } else
-  if($str[$a]!=chr(10)) {
-   $out.=$str[$a];
-  }
- }
- return $out;
+	$out="";
+	for($a=0; $a<strlen($str); $a++) {
+		if($str[$a]=="'") {
+			$out.="''";
+		} else if($str[$a]!=chr(10)) {
+			$out.=$str[$a];
+		}
+	}
+	return $out;
 }
 
 
@@ -231,7 +242,6 @@ class DefaultClass {
         if (isset($this->$method)) {
         	$func = $this->$method;
         	if(is_callable($func)){
-				//$func($this);   
 				return $func($this);
             }
         }
@@ -257,10 +267,11 @@ class MyClass extends DefaultClass{
 		}
 	}
 	public function autoExtend(){
+		global $log;
 		if(!isset($this->_params['_autoExtend'])){$this->_params['_autoExtend']=1;}
 		switch ($this->_params['_autoExtend']) {
 			case -1://-1= non fare niente.
-				echo "i equals -1";
+				$log->warn("Oggetto dichiarato NON estensibile!");
 				break;
 			case 'intestazione'://-1= recupera solo l'intestazione
 				$this->getDataFromDb();
@@ -284,7 +295,7 @@ class MyClass extends DefaultClass{
 	}
 	public function getDataFromDb(){
 		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->codice->campoDbf."='".odbc_access_escape_str($this->codice->getVal())."'");
-		while($row = odbc_fetch_array($result)){
+		foreach($result as $row){
 		    foreach($this as $key => $value) {
 				//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
 				if($key[0]!='_'){
@@ -361,7 +372,7 @@ class MyClass extends DefaultClass{
 	   $query = "SELECT * FROM $tableName WHERE id='$id' ORDER BY id DESC";
   		$result=$GLOBALS['wc']->db->query($query);
 
-   	while ($row = mysql_fetch_array($result)){
+		foreach($result as $row){
 			$totCampi =mysql_num_fields($result);           //CONTO IL NUMERO DI CAMPI NEL DB
 			for ($i=0; $i < $totCampi; $i++){
 					$varName=mysql_field_name($result, $i);   //ASSEGNO IL NOME DEL CAMPO NEL DB ALLA VARIABILE
@@ -445,17 +456,13 @@ class Proprietà extends DefaultClass {
 			//al numero di caratteri richiesto dal campo del database
 			if($type['name']=='F_NUMBOL' || $type['name']=='F_NUMFAT'){
 				$newVal=str_pad($newVal, $type['len'], " ", STR_PAD_LEFT);  
-			}/*
-			if($type['type']=='Date'){
-			ECHO 'TEST2222';
-			ECHO $newVal;
-			}*/
+			}
+			
 			//se la data ha il formato aaaa/mm/gg la trasformo in mm-gg-aaaa
 			//come richiesto dal database
-			
 			if($type['type']=='Date' && preg_match('/....-.*-.*/',$newVal)){
 				$arr=explode("-", $newVal);
-										//mese    //giorno //anno
+										//mese   //giorno //anno
 				$newVal=mktime(0, 0, 0, $arr[1], $arr[2], $arr[0]);
 				$newVal=date ( 'm-d-Y' , $newVal);
 			}
@@ -465,7 +472,7 @@ class Proprietà extends DefaultClass {
 			if($type['type']=='Date' && preg_match('/.*\/.*\/.*/',$newVal)){
 			ECHO 'TEST';
 				$arr=explode("/", $newVal);
-										//mese    //giorno //anno
+										//mese   //giorno //anno
 				$newVal=mktime(0, 0, 0, $arr[1], $arr[0], $arr[2]);
 				$newVal=date ( 'm-d-Y' , $newVal);
 			}
@@ -517,6 +524,7 @@ class Proprietà extends DefaultClass {
 	
 	public function getDataType(){
 		$parentObj=$this->_parent;
+/*
 		$result=dbFrom($parentObj->_dbName->getVal(), 'SELECT '.$this->campoDbf, "");
 
 		$out=Array();
@@ -526,11 +534,8 @@ class Proprietà extends DefaultClass {
 		$out['num']=odbc_field_num($result,1); //bho - vuoto?
 		$out['scale']=odbc_field_scale($result,1); //bho - vuoto?
 		$out['precision']=odbc_field_precision($result,1); //bho - vuoto?
-		/*
-		echo '<pre>';
-		print_r($out);
-		*/
 		return $out;
+*/
 	}
 }
 /*########################################################################################*/
@@ -611,7 +616,7 @@ class Ddt  extends MyClass {
 		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
 		//recupero l'intestazione del ddt
 		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
-		while($row = odbc_fetch_array($result)){
+		foreach($result as $row){
 			foreach($this as $key => $value) {
 				//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
 				if($key[0]!='_' && is_object($this->$key)){
@@ -627,7 +632,7 @@ class Ddt  extends MyClass {
 		if ($this->_params['_autoExtend']!='intestazione'){
 			//recupero le righe del ddt
 			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
-			while($row = odbc_fetch_array($result)){
+				foreach($result as $row){
 				array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
 				/*todo fix righe*/
 				//echo 'test';
@@ -677,7 +682,7 @@ class Riga extends MyClass {
 	public function getDataFromDb(){
 		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
 		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->ddt_numero->campoDbf."='".odbc_access_escape_str($this->ddt_numero->getVal())."' AND ".$this->ddt_data->campoDbf."=#".odbc_access_escape_str($this->ddt_data->getVal()."# AND ".$this->numero->campoDbf."=".odbc_access_escape_str($this->numero->getVal()).""));
-		while($row = odbc_fetch_array($result)){
+		foreach($result as $row){
 			foreach($this as $key => $value) {
 				//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
 				if($key[0]!='_'){
@@ -766,7 +771,7 @@ class ClienteFornitore extends MyClass {
 	/* == TOTO == FIX TIPO CLIENTE
 	public function getDataFromDb(){
 		$result=dbFrom('ANAGRAFICACLIENTI', 'SELECT *', "WHERE F_CODCLI='".odbc_access_escape_str($this->codice->getVal())."'");
-		while($row = odbc_fetch_array($result)){
+		foreach($result as $row){
 		    foreach($this as $key => $value) {
 				$val=$code=$row[$value->campoDbf];
 				$this->$key->setVal($val);
@@ -804,7 +809,7 @@ class DestinazioneCliente extends MyClass {
 	public function getDataFromDb(){
 		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
 		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->codice->campoDbf."='".odbc_access_escape_str($this->codice->getVal())."' AND ".$this->cod_cliente->campoDbf."='".odbc_access_escape_str($this->cod_cliente->getVal())."'");
-		while($row = odbc_fetch_array($result)){
+		foreach($result as $row){
 			foreach($this as $key => $value) {
 				//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
 				if($key[0]!='_'){
@@ -982,8 +987,9 @@ class MyList {
 //		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".'01-01-2011'."#");
 //		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_NUMBOL'."=".'\'       1\''."");
 		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." = #".'01-02-2010'."#");
-
-		while($row = odbc_fetch_array($result)){
+	
+		//$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'.">#".'07-29-2011'."#");
+		foreach($result as $id => $row) {
 			$newObj=new Ddt(array('numero'=>$row['F_NUMBOL'],
 			                      'data'=>$row['F_DATBOL'],
 								  '_autoExtend'=>'intestazione'));

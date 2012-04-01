@@ -58,7 +58,8 @@ function getDdtList($params){
 $data='07-20-2011';
 $numero='     794';
 //getDdtList(array("numero" => $numero, data => $data));
-$myList=getDdtList(array(data => $data));
+//$myList=getDdtList(array('data' => $data));
+$myList=getDdtList(array("numero" => $numero, "data" => $data));
 $reply=array('successo'=>true, 'ora'=>time(), 'ddtList'=>$myList);
 echo json_encode($reply);
 ?>

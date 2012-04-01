@@ -36,7 +36,8 @@ $dbClienti=getDbClienti();
 		//this will containt table totals
 		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
 
-		while($row = odbc_fetch_array($result)){
+		foreach ($result as $id => $row){
+		//while($row = odbc_fetch_array($result)){
 			$codCliente=$row['F_CODCLI'];
 			$tipoCliente=$dbClienti["$codCliente"]['tipo'];
 			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
