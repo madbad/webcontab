@@ -19,6 +19,9 @@
 			@PAGE landscape {size: landscape;}
 			TABLE {PAGE: landscape;}
 			@page rotated { size : landscape }
+			pre{
+			font-size:14px;
+			}
 		</style>		
     </head>
      <body>
@@ -80,10 +83,15 @@
 <?php
 require_once('./config.inc.php');
 require_once('./classes.php');
-//log start date for time execution calc
-$start = (float) array_sum(explode(' ',microtime()));
+error_reporting(0); //0=spento || -1=acceso
+page_start();
 
 $myArray=Array();
+$myArray['lavorato']='';
+$myArray['grezzo']='';
+$myArray['semilavorato']='';
+
+$totale=0;
 
 $radicchi=array('05','705','805','08','708','808','808-','808--','29','729','829');
 $insalate=array('01','701','801','03','703','803','25');
@@ -92,21 +100,27 @@ $pdzucchero=array('31','731','831');
 
 if($_POST['startDate']!=null && $_POST['endDate']!=null){
 	$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$_POST['startDate']."# AND F_DATBOL <= #".$_POST['endDate']."#");
+	echo '<b>Attenzione se si riscontrano differenze con i dati di contab (contab presenta meno peso) è perchè contab conta solo le riche con articoli invece noi contiamo anche le righe condescrizione ma senza articolo)</b><BR><BR>';
 
-	while($row = odbc_fetch_array($result)){
+	echo 'NB. forse restano da escludere (dalla query) le bolle di conto deposito (differenza residua di 150 kg su 30 giorni)';
+
+	foreach($result as $row){
 
 		$cliente=new ClienteFornitore(array('codice'=>$row['F_CODCLI']));
 
-		$tipo=$cliente->tipo->getVal();
+		$tipo=$cliente->_classificazione->getVal();
+		//echo $tipo;
 		$articolo=$row['F_CODPRO'];
 		$descrizione=$row['F_DESPRO'];
 		$peso=$row['F_PESNET'];
+		//$peso=$row['F_QTA'];
 		
 		if (in_array($articolo,$radicchi)) $descrizione=$articolo='**radicchi';
 		if (in_array($articolo,$insalate)) $descrizione=$articolo='**insalate';
 		if (in_array($articolo,$pdzucchero)) $descrizione=$articolo='**pdzucchero';
 	
 		$done=false;
+		//echo $cliente->codice->getVal().'='.$peso.'<br>';
 		if($peso>0){
 			if ($tipo=='mercato' || $tipo=='supermercato'){
 				$myArray['lavorato'][$articolo.'*'.$descrizione]+=$peso;
@@ -122,21 +136,22 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 			}
 			if ($done!=true){
 				$myArray['altro'][$articolo.'*'.$descrizione]+=$peso;
-				echo $cliente->codice->getVal().':'.$cliente->ragionesociale->getVal().'='.$peso.'<br>';
+				echo '<b>WARNING</b>:'.$cliente->codice->getVal().':'.$cliente->ragionesociale->getVal().'='.$peso.'<br>';
 			}
 		}		
-
+		$totale+=$peso;
 	}
 }
 echo '<pre>';
+ksort($myArray['lavorato']);
+ksort($myArray['grezzo']);
+ksort($myArray['semilavorato']);
 print_r($myArray);
+
+echo '<br><br>'.$totale;
 echo '<pre>';
 
-
-//log end date for time execution calc
-$end = (float) array_sum(explode(' ',microtime()));
-//print execution time
-echo "<br>Exec time: ". sprintf("%.4f", ($end-$start))." seconds";
+page_end();
 ?>
 </span>
 </body>

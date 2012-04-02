@@ -48,12 +48,7 @@ function debugger ($txt){
 	if ($GLOBALS['config']['debugger']) echo "\n".'<br><b style="color:red">debugger</b>:: '.time().' :: '.$txt;
 }
 function dbFrom($dbName, $toSelect, $conditions){
-	global $queryStats;
-	global $cached;
-	global $executed;
-	global $cache;
-	global $out;
-	global $log;
+	global $queryStats, $cached, $executed, $cache, $out, $log;
 	
 	$thisqueryStats= new execStats('thisquery');
 	$thisqueryStats->start();
@@ -303,6 +298,9 @@ class MyClass extends DefaultClass{
 					$this->$key->setVal($val);
 				}
 			}
+		}
+		if (method_exists(get_class($this), 'getDataFromDbCallBack')){
+			$this->getDataFromDbCallBack();
 		}
 	}
 	public function toJson($subRun=0){
@@ -757,7 +755,8 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('email',						'F_EMAIL');
 		$this->addProp('website',					'F_HOMEPAGE');
 		$this->addProp('valuta',					'F_CODVAL');		
-
+		$this->addProp('_classificazione',			'');
+		
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('ANAGRAFICACLIENTI');
@@ -768,21 +767,15 @@ class ClienteFornitore extends MyClass {
 		//avvio il recupero dei dati
 		$this->autoExtend();
 	}
-	/* == TOTO == FIX TIPO CLIENTE
-	public function getDataFromDb(){
-		$result=dbFrom('ANAGRAFICACLIENTI', 'SELECT *', "WHERE F_CODCLI='".odbc_access_escape_str($this->codice->getVal())."'");
-		foreach($result as $row){
-		    foreach($this as $key => $value) {
-				$val=$code=$row[$value->campoDbf];
-				$this->$key->setVal($val);
-			}
-		}
+
+	public function getDataFromDbCallBack(){
 		//imposto il tipo cliente ricavandolo dal mio file db
 		$dbClienti=getDbClienti();
 		$codCliente=$this->codice->getVal();
-		$this->tipo->setVal($dbClienti["$codCliente"]['tipo']);
+		$this->_classificazione->setVal($dbClienti["$codCliente"]['tipo']);
 	}
-	*/
+	
+	
 }
 
 class DestinazioneCliente extends MyClass {
