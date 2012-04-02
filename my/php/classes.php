@@ -48,7 +48,7 @@ function debugger ($txt){
 	if ($GLOBALS['config']['debugger']) echo "\n".'<br><b style="color:red">debugger</b>:: '.time().' :: '.$txt;
 }
 function dbFrom($dbName, $toSelect, $conditions){
-	global $queryStats, $cached, $executed, $cache, $out, $log;
+	global $queryStats, $cached, $executed, $cache, $log;
 	
 	$thisqueryStats= new execStats('thisquery');
 	$thisqueryStats->start();
@@ -96,7 +96,9 @@ function dbFrom($dbName, $toSelect, $conditions){
 
 	//echo '<br>'.$query;
 	$cacheEnabled=TRUE;
-	if(array_key_exists($query, $cache) && $cacheEnabled){
+	$isCached=array_key_exists($query, $cache);
+	
+	if($isCached && $cacheEnabled){
 		//uso il risultato della cache
 		$records=$cache[$query];
 		$cached++;
@@ -123,7 +125,19 @@ function dbFrom($dbName, $toSelect, $conditions){
 	//da informazioni in merito al tipo di campo che accetta il database
     //print_r(odbc_gettypeinfo($odbc));
     //odbc_result_all($result,"border=1");
-	
+	//$result=dbFrom($parentObj->_dbName->getVal(), 'SELECT '.$this->campoDbf, "");
+
+	if (!$isCached){
+		$info=Array();
+		$info['name']=odbc_field_name($result,1);//nome del campo
+		$info['len']=odbc_field_len($result,1);//lunghezza
+		$info['type']=odbc_field_type($result,1);//tipo=Date/Numeric/Char
+		$info['num']=odbc_field_num($result,1); //bho - vuoto?
+		$info['scale']=odbc_field_scale($result,1); //bho - vuoto?
+		$info['precision']=odbc_field_precision($result,1); //bho - vuoto?
+		$info['bho']=odbc_gettypeinfo($odbc);
+		$log->info($info);		
+	}
 	/*
 	//da informazioni in merito al tipo di campo che accetta il database
      $result = odbc_columns($odbc);
@@ -979,7 +993,7 @@ class MyList {
 //		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >#".'07-26-2011'."#");
 //		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".'01-01-2011'."#");
 //		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_NUMBOL'."=".'\'       1\''."");
-		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." = #".'01-02-2010'."#");
+		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." = #".'07-02-2011'."#");
 	
 		//$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'.">#".'07-29-2011'."#");
 		foreach($result as $id => $row) {
