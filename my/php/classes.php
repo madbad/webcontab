@@ -1,7 +1,7 @@
 <?php
 require_once('FirePHPCore/FirePHP.class.php');
 include ('./config.inc.php');
-
+$DataTypeInfo=array();
 /*
 $log->log('Plain MessagePHP');     // or FB::
 $log->info('Info MessagePHP');     // or FB::
@@ -37,18 +37,8 @@ class execStats {
     }
 }
 
-
-
-function myEcho($myArray){
-	echo '<pre style="font-size:12px;">';
-	print_r(odbc_fetch_array($myArray));
-	echo '</pre>';
-}
-function debugger ($txt){
-	if ($GLOBALS['config']['debugger']) echo "\n".'<br><b style="color:red">debugger</b>:: '.time().' :: '.$txt;
-}
 function dbFrom($dbName, $toSelect, $conditions){
-	global $queryStats, $cached, $executed, $cache, $log;
+	global $queryStats, $statsQrueyCached, $statsQrueyExecuted, $cache, $log,$DataTypeInfo;
 	
 	$thisqueryStats= new execStats('thisquery');
 	$thisqueryStats->start();
@@ -101,15 +91,34 @@ function dbFrom($dbName, $toSelect, $conditions){
 	if($isCached && $cacheEnabled){
 		//uso il risultato della cache
 		$records=$cache[$query];
-		$cached++;
-		$log->info($query.' ***** [CACHED]');
+		$statsQrueyCached++;
+//$log->info($query.' ***** [CACHED]');
 	}else{
 		//query execution
 		$result = odbc_exec($odbc, $query) or die (odbc_errormsg().'<br><br>La query da eseguire era:<br>'.$query);
+		$statsQrueyExecuted++;
+		
+		//fileds info storing
+		$tableName=$dbName;
+		if(!array_key_exists($tableName,$DataTypeInfo)){
+			$DataTypeInfo[$tableName]=Array();
+			$columns=odbc_num_fields ($result);
+			for ($i=1; $i<=$columns; $i++){
+				$fieldName=odbc_field_name($result,$i);
+				$DataTypeInfo[$tableName][$fieldName]=Array();
+				$DataTypeInfo[$tableName][$fieldName]['name']=odbc_field_name($result,$i);//nome del campo
+				$DataTypeInfo[$tableName][$fieldName]['len']=odbc_field_len($result,$i);//lunghezza
+				$DataTypeInfo[$tableName][$fieldName]['type']=odbc_field_type($result,$i);//tipo=Date/Numeric/Char
+				$DataTypeInfo[$tableName][$fieldName]['num']=odbc_field_num($result,$i); //bho - vuoto?
+				$DataTypeInfo[$tableName][$fieldName]['scale']=odbc_field_scale($result,$i); //bho - vuoto?
+				$DataTypeInfo[$tableName][$fieldName]['precision']=odbc_field_precision($result,$i); //bho - vuoto?
+				//$DataTypeInfo['bho']=odbc_result_all(odbc_gettypeinfo($odbc));
+				//$log->info($DataTypeInfo);
+			}
+			//print_r($DataTypeInfo);
+		}
 
-		$executed++;
-		$result = odbc_exec($odbc, $query) or die ( debugger($query.odbc_errormsg()) );
-
+		
 		//caching
 		$records=array();
 		while($record = odbc_fetch_array($result)){
@@ -127,17 +136,8 @@ function dbFrom($dbName, $toSelect, $conditions){
     //odbc_result_all($result,"border=1");
 	//$result=dbFrom($parentObj->_dbName->getVal(), 'SELECT '.$this->campoDbf, "");
 
-	if (!$isCached){
-		$info=Array();
-		$info['name']=odbc_field_name($result,1);//nome del campo
-		$info['len']=odbc_field_len($result,1);//lunghezza
-		$info['type']=odbc_field_type($result,1);//tipo=Date/Numeric/Char
-		$info['num']=odbc_field_num($result,1); //bho - vuoto?
-		$info['scale']=odbc_field_scale($result,1); //bho - vuoto?
-		$info['precision']=odbc_field_precision($result,1); //bho - vuoto?
-		$info['bho']=odbc_gettypeinfo($odbc);
-		$log->info($info);		
-	}
+
+
 	/*
 	//da informazioni in merito al tipo di campo che accetta il database
      $result = odbc_columns($odbc);
@@ -147,7 +147,9 @@ function dbFrom($dbName, $toSelect, $conditions){
 	
 	
 	//chiudo la connessione al databse
-	odbc_close($odbc);
+	//meglio di no... sembra che se la chiudo lo script rallenti di parecchio... 
+	//io avrei pensato il contrario...Bho!
+	//odbc_close($odbc);
 
 
 	$queryStats->stop();
@@ -259,7 +261,7 @@ class DefaultClass {
 
 class MyClass extends DefaultClass{
 //la mia classe di base con proprietà e metodi aggiuntivi
-   public function addProp($nome, $campoDbf, $validatore='') {
+   public function addProp($nome, $campoDbf=null, $validatore=null) {
       $this->$nome=new Proprietà($nome, $campoDbf, $validatore, $this);
 		return $this;
   	}
@@ -303,16 +305,77 @@ class MyClass extends DefaultClass{
 		}
 	}
 	public function getDataFromDb(){
-		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->codice->campoDbf."='".odbc_access_escape_str($this->codice->getVal())."'");
-		foreach($result as $row){
-		    foreach($this as $key => $value) {
+		global $log;
+		/*
+echo print_r($this->_params);
+echo $this->_result;
+*/
+		if (!isset($this->_params['_result'])){
+			//imposto la clausola where a seconda delle chiavi di ricerca del DB per la classe corrente
+			//imposto la clausola order a seconda delle chiavi di ricerca del DB per la classe corrente			
+			$where='WHERE ';
+			$order=' ORDER BY ';
+			$indexes=$this->_dbIndex->getVal();
+			foreach($indexes as $key => $property){
+				//echo $key.'<br>';
+				if($key>0){
+					$where.=' AND ';
+					$order.=',';
+				}
+				//todo migliorare il controllo di tipo dati
+				/*
+				if($this->$property->campoDbf=='F_DATBOL'){
+					$separatore="#";
+				}else{
+					$separatore='\'';			
+				}
+				*/
+				$info=$this->$property->getDataType();
+				//echo $info['type'].'***************';
+				switch($info['type']){
+					case 'Date': $separatore="#";break;
+					case 'Numeric': $separatore="";break;
+					default: $separatore="'";break;
+				
+				}
+				$where.=$this->$property->campoDbf."=".$separatore.odbc_access_escape_str($this->$property->getVal()).$separatore;
+				$order.=$this->$property->campoDbf;
+			}
+
+		
+		
+			//$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->codice->campoDbf."='".odbc_access_escape_str($this->codice->getVal())."'");
+			$result=dbFrom($this->_dbName->getVal(), 'SELECT *', $where.$order);
+
+			foreach($result as $row){
+			//print_r($row);
+				foreach($this as $key => $value) {
+					//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
+					//escludo anche la proprietà 'righe' in quanto è una proprietà speciale che va trattata diersamente dalle altre
+					//e cmq non proviene dal database (almeno non direttamente)
+					if($key[0]!='_' && $key!='righe'){
+						$val=$row[$value->campoDbf];
+						//echo $key.'|';
+						$this->$key->setVal($val);
+					}
+				}
+			}
+			//$log->info('Il risultato NON era già stato passato');
+		}else{
+			//$log->info('Il risultato era già stato passato');
+			$passedResult=$this->_params['_result'];
+			foreach($this as $key => $value) {
 				//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
-				if($key[0]!='_'){
-					$val=$code=$row[$value->campoDbf];
+				//escludo anche la proprietà 'righe' in quanto è una proprietà speciale che va trattata diersamente dalle altre
+				//e cmq non proviene dal database (almeno non direttamente)
+				if($key[0]!='_' && $key!='righe'){
+					$val=$this->_params['_result'][$value->campoDbf];
+					//echo $key.'|';
 					$this->$key->setVal($val);
 				}
 			}
 		}
+		
 		if (method_exists(get_class($this), 'getDataFromDbCallBack')){
 			$this->getDataFromDbCallBack();
 		}
@@ -345,8 +408,9 @@ class MyClass extends DefaultClass{
 					}
 				}
 			}
-/**/
-			if(is_array($this->$key)){
+
+			//se invece è una proprietà
+			if(is_array($this->$key) && $key[0]!='_'){
 				$out.='"'.$key.'"'.': [';
 				foreach ($this->$key as $subKey => $subValue){
 					//se si stende chiamo il metodo json del suo oggetto
@@ -361,7 +425,7 @@ class MyClass extends DefaultClass{
 				$out=substr($out, 0, -1);
 				$out.='],';
 			}
-/**/
+
 		}
 		//rimuovo la virgola dall'ultima proprietà dell'oggetto
 		$out=substr($out, 0, -1);
@@ -469,10 +533,17 @@ class Proprietà extends DefaultClass {
 			if($type['name']=='F_NUMBOL' || $type['name']=='F_NUMFAT'){
 				$newVal=str_pad($newVal, $type['len'], " ", STR_PAD_LEFT);  
 			}
-			
+			//ECHO $this->nome;			
 			//se la data ha il formato aaaa/mm/gg la trasformo in mm-gg-aaaa
 			//come richiesto dal database
-			if($type['type']=='Date' && preg_match('/....-.*-.*/',$newVal)){
+/*
+//tempfix start
+			if($this->nome=='data' || $this->nome=='ddt_data' ){
+				$type['type']='Date';
+			}
+//tempfix end
+*/
+			if($type['type']=='Date' && preg_match('/....-..-../',$newVal)){
 				$arr=explode("-", $newVal);
 										//mese   //giorno //anno
 				$newVal=mktime(0, 0, 0, $arr[1], $arr[2], $arr[0]);
@@ -482,7 +553,7 @@ class Proprietà extends DefaultClass {
 			//se la data ha il formato gg/mm/aaaa la trasformo in mm-gg-aaaa
 			//come richiesto dal database
 			if($type['type']=='Date' && preg_match('/.*\/.*\/.*/',$newVal)){
-			ECHO 'TEST';
+
 				$arr=explode("/", $newVal);
 										//mese   //giorno //anno
 				$newVal=mktime(0, 0, 0, $arr[1], $arr[0], $arr[2]);
@@ -535,10 +606,18 @@ class Proprietà extends DefaultClass {
 	}
 	
 	public function getDataType(){
+		global $DataTypeInfo;
 		$parentObj=$this->_parent;
-/*
-		$result=dbFrom($parentObj->_dbName->getVal(), 'SELECT '.$this->campoDbf, "");
+		$tableName=$parentObj->_dbName->getVal();
+		$fieldName=$this->campoDbf;
+		
+		
+		if(!array_key_exists($tableName,$DataTypeInfo)){
+			//$result=dbFrom($tableName, 'SELECT *', "");
+			$result=dbFrom($tableName, 'SELECT TOP 1, *', ""); 
+		}
 
+/*
 		$out=Array();
 		$out['name']=odbc_field_name($result,1);//nome del campo
 		$out['len']=odbc_field_len($result,1);//lunghezza
@@ -546,8 +625,10 @@ class Proprietà extends DefaultClass {
 		$out['num']=odbc_field_num($result,1); //bho - vuoto?
 		$out['scale']=odbc_field_scale($result,1); //bho - vuoto?
 		$out['precision']=odbc_field_precision($result,1); //bho - vuoto?
-		return $out;
-*/
+*/	
+
+		
+		return $DataTypeInfo[$tableName][$fieldName];
 	}
 }
 /*########################################################################################*/
@@ -570,7 +651,7 @@ class Fattura extends MyClass{
 		$this->addProp('tot_peso',		'F_QTATOT');
 
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('INTESTAZIONEFT');
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
@@ -612,42 +693,38 @@ class Ddt  extends MyClass {
 		$this->righe=array();
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('INTESTAZIONEDDT');
-		$this->addProp('_dbName2','');
+		$this->addProp('_dbName2');
 		$this->_dbName2->setVal('RIGHEDDT');
+		
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('numero','data'));
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
-		
+		//print_r($params['_result']);
 		//avvio il recupero dei dati
 		$this->autoExtend();
 	}
 	
-	public function getDataFromDb(){
-		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
-		//recupero l'intestazione del ddt
-		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
-		foreach($result as $row){
-			foreach($this as $key => $value) {
-				//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
-				if($key[0]!='_' && is_object($this->$key)){
-					$val=$row[$value->campoDbf];
-					if($val) {
-						$this->$key->setVal($val);					
-					//}else{
-					//	echo '<BR>missing val: '.$key;
-					}
-				}
-			}
-		}
+	public function getDataFromDbCallBack(){
 		if ($this->_params['_autoExtend']!='intestazione'){
 			//recupero le righe del ddt
 			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
 				foreach($result as $row){
-				array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
-				/*todo fix righe*/
-				//echo 'test';
+					//array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
+					/*todo fix righe*/
+					//echo 'test';
+					$params=array(
+						'ddt_numero'=>$this->numero->getVal(),
+						'ddt_data'=>$this->data->getVal(),
+						'numero'=>$row['F_PROGRE'],
+						'_result'=>$row,
+					);
+					array_push($this->righe, new Riga($params));
+
 			}
 		}
 
@@ -682,8 +759,12 @@ class Riga extends MyClass {
 
 		/* TODO= FIX RIGHE FATTURE*/
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('RIGHEDDT');
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('ddt_numero','ddt_data','numero'));
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
@@ -691,6 +772,7 @@ class Riga extends MyClass {
 		//avvio il recupero dei dati
 		$this->autoExtend();
 	}
+	/*
 	public function getDataFromDb(){
 		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
 		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->ddt_numero->campoDbf."='".odbc_access_escape_str($this->ddt_numero->getVal())."' AND ".$this->ddt_data->campoDbf."=#".odbc_access_escape_str($this->ddt_data->getVal()."# AND ".$this->numero->campoDbf."=".odbc_access_escape_str($this->numero->getVal()).""));
@@ -708,6 +790,7 @@ class Riga extends MyClass {
 			}
 		}
 	}
+	*/
 }
 
 class Articolo extends MyClass {
@@ -720,8 +803,12 @@ class Articolo extends MyClass {
 		$this->addProp('cod_iva',					'F_CODIVA');
 
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANAGRAFICAARTICOLI');
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
@@ -772,8 +859,12 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('_classificazione',			'');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANAGRAFICACLIENTI');
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
@@ -804,15 +895,20 @@ class DestinazioneCliente extends MyClass {
 		$this->addProp('note',						'F_NOTE');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('DESTINAZIONICLIENTI');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice','cod_cliente'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
 		//avvio il recupero dei dati
 		$this->autoExtend();		
 	}
+	/*
 	public function getDataFromDb(){
 		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
 		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->codice->campoDbf."='".odbc_access_escape_str($this->codice->getVal())."' AND ".$this->cod_cliente->campoDbf."='".odbc_access_escape_str($this->cod_cliente->getVal())."'");
@@ -830,6 +926,7 @@ class DestinazioneCliente extends MyClass {
 			}
 		}
 	}
+	*/
 }
 
 class Vettore extends MyClass {
@@ -842,9 +939,13 @@ class Vettore extends MyClass {
 		$this->addProp('note',						'F_TEL');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANAGRAFICAVETTORI');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -862,9 +963,13 @@ class CausalePagamento extends MyClass {
 		$this->addProp('finemese',					'F_FIMESE');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('CAUSALIPAGAMENTO');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -879,9 +984,13 @@ class CausaleIva extends MyClass {
 		$this->addProp('descrizione',				'F_DESIVA');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('CAUSALIIVA');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -896,9 +1005,13 @@ class ListinoPrezzi extends MyClass {
 		$this->addProp('prezzo',					'F_PREZZO');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('LISTINOPREZZI');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -917,9 +1030,13 @@ class Banca extends MyClass {
 		$this->addProp('contocorrente',				'F_CONTOCOR');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANAGRAFICABANCHE');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -936,9 +1053,13 @@ class CausaliMagazzino extends MyClass {
 		$this->addProp('segno',						'F_SEGGIA');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('CAUSALIMAGAZZINO');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -955,7 +1076,11 @@ class CausaliSpedizione extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('CAUSALISPEDIZIONE');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -974,9 +1099,13 @@ class AnnotazioniDdt extends MyClass {
 		$this->addProp('descrizione4',				'F_DESTES5');
 		
 		//configurazione database
-		$this->addProp('_dbName','');
+		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANNOTAZIONIDDT');
-		
+
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('codice'));
+				
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -999,7 +1128,9 @@ class MyList {
 		foreach($result as $id => $row) {
 			$newObj=new Ddt(array('numero'=>$row['F_NUMBOL'],
 			                      'data'=>$row['F_DATBOL'],
-								  '_autoExtend'=>'intestazione'));
+								  '_autoExtend'=>'intestazione',
+								  '_result'=>$row,								  
+								  ));
 			$this->add($newObj);
 		}
 	}
@@ -1031,20 +1162,20 @@ class MyList {
 
 function page_start(){
 	ob_start();
-	global $log, $queryStats, $pageStats, $cache, $cached, $executed, $out;
+	global $log, $queryStats, $pageStats, $cache, $statsQrueyCached, $statsQrueyExecuted, $out;
 	$log = FirePHP::getInstance(true);
 	$queryStats= new execStats('query');
 	$pageStats= new execStats('page');
 	$pageStats->start();
 	$cache=array();
-	$cached=0;
-	$executed=0;
+	$statsQrueyCached=0;
+	$statsQrueyExecuted=0;
 }
 function page_end(){
-	global $log, $queryStats, $pageStats, $cache, $cached, $executed, $out;
+	global $log, $queryStats, $pageStats, $cache, $statsQrueyCached, $statsQrueyExecuted, $out;
 
 	$log->info($queryStats->printStats());
-	$log->info('Queri Eseguite: '.$executed.' | Query Risparmiate (cache): '.$cached);
+	$log->info('Queri Eseguite: '.$statsQrueyExecuted.' | Query Risparmiate (cache): '.$statsQrueyCached);
 
 	$pageStats->stop();
 	$log->info($pageStats->printStats());

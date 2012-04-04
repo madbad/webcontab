@@ -3,7 +3,7 @@ include ('./config.inc.php');
 require_once('./classes.php');
 page_start();
 
-
+/*
 $ddtList=new MyList();
 $ddtList->createFromQuery();
 //$ddtList->sum('numero');
@@ -14,6 +14,7 @@ $ddtList->iterate(
 		echo $obj->cod_destinatario->extend()->ragionesociale->getVal().'<br>';
 	}
 );
+*/
 
 
 
@@ -27,33 +28,13 @@ $params = array("_autoExtend" => -1);
 
 $test=new Ddt($params);
 $test->cod_destinatario->setVal('GRUPP');
-//$test->cod_cliente->extend();
-//echo $test->cod_cliente->extend()->ragionesociale->getVal();
-echo '<pre>';
-print_r($test->cod_destinatario->extend()->ragionesociale->getVal());
-echo '</pre>';
+echo $test->cod_destinatario->extend()->ragionesociale->getVal();
 */
 
-/*
-$mioArticolo= new Articolo(array('codice'=>'ALBOTRANS'));
-//echo $mioArticolo->descrizione->getVal();
-//echo "<pre>".$mioArticolo->descrizionelunga->getVal()."</pre>";
 
-//echo $mioArticolo->cod_iva->extend()->descrizione->getVal();
-$mioArticolo->cod_iva->getDataType();
-$mioArticolo->cod_iva->extend()->descrizione->getDataType();
-*/
+$mioDDT= new Ddt(array('numero'=>'908','data'=>'11-19-2008'));
 
-//$mio= new Ddt(array('numero'=>'908','data'=>'11-19-2008'));
-
-//$mio= new Ddt(array('numero'=>'908','data'=>'19/11/2008'));
-
-//echo $mioArticolo->descrizione->getVal();
-//echo "<pre>".$mioArticolo->descrizionelunga->getVal()."</pre>";
-
-//echo $mioArticolo->cod_iva->extend()->descrizione->getVal();
-//$mio->data->getDataType();
-//header('Content-type: application/json');
-
+header('Content-type: application/json');
+echo $mioDDT->toJson();
 page_end();
 ?>
