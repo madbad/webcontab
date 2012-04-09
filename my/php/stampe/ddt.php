@@ -7,28 +7,11 @@
 ----------------------------------------------------------------------------------------------------------
 */
 
-include('./classes.php');
-/*
-echo "<pre>'".$_GET['numero']."' :: '".$_GET['data']."'";
-echo "<pre>'".$_POST['numero']."' :: '".$_POST['data']."'";
-echo "<pre>'".'     794'."' :: '".'11-03-2008'."'";
-*/
-//printDdt($_POST['numero'], $_POST['data']);
-printDdt($_GET['numero'], $_GET['data']);
-//printDdt('     794','11-03-2008');
-
-function printDdt($numero, $data){
-	//header('Content-type: application/pdf');
-
-	// It will be called downloaded.pdf
-	//header('Content-Disposition: attachment; filename="downloaded.pdf"');
-
-	// The PDF source is in original.pdf
-	//readfile('original.pdf');
 
 
-
-	$ddt=getDDT($numero,$data);
+function printDdt($ddt){
+	global $azienda;
+	//$ddt=new Ddt($numero,$data);
 
 	$style='';
 	$GLOBALS['img_file']='';
@@ -95,49 +78,63 @@ function printDdt($numero, $data){
 	$pdf->AddPage();
 	//logo + intestazione
 	$html ='';
-	$html.= '<img src="./img/logo.gif" width="265" height="100"><br><span style="font-size:40px;font-weight:bold;">DI BRUN G. & G. S.R.L. Unipersonale</span>';
-	$html.= '<br>Via Camagre 38/B - 37063 Isola della Scala (Verona)';
-	$html.= '<br>Telefono 045 6630397 - Fax 045 7302598';
-	$html.= '<br>Capitale Sociale € 41.600,00 i.v.';
-	$html.= '<br>R.E.A. VR-185024';
-	$html.= '<br>Reg.Imprese di Verna, Codice Fiscale e Partita IVA 01588530236';
-	$html.= '<br>BNDOO n.001691/VR';
+	$html.= '<img src="'.$azienda->_logo->getVal().'" width="265" height="100"><br><span style="font-size:40px;font-weight:bold;">'.$azienda->_ragionesocialeestesa->getVal().'</span>';
+	$html.= '<br>'.$azienda->via->getVal().' - '.$azienda->cap->getVal().' '.$azienda->paese->getVal().' ('.$azienda->citta->getVal().')';
+	$html.= '<br>Telefono '.$azienda->telefono->getVal().' - Fax '.$azienda->fax->getVal().'';
+	$html.= '<br>Capitale Sociale '.$azienda->_capitalesociale->getVal().' i.v.';
+	$html.= '<br>R.E.A. '.$azienda->_rea->getVal();
+	$html.= '<br>Reg.Imprese '.$azienda->_registroimprese->getVal();
+	$html.= '<br>Codice Fiscale '.$azienda->cod_fiscale->getVal();
+	$html.= '<br>Partita IVA '.$azienda->p_iva->getVal();	
+	$html.= '<br>BNDOO n.'.$azienda->_bndoo->getVal();
+	$html.= '<br>PEC Mail: '.$azienda->_emailpec->getVal();
+
 	$pdf->writeHTMLCell($w=0, $h=0, $x='15', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 	$mod=14;
-	//bordo destinazione
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(110, 30+$mod, 80, 24, 5.0, '1010', 'DF', $style, $def_bianco);
 
 
+	//destinazione se diversa dal destinatario
+	if($ddt->cod_destinazione->getVal()!=''){
+		//bordo destinazione
+		$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+		$pdf->RoundedRect(110, 30+$mod, 80, 24, 5.0, '1010', 'DF', $style, $def_bianco);
+	
+		$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def_size-5);	
+		$html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>Z<BR>I<BR>O<BR>N<BR>E';
+		$pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=44+4, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='CENTER', $autopadding=true);
+	
+		$destinazione=$ddt->cod_destinazione->extend();
+		//dati intestazione ddt
+		$pdf->SetFont($def_font, 'b', $def_size+1.4);
+		$pdf->Text(114, 37+$mod, $destinazione->ragionesociale->getVal());
+		//$pdf->Text(114, 41+$mod, 'Unipersonale');
+		$pdf->SetFont($def_font, '', $def_size);
+		$pdf->Text(114, 45+$mod, $destinazione->via->getVal());
+		$pdf->Text(114, 49+$mod, $destinazione->cap->getVal().' '.$destinazione->paese->getVal(). ' ('.$destinazione->citta->getVal().')');
+	}	
+	
 
 	//destinatario
+	$destinatario=$ddt->cod_destinatario->extend();	
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(200,200,200));
-	$pdf->SetFont($def_font, 'b', $def_size+3);
-	$pdf->Text(114, 11+$mod, $ddt['cliente']['ragionesociale']);
+	$pdf->SetFont($def_font, 'b', $def_size+1.4);
+	$pdf->Text(114, 11+$mod, $destinatario->ragionesociale->getVal());
 	//$pdf->Text(114, 15+$mod, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
 	$pdf->SetFont($def_font, '', $def_size);
-	$pdf->Text(114, 20+$mod, $ddt['cliente']['via']);
-	$pdf->Text(114, 23+$mod, $ddt['cliente']['cap'].' '.$ddt['cliente']['paese']. ' ('.$ddt['cliente']['provincia'].')');
+
+	
+	$pdf->Text(114, 20+$mod, $destinatario->via->getVal());
+	$pdf->Text(114, 23+$mod, $destinatario->cap->getVal().' '.$destinatario->paese->getVal(). ' ('.$destinatario->citta->getVal().')');
 	$pdf->SetFont($def_font, 'b', $def_size+1);
-	$pdf->Text(114, 27+$mod, 'Partitita IVA: '.$ddt['cliente']['partitaiva']);
+	$pdf->Text(114, 27+$mod, 'Partitita IVA: '.$destinatario->p_iva->getVal());
 	$pdf->SetFont($def_font, '', $def_size);
-	$pdf->Text(114, 31+$mod, 'Codice Fiscale: '.$ddt['cliente']['codicefiscale']);
+	$pdf->Text(114, 31+$mod, 'Codice Fiscale: '.$destinatario->cod_fiscale->getVal());
 
 	$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def_size-5);
 	$html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>T<BR>A<BR>R<BR>I<BR>O';
 	$pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=20+4, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='CENTER', $autopadding=true);
-	$html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>Z<BR>I<BR>O<BR>N<BR>E';
-	$pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=44+4, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='CENTER', $autopadding=true);
 
-
-	//dati intestazione ddt
-	$pdf->SetFont($def_font, 'b', $def_size+3);
-	$pdf->Text(114, 37+$mod, $ddt['cliente']['destinazione']['ragionesociale']);
-	//$pdf->Text(114, 41+$mod, 'Unipersonale');
-	$pdf->SetFont($def_font, '', $def_size);
-	$pdf->Text(114, 45+$mod, $ddt['cliente']['destinazione']['via']);
-	$pdf->Text(114, 49+$mod, $ddt['cliente']['destinazione']['cap'].' '.$ddt['cliente']['destinazione']['paese']. ' ('.$ddt['cliente']['destinazione']['provincia'].')');
 	//**********************************************************
 	//**********************************************************
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
@@ -154,12 +151,12 @@ function printDdt($numero, $data){
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(98, 71, 'Numero Doc.');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(98, 74, $ddt['numero']);
+	$pdf->Text(98, 74, $ddt->numero->getVal());
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(125, 71, 'Data Doc.');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(125, 74, $ddt['data']);
+	$pdf->Text(125, 74, $ddt->data->getVal());
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(177, 71, 'Pagina');
@@ -173,17 +170,18 @@ function printDdt($numero, $data){
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(18, 83, 'Causale del trasporto');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(18, 86, $ddt['causale']['descrizione']);
+	$pdf->Text(18, 86, $ddt->cod_causale->getVal());/*todo ritorna solo "V" invece che vendita*/
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(58, 83, 'Aspetto dei beni');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(58, 86, 'Visibile');
+	$pdf->Text(58, 86, 'Visibile');/*todo*/
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(98, 83, 'Trasporto a mezzo');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(98, 86, $ddt['spedizione']['descrizione']);
+	//imposto tutto a caratteri piccoli con la prima lettera in caratteri grandi nb: di suo era tutto grande
+	$pdf->Text(98, 86, ucfirst(strtolower($ddt->cod_mezzo->extend()->descrizione->getVal())));
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(125, 83, 'Inizio trasporto');
@@ -211,18 +209,18 @@ function printDdt($numero, $data){
 	$html.= MyOwnRow('','','','','','','','','' );
 
 	//$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
-	foreach ($ddt['righe'] as $key => $value) {
-		$myDDT=$ddt['righe'][$key];
+	foreach ($ddt->righe as $key => $value) {
+		$riga=$ddt->righe[$key];
 		//echo "Key: $key; Value: $value<br />\n";
 		// number_format($number, 2, ',', ' ');
-		$html.= MyOwnRow(	$myDDT['prodotto']['codice'],
-							$myDDT['prodotto']['descrizione'],
-							number_format ($myDDT['colli'],2),
-							'€ '.number_format ($myDDT['prezzo'],3),
-							$myDDT['unitamisura'],
-							number_format ($myDDT['quantita'],1), //peso lordo
-							number_format ($myDDT['quantita']-$myDDT['pesonetto'],1), //todoTara
-							number_format ($myDDT['pesonetto'],1),
+		$html.= MyOwnRow(	$riga->cod_articolo->getVal(),
+							$riga->descrizione->getVal(),
+							($riga->colli->getVal()*1>0 ? number_format ($riga->colli->getVal(),2) : ''),
+							($riga->prezzo->getVal()*1>0 ? '€ '.number_format ($riga->prezzo->getVal(),3): ''),
+							$riga->unita_misura->getVal(),
+							($riga->peso_lordo->getVal()*1>0 ? number_format ($riga->peso_lordo->getVal(),1): ''), //peso lordo
+							($riga->peso_lordo->getVal()*1>0 ? number_format ($riga->peso_lordo->getVal()-$riga->peso_netto->getVal(),1): ''), //todoTara
+							($riga->peso_lordo->getVal()*1>0 ? number_format ($riga->peso_netto->getVal(),1): ''),
 							'' ); //lotto se presente todo
 	}
 
@@ -241,54 +239,66 @@ function printDdt($numero, $data){
 	$html = '<table style="border:0px solid #000000;margin:0px;padding:0px;text-align:left;"><tr>';
 	$html.= '<td width="70px;"> </td><td  width="200px;"> </td><td width="40px;">Colli</td><td width="100px;" colspan="2">Imponibile</td><td width="80px;">Peso Lordo</td><td  width="50px;">Tara</td><td  width="80px;">Peso netto</td>';
 
-	$html.= MyOwnRow('<b>Totali</b>','',$ddt['totali']['colli'],'€ todo','',$ddt['totali']['pesolordo'],'1.456',$ddt['totali']['pesonetto'],'' );
+	$html.= MyOwnRow('<b>Totali</b>','',$ddt->tot_colli->getVal(),'€ todo','',$ddt->tot_peso->getVal(),'todo','todo netto','' );
 
 	$html.= '</tr></table>';
 	$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=216, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 
 	//**********************************************************
 	//**********************************************************
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(15, 226, 175, 25, 5.0, '1010', 'DF', $style, $def_bianco);
-	$pdf->SetFont($def_font, '', $def_size-2);
-	$html = '<table><tr><td colspan="4" style="text-align:center;"><I><B>DATI SCHEDA DI TRASPORTO</B> (D.Lgs. 286/2005)</I></td></tr>';
-	$html.= '<tr>';
-	$html.= '<td><table><tr><td><b>Committente</b></td></tr>';
-	$html.= '<tr><td>La Favorita di Brun G. & G. Srl Unip.</td></tr>';
-	$html.= '<tr><td>Via San rocco, 14</td></tr>';
-	$html.= '<tr><td>37063 Pellegrina di Isola della Scala VR</td></tr>';
-	$html.= '<tr><td>P.Iva: 01588530236</td></tr>';
-	$html.= '<tr><td>Cod.Fiscale: 01588530236</td></tr>';
-	$html.= '</table></td>';
+	//se la spedizione è con vettore stampo i dati della scheda di trasporto
+	if ($ddt->cod_mezzo->getVal()=='01'){
+		$committente=$caricatore=$proprietario=$azienda;
+		
+		$vettore=$ddt->cod_destinatario->extend()->cod_vettore->extend();
+		//si presenta il caso in cui la spedizione è stata fatta con vettore ma non sappiamo quale
+		//perchè non ce ne è uno predefinito nel codice cliente quindi gliene assegnamo uno vuoto
+		if($vettore==''){
+			$vettore=new Vettore(array('_autoExtend'=>-1));
+		}
+		
+		$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+		$pdf->RoundedRect(15, 226, 175, 25, 5.0, '1010', 'DF', $style, $def_bianco);
+		$pdf->SetFont($def_font, '', $def_size-2);		
+			
+		$html = '<table><tr><td colspan="4" style="text-align:center;"><I><B>DATI SCHEDA DI TRASPORTO</B> (D.Lgs. 286/2005)</I></td></tr>';
+		$html.= '<tr>';
+		$html.= '<td><table><tr><td><b>Committente</b></td></tr>';
+		$html.= '<tr><td>'.$committente->ragionesociale->getVal().'</td></tr>';
+		$html.= '<tr><td>'.$committente->via->getVal().'</td></tr>';
+		$html.= '<tr><td>'.$committente->cap->getVal().' '.$committente->paese->getVal(). ' ('.$committente->citta->getVal().')</td></tr>';
+		$html.= '<tr><td>P.Iva: '.$committente->p_iva->getVal().'</td></tr>';
+		$html.= '<tr><td>Cod.Fiscale: '.$committente->cod_fiscale->getVal().'</td></tr>';
+		$html.= '</table></td>';
 
-	$html.= '<td><table><tr><td><b>Caricatore</b></td></tr>';
-	$html.= '<tr><td>La Favorita di Brun G. & G. Srl Unip.</td></tr>';
-	$html.= '<tr><td>Via San rocco, 14</td></tr>';
-	$html.= '<tr><td>37063 Pellegrina di Isola della Scala VR</td></tr>';
-	$html.= '<tr><td>P.Iva: 01588530236</td></tr>';
-	$html.= '<tr><td>Cod.Fiscale: 01588530236</td></tr>';
-	$html.= '</table></td>';
+		$html.= '<td><table><tr><td><b>Caricatore</b></td></tr>';
+		$html.= '<tr><td>'.$caricatore->ragionesociale->getVal().'</td></tr>';
+		$html.= '<tr><td>'.$caricatore->via->getVal().'</td></tr>';
+		$html.= '<tr><td>'.$caricatore->cap->getVal().' '.$caricatore->paese->getVal(). ' ('.$caricatore->citta->getVal().')</td></tr>';
+		$html.= '<tr><td>P.Iva: '.$caricatore->p_iva->getVal().'</td></tr>';
+		$html.= '<tr><td>Cod.Fiscale: '.$caricatore->cod_fiscale->getVal().'</td></tr>';
+		$html.= '</table></td>';
 
-	$html.= '<td><table><tr><td><b>Proprietario</b></td></tr>';
-	$html.= '<tr><td>La Favorita di Brun G. & G. Srl Unip.</td></tr>';
-	$html.= '<tr><td>Via San rocco, 14</td></tr>';
-	$html.= '<tr><td>37063 Pellegrina di Isola della Scala VR</td></tr>';
-	$html.= '<tr><td>P.Iva: 01588530236</td></tr>';
-	$html.= '<tr><td>Cod.Fiscale: 01588530236</td></tr>';
-	$html.= '</table></td>';
+		$html.= '<td><table><tr><td><b>Proprietario</b></td></tr>';
+		$html.= '<tr><td>'.$proprietario->ragionesociale->getVal().'</td></tr>';
+		$html.= '<tr><td>'.$proprietario->via->getVal().'</td></tr>';
+		$html.= '<tr><td>'.$proprietario->cap->getVal().' '.$proprietario->paese->getVal(). ' ('.$proprietario->citta->getVal().')</td></tr>';
+		$html.= '<tr><td>P.Iva: '.$proprietario->p_iva->getVal().'</td></tr>';
+		$html.= '<tr><td>Cod.Fiscale: '.$proprietario->cod_fiscale->getVal().'</td></tr>';
+		$html.= '</table></td>';
 
-	$html.= '<td><table><tr><td><b>Vettore</b></td></tr>';
-	$html.= '<tr><td>'.$ddt['vettore']['ragionesociale'].'</td></tr>';
-	$html.= '<tr><td>'.$ddt['vettore']['via'].'</td></tr>';
-	$html.= '<tr><td>'.$ddt['vettore']['paese'].'</td></tr>';
-	$html.= '<tr><td>P.Iva: -</td></tr>';
-	$html.= '<tr><td>Cod.Fiscale: -</td></tr>';
-	$html.= '<tr><td>Albo trasportatori: -</td></tr>';
-	$html.= '</table></td>';
+		$html.= '<td><table><tr><td><b>Vettore</b></td></tr>';
+		$html.= '<tr><td>'.$vettore->ragionesociale->getVal().'</td></tr>';
+		$html.= '<tr><td>'.$vettore->via->getVal().'</td></tr>';
+		$html.= '<tr><td>'.$vettore->paese->getVal().'</td></tr>';
+		$html.= '<tr><td></td></tr>';//$html.= '<tr><td>P.Iva: '.$vettore->p_iva->getVal().'</td></tr>';
+		$html.= '<tr><td></td></tr>';//$html.= '<tr><td>Cod.Fiscale: '.$vettore->cod_fiscale->getVal().'</td></tr>';
+		$html.= '<tr><td>Albo trasportatori: -</td></tr>';
+		$html.= '</table></td>';
 
-	$html.= '</tr></table>';
-	$pdf->writeHTMLCell($w=175, $h=30, $x=15, $y=226, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
-
+		$html.= '</tr></table>';
+		$pdf->writeHTMLCell($w=175, $h=30, $x=15, $y=226, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
+	}
 	//**********************************************************
 	//**********************************************************
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
@@ -323,7 +333,7 @@ function printDdt($numero, $data){
 	$pdf->SetFont($def_font, '', $def_size-4);
 	$pdf->Text(15, 278, 'Annotazioni');
 	$pdf->SetFont($def_font, '', $def_size-2);
-	$html= '- Contributo CONAI assolto ove dovuto<br>- Peso da verificare all\'arrivo.<br>- '.$ddt['note'];
+	$html= '- Contributo CONAI assolto ove dovuto<br>- Peso da verificare all\'arrivo.<br>- '.$ddt->note->getVal().$ddt->note1->getVal().$ddt->note2->getVal();
 	$pdf->writeHTMLCell($w=120, $h=10, $x=15, $y=280, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 	//**********************************************************
 	//**********************************************************
@@ -339,6 +349,6 @@ function printDdt($numero, $data){
 	$pdf->Text(140, 278, 'Firma detinatario');
 
 	//inviamo il file pdf
-	$pdf->Output('DDT_'.$numero.'__'.$data.'.pdf', 'I');
+	$pdf->Output('DDT_'.$ddt->numero->getVal().'__'.$ddt->data->getVal().'.pdf', 'I');
 }
 ?>

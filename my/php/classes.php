@@ -1,7 +1,9 @@
 <?php
 require_once('FirePHPCore/FirePHP.class.php');
-include ('./config.inc.php');
+include('./stampe/ddt.php');
+//include ('./config.inc.php');
 $DataTypeInfo=array();
+page_start();
 /*
 $log->log('Plain MessagePHP');     // or FB::
 $log->info('Info MessagePHP');     // or FB::
@@ -729,6 +731,9 @@ class Ddt  extends MyClass {
 		}
 
 	}
+	public function doPrint(){
+		printDdt($this);
+	}
 }
 
 class Riga extends MyClass {
@@ -748,7 +753,7 @@ class Riga extends MyClass {
 //		$this->addProp('cod_imballo',				'F_');
 //		$this->addProp('peso_lordo',				'F_');
 		$this->addProp('peso_netto',				'F_PESNET');
-		$this->addProp('peso_netto',				'F_QTA');
+		$this->addProp('peso_lordo',				'F_QTA');
 //		$this->addProp('tara',						'F_');
 //		$this->addProp('origine',					'F_');
 //		$this->addProp('categoria',					'F_');
@@ -874,10 +879,12 @@ class ClienteFornitore extends MyClass {
 	}
 
 	public function getDataFromDbCallBack(){
-		//imposto il tipo cliente ricavandolo dal mio file db
-		$dbClienti=getDbClienti();
-		$codCliente=$this->codice->getVal();
-		$this->_classificazione->setVal($dbClienti["$codCliente"]['tipo']);
+		if($this->_params['_autoExtend']!=-1){
+			//imposto il tipo cliente ricavandolo dal mio file db
+			$dbClienti=getDbClienti();
+			$codCliente=$this->codice->getVal();
+			$this->_classificazione->setVal($dbClienti["$codCliente"]['tipo']);
+		}
 	}
 	
 	
