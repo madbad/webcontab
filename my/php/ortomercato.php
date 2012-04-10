@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Ortomercato</title>
+		<meta charset="utf-8">
+		<style>
+			td{
+				border:1px solid #000000;
+			}
+			table tr:nth-child(odd) {
+				background-color: #d5d5d5;
+			}
+			table tr:nth-child(even) {
+				background-color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+<?php
+//http://localhost/webContab/my/php/ortomercato.php?dal=01/01/2010&al=29/02/2010
+
+require_once('./config.inc.php');
+
+function fixDate($date){
+	//se la data ha il formato gg/mm/aaaa la trasformo in mm-gg-aaaa
+	//come richiesto dal database
+	if(preg_match('/.*\/.*\/.*/',$date)){
+
+		$arr=explode("/", $date);
+								//mese   //giorno //anno
+		$date=mktime(0, 0, 0, $arr[1], $arr[0], $arr[2]);
+		$date=date ( 'm-d-Y' , $date);
+	}
+	return $date;
+}
+
+
+$startDate=fixDate($_GET['dal']);
+$endDate=fixDate($_GET['al']);
+
+$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".$startDate."# AND ".'F_DATBOL'." < #".$endDate."# AND F_CODCLI='SEVEN'  ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+
+$sum=0;
+echo '<table>';
+foreach($result as $id => $row) {
+	echo '<tr>';
+	echo '<td>'.$row['F_DATBOL'].'</td>';
+	echo '<td>'.$row['F_NUMBOL'].'</td>';
+	echo '<td>'.$row['F_PROGRE'].'</td>';
+	echo '<td>'.$row['F_DESPRO'].'</td>';
+	echo '<td>'.$row['F_PESNET'].'</td>';
+	echo '</tr>';
+	$sum+=$row['F_PESNET'];
+}
+echo '</table>';
+echo $sum;
+page_end();
+?>
+</body>

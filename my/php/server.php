@@ -1,7 +1,8 @@
 <?php
 include ('./config.inc.php');
+//print_r($_GET);
 
-$action=$_GET['do'];
+@ $action = $_GET['do'] ? $_GET['do'] : '';
 switch ($action) {
     case 'DdtPrint':
 		$params=array(
@@ -11,12 +12,12 @@ switch ($action) {
 		$myDdt= new Ddt($params);
 		$myDdt->doPrint();
         break;
-    case 1:
-        echo "i equals 1";
-        break;
-    case 2:
-        echo "i equals 2";
-        break;
+	case 'ortomercato':
+		include ('./stampe/ortomercato.php');
+		break;
+	default:
+		echo 'Nothing to do for "'.$action.'"...';
+		break;
 }
 page_end();
 ?>
