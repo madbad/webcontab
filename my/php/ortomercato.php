@@ -38,7 +38,7 @@ function fixDate($date){
 $startDate=fixDate($_GET['dal']);
 $endDate=fixDate($_GET['al']);
 
-$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".$startDate."# AND ".'F_DATBOL'." < #".$endDate."# AND F_CODCLI='SEVEN'  ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".$startDate."# AND ".'F_DATBOL'." <= #".$endDate."# AND F_CODCLI='SEVEN'  ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 
 $sum=0;
 echo '<table>';
@@ -47,8 +47,9 @@ foreach($result as $id => $row) {
 	echo '<td>'.$row['F_DATBOL'].'</td>';
 	echo '<td>'.$row['F_NUMBOL'].'</td>';
 	echo '<td>'.$row['F_PROGRE'].'</td>';
+	echo '<td>'.$row['F_CODPRO'].'</td>';
 	echo '<td>'.$row['F_DESPRO'].'</td>';
-	echo '<td>'.$row['F_PESNET'].'</td>';
+	echo '<td>'.($row['F_PESNET']*1).'</td>';
 	echo '</tr>';
 	$sum+=$row['F_PESNET'];
 }
