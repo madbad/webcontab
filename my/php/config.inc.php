@@ -30,7 +30,7 @@ $azienda->addProp('_capitalesociale');
 $azienda->addProp('_registroimprese');
 $azienda->addProp('_logo');
 $azienda->addProp('_ragionesocialeestesa');
-
+$azienda->addProp('_titolare');
 
 $azienda->_emailpec->setVal				('lafavorita_srl@pec.it');
 $azienda->_bndoo->setVal				('001691/VR');
@@ -39,4 +39,5 @@ $azienda->_capitalesociale->setVal		('€ 41.600,00');
 $azienda->_registroimprese->setVal		('VR 01588530236');
 $azienda->_logo->setVal					('./img/logo.gif');
 $azienda->_ragionesocialeestesa->setVal	('DI BRUN G. & G. S.R.L. Unipersonale');
+$azienda->_titolare->setVal				('Brun Gionni');
 ?>

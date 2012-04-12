@@ -7,10 +7,9 @@
 ----------------------------------------------------------------------------------------------------------
 */
 
-
-
 function printDdt($ddt){
 	global $azienda;
+	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
 	//$ddt=new Ddt($numero,$data);
 
 	$style='';
@@ -156,7 +155,7 @@ function printDdt($ddt){
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(125, 71, 'Data Doc.');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(125, 74, $ddt->data->getVal());
+	$pdf->Text(125, 74, $ddt->data->getFormatted());
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(177, 71, 'Pagina');
@@ -170,7 +169,8 @@ function printDdt($ddt){
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(18, 83, 'Causale del trasporto');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(18, 86, $ddt->cod_causale->getVal());/*todo ritorna solo "V" invece che vendita*/
+	$pdf->Text(18, 86, $ddt->cod_causale->getVal());/*todo ritorna solo "V" invece che vendita e/ o c/commissione*/
+													/*uppure "D" invece che "redo da c/deposito" "c/riparazone""omaggio" */
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(58, 83, 'Aspetto dei beni');
@@ -186,13 +186,25 @@ function printDdt($ddt){
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(125, 83, 'Inizio trasporto');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(125, 86, 'il 20/08/2010 alle 11:47');//todo: rendere dinamico
+	$pdf->Text(125, 86, 'il '.date('d/m/Y',$printTime).' alle '.date('H:i',$printTime));//todo: rendere dinamico
 
 	//**********************************************************
 	//**********************************************************
 
 	function MyOwnRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
-		$out= "</tr><tr  style='text-align:right;'><td width='70px;'>$a1</td><td  width='200px;'>$a2</td><td width='40px;'>$a3</td><td width='60px;'>$a4</td><td width='40px;'>$a5</td><td width='80px;'>$a6</td><td  width='50px;'>$a7</td><td  width='80px;'>$a8</td>";
+		$mystyle='style="text-align:left;padding:20px;" padding="2" align="left"';
+		$mystyle2='style="text-align:right;padding:20px;" padding="2"  align="right"';
+		$mystyle3='style="text-align:center;padding:20px;" padding="2"  align="center"';		
+		//$mystyle=$mystyle2='';
+		$out= '</tr><tr>';
+		$out.= "<td width='62px;' $mystyle>$a1</td>"; //codice
+		$out.= "<td width='205px;' $mystyle>$a2</td>"; //descrizione
+		$out.= "<td width='40px;' $mystyle2>$a3 &nbsp;</td>"; //colli
+		$out.= "<td width='51px;' $mystyle2>$a4  </td>"; //prezzo
+		$out.= "<td width='47px;' $mystyle3>$a5</td>"; //um
+		$out.= "<td width='82px;' $mystyle2>$a6 &nbsp;</td>"; //lordo
+		$out.= "<td width='45px;' $mystyle2>$a7 &nbsp;&nbsp;</td>"; //tara
+		$out.= "<td width='80px;' $mystyle2>$a8</td>"; //netto
 		if ($a9!=''){
 			$out.="</tr><tr><td></td><td colspan='3'><span style='font-size:4px;'>         Lotto: $a9</span></td><td></td><td></td><td></td><td></td>";
 		}
@@ -202,13 +214,12 @@ function printDdt($ddt){
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 	$pdf->RoundedRect(15, 95, 175, 118, 5.0, '0000', 'DF', $style, $def_bianco);
 	$pdf->SetFont($def_font, '', $def_size-3);
-	$html = '<table style="border:0px solid #000000;margin:0px;padding:0px;text-align:left;"><tr>';
+	$html = '<table style="border:0px solid #000000;margin:0px;padding:5px;"><tr>';
 	$html.= '<td width="70px;">Cod.Articolo</td><td  width="200px;">Descrizione dei Beni (natura e qualita)</td><td width="40px;">Colli</td><td width="60px;">Prezzo</td><td width="40px;">U.M.</td><td width="80px;">Peso Lordo</td><td  width="50px;">Tara</td><td  width="80px;">Peso netto</td>';
 
 	$pdf->SetFont($def_font, '', $def_size);
 	$html.= MyOwnRow('','','','','','','','','' );
 
-	//$html.= MyOwnRow('01G','Indivia Riccia ITALIA','10','€ 1,20','Kg.','10.548','1.456','10.999','FT186/P-13/10/2010-B/15A' );
 	foreach ($ddt->righe as $key => $value) {
 		$riga=$ddt->righe[$key];
 		//echo "Key: $key; Value: $value<br />\n";
@@ -224,11 +235,10 @@ function printDdt($ddt){
 							'' ); //lotto se presente todo
 	}
 
-
-
 	$html.= '</tr></table>';
-
-	$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=95.5, $html, $border=1, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
+//	$pdf->setCellPaddings(1, 1, 1, 1);
+//	$pdf->SetCellPaddings 	(1,1,1,1);
+	$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=95.5, $html, $border=1, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 
 	//**********************************************************
 	//**********************************************************
@@ -244,6 +254,23 @@ function printDdt($ddt){
 	$html.= '</tr></table>';
 	$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=216, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 
+	
+	// righe verticali nelle righe del ddt
+	$style3 = array('width' => 0.2, 'cap' => 'butt', 'join' => 'round', 'dash' => '0', 'color' => $def_verde);
+	$dist=33;
+	$pdf->Line($dist, 100, $dist, 211, $style3);
+	$dist+=58;
+	$pdf->Line($dist, 100, $dist, 211, $style3);
+	$dist+=11;
+	$pdf->Line($dist, 100, $dist, 211, $style3);
+	$dist+=17;
+	$pdf->Line($dist, 100, $dist, 211, $style3);
+	$dist+=11;
+	$pdf->Line($dist, 100, $dist, 211, $style3);
+	$dist+=23;
+	$pdf->Line($dist, 100, $dist, 211, $style3);
+	$dist+=13;
+	$pdf->Line($dist, 100, $dist, 211, $style3);	
 	//**********************************************************
 	//**********************************************************
 	//se la spedizione è con vettore stampo i dati della scheda di trasporto
@@ -298,23 +325,26 @@ function printDdt($ddt){
 
 		$html.= '</tr></table>';
 		$pdf->writeHTMLCell($w=175, $h=30, $x=15, $y=226, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
+
+		//**********************************************************
+		//**********************************************************
+		$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+		$pdf->RoundedRect(15, 252, 175, 10, 5.0, '1010', 'DF', $style, $def_bianco);
+
+		$pdf->SetFont($def_font, '', $def_size-3);
+		$html= '<table>';
+		$html.= '<tr><td>Luogo di carico</td><td>Luogo di scarico</td><td>Luogo e data di comilazione</td><td>Dati compilatore e firma</td></tr>';
+		$html.= '</table>';
+		$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=252, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
+		$pdf->SetFont($def_font, '', $def_size);
+		$html= '<table>';
+		$html.= '<tr><td>'.$committente->paese->getVal(). ' ('.$committente->citta->getVal().') </td>';
+		$html.= '<td>'.$destinazione->paese->getVal(). ' ('.$destinazione->citta->getVal().') </td>';
+		$html.= '<td>'.$committente->paese->getVal(). ' ('.$committente->citta->getVal().') '.date('d/m/Y',$printTime).'</td>';
+		$html.= '<td>'.$azienda->_titolare->getVal().'</td></tr>';
+		$html.= '</table>';
+		$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=256, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 	}
-	//**********************************************************
-	//**********************************************************
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(15, 252, 175, 10, 5.0, '1010', 'DF', $style, $def_bianco);
-
-	$pdf->SetFont($def_font, '', $def_size-3);
-	$html= '<table>';
-	$html.= '<tr><td>Luogo di carico</td><td>Luogo di scarico</td><td>Luogo e data di comilazione</td><td>Dati compilatore e firma</td></tr>';
-	$html.= '</table>';
-	$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=252, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
-	$pdf->SetFont($def_font, '', $def_size+2);
-	$html= '<table>';
-	$html.= '<tr><td>Isola della Scala(VR) </td><td>Milano (MI)</td><td>Isola della scala 31/08/10</td><td>Brun Gionni</td></tr>';
-	$html.= '</table>';
-	$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=256, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
-
 	//**********************************************************
 	//**********************************************************
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));

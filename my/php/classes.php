@@ -569,6 +569,22 @@ class Proprietà extends DefaultClass {
 	public function getVal(){
 		return $this->valore;
 	}
+	public function getFormatted(){
+		$type=$this->getDataType();
+		switch($type['type']){
+			case 'Date':
+				if (preg_match('/..-..-..../',$this->valore)){
+					$arr=explode("-", $this->valore);
+											//mese   //giorno //anno
+					$newVal=mktime(0, 0, 0, $arr[0], $arr[1], $arr[2]);
+					$newVal=date ( 'd/m/Y' , $newVal);
+					$out=$newVal;
+				}
+				break;
+		}
+		return $out;
+	}
+
 	public function extend(){
 		//add some exception to prevent loop coddestinazion>cliente>codicedestinazione
 		if(get_class($this->_parent)=='DestinazioneCliente' && $this->nome=='cod_cliente'){return false;}		
@@ -648,7 +664,7 @@ class Fattura extends MyClass{
 		$this->addProp('valuta',		'F_CODVAL');
 		$this->addProp('cod_iva',		'F_ESECLI');//codice iva esenzione cliente
 		$this->addProp('peso_netto',	'F_PNETTO');
-		$this->addProp('peso_lordo',	'F_PLORDO');
+		$this->addProp('peso_lordo',	'F_PLORDO'); 
 		$this->addProp('tot_colli',		'F_TOTCOLLI');
 		$this->addProp('tot_peso',		'F_QTATOT');
 
@@ -676,8 +692,8 @@ class Ddt  extends MyClass {
 //		$this->addProp('ora_inizio_trasporto',		'F_');
 //		$this->addProp('aspetto_beni',				'F_');
 //		$this->addProp('annotazioni',				'F_');
-		$this->addProp('peso_lordo',				'F_PLORDO');
-		$this->addProp('peso_netto',				'F_PNETTO');
+		$this->addProp('peso_lordo',				'F_PLORDO'); //si aggiorna solo quando si stampa? sembra che non coincida con la somma dei pesi netti delle righe (dopo i riscontri)
+		$this->addProp('peso_netto',				'F_PNETTO'); //si aggiorna solo quando si stampa? sembra che non coincida con la somma dei pesi netti delle righe (dopo i riscontri)
 		$this->addProp('tot_colli',					'F_TOTCOLLI');
 		$this->addProp('tot_peso',					'F_QTATOT');
 		$this->addProp('cod_pagamento',				'F_CONPAG');
@@ -1168,7 +1184,10 @@ class MyList {
 }
 
 function page_start(){
-	ob_start();
+	//zipped content
+	ob_start('ob_gzhandler');
+	//normal content
+	//ob_start();
 	global $log, $queryStats, $pageStats, $cache, $statsQrueyCached, $statsQrueyExecuted, $out;
 	$log = FirePHP::getInstance(true);
 	$queryStats= new execStats('query');
