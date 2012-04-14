@@ -1,8 +1,7 @@
 <?php
 require_once('FirePHPCore/FirePHP.class.php');
 include('./stampe/ddt.php');
-//include ('./config.inc.php');
-$DataTypeInfo=array();
+$DataTypeInfo=array();//contiene i paramatri del database per ogni campo del database stesso
 page_start();
 /*
 $log->log('Plain MessagePHP');     // or FB::
@@ -308,10 +307,6 @@ class MyClass extends DefaultClass{
 	}
 	public function getDataFromDb(){
 		global $log;
-		/*
-echo print_r($this->_params);
-echo $this->_result;
-*/
 		if (!isset($this->_params['_result'])){
 			//imposto la clausola where a seconda delle chiavi di ricerca del DB per la classe corrente
 			//imposto la clausola order a seconda delle chiavi di ricerca del DB per la classe corrente			
@@ -324,14 +319,6 @@ echo $this->_result;
 					$where.=' AND ';
 					$order.=',';
 				}
-				//todo migliorare il controllo di tipo dati
-				/*
-				if($this->$property->campoDbf=='F_DATBOL'){
-					$separatore="#";
-				}else{
-					$separatore='\'';			
-				}
-				*/
 				$info=$this->$property->getDataType();
 				//echo $info['type'].'***************';
 				switch($info['type']){
@@ -343,28 +330,21 @@ echo $this->_result;
 				$where.=$this->$property->campoDbf."=".$separatore.odbc_access_escape_str($this->$property->getVal()).$separatore;
 				$order.=$this->$property->campoDbf;
 			}
-
-		
-		
-			//$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->codice->campoDbf."='".odbc_access_escape_str($this->codice->getVal())."'");
+			//eseguo la query
 			$result=dbFrom($this->_dbName->getVal(), 'SELECT *', $where.$order);
-
+			//
 			foreach($result as $row){
-			//print_r($row);
 				foreach($this as $key => $value) {
 					//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
 					//escludo anche la proprietà 'righe' in quanto è una proprietà speciale che va trattata diersamente dalle altre
 					//e cmq non proviene dal database (almeno non direttamente)
 					if($key[0]!='_' && $key!='righe'){
 						$val=$row[$value->campoDbf];
-						//echo $key.'|';
 						$this->$key->setVal($val);
 					}
 				}
 			}
-			//$log->info('Il risultato NON era già stato passato');
 		}else{
-			//$log->info('Il risultato era già stato passato');
 			$passedResult=$this->_params['_result'];
 			foreach($this as $key => $value) {
 				//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
@@ -372,7 +352,6 @@ echo $this->_result;
 				//e cmq non proviene dal database (almeno non direttamente)
 				if($key[0]!='_' && $key!='righe'){
 					$val=$this->_params['_result'][$value->campoDbf];
-					//echo $key.'|';
 					$this->$key->setVal($val);
 				}
 			}
@@ -535,16 +514,9 @@ class Proprietà extends DefaultClass {
 			if($type['name']=='F_NUMBOL' || $type['name']=='F_NUMFAT'){
 				$newVal=str_pad($newVal, $type['len'], " ", STR_PAD_LEFT);  
 			}
-			//ECHO $this->nome;			
+		
 			//se la data ha il formato aaaa/mm/gg la trasformo in mm-gg-aaaa
 			//come richiesto dal database
-/*
-//tempfix start
-			if($this->nome=='data' || $this->nome=='ddt_data' ){
-				$type['type']='Date';
-			}
-//tempfix end
-*/
 			if($type['type']=='Date' && preg_match('/....-..-../',$newVal)){
 				$arr=explode("-", $newVal);
 										//mese   //giorno //anno
@@ -750,6 +722,9 @@ class Ddt  extends MyClass {
 	public function doPrint(){
 		printDdt($this);
 	}
+	public function test(){
+		echo 'test ddt echo!';
+	}	
 }
 
 class Riga extends MyClass {
@@ -1138,9 +1113,58 @@ class AnnotazioniDdt extends MyClass {
 }
 
 class MyList {
-	function __construct() {
+	function __construct($obj) {
 		$this->arr=array();
-  	}
+		
+		$myObj=$obj['_type'];
+		echo $myObj; 
+		/*to fix array*/
+		$ddt=new $myObj($obj);
+		$ddt->test();
+		print_r($ddt);
+/*
+		$params['obj']
+		$params['obj']['type']='Ddt'
+		$params['obj']['data']['equal']='16/12/11';
+		$params['obj']['data']['minor']='=';
+		$params['obj']['data']['major']
+*/
+//vedi riga 313 in quanto 'èmolto codice in comune
+/*
+			$where='WHERE ';
+			$order=' ORDER BY ';
+			$indexes=$this->_dbIndex->getVal();
+			foreach($indexes as $key => $property){
+				//echo $key.'<br>';
+				if($key>0){
+					$where.=' AND ';
+					$order.=',';
+				}
+				$info=$this->$property->getDataType();
+				//echo $info['type'].'***************';
+				switch($info['type']){
+					case 'Date': $separatore="#";break;
+					case 'Numeric': $separatore="";break;
+					default: $separatore="'";break;
+				
+				}
+				$where.=$this->$property->campoDbf."=".$separatore.odbc_access_escape_str($this->$property->getVal()).$separatore;
+				$order.=$this->$property->campoDbf;
+			}
+*/
+			//eseguo la query
+//			$result=dbFrom($this->_dbName->getVal(), 'SELECT *', $where.$order);
+
+/*
+		$where=
+		$order=
+		$result=dbFrom($obj->_dbname(), 'SELECT *', "WHERE ".'F_DATBOL'." = #".'07-02-2011'."#");
+		foreach($result as $id => $row) {
+			$newObj=new Ddt(array('_result'=>$row,));
+			$this->add($newObj);
+		}
+*/
+	}
 	function createFromQuery(){
 //		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >#".'07-26-2011'."#");
 //		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".'01-01-2011'."#");
