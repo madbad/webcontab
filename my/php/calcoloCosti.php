@@ -1,7 +1,7 @@
 <?php
 include ('./config.inc.php');
-require_once('./classes.php');
-page_start();
+//require_once('./classes.php');
+//page_start();
 		
 //mi memorizzo il database clienti	(dove ho salvato se sono mercati supermercati o altro)	
 $dbClienti=getDbClienti();

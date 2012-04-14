@@ -6,8 +6,8 @@ include ('./config.inc.php');
 switch ($action) {
     case 'DdtPrint':
 		$params=array(
-			'numero' => '813',
-			'data'   => '11-05-2008'
+			'numero' => '1083',
+			'data'   => '2012-04-13'
 		);
 		$myDdt= new Ddt($params);
 		$myDdt->doPrint();
