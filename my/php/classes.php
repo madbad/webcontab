@@ -1140,53 +1140,86 @@ $test=new MyList(
 
 		$condition=array();
 		$i=0;		
+		$operator=null;
+		$newVal=null;
+		$newKey=null;		
 		
 		foreach ($params as $key => $value) {
 			if($key['0']!='_'){
-				if (is_array($value)){
-					switch ($value[0]){
-						case '=':
-							$operator=array('=');
-							break;
-						case '<':
-							$operator=array('<');
-							break;
-						case '>':
-							$operator=array('>');
-							break;
-						case '<=':
-							$operator=array('<=');
-							break;
-						case '>=':
-							$operator=array('>=');
-							break;
-						case '<>':
-							//inverto i simboli per mia comodita
-							$operator=array('>=','<=');
-							break;
-					
-					}
-					//rimuovo la condizione e lascio il valore/valori
-					array_shift($value);
-					$newVal=$value;
-					
-				}else{
-					$operator=array('=');
-					$newVal=array($value);
+				switch ($value[0]){
+					case '=':
+						$tOperator='=';
+						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						break;
+					case '<':
+						$tOperator='<';
+						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						break;
+					case '>':
+						$tOperator='>';
+						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						break;
+					case '<=':
+						$tOperator='<=';
+						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						break;
+					case '>=':
+						$tOperator='>=';
+						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						break;
+					case '<>'://compreso tra
+						//inverto i simboli per mia comodita
+						$tOperator=array('>=','<=');
+						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						break;
+					case '!='://diverso da
+						$tOperator='<>';
+						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						break;
+					default:
+						$tOperator='=';
+						break;
 				}
-				foreach ($operator as $opKey => $opVal){
-					$val=$fakeObj->$key->setVal($newVal[$opKey]);
-					//echo $opVal.$fakeObj->$key->getFormatted().'<br>';				
-				
-					$condition[$i]=array(
-						'operator'=> $opVal,
-						'value'=>$val,
-						'key'=>$key
-					);
-					$i++;
+
+				if (is_array($value) && is_array($tOperator)){
+				//echo '<br>1case:'.$value;
+					foreach ($value as $tKey => $tVal){
+						$operator[]=$tOperator[$tKey];
+						$newVal[]=$value[$tKey];	
+						$newKey[]=$key;						
+					}					
+				}else if (is_array($value) && !is_array($tOperator)){
+				//echo '<br>2case'.$value;
+					foreach ($value as $tVal){
+						$operator[]=$tOperator;
+						$newVal[]=$tVal;
+						$newKey[]=$key;								
+					}
+				}else{
+				//echo '<br>3case'.$value;
+					$operator[]=$tOperator;
+					$newVal[]=$value;
+					$newKey[]=$key;							
 				}
 			}
-		}		
+		}
+/*
+echo count($operator);	
+echo count($newVal);	
+echo count($newKey);	
+*/
+		for ($h=0; $h<count($operator); $h++){
+			$val=$fakeObj->$newKey[$h]->setVal($newVal[$h]);
+		
+			$condition[$h]=array(
+				'operator'=> $operator[$h],
+				'value'=>$val,
+				'key'=>$newKey[$h]
+			);
+		}			
+
+				
+
 
 
 		$where='WHERE ';
@@ -1240,17 +1273,13 @@ $test=new MyList(
 		}		
 		
 	}
-	function sum($prop){
+	function sum($propName){
 		//restituisce la somma della proprietà indicata degli oggetti della lista
+		$out=0;
 		foreach ($this->arr as $key => $value){
-			/*
-			echo $value->numero->getVal();
-			echo ' '.$value->data->getVal();
-			echo ' '.$value->cod_destinatario->extend()->ragionesociale->getVal();
-			echo '<br>';
-			*/
-			echo $value->$prop->getVal().'<br>';
+			$out+=$value->$propName->getVal();
 		}
+		return $out;
 	}
 	function add($newObj){
 		//add a new object to the current array
@@ -1258,10 +1287,10 @@ $test=new MyList(
 	}
 	function remove(){
 	}
-	function iterate($function){
-		//restituisce la somma della proprietà indicata degli oggetti della lista
+	function iterate($function,$args=null){
+		//esegue una funzione su ogni riga
 		foreach ($this->arr as $key => $value){
-			$function($value);
+			$function($value,$args);
 		}
 	}
 }
