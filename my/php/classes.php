@@ -38,7 +38,7 @@ class execStats {
     }
 }
 
-function dbFrom($dbName, $toSelect, $conditions){
+function dbFrom($dbName, $toSelect, $operators){
 	global $queryStats, $statsQrueyCached, $statsQrueyExecuted, $cache, $log,$DataTypeInfo;
 	
 	$thisqueryStats= new execStats('thisquery');
@@ -83,7 +83,7 @@ function dbFrom($dbName, $toSelect, $conditions){
 
 	//query string
 	//	$query= "SELECT * FROM ".$dbFile." WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
-	$query= $toSelect." FROM ".$dbFile." $conditions";
+	$query= $toSelect." FROM ".$dbFile." $operators";
 
 	//echo '<br>'.$query;
 	$cacheEnabled=TRUE;
@@ -553,6 +553,9 @@ class Proprietà extends DefaultClass {
 					$out=$newVal;
 				}
 				break;
+			default:
+				$out=$this->valore;
+				break;
 		}
 		return $out;
 	}
@@ -691,9 +694,10 @@ class Ddt  extends MyClass {
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('numero','data'));
-		
+//print_r($params);
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
+//print_r($this->_params);		
 		//print_r($params['_result']);
 		//avvio il recupero dei dati
 		$this->autoExtend();
@@ -723,7 +727,7 @@ class Ddt  extends MyClass {
 		printDdt($this);
 	}
 	public function test(){
-		echo 'test ddt echo!';
+		echo 'n.'.$this->numero->getFormatted().' del '.$this->data->getFormatted().'<br>';
 	}	
 }
 
@@ -1113,73 +1117,128 @@ class AnnotazioniDdt extends MyClass {
 }
 
 class MyList {
-	function __construct($obj) {
+/*
+example usage
+$test=new MyList(
+	array(
+		'_type'=>'Ddt',
+		'data'=>array('=','17/02/12'),		
+		'data'=>array('>','28/03/09'),
+		'data'=>array('<','17/02/12'),
+		'data'=>array('<>','01/01/09','01/01/11'),
+		'data'=>'28/03/09',	
+		'numero'=>'784'
+	)
+);
+*/
+	function __construct($params) {
+		//inizializzo larray che conterrà gli oggetti della lista
 		$this->arr=array();
-		
-		$myObj=$obj['_type'];
-		echo $myObj; 
-		/*to fix array*/
-		$ddt=new $myObj($obj);
-		$ddt->test();
-		print_r($ddt);
-/*
-		$params['obj']
-		$params['obj']['type']='Ddt'
-		$params['obj']['data']['equal']='16/12/11';
-		$params['obj']['data']['minor']='=';
-		$params['obj']['data']['major']
-*/
-//vedi riga 313 in quanto 'èmolto codice in comune
-/*
-			$where='WHERE ';
-			$order=' ORDER BY ';
-			$indexes=$this->_dbIndex->getVal();
-			foreach($indexes as $key => $property){
-				//echo $key.'<br>';
-				if($key>0){
-					$where.=' AND ';
-					$order.=',';
-				}
-				$info=$this->$property->getDataType();
-				//echo $info['type'].'***************';
-				switch($info['type']){
-					case 'Date': $separatore="#";break;
-					case 'Numeric': $separatore="";break;
-					default: $separatore="'";break;
-				
-				}
-				$where.=$this->$property->campoDbf."=".$separatore.odbc_access_escape_str($this->$property->getVal()).$separatore;
-				$order.=$this->$property->campoDbf;
-			}
-*/
-			//eseguo la query
-//			$result=dbFrom($this->_dbName->getVal(), 'SELECT *', $where.$order);
-
-/*
-		$where=
-		$order=
-		$result=dbFrom($obj->_dbname(), 'SELECT *', "WHERE ".'F_DATBOL'." = #".'07-02-2011'."#");
-		foreach($result as $id => $row) {
-			$newObj=new Ddt(array('_result'=>$row,));
-			$this->add($newObj);
-		}
-*/
-	}
-	function createFromQuery(){
-//		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >#".'07-26-2011'."#");
-//		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".'01-01-2011'."#");
-//		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_NUMBOL'."=".'\'       1\''."");
-		$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." = #".'07-02-2011'."#");
 	
-		//$result=dbFrom('INTESTAZIONEDDT', 'SELECT *', "WHERE ".'F_DATBOL'.">#".'07-29-2011'."#");
-		foreach($result as $id => $row) {
-			$newObj=new Ddt(array('numero'=>$row['F_NUMBOL'],
-			                      'data'=>$row['F_DATBOL'],
-								  '_autoExtend'=>'intestazione',
-								  '_result'=>$row,								  
-								  ));
-			$this->add($newObj);
+		$objType=$params['_type'];
+		$fakeObj=new $objType(array('_autoExtend'=>'-1'));
+
+		$condition=array();
+		$i=0;		
+		
+		foreach ($params as $key => $value) {
+			if($key['0']!='_'){
+				if (is_array($value)){
+					switch ($value[0]){
+						case '=':
+							$operator=array('=');
+							break;
+						case '<':
+							$operator=array('<');
+							break;
+						case '>':
+							$operator=array('>');
+							break;
+						case '<=':
+							$operator=array('<=');
+							break;
+						case '>=':
+							$operator=array('>=');
+							break;
+						case '<>':
+							//inverto i simboli per mia comodita
+							$operator=array('>=','<=');
+							break;
+					
+					}
+					//rimuovo la condizione e lascio il valore/valori
+					array_shift($value);
+					$newVal=$value;
+					
+				}else{
+					$operator=array('=');
+					$newVal=array($value);
+				}
+				foreach ($operator as $opKey => $opVal){
+					$val=$fakeObj->$key->setVal($newVal[$opKey]);
+					//echo $opVal.$fakeObj->$key->getFormatted().'<br>';				
+				
+					$condition[$i]=array(
+						'operator'=> $opVal,
+						'value'=>$val,
+						'key'=>$key
+					);
+					$i++;
+				}
+			}
+		}		
+
+
+		$where='WHERE ';
+
+		$order=' ORDER BY ';
+
+		//recupero i campi di ordinamento // clausola order
+		$indexes=$fakeObj->_dbIndex->getVal();
+		foreach($indexes as $key => $property){
+			if($key>0){
+				$order.=',';
+			}
+			$order.=$fakeObj->$property->campoDbf;
 		}
+		
+		//e creo la clausola where
+		foreach($condition as $key => $value){
+			if($key>0){
+				$where.=' AND ';
+			}
+			
+			$property=$value['key'];
+			$val=$value['value'];
+			$operator=$value['operator'];
+			
+			$info=$fakeObj->$property->getDataType();
+			//echo $info['type'].'***************';
+			switch($info['type']){
+				case 'Date': $separatore="#";break;
+				case 'Numeric': $separatore="";break;
+				default: $separatore="'";break;
+			
+			}
+			$where.=$fakeObj->$property->campoDbf.$operator.$separatore.odbc_access_escape_str($val).$separatore;
+		}
+
+		//eseguo la query
+		$result=dbFrom($fakeObj->_dbName->getVal(), 'SELECT *', $where.$order);
+		
+		//debug info 
+		//print_r($condition);
+		//print_r($result);
+		foreach ($result as $row){
+			//print_r($row);
+			$obj=new $objType(array(
+					'_result'=>$row,
+					'_autoExtend'=>'intestazione',
+			));
+			//print_r($obj);
+			$this->add($obj);
+		}		
+		
 	}
 	function sum($prop){
 		//restituisce la somma della proprietà indicata degli oggetti della lista

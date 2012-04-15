@@ -24,15 +24,18 @@ switch ($action) {
 $test=new MyList(
 	array(
 		'_type'=>'Ddt',
-		'_autoExtend'=>"-1",
-		
-		'data'=>array('=','17/02/12'),		
-		'data'=>array('>','17/02/12'),
-		'data'=>array('<','17/02/12'),
-		'data'=>array('<>','16/12/2012','17/02/12'),
-		'numero'=>'784'
+//		'data'=>array('=','17/02/12'),		
+		'data'=>array('>=','20/07/2011'),
+//		'data'=>array('<','17/02/12'),
+//		'data'=>array('<>','01/01/09','01/01/11'),
+//		'data'=>'28/03/09',	
+//		'numero'=>'784'
 	)
 );
+
+$test->iterate(function($obj){
+				echo $obj->test();
+				});
 
 page_end();
 ?>
