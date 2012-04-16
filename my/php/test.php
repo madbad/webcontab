@@ -1,8 +1,5 @@
 <?php
 include ('./config.inc.php');
-require_once('./classes.php');
-page_start();
-
 /*
 $ddtList=new MyList();
 $ddtList->createFromQuery();
