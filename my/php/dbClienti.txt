@@ -115,7 +115,7 @@ FACCI, AZ.AGR.FACCINI, grezzo      ,     00
 CHIE3, CHIESOLE SRL  , grezzo      ,     00
 GUIZZ, AZ.AGR.GUIZZAR, grezzo      ,     00
 ORTCO, ORTOCOM SRL CO, mercato     ,     00
-BELFR, BELFRUTTA SRL , mercato     ,     00
+BELFR, BELFRUTTA SRL , mercato     ,     12
 4MYSE, 4MY SELECTION , mercato     ,     00 
 VARA , VARA SNC      , grezzo      ,     00  
 GARLE, GARLETTI SNC D, mercato     ,     00  

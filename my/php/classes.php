@@ -762,6 +762,9 @@ class Riga extends MyClass {
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('RIGHEDDT');
 
+		$this->addProp('_totImponibileNetto');
+		$this->_totImponibileNetto->setVal(0);			
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('ddt_numero','ddt_data','numero'));
@@ -772,25 +775,28 @@ class Riga extends MyClass {
 		//avvio il recupero dei dati
 		$this->autoExtend();
 	}
-	/*
-	public function getDataFromDb(){
-		//questa rimpiazza la funzione con stesso nome ereditata dalla classe MyClass
-		$result=dbFrom($this->_dbName->getVal(), 'SELECT *', "WHERE ".$this->ddt_numero->campoDbf."='".odbc_access_escape_str($this->ddt_numero->getVal())."' AND ".$this->ddt_data->campoDbf."=#".odbc_access_escape_str($this->ddt_data->getVal()."# AND ".$this->numero->campoDbf."=".odbc_access_escape_str($this->numero->getVal()).""));
-		foreach($result as $row){
-			foreach($this as $key => $value) {
-				//escludo le prorpietà che iniziano con "_" in quanto sono solo ad uso interno e non le devo ricavare dal database
-				if($key[0]!='_'){
-					$val=$row[$value->campoDbf];
-					if($val) {
-						$this->$key->setVal($val);					
-					//}else{
-					//	echo '<BR>missing val: '.$key;
-					}
-				}
-			}
+	
+	public function getPrezzoLordo(){
+		$dbClienti=getDbClienti();
+		$codCliente=$this->cod_cliente->getVal();
+		$provvigione=$dbClienti["$codCliente"]['provvigione'];
+		if ($provvigione*1>0){
+			return $this->prezzo->getVal();
+		}else{
+			$provvigione=12;
+			return $this->prezzo->getVal()*(100)/(100-$provvigione);
 		}
 	}
-	*/
+	public function getPrezzoNetto(){
+		$dbClienti=getDbClienti();
+		$codCliente=$this->cod_cliente->getVal();
+		$provvigione=$dbClienti["$codCliente"]['provvigione'];
+		if ($provvigione*1>0){
+			return $this->prezzo->getVal()*(100-$provvigione)/100;
+		}else{
+			return $this->prezzo->getVal();
+		}
+	}	
 }
 
 class Articolo extends MyClass {

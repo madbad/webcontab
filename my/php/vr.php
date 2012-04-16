@@ -86,48 +86,6 @@ if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 <?php
 
 if (@$_GET['mode']=='print'){
-
-	/**
-	 * sum values in array
-	 *
-	 * @param array $arr
-	 * @param string [optional]$index
-	 * @return int result
-	 */
-	function array_sum_key( $arr, $index = null ){
-		if(!is_array( $arr ) || sizeof( $arr ) < 1){
-			return 0;
-		}
-		$ret = 0;
-		foreach( $arr as $id => $data ){
-			if( isset( $index )  ){
-				$ret += (isset( $data[$index] )) ? $data[$index] : 0;
-			}else{
-				$ret += $data;
-			}
-		}
-		return $ret;
-	}
-
-
-	/*
-		//log start date for time execution calc
-		$start = (float) array_sum(explode(' ',microtime()));
-		
-		$html="<h1>Semil.</h1>";
-		$html.=getArticleTable2(array('05'),$startDateR,$endDateR, 'martinelli');
-		$html.=getArticleTable2(array('05'),$startDateR,$endDateR, 'mercato');
-		$html.=getArticleTable2(array('905'),$startDateR,$endDateR, 'mercato');
-		$html.=getArticleTable2(array('705','805'),$startDateR,$endDateR, 'supermercato');
-		$html.=getArticleTable2(array('19','919'),$startDateR,$endDateR, 'mercato');
-		
-		echo $html;
-
-		 //log end date for time execution calc
-		$end = (float) array_sum(explode(' ',microtime()));
-		 //print execution time
-		echo "<br><br>Exec time: ". sprintf("%.4f", ($end-$start))." seconds";
-	*/
 	$stampaRighe= function ($obj){
 		echo '<tr>';
 		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
@@ -136,9 +94,13 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$obj->colli->getVal().'</td>';				
 		echo '<td>'.$obj->peso_netto->getVal().'</td>';
 		echo '<td>'.$obj->prezzo->getVal().'</td>';
+		echo '<td>'.round($obj->getPrezzoLordo(),3).'</td>';
+		echo '<td>'.round($obj->getPrezzoNetto(),3).'</td>';
 		echo '<td>'.round($obj->peso_netto->getVal()/$obj->colli->getVal(),2).'</td>';
-		echo '<td>'.round($obj->peso_netto->getVal()*$obj->prezzo->getVal(),2).'</td>';
-		echo '<td>'.$obj->imponibile->getVal().'</td>';			
+		$impNetto=$obj->peso_netto->getVal()*$obj->getPrezzoNetto();
+		echo '<td>'.round($impNetto,2).'</td>';
+		$obj->_totImponibileNetto->setVal($impNetto);		
+		//echo '<td>'.$obj->imponibile->getVal().'</td>';			
 		echo '</tr>';
 	};
 	$stampaTotali= function ($obj){
@@ -149,12 +111,16 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$obj->sum('colli').'</td>';				
 		echo '<td>'.$obj->sum('peso_netto').'</td>';
 		echo '<td>'.'-'.'</td>';
-		echo '<td>'.round($obj->sum('peso_netto')/$obj->sum('colli'),2).'</td>';
 		echo '<td>'.'-'.'</td>';
-		echo '<td>'.$obj->sum('imponibile').'</td>';			
+		echo '<td>'.'-'.'</td>';
+		echo '<td>'.round($obj->sum('peso_netto')/$obj->sum('colli'),2).'</td>';
+		echo '<td>'.$obj->sum('_totImponibileNetto').'</td>';			
 		echo '</tr>';
 	};
 
+	$tabellaH='<table>';
+	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
+	$tabellaF='</table><br><br>';
 //martinelli
 	$test=new MyList(
 		array(
@@ -164,11 +130,10 @@ if (@$_GET['mode']=='print'){
 			'cod_cliente'=>'MARTI',
 		)
 	);
-	echo '<table>';
-	echo '<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Media peso</td><td>Imponibile Calc.</td><td>Imponibile Memo.</td></tr>';
+	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
-	echo '</table><br><br>';
+	echo $tabellaF;
 
 //mercato
 	$test=new MyList(
@@ -176,14 +141,52 @@ if (@$_GET['mode']=='print'){
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>'05',
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI')
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA')
 		)
 	);
-	echo '<table>';
-	echo '<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Media peso</td><td>Imponibile Calc.</td><td>Imponibile Memo.</td></tr>';
+	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
-	echo '</table><br><br>';
+	echo $tabellaF;
+	
+//ortom
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'805',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;		
+//sma
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'705',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;	
+//II
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'905',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
+
+	
 	page_end();
 }
 ?>
