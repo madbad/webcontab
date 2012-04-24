@@ -121,6 +121,7 @@ if (@$_GET['mode']=='print'){
 	$tabellaH='<table>';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
+/*
 //martinelli
 	$test=new MyList(
 		array(
@@ -185,7 +186,20 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
+//mercato //capucci
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'19',
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
 	
 	page_end();
 }

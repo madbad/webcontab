@@ -32,7 +32,7 @@ $dbClienti=getDbClienti();
 		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE $condizioniProdotti F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 		
 		$out.="<table class=\"righe\"><tr><th colspan='5'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
-		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th></tr>';
+		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th><th>tara</th></tr>';
 		//this will containt table totals
 		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
 
@@ -45,13 +45,15 @@ $dbClienti=getDbClienti();
 				$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
 				$netto=$row['F_PESNET']-$calopeso;
 				$media=round($netto/$row['F_NUMCOL'],1);
-				$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td></tr>";
+				$tara=round(($row['F_QTA']-$row['F_PESNET'])/$row['F_NUMCOL'],3);
+				//$tara=$row['F_PESNET'].'::'.$row['F_QTA'];				
+				$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td><td>$tara</td></tr>";
 				$sum['NETTO']+=$netto;
 				$sum['F_NUMCOL']+=$row['F_NUMCOL'];
 			}	
 		}
 
-		$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='2'>".$sum['NETTO']."</th></tr>";
+		$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='3'>".$sum['NETTO']."</th></tr>";
 		$out.='</table>';
 		
 		$out.=' Imballo: '.round($params['costoCassa']*$sum['F_NUMCOL']/$sum['NETTO'],3);
@@ -289,7 +291,7 @@ if (@$_POST['mode']=='print'){
 		$params = array("articles" => array('08'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.5, //0.3
+						"abbuonoPerCollo" => 0.3, //0.3
 						"costoPedana" => 31,
 						"colliPedana" => 112,
 						"costoCassa" => 0.39);
