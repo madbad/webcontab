@@ -136,7 +136,7 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 			}
 			if ($done!=true){
 				$myArray['altro'][$articolo.'*'.$descrizione]+=$peso;
-				echo '<b>WARNING</b>:'.$cliente->codice->getVal().':'.$cliente->ragionesociale->getVal().'='.$peso.'<br>';
+				echo '<br><b>WARNING (tipo cliente sconosciuto)</b>:'.$cliente->codice->getVal().':'.$cliente->ragionesociale->getVal().'='.$peso.'<br>';
 			}
 		}		
 		$totale+=$peso;

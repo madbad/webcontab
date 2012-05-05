@@ -1303,9 +1303,9 @@ echo count($newKey);
 
 function page_start(){
 	//zipped content
-	ob_start('ob_gzhandler');
+	//ob_start('ob_gzhandler');
 	//normal content
-	//ob_start();
+	ob_start();
 	global $log, $queryStats, $pageStats, $cache, $statsQrueyCached, $statsQrueyExecuted, $out;
 	$log = FirePHP::getInstance(true);
 	$queryStats= new execStats('query');

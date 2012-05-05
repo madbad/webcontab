@@ -1,13 +1,13 @@
 <?php
 include ('./config.inc.php');
 //print_r($_GET);
-/*
+
 @ $action = $_GET['do'] ? $_GET['do'] : '';
 switch ($action) {
     case 'DdtPrint':
 		$params=array(
-			'numero' => '1083',
-			'data'   => '2012-04-13'
+			'numero' => '1317',
+			'data'   => '2012-05-03'
 		);
 		$myDdt= new Ddt($params);
 		$myDdt->doPrint();
@@ -19,8 +19,8 @@ switch ($action) {
 		echo 'Nothing to do for "'.$action.'"...';
 		break;
 }
-*/
 
+/*
 $test=new MyList(
 	array(
 		'_type'=>'Ddt',
@@ -36,6 +36,6 @@ $test=new MyList(
 $test->iterate(function($obj){
 				echo $obj->test();
 				});
-
+*/
 page_end();
 ?>
