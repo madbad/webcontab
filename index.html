@@ -16,7 +16,10 @@
 <script src="./my/js/ext.js/ext-all.js" type="text/javascript"></script>
 <link href="./my/js/ext.js/resources/css/ext-all.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
+
 Ext.require(['*']);
+
+
 </script>
 
 <!--myLibs-->
@@ -141,8 +144,15 @@ Ext.onReady(function(){
 			'text 3'
 		]
 	});
+Ext.FocusManager.enable({focusFrame: true});
+//alert(Ext.FocusManager.enabled);	
+	
 gestioneDdt();
-
+windows=ddtWindow();
+windows.on('close',function(){
+	this.result.get('data');
+	this.result.get('numero');
+});
 });
 
 function gestioneDdt(){
