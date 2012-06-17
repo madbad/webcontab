@@ -79,7 +79,7 @@ PRIMF, PRIMO FIORE SR, mercato     ,     00
 ORTO3, ORTOROSA DI RO, grezzo      ,     00
 HORTU, HORTUS NOVUS C, grezzo      ,     00
 VALRO, VALROSA       , mercato     ,     00
-SEVEN, SEVEN SPA     , supermercato,     00
+SEVEN, SEVEN SPA     , supermercato,     &euro; 0,05+2
 ULISS, ULISSE SRL    , mercato     ,     13
 ORTOB, ORTOBERGAMO S., mercato     ,     00
 BRUN2, BRUNO SRL     , mercato     ,     00
@@ -127,3 +127,10 @@ ORTOL, L'ORTOLANO SRL, grezzo      ,     00
 ORVER, ORTO VERDE SNC, mercato     ,     00
 TERR3, TERRAMORE SOC., grezzo      ,     00
 DI.CO, DI.CO SRL     , semilavorato,     00
+SALVA, SALVANO CLAUDI, mercato     ,     0 + 02
+UNICA, L\'UNICA ORTOF, mercato     ,     00
+SPECI, SPECIAL FRUTTA, mercato     ,     00
+NUOVA, ANNA FRUTTA SR, mercato     ,     0 + 02
+BTR  , B.T.R. DI BELT, mercato     ,     13,8
+GOBBI, GOBBI FRUTTA S, mercato     ,     00
+CHRIS, CHRISTIAN SULS, mercato     ,     ??

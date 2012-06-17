@@ -1142,6 +1142,7 @@ $test=new MyList(
 );
 */
 	function __construct($params) {
+$numeroDiValori=0;
 		//inizializzo larray che conterrà gli oggetti della lista
 		$this->arr=array();
 	
@@ -1160,6 +1161,7 @@ $test=new MyList(
 					case '=':
 						$tOperator='=';
 						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						$numeroDiValori=count($value);
 						break;
 					case '<':
 						$tOperator='<';
@@ -1247,8 +1249,20 @@ echo count($newKey);
 		
 		//e creo la clausola where
 		foreach($condition as $key => $value){
+			if($key<3 && $numeroDiValori>0 && $value['operator']=='='){
+				$where.=' AND ( ';
+			}
+			
 			if($key>0){
-				$where.=' AND ';
+				if ($value['operator']=='='){
+					if($key<3){
+						$where.=' AND ';//do nothing
+					}else{
+						$where.=' OR ';
+					}
+				}else{
+					$where.=' AND ';				
+				}
 			}
 			
 			$property=$value['key'];
@@ -1264,6 +1278,9 @@ echo count($newKey);
 			
 			}
 			$where.=$fakeObj->$property->campoDbf.$operator.$separatore.odbc_access_escape_str($val).$separatore;
+if($key>$numeroDiValori && $value['operator']=='=' && $numeroDiValori>0){
+	$where.=' ) ';
+}
 		}
 
 		//eseguo la query
