@@ -726,8 +726,12 @@ class Ddt  extends MyClass {
 	public function doPrint(){
 		printDdt($this);
 	}
-	public function test(){
-		echo 'n.'.$this->numero->getFormatted().' del '.$this->data->getFormatted().'<br>';
+	public function jsonList(){
+		$out= "{\n\"numero\": \"".$this->numero->getFormatted()."\",";
+		$out.= "\n\"data\": \"".$this->data->getFormatted()."\",";
+		$out.= "\n\"cliente\": \"".$this->cod_destinatario->extend()->ragionesociale->getFormatted()."\"";
+		$out.= "\n},";
+		return $out;
 	}	
 }
 
