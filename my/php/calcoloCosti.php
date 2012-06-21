@@ -162,6 +162,7 @@ $dbClienti=getDbClienti();
     type: 'vbox',
     align: 'right'
 },
+width:350,
 height:230,
 			url: './calcoloCosti.php',
 			standardSubmit: true,
