@@ -1156,7 +1156,11 @@ $numeroDiValori=0;
 		$newKey=null;		
 		
 		foreach ($params as $key => $value) {
+			//se non si tratta di una proprietà interna
 			if($key['0']!='_'){
+				//se c'è un operatore '=' '<' '>' '<>' '>=' '<=' '!='
+				//il primo valore della variabile $value sarà la stringa dell'operatore
+				//altrimenti è solo un "valore/array di possibili valori" per la $key
 				switch ($value[0]){
 					case '=':
 						$tOperator='=';
@@ -1187,55 +1191,47 @@ $numeroDiValori=0;
 					case '!='://diverso da
 						$tOperator='<>';
 						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						//$numeroDiValori=count($value);
 						break;
 					default:
+						//se non è nessuno dei precedenti vuol dire che ho passato solo uno /dei valori da confrontare
+						//e quindi presumo che l'operatore sia '='
 						$tOperator='=';
+						//$numeroDiValori=count($value);
 						break;
 				}
-
+				//se ho un array di valori e un arrai di operatori (caso del '<>' compreso tra)
 				if (is_array($value) && is_array($tOperator)){
-				//echo '<br>1case:'.$value;
 					foreach ($value as $tKey => $tVal){
 						$operator[]=$tOperator[$tKey];
 						$newVal[]=$value[$tKey];	
 						$newKey[]=$key;						
-					}					
+					}
+				//altrimenti si ho un array di valori ma un solo operatore allora presumo che l'operatore sia lo stesso per tutti i valori
 				}else if (is_array($value) && !is_array($tOperator)){
-				//echo '<br>2case'.$value;
 					foreach ($value as $tVal){
 						$operator[]=$tOperator;
 						$newVal[]=$tVal;
 						$newKey[]=$key;								
 					}
 				}else{
-				//echo '<br>3case'.$value;
+				//se innfino ho un solo valore e un solo operatore allora è tutto semplice 
 					$operator[]=$tOperator;
 					$newVal[]=$value;
 					$newKey[]=$key;							
 				}
 			}
 		}
-/*
-echo count($operator);	
-echo count($newVal);	
-echo count($newKey);	
-*/
+
+		//trasferisco il tutto dentro l'array conditions
 		for ($h=0; $h<count($operator); $h++){
-			$val=$fakeObj->$newKey[$h]->setVal($newVal[$h]);
-		
-			$condition[$h]=array(
-				'operator'=> $operator[$h],
-				'value'=>$val,
-				'key'=>$newKey[$h]
-			);
+				$val=$fakeObj->$newKey[$h]->setVal($newVal[$h]);
+				//echo $operator;
+				$condition[$newKey[$h]][$operator[$h]][]=$val;
 		}			
-
-				
-
 
 
 		$where='WHERE ';
-
 		$order=' ORDER BY ';
 
 		//recupero i campi di ordinamento // clausola order
@@ -1246,42 +1242,54 @@ echo count($newKey);
 			}
 			$order.=$fakeObj->$property->campoDbf;
 		}
-		
 		//e creo la clausola where
-		foreach($condition as $key => $value){
-			if($key<3 && $numeroDiValori>0 && $value['operator']=='='){
-				$where.=' AND ( ';
+		//per ogni chiave
+		$c1=0;
+		foreach($condition as $key => $operator){
+			$myKey=$key;
+			//per ogni operatore della chiave
+			if ($c1>0){
+				$where.=' AND (';
 			}
-			
-			if($key>0){
-				if ($value['operator']=='='){
-					if($key<3){
-						$where.=' AND ';//do nothing
-					}else{
-						$where.=' OR ';
-					}
-				}else{
-					$where.=' AND ';				
+			$c2=0;
+			foreach($operator as $operatorKey => $operatorValue){
+				$myOperatorKey=$operatorKey;
+				//per ogni valore dell'operatore
+				if ($c2>0){
+					$where.=' AND ';
 				}
+				$c3=0;
+				foreach ($operatorValue as $val){
+					//echo $c3.' '.$myOperatorKey.'<br>';
+					if ($c3>0){
+						if($myOperatorKey=='='){
+							$where.=' OR ';						
+						}else{
+							$where.=' AND ';						
+						}
+					}	
+			
+					$property=$myKey;
+					$val=$val;
+					$operator=$myOperatorKey;
+					
+					$info=$fakeObj->$property->getDataType();
+					switch($info['type']){
+						case 'Date': $separatore="#";break;
+						case 'Numeric': $separatore="";break;
+						default: $separatore="'";break;
+			
+					}
+					$where.=$fakeObj->$property->campoDbf.$operator.$separatore.odbc_access_escape_str($val).$separatore;
+					$c3++;
+				}
+				$c2++;
 			}
-			
-			$property=$value['key'];
-			$val=$value['value'];
-			$operator=$value['operator'];
-			
-			$info=$fakeObj->$property->getDataType();
-			//echo $info['type'].'***************';
-			switch($info['type']){
-				case 'Date': $separatore="#";break;
-				case 'Numeric': $separatore="";break;
-				default: $separatore="'";break;
-			
+			if ($c1>0){
+				$where.=') ';
 			}
-			$where.=$fakeObj->$property->campoDbf.$operator.$separatore.odbc_access_escape_str($val).$separatore;
-if($key>$numeroDiValori && $value['operator']=='=' && $numeroDiValori>0){
-	$where.=' ) ';
-}
-		}
+			$c1++;
+		}	
 
 		//eseguo la query
 		$result=dbFrom($fakeObj->_dbName->getVal(), 'SELECT *', $where.$order);
