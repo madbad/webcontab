@@ -352,6 +352,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.70);
 		$html.=getArticleTable($params);
         $html.=$table;
+/*
 		$html.="</div><div class='tableContainer'>";
         $html.="<h1>Semil.</h1>";
 //verona
@@ -375,6 +376,32 @@ if (@$_POST['mode']=='print'){
 		$html.=getArticleTable($params);
         $html.=$table;
     }
+*/
+		$html.="</div><div class='tableContainer'>";
+        $html.="<h1>Finocchio</h1>";
+//finocchio
+		// mercato
+		$params = array('articles' => array('26'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.3, //0.3
+						"costoPedana" => 31,
+						"colliPedana" => 112,
+						"costoCassa" => 0.38);
+		$html.=getArticleTable($params);		
+		// supermercati
+		$params = array("articles" => array('726','826'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.4,
+						"costoPedana" => 31,
+						"colliPedana" => 80,
+						"costoCassa" => 0.67);
+		$html.=getArticleTable($params);
+        $html.=$table;
+    }
+
+
     $html.='</div>';
     echo $html;
 }

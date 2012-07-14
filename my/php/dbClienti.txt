@@ -134,3 +134,5 @@ NUOVA, ANNA FRUTTA SR, mercato     ,     0 + 02
 BTR  , B.T.R. DI BELT, mercato     ,     13,8
 GOBBI, GOBBI FRUTTA S, mercato     ,     00
 CHRIS, CHRISTIAN SULS, mercato     ,     ??
+MAROC,               , mercato     ,     ?? + 02
+PAROD,               , mercato     ,     ?? + 02

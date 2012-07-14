@@ -188,6 +188,7 @@ if (@$_GET['mode']=='print'){
 	echo $tabellaF;
 */
 //mercato //capucci
+/*
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -196,6 +197,20 @@ if (@$_GET['mode']=='print'){
 			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')
 		)
 	);
+	*/
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+		//	'cod_articolo'=>array('=','11','111','112','113',
+		//						      '911','9111','9112','9113','05'
+		//	),
+			'cod_articolo'=>array('=','49'),
+		//	'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')
+			//'cod_articolo'=>array('=','11','111'),
+			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')
+		)
+	);	
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
