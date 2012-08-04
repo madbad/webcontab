@@ -187,11 +187,13 @@ if (@$_GET['mode']=='print'){
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>array('=','11','111','112','113',
-								      '911','9111','9112','9113','05'
+								      '911','9111','9112','9113',
 			),
 
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
-			'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),
+			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
+			//'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),
+			//'cod_cliente'=>array('=','MORIN'),
+
 			'prezzo'=>array('=','0.001'),
 			
 			
