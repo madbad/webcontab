@@ -1,4 +1,7 @@
-function ddtWindow (){
+//##################################################################
+//   ELENCO DDT 
+//##################################################################
+function ddtWindow() {
 	Ext.define('ddtList', {
 		extend: 'Ext.data.Model',
 		fields: [
@@ -75,12 +78,176 @@ function ddtWindow (){
 }
 
 
+//##################################################################
+//   CREAZIONE MODIFICA DDT
+//##################################################################
+function gestioneDdt(){
+	return Ext.create('Ext.window.Window', {
+		title: 'Gestione DDT',
+		//renderTo: Ext.getBody(),
+		//height: 288,
+		//width: 600,
+		//layout: 'fit',
+		modal:true,
+		maximized:true,
+		defaultFocus:'focusME',
+		items: [
+			Ext.create('Ext.form.Panel', {
+				title: 'Gestione Ddt',
+				//labelWidth: 75, // label settings here cascade unless overridden
+				//url: 'save-form.php',
+				height:130,
+				bodyStyle: 'padding:5px 5px 0',
+				defaultType: 'textfield',
+				layout: {
+					type: 'absolute',
+				},
+				items :[{
+					fieldLabel: 'Numero',
+					name: 'numero',
+					x:10,
+					y:10,
+					width:200,
+					itemId:'focusME',
+				}, {
+					fieldLabel: 'Data',
+					xtype: 'datefield',
+					name: 'data',
+					x:250,
+					y:10,
+					width:200,
+				}, {
+					fieldLabel: 'Cod.Cliente',
+					name: 'cod_destinatario',
+					x:10,
+					y:40,
+					width:200,
+				}, {
+					fieldLabel: 'Ragione Sociale',
+					name: 'data',
+					x:250,
+					y:40,
+					width:800,
+				}, {
+					fieldLabel: 'Tipo D.D.T.',
+					name: 'cod_causale',
+					x:10,
+					y:70,
+					width:150,
+				}, {
+					fieldLabel: 'Fatturato',
+					name: 'stato',
+					x:250,
+					y:70,
+					width:150,
+				}],
+			}),
+			
+			Ext.create('Ext.tab.Panel', {
+				height: 400,
+				items: [{
+					title: 'Intestazione',
+					defaultType: 'textfield',
+					layout: {
+						type: 'absolute',
+					},
+					items :[{
+						fieldLabel: 'Pagamento',
+						name: 'cod_pagamento',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Banca',
+						name: 'cod_banca',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Valuta',
+						name: 'valuta',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Mezzo di sped.',
+						name: 'cod_mezzo',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Valuta',
+						name: 'valuta',
+						x:10,
+						y:row.add(),
+					}],
+				}, {
+					title: 'Corpo',
+				}, {
+					title: 'Stampa',
+					defaultType: 'textfield',
+					layout: {
+						type: 'absolute',
+					},
+					items :[{
+						fieldLabel: 'Vettore',
+						name: 'cod_vettore',
+						x:10,
+						y:row.reset(),
+					},{
+						fieldLabel: 'Aspetto',
+						name: 'aspetto_beni',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Annotazioni',
+						name: 'annotazioni',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Totale colli',
+						name: 'tot_colli',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Totale peso lordo',
+						name: 'tot_peso',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Ora inizio trasporto',
+						name: 'ora_inizio_trasporto',
+						x:10,
+						y:row.add(),
+					},{
+						fieldLabel: 'Destinazione',
+						name: 'cod_destinazione',
+						x:10,
+						y:row.add(),
+					}],
+				}]
+			}),
+		],
+	}).show();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 /*
-
-
 var mConfig = { 
        mediaType   :'PDFFRAME',   //this is the most reliable cross-browser 
        url         : 'servlet/PdfServlet?invoice=2319283',

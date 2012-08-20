@@ -187,7 +187,7 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;
 */
-//mercato //capucci
+//mercaato //capucci
 /*
 	$test=new MyList(
 		array(
@@ -205,7 +205,10 @@ if (@$_GET['mode']=='print'){
 		//	'cod_articolo'=>array('=','11','111','112','113',
 		//						      '911','9111','9112','9113','05'
 		//	),
-			'cod_articolo'=>array('=','49'),
+			'cod_articolo'=>array('=','18','19'),
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
+			'prezzo'=>array('!=','0.001'),
+			
 		//	'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')
 			//'cod_articolo'=>array('=','11','111'),
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')

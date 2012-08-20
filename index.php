@@ -43,7 +43,7 @@ Ext.require(['*']);
 	}
 row= new oRow();
 </script>
-<script src="./my/js/apps.js" type="text/javascript"></script>
+<script src="./my/js/apps.js?<?php echo rand(); ?>" type="text/javascript"></script>
 
 <script type="text/javascript">
 Ext.onReady(function(){
@@ -148,148 +148,15 @@ Ext.FocusManager.enable({focusFrame: true});
 //alert(Ext.FocusManager.enabled);	
 	
 gestioneDdt();
+/*
 windows=ddtWindow();
 windows.on('close',function(){
 	this.result.get('data');
 	this.result.get('numero');
 });
+*/
 });
 
-function gestioneDdt(){
-	Ext.create('Ext.form.Panel', {
-		title: 'Gestione Ddt',
-		//labelWidth: 75, // label settings here cascade unless overridden
-		//url: 'save-form.php',
-		//frame: true,
-		height:130,
-		bodyStyle: 'padding:5px 5px 0',
-		renderTo: Ext.getBody(),
-		defaultType: 'textfield',
-		layout: {
-			type: 'absolute',
-		},
-		items :[{
-			fieldLabel: 'Numero',
-			name: 'numero',
-			x:10,
-			y:10,
-			width:200,
-		}, {
-			fieldLabel: 'Data',
-			xtype: 'datefield',
-			name: 'data',
-			x:250,
-			y:10,
-			width:200,
-		}, {
-			fieldLabel: 'Cod.Cliente',
-			name: 'cod_destinatario',
-			x:10,
-			y:40,
-			width:200,
-		}, {
-			fieldLabel: 'Ragione Sociale',
-			name: 'data',
-			x:250,
-			y:40,
-			width:800,
-		}, {
-			fieldLabel: 'Tipo D.D.T.',
-			name: 'cod_causale',
-			x:10,
-			y:70,
-			width:150,
-		}, {
-			fieldLabel: 'Fatturato',
-			name: 'stato',
-			x:250,
-			y:70,
-			width:150,
-		}],
-	});
-	Ext.create('Ext.tab.Panel', {
-		//width: 400,
-		height: 400,
-		renderTo: Ext.getBody(),
-		items: [{
-			title: 'Intestazione',
-			defaultType: 'textfield',
-			layout: {
-				type: 'absolute',
-			},
-			items :[{
-				fieldLabel: 'Pagamento',
-				name: 'cod_pagamento',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Banca',
-				name: 'cod_banca',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Valuta',
-				name: 'valuta',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Mezzo di sped.',
-				name: 'cod_mezzo',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Valuta',
-				name: 'valuta',
-				x:10,
-				y:row.add(),
-			}],
-		}, {
-			title: 'Corpo',
-		}, {
-			title: 'Stampa',
-			defaultType: 'textfield',
-			layout: {
-				type: 'absolute',
-			},
-			items :[{
-				fieldLabel: 'Vettore',
-				name: 'cod_vettore',
-				x:10,
-				y:row.reset(),
-			},{
-				fieldLabel: 'Aspetto',
-				name: 'aspetto_beni',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Annotazioni',
-				name: 'annotazioni',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Totale colli',
-				name: 'tot_colli',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Totale peso lordo',
-				name: 'tot_peso',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Ora inizio trasporto',
-				name: 'ora_inizio_trasporto',
-				x:10,
-				y:row.add(),
-			},{
-				fieldLabel: 'Destinazione',
-				name: 'cod_destinazione',
-				x:10,
-				y:row.add(),
-			}],
-		}]
-	});
-}
 
 
 </script>
