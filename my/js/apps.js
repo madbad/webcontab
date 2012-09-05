@@ -1,7 +1,106 @@
 //##################################################################
+//   MAIN MENU
+//##################################################################
+function mainMenu() {
+	//Toolbar principale
+	Ext.create('Ext.toolbar.Toolbar', {
+		renderTo: document.body,
+		items: [
+			{
+				text: '	Web Contab',
+				scale   : 'large',
+				menu: {
+						items: [
+							{
+							   text: 'Anagrafiche',
+							   menu: {
+								       items:[
+											{
+												text: 'Clienti e Fornitori',
+											},{
+												text: 'Articoli',
+											},{
+												text: 'Codici IVA',
+											},{
+												text: 'Codici Pagamento',
+											},{
+												text: 'Codici Imballaggio',
+											},{
+												text: 'Banche',
+											},
+									   ]
+							   }
+						   },{
+							   text: 'Magazzino',
+							   menu: {
+								       items:[
+											{
+												text: 'DDT di Vendita',
+												handler: gestioneDdt,
+											},{
+												text: 'DDT altre causali',
+											},{
+												text: 'Saldi di magazzino',
+											},{
+												text: 'Carico a magazzino',
+											},{
+												text: 'Scarico da magazzino',
+											},{
+												text: 'Stampe',
+											},
+									   ]
+							   }
+						   },{
+							   text: 'Fatturazione',
+							   menu: {
+								       items:[
+											{
+												text: 'Crea/modifica Fattura',
+											},{
+												text: 'Stampa fatture in serie',
+											},
+									   ]
+							   }
+						   },{
+							   text: 'Configurazione',
+							   handler: elencoDdt
+						   },{
+							   text: 'Utilita',
+							   menu: {
+								       items:[
+											{
+												text: 'Back-Up',
+											},{
+												text: 'Altro',
+											},
+									   ]
+							   }
+						   }
+						]
+					}
+			},
+			// begin using the right-justified button container
+			'->', // same as { xtype: 'tbfill' }
+			{
+				xtype    : 'textfield',
+				name     : 'field1',
+				emptyText: 'enter search term'
+			},
+			// add a vertical separator bar between toolbar items
+			'-', // same as {xtype: 'tbseparator'} to create Ext.toolbar.Separator
+			'text 1', // same as {xtype: 'tbtext', text: 'text1'} to create Ext.toolbar.TextItem
+			{ xtype: 'tbspacer' },// same as ' ' to create Ext.toolbar.Spacer
+			'text 2',
+			{ xtype: 'tbspacer', width: 50 }, // add a 50px space
+			'text 3'
+		]
+	});
+};
+
+//##################################################################
 //   ELENCO DDT 
 //##################################################################
-function ddtWindow() {
+function elencoDdt() {
 	Ext.define('ddtList', {
 		extend: 'Ext.data.Model',
 		fields: [
@@ -109,6 +208,17 @@ function gestioneDdt(){
 					y:10,
 					width:200,
 					itemId:'focusME',
+					enableKeyEvents: true,
+					listeners:{
+						keypress:{
+							//element: 'el', //bind to the underlying el property on the panel
+							fn: function(el,e){ 
+								if(e.getCharCode()==Ext.EventObject.F1){
+									alert('hai premuto f1');
+								};
+							},
+						},
+					},
 				}, {
 					fieldLabel: 'Data',
 					xtype: 'datefield',

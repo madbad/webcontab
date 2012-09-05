@@ -47,114 +47,19 @@ row= new oRow();
 
 <script type="text/javascript">
 Ext.onReady(function(){
-	//Toolbar principale
-	Ext.create('Ext.toolbar.Toolbar', {
-		renderTo: document.body,
-		items: [
-			{
-				text: '	Web Contab',
-				scale   : 'large',
-				menu: {
-						items: [
-							{
-							   text: 'Anagrafiche',
-							   menu: {
-								       items:[
-											{
-												text: 'Clienti e Fornitori',
-											},{
-												text: 'Articoli',
-											},{
-												text: 'Codici IVA',
-											},{
-												text: 'Codici Pagamento',
-											},{
-												text: 'Codici Imballaggio',
-											},{
-												text: 'Banche',
-											},
-									   ]
-							   }
-						   },{
-							   text: 'Magazzino',
-							   menu: {
-								       items:[
-											{
-												text: 'DDT di Vendita',
-												handler: function() {
-													gestioneDdt();
-												},
-											},{
-												text: 'DDT altre causali',
-											},{
-												text: 'Saldi di magazzino',
-											},{
-												text: 'Carico a magazzino',
-											},{
-												text: 'Scarico da magazzino',
-											},{
-												text: 'Stampe',
-											},
-									   ]
-							   }
-						   },{
-							   text: 'Fatturazione',
-							   menu: {
-								       items:[
-											{
-												text: 'Crea/modifica Fattura',
-											},{
-												text: 'Stampa fatture in serie',
-											},
-									   ]
-							   }
-						   },{
-							   text: 'Configurazione',
-							   handler: function() {
-									ddtWindow();
-							   }
-						   },{
-							   text: 'Utilita',
-							   menu: {
-								       items:[
-											{
-												text: 'Back-Up',
-											},{
-												text: 'Altro',
-											},
-									   ]
-							   }
-						   }
-						]
-					}
-			},
-			// begin using the right-justified button container
-			'->', // same as { xtype: 'tbfill' }
-			{
-				xtype    : 'textfield',
-				name     : 'field1',
-				emptyText: 'enter search term'
-			},
-			// add a vertical separator bar between toolbar items
-			'-', // same as {xtype: 'tbseparator'} to create Ext.toolbar.Separator
-			'text 1', // same as {xtype: 'tbtext', text: 'text1'} to create Ext.toolbar.TextItem
-			{ xtype: 'tbspacer' },// same as ' ' to create Ext.toolbar.Spacer
-			'text 2',
-			{ xtype: 'tbspacer', width: 50 }, // add a 50px space
-			'text 3'
-		]
-	});
-Ext.FocusManager.enable({focusFrame: true});
-//alert(Ext.FocusManager.enabled);	
+	Ext.FocusManager.enable({focusFrame: true});
+	//alert(Ext.FocusManager.enabled);	
 	
-gestioneDdt();
-/*
-windows=ddtWindow();
-windows.on('close',function(){
-	this.result.get('data');
-	this.result.get('numero');
-});
-*/
+	mainMenu();
+		
+	//gestioneDdt();
+	/*
+	windows=ddtWindow();
+	windows.on('close',function(){
+		this.result.get('data');
+		this.result.get('numero');
+	});
+	*/
 });
 
 
