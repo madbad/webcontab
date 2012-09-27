@@ -87,7 +87,12 @@ if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 
 if (@$_GET['mode']=='print'){
 	$stampaRighe= function ($obj){
-		echo '<tr>';
+	$color='';
+	if ($obj->prezzo->getVal()=='0.001'){
+		$color=' style="background-color:red;color:white;" ';
+	}
+	
+		echo '<tr '.$color.'> ';
 		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
 		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
 		echo '<td>'.$obj->cod_cliente->getVal().'</td>';
@@ -207,7 +212,7 @@ if (@$_GET['mode']=='print'){
 		//	),
 			'cod_articolo'=>array('=','18','19'),
 			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
-			'prezzo'=>array('!=','0.001'),
+			//'prezzo'=>array('!=','0.001'),
 			
 		//	'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')
 			//'cod_articolo'=>array('=','11','111'),

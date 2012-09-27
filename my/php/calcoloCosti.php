@@ -352,7 +352,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.70);
 		$html.=getArticleTable($params);
         $html.=$table;
-/*
+
 		$html.="</div><div class='tableContainer'>";
         $html.="<h1>Semil.</h1>";
 //verona
@@ -376,7 +376,7 @@ if (@$_POST['mode']=='print'){
 		$html.=getArticleTable($params);
         $html.=$table;
     }
-*/
+/*
 		$html.="</div><div class='tableContainer'>";
         $html.="<h1>Finocchio</h1>";
 //finocchio
@@ -400,7 +400,7 @@ if (@$_POST['mode']=='print'){
 		$html.=getArticleTable($params);
         $html.=$table;
     }
-
+*/
 
     $html.='</div>';
     echo $html;

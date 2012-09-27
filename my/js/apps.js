@@ -1,3 +1,5 @@
+
+
 //##################################################################
 //   MAIN MENU
 //##################################################################
@@ -181,7 +183,15 @@ function elencoDdt() {
 //   CREAZIONE MODIFICA DDT
 //##################################################################
 function gestioneDdt(){
-	return Ext.create('Ext.window.Window', {
+	var _self=this;
+	this.elencaDdt=function(){
+	console.log(this.window.items.items);
+		alert('elenco i ddt');
+	}
+	
+	
+
+	this.window= Ext.create('Ext.window.Window', {
 		title: 'Gestione DDT',
 		//renderTo: Ext.getBody(),
 		//height: 288,
@@ -193,6 +203,7 @@ function gestioneDdt(){
 		items: [
 			Ext.create('Ext.form.Panel', {
 				title: 'Gestione Ddt',
+				id:'getioneDdt';
 				//labelWidth: 75, // label settings here cascade unless overridden
 				//url: 'save-form.php',
 				height:130,
@@ -215,6 +226,7 @@ function gestioneDdt(){
 							fn: function(el,e){ 
 								if(e.getCharCode()==Ext.EventObject.F1){
 									alert('hai premuto f1');
+									_self.elencaDdt();
 								};
 							},
 						},
@@ -223,6 +235,8 @@ function gestioneDdt(){
 					fieldLabel: 'Data',
 					xtype: 'datefield',
 					name: 'data',
+					format: 'd/m/Y',
+					 value: new Date(),
 					x:250,
 					y:10,
 					width:200,
@@ -335,6 +349,8 @@ function gestioneDdt(){
 			}),
 		],
 	}).show();
+	
+	return;
 }
 
 

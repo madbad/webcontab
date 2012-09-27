@@ -48,7 +48,8 @@ row= new oRow();
 <script type="text/javascript">
 Ext.onReady(function(){
 	Ext.FocusManager.enable({focusFrame: true});
-	//alert(Ext.FocusManager.enabled);	
+	//alert(Ext.FocusManager.enabled);
+  		//Ext.Date.defaultFormat('d/m/Y');  
 	
 	mainMenu();
 		
@@ -60,6 +61,7 @@ Ext.onReady(function(){
 		this.result.get('numero');
 	});
 	*/
+
 });
 
 

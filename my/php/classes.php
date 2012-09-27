@@ -49,7 +49,8 @@ function dbFrom($dbName, $toSelect, $operators){
 		case 'RIGHEDDT': 				$dbFile='03BORIGD.DBF' ;break;  //*
 		case 'RIGHEFT': 				$dbFile='03FARIGD.DBF' ;break;  //* 
 		case 'INTESTAZIONEDDT':			$dbFile='03BOTESD.DBF' ;break;  //* 
-		case 'INTESTAIONEFT': 			$dbFile='03FATESD.DBF' ;break;  //* 
+		case 'INTESTAZIONEFT': 			$dbFile='03FATESD.DBF' ;break;  //* 
+		case 'IVAFT': 					$dbFile='03LIBIVA.DBF' ;break;  //* 
 		case 'ANAGRAFICAFORNITORI': 	$dbFile='03ANFORD.DBF' ;break;  //* 
 		case 'ANAGRAFICACLIENTI': 		$dbFile='03ANCLID.DBF' ;break;  //* 
 		case 'ANAGRAFICAARTICOLI': 		$dbFile='03ANPROD.DBF' ;break;  //* 
@@ -643,9 +644,23 @@ class Fattura extends MyClass{
 		$this->addProp('tot_colli',		'F_TOTCOLLI');
 		$this->addProp('tot_peso',		'F_QTATOT');
 
+		$this->addProp('imponibile','FLCAMBIO');
+	//	$this->addProp('iva',		'');
+	//	$this->addProp('importo',		'');
+
+	//	$this->addProp('pagato',		'F_PAGATO');
+		
+		
+
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('INTESTAZIONEFT');
+		$this->addProp('_dbName2');
+		$this->_dbName2->setVal('IVAFT');
+		
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');
+		$this->_dbIndex->setVal(array('numero','data'));
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
@@ -653,6 +668,27 @@ class Fattura extends MyClass{
 		//avvio il recupero dei dati
 		$this->autoExtend();
   	}
+	public function getDataFromDbCallBack(){
+	//echo 'test';
+		//if ($this->_params['_autoExtend']!='intestazione'){
+			//recupero le righe del ddt
+//			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".'F_NUMDOC'."='".odbc_access_escape_str($this->numero->getVal())."' AND ".'F_DATDOC'."=#".odbc_access_escape_str($this->data->getVal()."#"));
+			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE F_IMPONI <'0' ");
+
+			//echo $result;
+			foreach($result as $row){
+	
+					//array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
+					/*todo fix righe*/
+					//echo 'test';
+					ECHO 'test';
+					$this->imponibile->setVal($row['F_T_IMPONI']);
+					$this->iva->setVal($row['F_T_IMPIVA']);
+					$this->importo->setVal($row['F_T_IMPONI']+$row['F_T_IMPIVA'].'***');
+			}
+		//}
+
+	}
 }
 
 class Ddt  extends MyClass {
