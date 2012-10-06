@@ -29,6 +29,8 @@
 	$today = date("m-d-Y");
 	if(@$_POST['startDate']){$startDate=$_POST['startDate'];}else{$startDate=$today;}
 	if(@$_POST['endDate']){$endDate=$_POST['endDate'];}else{$endDate=$today;}
+	echo 'dal '.$_POST['startDate'];
+	echo '<br> al '.$_POST['endDate'].'<br><br>';
 	?>
 	
 	<span class="hideOnPrint" id="myForm">	
@@ -113,17 +115,21 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 		$articolo=$row['F_CODPRO'];
 		$descrizione=$row['F_DESPRO'];
 		$peso=$row['F_PESNET'];
+		$colli=$row['F_NUMCOL'];
 		//$peso=$row['F_QTA'];
 		
-		if (in_array($articolo,$radicchi)) $descrizione=$articolo='**radicchi';
-		if (in_array($articolo,$insalate)) $descrizione=$articolo='**insalate';
-		if (in_array($articolo,$pdzucchero)) $descrizione=$articolo='**pdzucchero';
+		//if (in_array($articolo,$radicchi)) $descrizione=$articolo='**radicchi';
+		//if (in_array($articolo,$insalate)) $descrizione=$articolo='**insalate';
+		//if (in_array($articolo,$pdzucchero)) $descrizione=$articolo='**pdzucchero';
 	
 		$done=false;
 		//echo $cliente->codice->getVal().'='.$peso.'<br>';
 		if($peso>0){
 			if ($tipo=='mercato' || $tipo=='supermercato'){
 				$myArray['lavorato'][$articolo.'*'.$descrizione]+=$peso;
+			//	if(($peso/$colli)>10){
+			//		echo $peso.':'.$colli.'='.round($peso/$colli,1).' ('.$descrizione.')<br>';
+			//	}
 				$done=true;
 			}
 			if ($tipo=='semilavorato'){
@@ -136,7 +142,7 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 			}
 			if ($done!=true){
 				$myArray['altro'][$articolo.'*'.$descrizione]+=$peso;
-				echo '<br><b>WARNING (tipo cliente sconosciuto)</b>:'.$cliente->codice->getVal().':'.$cliente->ragionesociale->getVal().'='.$peso.'<br>';
+				//echo '<br><b>WARNING (tipo cliente sconosciuto)</b>:'.$cliente->codice->getVal().':'.$cliente->ragionesociale->getVal().'='.$peso.'<br>';
 			}
 		}		
 		$totale+=$peso;
