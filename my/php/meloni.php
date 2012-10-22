@@ -96,7 +96,7 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$obj->colli->getVal().'</td>';				
 		echo '<td>'.$obj->peso_netto->getVal().'</td>';
 		if($obj->prezzo->getVal()*1>0.001){$prezzo=$obj->prezzo->getVal();}else{$prezzo='';}
-		echo '<td>'.$prezzo.'</td>';
+		echo '<td>'.$obj->imponibile->getVal().'</td>';
 		//echo '<td>'.$obj->imponibile->getVal().'</td>';			
 		echo '</tr>';
 	};
@@ -107,7 +107,7 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.$obj->sum('colli').'</td>';				
 		echo '<td>'.$obj->sum('peso_netto').'</td>';
-		echo '<td>-</td>';
+		echo '<td>'.$obj->sum('imponibile').'</td>';
 		echo '</tr>';
 	};
 
@@ -189,7 +189,7 @@ if (@$_GET['mode']=='print'){
 //			'cod_articolo'=>array('=','11','111','112','113',
 //								      '911','9111','9112','9113',
 //			),
-			'cod_articolo'=>array('=','501','500'),
+			'cod_articolo'=>array('=','11','911','113','111','8112','112','9112'),
 
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
 			//'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),
