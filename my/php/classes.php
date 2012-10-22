@@ -703,6 +703,18 @@ class Fattura extends MyClass{
 		
 	}
 	
+	public function calcolaTotaliImponibiliIva(){
+		$imponibili=Array();
+		foreach ($this->righe as $riga){
+			if ($riga->imponibile->getVal()*1!='0.0'
+				&& $riga->imponibile->getVal()*1!=''){
+				$codIva=$riga->cod_iva->getVal();
+				@$imponibili[$codIva]['imponibile']+=$riga->imponibile->getVal();
+				@$imponibili[$codIva]['importo_iva']+=$riga->importo_iva->getVal();		
+			}
+		}
+		return $imponibili;
+	}
 }
 
 class Ddt  extends MyClass {
