@@ -1,0 +1,2101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Introduction to dBASE III Plus</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="MSHTML 6.00.2600.0" name="GENERATOR"></head>
+<body><a name="top"></a>
+<h3 align="center"><b>Introduction to dBASE III Plus</b></h3>This document is an
+introduction to the basic concepts of creating, editing, and managing databases
+using dBASE III Plus. The <a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#template">function
+key template</a> included at the end of this manual provides shortcuts to
+commonly used functions in dBASE III Plus.
+<hr noshade="noshade">
+
+<h3>CONTENTS</h3>
+<ol>
+  <li><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#notation">NOTATION</a><br>
+  </li><li><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#introduction">INTRODUCTION</a><br>
+  </li><li><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#basics">dBASE
+  III Plus BASICS</a><br>
+  <dl>
+    <dd>Learn about the two modes in which dBASE III Plus can operate as well as
+    how to interpret the information given on the screen.<br></dd></dl>
+  </li><li><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#creating%20and%20handling">CREATING
+  AND HANDLING A DATABASE</a><br>
+  </li><li><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#command">Command
+  Mode COMMANDS</a><br>
+  <dl>
+    <dd>Any dBASE III Plus command, function, or other reserved word can be
+    abbreviated to the first four characters. Filenames cannot be abbreviated.
+    This section gives a listing of commands and their format.<br></dd></dl>
+  </li><li><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#assist%20mode%20commands">Assist
+  Mode COMMANDS</a><br>
+  <dl>
+    <dd>The Assistant prompts the user throught many dBASE III Plus commands.
+    There are eight groups of commands.<br></dd></dl>
+  </li><li><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#commands%20by%20function">COMMANDS
+  BY FUNCTION</a><br></li></ol>
+<hr noshade="noshade">
+
+<p><a name="notation">
+</a></p><h3><a name="notation">NOTATION</a></h3>
+<p>The dBASE III Plus commands described in this manual use a standard notation.
+Special delimiters such as parentheses, single quotes or double quotes are
+required where indicated. It should be noted that the dBASE error messages are
+not always self-explanatory. For example, <i>invalid keyword</i> may be caused
+by an invalid keyword (usually a spelling error) or by an error in command
+syntax (usually a missing delimiter).
+</p><dl>
+  <dt>UPPER CASE
+  </dt><dd>keywords
+  <p></p>
+  </dd><dt>lower case
+  </dt><dd>values are supplied by user
+  <p></p>
+  </dd><dt><b>bold</b>
+  </dt><dd>keywords in the pull-down menu
+  <p></p>
+  </dd><dt>[ ]
+  </dt><dd>optional values; the square brackets are not part of the command
+  <p></p>
+  </dd><dt>{ }
+  </dt><dd>one of the enclosed elements must be chosen; the brace brackets are not
+  part of the command
+  <p></p>
+  </dd><dt>filename
+  </dt><dd>name of a file including the drive and path if required
+  <p></p>
+  </dd><dt>field
+  </dt><dd>name of field in the active database
+  <p></p>
+  </dd><dt>field list
+  </dt><dd>list of field names in the active database separated by commas
+  <p></p>
+  </dd><dt>variable
+  </dt><dd>name (maximum 10 characters) assigned to a memory location; used to hold a
+  data value that is typically an intermediate result from a calculation but is
+  not part of the database
+  <p></p>
+  </dd><dt>variable list
+  </dt><dd>list of variable names separated by commas
+  <p></p>
+  </dd><dt>condition
+  </dt><dd>specifies a limited range for the command; see Command Structure section
+  for details
+  <p></p>
+  </dd><dt>scope
+  </dt><dd>expression to specify how much of the database to use in the command; see
+  Command Structure section for details
+  <p></p>
+  </dd><dt>key
+  </dt><dd>specific value in a field or a specific field
+  <p></p></dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="introduction">
+<h3>INTRODUCTION</h3></a>
+<p>The following points cover some important fundamentals of dBASE III Plus:
+</p><p>To start dBASE III Plus: if you are on the network, use the <b>SOFTMENU</b>
+command.
+</p><p>On the network, the default disk drive is Y:. Change the default disk drive
+to your disk, that is, A:, by selecting <b>Set Drive</b> under <b>Tools</b> in
+the Assist menu before you do anything else in dBASE III Plus.
+</p><p>dBASE III Plus does not support a mouse.
+</p><p>dBASE III Plus can be run in two modes: Assist Mode or Command Mode (also
+called Dot-Prompt Mode), as explained in the <i>dBASE III Plus Basics</i>
+section.
+</p><p>To exit dBASE III Plus when in Assist Mode, select the <b>Quit dBASE III
+Plus</b> option from the <b>Set Up</b> menu.
+</p><p>To exit when in Command Mode, type <b>QUIT</b> at the prompt.
+</p><p>You may enter Assist Mode from Command Mode by typing <b>ASSIST</b> at the
+prompt.
+</p><p>All database files will be properly closed and all information is saved
+automatically if dBASE III Plus is exited properly by either of the above
+methods. Information will be lost if you attempt to exit the program by any
+other means.
+</p><p>The dBASE III Plus help key is the F1 key. Help is context sensitive and will
+describe the current command or menu option.
+</p><p>If you make a mistake entering a command in Command Mode, dBASE III Plus will
+ask <b>Do you want some help? (Y/N)</b>. If you type <b>Y</b>, a help screen
+explains the correct format and use of the command. At this point, you can press
+Escape to return to the dot-prompt or you can type another command name at the
+cursor for information about that command.
+</p><p>If dBASE III Plus is in a mode you do not recognize or that you do not wish
+to use, press Escape to leave that mode.
+</p><p>dBASE III Plus is not a particularly complicated package but the keywords and
+the function names may not be as obvious as those used in other packages. The
+problem is complicated by the fact that not all available commands can be found
+in the pull-down menu. Use the section <a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#commands%20by%20function"><i>Commands
+by Function</i></a> at the end of this manual to locate the desired command when
+you cannot remember the keyword.
+</p><p><b>READ the screen!</b> dBASE III Plus provides you with enough information
+to answer most of your questions.
+</p><p>
+</p><hr noshade="noshade">
+<a name="basics">
+<h3>dBASE III Plus BASICS</h3></a>
+<p>dBASE III Plus can be run in two different modes. Assist Mode works through a
+pull-down menu system. It allows you to build a dBASE III Plus command clause by
+clause. At every point you are guided on the possible input choices and their
+meanings. Assist Mode is recommended for novice users.
+</p><p>dBASE III Plus can also be run in Command Mode. In this mode, you type dBASE
+commands at the prompt. If you are comfortable with dBASE III Plus commands, you
+will find this approach the most efficient. All commands that can be entered in
+Assist Mode can also be entered in Command Mode. The reverse is not true; some
+commands can only be run from Command Mode.
+</p><p>
+</p><h4>Reading the Screen</h4>
+<p>When you start dBASE III Plus, a copyright screen will appear. Press the
+Enter key to continue. The next screen will be the opening screen for Assist
+Mode.
+</p><p><img alt="[Opening Screen]" src="IntrodBASEIIIPlus_files/dbaseIII_003.gif"><br>
+</p><center>Assist Mode Screen</center>
+<p>The basic components of the Assist Mode screen are:
+</p><ul>
+  <li>the <i>menu bar</i> at the top of the screen;
+  </li><li>the <i>current time window</i> beside it;
+  </li><li>the <i>submenu area</i> where the pull-down menus will appear;
+  </li><li>the <i>action line</i> (there is no action line on the opening screen);
+  and
+  </li><li>the <i>status bar</i>, the <i>navigation line</i>, and the <i>message
+  line</i> which appear together (in that order) at the bottom of the screen.
+  </li></ul>These last three lines are always present while you are using dBASE
+III Plus.
+<p><img alt="[Components of Assist Mode]" src="IntrodBASEIIIPlus_files/dbaseIII_002.gif"><br>
+</p><center>Components and Layout of Assist Mode</center>
+<p>In the <i>Components and Layout of Assist Mode</i> figure, the
+<b>Position</b> entry in the menu bar has been selected. The <b>Position</b>
+submenu has five options. The <b>Locate</b> option has been selected and the
+<b>Locate</b> submenu is shown to the right. <b>Specify scope</b> has been
+selected, followed by the option <b>Next</b>, and the value <b>10</b> has been
+entered in the prompt box. The action line, which appears below the submenu
+area, shows the dBASE III Plus command being generated by Assist Mode. In the
+figure, the command is LOCATE NEXT. When Enter is pressed after the value of 10,
+the command will be LOCATE NEXT 10.
+</p><p>The status bar is highlighted and divided into six areas, from left to right:
+
+</p><ol>
+  <li>mode
+  <ul>
+    <li>current mode: Assist or Command
+    <p></p></li></ul>
+  </li><li>current disk drive
+  <ul>
+    <li>default disk drive used for storing files
+    <p></p></li></ul>
+  </li><li>file in use
+  <ul>
+    <li>name of active database file; blank if no file in use
+    <p></p></li></ul>
+  </li><li>record pointer
+  <ul>
+    <li>current record number/ total number of records
+    <p></p></li></ul>
+  </li><li>status of Ins and Del
+  <ul>
+    <li>records marked for deletion show DEL
+    <p></p></li></ul>
+  </li><li>status of Caps Lock </li></ol>
+<p>When a database is active, the record pointer points to the current record in
+the database. Commands which operate on only one record will execute on the
+current record. If the record pointer shows EOF (end of file), it indicates that
+this is the last record in the database.
+</p><p>Below the status bar is the navigation line, which indicates the keystrokes
+that you may enter and their effects. The navigation line always tells you what
+dBASE III Plus is expecting as input. In the opening menu, the up arrow and down
+arrow keys will move the selection bar in the pull-down menu. Pressing the Enter
+key will select the highlighted option. The right arrow and left arrow keys will
+move to a different selection in the menu bar. The F1 key will give Help, and
+you exit this mode by pressing the Escape button. In the Components and Layout
+sample menu, dBASE III Plus is expecting a value followed by Enter.
+</p><p>The message line gives a brief description of the highlighted option on the
+current menu, that is, a mini-help screen. The message line is also used as an
+area to enter data for certain commands.
+</p><p>dBASE III Plus can also be run in Command Mode, where you may type commands
+at the prompt. A sample Command Mode screen is shown in the <i>Command Mode
+Screen</i> figure. The screen is blank except for the action line (the prompt),
+the status bar, and the message line at the bottom of the screen.
+</p><p>To change from Command Mode to Assist Mode type the command <b>ASSIST</b> or
+press the F2 key. To change from Assist Mode to Command Mode, press the Escape
+key.
+</p><p><img alt="[Command Mode Screen Figure]" src="IntrodBASEIIIPlus_files/dbaseIII_006.gif"><br>
+</p><center>Command Mode Screen</center>
+<p>
+</p><h4>File Types</h4>
+<p>Because varying types of information are used in a database application,
+different kinds of data structures are defined in DOS file types. The various
+file name extensions, and their meaning to dBASE III Plus are listed below.
+Where appropriate, the dBASE III Plus command that creates the file type is
+listed in parentheses beside the description.
+</p><dl>
+  <dt>.DBF
+  </dt><dd>database records (CREATE)
+  <p></p>
+  </dd><dt>.DBT
+  </dt><dd>database memo fields, has same filename as the associated database file
+  (.DBF) (CREATE)
+  <p></p>
+  </dd><dt>.FMT
+  </dt><dd>entry screen format commands for custom entry forms (CREATE/MODIFY SCREEN)
+  <p></p>
+  </dd><dt>.FRM
+  </dt><dd>report format (CREATE/MODIFY REPORT)
+  <p></p>
+  </dd><dt>.NDX
+  </dt><dd>database index pointers (INDEX)
+  <p></p>
+  </dd><dt>.PRG
+  </dt><dd>program files, sequence of commands (ASCII file; any editor)
+  <p></p>
+  </dd><dt>.QRY
+  </dt><dd>query file (CREATE/MODIFY QUERY)
+  <p></p>
+  </dd><dt>.SCR
+  </dt><dd>entry screen format (CREATE/MODIFY SCREEN)
+  <p></p>
+  </dd><dt>.TXT
+  </dt><dd>normal DOS ASCII text file used for output (COPY TO)
+  <p></p>
+  </dd><dt>.VUE
+  </dt><dd>view file (CREATE/MODIFY VIEW)
+  <p></p></dd></dl>
+<p>
+</p><h4>Field Types</h4>
+<p>A field is the smallest portion of a record that has a specific meaning or
+purpose. Five types of fields can be defined in dBASE III Plus:
+</p><p>
+</p><ol>
+  <li>character
+  <ul>
+    <li>text
+    </li><li>length=1 to 254 characters
+    <p></p></li></ul>
+  </li><li>numeric
+  <ul>
+    <li>numbers: integer or decimal
+    </li><li>length=1 to 20 digits
+    </li><li>used for calculations
+    <p></p></li></ul>
+  </li><li>date
+  <ul>
+    <li>dates in various formats
+    </li><li>length=8 characters
+    </li><li>limited calculations possible
+    <p></p></li></ul>
+  </li><li>logical
+  <ul>
+    <li>either true (.T.) or false (.F.)
+    </li><li>length=single character
+    <p></p></li></ul>
+  </li><li>memo
+  <ul>
+    <li>text
+    </li><li>length=variable
+    <p></p></li></ul></li></ol>
+<p>
+</p><h4>Command Structure</h4>
+<p>Most dBASE III Plus commands which are related to record processing have the
+following format:
+</p><dl>
+  <dd>command [[FIELDS] fields] [scope] [FOR clause] [WHILE clause] </dd></dl>The
+command always begins with the command name. Commands that can operate on a
+subset of fields in a record have a required or optional field list. The keyword
+FIELDS is required for some commands. The scope, FOR, and WHILE clauses restrict
+the records that the command will affect.
+<p>
+</p><h5>Scope</h5>
+<p>The scope of the command restricts the number of records to be processed.
+Typically, the default command scope is the current record. If you want the
+command to work on all records in the database be sure to specify ALL. </p><pre>    RECORD n  command operates on record n only
+    NEXT n    command operates on next n records only
+    ALL       command operates all records
+    REST      command operates on all records after the current record
+</pre>
+<p>
+</p><h5>FOR/WHILE clause</h5>
+<p>
+</p><dl>
+  <dt><i>FOR condition</i>
+  </dt><dd>choose all records that match the condition
+  <p></p>
+  </dd><dt><i>WHILE condition</i>
+  </dt><dd>choose all records that match the condition until the first not matching
+  record. Other records with this value may exist, but if they do not
+  immediately follow the current record, they will not be processed. A WHILE is
+  much faster than a FOR when using ordered data. </dd></dl>
+<p>The <i>condition</i> is a logical (simple or compound) expression. The result
+of a logical expression is either true or false. A simple logical expression has
+the form: </p><pre>  statement  relational operator  statement
+
+where    statement  returns a numeric value and has the form
+
+         number  mathematical operator  number
+
+         where  mathematical operator is one of
+                +  add
+                -  subtract
+                *  multiply
+                /  divide
+                ** exponentiation
+
+                                or
+
+        statement returns a string value and has the form
+
+        string  string operator  string
+
+        where  string operator is one of
+                +  concatenate second string to first string
+                -  concatenate but strip trailing blanks from first string
+                e.g.    city + str( zip, 5 )
+
+where   relational operator: is one of
+                &lt;  less than
+                &lt;= less than or equal to
+                &gt;  greater than
+                &gt;= greater than or equal to
+                =  equal to
+                &lt;&gt; not equal to
+                #  not equal to
+                $  substring comparison -- returns true if first string
+                   is identical to or is contained within the second string
+</pre>
+<dl>
+  <dt>Examples:
+  </dt><dd>gross_prof &lt; 1000
+  </dd><dd>success = 'y'
+  </dd><dd>date_trans &gt; = str(02/10/79) </dd></dl>You may join two or more simple
+expression together to form a compound expression: <pre>         simple expression  logical operator  simple expression
+
+where    simple espression is as above
+
+where    logical operator  is one of
+                .NOT.   not
+                .AND.   logical and
+                .OR.    logical or
+
+         NOTE: .T. is true, .F. is false
+</pre>
+<dl>
+  <dt>Examples:
+  </dt><dd>.not. approved (Note: approved must be a logical value)
+  </dd><dd>dtoc(work_date) &gt;= "1/1/89" .and. dtoc(work_date) &lt; "7/1/89"
+</dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="creating and handling">
+<h3>CREATING AND HANDLING A DATABASE</h3></a>
+<p>
+</p><h4>Establishing Requirements</h4>
+<p>A database organizes data into a data hierarchy. A <i>field</i> is the
+smallest component that conveys a specific meaning or purpose. A <i>record</i>
+is a set of one or more fields concerning one individual or case. A <i>file</i>
+is a set of one or more related records, grouped together by purpose. A
+<i>database</i> is a set of related files. For example, the employee database
+for a company may consist of two files, one for payroll and another for job
+classification. The two files probably share no common fields other than an
+employee identification number or a job title. In the payroll file, there will
+be one record for each employee. Each record will consist of a number of fields
+and will probably include the employee identification number, the employee name,
+the job title, the employee's social security number, and a weekly salary.
+</p><p>In designing a database, you must know:
+</p><ul>
+  <li>what questions are to be answered?
+  </li><li>what data are required?
+  </li><li>what database model is best for the application? </li></ul>
+<p>Decide first on the number and purpose of the files in the database. Many
+simple databases have only one file. Next, select the fields in the database(s).
+Can you answer all the required questions with the fields you have selected?
+When laying out your database, sketch the database structure. Always put the
+fields to be used most frequently at the beginning of the record. This order
+will allow you to see the most important data on the screen without scrolling.
+</p><p>
+</p><h4>Creating the Database Structure</h4>
+<p>A data <i>structure</i> defines each item of data in a database system. For
+each data item, the structure defines:
+</p><ul>
+  <li>field name (maximum of 10 characters)
+  </li><li>field type (numeric, character, date, logical, memo) and by implication
+  its format
+  </li><li>field length (specified in characters except for memo, which is variable
+  length) </li></ul>
+<p>In dBASE III Plus, the data structure is defined by selecting the <b>Database
+file</b> option from <b>Create</b> in Assist Mode. When all the fields are
+defined and you terminate the data structure definition process, you will see
+the message <b>Input data records now? (Y/N)</b> at the bottom of the screen. If
+you press <b>y</b>, the program displays the data entry form for the structure
+you have just defined and you can start entering data. As each record is
+completed, a new data entry form is presented. You can choose to defer the entry
+of data until some later time. When you complete this process, the resulting
+structure (and any data entered) will be stored in the file <i>filename.DBF</i>.
+You will be asked to provide the filename.
+</p><p>The data structure may be viewed by:
+</p><ul>
+  <li>selecting List structure under Tools in the Assist menu; or
+  </li><li>typing <b>List Structure</b> or <b>Display Structure</b> in Command Mode;
+  or
+  </li><li>pressing the <b>F5</b> key in Command Mode. </li></ul>
+<p>The structure may be modified by selecting <b>Structure</b> under
+<b>Modify</b> in Assist Mode or typing MODIFY STRUCTURE in Command Mode.
+Modification can include defining new fields, deleting old fields, or changing
+field names, types and sizes. You may not change a field's name, type and/or
+size at the same time. The structure can be modified at any time: before,
+during, or after data has been entered into the database. Existing data will not
+be modified unless fields are deleted, field widths are decreased, or field
+types are changed.
+</p><p>
+</p><h4>Using An Existing Database</h4>
+<p>Databases can only be modified or manipulated if they are loaded into one of
+the 10 work areas in dBASE III Plus. The ten work areas are numbered 1 to 10.
+The work areas also have an <i>alias</i>: the letters A to J, which correspond
+to the areas 1 through 10. Thus, work area 1 can also be referred to as work
+area A. The work area can also be referred to by name of the database loaded in
+the area. Up to 10 different databases can be loaded into the system. However,
+only one work area and consequently one database is considered to be the
+currently <i>selected</i> work area or the <i>active database</i>.
+</p><p>When you start dBASE III Plus, work area 1 is the <i>selected work area</i>
+and will contain the <i>active database</i>. A database is opened with the
+<b>Use</b> command. If another database is in the currently selected area, the
+USE command will close that database and then open the database indicated in the
+USE command.
+</p><p>A work area may be made current with the SELECT command. If the CREATE
+command has just been used, the newly defined database will be active in the
+current area, and no SELECT or USE command is needed. For example, if
+CUSTOMER.DBF is active in work area one, and EMPLOYEE.DBF is active in work area
+two, you may move from one to the other by typing
+</p><ul>
+  <li>SELECT CUSTOMER or
+  </li><li>SELECT EMPLOYEE. </li></ul>
+<p>
+</p><h4>Entering and Editing Data</h4>
+<p>Data may be entered into, added to, or edited in an existing database using
+APPEND, BROWSE, or EDIT. All of these commands have identical data editing
+capabilities but different interfaces. All commands assume that you have an
+active database. You must open a database (<b>USE</b>) unless the structure was
+just created.
+</p><p>The APPEND command is used to enter data, one record at a time. The entry
+form for the data appears as a series of highlighted blocks the same width as
+the fields they represent beside the appropriate field name. Simply type your
+data into the blocks. When a record is complete, a new blank record form is
+presented automatically.
+</p><p>The EDIT command is used to modify existing data. EDIT uses the same entry
+format as APPEND, presenting one record at a time. Simply edit data in any
+highlighted block. (See the <i>Edit Screen</i> figure.)
+</p><p><img alt="[Edit Screen Figure]" src="IntrodBASEIIIPlus_files/dbaseIII.gif"><br>
+</p><center>Edit Screen</center>
+<p>The BROWSE command is used to enter or modify existing data. The BROWSE
+command presents multiple records on the screen in a two dimensional format
+similar to a spreadsheet. As you move around the screen, a field will be
+highlighted as the active field and the contents of this field can be modified.
+(See the <i>Browse Screen</i> figure).
+</p><p><img alt="[Browse Screen Figure]" src="IntrodBASEIIIPlus_files/dbaseIII_005.gif"><br>
+</p><center>Browse Screen</center>
+<p>The CREATE SCREEN command allows you to create a custom data entry form. A
+custom data entry form allows you to perform simple error checking on data as it
+is being entered. The custom form can also arrange the fields for easier data
+entry, or omit fields from the screen which are not entered manually.
+</p><p>Deleting a record is a two step process. The DELETE command simply marks the
+specified record for deletion. The fifth area in the status line will display
+DEL to indicate that the current record is marked for deletion. Records can be
+marked for deletion from within BROWSE and EDIT as well. Records marked for
+deletion are processed like any other records if SET DELETED OFF is used. If SET
+DELETED ON is used, then the records marked for deletion will be ignored. The
+RECALL command will unmark a record that was previously marked for deletion. The
+PACK command physically removes the records marked for deletion from the
+database. A record removed by PACK cannot be RECALLed. The ZAP command deletes
+all records from a database and is equivalent to a DELETE ALL followed by a PACK
+but much faster. ZAP is a very dangerous command.
+</p><p>
+</p><h4>Displaying Data</h4>
+<p>The BROWSE, DISPLAY, LIST, and REPORT commands can be used to display
+selected records from the database. BROWSE, DISPLAY, and LIST are typically used
+for informal data viewing. Select the command based on the interface you prefer
+and your reason for displaying the data.
+</p><p>The REPORT command is used to produce a formatted report to be printed or
+stored on disk. The format for the report is defined by the CREATE REPORT
+command and is stored in a .FRM file. You must define the report format before
+producing the report.
+</p><p>The commands FIND, LOCATE, and SEEK search for a record that matches some
+specified condition. LOCATE works on unindexed databases while FIND works on
+indexed databases. These commands return the record number of the first record
+that matches the criteria. Use LIST to display the record.
+</p><p>
+</p><h4>Sorting and Indexing the Database</h4>
+<p>The SORT and INDEX functions arrange the records in the database in the order
+that you specify. The SORT command physically arranges the records in the
+database based on one or more sort keys. The sort keys can be character, numeric
+or date fields. When sorting, dBASE III Plus creates a sorted copy of the
+original database and the new name for the sorted database file must be provided
+in the command.
+</p><p>The INDEX function creates a .NDX file, which is a list of pointers that keep
+track of the order of the records instead of actually rearranging the records.
+If a LIST command is issued on an indexed file, the records will be displayed in
+the desired (indexed) order but the record numbers will not appear in sequential
+numerical order. Like the SORT function, the INDEX command uses a key to sort
+the data. Although multiple fields may be joined to index the database, the
+fields must be of the same type. Therefore if a character and numeric field are
+to be used as the key for the index, the numeric field must be converted to
+characters by using the STR( ) function.
+</p><p>After a database has been indexed, the INDEX clause in the USE statement must
+be specified every time the database is opened. If the index is omitted and the
+database is changed, the .NDX file will not be updated, and the next time the
+database is used with the index, it will not be ordered properly. If this
+occurs, the .NDX file can be rebuilt by using the REINDEX command. A database
+can have multiple .NDX files providing the user with different ways of ordering
+the same database. All .NDX files must be specified in the USE statement when
+opening the database. If more than one .NDX file is specified, then the database
+will be ordered according to the first .NDX file specified, but all .NDX files
+will be updated when changes are made to the database. The SET ORDER TO command
+will change the primary index of the database to another .NDX file. Once a file
+is indexed, commands like FIND can be used to locate a particular record in the
+database.
+</p><p>
+</p><h4>Query Files</h4>
+<p>A query file sets up a temporary filter for a database. This filter specifies
+a subset of the database, so that to the user the database appears only to have
+records that match these criteria. For example, a student database may contain
+all of the students in a school. A query file may be set up to include only
+records where the YEAR field is equal to 4. Thus, while the query is being used,
+the database appears only to have fourth year students. The CREATE QUERY
+statement is used to set up a .QRY file which specifies the filter. The SET
+FILTER TO queryname.QRY command activates a particular filter for the active
+database. Only one .QRY file may be used at a time.
+</p><p>
+</p><h4>Simple Calculations and Statistics</h4>
+<p>The SUM, AVERAGE, and COUNT functions perform simple calculations. The SUM
+function will print a total for a field, the AVERAGE function provides an
+average for a field, and COUNT specifies the number of records in a file. The
+WHILE/FOR clauses can be used with all of these commands so that only a subset
+of the records are used for the calculations. For example, COUNT FOR
+CITY='WATERLOO' would provide the number of records where the field CITY is
+'WATERLOO'.
+</p><p>
+</p><h4>Joining Two Databases</h4>
+<p>The JOIN command allows two databases with at least one common field be
+combined to form a new database. The following sequence of commands demonstrates
+how this may be used: </p><pre>    SELECT 1
+    USE ENTRY
+    SELECT 2
+    USE STUDENTS
+    SELECT 1
+    JOIN WITH STUDENTS TO NEWDBASE FOR std_id = STUDENTS-&gt;std_id FIELDS
+         STUDENTS-&gt;std_name, std_id, entry_time
+</pre>
+<p>This example sets up the ENTRY database in area one, then sets up the
+STUDENTS database in area two. The ENTRY database is made active by issuing the
+second SELECT 1 command. The JOIN statement creates a new database called
+NEWDBASE with the fields specified in the FIELDS clause. Specifically, the
+record will contain the std_name from the STUDENTS database, std_id from ENTRY,
+and entry_time from ENTRY. For each record in the ENTRY database, the STUDENTS
+database is searched for records which have a std_id field that equals the
+std_id field in the ENTRY database. For each match found, a new record in the
+NEWDBASE database is created with the specified fields. The
+<i>alias-&gt;field_name</i> notation is used to allow access to fields of
+databases that are loaded but not active. The <i>alias</i> can be specified with
+the work area number (e.g. 2-&gt;std_id ), with the work area alias (e.g.
+B-&gt;std_id), or with the database name (e.g. STUDENTS-&gt;std_id).
+</p><p>
+</p><h4>Moving Files Across Packages</h4>
+<p>Data may be brought into a database from an ASCII file or from a Lotus 1-2-3
+file. Since most wordprocessors will output ASCII files and most spreadsheet and
+statistical packages will output ASCII files and/or Lotus 1-2-3 format files, it
+is relatively simple to transfer data into dBASE III Plus. In both cases, the
+APPEND FROM command is used. Note: APPEND FROM can only be accessed from Command
+Mode.
+</p><p>To output an ASCII file from a database, use the COPY command with either the
+SDF or DELIMIT options. The SDF option will create an ASCII file where the field
+lengths are preserved and the records are separated with a carriage return. SDF
+is the preferred format if the destination is a wordprocessor or a statistical
+package. dBASE III Plus can also produce Lotus 1-2-3 spreadsheet format files by
+using the type option WKS on the COPY command. Output from dBASE III Plus can
+easily be brought into most wordprocessors, spreadsheet packages, and
+statistical packages. Do not use Import and Export.
+</p><p>
+</p><h4>Storing and Running a Sequence of Commands</h4>
+<p>Sometimes it is useful to run a series of commands more than once. <b>DO
+<i>filename.PRG</i></b> will sequentially execute all of the commands located in
+<i>filename.PRG</i>. Any editor can be used to create the ASCII
+<i>filename.PRG</i> file.
+</p><p>
+</p><hr noshade="noshade">
+<a name="command">
+<h3>Command Mode COMMANDS</h3></a>The many commands available in Command Mode
+are explained alphebetically in this section.
+<p>Section Shortcut:<br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#?">[?]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#a-c">[A-C]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#d-l">[D-L]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#m-r">[M-R]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#s">[S]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#t-z">[T-Z]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#date%20and%20time">[Date
+and Time Functions]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#character">[Character
+Functions]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#math">[Mathematical
+Functions]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#other">[Other
+Type Functions]</a><br><a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#record">[Record
+Pointer Functions]</a><br>
+</p><hr noshade="noshade">
+<a name="?">
+<h4>?</h4></a>
+<p>Data display commands can be carried out without reference to a particular
+database. dBASE III Plus considers everything after the question mark as a query
+to the system.
+</p><dl>
+  <dt>Format:
+  </dt><dd>? <i>expression</i> or
+  </dd><dd>?? <i>expression</i>
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>? 22*34
+  <ul>
+    <li>Displays the result of 22*34 on a new display line </li></ul>
+  <p></p>
+  </dd><dd>?? DATE( )
+  <ul>
+    <li>Displays the date on the current display line </li></ul></dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="a-c">
+<h4>APPEND</h4></a>
+<p>Add records to the active database file.
+</p><dl>
+  <dt>Format:
+  </dt><dd>APPEND [BLANK]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>append
+  <ul>
+    <li>Displays an empty entry form to allow addition of records. Additional
+    forms are displayed as records are entered </li></ul>
+  <p></p>
+  </dd><dd>append blank
+  <ul>
+    <li>Displays 1 empty entry form to allow the addition of 1 record
+  </li></ul></dd></dl>
+<p>
+</p><h4>APPEND FROM</h4>
+<p>Add records from another file to the active database file.
+</p><dl>
+  <dt>Format:
+  </dt><dd>APPEND FROM <i>database filename</i> [FOR <i>condition</i>]
+  </dd><dd>APPEND FROM <i>foreign filename</i> [TYPE] type [FOR <i>condition</i>]
+  <p>where type is one of:
+  </p><ul>
+    <li><i>DELIMITED</i>
+    <dd>ASCII file; commas separate fields, double quotation marks surround text
+    data
+    <p></p></dd>
+    </li><li><i>DELIMITED WITH BLANKS</i>
+    <dd>ASCII file; blanks separate fields
+    <p></p></dd>
+    </li><li><i>SDF</i>
+    <dd>ASCII file with no delimiters between fields. Records are fixed length,
+    the same length as the record in the database file. Every record ends with a
+    carriage return and a linefeed
+    <p></p></dd>
+    </li><li><i>WKS</i>
+    <dd>Lotus 1-2-3 file </dd></li></ul>
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>append from jobsmore
+  <ul>
+    <li>Appends the records found in JOBSMORE.DBF to the active database. Only
+    data from matching field names will be appended. Missing fields will be
+    empty and data will be truncated if the field in the appended file is longer
+    than the corresponding field in the active file </li></ul>
+  <p></p>
+  </dd><dd>append from jobsmore for name = 'White, J.'
+  <ul>
+    <li>Appends the records found in JOBSMORE.DBF which have "White, J." in the
+    NAME field to the default file </li></ul>
+  <p></p>
+  </dd><dd>append from source.dat type sdf
+  <ul>
+    <li>Appends the records found in the ASCII file SOURCE.DAT </li></ul></dd></dl>
+<p>
+</p><h4>ASSIST</h4>
+<p>Change to Control Center Mode from Command Mode.
+</p><p>
+</p><dl>
+  <dt>Format:
+  </dt><dd>ASSIST </dd></dl>
+<p>
+</p><h4>AVERAGE</h4>
+<p>Computes the arithmetic mean for all or for specified numeric fields in the
+default database. Output will include headings for all relevant fields with the
+average for each field displayed immediately beneath the column heading.
+</p><p>
+</p><dl>
+  <dt>Format:
+  </dt><dd>AVERAGE [<i>field list</i>] [<i>scope</i>] [FOR <i>condition</i>] [WHILE
+  <i>condition</i>] [TO <i>variable</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>average
+  <ul>
+    <li>Compute the arithmetic mean for all numeric fields </li></ul>
+  <p></p>
+  </dd><dd>average gross_prof
+  <ul>
+    <li>Compute the mean for the numeric field GROSS_PROF </li></ul>
+  <p></p>
+  </dd><dd>average gross_prof to profmean
+  <ul>
+    <li>Compute the mean for GROSS_PROF and assign to variable PROFMEAN.
+    </li><li>Use ? PROFMEAN to display result </li></ul>
+  <p></p>
+  </dd><dd>average next 10
+  <ul>
+    <li>Compute the mean for all numeric fields for the next 10 records
+  </li></ul></dd></dl>
+<p>
+</p><h4>BROWSE</h4>
+<p>Presents a spreadsheet-like, full-screen view of records in the database for
+editing and appending records. Exit browse by pressing Control and End.
+</p><p>
+</p><dl>
+  <dt>Format:
+  </dt><dd>BROWSE [FIELDS <i>field list</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>browse
+  <ul>
+    <li>Displays active database with all fields in view, or available through
+    the scrolling commands </li></ul>
+  <p></p>
+  </dd><dd>browse fields prog_name, hrs_worked<br>
+  <ul>
+    <li>Displays only fields PROG_NAME and HRS_WORKED in the default database
+    </li></ul></dd></dl>
+<p>
+</p><h4>CLOSE</h4>
+<p>Close files that are currently in use. (Similar to the USE command with no
+operands.)
+</p><p>
+</p><dl>
+  <dt>Format:
+  </dt><dd>CLOSE {ALL | DATABASES | INDEX}
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>close all
+  <ul>
+    <li>Closes all files of all types </li></ul>
+  <p></p>
+  </dd><dd>close index
+  <ul>
+    <li>Closes all index files </li></ul></dd></dl>
+<p>
+</p><h4>CONTINUE</h4>
+<p>Positions the current record pointer to the next record meeting the condition
+specified in the LOCATE command. The command assumes that a LOCATE command has
+already been issued to find an item in a nonindexed database.
+</p><p>
+</p><dl>
+  <dt>Format:
+  </dt><dd>CONTINUE
+  <p></p>
+  </dd><dt>Example:
+  </dt><dd>locate for author = "Margaret Atwood"
+  </dd><dd>display title
+  </dd><dd>continue
+  </dd><dd>display title
+  <ul>
+    <li>The LOCATE finds the first record with the specified author. The DISPLAY
+    command gives the title in this record. If you did not want this particular
+    book, CONTINUE would find the next record that met the LOCATE condition
+  </li></ul></dd></dl>
+<p>
+</p><h4>COPY</h4>
+<p>Duplicates all or part of an active database file, creating a new file. COPY
+is also used to export data to non-dBASE III Plus programs.
+</p><p>
+</p><dl>
+  <dt>Format:
+  </dt><dd>COPY STRUCTURE TO <i>filename</i> [FIELDS <i>field list</i>]
+  </dd><dd>COPY TO <i>filename</i> [<i>scope</i>] [[TYPE] extension] [FIELDS <i>field
+  list</i>] [FOR <i>condition</i>] [WHILE <i>condition</i>]
+  <p>where extensions for exported files are:
+  </p><p></p>
+  </dd><dd><i>DELIMITED</i>
+  <ul>
+    <li>ASCII file: commas separate fields, double quotation marks surround text
+    data </li></ul>
+  </dd><dd><i>DELIMITED WITH BLANK</i>
+  <ul>
+    <li>ASCII file: blanks separate fields </li></ul>
+  </dd><dd><i>SDF</i>
+  <ul>
+    <li>ASCII file: no delimiters between fields. Records are fixed length, the
+    same length as the record in the database file; every record ends with a
+    carriage return and a linefeed. </li></ul>
+  </dd><dd><i>WKS</i>
+  <ul>
+    <li>Lotus 1-2-3 .WKS spreadsheet file. This file can be read by most
+    spreadsheet programs. </li></ul>
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>copy structure to duplist
+  <ul>
+    <li>Copies the structure of the active database to create a new database
+    file DUPLIST.DBF </li></ul>
+  <p></p>
+  </dd><dd>copy to templist
+  <ul>
+    <li>Copies the active database to TEMPLIST.DBF </li></ul>
+  <p></p>
+  </dd><dd>copy to good for success = 'y'
+  <ul>
+    <li>Copies the active database records for which the field SUCCESS is "y" to
+    GOOD.DBF </li></ul>
+  <p></p>
+  </dd><dd>copy to jobs type wks
+  <ul>
+    <li>Copies active database to a spreadsheet file called JOBS.WKS </li></ul>
+  <p></p>
+  </dd><dd>copy to wpfile type sdf
+  <ul>
+    <li>Copies active database to an ASCII file called WPFILE.TXT (default
+    extension) in which each record occupies one line in the file </li></ul>
+  <p></p>
+  </dd><dd>copy to bad for .not. approved fields name, sex, age
+  <ul>
+    <li>Copies the fields NAME, SEX and AGE from the active database records for
+    which the field APPROVED is .F. or "N" </li></ul></dd></dl>
+<p>
+</p><h4>COPY FILE</h4>
+<p>Duplicates any file.
+</p><dl>
+  <dt>Format:
+  </dt><dd>COPY FILE <i>filename1</i> TO <i>filename2</i>
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>copy file clients.dbf to newlist. dbf
+  <ul>
+    <li>Copies CLIENTS.DBF file to NEWLIST.DBF </li></ul></dd></dl>
+<p>
+</p><h4>COUNT</h4>
+<p>Determines the number of records that meet a specific condition. If no
+condition is specified, COUNT determines the number of records in the database.
+</p><dl>
+  <dt>Format:
+  </dt><dd>COUNT [<i>scope</i>] [FOR <i>condition</i>] [WHILE <i>condition</i>] [TO
+  <i>variable</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>count
+  <ul>
+    <li>Determines the number of records in the database. </li></ul>
+  <p></p>
+  </dd><dd>count next 100 for gross_prof &lt; 1000
+  <ul>
+    <li>Determines the number of records within the next 100 records which have
+    a value less than 1000 in the GROSS_PROF field </li></ul></dd></dl>
+<p>
+</p><h4>CREATE</h4>
+<p>Creates new files of various types.
+</p><dl>
+  <dt>Format:
+  </dt><dd>CREATE <i>database filename</i>
+  </dd><dd>CREATE { QUERY | REPORT | SCREEN | VIEW | CATALOG} <i>filename</i>
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>create jobs
+  <ul>
+    <li>Presents a new structure definition screen to build a new database
+    JOBS.DBF </li></ul>
+  <p></p>
+  </dd><dd>create query names
+  <ul>
+    <li>Presents a menu system that prompts you for information necessary to
+    design a filter for use in a work session. Generated file is NAMES.QRY
+  </li></ul>
+  <p></p>
+  </dd><dd>create report jobdata
+  <ul>
+    <li>Presents a form design menu to design the report JOBDATA.FRM
+  </li></ul></dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="d-l">
+<h4>DELETE</h4></a>
+<p>Marks records in the active database file for deletion. See RECALL to remove
+the deletion marker. See PACK to physically remove the marked records. Records
+may also be marked for deletion while the user is in either EDIT or BROWSE.
+Pressing Control and U toggles between marking and unmarking records for
+deletion.
+</p><dl>
+  <dt>Format:
+  </dt><dd>DELETE [<i>scope</i>] [FOR <i>condition</i>] [WHILE <i>condition</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>delete record 10
+  <ul>
+    <li>Marks record 10 for deletion </li></ul>
+  <p></p>
+  </dd><dd>delete for recno() &gt; 100
+  <ul>
+    <li>Marks all records from record 100 on for deletion </li></ul>
+  <p></p>
+  </dd><dd>delete for prog_name = 'White, J.'
+  <ul>
+    <li>Searches through the database and deletes all records in which "White,
+    J." is contained in the fields PROG_NAME </li></ul></dd></dl>
+<p>
+</p><h4>DELETE FILE</h4>
+<p>Deletes a file. The filename must include the extension and wildcards may not
+be used. You may not delete a file that is currently in use. Same as ERASE.
+</p><dl>
+  <dt>Format:
+  </dt><dd>DELETE FILE <i>filename</i>
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>delete file a:extra. dbf
+  <ul>
+    <li>Deletes the file EXTRA.DBF from drive A: </li></ul></dd></dl>
+<p>
+</p><h4>DIRECTORY</h4>
+<p>By default, lists database filenames with the extension .DBF on the current
+directory.
+</p><dl>
+  <dt>Format:
+  </dt><dd>DIR [<i>drive</i>:] [<i>path</i>] [<i>filename</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>dir *.*
+  <ul>
+    <li>Lists the names of all files with any extension </li></ul>
+  <p></p>
+  </dd><dd>dir a:
+  <ul>
+    <li>Lists the names of all .DBF files on drive a: </li></ul></dd></dl>
+<p>
+</p><h4>DISPLAY</h4>
+<p>Displays the contents of a database file in an unformatted list.
+</p><dl>
+  <dt>Format:
+  </dt><dd>DISPLAY [<i>field list</i>] [<i>scope</i>] [FOR <i>condition</i>] [WHILE
+  <i>condition</i>] [TO PRINTER | TO FILE <i>filename</i>] [OFF]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>display
+  <ul>
+    <li>Displays all records in the database (LIST has a much better format)
+    </li></ul>
+  <p></p>
+  </dd><dd>display prog_name, job_id, client_id off
+  <ul>
+    <li>Display the fields PROG_NAME, JOB_ID and CLIENT_ID for each record;
+    </li><li>OFF specifies that record numbers not be listed </li></ul>
+  <p></p>
+  </dd><dd>display hrs_worked for prog_name = 'White, J.'
+  <ul>
+    <li>Display the field HRS_WORKED for records which have "White, J." in the
+    PROG_NAME field </li></ul></dd></dl>
+<p>
+</p><h4>DISPLAY STRUCTURE</h4>
+<p>Generates a listing of the data fields, their data type, their length, and
+decimal places (for numeric data types). The display pauses when a screen has
+been filled.
+</p><dl>
+  <dt>Format:
+  </dt><dd>DISPLAY STRUCTURE [TO PRINT]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>display structure to print
+  <ul>
+    <li>Display structure to screen and printer if attached </li></ul></dd></dl>
+<p>
+</p><h4>DO</h4>
+<p>Executes the specified command file. Any editor can be used to create the
+ASCII .PRG file containing the commands.
+</p><dl>
+  <dt>Format:
+  </dt><dd>DO <i>filename</i>
+  <p></p>
+  </dd><dt>Example:
+  </dt><dd>do payanal
+  <ul>
+    <li>Executes the commands in PAYANAL.PRG </li></ul></dd></dl>
+<p>
+</p><h4>EDIT</h4>
+<p>Allows you to alter the contents of one or more records in the active
+database.
+</p><dl>
+  <dt>Format:
+  </dt><dd>EDIT [<i>scope</i>] [FIELDS <i>field list</i>] [FOR <i>condition</i>]
+  [WHILE <i>condition</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>edit
+  <ul>
+    <li>Default record number is the current value of the record pointer. If the
+    record pointer referenced record number 12, the edit would be done on record
+    12. The Pageup and Pagedown keys can be used to continue editing other
+    records </li></ul>
+  <p></p>
+  </dd><dd>edit record 12
+  <ul>
+    <li>Changes the record pointer to reference record 12 and begins editing
+    there </li></ul>
+  <p></p>
+  </dd><dd>edit for prog_name = 'White, J.'
+  <ul>
+    <li>Locates the first record with "White, J." in the PROG_NAME field and
+    begins editing there. Page Down locates other records with "White, J." in
+    that field for editing </li></ul>
+  <p></p>
+  </dd><dd>edit while prog_name = 'White, J.'
+  <ul>
+    <li>Locates the first record with "White, J." in the PROG_NAME field and
+    begins editing there. You can continue editing records until that field no
+    longer contains "White, J.". Other records with this value may exit, but if
+    they are not immediately behind the current record, they will not be edited.
+    </li></ul></dd></dl>
+<p>
+</p><h4>ERASE</h4>
+<p>Removes a file from the disk directory. The filename must include the
+extension and wildcards may not be used. You may not delete a file that is
+currently in use. Same as DELETE FILE.
+</p><dl>
+  <dt>Format:
+  </dt><dd>ERASE {<i>filename</i> | ?}
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>erase ?
+  <ul>
+    <li>Display a menu of files </li></ul>
+  <p></p>
+  </dd><dd>erase tempfile. dbf
+  <ul>
+    <li>Deletes the file TEMPFILE.DBF </li></ul></dd></dl>
+<p>
+</p><h4>FIND</h4>
+<p>Locates the first record that meets the search condition in an indexed file.
+The index must have been constructed around the field in which the search string
+is located.
+</p><dl>
+  <dt>Format:
+  </dt><dd>FIND <i>key</i>
+  <p></p>
+  </dd><dt>Example:
+  </dt><dd>find 'White, J.'
+  <ul>
+    <li>Locates the name "White, J." in the PROG_NAME field. The database must
+    be indexed and the index must have been constructed on this field
+  </li></ul></dd></dl>
+<p>
+</p><h4>INDEX</h4>
+<p>Creates an index (.NDX) from which records in a database file can be ordered
+alphabetically, chronologically, or numerically. The index (.NDX) file contains
+the key values and the corresponding record number for each record in the
+database file.
+</p><dl>
+  <dt>Format:
+  </dt><dd>INDEX ON <i>key expression</i> TO <i>index filename</i>
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>index on last+first to alphlist
+  <ul>
+    <li>Builds an index ALPHALIST.NDX based upon the combination of characters
+    in the LAST and FIRST fields, respectively, for the active database file
+    </li></ul>
+  <p></p>
+  </dd><dd>index on city+str(zip,5) to citylist
+  <ul>
+    <li>Builds an index CITYLIST.NDX based upon the combination of characters in
+    the field CITY and on the field ZIP which is converted to character data
+    with the STR function, respectively, for the active database file
+  </li></ul></dd></dl>
+<p>
+</p><h4>INSERT</h4>
+<p>Adds a single record to the current database. By default, the record is added
+immediately after the current record. INSERT and INSERT BEFORE open the
+full-screen editing mode. INSERT BLANK creates a single empty record for later
+data addition and does not activate the editing mode.
+</p><dl>
+  <dt>Format:
+  </dt><dd>INSERT [BLANK] [BEFORE] </dd></dl>
+<p>
+</p><h4>JOIN</h4>
+<p>Creates a new database file by merging the specified records and fields from
+two open database files.
+</p><dl>
+  <dt>Format:
+  </dt><dd>JOIN WITH <i>filename</i> TO <i>newfilename</i> FOR <i>condition</i>
+  [FIELDS <i>field list</i>]
+  </dd><dd>where <i>filename</i> is the name of the other database in another work
+  area
+  <p></p>
+  </dd><dt>Example:
+  </dt><dd>use client
+  </dd><dd>select 2
+  </dd><dd>use transact
+  </dd><dd>select 1
+  </dd><dd>join with transact to clientnew
+  </dd><dd>for client_id=B-&gt;client_id
+  </dd><dd>fields client_id, client, B-&gt;Date_trans, B-&gt;Total_bill,
+  B-&gt;Order_id
+  <ul>
+    <li>By default, you are in work area 1 or A. The USE CLIENT statement loads
+    the CLIENT database into work area 1. Then work area 2 is selected and the
+    TRANSACT database is loaded into this work area. Work area 1 is reselected
+    and CLIENT is the active database. The JOIN combines the CLIENT database
+    with the TRANSACT database and forms a new database CLIENTNEW for all
+    records having the same client_id in both original databases. The new
+    database will include the client id, the client name, the order date, the
+    amount of the order, and the order id with the field names: client_id,
+    client, date_trans, total_bill, order_id, respectively. Because date_trans,
+    total_bill, and order_id are found only in the TRANSACT database which is
+    not in the active work area, you must specify the work area for these fields
+    using the <i>work_area -&gt; field_name</i> format. You can identify fields
+    in work area 1 by <i>Client</i>, or work area 2 by <i>Transact</i>
+  </li></ul></dd></dl>
+<p>
+</p><h4>LIST</h4>
+<p>Displays the contents of a database file in an unformatted list.
+</p><dl>
+  <dt>Format:
+  </dt><dd>LIST [FIELDS <i>field list</i>] [<i>scope</i>] [FOR <i>condition </i>]
+  [WHILE <i>condition</i>] [TO PRINTER | TO FILE <i>filename</i>] [OFF]
+  </dd><dd>LIST STRUCTURE [TO PRINTER | TO FILE <i>filename</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>list off
+  <ul>
+    <li>Lists all records in the database without record numbers </li></ul>
+  <p></p>
+  </dd><dd>list for .not. approved
+  <ul>
+    <li>List all records which have .F. in the field APPROVED </li></ul>
+  <p></p>
+  </dd><dd>list fields prog_name, job_id, client_id
+  <ul>
+    <li>List the fields PROG_NAME, JOB_ID and CLIENT_ID for each record </li></ul>
+  <p></p>
+  </dd><dd>list to printer
+  <ul>
+    <li>Lists all records to the printer </li></ul>
+  <p></p>
+  </dd><dd>list structure to file dbstruct.lis
+  <ul>
+    <li>Lists the structure of the database to file DBSTRUCT.LIS
+</li></ul></dd></dl>
+<p>
+</p><h4>LOCATE</h4>
+<p>Searches the active database file for a record that matches the specified
+condition. LOCATE works on <i>unindexed </i>databases: sorted and unsorted.
+</p><dl>
+  <dt>Format:
+  </dt><dd>LOCATE [FOR] <i>condition </i>[<i>scope </i>] [WHILE <i>condition </i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>locate for prog_name = 'White, J.'
+  <ul>
+    <li>Searches for the first record with the contents "White, J." in the
+    PROG_NAME field </li></ul></dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="m-r">
+<h4>MODIFY</h4></a>
+<p>The command can be used to modify database file structures, query, report,
+screen, and view files.
+</p><dl>
+  <dt>Format:
+  </dt><dd>MODIFY { COMMAND | QUERY | REPORT | VIEW} <i>filename </i>MODIFY STRUCTURE
+
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>modify structure
+  <ul>
+    <li>Allows you to modify the structure of the active database. </li></ul>
+  <p></p>
+  </dd><dd>modify command labprog
+  <ul>
+    <li>Allows you to edit LABPROG.PRG, an ASCII command file. </li></ul></dd></dl>
+<p>
+</p><h4>MODIFY FILE</h4>
+<p>The command can be used to modify any ASCII file.
+</p><dl>
+  <dt>Format:
+  </dt><dd>MODIFY FILE <i>filename </i>
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>modify file sample.doc
+  <ul>
+    <li>Allows you to edit the ASCII file SAMPLE. DOC using the dBASE III Plus
+    editor. </li></ul></dd></dl>
+<p>
+</p><h4>PACK</h4>
+<p>Physically removes the records that have been marked for deletion. Once the
+PACK command has been executed, the records can not be retrieved. If any indexes
+are in use, they will be updated. If an index file built on this database is not
+in use, it will have to be reindexed.
+</p><dl>
+  <dt>Format:
+  </dt><dd>PACK </dd></dl>
+<p>
+</p><h4>QUIT</h4>
+<p>Quit closes all databases, index and other files properly and returns to DOS.
+
+</p><dl>
+  <dt>Format:
+  </dt><dd>QUIT </dd></dl>
+<p>
+</p><h4>RECALL</h4>
+<p>Removes the deletion marker from the specified records which are marked for
+deletion in the active database.
+</p><dl>
+  <dt>Format:
+  </dt><dd>RECALL [<i>scope</i>] [FOR <i>condition</i>] [WHILE <i>condition</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>recall record 10
+  <ul>
+    <li>Unmarks record 10 </li></ul>
+  <p></p>
+  </dd><dd>recall for recno() &gt; 100
+  <ul>
+    <li>Unmarks any records previously marked for deletion for records numbered
+    over 100 </li></ul></dd></dl>
+<p>
+</p><h4>REINDEX</h4>
+<p>Rebuilds all active index (.NDX) files in the current work area based on the
+command used to construct the original index files.
+</p><dl>
+  <dt>Format:
+  </dt><dd>REINDEX </dd></dl>
+<p>
+</p><h4>RENAME</h4>
+<p>Gives a new name to a file.
+</p><dl>
+  <dt>Format:
+  </dt><dd>RENAME <i>filename1</i> TO <i>filename2</i> </dd></dl>
+<p>
+</p><h4>REPLACE</h4>
+<p>REPLACE changes the contents of the specified fields.
+</p><dl>
+  <dt>Format:
+  </dt><dd>REPLACE <i>field</i> WITH <i>expression</i> [, <i>field</i> WITH
+  <i>expression</i>] [<i>scope</i>] [FOR <i>condition</i>] [WHILE
+  <i>condition</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>replace job_title with upper(job_title)
+  <ul>
+    <li>Changes the contents of the field JOB_TITLE to upper case for the
+    current record. </li></ul>
+  <p></p>
+  </dd><dd>replace all job_title with lower(job_title)
+  <ul>
+    <li>Changes the contents of the field JOB_TITLE to lower case for all
+    records in the database. </li></ul></dd></dl>
+<p>
+</p><h4>REPORT</h4>
+<p>Prints information from the active database using a report form file created
+by CREATE/MODIFY REPORT. The report may be directed to the screen, the printer,
+or to a file.
+</p><dl>
+  <dt>Format:
+  </dt><dd>REPORT FORM <i>filename</i> [PLAIN] [HEADING <i>character expression</i>]
+  [NOEJECT] [<i>scope</i>] [FOR <i>condition</i>] [WHILE <i>condition</i>] [TO
+  PRINTER | TO FILE <i>filename</i>]
+  </dd><dd>where <i>filename</i> is name of report form file
+  </dd><dd>PLAIN no headers or footers printed except on first page
+  </dd><dd>HEADING defines extra heading to be printed on the first line of each page
+
+  </dd><dd>NOEJECT suppresses the initial page eject for the first page
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>report form client to file clientrep
+  <ul>
+    <li>Send report using CLIENT.FRM to screen and file CLIENTREP.TXT
+  </li></ul></dd></dl>
+<p>
+</p><h4>RUN</h4>
+<p>Executes a DOS command or any program which can be executed by DOS, from
+within dBASE III Plus.
+</p><dl>
+  <dt>Format:
+  </dt><dd>RUN command
+  <p></p>
+  </dd><dt>Example:
+  </dt><dd>RUN dir a:*.*
+  <ul>
+    <li>Executes the DOS directory command. </li></ul></dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="s">
+<h4>SELECT</h4></a>
+<p>Used to switch between work areas in the dBASE III Plus system. There are ten
+work areas available and therefore up to 10 databases may be open at once. The
+last area selected contains the active database.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SELECT [n | alias]
+  </dd><dd>where n number of the work area, 1 to 10 alias alphabetic work area
+  designator, A to J
+  <p></p>
+  </dd><dt>Example:
+  </dt><dd>select B
+  <ul>
+    <li>Switch to work area 2. </li></ul></dd></dl>
+<p>
+</p><h4>SET</h4>
+<p>Produces a menu of changes that can be made to the dBASE III Plus programming
+environment. Changes can be made to the screen, to function key assignments, to
+the default drive, to the default files, to print characteristics, and to the
+display of decimal places.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET </dd></dl>
+<p>
+</p><h4>SET BELL ON/OFF</h4>
+<p>When you enter data in edit, append, and browse, the default is to sound a
+bell when you enter the last character in the last column of a field. The SET
+BELL command can turn the bell on and off.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET BELL {OFF | ON} </dd></dl>
+<p>
+</p><h4>SET DEFAULT TO</h4>
+<p>Changes the default drive dBASE III Plus uses to read and write files. On the
+network the default drive is Y:. With most dBASE III Plus commands, you can
+specify drives and paths when you want to reference files that are not on the
+default drive.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET DEFAULT TO <i>drive</i>
+  <p></p>
+  </dd><dt>Example:
+  </dt><dd>set default to b
+  <ul>
+    <li>Changes the default drive to B: </li></ul></dd></dl>
+<p>
+</p><h4>SET DELETED</h4>
+<p>Determines whether records that are marked for deletion are included (OFF) or
+ignored (ON) by other dBASE III Plus commands. Default is off.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET DELETED [ON | OFF] </dd></dl>
+<p>
+</p><h4>SET EXACT</h4>
+<p>When searching on character fields, dBASE III Plus defaults to an inexact
+search. If a search is made for a string <i>n</i> characters long, any string
+which starts with the same <i>n</i> characters will be considered a match. If
+EXACT is ON, the string must match the specified string <i>and</i> be <i>n</i>
+characters long to be considered a match.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET EXACT {ON | OFF} </dd></dl>
+<h4>SET FIELDS</h4>
+<p>Limits the number of fields to be displayed to the screen to make editing and
+searching easier. By default, you will see the contents of all the fields in the
+records.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET FIELDS {ON | OFF | TO <i>field list</i> | TO ALL}
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>set fields to name, balance
+  <ul>
+    <li>If SET FIELDS is on, will set the display of fields to NAME and BALANCE
+    </li></ul>
+  <p></p>
+  </dd><dd>set fields on
+  <ul>
+    <li>Actuates the SET FIELDS command </li></ul>
+  <p></p>
+  </dd><dd>set fields off
+  <ul>
+    <li>Returns displays to the full range of fields </li></ul></dd></dl>
+<p>
+</p><h4>SET FILTER TO</h4>
+<p>Limits the display of records to those that meet a specified condition.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET FILTER TO [FILE <i>filename</i>] [<i>condition</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>set filter to date_trans &gt;= str(02/10/79)
+  </dd><dd>list
+  <ul>
+    <li>List will display all records whose DATE_TRANS field is on or after
+    2/10/79. </li></ul>
+  <p></p>
+  </dd><dd>set filter to file dateqry
+  <ul>
+    <li>Reads the filter condition from a file created by CREATE/MODIFY QUERY.
+    </li></ul></dd></dl>
+<p>
+</p><h4>SET FUNCTION</h4>
+<p>Allows you to assign different values to the function keys to tailor the most
+commonly used commands for a given user. Function key F1 is assigned to the HELP
+function and cannot be reprogrammed. See the function key template at the end of
+this manual for default function key allocations.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET FUNCTION key# TO <i>expression</i>
+  <p></p>
+  </dd><dt>Example:
+  </dt><dd>set function 10 to "set bell off"
+  <ul>
+    <li>Changes the command for F10 from EDIT to SET BELL OFF (not recommended
+    as a useful change) </li></ul></dd></dl>
+<p>
+</p><h4>SET ORDER TO</h4>
+<p>Sets up any open index file as the master index, or removes control from all
+open indexes, without closing any . NDX files.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SET ORDER TO [<i>n</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>set order to
+  <ul>
+    <li>Restores the database to its normal order. </li></ul>
+  <p></p>
+  </dd><dd>use sales index datedx, orderdx, clientdx
+  </dd><dd>set order to 3
+  <ul>
+    <li>Reindexes the current database using CLIENTDX. NDX as the master index.
+    The number is determined from the order of files specified on the last USE
+    command. The USE command <em>does not</em> have to be reissued.
+</li></ul></dd></dl>
+<p>
+</p><h4>SORT TO</h4>
+<p>Creates a new database file sorted on the specified keys. By default, sorts
+are in ascending order and are case sensitive.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SORT TO <i>filename</i> ON <i>field1</i> [/A] [/C] [/D] [, <i>field2</i>
+  [/A] [/C] [/D] . . . ] [<i>scope</i>] [FOR <i>condition</i>] [WHILE
+  <i>condition</i>]
+  </dd><dd>where /A ascending order (default) /C ascending order; no difference
+  between upper and lower case /D descending order
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>sort to newlist on prog_name
+  <ul>
+    <li>Creates a file NEWLIST.DBF sorted in ascending order based on the field
+    PROG_NAME </li></ul>
+  <p></p>
+  </dd><dd>sort to templist on hrs_worked /d
+  <ul>
+    <li>Creates a file TEMPLIST.DBF sorted in descending order based on the
+    field HRS_WORKED </li></ul>
+  <p></p>
+  </dd><dd>sort to himarks on marks for marks &gt; 75
+  <ul>
+    <li>Creates a file HIMARKS.DBF sorted in ascending order based on the field
+    MARKS. Records with marks less than 75 are not included in the new database.
+    </li></ul></dd></dl>
+<p>
+</p><h4>STORE</h4>
+<p>Stores an expression into one or more memory variables.
+</p><dl>
+  <dt>Format:
+  </dt><dd>STORE <i>expression</i> TO <i>variable list</i> </dd></dl>
+<p>
+</p><h4>SUM</h4>
+<p>Computes the sum for all or for specified numeric fields in the default
+database. Output will include headings for all relevant fields with the sum for
+each field displayed immediately beneath the column heading.
+</p><dl>
+  <dt>Format:
+  </dt><dd>SUM [<i>field list</i>] [<i>scope</i>] [FOR <i>condition</i>] [WHILE
+  <i>condition</i>] [TO <i>variable</i>]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>sum
+  <ul>
+    <li>Compute the sum for all numeric fields </li></ul>
+  <p></p>
+  </dd><dd>sum gross_prof
+  <ul>
+    <li>Compute the sum for the numeric field GROSS_PROF </li></ul>
+  <p></p>
+  </dd><dd>sum gross_prof to proftot
+  <ul>
+    <li>Compute the sum for GROSS_PROF and assign to variable PROFTOT.
+    </li><li>Use ?PROFTOT to display result </li></ul>
+  <p></p>
+  </dd><dd>sum next 10
+  <ul>
+    <li>Compute the sum for all numeric fields for the next 10 records
+  </li></ul></dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="t-z">
+<h4>TYPE</h4></a>
+<p>Display the contents of an ASCII file.
+</p><dl>
+  <dt>Format:
+  </dt><dd>TYPE <i>filename</i> </dd></dl>
+<p>
+</p><h4>USE</h4>
+<p>Close previously open database or index files and place the specified
+database and index files into use for all subsequent commands. The file is
+indexed with respect to the first index file listed. To change the index file
+later in a session, use SET ORDER TO.
+</p><dl>
+  <dt>Format:
+  </dt><dd>USE [<i>database filename</i>] [INDEX <i>index filename list</i> ]
+  <p></p>
+  </dd><dt>Examples:
+  </dt><dd>use jobs
+  <ul>
+    <li>Opens database file JOBS.DBF for use </li></ul>
+  <p></p>
+  </dd><dd>use jobs index namefile, billfile
+  <ul>
+    <li>Opens database file JOBS.DBF and the index files NAMEFILE.NDX and
+    BILLFILE.NDX into use. NAMEFILE is the master index file </li></ul>
+  <p></p>
+  </dd><dd>use
+  <ul>
+    <li>Closes any previously open database or index files without opening any
+    other files </li></ul></dd></dl>
+<p>
+</p><h4>ZAP</h4>
+<p>Removes all records from the active database file. <b>BE CAREFUL.</b> ZAP is
+equivalent to, but faster than, a DELETE ALL followed by a PACK.
+</p><dl>
+  <dt>Format:
+  </dt><dd>ZAP </dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="date and time">
+<h4>DATE AND TIME FUNCTIONS</h4></a>
+<p>
+</p><h4>Character to Date</h4>
+<p>Changes a character string that looks like a date to a date. <i>A date cannot
+be entered directly at the prompt or from a file.</i>
+</p><dl>
+  <dt>STORE CTOD('12/25/88') TO CHRISTMAS
+  </dt><dd>Stores the date 12/25/88 to the variable CHRISTMAS. The date now has a
+  numeric meaning to allow for comparison between dates
+  <p></p>
+  </dd><dt>LIST FOR WORK_DATE &gt; CTOD('6/29/89')
+  </dt><dd>List all records with a date greater than June 29, 1989 in the field
+  WORK_DATE (type date).
+  <p></p>
+  </dd><dt>SUM(HRS_WORKED) FOR WORK_DATE &gt;= CTOD('1/1/89') . AND. WORK_DATE &lt;
+  CTOD('7/1/89')
+  </dt><dd>Total the hours worked on dates in field WORK_DATE between Jan. 1, 1989
+  and June 30, 1989, inclusive </dd></dl>
+<h4>Date to Character</h4>
+<p>Changes a date expression to a character expression. Allows comparison to
+dates given in character format.
+</p><dl>
+  <dt>COPY TO JANJNE FOR DTOC(WORK_DATE) &gt;= "1/1/89" .AND. DTOC(WORK_DATE)
+  &lt; "7/1/89"
+  </dt><dd>Converts the contents of the WORK_DATE field to a character expression. If
+  the expression is between Jan. 1, 1989 and June 30, 1989, the record is copied
+  to the file JANJNE.DBF </dd></dl>
+<h4>Date</h4>
+<p>Gets the system date from DOS. If the system date was not entered correctly,
+date() will report the incorrect date.
+</p><dl>
+  <dt>LIST FOR WORK_DATE &lt; DATE( )
+  </dt><dd>List the records for which the WORK_DATE is lower that the system date.
+  </dd></dl>
+<h4>Numeric Day of the Week</h4>
+<p>Returns the numeric code for the day of the week.
+</p><dl>
+  <dt>LIST FOR DOW(WORK_DATE) = 2
+  </dt><dd>List the records for which the WORK_DATE is 2 or Monday. WORK_DATE is type
+  date </dd></dl>
+<h4>Numeric Month of the Year</h4>
+<p>Returns the numeric code for the month of the year.
+</p><dl>
+  <dt>LIST FOR MONTH(WORK_DATE) &lt;= 6
+  </dt><dd>List the records for which the WORK_DATE is the first 6 months. WORK_DATE
+  is type date </dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="character">
+<h4>CHARACTER FUNCTIONS</h4></a>
+<h4>Character Name of the Day of the Week</h4>
+<p>Returns the name of the day of the week.
+</p><dl>
+  <dt>LIST FOR CDOW(WORK_DATE) = "SUNDAY"
+  </dt><dd>List the records for which the WORK_DATE is SUNDAY. WORK_DATE is type date
+  </dd></dl>
+<h4>Character Name of the Month</h4>
+<p>Returns the name of the month.
+</p><dl>
+  <dt>? CMONTH(CHRISTMAS)
+  </dt><dd>Returns the value "December" if the memory variable CHRISTMAS contains
+  12/25/88 </dd></dl>
+<h4>Convert to Uppercase</h4>
+<p>Changes all lowercase characters to upper case, while leaving the uppercase
+characters and nonalphabetic characters unchanged.
+</p><dl>
+  <dt>REPLACE JOB_TITLE WITH UPPER(JOB_TITLE)
+  </dt><dd>Converts the contents of the JOB_TITLE field to upper case for the current
+  record </dd></dl>
+<h4>Convert to Lowercase</h4>
+<p>Changes all uppercase characters to lower case, while leaving the lowercase
+characters and nonalphabetic characters unchanged.
+</p><dl>
+  <dt>REPLACE JOB_TITLE WITH LOWER(JOB_TITLE)
+  </dt><dd>Converts the contents of the JOB_TITLE field to lower case for the current
+  record </dd></dl>
+<h4>Trim Leading Blanks</h4>
+<p>Remove blanks that occur before the first visible alphanumeric character.
+Useful for removing blanks that may have been entered by error.
+</p><dl>
+  <dt>REPLACE JOB_TITLE WITH LTRIM(JOB_TITTLE)
+  </dt><dd>Converts the contents of the JOB_TITLE field by eliminating the leading
+  blanks for all records. </dd></dl>
+<h4>Trim Trailing Blanks</h4>
+<p>Remove blanks that occur after the last visible alphanumeric character.
+</p><dl>
+  <dt>REPLACE FULL_NAME WITH RTRIM(FIRST_NAME)+' '+RTRIM(LAST_NAME)
+  </dt><dd>If the FIRST_NAME field of the current record is of width 9 and contained
+  'Suzanne ', this command would concatenate "Suzanne" with a blank and the
+  trimmed contents of the LAST_NAME field. If LAST_NAME contained 'Smith ',
+  "Suzanne Smith" will be stored in the FULL_NAME field </dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="math">
+<h4>MATHEMATICAL FUNCTIONS</h4></a>
+<h4>Absolute Value</h4>
+<p>Takes the absolute value of the numeric expression.
+</p><dl>
+  <dt>LIST FOR ABS(CURRENT_CNT - OLD_CNT) &lt; 100
+  </dt><dd>List all records where the difference between the CURRENT_CNT and the
+  OLD_CNT is less than 100. </dd></dl>
+<h4>Maximum Value</h4>
+<p>Finds the maximum of two numeric expressions.
+</p><dl>
+  <dt>REPLACE SALARY WITH MAX(SALARY*1. 05, NEW_FLOOR)
+  </dt><dd>Replace the SALARY with the maximum of the current SALARY*1. 05 or the
+  NEW_FLOOR. </dd></dl>
+<h4>Minimum Value</h4>
+<p>Finds the minimum of two numeric expressions.
+</p><dl>
+  <dt>LIST FOR MIN(SALARY,MEAN_SALARY) &gt;= 35000
+  </dt><dd>List all records where the minimum of the SALARY field and the MEAN_SALARY
+  field is greater than or equal to $35,000 </dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="other">
+<h4>OTHER TYPE FUNCTIONS</h4></a>
+<p>
+</p><h4>Value to String</h4>
+<p>Combines fields of dissimilar types for indexing, sorting, and searching
+operations. The <i>first numeric expression</i> is the number to be converted.
+The <i>second numeric expression</i> indicates the resulting string length (10
+is the default for some operations). The <i>third numeric expression</i>
+indicates how many of the decimal places, if any, are to be carried into the
+string.
+</p><dl>
+  <dt>LIST FOR STR(ZIP,4) = '1575'
+  </dt><dd>List records with 1575 in the ZIP field
+  </dd><dt>INDEX ON STATE+STR(ZIP,6) TO ADDRFILE
+  </dt><dd>Converts the ZIP number to a character expression and concatenates this to
+  the STATE character expression to create a single character expression to be
+  used to build the index JOBFILE.NDX </dd></dl>
+<h4>String to Value</h4>
+<p>Converts character expressions to numeric expressions.
+</p><dl>
+  <dt>LIST FOR VAL('1575') = ZIP
+  </dt><dd>List records with 1575 in the ZIP field, a numeric field </dd></dl>
+<p>
+</p><hr noshade="noshade">
+<a name="record">
+<h4>RECORD POINTER FUNCTIONS</h4></a>
+<h4>Check for Deleted Records</h4>
+<p>Returns the logical value .T. if the record pointed to by the record pointer
+has been marked for deletion.
+</p><dl>
+  <dt>LIST FOR DELETED( )
+  </dt><dd>Lists the records marked for deletion </dd></dl>
+<h4>Record Number</h4>
+<p>Determines the number of the current record.
+</p><dl>
+  <dt>LIST FOR RECNO( ) &lt; 50
+  </dt><dd>Lists all records that have a record number less than 50. </dd></dl>
+<hr noshade="noshade">
+<a name="assist mode commands">
+<h3>Assist Mode COMMANDS</h3></a>
+<h4>Set Up</h4>
+<dl>
+  <dt>Database File
+  </dt><dd>open an existing database file and index files
+  <p></p>
+  </dd><dt>Format for Screen
+  </dt><dd>use a custom screen for data entry and edit
+  <p></p>
+  </dd><dt>Query
+  </dt><dd>use a query file
+  <p></p>
+  </dd><dt>Catalog
+  </dt><dd>add file opened to catalog file
+  <p></p>
+  </dd><dt>View
+  </dt><dd>open a view file
+  <p></p>
+  </dd><dt>Quit dBASE III Plus
+  </dt><dd>end the session; save all information
+  <p></p></dd></dl>
+<p>
+</p><h4>Create</h4>
+<p>
+</p><dl>
+  <dt>Database File
+  </dt><dd>create a database file, define its structure, and allow entry of records
+  <p></p>
+  </dd><dt>Format
+  </dt><dd>create a custom screen for data entry and edit
+  <p></p>
+  </dd><dt>View
+  </dt><dd>create a relation between files as a working environment and save it to a
+  file
+  <p></p>
+  </dd><dt>Query
+  </dt><dd>create a filter condition and store it in a query file
+  <p></p>
+  </dd><dt>Report
+  </dt><dd>create a report form that defines the report layout
+  <p></p>
+  </dd><dt>Label
+  </dt><dd>create a label form that defines the label layout
+  <p></p></dd></dl>
+<h4>Update</h4>
+<dl>
+  <dt>Append
+  </dt><dd>add records to the database
+  <p></p>
+  </dd><dt>Edit
+  </dt><dd>edit database records; viewed one at a time
+  <p></p>
+  </dd><dt>Display
+  </dt><dd>list specified records and fields one screen at a time
+  <p></p>
+  </dd><dt>Browse
+  </dt><dd>display the database in a multiple record format
+  <p></p>
+  </dd><dt>Replace
+  </dt><dd>change contents of the specified database fields
+  <p></p>
+  </dd><dt>Delete
+  </dt><dd>mark specified records for deletion from the database
+  <p></p>
+  </dd><dt>Recall
+  </dt><dd>unmark specified records previously marked for deletion
+  <p></p>
+  </dd><dt>Pack
+  </dt><dd>permanently remove all records marked for deletion
+  <p></p></dd></dl>
+<h4>Position</h4>
+<dl>
+  <dt>Seek
+  </dt><dd>locate record using field on which the database is indexed
+  <p></p>
+  </dd><dt>Locate
+  </dt><dd>locate record meeting a specified condition; database file not indexed
+  <p></p>
+  </dd><dt>Continue
+  </dt><dd>search for next record using condition specified by LOCATE command
+  <p></p>
+  </dd><dt>Skip
+  </dt><dd>move current record pointer backward or forward
+  <p></p>
+  </dd><dt>Goto Record
+  </dt><dd>explicitly position the current record pointer
+  <p></p></dd></dl>
+<h4>Retrieve</h4>
+<dl>
+  <dt>List
+  </dt><dd>display specified fields; no pauses
+  <p></p>
+  </dd><dt>Display
+  </dt><dd>display specified fields; pause at each screen
+  <p></p>
+  </dd><dt>Report
+  </dt><dd>use a report form to prepare a report of selected records
+  <p></p>
+  </dd><dt>Label
+  </dt><dd>use a label form to prepare labels of selected records
+  <p></p>
+  </dd><dt>Sum
+  </dt><dd>sum specified numeric fields
+  <p></p>
+  </dd><dt>Average
+  </dt><dd>average specified numeric fields
+  <p></p>
+  </dd><dt>Count
+  </dt><dd>count the number of records meeting a specified condition
+  <p></p></dd></dl>
+<h4>Organize</h4>
+<dl>
+  <dt>Index
+  </dt><dd>create an index (.NDX) file
+  <p></p>
+  </dd><dt>Sort
+  </dt><dd>create a copy of the database sorted on one or more fields
+  <p></p>
+  </dd><dt>Copy
+  </dt><dd>duplicate any type of file
+  <p></p></dd></dl>
+<h4>Modify</h4>
+<dl>
+  <dt>Database file
+  </dt><dd>change the structure of an existing database
+  <p></p>
+  </dd><dt>Format
+  </dt><dd>change an existing custom screen format
+  <p></p>
+  </dd><dt>View
+  </dt><dd>change an existing view file
+  <p></p>
+  </dd><dt>Query
+  </dt><dd>change an existing query file
+  <p></p>
+  </dd><dt>Report
+  </dt><dd>change an existing report form (.FRM)
+  <p></p>
+  </dd><dt>Label
+  </dt><dd>change an existing label form (.LBL)
+  <p></p></dd></dl>
+<h4>Tools</h4>
+<dl>
+  <dt>Set drive
+  </dt><dd>set the default drive for the data disk
+  <p></p>
+  </dd><dt>Copy file
+  </dt><dd>copy files
+  <p></p>
+  </dd><dt>Directory
+  </dt><dd>display the names of files
+  <p></p>
+  </dd><dt>Rename
+  </dt><dd>rename a disk file
+  <p></p>
+  </dd><dt>Erase
+  </dt><dd>delete a disk file
+  <p></p>
+  </dd><dt>List structure
+  </dt><dd>display the structure of the active database file
+  <p></p>
+  </dd><dt>Import
+  </dt><dd>create dBASE files from .PFS files
+  <p></p>
+  </dd><dt>Export
+  </dt><dd>create .PFS files from dBASE III Plus files
+  <p></p></dd></dl>
+<hr noshade="noshade">
+<a name="commands by function">
+<h3>COMMANDS BY FUNCTION</h3></a>
+<p>
+</p><h4>File Creation Commands</h4>
+<dl>
+  <dt>COPY
+  </dt><dd>duplicate database file
+  <p></p>
+  </dd><dt>COPY FILE
+  </dt><dd>duplicate any file
+  <p></p>
+  </dd><dt>COPY STRUCTURE
+  </dt><dd>duplicate structure of database
+  <p></p>
+  </dd><dt>CREATE filename
+  </dt><dd>create a database (filename.DBF)
+  <p></p>
+  </dd><dt>CREATE QUERY filename
+  </dt><dd>create a custom filter or query file (filename.QRY)
+  <p></p>
+  </dd><dt>CREATE REPORT filename
+  </dt><dd>create a report definition file (filename.FRM)
+  <p></p>
+  </dd><dt>CREATE SCREEN filename
+  </dt><dd>create a screen format file (filename.FMT) and a custom screen format
+  (filename.SCR)
+  <p></p>
+  </dd><dt>CREATE VIEW filename
+  </dt><dd>create a relation between files as a working environment and save it to a
+  file (filename.VUE)
+  <p></p>
+  </dd><dt>INDEX ON
+  </dt><dd>define an order for the active database (.NDX)
+  <p></p>
+  </dd><dt>JOIN
+  </dt><dd>combine data from two different sources (.DBF)
+  <p></p>
+  </dd><dt>MODIFY COMMAND filename
+  </dt><dd>create/edit program files using internal editor (.PRG)
+  <p></p>
+  </dd><dt>MODIFY FILE filename
+  </dt><dd>create/edit any ASCII text file
+  <p></p>
+  </dd><dt>SORT TO filename ON
+  </dt><dd>reorder active database creating a new file (.DBF) </dd></dl>
+<p>
+</p><h4>File Modifying Commands</h4>
+<dl>
+  <dt>DELETE FILE
+  </dt><dd>erase named file
+  <p></p>
+  </dd><dt>ERASE
+  </dt><dd>erase named file
+  <p></p>
+  </dd><dt>MODIFY COMMAND filename
+  </dt><dd>create/edit program files (filename.PRG)
+  <p></p>
+  </dd><dt>MODIFY FILE filename
+  </dt><dd>create/edit any ASCII text file
+  <p></p>
+  </dd><dt>MODIFY QUERY filename
+  </dt><dd>create/edit a custom filter or query (filename.QRY)
+  <p></p>
+  </dd><dt>MODIFY REPORT filename
+  </dt><dd>create/edit a report form file (filename.FRM)
+  <p></p>
+  </dd><dt>MODIFY SCREEN filename
+  </dt><dd>create/edit specified screen file (filename.SCR)
+  <p></p>
+  </dd><dt>MODIFY STRUCTURE
+  </dt><dd>edit the structure of a database; no loss of data
+  <p></p>
+  </dd><dt>MODIFY VIEW filename
+  </dt><dd>create/edit a view file (filename.VUE)
+  <p></p>
+  </dd><dt>RENAME
+  </dt><dd>change the name of a file </dd></dl>
+<p>
+</p><h4>File Manipulation Commands</h4>
+<dl>
+  <dt>CLOSE ALL|filetype
+  </dt><dd>close all files or files of a specific type currently in use
+  <p></p>
+  </dd><dt>REINDEX
+  </dt><dd>rebuild all active index (.NDX) files
+  <p></p>
+  </dd><dt>SELECT
+  </dt><dd>switch between active work areas
+  <p></p>
+  </dd><dt>SET ORDER TO
+  </dt><dd>change the priority of the active index (.NDX) files
+  <p></p>
+  </dd><dt>SORT TO filename ON
+  </dt><dd>reorder active database creating a new file (.DBF)
+  <p></p>
+  </dd><dt>USE
+  </dt><dd>open and close individual databases </dd></dl>
+<p>
+</p><h4>Data Addition Commands</h4>
+<dl>
+  <dt>APPEND
+  </dt><dd>add records to a database file
+  <p></p>
+  </dd><dt>APPEND BLANK
+  </dt><dd>add one record to a database file
+  <p></p>
+  </dd><dt>APPEND FROM file
+  </dt><dd>add records to a database file from another file
+  <p></p>
+  </dd><dt>BROWSE
+  </dt><dd>menu-driven full-screen database editing/appending
+  <p></p>
+  </dd><dt>INSERT
+  </dt><dd>add one record to a database file </dd></dl>
+<p>
+</p><h4>Data Editing Commands</h4>
+<dl>
+  <dt>BROWSE
+  </dt><dd>menu-driven full-screen database edit
+  <p></p>
+  </dd><dt>DELETE
+  </dt><dd>mark records for removal
+  <p></p>
+  </dd><dt>EDIT
+  </dt><dd>edit the contents of records
+  <p></p>
+  </dd><dt>PACK
+  </dt><dd>permanently delete all records marked for removal
+  <p></p>
+  </dd><dt>RECALL
+  </dt><dd>unmark a record which was marked for removal
+  <p></p>
+  </dd><dt>REPLACE
+  </dt><dd>change the contents of a database field
+  <p></p>
+  </dd><dt>ZAP
+  </dt><dd>permanently deletes all records from database </dd></dl>
+<p>
+</p><h4>Data Display Commands</h4>
+<dl>
+  <dt>?
+  </dt><dd>display an expression list on the next line
+  <p></p>
+  </dd><dt>??
+  </dt><dd>display an expression list on the current line
+  <p></p>
+  </dd><dt>AVERAGE
+  </dt><dd>compute arithmetic mean
+  <p></p>
+  </dd><dt>BROWSE
+  </dt><dd>display active database for editing/appending
+  <p></p>
+  </dd><dt>COUNT
+  </dt><dd>count the number of records that meet some criteria
+  <p></p>
+  </dd><dt>DISPLAY
+  </dt><dd>display contents of database
+  <p></p>
+  </dd><dt>LIST
+  </dt><dd>display contents of database, screen pause
+  <p></p>
+  </dd><dt>REPORT FORM filename
+  </dt><dd>display information using a report form file
+  <p></p>
+  </dd><dt>SUM
+  </dt><dd>compute the sum for specified fields
+  <p></p>
+  </dd><dt>TYPE filename
+  </dt><dd>type any ASCII file to the screen </dd></dl>
+<p>
+</p><h4>Data Location Commands</h4>
+<dl>
+  <dt>FIND
+  </dt><dd>locates specified record, indexed file
+  <p></p>
+  </dd><dt>LOCATE
+  </dt><dd>locates specified record, unindexed file </dd></dl>
+<p>
+</p><h4>Debugging Commands</h4>
+<dl>
+  <dt>ASSIST
+  </dt><dd>change from Command Mode to menu mode
+  <p></p>
+  </dd><dt>DIR
+  </dt><dd>list files
+  <p></p>
+  </dd><dt>DISPLAY
+  </dt><dd>display contents of database
+  <p></p>
+  </dd><dt>DISPLAY STRUCTURE
+  </dt><dd>display structure of database
+  <p></p>
+  </dd><dt>LIST
+  </dt><dd>display contents of database
+  <p></p>
+  </dd><dt>LIST STRUCTURE
+  </dt><dd>display structure of database </dd></dl>
+<p>
+</p><h4>Program Interfacing Commands</h4>
+<dl>
+  <dt>DO filename
+  </dt><dd>execute specified command file (filename.PRG)
+  <p></p>
+  </dd><dt>RUN
+  </dt><dd>execute a DOS command
+  <p></p>
+  </dd><dt>QUIT
+  </dt><dd>close all files and return to DOS from Command Mode </dd></dl>
+<hr noshade="noshade">
+<a name="template">
+<h3>Function Key Template</h3></a><b>Function keys F5 through F10 require a
+database (.DBF) file to be selected before issuing the command.</b>
+<p><img alt="F1=Help, F2=Assist, F3=List, 
+F4=Directory (Dir), F5=Display Structure, F6=Display 
+Status, F7=Display Memory, F8=Display, F9=Append, F10=Edit" src="IntrodBASEIIIPlus_files/dbaseIII_004.gif">
+</p><p>
+</p><hr noshade="noshade">
+[Return to the <a href="http://info.wlu.ca/%7Ewwwccs/software/database/dbaseIII.shtml#top">top</a>
+of this document] 
+</body></html>
