@@ -4,12 +4,22 @@ $test=new MyList(
 	array(
 		'_type'=>'Fattura',
 		'data'=>array('<>','01/01/12','31/12/12'),
-		'cod_cliente'=>'SMA'
+		//'cod_cliente'=>'SMA'
 	)
 );
 $test->iterate(function($obj){
-	echo $obj->numero->getVal().' : ';
-	echo $obj->data->getVal().'<br>';
-	echo $obj->imponibile->getVal().'<br>';
-	
+	$tipo=$obj->tipo->getVal();
+	if ($tipo=='N'){
+		echo '<b style="color:red;">';
+	}
+
+
+	echo $obj->cod_cliente->getVal().' :: ';
+	echo $obj->tipo->getVal().' ';
+	echo $obj->numero->getVal().' :: ';
+	echo $obj->data->getFormatted().' :: ';
+	echo $obj->importo->getFormatted().' :: <br>';
+	if ($tipo=='N'){
+		echo '</b>';
+	}
 });

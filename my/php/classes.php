@@ -645,13 +645,13 @@ class Fattura extends MyClass{
 		$this->addProp('peso_lordo',	'F_PLORDO'); 
 		$this->addProp('tot_colli',		'F_TOTCOLLI');
 		$this->addProp('tot_peso',		'F_QTATOT');
-
-		$this->addProp('imponibile','FLCAMBIO');
-	//	$this->addProp('iva',		'');
-	//	$this->addProp('importo',		'');
-
+		/*to fix FLCAMBIO*/
+		$this->addProp('importo',		'FLCAMBIO');
+	//	$this->addProp('iva',			'');
+	//	$this->addProp('imponibile',	'');
 	//	$this->addProp('pagato',		'F_PAGATO');
 		
+		$this->righe=array();
 		
 
 		//configurazione database
@@ -659,6 +659,8 @@ class Fattura extends MyClass{
 		$this->_dbName->setVal('INTESTAZIONEFT');
 		$this->addProp('_dbName2');
 		$this->_dbName2->setVal('TOTFT');
+		$this->addProp('_dbName3');
+		$this->_dbName3->setVal('RIGHEFT');
 		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
@@ -670,27 +672,37 @@ class Fattura extends MyClass{
 		//avvio il recupero dei dati
 		$this->autoExtend();
   	}
-	public function getDataFromDbCallBack(){
-	//echo 'test';
-		//if ($this->_params['_autoExtend']!='intestazione'){
-			//recupero le righe del ddt
-//			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".'F_NUMFAT'."='".odbc_access_escape_str($this->numero->getVal())."' AND ".'F_DATFAT'."=#".odbc_access_escape_str($this->data->getVal()."#"));
-			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE F_NUMFAT <'1' ");
-
-			//echo $result;
-			foreach($result as $row){
 	
+	public function getDataFromDbCallBack(){
+		//recupero l'importo della fattura
+		if ($this->_params['_autoExtend']!='intestazione'){
+			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".'F_NUMFAT'."=".odbc_access_escape_str($this->numero->getVal())." AND ".'F_DATFAT'."=#".odbc_access_escape_str($this->data->getVal()."#"));
+
+			foreach($result as $row){
+					$this->importo->setVal($row['F_IMPORTO']);
+			}
+		}
+		
+		//recupero le righe della fattura	
+		if ($this->_params['_autoExtend']!='intestazione'){
+			$result=dbFrom($this->_dbName3->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
+				foreach($result as $row){
 					//array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
 					/*todo fix righe*/
 					//echo 'test';
-					//ECHO 'test';
-					$this->imponibile->setVal($row['F_T_IMPORTO']);
-					//$this->iva->setVal($row['F_T_IMPIVA']);
-					//$this->importo->setVal($row['F_T_IMPONI']+$row['F_T_IMPIVA'].'***');
+					$params=array(
+						'ft_numero'=>$this->numero->getVal(),
+						'ft_data'=>$this->data->getVal(),
+						'numero'=>$row['F_PROGRE'],
+						'_result'=>$row,
+					);
+					array_push($this->righe, new Riga($params));
 			}
-		//}
-
+		}
+		
+		
 	}
+	
 }
 
 class Ddt  extends MyClass {
@@ -776,8 +788,13 @@ class Ddt  extends MyClass {
 class Riga extends MyClass {
 	function __construct($params) {
 		$this->addProp('numero',					'F_PROGRE');
-		$this->addProp('ddt_data',					'F_DATBOL');
-		$this->addProp('ddt_numero',				'F_NUMBOL');
+		//per righe dei ddt
+//*		$this->addProp('ddt_data',					'F_DATBOL');
+//*		$this->addProp('ddt_numero',				'F_NUMBOL');
+		//per righe delle fatture /**/
+		$this->addProp('ft_data',					'F_DATFAT');
+		$this->addProp('ft_numero',					'F_NUMFAT');
+
 		
 		$this->addProp('cod_articolo',				'F_CODPRO');
 		$this->addProp('descrizione',				'F_DESPRO');
@@ -789,7 +806,7 @@ class Riga extends MyClass {
 		$this->addProp('colli',						'F_NUMCOL');
 //		$this->addProp('cod_imballo',				'F_');
 //		$this->addProp('peso_lordo',				'F_');
-		$this->addProp('peso_netto',				'F_PESNET');
+//*		$this->addProp('peso_netto',				'F_PESNET');
 		$this->addProp('peso_lordo',				'F_QTA');
 //		$this->addProp('tara',						'F_');
 //		$this->addProp('origine',					'F_');
@@ -802,14 +819,16 @@ class Riga extends MyClass {
 		/* TODO= FIX RIGHE FATTURE*/
 		//configurazione database
 		$this->addProp('_dbName');
-		$this->_dbName->setVal('RIGHEDDT');
-
+		//$this->_dbName->setVal('RIGHEDDT');
+		$this->_dbName->setVal('RIGHEFT');
+		
 		$this->addProp('_totImponibileNetto');
 		$this->_totImponibileNetto->setVal(0);			
 		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
-		$this->_dbIndex->setVal(array('ddt_numero','ddt_data','numero'));
+		//$this->_dbIndex->setVal(array('ddt_numero','ddt_data','numero'));
+		$this->_dbIndex->setVal(array('ft_numero','ft_data','numero'));
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
