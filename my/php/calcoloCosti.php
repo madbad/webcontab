@@ -298,7 +298,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.39);
 		$html.=getArticleTable($params);
 		// supermercati
-		$params = array("articles" => array('708','808','708-','808-','708--'),
+		$params = array("articles" => array('708','808','708-','808-','708--','808--'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
