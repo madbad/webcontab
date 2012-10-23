@@ -799,14 +799,25 @@ class Ddt  extends MyClass {
 
 class Riga extends MyClass {
 	function __construct($params) {
-		$this->addProp('numero',					'F_PROGRE');
-		//per righe dei ddt
-//*		$this->addProp('ddt_data',					'F_DATBOL');
-//*		$this->addProp('ddt_numero',				'F_NUMBOL');
-		//per righe delle fatture /**/
-		$this->addProp('ft_data',					'F_DATFAT');
-		$this->addProp('ft_numero',					'F_NUMFAT');
+	
+		//di che tipo di riga si tratta?
+		//se non lo so cerco di indovinare dagli altri parametri che mi sono passato
+		if (in_array('_tipoRiga', $params)){
+			if (in_array('ddt_data',$params)){
+				$params['_tipoRiga']='ddt';
+			}else if (in_array('ft_data', $params)){
+				$params['_tipoRiga']='ft';
+			}
+		}
+		if (!in_array('_tipoRiga', $params)){
+				//se non conosco il tipo lancio un errore
+				//$callee = next(debug_backtrace());
+				//trigger_error("Impossibile determinare il tipo di Riga richiesta".' in <strong>'.$callee['file'].'</strong> on line <strong>'.$callee['line'].'</strong>', E_USER_ERROR);
+				trigger_error("Impossibile determinare il tipo di Riga richiesta", E_USER_ERROR);			
+		}
 
+		
+		$this->addProp('numero',					'F_PROGRE');
 		
 		$this->addProp('cod_articolo',				'F_CODPRO');
 		$this->addProp('descrizione',				'F_DESPRO');
@@ -817,8 +828,6 @@ class Riga extends MyClass {
 		$this->addProp('importo_totale',			'F_IMPORTO');		
 		$this->addProp('colli',						'F_NUMCOL');
 //		$this->addProp('cod_imballo',				'F_');
-//		$this->addProp('peso_lordo',				'F_');
-//*		$this->addProp('peso_netto',				'F_PESNET');
 		$this->addProp('peso_lordo',				'F_QTA');
 //		$this->addProp('tara',						'F_');
 //		$this->addProp('origine',					'F_');
@@ -828,20 +837,33 @@ class Riga extends MyClass {
 		$this->addProp('stato',						'F_STATO');
 		$this->addProp('cod_cliente',				'F_CODCLI');
 
-		/* TODO= FIX RIGHE FATTURE*/
 		//configurazione database
-		$this->addProp('_dbName');
-		//$this->_dbName->setVal('RIGHEDDT');
-		$this->_dbName->setVal('RIGHEFT');
+		$this->addProp('_dbName');		
+		//chiave(i) di ricerca del database
+		$this->addProp('_dbIndex');		
 		
+		//definisco alcune proprietà specifiche a seconda che si tratti di una riga ddt o di una riga fattura
+		switch ($params['_tipoRiga']){
+			case 'ft':
+				//per righe delle fatture 
+				$this->addProp('ft_data',					'F_DATFAT');
+				$this->addProp('ft_numero',					'F_NUMFAT');
+				$this->_dbName->setVal('RIGHEFT');
+				$this->_dbIndex->setVal(array('ft_numero','ft_data','numero'));
+				break;
+			case  'ddt':
+				//per righe dei ddt
+				$this->addProp('ddt_data',					'F_DATBOL');
+				$this->addProp('ddt_numero',				'F_NUMBOL');
+				$this->addProp('peso_netto',				'F_PESNET');
+				$this->_dbName->setVal('RIGHEDDT');
+				$this->_dbIndex->setVal(array('ddt_numero','ddt_data','numero'));
+				break;
+		}		
+	
 		$this->addProp('_totImponibileNetto');
 		$this->_totImponibileNetto->setVal(0);			
-		
-		//chiave(i) di ricerca del database
-		$this->addProp('_dbIndex');
-		//$this->_dbIndex->setVal(array('ddt_numero','ddt_data','numero'));
-		$this->_dbIndex->setVal(array('ft_numero','ft_data','numero'));
-		
+
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
