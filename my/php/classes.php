@@ -544,7 +544,7 @@ class Proprietà extends DefaultClass {
 	public function getVal(){
 		return $this->valore;
 	}
-	public function getFormatted(){
+	public function getFormatted($params=''){
 		$type=$this->getDataType();
 		switch($type['type']){
 			case 'Date':
@@ -555,6 +555,10 @@ class Proprietà extends DefaultClass {
 					$newVal=date ( 'd/m/Y' , $newVal);
 					$out=$newVal;
 				}
+				break;
+			case 'Numeric':
+				$decimali=$params*1;
+				$out=number_format($this->valore*1,$decimali,$separatoreDecimali=',',$separatoreMigliaia='.');				
 				break;
 			default:
 				$out=$this->valore;
@@ -802,17 +806,19 @@ class Riga extends MyClass {
 	
 		//di che tipo di riga si tratta?
 		//se non lo so cerco di indovinare dagli altri parametri che mi sono passato
-		if (in_array('_tipoRiga', $params)){
-			if (in_array('ddt_data',$params)){
+		if (!array_key_exists('_tipoRiga', $params)){
+			if (array_key_exists('ddt_data',$params)){
 				$params['_tipoRiga']='ddt';
-			}else if (in_array('ft_data', $params)){
+			}
+			if (array_key_exists('ft_data', $params)){
 				$params['_tipoRiga']='ft';
 			}
 		}
-		if (!in_array('_tipoRiga', $params)){
+		if (!array_key_exists('_tipoRiga', $params)){
 				//se non conosco il tipo lancio un errore
 				//$callee = next(debug_backtrace());
 				//trigger_error("Impossibile determinare il tipo di Riga richiesta".' in <strong>'.$callee['file'].'</strong> on line <strong>'.$callee['line'].'</strong>', E_USER_ERROR);
+				var_dump($params);
 				trigger_error("Impossibile determinare il tipo di Riga richiesta", E_USER_ERROR);			
 		}
 

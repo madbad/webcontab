@@ -2,8 +2,8 @@
 include ('./config.inc.php');
 include ('./stampe/ft.php');
 $params=array(
-	'numero' => '10',
-	'data'   => '2012-01-10'
+	'numero' => '248',
+	'data'   => '2012-04-14'
 );
 $myFt= new Fattura($params);
 //var_dump($myFt);
