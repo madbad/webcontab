@@ -4,29 +4,34 @@
 	e lei ne prepara la stampa
 ----------------------------------------------------------------------------------------------------------
 */
-function intestazione ($pdf){
-	//importo i dati dell'azienda emittente della fattura
-	global $azienda;
-	
-	//logo + intestazione
-	$html ='';
-	$html.= '<img src="'.$azienda->_logo->getVal().'" width="265" height="100"><br><span style="font-size:40px;font-weight:bold;">'.$azienda->_ragionesocialeestesa->getVal().'</span>';
-	$html.= '<br>'.$azienda->via->getVal().' - '.$azienda->cap->getVal().' '.$azienda->paese->getVal().' ('.$azienda->citta->getVal().')';
-	$html.= '<br>Telefono '.$azienda->telefono->getVal().' - Fax '.$azienda->fax->getVal().'';
-	$html.= '<br>Capitale Sociale '.$azienda->_capitalesociale->getVal().' i.v.';
-	$html.= '<br>R.E.A. '.$azienda->_rea->getVal();
-	$html.= '<br>Reg.Imprese '.$azienda->_registroimprese->getVal();
-	$html.= '<br>Codice Fiscale '.$azienda->cod_fiscale->getVal();
-	$html.= '<br>Partita IVA '.$azienda->p_iva->getVal();	
-	$html.= '<br>BNDOO n.'.$azienda->_bndoo->getVal();
-	$html.= '<br>PEC Mail: '.$azienda->_emailpec->getVal();
-	$pdf->writeHTMLCell($w=0, $h=0, $x='15', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
-}
+	function intestazione ($pdf){
+		//importo i dati dell'azienda emittente della fattura
+		global $azienda;
+		
+		//logo + intestazione
+		$html ='';
+		$html.= '<img src="'.$azienda->_logo->getVal().'" width="265" height="100"><br><span style="font-size:40px;font-weight:bold;">'.$azienda->_ragionesocialeestesa->getVal().'</span>';
+		$html.= '<br>'.$azienda->via->getVal().' - '.$azienda->cap->getVal().' '.$azienda->paese->getVal().' ('.$azienda->citta->getVal().')';
+		$html.= '<br>Telefono '.$azienda->telefono->getVal().' - Fax '.$azienda->fax->getVal().'';
+		$html.= '<br>Capitale Sociale '.$azienda->_capitalesociale->getVal().' i.v.';
+		$html.= '<br>R.E.A. '.$azienda->_rea->getVal();
+		$html.= '<br>Reg.Imprese '.$azienda->_registroimprese->getVal();
+		$html.= '<br>Codice Fiscale '.$azienda->cod_fiscale->getVal();
+		$html.= '<br>Partita IVA '.$azienda->p_iva->getVal();	
+		$html.= '<br>BNDOO n.'.$azienda->_bndoo->getVal();
+		$html.= '<br>PEC Mail: '.$azienda->_emailpec->getVal();
+		$pdf->writeHTMLCell($w=0, $h=0, $x='15', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+	}
 
 
 
 
 function printFt($ft){
+	
+
+	
+	
+	
 	global $azienda;
 	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
 
@@ -233,8 +238,15 @@ function printFt($ft){
 
 	$pdf->SetFont($def_font, '', $def_size);
 	$html.= MyOwnRow('','','','','','','','','' );
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//max 42 righe
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	$contaRighe=0;
 	foreach ($ft->righe as $key => $value) {
+		if($contaRighe>41){break;}
+		$contaRighe++;
 		$riga=$ft->righe[$key];
 		//echo "Key: $key; Value: $value<br />\n";
 		// number_format($number, 2, ',', ' ');
@@ -270,32 +282,58 @@ function printFt($ft){
 	$pdf->Line($dist, $inizioRigaV, $dist, $fineRigaV, $style3);
 	$dist+=25;
 	$pdf->Line($dist, $inizioRigaV, $dist, $fineRigaV, $style3);		
-	
-	
-	//**********************************************************
-	//**********************************************************
 
+	//**********************************************************
+	//**********************************************************
+	//annotazioni
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect($x=15, $y=263, $w=80, $h=28, 5.0, '1010', 'DF', $style, $def_bianco);
+	$pdf->RoundedRect($x=15, $y=263, $w=93, $h=31, 5.0, '1010', 'DF', $style, $def_bianco);
+	
+	//$pdf->SetFont($def_font, '', $def_size+9);
+	//$pdf->Text($x=15, $y=263, "-CONTRIBUTO CONAI ASSOLTO OVE DOVUTO \n -ALTRO dsfsdf sfsfsf sdf sfsfs");
+	$html = '<ul><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li> <li>ALTRO dsfsdf sfsfsf sdf sfsfs</li></ul>';
+	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
+	
+	//**********************************************************
+	//**********************************************************
+	//dettaglio IVA
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+	$pdf->RoundedRect($x=110, $y=263, $w=80, $h=19, 5.0, '1010', 'DF', $style, $def_bianco);
 
 	//imponibili e iva
+	$imponibili=$ft->calcolaTotaliImponibiliIva();
 	$col1="width=25px;";
 	$col2="width=100px;";
 	
 	$html = '<table style="border:0px solid #000000;margin:0px;padding:0px;text-align:right;">';
 	$html.="<tr><td $col1>Cod.</td><td $col2>Descr.IVA</td><td>Imponibile</td><td>Importo IVA</td></tr>";
-	$html.="<tr><td $col1>4</td><td $col2>Iva 4%</td><td>99.999,00</td><td>5.000,00</td></tr>";	
-	$html.="<tr><td $col1>4</td><td $col2>Escluso Art.15</td><td>99.999,00</td><td>5.000,00</td></tr>";	
-	$html.="<tr><td $col1>4</td><td $col2>Escluso Art.8/1c</td><td>99.999,00</td><td>5.000,00</td></tr>";	
+	foreach ($imponibili as $codIva =>$val){
+		$iva=new CausaleIva(array('codice'=>(string)$codIva));
+		//$codIva
+		$descrizioneIva=$iva->descrizione->getVal();
+		$imponibileIva=$val['imponibile'];
+		$importoIva=$val['importo_iva'];
+		$html.="<tr><td $col1>".$codIva."</td><td $col2>".$descrizioneIva."</td><td>".$imponibileIva."</td><td>".$importoIva."</td></tr>";	
+	}		
+
+	//$html.="<tr><td $col1>4</td><td $col2>Escluso Art.15</td><td>99.999,00</td><td>5.000,00</td></tr>";	
+	//$html.="<tr><td $col1>4</td><td $col2>Escluso Art.8/1c</td><td>99.999,00</td><td>5.000,00</td></tr>";	
+	//$html.="<tr><td $col1>4</td><td $col2>Escluso Art.8/1c</td><td>99.999,00</td><td>5.000,00</td></tr>";	
 	$html.= "</table>";
-	$pdf->writeHTMLCell($w=80, $h=28, $x=15, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
+	$pdf->writeHTMLCell($w=80, $h=19, $x=110, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 
-	//totali imponibile
-	
-	//totale iva
-	
 	//totale fattura
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+	$pdf->RoundedRect($x=110, $y=285, $w=80, $h=9, 5.0, '1010', 'DF', $style, $def_verde);
 
+	$html = 'Totale Fattura';
+	$pdf->writeHTMLCell($w=80, $h=9, $x=110, $y=285, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
+
+	$pdf->SetFont($def_font, '', $def_size+9);
+	//$pdf->Text(167, 286, $ft->importo->getFormatted());
+	$html = $ft->importo->getFormatted();
+	$pdf->writeHTMLCell($w=80, $h=9, $x=160, $y=286, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
+	
 	//**********************************************************
 	//**********************************************************
 	//inviamo il file pdf
