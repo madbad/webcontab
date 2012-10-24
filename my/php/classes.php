@@ -1244,8 +1244,9 @@ $test=new MyList(
 		$this->arr=array();
 	
 		$objType=$params['_type'];
-		$fakeObj=new $objType(array('_autoExtend'=>'-1'));
-
+		$fakeObj=new $objType(array('_autoExtend'=>'-1'
+									,'_tipoRiga'=>'ddt'     /*hack to fix (non è detto che sia una riga ddt, anzi non è proprio detto che sia una riga)*/
+									));
 		$condition=array();
 		$i=0;		
 		$operator=null;
@@ -1399,6 +1400,8 @@ $test=new MyList(
 			$obj=new $objType(array(
 					'_result'=>$row,
 					'_autoExtend'=>'intestazione',
+					'_tipoRiga'=>'ddt'     /*hack to fix (non è detto che sia una riga ddt, anzi non è proprio detto che sia una riga)*/
+					
 			));
 			//print_r($obj);
 			$this->add($obj);
