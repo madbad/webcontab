@@ -153,7 +153,11 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(125, 83, 'Banca di appoggio');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(125, 86, strtolower($ft->cod_banca->extend()->ragionesociale->getVal()));
+	//se non è presente un codice banca il programma crashava
+	if($ft->cod_banca->extend()){
+		$pdf->Text(125, 86, strtolower($ft->cod_banca->extend()->ragionesociale->getVal()));	
+	}
+
 }
 
 function addFineCorpoFattura($ft, $pdf){
@@ -301,24 +305,9 @@ function MyOwnRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
 //**********************************************************
 //**********************************************************
 //**********************************************************
-//**********************************************************
-function printFt($ft){
-	global $azienda;
-	$ft->pagina=1;
-	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
-
-	$GLOBALS['img_file']='';
-	
-	$style='';
-	$def_font='helvetica';
-	$def_size=8;
-	$def_verde= array(168,236,134);
-	$def_bianco= array(999,999,999);
 	 /*-----------------------------------------------------*/
 	require_once('./tcpdf/config/lang/ita.php');
 	require_once('./tcpdf/tcpdf.php');
-
-
 	// Extend the TCPDF class to create custom Header and Footer
 	class MYPDF extends TCPDF {
 		//Page header
@@ -333,6 +322,26 @@ function printFt($ft){
 			$this->SetAutoPageBreak($auto_page_break, $bMargin);
 		}
 	}
+
+
+
+//**********************************************************
+function printFt($ft){
+	global $azienda;
+	$ft->pagina=1;
+	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
+
+	$GLOBALS['img_file']='';
+	
+	$style='';
+	$def_font='helvetica';
+	$def_size=8;
+	$def_verde= array(168,236,134);
+	$def_bianco= array(999,999,999);
+
+
+
+
 
 	// create new PDF document
 	$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -363,7 +372,7 @@ function printFt($ft){
 	$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 	//set some language-dependent strings
-	$pdf->setLanguageArray($l);
+	@$pdf->setLanguageArray($l);
 
 	//-----------------------------------------------------
 	//   DDT PAGE
@@ -457,7 +466,23 @@ function printFt($ft){
 
 	//**********************************************************
 	//**********************************************************
-	//inviamo il file pdf
-	$pdf->Output('DDT_'.$ft->numero->getVal().'__'.$ft->data->getVal().'.pdf', 'I');
+	//inviamo il file pdf al browser
+	//e ne salviamo una copia sul server
+	$numero=str_replace(" ", "0", $ft->numero->getVal());
+	$tipo=$ft->tipo->getVal();
+	
+	$arr=explode("-", $ft->data->getVal());
+							//mese   //giorno //anno
+	$newVal=mktime(0, 0, 0, $arr[0], $arr[1], $arr[2]);
+	$newVal=date ( 'Ymd' , $newVal);
+	$data=$newVal;
+	
+	
+	$nomefile=$data.'_'.$tipo.$numero.'.pdf';
+	//salvo il file
+	@$pdf->Output("./stampe/ft/".$nomefile, 'F');
+	//e ne invio una copia al browser per visualizzarlo
+	//@$pdf->Output($nomefile, 'I');
+	
 }
 ?>
