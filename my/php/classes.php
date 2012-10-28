@@ -1,6 +1,12 @@
 <?php
 require_once('FirePHPCore/FirePHP.class.php');
+//genera i file pdf dei ddt
 include('./stampe/ddt.php');
+//genera i file pdf delle fatture
+include ('./stampe/ft.php');
+//classe per l'invio di email
+require_once('./phpmailer/class.phpmailer.php');
+
 $DataTypeInfo=array();//contiene i paramatri del database per ogni campo del database stesso
 page_start();
 /*
@@ -73,11 +79,11 @@ function dbFrom($dbName, $toSelect, $operators){
 		//03CONFID.DBF 					//CONFIGURAZIONE	
  	}
 	//database connection string
-	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";Exclusive=NO;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=false;"; //DELETTED=1??
-	//$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']['pathToDbFiles'].";collate=Machine;NULL=NO;DELETED=1;"; //DELETTED=1??
+	$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']->pathToDbFiles.";Exclusive=NO;collate=Machine;NULL=NO;DELETED=1;BACKGROUNDFETCH=NO;READONLY=false;"; //DELETTED=1??
+	//$dsn = "Driver={Microsoft dBASE Driver (*.dbf)};SourceType=DBF;DriverID=21;Dbq=".$GLOBALS['config']->pathToDbFiles.";collate=Machine;NULL=NO;DELETED=1;"; //DELETTED=1??
 
 	//connect to database
-	$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_IF_NEEDED ) or die('Non riesco a connettermi al database:<br>'.$GLOBALS['config']['pathToDbFiles'].'<br><br>Dns:<br>'.$dns);
+	$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_IF_NEEDED ) or die('Non riesco a connettermi al database:<br>'.$GLOBALS['config']->pathToDbFiles.'<br><br>Dns:<br>'.$dns);
 	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_DRIVER ) or die('Could Not Connect to ODBC Database!');
 	//$odbc=odbc_connect($dsn," "," ", SQL_CUR_USE_ODBC ) or die('Could Not Connect to ODBC Database!');
 	//$odbc=odbc_connect($dsn," "," ") or die('Could Not Connect to ODBC Database!');
@@ -557,8 +563,10 @@ class Proprietà extends DefaultClass {
 				}
 				break;
 			case 'Numeric':
-				$decimali=$params*1;
-				$out=number_format($this->valore*1,$decimali,$separatoreDecimali=',',$separatoreMigliaia='.');				
+				if($this->valore!=''){
+					$decimali=$params*1;
+					$out=number_format($this->valore*1,$decimali,$separatoreDecimali=',',$separatoreMigliaia='.');
+				}
 				break;
 			default:
 				$out=$this->valore;
@@ -668,7 +676,7 @@ class Fattura extends MyClass{
 		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
-		$this->_dbIndex->setVal(array('numero','data'));
+		$this->_dbIndex->setVal(array('data','numero'));
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
@@ -719,6 +727,105 @@ class Fattura extends MyClass{
 		}
 		return $imponibili;
 	}
+	
+	public function getPdfFileName(){
+		$numero=str_replace(" ", "0", $this->numero->getVal());
+		$tipo=$this->tipo->getVal();
+		
+		$arr=explode("-", $this->data->getVal());
+								//mese   //giorno //anno
+		$newVal=mktime(0, 0, 0, $arr[0], $arr[1], $arr[2]);
+		$newVal=date ( 'Ymd' , $newVal);
+		$data=$newVal;
+		
+		$nomefile=$data.'_'.$tipo.$numero.'.pdf';
+		return $nomefile;	
+	}
+	
+	public function getPdfFileUrl(){
+		//il nome del file esempio: 20120121_N00000001.pdf
+		$filename=$this->getPdfFileName();
+		//la cartella principale delle stampe
+		$dirDelleStampe=$GLOBALS['config']->pdfDir;
+		//l'url completo del file esempio: c:/Program%20Files/EasyPHP-5.3.6.0/www/webcontab/my/php/stampe/ft/20120121_N00000001.pdf
+		$fileUrl=$dirDelleStampe.'/ft/'.$filename;
+		
+		//verifichiamo che il file esista prima di comunicarlo
+		//altrimenti lo generiamo "al volo"
+		if(!file_exists($fileUrl)){
+			//echo 'il file non esiste devo generarlo!!';
+			$this->generaPdf();
+		}
+		return $fileUrl;	
+	}
+	
+	public function generaPdf(){
+		return generaPdfFt($this);	
+	}
+	
+	public function visualizzaPdf(){
+$this->generaPdf($this);	
+		//url completo del file pdf
+		$pdfUrl=$this->getPdfFileUrl();
+		// impostiamo l'header di un file pdf
+		header('Content-type: application/pdf');
+		// e inviamolo al browser
+		readfile($pdfUrl);
+	}	
+	public function stampa(){
+
+	}
+	
+	public function inviaPec(){
+		//importo i dati di configurazione della pec
+		$pec=$GLOBALS['config']->pec;
+		$cliente=$this->cod_cliente->extend();
+		//var_dump($cliente);
+		$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
+
+		$mail->IsSMTP(); // telling the class to use SMTP
+
+		try {
+			$mail->Host       = $pec->Host;
+			$mail->SMTPDebug  = $pec->SMTPDebug;
+			$mail->SMTPAuth   = $pec->SMTPAuth;
+			$mail->Port       = $pec->Port;
+			$mail->Username   = $pec->Username;
+			$mail->Password   = $pec->Password;
+			//$mail->AddAddress($cliente->ragionesociale->getVal(), $cliente->pec->getVal()); //destinatario
+			$mail->AddAddress('isolagricola@pec.it', $cliente->ragionesociale->getVal()); //destinatario
+			//mi faccio mandare la ricevuta di lettura
+			$mail->ConfirmReadingTo=$pec->ReplyTo->Mail;
+			$mail->SetFrom($pec->From->Mail, $pec->From->Name);
+			$mail->AddReplyTo($pec->ReplyTo->Mail, $pec->ReplyTo->Name);
+			$mail->Subject = 'Invio documento commerciale '.$this->getPdfFileName(); //oggetto
+			//$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
+			//  $mail->MsgHTML(file_get_contents('contents.html'));
+			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";
+			$message.=$this->tipo->getVal().'. Nr. '.$this->numero->getVal().' del '.$this->data->getFormatted();
+			$mail->MsgHTML($message);
+			//$mail->Body($message); 
+
+			//allego il pdf della fattura
+			$mail->AddAttachment($this->getPdfFileUrl()); 
+			//var_dump($mail);
+			
+			if(true/*$mail->Send()*/){
+				$html= '<h2 style="color:green">Messaggio Inviato</h2>';
+				$html.= '<br>Il messaggio con oggetto: ';
+				$html.= '<b>'.$mail->Subject.'</b>';
+				$html.='<br>E\' stato inviato a: <b>'.$cliente->ragionesociale->getVal().'</b>';
+				$html.='<br>all\'indirizzo: <b>'.$cliente->_pec->getVal().'</b>';
+				$html.='<br>con allegato il file: <b>'.$this->getPdfFileUrl().'</b>';
+				
+				echo $html;
+			}
+		} catch (phpmailerException $e) {
+			echo $e->errorMessage(); //Pretty error messages from PHPMailer
+		} catch (Exception $e) {
+			echo $e->getMessage(); //Boring error messages from anything else!
+		}
+	}
 }
 
 class Ddt  extends MyClass {
@@ -748,6 +855,7 @@ class Ddt  extends MyClass {
 		$this->addProp('note',						'F_NOTE');
 		$this->addProp('note1',						'F_NOTE1');
 		$this->addProp('note2',						'F_NOTE2');
+
 		
 		$this->righe=array();
 		
@@ -759,7 +867,7 @@ class Ddt  extends MyClass {
 		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
-		$this->_dbIndex->setVal(array('numero','data'));
+		$this->_dbIndex->setVal(array('data','numero'));
 //print_r($params);
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
@@ -964,6 +1072,9 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('website',					'F_HOMEPAGE');
 		$this->addProp('valuta',					'F_CODVAL');		
 		$this->addProp('_classificazione',			'');
+
+		$this->addProp('_pec',						'');
+		
 		
 		//configurazione database
 		$this->addProp('_dbName');

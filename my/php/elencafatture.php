@@ -1,48 +1,64 @@
 <style>
-a:link    {color:green;}
-a:visited {color:green;}
-a:hover   {color:red;}
-a:active  {color:yellow;} 
+a:link, a:visited, a:active  {
+	opacity:1;
+	text-decoration:none;
+}
+a:hover   {
+	opacity:1;
+}
+.n {
+	color:red;
+}
+table,tr,td {
+margin: 0px;
+padding:0.4em;
+border: 1px #e1e1e1 solid;
+}
 </style>
 
 <?php
 include ('./config.inc.php');
 require_once ('./stampe/ft.php');
 set_time_limit ( 0);
+$html='<table>';
 
 $test=new MyList(
 	array(
 		'_type'=>'Fattura',
-
 		'data'=>array('<>','01/01/12','31/12/12'),
 		//'cod_cliente'=>'SEVEN'
 	)
 );
 
-echo '<pre>';
 $elenco=array();
 $test->iterate(function($obj){
-	
+	global $html;
 	$tipo=$obj->tipo->getVal();
-	if ($tipo=='N'){
-		echo '<b style="color:red;">';
-	}
-	//link per le fatture
-	echo '<a href="./stampafattura.php?';
-	echo 'numero='.$obj->numero->getVal();
-	echo '&data='.$obj->data->getVal();
-	echo '&tipo='.$obj->tipo->getVal();
-	echo '">';
+	$html.= "<tr class='$tipo'>";
+
+	$html.= '<td>'.$obj->tipo->getVal().'</td>';
+	$html.= '<td>'.$obj->numero->getVal().'</td>';
+	$html.= '<td>'.$obj->data->getFormatted().'</td>';
+	$html.= '<td>'.$obj->importo->getFormatted().'</td>';
+	$html.= '<td>'.$obj->cod_cliente->getVal().'</td>';
 	
-	echo $obj->tipo->getVal().' ';
-	echo $obj->numero->getVal().' :: ';
-	echo $obj->data->getFormatted().' :: ';
-	echo $obj->importo->getFormatted().' :: ';
-	echo $obj->cod_cliente->getVal().' :: <br>';
-	if ($tipo=='N'){
-		echo '</b>';
-	}
-	echo '</a>';
+	$link= '<td><a href="./gestioneFatture.php?';
+	$link.= 'numero='.$obj->numero->getVal();
+	$link.= '&data='.$obj->data->getVal();
+	$link.= '&tipo='.$obj->tipo->getVal();
+	
+	//mail
+	$html.= $link.'&do=inviaPec">Invia Mail</a></td>';
+
+	//visulizza
+	$html.= $link.'&do=visualizza">Visualizza</a></td>';
+	
+	$html.="</tr>\n";
+//	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';
+//	$html.= '<td><a href=""><img src="./img/pdf.svg" alt="Visualizza PDF" width="30px"></a></td>';
+//	$html.= '<td><a href=""><img src="./img/email.svg" alt="Invia PEC" width="30px"></a></td>';
+//	$html.= '<td><a href=""><img src="./img/ok.svg" alt="Stato: OK" width="30px"></a></td>';
+
 	
 /****************************/
 
@@ -51,11 +67,6 @@ $params=array(
 	'data'   => $obj->data->getVal(),
 	'tipo'  => $obj->tipo->getVal()
 );
-$myFt= new Fattura($params);
-printFt($myFt);	
-/***************************/
-
-
 
 /*
 	global $elenco;
@@ -64,5 +75,5 @@ printFt($myFt);
 	//array_push($elenco,$obj->cod_cliente->extend()->ragionesociale->getVal());
 */
 });
-echo '</pre>';
-print_r($elenco);
+$html.='</table>';
+echo $html;

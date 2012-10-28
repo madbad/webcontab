@@ -14,7 +14,7 @@ function addIntestazione ($pdf){
 	$pdf->SetFont($def_font, 'I', $def_size-1);
 	
 	//importo i dati dell'azienda emittente della fattura
-	global $azienda;
+	$azienda=$GLOBALS['config']->azienda;
 	
 	//logo + intestazione
 	$html ='';
@@ -64,7 +64,7 @@ function addDestinatario ($ft,$pdf){
 	$cliente=$ft->cod_cliente->extend();	
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(200,200,200));
-	$pdf->SetFont($def_font, 'b', $def_size+1.4);
+	$pdf->SetFont($def_font, 'b', $def_size+0.8);
 	$pdf->Text(114, 11+$mod, $cliente->ragionesociale->getVal());
 	//$pdf->Text(114, 15+$mod, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
 	$pdf->SetFont($def_font, '', $def_size);
@@ -326,7 +326,7 @@ function MyOwnRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
 
 
 //**********************************************************
-function printFt($ft){
+function generaPdfFt($ft){
 	global $azienda;
 	$ft->pagina=1;
 	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
@@ -466,21 +466,9 @@ function printFt($ft){
 
 	//**********************************************************
 	//**********************************************************
-	//inviamo il file pdf al browser
-	//e ne salviamo una copia sul server
-	$numero=str_replace(" ", "0", $ft->numero->getVal());
-	$tipo=$ft->tipo->getVal();
-	
-	$arr=explode("-", $ft->data->getVal());
-							//mese   //giorno //anno
-	$newVal=mktime(0, 0, 0, $arr[0], $arr[1], $arr[2]);
-	$newVal=date ( 'Ymd' , $newVal);
-	$data=$newVal;
-	
-	
-	$nomefile=$data.'_'.$tipo.$numero.'.pdf';
+	$nomefile=$ft->getPdfFileName();
 	//salvo il file
-	@$pdf->Output("./stampe/ft/".$nomefile, 'F');
+	@$pdf->Output($GLOBALS['config']->pdfDir."/ft/".$nomefile, 'F');
 	//e ne invio una copia al browser per visualizzarlo
 	//@$pdf->Output($nomefile, 'I');
 	
