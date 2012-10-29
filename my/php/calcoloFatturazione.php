@@ -110,7 +110,7 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 
 		$cliente=new ClienteFornitore(array('codice'=>$row['F_CODCLI']));
 
-		$tipo=$cliente->_classificazione->getVal();
+		$tipo=$cliente->__classificazione->getVal();
 		//echo $tipo;
 		$articolo=$row['F_CODPRO'];
 		$descrizione=$row['F_DESPRO'];

@@ -3,7 +3,9 @@ include ('./config.inc.php');
 $sqlite=$GLOBALS['config']->sqlite;
 
 /*#############################################################
-
+	ATTENZIONE QUESTO FILE MI E' SERVITO SOLO PER POPOLARE IL DATABASE SQLITE
+	DA ALCUNI FILE DI TESTO CHE AVEVO IO
+	PROBABILMENTE NON VERRA PIU UTILIZZATO
 */
 function leggiFile(){
 	$db=array();

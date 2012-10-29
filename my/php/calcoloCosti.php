@@ -39,7 +39,7 @@ $dbClienti=getDbClienti();
 		foreach ($result as $id => $row){
 		//while($row = odbc_fetch_array($result)){
 			$codCliente=$row['F_CODCLI'];
-			$tipoCliente=$dbClienti["$codCliente"]['tipo'];
+			$tipoCliente=$dbClienti["$codCliente"]['__classificazione'];
 			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
 
 				$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);

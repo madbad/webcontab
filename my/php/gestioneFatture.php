@@ -16,10 +16,13 @@ switch ($_GET["do"]){
 		$myFt->inviaPec();
 		break;
 	case 'visualizza':
-		$myFt->visualizzaPdf();		
+		$myFt->visualizzaPdf();
 		break;
-	case 'stampa':
-		$myFt->stampa();		
+	case 'stampaCliente':
+		$myFt->stampa();
+		//memorizzo la data di stampa
+		$myFt->__datastampa->setVal(date("d/m/Y"));
+		$myFt->saveSqlDbData();		
 		break;	
 }
 ?>

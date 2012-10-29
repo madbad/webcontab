@@ -1,4 +1,8 @@
 <?php
+/*to fix anche il tipo andrebbe inserito nelle primary key delle fatture?? se una fattura e una nota credito hanno stesso numero e data cosa succede??*/
+
+
+
 require_once('FirePHPCore/FirePHP.class.php');
 //genera i file pdf dei ddt
 include('./stampe/ddt.php');
@@ -444,76 +448,133 @@ class MyClass extends DefaultClass{
 		return $out;
 	}		
 	
-	
-	/*
-   public function getFromDbByID ($id){
-		$tableName=$this->getName();
-	   $query = "SELECT * FROM $tableName WHERE id='$id' ORDER BY id DESC";
-  		$result=$GLOBALS['wc']->db->query($query);
-
-		foreach($result as $row){
-			$totCampi =mysql_num_fields($result);           //CONTO IL NUMERO DI CAMPI NEL DB
-			for ($i=0; $i < $totCampi; $i++){
-					$varName=mysql_field_name($result, $i);   //ASSEGNO IL NOME DEL CAMPO NEL DB ALLA VARIABILE
-					$varValue=$row[$varName];
-					$this->$varName->setVal($varValue);      //E INSERISCO NELLA VARIABILE COSI' CREATA IL RELATIVO VALORE
+   /*#########################################################
+		FUNZIONI RELATIVE AL DATABASE ESTERNO SQLITE
+   */#########################################################
+	public function generateSqlDb(){
+		//genera un database esterno sqLite se non presente sulla base delle proprietà sqLite definite nella classe dell'oggetto
+		$fields=$this->getSqlDbFieldsNames();
+		if (!count($fields)){
+			//se non ci sono campi sqLite allora esco subito
+			return;
+		}
+		
+		$sqlite=$GLOBALS['config']->sqlite;
+		$table=$this->_dbName->getVal();	
+		$indexes=$this->_dbIndex->getVal();
+		
+		$fieldsToAdd='';
+		//campi normali
+		$fieldsToAdd.=implode($fields,' TEXT, ').' TEXT, ';
+		//campi indice
+		$fieldsToAdd.=implode($indexes,' TEXT NOT NULL, ').' TEXT NOT NULL, ';
+		//chiavi primarie
+		$fieldsToAdd.=' PRIMARY KEY ('.implode($indexes,',').')';
+		
+		//apro il database
+		$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
+		//creo la tabella
+		$query="CREATE TABLE if not exists $table($fieldsToAdd)";
+		$db->exec($query) or die($query);
+		return;
+	}
+	public function saveSqlDbData(){
+		//salva i dati nel database sqLite
+		$fields=$this->getSqlDbFieldsNames();
+		if (!count($fields)){
+			//se non ci sono campi sqLite allora esco subito
+			return;
+		}
+		
+		
+		$sqlite=$GLOBALS['config']->sqlite;
+		$table=$this->_dbName->getVal();	
+		$indexes=$this->_dbIndex->getVal();
+		
+		//elenco di tutti i campi da aggiornare
+		$fields= array_merge ($fields, $indexes);
+		
+		//creo l'elenco di tutti i valori da memorizzare
+		$values=array();
+		foreach ($fields as $field){
+			$val=$this->$field->getVal();
+			$values[]=(string) $this->$field->getVal();
+			if($val=='' && in_array($field, $indexes)){
+				//abortisco una delle chiavi primarie è nulla: non posso salvare nel database (e comunque non avrebbe senso farlo)
+				return;
 			}
 		}
-		if(is_callable($this->getChildObjects())) $this->getChildObjects();
-		return $this;
-   }
-   public function saveToDb (){
-   	if($this->validate()){
-   		if($this->isNew()){
-      	   $this->saveToDbAsNew();
-      	}else{
-      		$this->saveToDbAsUpdate();
-   	  }   		
-  		}else{
-  			$GLOBALS['log']->log("Impossibile salvare la fattura: problemi di validazione");		
-  		}
+		//aggiungo le '' per evitare che il testo venga trattato numericamente
+		$values=implode($values,"','");
+		$values="'".$values."'";
 
-   }
-   public function saveToDbAsNew (){
-   	$tableName=$this->getName();
-   	foreach ($this as $prop => $propVal) {
-  			$fieldName=$prop;
-  			$fieldVal=$this->$prop->getVal();
+		//apro il database
+		$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
+		//creo la tabella
+		//to fix : letto su internet che se vado ad aggiornare una riga com esempio solo 3 campi su quattro il campo che non vado ad aggiornare in questo momento con i nuovi valori viene resettato al valore di default o messo a null
+		$query="INSERT OR REPLACE INTO $table (".implode($fields,',').") VALUES ($values)";
 
-			$fieldsNames[]=$fieldName;
-			$fieldsVals[]="'$fieldVal'";
-     	}
-
-  		$fieldsNames = implode(",", $fieldsNames);
-     	$fieldsVals = implode(",", $fieldsVals);
-  		$query = "INSERT INTO $tableName (".$fieldsNames.") VALUES(".$fieldsVals.")";
-		$GLOBALS['wc']->db->query($query);
-		//echo "$fieldsNames <br> $fieldsVals <br>$query";
-		$GLOBALS['log']->log("Memorizzata la Ft. n.[".$this->numero->getVal()."]  con id [".$this->id->getVal()."]");
-   }
-   public function saveToDbAsUpdate (){
-   	$tableName=$this->getName();
-  		$query = "UPDATE $tableName SET ";
-     	foreach ($this as $prop => $propVal) {
-  			$fieldName=$prop;
-  			$fieldVal=$this->$prop->getVal();
-
-			$updates[]="$fieldName='$fieldVal'";
-     	}
-     	$query.= implode(",", $updates);
-     	$query.=" WHERE id='".$this->id->getVal()."'";
-
-		$GLOBALS['wc']->db->query($query);
-		//echo "$fieldsNames <br> $fieldsVals <br>$query";
-		$GLOBALS['log']->log("Aggiornata la Ft. n.[".$this->numero->getVal()."]  con id [".$this->id->getVal()."]");
-   }
-   public function isNew (){
-   	if($this->id->getVal()=='' && $this->numero->getVal()==''){
-			return true;   		
-  		}
-  		return false;
-   }
-   */
+		//echo $query.'<br>';
+		$db->exec($query) or die($query);
+		return;
+	}
+	
+	public function getSqlDbData(){
+		//ricava tutti i dati presente nel database esterno sqLite
+		$fields=$this->getSqlDbFieldsNames();
+		if (!count($fields)){
+			//se non ci sono campi sqLite allora esco subito
+			return;
+		}
+		
+		$sqlite=$GLOBALS['config']->sqlite;
+		$key=$this->_dbIndex->getVal();
+		$table=$this->_dbName->getVal();	
+				
+		$where='WHERE ';
+		$order=' ORDER BY ';
+		$indexes=$this->_dbIndex->getVal();
+			
+		foreach($indexes as $key => $property){
+			if($key>0){
+				$where.=' AND ';
+				$order.=',';
+			}
+			$info=$this->$property->getDataType();
+			//echo $info['type'].'***************';
+			switch($info['type']){
+				//case 'Date': $separatore="#";break;
+				//case 'Numeric': $separatore="";break;
+				default: $separatore="'";break;
+			
+			}
+			$where.=$this->$property->nome."=".$separatore.odbc_access_escape_str($this->$property->getVal()).$separatore;
+			$order.=$this->$property->nome;
+		}			
+		//la stringa della query
+		$query='SELECT * FROM '.$table.' '.$where.$order;
+		//apro il database ed eseguo la query
+		$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
+		$results = $db->query($query) or die($query);
+		//importo i risultati nel mio oggetto
+		while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+			foreach ($row as $key => $value){
+				$this->$key->setVal($value);
+			}
+		}
+		//fine estensione oggetto		
+		return;
+	}
+	public function getSqlDbFieldsNames(){
+	//restituisce un array contenente i nomi di proprietà che fanno parte del database esterno sqLite
+		$result=array();
+		foreach ($this as $key => $value){
+			if(substr($key,0,2)=='__'){
+				$result[]=$key;
+			}
+		}
+		return $result;		
+	}
 }
 
 class Proprietà extends DefaultClass {
@@ -679,9 +740,12 @@ class Fattura extends MyClass{
 	//	$this->addProp('iva',			'');
 	//	$this->addProp('imponibile',	'');
 	//	$this->addProp('pagato',		'F_PAGATO');
+	
+		//proprietà aggiunte nel file sql
+		$this->addProp('__datainviopec','');
+		$this->addProp('__datastampa','');
 		
 		$this->righe=array();
-		
 
 		//configurazione database
 		$this->addProp('_dbName');
@@ -700,6 +764,9 @@ class Fattura extends MyClass{
 		
 		//avvio il recupero dei dati
 		$this->autoExtend();
+		
+		//genero il database sqLite
+		$this->generateSqlDb();
   	}
 	
 	public function getDataFromDbCallBack(){
@@ -728,8 +795,8 @@ class Fattura extends MyClass{
 					array_push($this->righe, new Riga($params));
 			}
 		}
-		
-		
+		//recupero i dati dal database sqLite
+		$this->getSqlDbData();
 	}
 	
 	public function calcolaTotaliImponibiliIva(){
@@ -832,9 +899,13 @@ $this->generaPdf($this);
 				$html.= '<br>Il messaggio con oggetto: ';
 				$html.= '<b>'.$mail->Subject.'</b>';
 				$html.='<br>E\' stato inviato a: <b>'.$cliente->ragionesociale->getVal().'</b>';
-				$html.='<br>all\'indirizzo: <b>'.$cliente->_pec->getVal().'</b>';
+				$html.='<br>all\'indirizzo: <b>'.$cliente->__pec->getVal().'</b>';
 				$html.='<br>con allegato il file: <b>'.$this->getPdfFileUrl().'</b>';
 				
+				//memorizzo la data di invio
+				$this->__datainviopec->setVal(date("d/m/Y"));
+				$this->saveSqlDbData();
+				//mostro il messaggio di avvenuto invio
 				echo $html;
 			}
 		} catch (phpmailerException $e) {
@@ -1090,9 +1161,6 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('valuta',					'F_CODVAL');
 
 		//proprietà aggiunte nel file sql
-		//$this->addProp('_sqlFields');
-		//$this->_dbName->setVal('classificazione,pec,provvigione');
-		//
 		$this->addProp('__pec',						'');
 		$this->addProp('__provvigione',				'');
 		$this->addProp('__classificazione',			'');		
@@ -1110,9 +1178,14 @@ class ClienteFornitore extends MyClass {
 		
 		//avvio il recupero dei dati
 		$this->autoExtend();
+		
+		//genero il database sql se non esiste
+		$this->generateSqlDb();
 	}
 
 	public function getDataFromDbCallBack(){
+		//ricavo ulteriori dati dal database sqLite
+		$this->getSqlDbData();
 	/*
 		if($this->_params['_autoExtend']!=-1){
 			//importo altri dati dal mio database esterno
@@ -1121,44 +1194,6 @@ class ClienteFornitore extends MyClass {
 			$this->_classificazione->setVal($dbClienti["$codCliente"]['__tipo']);
 		}
 	*/	
-		//#################################################################
-		//#################################################################
-		$sqlite=$GLOBALS['config']->sqlite;
-		$key=$this->_dbIndex->getVal();
-		$table=$this->_dbName->getVal();	
-				
-		$where='WHERE ';
-		$order=' ORDER BY ';
-		$indexes=$this->_dbIndex->getVal();
-			
-		foreach($indexes as $key => $property){
-			if($key>0){
-				$where.=' AND ';
-				$order.=',';
-			}
-			$info=$this->$property->getDataType();
-			//echo $info['type'].'***************';
-			switch($info['type']){
-				case 'Date': $separatore="#";break;
-				case 'Numeric': $separatore="";break;
-				default: $separatore="'";break;
-			
-			}
-			$where.=$this->$property->nome."=".$separatore.odbc_access_escape_str($this->$property->getVal()).$separatore;
-			$order.=$this->$property->nome;
-		}			
-		//la stringa della query
-		$query='SELECT * FROM '.$table.' '.$where.$order;
-		//apro il database ed eseguo la query
-		$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
-		$results = $db->query($query) or die($query);
-		//importo i risultati nel mio oggetto
-		while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-			foreach ($row as $key => $value){
-				$this->$key->setVal($value);
-			}
-		}
-		//fine estensione oggetto
 	}	
 }
 

@@ -91,7 +91,7 @@ if (@$_GET['mode']=='print'){
 	$stampaRighe= function ($obj){
 		$dbClienti=getDbClienti();
 		$codCliente=$obj->cod_cliente->getVal();
-		$provvigione=$dbClienti["$codCliente"]['provvigione'];
+		$provvigione=$dbClienti["$codCliente"]['__provvigione'];
 	
 	
 		echo '<tr>';

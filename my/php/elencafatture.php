@@ -5,6 +5,7 @@ a:link, a:visited, a:active  {
 }
 a:hover   {
 	opacity:1;
+	color:#cd6f00;
 }
 .n {
 	color:red;
@@ -36,22 +37,40 @@ $test->iterate(function($obj){
 	$tipo=$obj->tipo->getVal();
 	$html.= "<tr class='$tipo'>";
 
+	$cliente=$obj->cod_cliente->extend();
+	
 	$html.= '<td>'.$obj->tipo->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
 	$html.= '<td>'.$obj->importo->getFormatted().'</td>';
-	$html.= '<td>'.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
+	$html.= '<td>'.$cliente->ragionesociale->getVal().'</td>';
+	$html.= '<td><small>'.$cliente->__pec->getVal().'</small></td>';
 	
-	$link= '<td><a href="./gestioneFatture.php?';
+	$link= '<a href="./gestioneFatture.php?';
 	$link.= 'numero='.$obj->numero->getVal();
 	$link.= '&data='.$obj->data->getVal();
 	$link.= '&tipo='.$obj->tipo->getVal();
 	
 	//mail
-	$html.= $link.'&do=inviaPec">Invia Mail</a></td>';
+	if($cliente->__pec->getVal()!=''){
+		$dataInvioPec=$obj->__datainviopec->getVal();
+		if($dataInvioPec){
+			$html.= '<td style="background-color:#66ff00;">Inviata il '.$dataInvioPec.$link.'&do=inviaPec"><br>Reinvia?</a></td>';
+		}else{
+			$html.= '<td>'.$link.'&do=inviaPec">Invia Mail</a></td>';		
+		}
+	}else{
+		$datastampa=$obj->__datastampa->getVal();
+		if($datastampa){
+			$html.= '<td style="background-color:#66ff00;">Stampata il '.$dataInvioPec.$link.'&do=stampaCliente"><br>Ristampa?</a></td>';
+		}else{
+			$html.= '<td>'.$link.'&do=stampaCliente">Stampa copia cliente</a></td>';		
+		}	
+	}
+
 
 	//visulizza
-	$html.= $link.'&do=visualizza">Visualizza</a> '.$obj->cod_cliente->extend()->__pec->getVal().'</td>';
+	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
 	
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';
