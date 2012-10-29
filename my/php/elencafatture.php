@@ -40,7 +40,7 @@ $test->iterate(function($obj){
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
 	$html.= '<td>'.$obj->importo->getFormatted().'</td>';
-	$html.= '<td>'.$obj->cod_cliente->getVal().'</td>';
+	$html.= '<td>'.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
 	
 	$link= '<td><a href="./gestioneFatture.php?';
 	$link.= 'numero='.$obj->numero->getVal();
@@ -51,7 +51,7 @@ $test->iterate(function($obj){
 	$html.= $link.'&do=inviaPec">Invia Mail</a></td>';
 
 	//visulizza
-	$html.= $link.'&do=visualizza">Visualizza</a></td>';
+	$html.= $link.'&do=visualizza">Visualizza</a> '.$obj->cod_cliente->extend()->__pec->getVal().'</td>';
 	
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';

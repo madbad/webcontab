@@ -166,6 +166,7 @@ function dbFrom($dbName, $toSelect, $operators){
 
 
 function getDbClienti(){
+/*
 	$db=array();
 	$news=fopen("./dbClienti.txt","r");  //apre il file
 	while (!feof($news)) {
@@ -180,7 +181,21 @@ function getDbClienti(){
 	}
 	//chiude il file
 	fclose ($news);
-	return $db;
+	$myDbArray=$db;
+*/
+	/*to fix=> dovebbe essere più generico*/
+	$sqlite=$GLOBALS['config']->sqlite;
+	$myDbArray=array();
+	$table='ANAGRAFICACLIENTI';
+	$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
+	//faccio una query e stampo i risultati
+	$results = $db->query('SELECT * FROM '.$table);
+	while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+		//global $myArray;
+		$myDbArray[$row['codice']]=$row;
+		//var_dump($row);
+	}
+	return $myDbArray;
 }
 function odbc_access_escape_str($str) {
 	$out="";
@@ -566,6 +581,8 @@ class Proprietà extends DefaultClass {
 				if($this->valore!=''){
 					$decimali=$params*1;
 					$out=number_format($this->valore*1,$decimali,$separatoreDecimali=',',$separatoreMigliaia='.');
+				}else{
+					$out=$this->valore;
 				}
 				break;
 			default:
@@ -985,10 +1002,10 @@ class Riga extends MyClass {
 		$this->autoExtend();
 	}
 	
-	public function getPrezzoLordo(){
+	public function getPrezzoLordo(){/*to fix: non dovrebbe usare 'getDbClienti' ma la funzione interna all'oggetto cliente*/
 		$dbClienti=getDbClienti();
 		$codCliente=$this->cod_cliente->getVal();
-		$provvigione=$dbClienti["$codCliente"]['provvigione'];
+		$provvigione=$dbClienti["$codCliente"]['__provvigione'];
 		if ($provvigione*1>0){
 			return $this->prezzo->getVal();
 		}else{
@@ -996,10 +1013,10 @@ class Riga extends MyClass {
 			return $this->prezzo->getVal()*(100)/(100-$provvigione);
 		}
 	}
-	public function getPrezzoNetto(){
+	public function getPrezzoNetto(){/*to fix: non dovrebbe usare 'getDbClienti' ma la funzione interna all'oggetto cliente*/
 		$dbClienti=getDbClienti();
 		$codCliente=$this->cod_cliente->getVal();
-		$provvigione=$dbClienti["$codCliente"]['provvigione'];
+		$provvigione=$dbClienti["$codCliente"]['__provvigione'];
 		if ($provvigione*1>0){
 			return $this->prezzo->getVal()*(100-$provvigione)/100;
 		}else{
@@ -1070,11 +1087,15 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('fax',						'F_TELEFAX');
 		$this->addProp('email',						'F_EMAIL');
 		$this->addProp('website',					'F_HOMEPAGE');
-		$this->addProp('valuta',					'F_CODVAL');		
-		$this->addProp('_classificazione',			'');
+		$this->addProp('valuta',					'F_CODVAL');
 
-		$this->addProp('_pec',						'');
-		
+		//proprietà aggiunte nel file sql
+		//$this->addProp('_sqlFields');
+		//$this->_dbName->setVal('classificazione,pec,provvigione');
+		//
+		$this->addProp('__pec',						'');
+		$this->addProp('__provvigione',				'');
+		$this->addProp('__classificazione',			'');		
 		
 		//configurazione database
 		$this->addProp('_dbName');
@@ -1092,15 +1113,53 @@ class ClienteFornitore extends MyClass {
 	}
 
 	public function getDataFromDbCallBack(){
+	/*
 		if($this->_params['_autoExtend']!=-1){
-			//imposto il tipo cliente ricavandolo dal mio file db
+			//importo altri dati dal mio database esterno
 			$dbClienti=getDbClienti();
 			$codCliente=$this->codice->getVal();
-			$this->_classificazione->setVal($dbClienti["$codCliente"]['tipo']);
+			$this->_classificazione->setVal($dbClienti["$codCliente"]['__tipo']);
 		}
-	}
-	
-	
+	*/	
+		//#################################################################
+		//#################################################################
+		$sqlite=$GLOBALS['config']->sqlite;
+		$key=$this->_dbIndex->getVal();
+		$table=$this->_dbName->getVal();	
+				
+		$where='WHERE ';
+		$order=' ORDER BY ';
+		$indexes=$this->_dbIndex->getVal();
+			
+		foreach($indexes as $key => $property){
+			if($key>0){
+				$where.=' AND ';
+				$order.=',';
+			}
+			$info=$this->$property->getDataType();
+			//echo $info['type'].'***************';
+			switch($info['type']){
+				case 'Date': $separatore="#";break;
+				case 'Numeric': $separatore="";break;
+				default: $separatore="'";break;
+			
+			}
+			$where.=$this->$property->nome."=".$separatore.odbc_access_escape_str($this->$property->getVal()).$separatore;
+			$order.=$this->$property->nome;
+		}			
+		//la stringa della query
+		$query='SELECT * FROM '.$table.' '.$where.$order;
+		//apro il database ed eseguo la query
+		$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
+		$results = $db->query($query) or die($query);
+		//importo i risultati nel mio oggetto
+		while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+			foreach ($row as $key => $value){
+				$this->$key->setVal($value);
+			}
+		}
+		//fine estensione oggetto
+	}	
 }
 
 class DestinazioneCliente extends MyClass {
