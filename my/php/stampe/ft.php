@@ -1,4 +1,14 @@
 <?php
+/*
+NOTE
+- VERIFICA POSIZIONAMENTO TOTALE FATTURA (SI SPOSTA A SECONDA DELLA LUNGHEZZA)
+- VERIFICA CODICI PRODOTTO LUNGHI (AL MOMENTO LI TAGLIO)
+- VERIFICA ELENCO NELLE NOTE UN PUNTO VIENE PIU' GROSSO DI UN ALTRO
+- VERIFICA TOTALE FATTURA
+- VERIFICA SCADENZA PAGAMENTO
+
+*/
+
 /* -------------------------------------------------------------------------------------------------------
 	Questa libreria esegue la stampa di 
 	e lei ne prepara la stampa
@@ -188,7 +198,7 @@ function addTotaliFattura($ft, $pdf){
 	
 	//$pdf->SetFont($def_font, '', $def_size+9);
 	//$pdf->Text($x=15, $y=263, "-CONTRIBUTO CONAI ASSOLTO OVE DOVUTO \n -ALTRO dsfsdf sfsfsf sdf sfsfs");
-	$html = '<ul><li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li> <li>TOTALE FATTURA SALVO ERRORI E OMISSIONI</li></ul>';
+	$html = '<ul style="color:'.$def_verde.'"><LI>-</LI><li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li><li>TOTALE FATTURA SALVO ERRORI E OMISSIONI</li></ul>';
 	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 	
 	//dettaglio IVA
