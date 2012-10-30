@@ -1,4 +1,9 @@
 <?php
+/*
+to fix :
+- codici articolo troppo lunghi vengono troncati
+*/
+
 /* -------------------------------------------------------------------------------------------------------
 	Questa libreria esegue la stampa di 
 	e lei ne prepara la stampa
@@ -27,7 +32,7 @@ function addIntestazione ($pdf){
 	$html.= '<br>Codice Fiscale '.$azienda->cod_fiscale->getVal();
 	$html.= '<br>Partita IVA '.$azienda->p_iva->getVal();	
 	$html.= '<br>BNDOO n.'.$azienda->_bndoo->getVal();
-	$html.= '<br>PEC Mail: '.$azienda->_emailpec->getVal();
+	$html.= '<br>PEC: '.$azienda->_emailpec->getVal();
 	$pdf->writeHTMLCell($w=0, $h=0, $x='15', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 }
 
@@ -63,7 +68,7 @@ function addDestinatario ($ft,$pdf){
 	//destinatario
 	$cliente=$ft->cod_cliente->extend();	
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(200,200,200));
+	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(230,230,230));//grigio chiaro
 	$pdf->SetFont($def_font, 'b', $def_size+0.8);
 	$pdf->Text(114, 11+$mod, $cliente->ragionesociale->getVal());
 	//$pdf->Text(114, 15+$mod, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
@@ -104,14 +109,18 @@ function addDatiFattura ($ft,$pdf){
 	if ($ft->tipo->getVal()=='N'){
 		$tipoDoc='Nota di accredito';
 	}
-	$html= $tipoDoc.' <span style="font-size:17px">(DPR 14/08/1996 n.472)</span>';
+	$html= $tipoDoc.' <span style="font-size:17px"></span>';
 	$pdf->writeHTMLCell($w=185, $h=30, $x=18, $y=74, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(65, 71, 'Numero Doc.');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(65, 74, $ft->numero->getFormatted(0));
+	//$pdf->Text(65, 74,  trim($ft->numero->getFormatted(0)));
+
+	$html = '<div style="text-align:right;">'.trim($ft->numero->getFormatted(0)).'</div>';
+	$pdf->writeHTMLCell($w=15, $h=9, $x=60, $y=74, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='left', $autopadding=false);
+	
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(85, 71, 'Data Doc.');
@@ -121,11 +130,11 @@ function addDatiFattura ($ft,$pdf){
 	//**********************************************************
 	//**********************************************************
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(125, 70, 65, 10, 5.0, '0101', 'DF', $style, $def_verde);
+	$pdf->RoundedRect(125, 70, 65, 10, 5.0, '0101', 'DF', $style, $def_bianco);
 	
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
-	$pdf->Text(138, 71, 'Valluta');
+	$pdf->Text(138, 71, 'Valuta');
 	$pdf->SetFont($def_font, '', $def_size+5);
 	$pdf->Text(138, 74, $ft->valuta->getVal());	
 	//
@@ -136,19 +145,20 @@ function addDatiFattura ($ft,$pdf){
 	//**********************************************************
 	//**********************************************************
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(15, 82, 175, 10, 5.0, '0101', 'DF', $style, $def_verde);
+	$pdf->RoundedRect(15, 82, 175, 10, 5.0, '0101', 'DF', $style, $def_bianco);
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(18, 83, 'Condizioni di pagamento');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));/*todo ritorna solo "V" invece che vendita e/ o c/commissione*/
-													/*uppure "D" invece che "redo da c/deposito" "c/riparazone""omaggio" */
+	$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));
 	//
+	/*
 	$pdf->SetFont($def_font, '', $def_size-3);
-	$pdf->Text(98, 83, 'Scadenza pagamento');
+	$pdf->Text(78, 83, 'Scadenza pagamento');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	//imposto tutto a caratteri piccoli con la prima lettera in caratteri grandi nb: di suo era tutto grande
-	$pdf->Text(98, 86, $ft->cod_pagamento->extend()->scadenza->getVal());
+	$pdf->Text(78, 86, $ft->getScadenzaPagamento());
+	*/
+	
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(125, 83, 'Banca di appoggio');
@@ -186,9 +196,13 @@ function addTotaliFattura($ft, $pdf){
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 	$pdf->RoundedRect($x=15, $y=263, $w=93, $h=31, 5.0, '1010', 'DF', $style, $def_bianco);
 	
-	//$pdf->SetFont($def_font, '', $def_size+9);
+	$pdf->SetFont($def_font, '', $def_size);
 	//$pdf->Text($x=15, $y=263, "-CONTRIBUTO CONAI ASSOLTO OVE DOVUTO \n -ALTRO dsfsdf sfsfsf sdf sfsfs");
-	$html = '<ul><li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li> <li>TOTALE FATTURA SALVO ERRORI E OMISSIONI</li></ul>';
+	$html = '<ul><li style="color:white;">-</li>';//ne lascio uno bianco per evitare un bug che creava un punto della lista più grande degli altri
+	$html .='<li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li>';
+	$html .='<li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li>';
+	$html .='<li>SALVO ERRORI E OMISSIONI</li>';
+	$html .='</ul>';
 	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 	
 	//dettaglio IVA
@@ -211,9 +225,6 @@ function addTotaliFattura($ft, $pdf){
 		$html.="<tr><td $col1>".$codIva."</td><td $col2>".$descrizioneIva."</td><td>".$imponibileIva."</td><td>".$importoIva."</td></tr>";	
 	}		
 
-	//$html.="<tr><td $col1>4</td><td $col2>Escluso Art.15</td><td>99.999,00</td><td>5.000,00</td></tr>";	
-	//$html.="<tr><td $col1>4</td><td $col2>Escluso Art.8/1c</td><td>99.999,00</td><td>5.000,00</td></tr>";	
-	//$html.="<tr><td $col1>4</td><td $col2>Escluso Art.8/1c</td><td>99.999,00</td><td>5.000,00</td></tr>";	
 	$html.= "</table>";
 	$pdf->writeHTMLCell($w=80, $h=19, $x=110, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 
@@ -221,17 +232,17 @@ function addTotaliFattura($ft, $pdf){
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 	$pdf->RoundedRect($x=110, $y=285, $w=80, $h=9, 5.0, '1010', 'DF', $style, $def_verde);
 
-	$html = 'Totale Fattura';
+	$html = 'Totale Documento';
 	$pdf->writeHTMLCell($w=80, $h=9, $x=110, $y=285, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 
 	$pdf->SetFont($def_font, '', $def_size+5);
 	$html = $ft->valuta->getVal();
-	$pdf->writeHTMLCell($w=80, $h=9, $x=118, $y=288, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
+	$pdf->writeHTMLCell($w=80, $h=9, $x=123, $y=288, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 	
 	$pdf->SetFont($def_font, '', $def_size+9);
 	//$pdf->Text(167, 286, $ft->importo->getFormatted());
-	$html = $ft->importo->getFormatted(2);
-	$pdf->writeHTMLCell($w=80, $h=9, $x=160, $y=286, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
+	$html = '<div style="text-align:right;">'.$ft->importo->getFormatted(2).'</div>';
+	$pdf->writeHTMLCell($w=58, $h=9, $x=130, $y=286, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='left', $autopadding=false);
 }
 function addInizioCorpoFattura($ft, $pdf){
 	$style='';
@@ -331,6 +342,10 @@ function generaPdfFt($ft){
 	$ft->pagina=1;
 	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
 
+//to fix... se vedo che funziona correttamente posso eliminare questo passaggio	
+$ft->verificaCalcoli();	
+	
+	
 	$GLOBALS['img_file']='';
 	
 	$style='';

@@ -914,6 +914,42 @@ $this->generaPdf($this);
 			echo $e->getMessage(); //Boring error messages from anything else!
 		}
 	}
+	public function getScadenzaPagamento(){
+		$dataFt=$this->data->getVal();
+		$condizioni=$this->cod_pagamento->extend();
+		$giorni=$condizioni->scadenza->getVal();
+		$fineMese=$condizioni->finemese->getVal();
+		
+		$test=explode('-',$dataFt);
+		
+		// ore-minuti-secondi-mesi-giorni-anni
+		$dataFt==mktime (0,0,0,$test[0],$test[1],$test[2]);
+
+		//calcolo quanti giorni mancano al fine mese dalla data della fattura
+		$giorniDelMese=date("t",$dataFt);
+		$giorniAFineMese=$giorniDelMese-$test[1];
+		
+		//genero la nuova data: quella di scadenza della fattura
+		$scadenza=mktime (0,0,0,$test[0],$test[1]+$giorniAFineMese+$giorni,$test[2]);
+		$scadenza=date ( 'd/m/Y' , $scadenza);
+
+	return $scadenza; 
+	}
+	public function verificaCalcoli(){
+		$imponibili=$this->calcolaTotaliImponibiliIva();
+		$totFatturaDaImponibili=0;
+		$totFattura=abs($this->importo->getVal()*1);//calcolo il valore assoluto altrimenti le note di accreito che sono precedute da un - causano un errore
+		
+		foreach ($imponibili as $val){
+			$totFatturaDaImponibili+=$val['imponibile']*1 + ($val['importo_iva']*1);
+		}
+		//$verifica=$totFattura.''!=$totFatturaDaImponibili.'';
+		
+		//se i totali non concidono lancio un errore
+		if($totFattura.'' != $totFatturaDaImponibili.''){
+			trigger_error("[ERRORE] Il totale fattura non coincide: <br>".var_dump($totFattura).' Da Fattura <br>'.var_dump($totFatturaDaImponibili).' Da imponibili<br>'.$verifica.'<br>',E_USER_ERROR);
+		}
+	}
 }
 
 class Ddt  extends MyClass {
@@ -1343,6 +1379,8 @@ class Banca extends MyClass {
 		$this->addProp('cab',						'F_CAB');
 		$this->addProp('contocorrente',				'F_CONTOCOR');
 		
+		//proprietà aggiunte nel file sql
+		$this->addProp('__iban',					'');		
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANAGRAFICABANCHE');
@@ -1356,6 +1394,9 @@ class Banca extends MyClass {
 		
 		//avvio il recupero dei dati
 		$this->autoExtend();
+		
+		//genero il database sqLite
+		$this->generateSqlDb();
 	}
 }
 
