@@ -877,7 +877,7 @@ $this->generaPdf($this);
 			$mail->Username   = $pec->Username;
 			$mail->Password   = $pec->Password;
 			//$mail->AddAddress($cliente->ragionesociale->getVal(), $cliente->pec->getVal()); //destinatario
-			$mail->AddAddress('isolagricola@pec.it', $cliente->ragionesociale->getVal()); //destinatario
+			$mail->AddAddress($cliente->__pec->getVal(), $cliente->ragionesociale->getVal()); //destinatario
 			//mi faccio mandare la ricevuta di lettura
 			$mail->ConfirmReadingTo=$pec->ReplyTo->Mail;
 			$mail->SetFrom($pec->From->Mail, $pec->From->Name);
@@ -887,6 +887,8 @@ $this->generaPdf($this);
 			//  $mail->MsgHTML(file_get_contents('contents.html'));
 			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";
 			$message.=$this->tipo->getVal().'. Nr. '.$this->numero->getVal().' del '.$this->data->getFormatted();
+			$message.="<br><br>Distinti saluti<br>".$GLOBALS['config']->azienda->ragionesociale->getVal();;
+
 			$mail->MsgHTML($message);
 			//$mail->Body($message); 
 
@@ -894,7 +896,7 @@ $this->generaPdf($this);
 			$mail->AddAttachment($this->getPdfFileUrl()); 
 			//var_dump($mail);
 			
-			if(true/*$mail->Send()*/){
+			if($mail->Send()){
 				$html= '<h2 style="color:green">Messaggio Inviato</h2>';
 				$html.= '<br>Il messaggio con oggetto: ';
 				$html.= '<b>'.$mail->Subject.'</b>';
@@ -907,6 +909,7 @@ $this->generaPdf($this);
 				$this->saveSqlDbData();
 				//mostro il messaggio di avvenuto invio
 				echo $html;
+				var_dump($message);
 			}
 		} catch (phpmailerException $e) {
 			echo $e->errorMessage(); //Pretty error messages from PHPMailer
@@ -1380,7 +1383,8 @@ class Banca extends MyClass {
 		$this->addProp('contocorrente',				'F_CONTOCOR');
 		
 		//proprietà aggiunte nel file sql
-		$this->addProp('__iban',					'');		
+		$this->addProp('__iban',					'');	
+		
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANAGRAFICABANCHE');
@@ -1398,6 +1402,10 @@ class Banca extends MyClass {
 		//genero il database sqLite
 		$this->generateSqlDb();
 	}
+	public function getDataFromDbCallBack(){
+		//ricavo ulteriori dati dal database sqLite
+		$this->getSqlDbData();
+	}	
 }
 
 class CausaliMagazzino extends MyClass {

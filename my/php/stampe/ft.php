@@ -157,10 +157,12 @@ function addDatiFattura ($ft,$pdf){
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(125, 83, 'Banca di appoggio');
-	$pdf->SetFont($def_font, '', $def_size+5);
+	$pdf->SetFont($def_font, '', $def_size+4);
 	//se non è presente un codice banca il programma crashava
 	if($ft->cod_banca->extend()){
-		$pdf->Text(125, 86, strtolower($ft->cod_banca->extend()->ragionesociale->getVal()));	
+//		$pdf->Text(125, 86, strtolower($ft->cod_banca->extend()->__iban->getVal()));
+
+		$pdf->Text(125, 86, $ft->cod_banca->extend()->__iban->getVal());	
 	}
 
 }
@@ -193,15 +195,15 @@ function addTotaliFattura($ft, $pdf){
 	
 	$pdf->SetFont($def_font, '', $def_size);
 	//$pdf->Text($x=15, $y=263, "-CONTRIBUTO CONAI ASSOLTO OVE DOVUTO \n -ALTRO dsfsdf sfsfsf sdf sfsfs");
-<<<<<<< HEAD
+
 	$html = '<ul style="color:'.$def_verde.'"><LI>-</LI><li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li><li>TOTALE FATTURA SALVO ERRORI E OMISSIONI</li></ul>';
-=======
+
 	$html = '<ul><li style="color:white;">-</li>';//ne lascio uno bianco per evitare un bug che creava un punto della lista più grande degli altri
 	$html .='<li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li>';
 	$html .='<li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li>';
 	$html .='<li>SALVO ERRORI E OMISSIONI</li>';
 	$html .='</ul>';
->>>>>>> e556bc29e48dc43f07fdbedd5762d9bc833b45cc
+
 	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 	
 	//dettaglio IVA
