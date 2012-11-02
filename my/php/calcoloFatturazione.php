@@ -95,7 +95,7 @@ $myArray['semilavorato']='';
 
 $totale=0;
 
-$radicchi=array('05','705','805','08','708','708-','808','808-','808--','29','729','829');
+$radicchi=array('05','705','805','08','708','708-','708--','808','808-','808--','29','729','829');
 $insalate=array('01','701','801','03','703','803','25');
 $pdzucchero=array('31','731','831');
 
@@ -118,9 +118,9 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 		$colli=$row['F_NUMCOL'];
 		//$peso=$row['F_QTA'];
 		
-		//if (in_array($articolo,$radicchi)) $descrizione=$articolo='**radicchi';
-		//if (in_array($articolo,$insalate)) $descrizione=$articolo='**insalate';
-		//if (in_array($articolo,$pdzucchero)) $descrizione=$articolo='**pdzucchero';
+		if (in_array($articolo,$radicchi)) $descrizione=$articolo='**radicchi';
+		if (in_array($articolo,$insalate)) $descrizione=$articolo='**insalate';
+		if (in_array($articolo,$pdzucchero)) $descrizione=$articolo='**pdzucchero';
 	
 		$done=false;
 		//echo $cliente->codice->getVal().'='.$peso.'<br>';
