@@ -193,7 +193,7 @@ if (@$_GET['mode']=='print'){
 	echo $tabellaF;
 */
 //mercaato //capucci
-
+/*
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -202,6 +202,7 @@ if (@$_GET['mode']=='print'){
 			'cod_cliente'=>array('!=','MARTI','SEVEN','SMA')
 		)
 	);
+*/
 	
 /*
 	$test=new MyList(
@@ -221,6 +222,18 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
+
+//PAN DI ZUCCHERO SUPERMERCATI DAL AL 
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>array('=','31','731','831'),
+			'cod_cliente'=>array('=','MARTI','SEVEN','SMA'),
+		)
+	);	
+
+
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);

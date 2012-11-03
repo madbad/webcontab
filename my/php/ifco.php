@@ -47,16 +47,21 @@ global $elenco;
 		echo 'IFCO model not found :: '.$obj->ddt_data->getFormatted().' :: '.$obj->descrizione->getVal().'<br>';
 	}
 };
-
-$test=new MyList(
-	array(
+$params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/10/12','15/10/12'),
+		'ddt_data'=>array('<>','16/10/12','31/10/12'),
 		'cod_cliente'=>'SMA'
-	)
-);
+	);
+
+$test=new MyList($params);
 $test->iterate($stampaRighe);
+
 echo '<div>';
+var_dump($params);
+echo '===============';
+echo '===============';
+echo '===============';
+
 var_dump($elenco);
 echo '</div>';
 page_end();
