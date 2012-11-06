@@ -22,9 +22,12 @@
 <?php
 include ('./config.inc.php');
 $elenco=array();
+$totali=array();
 
 $stampaRighe= function ($obj){
-global $elenco;
+	global $elenco;
+	global $totali;
+
 	$ifco=array('IFCO 4310',
 				'IFCO 4314',
 				'IFCO 6410',
@@ -38,6 +41,8 @@ global $elenco;
 		if ($found){
 @			$elenco[$obj->ddt_data->getFormatted()][$ifcoModel]+=$obj->colli->getVal();
 			//exit the foreach cicle
+@			$totali['=====================sommaTotale']+=$obj->colli->getVal();
+@			$totali[$ifcoModel]+=$obj->colli->getVal();
 			break;
 		}
 	}
@@ -50,7 +55,7 @@ global $elenco;
 $params=array(
 		'_type'=>'Riga',
 		'ddt_data'=>array('<>','16/10/12','31/10/12'),
-		'cod_cliente'=>'SMA'
+		'cod_cliente'=>'SEVEN'
 	);
 
 $test=new MyList($params);
@@ -61,8 +66,11 @@ var_dump($params);
 echo '===============';
 echo '===============';
 echo '===============';
-
 var_dump($elenco);
+echo '===============';
+echo '===============';
+echo '===============';
+var_dump($totali);
 echo '</div>';
 page_end();
 ?>

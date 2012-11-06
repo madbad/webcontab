@@ -202,6 +202,16 @@ function addTotaliFattura($ft, $pdf){
 	$html .='<li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li>';
 	$html .='<li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li>';
 	$html .='<li>SALVO ERRORI E OMISSIONI</li>';
+	
+	//il cliente ha lettera di intento? se si stampo la dicitura che la riguarda
+	$cliente=$ft->cod_cliente->extend();
+	if ($cliente->lettera_intento_num->getVal()){
+		$numero=$cliente->lettera_intento_num->getVal();
+		$data=$cliente->lettera_intento_data->getFormatted();
+		$numeroInterno=$cliente->lettera_intento_numinterno->getVal();
+		$html .='<li><b>Vs.Dichiarazione di intento n. '.$numero.' Registrata al n. '.$numeroInterno.' del '.$data.'</b></li>';
+	
+	}
 	$html .='</ul>';
 
 	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
