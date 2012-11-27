@@ -98,10 +98,10 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->SetFont($def_font, '', $def_size+5);
 	
 	$tipoDoc='';
-	if ($ft->tipo->getVal()=='F'){
+	if ($ft->tipo->getVal()=='F' || $ft->tipo->getVal()=='f'){
 		$tipoDoc='Fattura';
 	}
-	if ($ft->tipo->getVal()=='N'){
+	if ($ft->tipo->getVal()=='N' || $ft->tipo->getVal()=='n'){
 		$tipoDoc='Nota di accredito';
 	}
 	$html= $tipoDoc.' <span style="font-size:17px"></span>';
