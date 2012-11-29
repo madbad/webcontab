@@ -126,8 +126,9 @@ if (@$_GET['mode']=='print'){
 	$tabellaH='<table>';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
-/*
+
 //martinelli
+	echo '<h1>Martinelli</h1>';
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -142,6 +143,7 @@ if (@$_GET['mode']=='print'){
 	echo $tabellaF;
 
 //mercato
+	echo '<h1>Mercato</h1>';
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -156,6 +158,7 @@ if (@$_GET['mode']=='print'){
 	echo $tabellaF;
 	
 //ortom
+	echo '<h1>Ortomercato</h1>';
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -168,6 +171,7 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;		
 //sma
+	echo '<h1>Sma</h1>';
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -180,6 +184,7 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;	
 //II
+	echo '<h1>Mercato II</h1>';
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -191,7 +196,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
 //mercaato //capucci
 /*
 	$test=new MyList(
@@ -222,7 +227,7 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
-
+/*
 //PAN DI ZUCCHERO SUPERMERCATI DAL AL 
 	$test=new MyList(
 		array(
@@ -238,7 +243,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-	
+*/
 	page_end();
 }
 ?>

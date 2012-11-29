@@ -3,6 +3,11 @@ include ('./config.inc.php');
 //require_once('./classes.php');
 //page_start();
 		
+function formatData($data){
+	$newData=explode("-", $data);
+	return $newData[2].'/'.$newData[1];
+
+}		
 //mi memorizzo il database clienti	(dove ho salvato se sono mercati supermercati o altro)	
 $dbClienti=getDbClienti();
 
@@ -47,7 +52,7 @@ $dbClienti=getDbClienti();
 				$media=round($netto/$row['F_NUMCOL'],1);
 				$tara=round(($row['F_QTA']-$row['F_PESNET'])/$row['F_NUMCOL'],3);
 				//$tara=$row['F_PESNET'].'::'.$row['F_QTA'];				
-				$out.="\n<tr><td>$row[F_DATBOL]</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td><td>$tara</td></tr>";
+				$out.="\n<tr><td>".formatData($row['F_DATBOL'])."</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td><td>$tara</td></tr>";
 				$sum['NETTO']+=$netto;
 				$sum['F_NUMCOL']+=$row['F_NUMCOL'];
 			}	
@@ -85,17 +90,17 @@ $dbClienti=getDbClienti();
                  font-size:1.5em;
             }
 			.righe table, .righe tr, .righe td, .righe th{
-                font-size:x-small;
+                font-size:xx-small;
                 padding:0px;
                 margin:0;
                 text-align:right;
                 border:1px solid #000000;
-                    border-collapse: collapse;
-                margin-left:0.5em;
+                border-collapse: collapse;
+                margin-left:0.3em;
 			}
             .righe td, .righe th{
-                padding-left:4px;
-                padding-right:4px;
+                padding-left:2px;
+                padding-right:2px;
             }
             .righe th{
                 font-weight:bold;
@@ -105,29 +110,29 @@ $dbClienti=getDbClienti();
                 margin-top:150px;
             }
             .rimanenze td{
-                height:3.5em;
-                width:9em;
+                height:2em;
+                width:6em;
                 text-align:left;
-				padding-left:1em;
+				padding-left:0.6em;
 
             }
 			.rimanenze table, .rimanenze tr, .rimanenze td, .rimanenze th{
-                font-size:x-small;
+                font-size:xx-small;
                 border:1px solid #000000;
                 border-collapse: collapse;
-								margin:1em;
+				margin:1em;
 			}			
             span div {
                 float:left;
             }
             .totali{
-                 font-size:1.5em;
+                 font-size:0.9em;
             }
 			.tableContainer{
-				padding:0.2em;
+				padding:0.1em;
 			}
 			h1{
-				font-size:2em;
+				font-size:1em;
 			}
         </style>
 		<style type="text/css" media="print" />      
