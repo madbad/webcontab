@@ -146,6 +146,20 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->Text(18, 83, 'Condizioni di pagamento');
 	$pdf->SetFont($def_font, '', $def_size+5);
 	$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));
+/*
+	//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
+	$data=explode('/',$ft->data->getFormatted());
+	$anno=$data[2];
+	$mese=$data[1]+2;
+	if($mese>12){
+		$anno=$anno+1;
+		$mese=$mese-12;
+	}
+	$giorni=$num = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); 
+	$pdf->Text(18, 86, strtolower('bonif.bancario 60 gg df fm - Scadenza '.$giorni.'/'.$mese.'/'.$anno));
+*/
+
+
 	//
 	/*
 	$pdf->SetFont($def_font, '', $def_size-3);

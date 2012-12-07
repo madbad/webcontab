@@ -54,8 +54,8 @@ $stampaRighe= function ($obj){
 };
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/11/12','15/11/12'),
-		'cod_cliente'=>'SMA'
+		'ddt_data'=>array('<>','16/11/12','30/11/12'),
+		'cod_cliente'=>'SEVEN'
 	);
 
 $test=new MyList($params);
@@ -63,13 +63,13 @@ $test->iterate($stampaRighe);
 
 echo '<div>';
 var_dump($params);
-echo '===============';
-echo '===============';
-echo '===============';
+echo '============';
+echo '============';
+echo '============';
 var_dump($elenco);
-echo '===============';
-echo '===============';
-echo '===============';
+echo '============';
+echo '============';
+echo '============';
 var_dump($totali);
 echo '</div>';
 page_end();
