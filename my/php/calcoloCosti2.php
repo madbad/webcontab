@@ -36,8 +36,8 @@ $dbClienti=getDbClienti();
 		//$condizioniProdotti='';
 		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE $condizioniProdotti F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 		
-		$out.="<table class=\"righe\"><tr><th colspan='6'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
-		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Net</th><th>md</th><th>tara</th></tr>';
+		$out.="<table class=\"righe\"><tr><th colspan='5'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
+		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Netto</th><th>md</th><th>tara</th></tr>';
 		//this will containt table totals
 		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
 
@@ -58,12 +58,12 @@ $dbClienti=getDbClienti();
 			}	
 		}
 
-		$out.="<tr><th>Totali</th><th>-</th><th>".round($sum['F_NUMCOL'])."</th><th colspan='3'><b style='font-size:2em'>".$sum['NETTO']."</b></th></tr>";
+		$out.="<tr><th>Totali</th><th>-</th><th class='totali'>".round($sum['F_NUMCOL'])."</th><th class='totali' colspan='3'>".$sum['NETTO']."</th></tr>";
 		$out.='</table>';
 		
 		$out.=' Imballo: '.round($params['costoCassa']*$sum['F_NUMCOL']/$sum['NETTO'],3);
 		$out.='<br> Trasporto: '.round($params['costoPedana']/(($sum['NETTO']/$sum['F_NUMCOL'])*$params['colliPedana']),3);
-		$out.='<br><br>';
+		$out.='<br>';
 
 		return $out;
 	}
@@ -86,8 +86,11 @@ $dbClienti=getDbClienti();
 			@PAGE landscape {size: landscape;}
 			TABLE {PAGE: landscape;}
 			@page rotated { size : landscape }
+            .totali{
+                 font-size:1.5em;
+            }
 			.righe table, .righe tr, .righe td, .righe th{
-                font-size:0.86em;
+                font-size:xx-small;
                 padding:0px;
                 margin:0;
                 text-align:right;
@@ -108,7 +111,7 @@ $dbClienti=getDbClienti();
             }
             .rimanenze td{
                 height:2em;
-                /*width:8em;*/
+                width:6em;
                 text-align:left;
 				padding-left:0.6em;
 
@@ -121,6 +124,9 @@ $dbClienti=getDbClienti();
 			}			
             span div {
                 float:left;
+            }
+            .totali{
+                 font-size:0.9em;
             }
 			.tableContainer{
 				padding:0.1em;
@@ -225,12 +231,12 @@ height:230,
 if (@$_POST['mode']=='print'){
     $table='<table class="rimanenze">';
     $table.='<tr><td colspan="2">Rimanenze</td></tr>';
-    $table.='<tr><td style="width:9em"></td><td style="width:8em"></td></tr>';
-    $table.='<tr><td><b>- pl</b></td><td></td></tr>';
-    $table.='<tr><td><b>- ifco</b></td><td></td></tr>';
-    $table.='<tr><td>+ pl</td><td></td></tr>';
-    $table.='<tr><td>+ ifco</td><td></td></tr>';
-    $table.='<tr><td>Tot.<br><br><br></td><td style="border:4px solid #000000"></td></tr>';
+    $table.='<tr><td style="width:30%"></td><td></td></tr>';
+    $table.='<tr><td></td><td></td></tr>';
+    $table.='<tr><td></td><td></td></tr>';
+    $table.='<tr><td></td><td></td></tr>';
+    $table.='<tr><td></td><td></td></tr>';
+    $table.='<tr><td>Tot.<br><br></td><td style="border:4px solid #000000"></td></tr>';
     $table.='</table>';
     $html='';
   
@@ -365,7 +371,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.39);
 		$html.=getArticleTable($params);		
 		// supermercati
-		$params = array("articles" => array('705','805','705-','805-','705--','805--' ),
+		$params = array("articles" => array('705','805'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,

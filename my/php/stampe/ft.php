@@ -145,33 +145,40 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(18, 83, 'Condizioni di pagamento');
 	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));
-/*
-	//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
-	$data=explode('/',$ft->data->getFormatted());
-	$anno=$data[2];
-	$mese=$data[1]+2;
-	if($mese>12){
-		$anno=$anno+1;
-		$mese=$mese-12;
+
+
+	$perAnticipoFatture=false;
+	if ($perAnticipoFatture){
+		//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
+		$data=explode('/',$ft->data->getFormatted());
+		$anno=$data[2];
+		$mese=$data[1]+2;
+		if($mese>12){
+			$anno=$anno+1;
+			$mese=$mese-12;
+		}
+		$giorni=$num = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); 
+		$pdf->Text(18, 86, strtolower('bonif.bancario 60 gg df fm - Scadenza '.$giorni.'/'.$mese.'/'.$anno));
+		
+		
+		//modifico la banca di appoggio
+		//$ft->cod_banca->setVal('09');
+		
+	}else{
+		$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));
+		/*
+		//non decommentare questa parte di codice in quanto normalmente non indichiamo la scadenza delle fatture
+		$pdf->SetFont($def_font, '', $def_size-3);
+		$pdf->Text(78, 83, 'Scadenza pagamento');
+		$pdf->SetFont($def_font, '', $def_size+5);
+		$pdf->Text(78, 86, $ft->getScadenzaPagamento());
+		*/
 	}
-	$giorni=$num = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); 
-	$pdf->Text(18, 86, strtolower('bonif.bancario 60 gg df fm - Scadenza '.$giorni.'/'.$mese.'/'.$anno));
-*/
-
-
-	//
-	/*
-	$pdf->SetFont($def_font, '', $def_size-3);
-	$pdf->Text(78, 83, 'Scadenza pagamento');
-	$pdf->SetFont($def_font, '', $def_size+5);
-	$pdf->Text(78, 86, $ft->getScadenzaPagamento());
-	*/
 	
-	//
 	$pdf->SetFont($def_font, '', $def_size-3);
 	$pdf->Text(125, 83, 'Banca di appoggio');
 	$pdf->SetFont($def_font, '', $def_size+4);
+	
 	//se non è presente un codice banca il programma crashava
 	if($ft->cod_banca->extend()){
 //		$pdf->Text(125, 86, strtolower($ft->cod_banca->extend()->__iban->getVal()));

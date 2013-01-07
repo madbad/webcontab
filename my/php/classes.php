@@ -1493,6 +1493,8 @@ $test=new MyList(
 );
 */
 	function __construct($params) {
+	
+		$this->_params=$params;
 		$numeroDiValori=0;
 		//inizializzo larray che conterrà gli oggetti della lista
 		$this->arr=array();

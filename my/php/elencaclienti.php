@@ -12,7 +12,7 @@ a:hover   {
 }
 table,tr,td {
 margin: 0px;
-padding:0.4em;
+padding:0.0em;
 border: 1px #e1e1e1 solid;
 }
 </style>

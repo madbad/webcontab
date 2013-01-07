@@ -24,6 +24,8 @@ include ('./config.inc.php');
 $elenco=array();
 $totali=array();
 
+echo '<div>';
+
 $stampaRighe= function ($obj){
 	global $elenco;
 	global $totali;
@@ -39,7 +41,8 @@ $stampaRighe= function ($obj){
 	foreach ($ifco as $ifcoModel){
 		$found=stripos($obj->descrizione->getVal(), $ifcoModel);
 		if ($found){
-@			$elenco[$obj->ddt_data->getFormatted()][$ifcoModel]+=$obj->colli->getVal();
+			$name=$obj->ddt_data->getFormatted().' :: ddt '.$obj->ddt_numero->getFormatted();
+@			$elenco[$name][$ifcoModel]+=$obj->colli->getVal();
 			//exit the foreach cicle
 @			$totali['=====================sommaTotale']+=$obj->colli->getVal();
 @			$totali[$ifcoModel]+=$obj->colli->getVal();
@@ -49,19 +52,21 @@ $stampaRighe= function ($obj){
 	//se al termine non ho ancora trovato il modello IFCO e c'è una quantità di colli maggiore di zero (ovvero non si tratta di solo testo ma di un articolo)
 	//allora stampo la stringa di descrizione dell'articolo e la relativa data
 	if (!$found & $obj->colli->getVal()>0){
-		echo 'IFCO model not found :: '.$obj->ddt_data->getFormatted().' :: '.$obj->descrizione->getVal().'<br>';
+		echo 'IFCO model not found <br>:: '.$obj->ddt_data->getFormatted().' :: '.$obj->descrizione->getVal().'<br>';
 	}
 };
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','16/11/12','30/11/12'),
+		'ddt_data'=>array('<>','16/12/12','31/12/12'),
 		'cod_cliente'=>'SEVEN'
 	);
 
 $test=new MyList($params);
 $test->iterate($stampaRighe);
 
-echo '<div>';
+echo '============';
+echo '============';
+echo '============';
 var_dump($params);
 echo '============';
 echo '============';
