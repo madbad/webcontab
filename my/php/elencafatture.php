@@ -27,7 +27,7 @@ $test=new MyList(
 	array(
 		'_type'=>'Fattura',
 //		'data'=>array('<>','01/08/12','31/12/12'),
-		'data'=>array('<>','20/06/12','31/12/12'),
+		'data'=>array('<>','20/06/12','31/12/13'),
 		//'cod_cliente'=>'SEVEN'
 	)
 );

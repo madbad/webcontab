@@ -113,8 +113,16 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->SetFont($def_font, '', $def_size+5);
 	//$pdf->Text(65, 74,  trim($ft->numero->getFormatted(0)));
 
-	$html = '<div style="text-align:right;">'.trim($ft->numero->getFormatted(0)).'</div>';
-	$pdf->writeHTMLCell($w=15, $h=9, $x=60, $y=74, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='left', $autopadding=false);
+	//aggiungo la stringa "/anno" se dopo il 2013
+	$anno=explode('/',$ft->data->getFormatted());
+	if ($anno[2]*1>=2013){
+		$anno=$anno[2];
+		$aggiungiAnno='/'.$anno;
+		$aggiungiAnno='<span style="font-size:22px;">'.$aggiungiAnno.'</span>';
+	}
+	
+	$html = '<div style="text-align:right;">'.trim($ft->numero->getFormatted(0)).$aggiungiAnno.'</div>';
+	$pdf->writeHTMLCell($w=20, $h=9, $x=60, $y=74, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='left', $autopadding=false);
 	
 	//
 	$pdf->SetFont($def_font, '', $def_size-3);
@@ -162,7 +170,8 @@ function addDatiFattura ($ft,$pdf){
 		
 		
 		//modifico la banca di appoggio
-		//$ft->cod_banca->setVal('09');
+		$ft->cod_banca->setVal('10'); //09 cerea banca
+										//10 popolare di vicenza
 		
 	}else{
 		$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));
