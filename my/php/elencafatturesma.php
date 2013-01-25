@@ -27,7 +27,7 @@ $test=new MyList(
 	array(
 		'_type'=>'Fattura',
 //		'data'=>array('<>','01/08/12','31/12/12'),
-		'data'=>array('<>','01/09/12','31/12/12'),
+		'data'=>array('<>','01/12/12','31/12/12'),
 		'cod_cliente'=>'SMA'
 	)
 );
@@ -37,6 +37,8 @@ $test->iterate(function($obj){
 	global $html;
 	$tipo=$obj->tipo->getVal();
 	$obj->getSqlDbData();
+	$obj->_params['_autoExtend']='all';
+	$obj->getDataFromDbCallBack();
 	
 	$html.= "<tr class='$tipo'>";
 
@@ -46,7 +48,7 @@ $test->iterate(function($obj){
 	$html.= '<td>'.$obj->tipo->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
-	$html.= '<td>'.$obj->importo->getVal()*(100/104).'</td>';
+	$html.= '<td>'.$obj->importo->getFormatted(2).'</td>';
 
 	$html.="</tr>\n";
 
