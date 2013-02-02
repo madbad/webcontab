@@ -6,8 +6,8 @@ set_time_limit ( 0);
 //$separatore=";";
 $separatore="\t";
 
-$startDate='01/12/2012';
-$endDate='31/12/2012';
+$startDate='01/01/2013';
+$endDate='31/01/2013';
 $test=new MyList(
 	array(
 		'_type'=>'Fattura',

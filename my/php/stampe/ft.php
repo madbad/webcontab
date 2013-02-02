@@ -155,7 +155,7 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->SetFont($def_font, '', $def_size+5);
 
 
-	$perAnticipoFatture=false;
+	$perAnticipoFatture=FALSE;
 	if ($perAnticipoFatture){
 		//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
 		$data=explode('/',$ft->data->getFormatted());
