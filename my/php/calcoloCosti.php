@@ -239,7 +239,7 @@ if (@$_POST['mode']=='print'){
 //riccia
 	// mercato
 	
-	$params = array("articles" => array('01'),
+	$params = array("articles" => array('01','01S'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.5, //0.3
@@ -263,7 +263,7 @@ if (@$_POST['mode']=='print'){
     $html.="</div><div class='tableContainer'>";
     $html.="<h1>Scarola</h1>";
 	// mercato
-	$params = array("articles" => array('03'),
+	$params = array("articles" => array('03','03S'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.5, //0.3
@@ -401,7 +401,7 @@ if (@$_POST['mode']=='print'){
 
 		$html.="</div><div class='tableContainer'>";
         $html.="<h1>Iceberg</h1>";
-
+/*
 //iceberg
 		// mercato
 		$params = array('articles' => array('09'),
@@ -422,7 +422,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.70);
 		$html.=getArticleTable($params);
         $html.=$table;
-
+*/
 
 	}
 
