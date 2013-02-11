@@ -27,6 +27,26 @@ function datediff($tipo='G', $partenza, $fine)
 	return $date_diff;
 }
 
+$ifco=array('IFCO 4310'=>0.555,
+			'IFCO 4314'=>0.555,
+			'IFCO 6410'=>0.67,
+			'IFCO 6413'=>0.68,
+			'IFCO 6416'=>0.70,
+);
+function findIfcoModel($art){
+	global $ifco;
+	$models=array_keys($ifco);
+	foreach ($models as $ifcoModel){
+		$found=stripos($art, $ifcoModel);
+		if ($found){
+			return $ifcoModel;
+			break;
+		}
+	}
+	//se non trovo niente ritorno falso
+	return FALSE;
+}
+
 ?>
 
 <!DOCTYPE HTML>
@@ -102,7 +122,7 @@ tr:nth-child(odd) { background-color: #e1e1e1;}
 	$stampaRighe= function ($obj){
 	if($obj->cod_articolo->getVal()!=''){
 		global $array;
-
+		$array[$obj->ddt_data->getFormatted()][$obj->cod_articolo->getVal()]['descrizione']=$obj->descrizione->getVal();
 		$array[$obj->ddt_data->getFormatted()][$obj->cod_articolo->getVal()]['colli']=$obj->colli->getFormatted();
 		$array[$obj->ddt_data->getFormatted()][$obj->cod_articolo->getVal()]['peso']=$obj->peso_netto->getFormatted(2);
 		$array[$obj->ddt_data->getFormatted()][$obj->cod_articolo->getVal()]['prezzo']=$obj->prezzo->getFormatted(2);
@@ -124,17 +144,20 @@ tr:nth-child(odd) { background-color: #e1e1e1;}
 	$tabellaH.='</tr>';
 	$tabellaF='</table>';
 
-
+$start=$prevKey='01/01/13';
+$end='05/02/13';
+	
+	
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/01/13','05/02/13'),
+			'ddt_data'=>array('<>',$start,$end),
 			'cod_cliente'=>'SMA',
 		)
 	);
 	$test->iterate($stampaRighe);
 
-$prevKey='01/01/2013';
+
 	echo $tabellaH;
 	foreach ($array as $key => $value){
 		$giorniSaltati=datediff('G',$prevKey,$key);
@@ -157,7 +180,8 @@ $prevKey='01/01/2013';
 			if(array_key_exists($articolo,$value) ){
 				$link=$value[$articolo];
 
-				echo '<td>'.$articolo.'</td>';
+			//	echo '<td>'.$articolo.'</td>';
+				echo '<td>'.findIfcoModel($link['descrizione']).'</td>';
 				echo '<td>'.$link['colli'].'</td>';
 				echo '<td>'.$link['peso'].'</td>';
 				echo '<td>'.$link['prezzo'].'</td>';
