@@ -1711,4 +1711,20 @@ function page_end(){
 	ob_flush() ;
 	ob_end_flush ();
 }
+
+function CassaIFCO($nome, $costo, $tara, $cassePerBancale){
+	$cassa['nome']=$nome;
+	$cassa['costo']=$costo;
+	$cassa['tara']=$tara;
+	$cassa['cassePerBancale']=$cassePerBancale;
+
+	return $cassa;
+}
+
+$ifco=array('IFCO 4310'=>CassaIFCO('IFCO 4310',0.555,1.0,160),
+			'IFCO 4314'=>CassaIFCO('IFCO 4314',0.555,1.0,130),
+			'IFCO 6410'=>CassaIFCO('IFCO 6410',0.67,1.3,80),
+			'IFCO 6413'=>CassaIFCO('IFCO 6413',0.68,1.4,70),
+			'IFCO 6416'=>CassaIFCO('IFCO 6416',0.70,1.6,60)
+);
 ?>
