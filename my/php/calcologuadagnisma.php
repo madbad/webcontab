@@ -175,8 +175,8 @@ $sconti['percentualiPeriodici']=0;
 	$tabellaH.='</tr>';
 	$tabellaF='</table>';
 
-$start=$prevKey='01/01/12';
-$end='05/02/12';
+$start=$prevKey='01/01/13';
+$end='31/12/13';
 	
 	
 	$test=new MyList(
@@ -246,7 +246,7 @@ $guadagnoComplessivo=0;
 					case '708--': $colonna='F';$manodopera=0.25;break;
 					case '729':   $colonna='E';$manodopera=0.35;break;
 					case '731':   $colonna='G';$manodopera=0.20;break;
-					default:      $colonna='A';$manodopera=0.0;break;
+					default:      $colonna='A';$manodopera=0.000001;break;
 				}
 				global $fileODS;
 				$costoBase=str_replace(',','.',$fileODS[$giorno][$colonna]);

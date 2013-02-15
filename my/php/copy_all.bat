@@ -1,4 +1,4 @@
 @echo Copia dei file dbf e dbt in corso...
-copy /y f:\CONTAB\*.* C:\Programmi\EasyPHP-5.3.9\www\WebContab\my\php\FILEDBF\CONTAB\
-
+REM la /d serve a copiare solo i file modificati
+xcopy  f:\CONTAB\*.* C:\Programmi\EasyPHP-5.3.9\www\WebContab\my\php\FILEDBF\CONTAB\ /y /d
 @echo Finito! Esco
