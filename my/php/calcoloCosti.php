@@ -60,9 +60,10 @@ $dbClienti=getDbClienti();
 
 		$out.="<tr><th>Totali</th><th>-</th><th>".round($sum['F_NUMCOL'])."</th><th colspan='3'><b style='font-size:2em'>".$sum['NETTO']."</b></th></tr>";
 		$out.='</table>';
-		
-		$out.=' Imballo: '.round($params['costoCassa']*$sum['F_NUMCOL']/$sum['NETTO'],3);
-		$out.='<br> Trasporto: '.round($params['costoPedana']/(($sum['NETTO']/$sum['F_NUMCOL'])*$params['colliPedana']),3);
+		if ($sum['F_NUMCOL']>0){
+			$out.=' Imballo: '.round($params['costoCassa']*$sum['F_NUMCOL']/$sum['NETTO'],3);
+			$out.='<br> Trasporto: '.round($params['costoPedana']/(($sum['NETTO']/$sum['F_NUMCOL'])*$params['colliPedana']),3);
+		}
 		$out.='<br><br>';
 
 		return $out;
@@ -249,7 +250,7 @@ if (@$_POST['mode']=='print'){
     $html.=getArticleTable($params);
 	
 	//supermercati
-	$params = array("articles" => array('701','801'),
+	$params = array("articles" => array('701','701S','801','801S'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.7,
@@ -272,7 +273,7 @@ if (@$_POST['mode']=='print'){
 					"costoCassa" => 0.43);
 	$html.=getArticleTable($params);
 	// supermercati
-	$params = array("articles" => array('703','803'),
+	$params = array("articles" => array('703','703S','803','803S'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.7,
@@ -399,9 +400,9 @@ if (@$_POST['mode']=='print'){
         $html.=$table;
 */
 
+/*
 		$html.="</div><div class='tableContainer'>";
         $html.="<h1>Iceberg</h1>";
-/*
 //iceberg
 		// mercato
 		$params = array('articles' => array('09'),
