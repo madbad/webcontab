@@ -61,7 +61,7 @@ function addDestinatario ($ft,$pdf){
 */	
 	
 	//destinatario
-	$cliente=$ft->cod_cliente->extend();	
+	$cliente=$ft->cod_cliente->extend();
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(230,230,230));//grigio chiaro
 	$pdf->SetFont($def_font, 'b', $def_size+0.8);
@@ -73,7 +73,13 @@ function addDestinatario ($ft,$pdf){
 	$pdf->Text(114, 20+$mod, $cliente->via->getVal());
 	$pdf->Text(114, 23+$mod, $cliente->cap->getVal().' '.$cliente->paese->getVal(). ' ('.$cliente->citta->getVal().')');
 	$pdf->SetFont($def_font, 'b', $def_size+1);
-	$pdf->Text(114, 27+$mod, 'Partitita IVA: '.$cliente->p_iva->getVal());
+	if($cliente->p_iva->getVal()!=''){
+		$piva=$cliente->p_iva->getVal();
+	}else{
+	//echo $cliente->sigla_paese->getVal()+'*******';
+		$piva=$cliente->sigla_paese->getVal()+' '+$cliente->p_iva_cee->getVal();
+	}
+	$pdf->Text(114, 27+$mod, 'Partitita IVA: '.$piva);
 	$pdf->SetFont($def_font, '', $def_size);
 	$pdf->Text(114, 31+$mod, 'Codice Fiscale: '.$cliente->cod_fiscale->getVal());
 

@@ -848,7 +848,7 @@ class Fattura extends MyClass{
 	}
 	
 	public function visualizzaPdf(){
-$this->generaPdf($this);	
+		$this->generaPdf($this);	
 		//url completo del file pdf
 		$pdfUrl=$this->getPdfFileUrl();
 		// impostiamo l'header di un file pdf
@@ -861,6 +861,9 @@ $this->generaPdf($this);
 	}
 	
 	public function inviaPec(){
+		//rigenero il file pdf della fattura
+		$this->generaPdf($this);	
+	
 		//importo i dati di configurazione della pec
 		$pec=$GLOBALS['config']->pec;
 		$cliente=$this->cod_cliente->extend();
@@ -1185,6 +1188,8 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('cod_mezzo',					'F_SPEDIZ');
 		$this->addProp('cod_vettore',				'F_VET');
 		$this->addProp('p_iva',						'F_PIVA');
+		$this->addProp('p_iva_cee',					'F_PIVA_CEE');
+		$this->addProp('sigla_paese',				'F_CODNAZ');
 		$this->addProp('cod_fiscale',				'F_CODFIS');
 		$this->addProp('cod_iva',					'F_CODIVA');
 		$this->addProp('lettera_intento_num',		'F_NUMINTEN');
