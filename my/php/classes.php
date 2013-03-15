@@ -1499,6 +1499,9 @@ $test=new MyList(
 */
 	function __construct($params) {
 	
+		//$tiporiga='ddt';
+		$tiporiga='ft';
+	
 		$this->_params=$params;
 		$numeroDiValori=0;
 		//inizializzo larray che conterrà gli oggetti della lista
@@ -1506,13 +1509,13 @@ $test=new MyList(
 	
 		$objType=$params['_type'];
 		$fakeObj=new $objType(array('_autoExtend'=>'-1'
-									,'_tipoRiga'=>'ddt'     /*hack to fix (non è detto che sia una riga ddt, anzi non è proprio detto che sia una riga)*/
+									,'_tipoRiga'=>$tiporiga     /*hack to fix (non è detto che sia una riga ddt, anzi non è proprio detto che sia una riga)*/
 									));
 		$condition=array();
 		$i=0;		
 		$operator=null;
 		$newVal=null;
-		$newKey=null;		
+		$newKey=null;
 		
 		foreach ($params as $key => $value) {
 			//se non si tratta di una proprietà interna
@@ -1661,7 +1664,7 @@ $test=new MyList(
 			$obj=new $objType(array(
 					'_result'=>$row,
 					'_autoExtend'=>'intestazione',
-					'_tipoRiga'=>'ddt'     /*hack to fix (non è detto che sia una riga ddt, anzi non è proprio detto che sia una riga)*/
+					'_tipoRiga'=>$tiporiga     /*hack to fix (non è detto che sia una riga ddt, anzi non è proprio detto che sia una riga)*/
 					
 			));
 			//print_r($obj);

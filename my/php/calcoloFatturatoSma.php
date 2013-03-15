@@ -94,19 +94,21 @@ if (@$_GET['mode']=='print'){
 	if ($obj->imponibile->getVal()=='0.0'){
 		return;
 	}
+	/*
 	if ((($obj->peso_lordo->getVal()*1)-($obj->peso_netto->getVal()*1))>0){
 		$color=' style="background-color:orange;" ';
 	}
+	*/
 	
 	
 		echo '<tr '.$color.'> ';
-		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
-		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
+		echo '<td>'.$obj->ft_numero->getVal().'</td>';
+		echo '<td>'.$obj->ft_data->getFormatted().'</td>';
 		echo '<td>'.$obj->cod_cliente->getVal().'</td>';
 		echo '<td>'.$obj->colli->getVal().'</td>';				
 		echo '<td>'.$obj->peso_lordo->getVal().'</td>';
-		echo '<td>'.$obj->peso_netto->getVal().'</td>';
-		echo '<td>'.(($obj->peso_lordo->getVal()*1)-($obj->peso_netto->getVal()*1)).'</td>';
+		echo '<td>'./*$obj->peso_netto->getVal().*/'</td>';
+		echo '<td>'./*(($obj->peso_lordo->getVal()*1)-($obj->peso_netto->getVal()*1)).*/'</td>';
 		echo '<td>'.$obj->prezzo->getVal().'</td>';
 		echo '<td>'.$obj->imponibile->getVal().'</td>';
 		echo '</tr>';
@@ -118,8 +120,8 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.$obj->sum('colli').'</td>';		
 		echo '<td>'.$obj->sum('peso_lordo').'</td>';
-		echo '<td>'.$obj->sum('peso_netto').'</td>';
-		echo '<td>'.$obj->sum('peso_lordo')-$obj->sum('peso_netto').'</td>';
+		echo '<td>'./*$obj->sum('peso_netto').*/'</td>';
+		echo '<td>'./*$obj->sum('peso_lordo')-$obj->sum('peso_netto').*/'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.$obj->sum('imponibile').'</td>';			
 		echo '</tr>';
@@ -208,7 +210,7 @@ if (@$_GET['mode']=='print'){
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'ft_data'=>array('<>',$startDateR,$endDateR),
 		//	'cod_articolo'=>array('=','11','111','112','113',
 		//						      '911','9111','9112','9113','05'
 		//	),
