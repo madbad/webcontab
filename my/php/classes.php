@@ -1499,8 +1499,8 @@ $test=new MyList(
 */
 	function __construct($params) {
 	
-		//$tiporiga='ddt';
-		$tiporiga='ft';
+		$tiporiga='ddt';
+		//$tiporiga='ft';
 	
 		$this->_params=$params;
 		$numeroDiValori=0;
