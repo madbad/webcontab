@@ -363,23 +363,23 @@ function MyOwnRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
 //**********************************************************
 //**********************************************************
 //**********************************************************
-	 /*-----------------------------------------------------*/
-	require_once('./tcpdf/config/lang/ita.php');
-	require_once('./tcpdf/tcpdf.php');
-	// Extend the TCPDF class to create custom Header and Footer
-	class MYPDF extends TCPDF {
-		//Page header
-		public function Header() {
-			// full background image
-			// store current auto-page-break status
-			$bMargin = $this->getBreakMargin();
-			$auto_page_break = $this->AutoPageBreak;
-			$this->SetAutoPageBreak(false, 0);
-			$this->Image($GLOBALS['img_file'], 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
-			// restore auto-page-break status
-			$this->SetAutoPageBreak($auto_page_break, $bMargin);
-		}
+ /*-----------------------------------------------------*/
+require_once('./tcpdf/config/lang/ita.php');
+require_once('./tcpdf/tcpdf.php');
+// Extend the TCPDF class to create custom Header and Footer
+class MYPDF extends TCPDF {
+	//Page header
+	public function Header() {
+		// full background image
+		// store current auto-page-break status
+		$bMargin = $this->getBreakMargin();
+		$auto_page_break = $this->AutoPageBreak;
+		$this->SetAutoPageBreak(false, 0);
+		$this->Image($GLOBALS['img_file'], 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+		// restore auto-page-break status
+		$this->SetAutoPageBreak($auto_page_break, $bMargin);
 	}
+}
 
 
 
@@ -389,8 +389,8 @@ function generaPdfFt($ft){
 	$ft->pagina=1;
 	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
 
-//to fix... se vedo che funziona correttamente posso eliminare questo passaggio	
-$ft->verificaCalcoli();	
+	//to fix... se vedo che funziona correttamente posso eliminare questo passaggio	
+	$ft->verificaCalcoli();	
 	
 	
 	$GLOBALS['img_file']='';
@@ -503,7 +503,7 @@ $ft->verificaCalcoli();
 			$descrizione2=$riga->cod_articolo->extend()->descrizione2->getVal();
 			//var_dump($descrizone2);
 			if($descrizione2!=''){
-				$ft->html.= MyOwnRow('',$descrizione2,'','','','','','','' );			
+				$ft->html.= MyOwnRow('',$descrizione2,'','','','','','','' );
 			}
 
 			//descrizione lunga
@@ -513,10 +513,10 @@ $ft->verificaCalcoli();
 				foreach ($righeL as $rigaL){
 					if(strlen($rigaL)>1){
 						//var_dump($rigaL);
-						$ft->html.= MyOwnRow('',$rigaL,'','','','','','','' );					
+						$ft->html.= MyOwnRow('',$rigaL,'','','','','','','' );
 					}
 				}
-			}		
+			}
 		}
 
 	}

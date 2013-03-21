@@ -25,7 +25,7 @@ $html.='</tr><table>';
 //mostro le fatture 
 $test=new MyList(
 	array(
-		'_type'=>'Fattura',
+		'_type'=>'Ddt',
 		'data'=>array('<>','01/01/'.$anno,'31/12/'.$anno),
 		//'cod_cliente'=>'SEVEN'
 	)
@@ -34,23 +34,22 @@ $test=new MyList(
 $elenco=array();
 $test->iterate(function($obj){
 	global $html;
-	$tipo=$obj->tipo->getVal();
-	$html.= "<tr class='$tipo'>";
+	$cod_causale=$obj->cod_causale->getVal();
+	$html.= "<tr class='$cod_causale'>";
 
-	$cliente=$obj->cod_cliente->extend();
+	$cliente=$obj->cod_destinatario->extend();
 	
-	$html.= '<td>'.$obj->tipo->getVal().'</td>';
+	$html.= '<td>'.$obj->cod_causale->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
-	$html.= '<td>'.$obj->importo->getFormatted().'</td>';
 	$html.= '<td>'.$cliente->ragionesociale->getVal().'</td>';
-	$html.= '<td><small>'.$cliente->__pec->getVal().'</small></td>';
-	
-	$link= '<a href="./gestioneFatture.php?';
+
+	$link= '<a href="./gestioneDdt.php?';
 	$link.= 'numero='.$obj->numero->getVal();
 	$link.= '&data='.$obj->data->getVal();
-	$link.= '&tipo='.$obj->tipo->getVal();
+	$link.= '&cod_causale='.$obj->cod_causale->getVal();
 	
+	/*
 	//mail
 	if($cliente->__pec->getVal()!=''){
 		$dataInvioPec=$obj->__datainviopec->getVal();
@@ -67,7 +66,7 @@ $test->iterate(function($obj){
 			$html.= '<td>'.$link.'&do=stampaCliente">Stampa copia cliente</a></td>';		
 		}	
 	}
-
+	*/
 
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
@@ -84,7 +83,7 @@ $test->iterate(function($obj){
 $params=array(
 	'numero' => $obj->numero->getVal(),
 	'data'   => $obj->data->getVal(),
-	'tipo'  => $obj->tipo->getVal()
+	'cod_causale'  => $obj->cod_causale->getVal()
 );
 
 /*

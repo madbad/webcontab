@@ -1027,9 +1027,6 @@ class Ddt  extends MyClass {
 		}
 
 	}
-	public function doPrint(){
-		printDdt($this);
-	}
 	public function jsonList(){
 		$out= "{\n\"numero\": \"".$this->numero->getFormatted()."\",";
 		$out.= "\n\"data\": \"".$this->data->getFormatted()."\",";
@@ -1037,6 +1034,54 @@ class Ddt  extends MyClass {
 		$out.= "\n},";
 		return $out;
 	}	
+	/*WORK IN PROGRESS*/
+	public function getPdfFileName(){/*TODO QUESTA FUNZIONE A PRIMA VISTA è UGUALE A QUELLA DELLE FATTURE VEDI DI UNIRLE????*/
+		$numero=str_replace(" ", "0", $this->numero->getVal());
+		$tipo=$this->tipo->getVal();
+		
+		$arr=explode("-", $this->data->getVal());
+								//mese   //giorno //anno
+		$newVal=mktime(0, 0, 0, $arr[0], $arr[1], $arr[2]);
+		$newVal=date ( 'Ymd' , $newVal);
+		$data=$newVal;
+		
+		$nomefile=$data.'_'.$tipo.$numero.'.pdf';
+		return $nomefile;	
+	}
+	
+	public function getPdfFileUrl(){
+		//il nome del file esempio: 20120121_N00000001.pdf
+		$filename=$this->getPdfFileName();
+		//la cartella principale delle stampe
+		$dirDelleStampe=$GLOBALS['config']->pdfDir;
+		//l'url completo del file esempio: c:/Program%20Files/EasyPHP-5.3.6.0/www/webcontab/my/php/stampe/ft/20120121_N00000001.pdf
+		$fileUrl=$dirDelleStampe.'/ddt/'.$filename;
+		
+		//verifichiamo che il file esista prima di comunicarlo
+		//altrimenti lo generiamo "al volo"
+		if(!file_exists($fileUrl)){
+			//echo 'il file non esiste devo generarlo!!';
+			$this->generaPdf();
+		}
+		return $fileUrl;	
+	}
+	
+	public function generaPdf(){
+		return generaPdfDdt($this);	
+	}
+	
+	public function visualizzaPdf(){
+		$this->generaPdf($this);	
+		//url completo del file pdf
+		$pdfUrl=$this->getPdfFileUrl();
+		// impostiamo l'header di un file pdf
+		header('Content-type: application/pdf');
+		// e inviamolo al browser
+		readfile($pdfUrl);
+	}	
+	public function stampa(){
+
+	}
 }
 
 class Riga extends MyClass {

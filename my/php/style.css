@@ -1,0 +1,29 @@
+a:link, a:visited, a:active  {
+	opacity:1;
+	text-decoration:none;
+}
+a:hover   {
+	opacity:1;
+	color:#cd6f00;
+}
+.n {
+	color:red;
+}
+table,tr,td {
+margin: 0px;
+padding:0.4em;
+border: 1px #e1e1e1 solid;
+}
+.titleTable{
+	width:100%;
+}
+
+.titleTable td{
+	text-align:center;
+
+	font-size:2em;
+	font-weight:bold;
+	background-color: #eaeaea;
+	margin:0px;
+	padding:0px;
+}

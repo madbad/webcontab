@@ -7,8 +7,9 @@
 ----------------------------------------------------------------------------------------------------------
 */
 
-function printDdt($ddt){
-	global $azienda;
+function generaPdfDdt($ddt){
+	$azienda=$GLOBALS['config']->azienda;
+	
 	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
 	//$ddt=new Ddt($numero,$data);
 
@@ -20,24 +21,25 @@ function printDdt($ddt){
 	$def_verde= array(168,236,134);
 	$def_bianco= array(999,999,999);
 	 /*-----------------------------------------------------*/
-	require_once('./tcpdf/config/lang/ita.php');
-	require_once('./tcpdf/tcpdf.php');
-
-
-	// Extend the TCPDF class to create custom Header and Footer
-	class MYPDF extends TCPDF {
-		//Page header
-		public function Header() {
-			// full background image
-			// store current auto-page-break status
-			$bMargin = $this->getBreakMargin();
-			$auto_page_break = $this->AutoPageBreak;
-			$this->SetAutoPageBreak(false, 0);
-			$this->Image($GLOBALS['img_file'], 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
-			// restore auto-page-break status
-			$this->SetAutoPageBreak($auto_page_break, $bMargin);
-		}
+/*TO FIX QUESTO VIENE UTILIZZATO TALE E QUALE ANCHE NELLA STAMPA DELLE FTTURE E ECAUSA UN ERRORE IN QUANTO VIENE RIDICHIARATA LA STESSA CLASSE CON LO STESSO NOME*/
+/*
+require_once('./tcpdf/config/lang/ita.php');
+require_once('./tcpdf/tcpdf.php');
+// Extend the TCPDF class to create custom Header and Footer
+class MYPDF extends TCPDF {
+	//Page header
+	public function Header() {
+		// full background image
+		// store current auto-page-break status
+		$bMargin = $this->getBreakMargin();
+		$auto_page_break = $this->AutoPageBreak;
+		$this->SetAutoPageBreak(false, 0);
+		$this->Image($GLOBALS['img_file'], 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+		// restore auto-page-break status
+		$this->SetAutoPageBreak($auto_page_break, $bMargin);
 	}
+}
+*/
 
 	// create new PDF document
 	$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -68,7 +70,7 @@ function printDdt($ddt){
 	$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 	//set some language-dependent strings
-	$pdf->setLanguageArray($l);
+	@$pdf->setLanguageArray($l);
 
 	//-----------------------------------------------------
 	//   DDT PAGE
@@ -86,7 +88,7 @@ function printDdt($ddt){
 	$html.= '<br>Codice Fiscale '.$azienda->cod_fiscale->getVal();
 	$html.= '<br>Partita IVA '.$azienda->p_iva->getVal();	
 	$html.= '<br>BNDOO n.'.$azienda->_bndoo->getVal();
-	$html.= '<br>PEC Mail: '.$azienda->_emailpec->getVal();
+	$html.= '<br>PEC: '.$azienda->_emailpec->getVal();
 
 	$pdf->writeHTMLCell($w=0, $h=0, $x='15', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 	$mod=14;
@@ -116,7 +118,7 @@ function printDdt($ddt){
 	//destinatario
 	$destinatario=$ddt->cod_destinatario->extend();	
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(200,200,200));
+	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(230,230,230)); //grigio chiaro
 	$pdf->SetFont($def_font, 'b', $def_size+1.4);
 	$pdf->Text(114, 11+$mod, $destinatario->ragionesociale->getVal());
 	//$pdf->Text(114, 15+$mod, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
@@ -191,7 +193,7 @@ function printDdt($ddt){
 	//**********************************************************
 	//**********************************************************
 
-	function MyOwnRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
+	function MyOwnDdtRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
 		$mystyle='style="text-align:left;padding:20px;" padding="2" align="left"';
 		$mystyle2='style="text-align:right;padding:20px;" padding="2"  align="right"';
 		$mystyle3='style="text-align:center;padding:20px;" padding="2"  align="center"';		
@@ -218,21 +220,43 @@ function printDdt($ddt){
 	$html.= '<td width="70px;">Cod.Articolo</td><td  width="200px;">Descrizione dei Beni (natura e qualita)</td><td width="40px;">Colli</td><td width="60px;">Prezzo</td><td width="40px;">U.M.</td><td width="80px;">Peso Lordo</td><td  width="50px;">Tara</td><td  width="80px;">Peso netto</td>';
 
 	$pdf->SetFont($def_font, '', $def_size);
-	$html.= MyOwnRow('','','','','','','','','' );
+	$html.= MyOwnDdtRow('','','','','','','','','' );
 
 	foreach ($ddt->righe as $key => $value) {
 		$riga=$ddt->righe[$key];
-		//echo "Key: $key; Value: $value<br />\n";
-		// number_format($number, 2, ',', ' ');
-		$html.= MyOwnRow(	$riga->cod_articolo->getVal(),
+
+		//riga normale
+		$html.= MyOwnDdtRow(	$riga->cod_articolo->getVal(),
 							$riga->descrizione->getVal(),
-							($riga->colli->getVal()*1>0 ? number_format ($riga->colli->getVal(),2) : ''),
-							($riga->prezzo->getVal()*1>0 ? '€ '.number_format ($riga->prezzo->getVal(),3): ''),
+							($riga->colli->getVal()*1>0 ? $riga->colli->getFormatted(0) : ''),
+							($riga->prezzo->getVal()*1>0 ? $riga->prezzo->getFormatted(3) : ''),
 							$riga->unita_misura->getVal(),
-							($riga->peso_lordo->getVal()*1>0 ? number_format ($riga->peso_lordo->getVal(),1): ''), //peso lordo
+							($riga->peso_lordo->getVal()*1>0 ? $riga->peso_lordo->getFormatted(2) : ''), //peso lordo
 							($riga->peso_lordo->getVal()*1>0 ? number_format ($riga->peso_lordo->getVal()-$riga->peso_netto->getVal(),1): ''), //todoTara
 							($riga->peso_lordo->getVal()*1>0 ? number_format ($riga->peso_netto->getVal(),1): ''),
 							'' ); //lotto se presente todo
+							
+		//se c'è un codice articolo
+		if ($riga->cod_articolo->getVal()!=''){
+			//seconda descrizione
+			$descrizione2=$riga->cod_articolo->extend()->descrizione2->getVal();
+			//var_dump($descrizone2);
+			if($descrizione2!=''){
+				$html.= MyOwnDdtRow('',$descrizione2,'','','','','','','' );
+			}
+
+			//descrizione lunga
+			$descrizioneL=$riga->cod_articolo->extend()->descrizionelunga->getVal();
+			if($descrizioneL!=' '){
+				$righeL=explode("\n",$descrizioneL);
+				foreach ($righeL as $rigaL){
+					if(strlen($rigaL)>1){
+						//var_dump($rigaL);
+						$html.= MyOwnDdtRow('',$rigaL,'','','','','','','' );
+					}
+				}
+			}
+		}
 	}
 
 	$html.= '</tr></table>';
@@ -249,7 +273,7 @@ function printDdt($ddt){
 	$html = '<table style="border:0px solid #000000;margin:0px;padding:0px;text-align:left;"><tr>';
 	$html.= '<td width="70px;"> </td><td  width="200px;"> </td><td width="40px;">Colli</td><td width="100px;" colspan="2">Imponibile</td><td width="80px;">Peso Lordo</td><td  width="50px;">Tara</td><td  width="80px;">Peso netto</td>';
 
-	$html.= MyOwnRow('<b>Totali</b>','',$ddt->tot_colli->getVal(),'€ todo','',$ddt->tot_peso->getVal(),'todo','todo netto','' );
+	$html.= MyOwnDdtRow('<b>Totali</b>','',$ddt->tot_colli->getVal(),'€ todo','',$ddt->tot_peso->getVal(),'todo','todo netto','' );
 
 	$html.= '</tr></table>';
 	$pdf->writeHTMLCell($w=175, $h=10, $x=15, $y=216, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);

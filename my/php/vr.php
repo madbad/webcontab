@@ -250,8 +250,8 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','05'),  //20=VERZE   19=CAPUCCI   36=SEDANO
-			'cod_cliente'=>array('=','FACCG'),
+			'cod_articolo'=>array('=','36'),  //20=VERZE   19=CAPUCCI   36=SEDANO
+			'cod_cliente'=>array('=','MARTI'),
 		)
 	);	
 
