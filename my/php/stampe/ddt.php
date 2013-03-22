@@ -6,7 +6,86 @@
 	e lei ne prepara la stampa
 ----------------------------------------------------------------------------------------------------------
 */
+function addIntestazioneDdt ($pdf){
+	$style='';
+	$def_font='helvetica';
+	$def_size=8;
+	$def_verde= array(168,236,134);
+	$def_bianco= array(999,999,999);
+	//imposto carattere
+	$pdf->SetFont($def_font, 'I', $def_size-1);
+	
+	//importo i dati dell'azienda emittente della fattura
+	$azienda=$GLOBALS['config']->azienda;
+	
+	//logo + intestazione
+	$html ='';
+	$html.= '<img src="'.$azienda->_logo->getVal().'" width="265" height="100"><br><span style="font-size:40px;font-weight:bold;">'.$azienda->_ragionesocialeestesa->getVal().'</span>';
+	$html.= '<br>'.$azienda->via->getVal().' - '.$azienda->cap->getVal().' '.$azienda->paese->getVal().' ('.$azienda->citta->getVal().')';
+	$html.= '<br>Telefono '.$azienda->telefono->getVal().' - Fax '.$azienda->fax->getVal().'';
+	$html.= '<br>Capitale Sociale '.$azienda->_capitalesociale->getVal().' i.v.';
+	$html.= '<br>R.E.A. '.$azienda->_rea->getVal();
+	$html.= '<br>Reg.Imprese '.$azienda->_registroimprese->getVal();
+	$html.= '<br>Codice Fiscale '.$azienda->cod_fiscale->getVal();
+	$html.= '<br>Partita IVA '.$azienda->p_iva->getVal();	
+	$html.= '<br>BNDOO n.'.$azienda->_bndoo->getVal();
+	$html.= '<br>PEC: '.$azienda->_emailpec->getVal();
+	$pdf->writeHTMLCell($w=0, $h=0, $x='15', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+}
 
+function addDestinatarioDdt ($ddt,$pdf){
+	$mod=14;
+	$style='';
+	$def_font='helvetica';
+	$def_size=8;
+	$def_verde= array(168,236,134);
+	$def_bianco= array(999,999,999);
+	
+	$destinatario=$ddt->cod_destinatario->extend();	
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(230,230,230)); //grigio chiaro
+	$pdf->SetFont($def_font, 'b', $def_size+1.4);
+	$pdf->Text(114, 11+$mod, $destinatario->ragionesociale->getVal());
+	//$pdf->Text(114, 15+$mod, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
+	$pdf->SetFont($def_font, '', $def_size);
+
+	
+	$pdf->Text(114, 20+$mod, $destinatario->via->getVal());
+	$pdf->Text(114, 23+$mod, $destinatario->cap->getVal().' '.$destinatario->paese->getVal(). ' ('.$destinatario->citta->getVal().')');
+	$pdf->SetFont($def_font, 'b', $def_size+1);
+	$pdf->Text(114, 27+$mod, 'Partitita IVA: '.$destinatario->p_iva->getVal());
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->Text(114, 31+$mod, 'Codice Fiscale: '.$destinatario->cod_fiscale->getVal());
+
+	$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def_size-5);
+	$html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>T<BR>A<BR>R<BR>I<BR>O';
+	$pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=20+4, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='CENTER', $autopadding=true);
+}
+function addDestinazioneDdt ($ddt,$pdf){
+	$mod=14;
+	$style='';
+	$def_font='helvetica';
+	$def_size=8;
+	$def_verde= array(168,236,134);
+	$def_bianco= array(999,999,999);
+
+	//bordo destinazione
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+	$pdf->RoundedRect(110, 30+$mod, 80, 24, 5.0, '1010', 'DF', $style, $def_bianco);
+
+	$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def_size-5);	
+	$html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>Z<BR>I<BR>O<BR>N<BR>E';
+	$pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=44+4, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='CENTER', $autopadding=true);
+
+	$destinazione=$ddt->cod_destinazione->extend();
+	//dati intestazione ddt
+	$pdf->SetFont($def_font, 'b', $def_size+1.4);
+	$pdf->Text(114, 37+$mod, $destinazione->ragionesociale->getVal());
+	//$pdf->Text(114, 41+$mod, 'Unipersonale');
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->Text(114, 45+$mod, $destinazione->via->getVal());
+	$pdf->Text(114, 49+$mod, $destinazione->cap->getVal().' '.$destinazione->paese->getVal(). ' ('.$destinazione->citta->getVal().')');
+}
 function generaPdfDdt($ddt){
 	$azienda=$GLOBALS['config']->azienda;
 	
@@ -77,6 +156,8 @@ class MYPDF extends TCPDF {
 	//-----------------------------------------------------
 	$pdf->SetFont($def_font, 'I', $def_size-1);
 	$pdf->AddPage();
+	
+	/*
 	//logo + intestazione
 	$html ='';
 	$html.= '<img src="'.$azienda->_logo->getVal().'" width="265" height="100"><br><span style="font-size:40px;font-weight:bold;">'.$azienda->_ragionesocialeestesa->getVal().'</span>';
@@ -91,11 +172,14 @@ class MYPDF extends TCPDF {
 	$html.= '<br>PEC: '.$azienda->_emailpec->getVal();
 
 	$pdf->writeHTMLCell($w=0, $h=0, $x='15', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+	*/
+	addIntestazioneDdt($pdf);
 	$mod=14;
 
 
 	//destinazione se diversa dal destinatario
 	if($ddt->cod_destinazione->getVal()!=''){
+	/*
 		//bordo destinazione
 		$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 		$pdf->RoundedRect(110, 30+$mod, 80, 24, 5.0, '1010', 'DF', $style, $def_bianco);
@@ -112,10 +196,13 @@ class MYPDF extends TCPDF {
 		$pdf->SetFont($def_font, '', $def_size);
 		$pdf->Text(114, 45+$mod, $destinazione->via->getVal());
 		$pdf->Text(114, 49+$mod, $destinazione->cap->getVal().' '.$destinazione->paese->getVal(). ' ('.$destinazione->citta->getVal().')');
+	*/
+		addDestinazioneDdt($ddt, $pdf);
 	}	
 	
 
 	//destinatario
+	/*
 	$destinatario=$ddt->cod_destinatario->extend();	
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(230,230,230)); //grigio chiaro
@@ -135,7 +222,8 @@ class MYPDF extends TCPDF {
 	$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def_size-5);
 	$html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>T<BR>A<BR>R<BR>I<BR>O';
 	$pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=20+4, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='CENTER', $autopadding=true);
-
+*/
+	addDestinatarioDdt($ddt, $pdf);
 	//**********************************************************
 	//**********************************************************
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
@@ -233,7 +321,7 @@ class MYPDF extends TCPDF {
 							$riga->unita_misura->getVal(),
 							($riga->peso_lordo->getVal()*1>0 ? $riga->peso_lordo->getFormatted(2) : ''), //peso lordo
 							($riga->peso_lordo->getVal()*1>0 ? number_format ($riga->peso_lordo->getVal()-$riga->peso_netto->getVal(),1): ''), //todoTara
-							($riga->peso_lordo->getVal()*1>0 ? number_format ($riga->peso_netto->getVal(),1): ''),
+							($riga->peso_lordo->getVal()*1>0 ? $riga->peso_lordo->getFormatted(2): ''),
 							'' ); //lotto se presente todo
 							
 		//se c'è un codice articolo
@@ -363,6 +451,8 @@ class MYPDF extends TCPDF {
 		$pdf->SetFont($def_font, '', $def_size);
 		$html= '<table>';
 		$html.= '<tr><td>'.$committente->paese->getVal(). ' ('.$committente->citta->getVal().') </td>';
+		
+		$destinazione=$ddt->cod_destinazione->extend();
 		$html.= '<td>'.$destinazione->paese->getVal(). ' ('.$destinazione->citta->getVal().') </td>';
 		$html.= '<td>'.$committente->paese->getVal(). ' ('.$committente->citta->getVal().') '.date('d/m/Y',$printTime).'</td>';
 		$html.= '<td>'.$azienda->_titolare->getVal().'</td></tr>';
