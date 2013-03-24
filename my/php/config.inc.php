@@ -6,7 +6,7 @@ global $config;
 
 //attiva o disattiva i messaggi di debug
 $config->debugger=0;//1=acceso || 0=spento
-error_reporting(-1); //0=spento || -1=acceso
+error_reporting(0); //0=spento || -1=acceso
 set_time_limit (0); //0=nessun limite di tempo
 //set_time_limit (10); //0=nessun limite di tempo
 

@@ -1037,7 +1037,7 @@ class Ddt  extends MyClass {
 	/*WORK IN PROGRESS*/
 	public function getPdfFileName(){/*TODO QUESTA FUNZIONE A PRIMA VISTA è UGUALE A QUELLA DELLE FATTURE VEDI DI UNIRLE????*/
 		$numero=str_replace(" ", "0", $this->numero->getVal());
-		$tipo=$this->tipo->getVal();
+		//$tipo=$this->tipo->getVal();
 		
 		$arr=explode("-", $this->data->getVal());
 								//mese   //giorno //anno
@@ -1045,7 +1045,7 @@ class Ddt  extends MyClass {
 		$newVal=date ( 'Ymd' , $newVal);
 		$data=$newVal;
 		
-		$nomefile=$data.'_'.$tipo.$numero.'.pdf';
+		$nomefile=$data.'_DdT'.$numero.'.pdf';
 		return $nomefile;	
 	}
 	
