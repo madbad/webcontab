@@ -189,7 +189,7 @@ function generaPdfDdt($ddt){
 		//riga normale
 		$html.= MyOwnDdtRow(	$riga->cod_articolo->getVal(),
 							$riga->descrizione->getVal(),
-							($riga->prezzo->getVal()*1>0 ? $riga->prezzo->getFormatted(3) : ''),
+							($riga->prezzo->getVal()*1>0 ? $riga->prezzo->getFormatted(2) : ''),
 							$riga->unita_misura->getVal(),
 							($riga->colli->getVal()*1>0 ? $riga->colli->getFormatted(0) : ''),
 							($riga->peso_lordo->getVal()*1>0 ? $riga->peso_lordo->getFormatted(2): ''), //NETTO
@@ -221,7 +221,7 @@ function generaPdfDdt($ddt){
 	}
 
 	$html.= '</table>';
-	$pdf->SetFont($def_font, '', $def_size-3);	
+	$pdf->SetFont($def_font, '', $def_size-5);	
 	$pdf->writeHTMLCell($w=175, $h=10, $x=17, $y=75, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 
 	//**********************************************************
