@@ -164,19 +164,20 @@ function addDatiFattura ($ft,$pdf){
 	$perAnticipoFatture=FALSE;
 	if ($perAnticipoFatture){
 		//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
+		$pagamentoAMesi=2;
 		$data=explode('/',$ft->data->getFormatted());
 		$anno=$data[2];
-		$mese=$data[1]+2;
+		$mese=$data[1]+$pagamentoAMesi;
 		if($mese>12){
 			$anno=$anno+1;
 			$mese=$mese-12;
 		}
 		$giorni=$num = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); 
-		$pdf->Text(18, 86, strtolower('bonif.bancario 60 gg df fm - Scadenza '.$giorni.'/'.$mese.'/'.$anno));
+		$pdf->Text(18, 86, strtolower('bonif.bancario '.($pagamentoAMesi*30).' gg df fm - Scadenza '.$giorni.'/'.$mese.'/'.$anno));
 		
 		
 		//modifico la banca di appoggio
-		//$ft->cod_banca->setVal('10'); //09 cerea banca
+		$ft->cod_banca->setVal('10'); //09 cerea banca
 										//10 popolare di vicenza
 		
 	}else{

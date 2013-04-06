@@ -50,6 +50,9 @@ function addDestinazioneDdt ($ddt,$pdf){
 
 	$fromLeft=107;
 	
+	//HACK
+	//$ddt->cod_destinazione->setVal('OROGE');
+	
 	$destinazione=$ddt->cod_destinazione->extend();
 
 	$pdf->SetFont($def_font, '', $def_size+1.4);
@@ -144,6 +147,7 @@ function generaPdfDdt($ddt){
 	
 	//data
 	$printTime=time();
+	
 	$pdf->Text(112, 58+8, date('d/m/Y',$printTime));//todo: rendere dinamico
 	
 	//ora
@@ -228,7 +232,14 @@ function generaPdfDdt($ddt){
 	//**********************************************************
 	//se la spedizione è con vettore stampo i suoi dati
 	if ($ddt->cod_mezzo->getVal()=='01'){
-		$vettore=$ddt->cod_destinatario->extend()->cod_vettore->extend();
+		//$vettore=$ddt->cod_destinatario->extend()->cod_vettore->extend();
+		
+		$destinatario=$ddt->cod_destinatario->extend();
+		$vettore= $destinatario->cod_vettore->setVal('02');
+		$vettore= $vettore->extend();
+		//$vettore=$ddt->cod_destinatario->extend()->cod_vettore->extend();
+
+		
 		//si presenta il caso in cui la spedizione è stata fatta con vettore ma non sappiamo quale
 		//perchè non ce ne è uno predefinito nel codice cliente quindi gliene assegnamo uno vuoto
 		if($vettore==''){
