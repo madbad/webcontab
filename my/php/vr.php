@@ -141,7 +141,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 //mercato
 	echo '<h1>Mercato</h1>';
 	$test=new MyList(
@@ -156,7 +156,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-	
+/*
 //ortom
 	echo '<h1>Ortomercato</h1>';
 	$test=new MyList(
@@ -169,7 +169,9 @@ if (@$_GET['mode']=='print'){
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
-	echo $tabellaF;		
+	echo $tabellaF;
+*/
+/*
 //sma
 	echo '<h1>Sma</h1>';
 	$test=new MyList(
@@ -182,7 +184,9 @@ if (@$_GET['mode']=='print'){
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
-	echo $tabellaF;	
+	echo $tabellaF;
+*/
+/*
 //II
 	echo '<h1>Mercato II</h1>';
 	$test=new MyList(
@@ -244,7 +248,7 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
-
+/*
 	//CONTROLLO SGUAZZABIA
 	$test=new MyList(
 		array(
@@ -254,13 +258,23 @@ if (@$_GET['mode']=='print'){
 			'cod_cliente'=>array('=','MARTI'),
 		)
 	);	
-
+*/
+/*
+	//CONTROLLO SGUAZZABIA
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>array('=','819'),  //20=VERZE   19=CAPUCCI   36=SEDANO
+			'cod_cliente'=>array('=','SEVEN'),
+		)
+	);	
 
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 	page_end();
 }
 ?>

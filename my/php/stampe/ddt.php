@@ -235,9 +235,11 @@ function generaPdfDdt($ddt){
 		//$vettore=$ddt->cod_destinatario->extend()->cod_vettore->extend();
 		
 		$destinatario=$ddt->cod_destinatario->extend();
-		$vettore= $destinatario->cod_vettore->setVal('02');
-		$vettore= $vettore->extend();
-		//$vettore=$ddt->cod_destinatario->extend()->cod_vettore->extend();
+		
+		//MODIFICO IL VETTORE A MIO PIACIMENTO
+		//$destinatario->cod_vettore->setVal('02');
+		
+		$vettore= $destinatario->cod_vettore->extend();
 
 		
 		//si presenta il caso in cui la spedizione è stata fatta con vettore ma non sappiamo quale
