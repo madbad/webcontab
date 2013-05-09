@@ -73,11 +73,12 @@ function addDestinatario ($ft,$pdf){
 	$pdf->Text(114, 20+$mod, $cliente->via->getVal());
 	$pdf->Text(114, 23+$mod, $cliente->cap->getVal().' '.$cliente->paese->getVal(). ' ('.$cliente->citta->getVal().')');
 	$pdf->SetFont($def_font, 'b', $def_size+1);
+	
 	if($cliente->p_iva->getVal()!=''){
 		$piva=$cliente->p_iva->getVal();
 	}else{
 	//echo $cliente->sigla_paese->getVal()+'*******';
-		$piva=$cliente->sigla_paese->getVal()+' '+$cliente->p_iva_cee->getVal();
+		$piva=$cliente->sigla_paese->getVal().' '.$cliente->p_iva_cee->getVal();
 	}
 	$pdf->Text(114, 27+$mod, 'Partitita IVA: '.$piva);
 	$pdf->SetFont($def_font, '', $def_size);

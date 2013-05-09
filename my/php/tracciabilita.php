@@ -1,7 +1,9 @@
 <style>
 table, td {
-border:1px solid #000000
-padding: 0.5em;
+border:1px solid #000000;
+padding: 0.3em;
+font-size: 0.9em;
+
 }
 
 </style>
@@ -14,7 +16,7 @@ set_time_limit ( 0);
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/01/2010','31/03/2010'),
+		'ddt_data'=>array('<>','08/05/2013','08/05/2013'),
 	)
 );
 function cella ($txt){
@@ -31,7 +33,7 @@ function stampaUscite ($obj){
 	return riga(
 		cella($obj->cod_cliente->getVal()).
 		cella(' ddt '.$obj->ddt_numero->getVal()).
-		cella(' del '.$obj->ddt_data->getVal()).
+		cella(' del '.$obj->ddt_data->getFormatted()).
 		cella($obj->descrizione->getVal()).
 		cella(' colli: '.round($obj->colli->getVal())).
 		cella(' kg: '.round($obj->peso_netto->getVal()))

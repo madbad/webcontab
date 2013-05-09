@@ -256,7 +256,7 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','19'),  //20=VERZE   19=CAPUCCI   36=SEDANO
+			'cod_articolo'=>array('=','819'),  //20=VERZE   19=CAPUCCI   36=SEDANO
 			'cod_cliente'=>array('!=','SGUJI'),
 			//'prezzo'=>array('!=','0.001'),
 		)

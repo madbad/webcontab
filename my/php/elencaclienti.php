@@ -37,7 +37,7 @@ echo '<table style="font-size: x-small;">';
 $out.=$test->iterate(function($obj){
 	$out='<tr>';
 	$out.='<td>'.$obj->codice->getVal().'</td>';
-	$out.='<td>'.$obj->ragionesociale->getVal().'</td>';
+	$out.='<td>'.$obj->ragionesociale->getVal().'==>'.$obj->sigla_paese->getVal().'</td>';
 	if($obj->cod_pagamento->getVal()!=''){
 		$out.='<td>'.$obj->cod_pagamento->getVal().'</td>';
 		$out.='<td>'.$obj->cod_pagamento->extend()->descrizione->getVal().'</td>';
