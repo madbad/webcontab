@@ -240,6 +240,8 @@ function addTotaliFattura($ft, $pdf){
 	$html .='<li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li>';
 	$html .='<li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li>';
 	$html .='<li>SALVO ERRORI E OMISSIONI</li>';
+	$html .='<li>ASSOLVE AGLI OBBLIGHI DI CUI ALL\'ART.62, COMMA 1, DEL DECRETO LEGGE 24/01/2012, N.1, CONVERTITO CON MODIFICAZIONI DALLA LEGGE 24/03/12, N.27.<li>';
+
 	
 	//il cliente ha lettera di intento? se si stampo la dicitura che la riguarda
 	$cliente=$ft->cod_cliente->extend();

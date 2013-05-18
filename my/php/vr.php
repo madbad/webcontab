@@ -126,7 +126,7 @@ if (@$_GET['mode']=='print'){
 	$tabellaH='<table>';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
-/*
+
 //martinelli
 	echo '<h1>Martinelli</h1>';
 	$test=new MyList(
@@ -141,8 +141,8 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
-/*
+
+
 //mercato
 	echo '<h1>Mercato</h1>';
 	$test=new MyList(
@@ -150,15 +150,16 @@ if (@$_GET['mode']=='print'){
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>'05',
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA')
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA'),
+			'prezzo'=>array('!=','0.001')
 		)
 	);
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-	*/
-/*
+	
+
 //ortom
 	echo '<h1>Ortomercato</h1>';
 	$test=new MyList(
@@ -172,8 +173,8 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
-/*
+
+
 //sma
 	echo '<h1>Sma</h1>';
 	$test=new MyList(
@@ -187,8 +188,8 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
-/*
+
+
 //II
 	echo '<h1>Mercato II</h1>';
 	$test=new MyList(
@@ -202,7 +203,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
 
 
 //mercaato //capucci
@@ -250,18 +251,18 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
-
+/*
 	//CONTROLLO SGUAZZABIA
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','819'),  //20=VERZE   19=CAPUCCI   36=SEDANO
-			'cod_cliente'=>array('!=','SGUJI'),
+			'cod_articolo'=>array('=','20'),  //20=VERZE   19=CAPUCCI   36=SEDANO
+			'cod_cliente'=>array('=','SGUJI'),
 			//'prezzo'=>array('!=','0.001'),
 		)
 	);	
-
+*/
 /*
 	//CONTROLLO SGUAZZABIA
 	$test=new MyList(
@@ -273,11 +274,12 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
+/*
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 	page_end();
 }
 ?>
