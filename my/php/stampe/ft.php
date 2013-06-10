@@ -178,7 +178,7 @@ function addDatiFattura ($ft,$pdf){
 		
 		
 		//modifico la banca di appoggio
-		$ft->cod_banca->setVal('10'); //09 cerea banca
+		//$ft->cod_banca->setVal('10'); //09 cerea banca
 										//10 popolare di vicenza
 		
 	}else{

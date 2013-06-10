@@ -1,0 +1,55 @@
+@page {
+margin-left:5mm;
+margin-right:5mm;
+margin-top:5mm;
+margin-bottom:5mm;
+}
+
+table {
+	border-collapse: collapse;
+	font-family: "Trebuchet MS", sans-serif;
+	width:100%;
+	border-left:1px solid #a1a1a1;
+	border-right:1px solid #a1a1a1;
+	/*table-layout:fixed*/
+}
+.lettera td {
+	border-top:1px solid #a1a1a1;
+	border-bottom:1px solid #a1a1a1;
+	color:#000000;
+	text-align:right;
+	font-weight: bold;
+	background-color:#e1e1e1;
+	font-size:2em;
+	padding-right:1em;
+}
+
+
+.nuovaPagina {
+	page-break-before: always;
+}
+.nuovoSoggetto {
+/*
+	border-top:1px solid #a1a1a1;
+	border-bottom:1px solid #a1a1a1;
+	font-weight:bold;
+*/
+}
+.descrizione {
+	font-size:0.3em;
+	width:35em;
+}
+.numero {
+	width:13em;
+	overflow: hidden;
+	text-overflow: "ellipsis";
+}
+.riga td, .nuovoSoggetto td{
+	border-top:1px solid #a1a1a1;
+	border-bottom:0px solid #a1a1a1;
+	border-left:1px solid #a1a1a1;
+	font-size:0.8em;
+	padding:0.1em;
+   overflow:hidden;
+    white-space:nowrap;	
+}

@@ -44,7 +44,7 @@ $stampaRighe= function ($obj){
 			$name=$obj->ddt_data->getFormatted().' :: ddt '.$obj->ddt_numero->getFormatted();
 @			$elenco[$name][$ifcoModel]+=$obj->colli->getVal();
 			//exit the foreach cicle
-@			$totali['=====================sommaTotale']+=$obj->colli->getVal();
+@			$totali["\nsommaTotale\n------------"]+=$obj->colli->getVal();
 @			$totali[$ifcoModel]+=$obj->colli->getVal();
 			break;
 		}
@@ -57,8 +57,8 @@ $stampaRighe= function ($obj){
 };
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/05/13','15/05/13'),
-		'cod_cliente'=>array('SMA'),
+		'ddt_data'=>array('<>','16/05/13','31/05/13'),
+		'cod_cliente'=>array('SEVEN'),
 	);
 
 $test=new MyList($params);
