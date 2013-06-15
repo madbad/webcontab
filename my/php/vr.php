@@ -207,7 +207,7 @@ if (@$_GET['mode']=='print'){
 */
 
 //mercaato //capucci
-
+/*
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -221,7 +221,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 /*
 	$test=new MyList(
 		array(
@@ -263,23 +263,23 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
-/*
+
 	//CONTROLLO SGUAZZABIA
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','819'),  //20=VERZE   19=CAPUCCI   36=SEDANO
+			'cod_articolo'=>array('=','843'),  //20=VERZE   19=CAPUCCI   36=SEDANO	47=zucchine	43=cipollotti
 			'cod_cliente'=>array('=','SEVEN'),
 		)
-	);	
-*/
-/*
+	);
+
+
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
 	page_end();
 }
 ?>

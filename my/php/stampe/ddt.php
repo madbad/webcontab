@@ -237,11 +237,10 @@ function generaPdfDdt($ddt){
 		$destinatario=$ddt->cod_destinatario->extend();
 		
 		//MODIFICO IL VETTORE A MIO PIACIMENTO
-		//$destinatario->cod_vettore->setVal('24');
+		//$destinatario->cod_vettore->setVal('02');//02=translusia	24=facchini
 		
 		$vettore= $destinatario->cod_vettore->extend();
 
-		
 		//si presenta il caso in cui la spedizione è stata fatta con vettore ma non sappiamo quale
 		//perchè non ce ne è uno predefinito nel codice cliente quindi gliene assegnamo uno vuoto
 		if($vettore==''){
