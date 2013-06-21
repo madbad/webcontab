@@ -100,7 +100,6 @@ if (@$_GET['mode']=='print'){
 		//echo '<td>'.$obj->imponibile->getVal().'</td>';			
 		echo '</tr>';
 	};
-/*
 	$stampaTotali= function ($obj){
 		echo '<tr>';
 		echo '<td>'.'Totali'.'</td>';
@@ -111,11 +110,78 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$obj->sum('imponibile').'</td>';
 		echo '</tr>';
 	};
-*/
+
 	$tabellaH='<table>';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>___Prezzo___</td>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
+/*
+//martinelli
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'05',
+			'cod_cliente'=>'MARTI',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
 
+//mercato
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'05',
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA')
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
+	
+//ortom
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'805',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;		
+//sma
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'705',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;	
+//II
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'905',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
+
+//mercato //capucci
+*/
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
