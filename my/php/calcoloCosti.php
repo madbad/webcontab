@@ -257,7 +257,17 @@ if (@$_POST['mode']=='print'){
 					"costoPedana" => 31,
 					"colliPedana" => 60,
 					"costoCassa" => 0.70);
-    $html.=getArticleTable($params);					
+    $html.=getArticleTable($params);
+
+	//supermercati
+	$params = array("articles" => array('801-'),
+					"startDate" => $startDate,
+					"endDate" => $endDate,
+					"abbuonoPerCollo" => 0.4,
+					"costoPedana" => 31,
+					"colliPedana" => 140,
+					"costoCassa" => 0.56);
+    $html.=getArticleTable($params);
     $html.=$table;
 	
 //scarola  
@@ -281,6 +291,16 @@ if (@$_POST['mode']=='print'){
 					"colliPedana" => 60,
 					"costoCassa" => 0.70);
 	$html.=getArticleTable($params);
+
+	//supermercati
+	$params = array("articles" => array('803-'),
+					"startDate" => $startDate,
+					"endDate" => $endDate,
+					"abbuonoPerCollo" => 0.4,
+					"costoPedana" => 31,
+					"colliPedana" => 140,
+					"costoCassa" => 0.56);
+    $html.=getArticleTable($params);
     $html.=$table;
 
     if(@$_POST['extraProducts']){

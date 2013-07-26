@@ -139,7 +139,7 @@ $fileODS=$easy_ods_read->extract_data("0","366");
 
 //sconti
 $sconti['fissi']=0;
-$sconti['percentuali']=12.4/100;
+$sconti['percentuali']=12.9/100;
 $sconti['collo']=0.02;
 $sconti['percentualiPeriodici']=0;
 

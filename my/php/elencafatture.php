@@ -43,7 +43,7 @@ $test->iterate(function($obj){
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
 	$html.= '<td>'.$obj->importo->getFormatted().'</td>';
-	$html.= '<td>'.$cliente->ragionesociale->getVal().'</td>';
+	$html.= '<td><small>('.$cliente->codice->getVal().')</small> '.$cliente->ragionesociale->getVal().'</td>';
 	$html.= '<td><small>'.$cliente->__pec->getVal().'</small></td>';
 	
 	$link= '<a href="./gestioneFatture.php?';

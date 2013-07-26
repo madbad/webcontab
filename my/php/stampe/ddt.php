@@ -237,7 +237,7 @@ function generaPdfDdt($ddt){
 		$destinatario=$ddt->cod_destinatario->extend();
 		
 		//MODIFICO IL VETTORE A MIO PIACIMENTO
-		$destinatario->cod_vettore->setVal('02');//02=translusia	24=facchini
+		//$destinatario->cod_vettore->setVal('02');//02=translusia	24=facchini
 		
 		$vettore= $destinatario->cod_vettore->extend();
 

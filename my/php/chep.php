@@ -75,7 +75,7 @@ if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$toda
 if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 
 ?>
-<form name="input" action="./vr.php?mode=print" method="get">
+<form name="input" action="./chep.php?mode=print" method="get">
 	<input type="text" name="mode" value="print" style="display:none"/>
 	
 	<label>Start date2</label> <input type="text" name="startDateR" value="<?php echo $startDateR ?>"/>
@@ -126,176 +126,22 @@ if (@$_GET['mode']=='print'){
 	$tabellaH='<table>';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
-/*
-//martinelli
-	echo '<h1>Martinelli</h1>';
+
+	//CONTROLLO BANCALI CHEP
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>'05',
-			'cod_cliente'=>'MARTI',
+			'cod_articolo'=>array('=','BCHEP'),
+			'cod_cliente'=>array('=','SMA'),
 		)
 	);
+
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
 
-
-//mercato
-	echo '<h1>Mercato</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>'05',
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA'),
-			'prezzo'=>array('!=','0.001')
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-	
-
-//ortom
-	echo '<h1>Ortomercato</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>'805',
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-
-
-//sma
-	echo '<h1>Sma</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>'705',
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-
-
-//II
-	echo '<h1>Mercato II</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>'905',
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-
-*/
-
-//mercaato //capucci
-	
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_articolo'=>array('=','49','949','56','956'),
-			//'cod_articolo'=>array('=','19','819'),
-			'cod_articolo'=>array('=','20','820'),			
-			'cod_cliente'=>array('!=','MARTI','SEVEN','SMA','SGUJI','VIOLA')
-		)
-	);
-
-	/*
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_articolo'=>array('=','49','949','56','956'),
-			'cod_articolo'=>array('=','819'),
-			'cod_cliente'=>array('=','SEVEN')
-		)
-	);
-	var_dump($test->_params['cod_articolo']);
-	var_dump($test->_params['ddt_data']);
-	*/
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-
-/*
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-		//	'cod_articolo'=>array('=','11','111','112','113',
-		//						      '911','9111','9112','9113','05'
-		//	),
-			'cod_articolo'=>array('=','18','19'),
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
-			//'prezzo'=>array('!=','0.001'),
-			
-		//	'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')
-			//'cod_articolo'=>array('=','11','111'),
-			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI')
-		)
-	);	
-*/
-
-/*
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','850'),
-			'cod_cliente'=>array('!=','MARTI'),
-		)
-	);	
-*/
-/*
-	//CONTROLLO SGUAZZABIA
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','20'),  //20=VERZE   19=CAPUCCI   36=SEDANO
-			'cod_cliente'=>array('=','SGUJI'),
-			//'prezzo'=>array('!=','0.001'),
-		)
-	);	
-*/
-
-/*
-	//CONTROLLO SGUAZZABIA
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','47', '947'),  //20=VERZE   19=CAPUCCI   36=SEDANO	47=zucchine	43=cipollotti
-			'cod_cliente'=>array('!=','SEVEN'),
-		)
-	);
-*/
-/*
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-*/
 	page_end();
 }
 ?>

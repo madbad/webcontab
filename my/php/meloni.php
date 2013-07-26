@@ -95,8 +95,9 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
 		echo '<td>'.$obj->colli->getVal().'</td>';				
 		echo '<td>'.$obj->peso_netto->getVal().'</td>';
-		if($obj->prezzo->getVal()*1>0.001){$prezzo=$obj->prezzo->getVal();}else{$prezzo='';}
-		echo '<td>'.$obj->imponibile->getVal().'</td>';
+		//if($obj->prezzo->getVal()*1>0.001){$prezzo=$obj->prezzo->getVal();}else{$prezzo='';}
+		//echo '<td>'.$obj->imponibile->getVal().'</td>';
+		echo '<td>'.$obj->prezzo->getVal().'</td>';
 		//echo '<td>'.$obj->imponibile->getVal().'</td>';			
 		echo '</tr>';
 	};
@@ -129,7 +130,7 @@ if (@$_GET['mode']=='print'){
 			//'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),
 			//'cod_cliente'=>array('=','MORIN'),
 
-			'prezzo'=>array('=','0.001'),
+			// 'prezzo'=>array('=','0.001'),
 			
 			
 		)
