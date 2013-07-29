@@ -3,23 +3,14 @@
 	<head>
 		<title>Ortomercato</title>
 		<meta charset="utf-8">
-		<style>
-			td{
-				border:1px solid #000000;
-			}
-			table tr:nth-child(odd) {
-				background-color: #d5d5d5;
-			}
-			table tr:nth-child(even) {
-				background-color: #ffffff;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 	</head>
 	<body>
 <?php
 //http://localhost/webContab/my/php/ortomercato.php?dal=01/01/2010&al=29/02/2010
 
-require_once('./config.inc.php');
+include ('./core/config.inc.php');
 
 function fixDate($date){
 	//se la data ha il formato gg/mm/aaaa la trasformo in mm-gg-aaaa
@@ -41,7 +32,7 @@ $endDate=fixDate($_GET['al']);
 $result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE ".'F_DATBOL'." >= #".$startDate."# AND ".'F_DATBOL'." <= #".$endDate."# AND F_CODCLI='SEVEN'  ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 
 $sum=0;
-echo '<table>';
+echo '<table class="spacedTable">';
 foreach($result as $id => $row) {
 	echo '<tr>';
 	echo '<td>'.$row['F_DATBOL'].'</td>';

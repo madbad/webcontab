@@ -1,5 +1,5 @@
 <?php
-include ('./config.inc.php');
+include ('./core/config.inc.php');
 //require_once('./classes.php');
 //page_start();
 		
@@ -83,61 +83,9 @@ $dbClienti=getDbClienti();
 		Ext.require(['*']);
 		</script>
  		<script src="./../js/ext.js/locale/ext-lang-it.js" type="text/javascript"></script>
-        <style type="text/css">
-			@PAGE landscape {size: landscape;}
-			TABLE {PAGE: landscape;}
-			@page rotated { size : landscape }
-			.righe table, .righe tr, .righe td, .righe th{
-                font-size:0.86em;
-                padding:0px;
-                margin:0;
-                text-align:right;
-                border:1px solid #000000;
-                border-collapse: collapse;
-                margin-left:0.3em;
-			}
-            .righe td, .righe th{
-                padding-left:2px;
-                padding-right:2px;
-            }
-            .righe th{
-                font-weight:bold;
-                text-align:left;
-            }
-            .righe hr{
-                margin-top:150px;
-            }
-            .rimanenze td{
-                height:2em;
-                /*width:8em;*/
-                text-align:left;
-				padding-left:0.6em;
 
-            }
-			.rimanenze table, .rimanenze tr, .rimanenze td, .rimanenze th{
-                font-size:xx-small;
-                border:1px solid #000000;
-                border-collapse: collapse;
-				margin:1em;
-			}			
-            span div {
-                float:left;
-            }
-			.tableContainer{
-				padding:0.1em;
-			}
-			h1{
-				font-size:1em;
-			}
-        </style>
-		<style type="text/css" media="print" />      
-			.hideOnPrint{
-				display:none;
-			}
-			@PAGE landscape {size: landscape;}
-			TABLE {PAGE: landscape;}
-			@page rotated { size : landscape }
-		</style>		
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
     </head>
      <body>
 	<?php

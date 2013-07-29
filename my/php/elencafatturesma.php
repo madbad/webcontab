@@ -1,27 +1,10 @@
-<style>
-a:link, a:visited, a:active  {
-	opacity:1;
-	text-decoration:none;
-}
-a:hover   {
-	opacity:1;
-	color:#cd6f00;
-}
-.n {
-	color:red;
-}
-table,tr,td {
-margin: 0px;
-padding:0.4em;
-border: 1px #e1e1e1 solid;
-}
-</style>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 
 <?php
-include ('./config.inc.php');
-require_once ('./stampe/ft.php');
+include ('./core/config.inc.php');
 set_time_limit ( 0);
-$html='<table>';
+$html='<table class="spacedTable">';
 
 $test=new MyList(
 	array(

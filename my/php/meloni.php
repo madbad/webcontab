@@ -1,5 +1,5 @@
 <?php
-include ('./config.inc.php');
+include ('./core/config.inc.php');
 
 ?>
 
@@ -8,66 +8,8 @@ include ('./config.inc.php');
 	<head>
 		<title>WebContab Calcolo costi</title>
 		<meta charset="utf-8">
-<style type="text/css" media="print" />		
- form{
-	display:none;
- }
-</style>
-		
-		<style type="text/css">
-@PAGE landscape {size: landscape;}
-TABLE {PAGE: landscape;} 
-@page rotated { size : landscape }
-			body{
-			
-			//	column-count: 3;
-			//	-moz-column-count: 3;
-			//	-webkit-column-count: 3;
-			//	column-rule: 2px solid black;
-			//	-moz-column-rule: 2px solid black;
-			//	-webkit-column-rule: 2px solid black;
-			//	font-size:x-small;
-			}
-			table, tr, td , th{
-				font-size:small;
-				padding:0px;
-				margin:0;
-				text-align:right;
-				border:1px solid #000000;
-				    border-collapse: collapse;
-				margin-left:0.5em;
-			}
-			td, th{
-				font-size:2em;
-				padding-left:4px;
-				padding-right:4px;
-				padding:0.5em;
-			}
-			th{
-				font-weight:bold;
-				text-align:left;
-			}
-			hr{
-				margin-top:150px;
-			}
-			#rimanenze td{
-				height:2em;
-				width:9em;
-				text-align:left;
-			}
-			div {
-				float:left;
-			}
-			form label{
-display:block;
-font-weight:bold;
-width:15 em;
-			}
-			.totali{
-			 	 font-size:1.5em;
-			}
-tr:nth-child(odd) { background-color: #e1e1e1;}
-		</style>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 	</head>
 
 	<body>

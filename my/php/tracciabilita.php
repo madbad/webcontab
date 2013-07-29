@@ -1,22 +1,14 @@
-<style>
-table, td {
-border:1px solid #000000;
-padding: 0.3em;
-font-size: 0.9em;
-
-}
-
-</style>
-
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 <?php
-include ('./config.inc.php');
+include ('./core/config.inc.php');
 set_time_limit ( 0);
 
 //mostro le fatture 
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','21/07/2013','25/07/2013'),
+		'ddt_data'=>array('<>','21/07/2011','25/07/2011'),
 	)
 );
 function cella ($txt){
@@ -65,7 +57,7 @@ $prevObj = '';
 //$html='';
 $output = '';
 
-echo '<table>';
+echo '<table class="spacedTable">';
 	$test->iterate(function($obj){
 /*	
 			//stampa tutte le righe
@@ -120,7 +112,7 @@ echo '<table>'.$html.'</table>';
 
 foreach ($output as $key => $ddtFornitore){
 	echo '<b>Ddt: '.$key.'</b>';
-	echo '<table>';
+	echo '<table  class="spacedTable">';
 	foreach ($ddtFornitore as $key2 => $partitaMerce){
 		echo riga(cella($key2));
 		foreach ($partitaMerce as $uscita){

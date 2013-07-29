@@ -1,8 +1,9 @@
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
+
 
 <?php
-include ('./config.inc.php');
-require_once ('./stampe/ft.php');
+include ('./core/config.inc.php');
 set_time_limit ( 0);
 
 //seleziono l'anno di cui mostrare le fatture
@@ -44,7 +45,7 @@ $test->iterate(function($obj){
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
 	$html.= '<td>'.$cliente->ragionesociale->getVal().'</td>';
 
-	$link= '<a href="./gestioneDdt.php?';
+	$link= '<a href="./core/gestioneDdt.php?';
 	$link.= 'numero='.$obj->numero->getVal();
 	$link.= '&data='.$obj->data->getVal();
 	$link.= '&cod_causale='.$obj->cod_causale->getVal();

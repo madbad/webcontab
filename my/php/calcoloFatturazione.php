@@ -12,17 +12,9 @@
 		Ext.require(['*']);
 		</script>
  		<script src="./../js/ext.js/locale/ext-lang-it.js" type="text/javascript"></script>
-		<style type="text/css" media="print" />      
-			.hideOnPrint{
-				display:none;
-			}
-			@PAGE landscape {size: landscape;}
-			TABLE {PAGE: landscape;}
-			@page rotated { size : landscape }
-			pre{
-			font-size:14px;
-			}
-		</style>		
+		
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
     </head>
      <body>
 	<?php
@@ -83,9 +75,8 @@
 <span>
 
 <?php
-require_once('./config.inc.php');
-require_once('./classes.php');
-error_reporting(0); //0=spento || -1=acceso
+include ('./core/config.inc.php');
+//error_reporting(0); //0=spento || -1=acceso
 page_start();
 
 $myArray=Array();

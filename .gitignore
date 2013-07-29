@@ -1,4 +1,5 @@
-my/php/config.inc.php
+my/php/core/config.inc.php
 my/php/temp/
-my/php/stampe/ft/
-my/php/FILEDBF/
+my/php/core/stampe/ft/
+my/php/dati/
+varie/

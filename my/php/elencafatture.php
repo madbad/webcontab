@@ -1,8 +1,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <?php
-include ('./config.inc.php');
-require_once ('./stampe/ft.php');
+include ('./core/config.inc.php');
 set_time_limit ( 0);
 
 //seleziono l'anno di cui mostrare le fatture
@@ -20,7 +19,7 @@ $html.="<td><a href=?anno=$annoprec>< $annoprec</a></td>";
 $html.="<td>Fatture anno:<br>$anno</td>";
 $annosuc=$anno+1;
 $html.="<td><a href=?anno=$annosuc>$annosuc ></a></td>";
-$html.='</tr><table>';
+$html.='</tr><table class="spacedTable">';
 
 //mostro le fatture 
 $test=new MyList(
@@ -46,7 +45,7 @@ $test->iterate(function($obj){
 	$html.= '<td><small>('.$cliente->codice->getVal().')</small> '.$cliente->ragionesociale->getVal().'</td>';
 	$html.= '<td><small>'.$cliente->__pec->getVal().'</small></td>';
 	
-	$link= '<a href="./gestioneFatture.php?';
+	$link= '<a href="./core/gestioneFatture.php?';
 	$link.= 'numero='.$obj->numero->getVal();
 	$link.= '&data='.$obj->data->getVal();
 	$link.= '&tipo='.$obj->tipo->getVal();

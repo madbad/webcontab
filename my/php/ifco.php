@@ -4,18 +4,6 @@
 	<head>
 		<title>WebContab Calcolo costi</title>
 		<meta charset="utf-8">
-		<style type="text/css" >
-		html,body,div{
-			height:99%;
-		}
-		body{
-			font-size:1em;
-		}
-		div{
-			-moz-column-count:2; /* Firefox */
-			column-count:2;
-		}
-		</style>
 	</head>
 	<body>
 

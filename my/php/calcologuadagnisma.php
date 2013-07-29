@@ -1,5 +1,5 @@
 <?php
-include ('./config.inc.php');
+include ('./core/config.inc.php');
 
 function datediff($tipo='G', $partenza, $fine)
 {
@@ -48,64 +48,6 @@ function findIfcoModel($art){
 	<head>
 		<title>WebContab Calcolo costi</title>
 		<meta charset="utf-8">
-<style type="text/css" media="print" />		
- form{
-	display:none;
- }
-</style>
-		
-		<style type="text/css">
-@PAGE landscape {size: landscape;}
-TABLE {PAGE: landscape;} 
-@page rotated { size : landscape }
-			body{
-			
-			//	column-count: 3;
-			//	-moz-column-count: 3;
-			//	-webkit-column-count: 3;
-			//	column-rule: 2px solid black;
-			//	-moz-column-rule: 2px solid black;
-			//	-webkit-column-rule: 2px solid black;
-			//	font-size:x-small;
-			}
-			table, tr, td , th{
-				font-size:small;
-				padding:0px;
-				margin:0;
-				text-align:right;
-				border:1px solid #000000;
-				    border-collapse: collapse;
-				margin-left:0.5em;
-			}
-			td, th{
-				padding-left:4px;
-				padding-right:4px;
-			}
-			th{
-				font-weight:bold;
-				text-align:left;
-			}
-			hr{
-				margin-top:150px;
-			}
-			#rimanenze td{
-				height:2em;
-				width:9em;
-				text-align:left;
-			}
-			div {
-				float:left;
-			}
-			form label{
-display:block;
-font-weight:bold;
-width:15 em;
-			}
-			.totali{
-			 	 font-size:1.5em;
-			}
-tr:nth-child(odd) { background-color: #e1e1e1;}
-		</style>
 	</head>
 
 	<body>
@@ -113,14 +55,14 @@ tr:nth-child(odd) { background-color: #e1e1e1;}
 <?php
 
 
-include "./easyODS.php";
+include "./libs/easyODS.php";
 /**
  * We unpacking the *.ods files ZIP arhive to find content.xml path
  * 
  * @var String File path of the *.ods file
  * @var String Directory path where we choose to store the unpacked files must have write permissions
  */
-$path = easy_ods_read::extract_content_xml("./COSTO_BASE.ods","./temp");
+$path = easy_ods_read::extract_content_xml("./dati/COSTO_BASE.ods","./temp");
 
 /**
  * We create the $easy_ods_read object
