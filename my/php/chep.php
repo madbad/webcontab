@@ -6,7 +6,7 @@ include ('./config.inc.php');
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>WebContab Calcolo costi</title>
+		<title>WebContab Chep</title>
 		<meta charset="utf-8">
 <style type="text/css" media="print" />		
  form{
@@ -89,7 +89,7 @@ if (@$_GET['mode']=='print'){
 	$stampaRighe= function ($obj){
 	$color='';
 	if ($obj->prezzo->getVal()=='0.001'){
-		$color=' style="background-color:red;color:white;" ';
+		$color=' style="color:black;" ';
 	}
 	
 		echo '<tr '.$color.'> ';
