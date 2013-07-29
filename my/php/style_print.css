@@ -1,0 +1,13 @@
+ form{
+	display:none;
+ }
+
+.hideOnPrint{
+	display:none;
+}
+@PAGE landscape {size: landscape;}
+TABLE {PAGE: landscape;}
+@page rotated { size : landscape }
+pre{
+font-size:14px;
+}

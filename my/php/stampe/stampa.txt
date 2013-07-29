@@ -1,9 +1,0 @@
-HPLaserJet
-
-print /D:\\Server\HPLaserJet c:\test.pdf
-
-
-C:\Programmi\Adobe\Reader 9.0\Reader\AcroRd32.exe /t "C:\\test.pdf" "\\\\Server\\HPLaserJet
-
-AcroRd32.exe
-AcroRd32.exe

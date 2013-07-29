@@ -1,3 +1,15 @@
+html,body,div{
+	height:99%;
+}
+body{
+	font-size:1em;
+}
+
+/*###### PAGE #####*/
+@PAGE landscape {size: landscape;}
+@page rotated { size : landscape }
+
+/*###### LINK #####*/
 a:link, a:visited, a:active  {
 	opacity:1;
 	text-decoration:none;
@@ -6,13 +18,34 @@ a:hover   {
 	opacity:1;
 	color:#cd6f00;
 }
-.n {
-	color:red;
+
+/*###### TABLES #####*/
+TABLE {PAGE: landscape;} 
+table, tr, td , th{
+	font-size:small;
+	padding:0px;
+	margin:0;
+	text-align:right;
+	border:1px solid #000000;
+	border-collapse: collapse;
+	margin-left:0.5em;
 }
-table,tr,td {
-margin: 0px;
-padding:0.4em;
-border: 1px #e1e1e1 solid;
+/*
+table tr:nth-child(odd) {
+	background-color: #d5d5d5;
+}
+table tr:nth-child(even) {
+	background-color: #ffffff;
+}
+*/
+td{
+	border:1px solid #000000;
+}
+th{
+	padding-left:4px;
+	padding-right:4px;
+	font-weight:bold;
+	text-align:left;
 }
 .titleTable{
 	width:100%;
@@ -26,4 +59,41 @@ border: 1px #e1e1e1 solid;
 	background-color: #eaeaea;
 	margin:0px;
 	padding:0px;
+}
+
+/*###### VARIE #####*/
+hr{
+	margin-top:150px;
+}
+
+div {
+	float:left;
+/*	-moz-column-count:2;
+	column-count:2;*/
+}
+
+/*
+form label{
+	display:block;
+	font-weight:bold;
+	width:15 em;
+}
+*/
+
+/*###### CUSTOM #####*/
+.n {
+	color:red;
+}
+.totali{
+	 font-size:1.5em;
+}
+.rimanenze td{
+	height:2em;
+	width:9em;
+	text-align:left;
+}
+.spacedTable td{
+	padding:0.2em;
+	font-size:1.1em;
+	text-align:left;
 }
