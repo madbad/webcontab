@@ -19,7 +19,7 @@ if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$toda
 if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 
 ?>
-<form name="input" action="./vr.php?mode=print" method="get">
+<form name="input" action="./riscontri.php?mode=print" method="get">
 	<input type="text" name="mode" value="print" style="display:none"/>
 	
 	<label>Start date2</label> <input type="text" name="startDateR" value="<?php echo $startDateR ?>"/>
@@ -151,7 +151,7 @@ if (@$_GET['mode']=='print'){
 */
 
 //mercaato //capucci
-	
+	/*
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -162,7 +162,7 @@ if (@$_GET['mode']=='print'){
 			'cod_cliente'=>array('!=','MARTI','SEVEN','SMA','SGUJI','VIOLA')
 		)
 	);
-
+*/
 	/*
 	$test=new MyList(
 		array(
@@ -176,11 +176,12 @@ if (@$_GET['mode']=='print'){
 	var_dump($test->_params['cod_articolo']);
 	var_dump($test->_params['ddt_data']);
 	*/
+	/*
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 /*
 	$test=new MyList(
 		array(
@@ -240,6 +241,22 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;
 */
+
+
+	//CONTROLLO BINS CASTELLO
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>array('=','500', '501'),
+			//'cod_cliente'=>array('=','CASTE', 'CAST2'),
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
+
 	page_end();
 }
 ?>
