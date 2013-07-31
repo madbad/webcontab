@@ -8,7 +8,7 @@ set_time_limit ( 0);
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','21/07/2011','25/07/2011'),
+		'ddt_data'=>array('<>','25/07/2013','30/07/2013'),
 	)
 );
 function cella ($txt){
@@ -112,7 +112,7 @@ echo '<table>'.$html.'</table>';
 
 foreach ($output as $key => $ddtFornitore){
 	echo '<b>Ddt: '.$key.'</b>';
-	echo '<table  class="spacedTable">';
+	echo '<table  class="spacedTable, borderTable">';
 	foreach ($ddtFornitore as $key2 => $partitaMerce){
 		echo riga(cella($key2));
 		foreach ($partitaMerce as $uscita){

@@ -123,6 +123,12 @@ form label{
 }
 .spacedTable td{
 	padding:0.2em;
+	padding-left:0.8em;
+	padding-right:0.8em;
 	font-size:1.1em;
 	text-align:left;
+}
+.borderTable, .borderTable td {
+	border:1px solid #000000;
+	border-collapse: collapse;
 }

@@ -19,7 +19,7 @@ $html.="<td><a href=?anno=$annoprec>< $annoprec</a></td>";
 $html.="<td>Fatture anno:<br>$anno</td>";
 $annosuc=$anno+1;
 $html.="<td><a href=?anno=$annosuc>$annosuc ></a></td>";
-$html.='</tr><table class="spacedTable">';
+$html.='</tr><table class="spacedTable, borderTable">';
 
 //mostro le fatture 
 $test=new MyList(
