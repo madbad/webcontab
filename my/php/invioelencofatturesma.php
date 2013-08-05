@@ -1,13 +1,13 @@
 <?php
-include ('./config.inc.php');
+include ('./core/config.inc.php');
 set_time_limit ( 0);
 
 //$separatore=";\t";
 //$separatore=";";
 $separatore="\t";
 
-$startDate='01/06/2013';
-$endDate='30/06/2013';
+$startDate='01/07/2013';
+$endDate='31/07/2013';
 $test=new MyList(
 	array(
 		'_type'=>'Fattura',

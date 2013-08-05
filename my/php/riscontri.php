@@ -67,9 +67,11 @@ if (@$_GET['mode']=='print'){
 		echo '</tr>';
 	};
 
-	$tabellaH='<table class="spacedTable">';
+	$tabellaH='<table class="spacedTable, borderTable">';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
+
+//==============================================================================================================================
 /*
 //martinelli
 	echo '<h1>Martinelli</h1>';
@@ -149,6 +151,7 @@ if (@$_GET['mode']=='print'){
 	echo $tabellaF;
 
 */
+//==============================================================================================================================
 
 //mercaato //capucci
 	/*
@@ -163,25 +166,28 @@ if (@$_GET['mode']=='print'){
 		)
 	);
 */
-	/*
+//==============================================================================================================================
+
+	
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_articolo'=>array('=','49','949','56','956'),
-			'cod_articolo'=>array('=','819'),
-			'cod_cliente'=>array('=','SEVEN')
+			//'cod_articolo'=>array('=','49', '56', '949', '956'),
+			'cod_articolo'=>array('=','8111', '8112'),
+			'cod_cliente'=>array('=','SEVEN'),
+			'prezzo'=>array('!=','0.001')
 		)
 	);
 	var_dump($test->_params['cod_articolo']);
 	var_dump($test->_params['ddt_data']);
-	*/
-	/*
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
+//==============================================================================================================================
+
 /*
 	$test=new MyList(
 		array(
@@ -200,6 +206,7 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
+//==============================================================================================================================
 
 /*
 	$test=new MyList(
@@ -211,6 +218,8 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
+//==============================================================================================================================
+
 /*
 	//CONTROLLO SGUAZZABIA
 	$test=new MyList(
@@ -223,7 +232,7 @@ if (@$_GET['mode']=='print'){
 		)
 	);	
 */
-
+//==============================================================================================================================
 /*
 	//CONTROLLO SGUAZZABIA
 	$test=new MyList(
@@ -241,8 +250,9 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;
 */
+//==============================================================================================================================
 
-
+/*
 	//CONTROLLO BINS CASTELLO
 	$test=new MyList(
 		array(
@@ -256,7 +266,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 	page_end();
 }
 ?>

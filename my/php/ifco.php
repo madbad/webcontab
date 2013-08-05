@@ -4,15 +4,17 @@
 	<head>
 		<title>WebContab Calcolo costi</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 	</head>
 	<body>
 
 <?php
-include ('./config.inc.php');
+include ('./core/config.inc.php');
 $elenco=array();
 $totali=array();
 
-echo '<div>';
+echo '<div class="columns">';
 
 $stampaRighe= function ($obj){
 	global $elenco;
@@ -23,7 +25,7 @@ $stampaRighe= function ($obj){
 				'IFCO 6410',
 				'IFCO 6413',
 				'IFCO 6416',
-				'EURO CHEP',
+				//'EURO CHEP',
 	);
 	$descrizione=$obj->descrizione->getVal();
 
@@ -46,7 +48,7 @@ $stampaRighe= function ($obj){
 };
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/07/13','15/07/13'),
+		'ddt_data'=>array('<>','16/07/13','31/07/13'),
 		'cod_cliente'=>array('SEVEN'),
 	);
 

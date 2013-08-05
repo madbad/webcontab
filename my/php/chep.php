@@ -8,6 +8,7 @@ include ('./core/config.inc.php');
 		<title>WebContab Chep</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 	</head>
 
 	<body>
@@ -29,16 +30,12 @@ if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 
 if (@$_GET['mode']=='print'){
 	$stampaRighe= function ($obj){
-	$color='';
-	if ($obj->prezzo->getVal()=='0.001'){
-		$color=' style="color:black;" ';
-	}
-	
-		echo '<tr '.$color.'> ';
+
+		echo '<tr> ';
 		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
 		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
 		echo '<td>'.$obj->cod_cliente->getVal().'</td>';
-		echo '<td>'.$obj->colli->getVal().'</td>';				
+		echo '<td>'.$obj->colli->getVal().'</td>';
 		echo '<td>'.$obj->peso_netto->getVal().'</td>';
 		echo '<td>'.$obj->prezzo->getVal().'</td>';
 		echo '<td>'.round($obj->getPrezzoLordo(),3).'</td>';
@@ -46,8 +43,8 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.round($obj->peso_netto->getVal()/$obj->colli->getVal(),2).'</td>';
 		$impNetto=$obj->peso_netto->getVal()*$obj->getPrezzoNetto();
 		echo '<td>'.round($impNetto,2).'</td>';
-		$obj->_totImponibileNetto->setVal($impNetto);		
-		//echo '<td>'.$obj->imponibile->getVal().'</td>';			
+		$obj->_totImponibileNetto->setVal($impNetto);
+		//echo '<td>'.$obj->imponibile->getVal().'</td>';
 		echo '</tr>';
 	};
 	$stampaTotali= function ($obj){
@@ -65,7 +62,7 @@ if (@$_GET['mode']=='print'){
 		echo '</tr>';
 	};
 
-	$tabellaH='<table>';
+	$tabellaH='<table class="spacedTable, borderTable">';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
 

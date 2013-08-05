@@ -32,14 +32,8 @@ table, tr, td , th{
 	margin-left:0.5em;
 }
 */
-/*
-table tr:nth-child(odd) {
-	background-color: #d5d5d5;
-}
-table tr:nth-child(even) {
-	background-color: #ffffff;
-}
-*/
+
+
 /*
 td{
 	border:1px solid #000000;
@@ -74,13 +68,13 @@ hr{
 	margin-top:150px;
 }
 */
+.columns {
+	-moz-column-count:2;
+	column-count:2;
+}
 
 .tableContainer {
 	float:left;
-/*
-	-moz-column-count:2;
-	column-count:2;
-*/
 }
 .righe, .righe tr, .righe td,  .righe th{
 	font-size:small;
@@ -121,6 +115,7 @@ form label{
 	width:9em;
 	text-align:left;
 }
+
 .spacedTable td{
 	padding:0.2em;
 	padding-left:0.8em;
@@ -128,7 +123,15 @@ form label{
 	font-size:1.1em;
 	text-align:left;
 }
+
 .borderTable, .borderTable td {
 	border:1px solid #000000;
 	border-collapse: collapse;
+}
+
+.alternateTable tr:nth-child(odd) {
+	background-color: #d5d5d5;
+}
+.alternateTable tr:nth-child(even) {
+	background-color: #ffffff;
 }
