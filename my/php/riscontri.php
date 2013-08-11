@@ -174,9 +174,9 @@ if (@$_GET['mode']=='print'){
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			//'cod_articolo'=>array('=','49', '56', '949', '956'),
-			'cod_articolo'=>array('=','8111', '8112'),
-			'cod_cliente'=>array('=','SEVEN'),
-			'prezzo'=>array('!=','0.001')
+			//'cod_articolo'=>array('=','19', '819'),
+			'cod_cliente'=>array('=','ORTO2', 'ORTOG'),
+			//'prezzo'=>array('!=','0.001')
 		)
 	);
 	var_dump($test->_params['cod_articolo']);

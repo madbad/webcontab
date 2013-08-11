@@ -12,6 +12,7 @@ include ('./core/config.inc.php');
 	</head>
 
 	<body>
+	<H1>CHEP</h1>
 <?php 
 $today = date("j/n/Y"); 
 if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$today;}

@@ -1,5 +1,7 @@
+<link rel="stylesheet" type="text/css" href="style.css">
 <?php
 include ('./core/config.inc.php');
+
 
 function datediff($tipo='G', $partenza, $fine)
 {
@@ -109,7 +111,7 @@ $sconti['percentualiPeriodici']=0;
 	};
 
 	$colonne=11;
-	$tabellaH='<table>';
+	$tabellaH='<table class="borderTable">';
 	$tabellaH.='<tr><td></td><td colspan="'.$colonne.'">Riccia</td><td colspan="'.$colonne.'">Scarola</td><td colspan="'.$colonne.'">Chioggia</td><td colspan="'.$colonne.'">Treviso</td><td colspan="'.$colonne.'">PDZ</td><td colspan="'.$colonne.'">Verona</td></tr>';
 	$tabellaH.='<tr><td>Data</td>';
 	$riga='<td>Art.</td><td>Colli</td><td>Peso</td><td>Prezzo</td><td>Costo Base</td><td>Costo Cassa</td><td>Costro Trasporto</td><td>Costo Manodopera</td><td>Costi Sconti</td><td>Costo Totale</td><td>Ricavno</td>';

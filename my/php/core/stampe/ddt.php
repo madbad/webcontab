@@ -148,7 +148,8 @@ function generaPdfDdt($ddt){
 	//data
 	$printTime=time();
 	
-	$pdf->Text(112, 58+8, date('d/m/Y',$printTime));//todo: rendere dinamico
+	//$pdf->Text(112, 58+8, date('d/m/Y',$printTime));//todo: rendere dinamico
+	$pdf->Text(112, 58+8, $ddt->data->getFormatted());//todo: rendere dinamico
 	
 	//ora
 	$pdf->Text(145, 58+8, date('H:i',$printTime));//todo: rendere dinamico
