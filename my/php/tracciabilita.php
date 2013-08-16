@@ -1,6 +1,12 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 <?php
+/*
+TODO: 
+- RIMUOVERE IL PUNTO NEL CODICE FORNITORE
+- SISTEMARE IL CASO IN CUI VIENE INDICATO IL LOTTO SOLO UNA VOLTA IN QUANTO UGUALE PER PIù ARTICOLI
+
+*/
 include ('./core/config.inc.php');
 set_time_limit ( 0);
 
@@ -8,7 +14,7 @@ set_time_limit ( 0);
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','05/08/2013','09/08/2013'),
+		'ddt_data'=>array('<>','13/08/2013','15/08/2013'),
 	)
 );
 function cella ($txt){
