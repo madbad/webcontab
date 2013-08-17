@@ -18,7 +18,7 @@ $dbClienti=getDbClienti();
 						"startDate" => $startDate,
 						"endDate" => $endDate,
 						"abbuonoPerCollo" => 0.3,
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 104,
 						"costoCassa" => 0.43);
 		*/
@@ -192,7 +192,7 @@ if (@$_POST['mode']=='print'){
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.5, //0.3
-					"costoPedana" => 31,
+					"costoPedana" => 33,
 					"colliPedana" => 104,
 					"costoCassa" => 0.43);	
     $html.=getArticleTable($params);
@@ -202,7 +202,7 @@ if (@$_POST['mode']=='print'){
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.7,
-					"costoPedana" => 31,
+					"costoPedana" => 33,
 					"colliPedana" => 60,
 					"costoCassa" => 0.70);
     $html.=getArticleTable($params);
@@ -212,7 +212,7 @@ if (@$_POST['mode']=='print'){
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.4,
-					"costoPedana" => 31,
+					"costoPedana" => 33,
 					"colliPedana" => 140,
 					"costoCassa" => 0.56);
     $html.=getArticleTable($params);
@@ -226,7 +226,7 @@ if (@$_POST['mode']=='print'){
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.5, //0.3
-					"costoPedana" => 31,
+					"costoPedana" => 33,
 					"colliPedana" => 104,
 					"costoCassa" => 0.43);
 	$html.=getArticleTable($params);
@@ -235,7 +235,7 @@ if (@$_POST['mode']=='print'){
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.7,
-					"costoPedana" => 31,
+					"costoPedana" => 33,
 					"colliPedana" => 60,
 					"costoCassa" => 0.70);
 	$html.=getArticleTable($params);
@@ -245,7 +245,7 @@ if (@$_POST['mode']=='print'){
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.4,
-					"costoPedana" => 31,
+					"costoPedana" => 33,
 					"colliPedana" => 140,
 					"costoCassa" => 0.56);
     $html.=getArticleTable($params);
@@ -261,7 +261,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3, //0.3
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 112,
 						"costoCassa" => 0.39);
 		$html.=getArticleTable($params);
@@ -270,7 +270,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 80,
 						"costoCassa" => 0.67);
 		$html.=getArticleTable($params);
@@ -284,7 +284,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.5, //0.3
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 112,
 						"costoCassa" => 0.34);
 		$html.=getArticleTable($params);		
@@ -293,7 +293,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 80,
 						"costoCassa" => 0.67);
 		$html.=getArticleTable($params);
@@ -307,7 +307,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.5, //0.3
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 104,
 						"costoCassa" => 0.43);
 		$html.=getArticleTable($params);		
@@ -315,7 +315,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 60,
 						"costoCassa" => 0.70);
 		$html.=getArticleTable($params);
@@ -329,7 +329,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.5, //0.3
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 112,
 						"costoCassa" => 0.39);
 		$html.=getArticleTable($params);		
@@ -338,7 +338,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 80,
 						"costoCassa" => 0.67);
 		$html.=getArticleTable($params);
@@ -352,7 +352,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3, //0.3
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 112,
 						"costoCassa" => 0.38);
 		$html.=getArticleTable($params);		
@@ -361,7 +361,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 80,
 						"costoCassa" => 0.67);
 		$html.=getArticleTable($params);
@@ -377,7 +377,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.5, //0.3
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 104,
 						"costoCassa" => 0.43);
 		$html.=getArticleTable($params);		
@@ -386,7 +386,7 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 31,
+						"costoPedana" => 33,
 						"colliPedana" => 60,
 						"costoCassa" => 0.70);
 		$html.=getArticleTable($params);
