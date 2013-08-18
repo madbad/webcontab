@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="13.375"
+   height="12.53125"
+   id="svg4094"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="tel.svg">
+  <defs
+     id="defs4096" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-55.46875"
+     inkscape:cy="251.98157"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="518"
+     inkscape:window-height="453"
+     inkscape:window-x="50"
+     inkscape:window-y="50"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata4099">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-430.46875,-771.8125)">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.48107475;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3863-1"
+       width="12.895826"
+       height="12.047547"
+       x="430.69495"
+       y="772.05267"
+       ry="3.5803299"
+       inkscape:export-filename="C:\Program Files\EasyPHP-5.3.6.0\www\webContab\my\php\telefoni\img\tel.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       id="rect3993"
+       width="7.8235049"
+       height="6.549088"
+       x="433.09344"
+       y="775.57343"
+       ry="1.8435366"
+       inkscape:export-filename="C:\Program Files\EasyPHP-5.3.6.0\www\webContab\my\php\telefoni\img\tel.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.69362819;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 433.79577,777.69777 c 0.81696,0 1.35704,-0.55387 1.35704,-1.2256 -0.0141,-0.34942 0.97283,-0.53607 1.6644,-0.56858 0.71799,0.0304 1.77283,0.10962 1.74326,0.57143 0,0.67172 0.57652,1.21441 1.39348,1.21441 0.81696,0 1.54918,0.17923 1.50671,-1.37011 -0.002,-1.30667 -1.06821,-2.55059 -4.5531,-2.60667 -3.98056,0.008 -4.48999,1.20889 -4.51768,2.64583 0.0255,1.45821 0.72683,1.34403 1.40589,1.33929 z"
+       id="path3962"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccscccc"
+       inkscape:export-filename="C:\Program Files\EasyPHP-5.3.6.0\www\webContab\my\php\telefoni\img\tel.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="path4014"
+       sodipodi:cx="429.02298"
+       sodipodi:cy="156.32742"
+       sodipodi:rx="4.0945992"
+       sodipodi:ry="2.9572103"
+       d="m 433.11758,156.32742 c 0,1.63323 -1.83322,2.95721 -4.0946,2.95721 -2.26138,0 -4.0946,-1.32398 -4.0946,-2.95721 0,-1.63322 1.83322,-2.95721 4.0946,-2.95721 2.26138,0 4.0946,1.32399 4.0946,2.95721 z"
+       transform="matrix(0.44957379,0,0,0.45147397,244.09988,708.79364)"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"
+       inkscape:export-filename="C:\Program Files\EasyPHP-5.3.6.0\www\webContab\my\php\telefoni\img\tel.png" />
+  </g>
+</svg>
