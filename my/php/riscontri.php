@@ -173,7 +173,7 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','20', '920'),
+			'cod_articolo'=>array('=','60','61','62','63','64'),
 			//'cod_articolo'=>array('=','19', '819'),
 			'cod_cliente'=>array('!=','VIOLA'),
 			//'prezzo'=>array('!=','0.001')

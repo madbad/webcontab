@@ -28,42 +28,46 @@ if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 </form> 
 
 <?php
-
+$sommaBins=0;
+$sommaCasse=0;
 if (@$_GET['mode']=='print'){
 	$stampaRighe= function ($obj){
+		global $sommaBins, $sommaCasse;
 		$mediaCollo = round($obj->peso_netto->getVal()/$obj->colli->getVal(),0);
 		
 		if($mediaCollo*1>30){
 			$bins= round($obj->colli->getVal(),0);
 			$casse= '';
+			$sommaBins+=$bins;
 		}else{
 			$bins= '';
 			$casse= round($obj->colli->getVal(),0);
+			$sommaCasse+=$casse;
 		}
 	
 		echo '<tr> ';
 		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
 		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
 		echo '<td>'.$obj->cod_cliente->getVal().'</td>';
-		echo '<td>'.$obj->colli->getVal().'</td>';
-		echo '<td>'.$obj->peso_netto->getVal().'</td>';
+		echo '<td>'.round($obj->colli->getVal(),0).'</td>';
+		echo '<td>'.round($obj->peso_netto->getVal(),2).'</td>';
 		echo '<td>'.$obj->prezzo->getVal().'</td>';
 		echo '<td>'.$mediaCollo.'</td>';
 		echo '<td>'.$bins.'</td>';
 		echo '<td>'.$casse.'</td>';
 		echo '</tr>';
 	};
-	$stampaTotali= function ($obj){
+	$stampaTotali= function ($obj,$sommaBins,$sommaCasse){
 		echo '<tr>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
-		echo '<td>'.$obj->sum('colli').'</td>';
+		echo '<td><b>'.$obj->sum('colli').'</b></td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
-		echo '<td>'.'-'.'</td>';
-		echo '<td>'.'-'.'</td>';
+		echo '<td><b>'.$sommaBins.'</b></td>';
+		echo '<td><b>'.$sommaCasse.'</b></td>';
 		echo '</tr>';
 	};
 
@@ -95,7 +99,7 @@ $cliente= 'ZANAR';
 	
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
-	$stampaTotali($test);
+	$stampaTotali($test,$sommaBins,$sommaCasse);
 	echo $tabellaF;
 
 	page_end();

@@ -34,7 +34,7 @@ function endPage(){
 	global $lettera, $prevLettera, $currLettera, $riga, $html, $pdf;
 	
 
-	$border = ' style="border: 1px solid black;" ';
+	$border = ' style="border: 0.5px solid black;" ';
 	$col1 =   ' style="width: 370px;" ';
 	$col2 =   ' style="width: 180px;" ';
 	$col3 =   ' style="width: 150px;" ';
@@ -51,7 +51,7 @@ function endPage(){
 function newPage(){
 	global $lettera, $prevLettera, $currLettera, $riga, $html, $pdf;
 
-	$border = ' style="border: 1px solid black;" ';
+	$border = ' style="border: 0.5px solid black;" ';
 	$col1 =   ' style="width: 370px;" ';
 	$col2 =   ' style="width: 180px;" ';
 	$col3 =   ' style="width: 150px;" ';
@@ -131,7 +131,7 @@ function generaRubrica(){
 	//cerco duplicati
 	searchDuplicatesNumbers($righe);
 	
-	$border = ' style="border: 1px solid black;" ';
+	$border = ' style="border: 0.5px solid black;" ';
 	$col1 =   ' style="width: 370px;" ';
 	$col2 =   ' style="width: 180px; font-size:20px;" ';
 	$col3 =   ' style="width: 150px;" ';
