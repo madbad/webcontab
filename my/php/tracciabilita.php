@@ -14,7 +14,7 @@ set_time_limit ( 0);
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','16/08/2013','20/08/2013'),
+		'ddt_data'=>array('<>','21/08/2013','23/08/2013'),
 	)
 );
 function cella ($txt){
@@ -60,21 +60,10 @@ function fixDate ($dateString){
 }
 
 $prevObj = '';
-//$html='';
 $output = '';
 
 echo '<table class="spacedTable">';
 	$test->iterate(function($obj){
-/*	
-			//stampa tutte le righe
-			echo riga(
-				cella($obj->ddt_numero->getVal()).
-				cella($obj->ddt_data->getVal()).
-				cella($obj->numero->getVal()).
-				cella($obj->cod_articolo->getVal()).
-				cella($obj->descrizione->getVal())
-			);
-*/
 		//ho trovato un lotto
 		//presumo che si riferisca alla riga precedente
 		if (
@@ -82,18 +71,8 @@ echo '<table class="spacedTable">';
 			&& strpos($obj->descrizione->getVal(),'/P') !== false
 			){
 				global $prevObj;
-//				global $html;
 				global $output;
-/*				
-				$html.= riga(
-				cella("Trovato un lotto: ").
-				cella($obj->descrizione->getVal()).
-				cella($prevObj->cod_cliente->getVal()).
-				cella($prevObj->ddt_numero->getVal()).
-				cella($prevObj->ddt_data->getVal()).
-				cella($prevObj->descrizione->getVal())
-				);
-*/
+
 				/*fix lotto description*/
 				$lotto = explode('-', $obj->descrizione->getVal());
 				
@@ -111,11 +90,8 @@ echo '<table class="spacedTable">';
 		global $prevObj;
 		$prevObj = $obj;
 	});
-/*
-echo '</table>';
-echo '<table>'.$html.'</table>';
-*/
 
+	
 foreach ($output as $key => $ddtFornitore){
 	echo '<b>Ddt: '.$key.'</b>';
 	echo '<table  class="spacedTable, borderTable">';
