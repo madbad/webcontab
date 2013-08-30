@@ -237,8 +237,13 @@ function generaPdfDdt($ddt){
 		
 		$destinatario=$ddt->cod_destinatario->extend();
 		
+		//SE NON è IMPOSTATO NESSUN VETTORE PRESUMO CHE SIA LA TRANSLUSIA
+		if ($destinatario->cod_vettore->getVal() *1 == 0){
+			$destinatario->cod_vettore->setVal('02');
+		} 
+
 		//MODIFICO IL VETTORE A MIO PIACIMENTO
-		$destinatario->cod_vettore->setVal('02');//02=translusia	24=facchini
+		//$destinatario->cod_vettore->setVal('13');//02=translusia	24=facchini
 		
 		$vettore= $destinatario->cod_vettore->extend();
 
