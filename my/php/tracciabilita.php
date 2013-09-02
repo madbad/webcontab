@@ -1,24 +1,72 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
+		<style>
+		.customTable {
+			font-size: 0.8em;
+		}
+		
+		.customTable td:first-child { 
+		/* column 1*/
+			width: 4em;
+		}
+
+		.customTable td:first-child + td { 
+		/* column 2*/
+			width: 4em;
+		
+		}
+		
+		.customTable td:first-child + td + td { 
+		/* column 3*/
+			width: 7em;
+		
+		}
+		
+		.customTable td:first-child + td + td + td{ 
+		/* column 4*/
+			width: 18em;
+		
+		}
+		.customTable td:first-child + td + td + td + td{ 
+		/* column 5*/
+			width: 4em;
+		
+		}
+		.customTable td:first-child + td + td + td + td + td{ 
+		/* column 5*/
+			width: 4em;
+		
+		}
+		
+		.lotto {
+			font-weight:bold;
+			font-size:1.5em;
+			padding-top:1.5em;
+			
+		}
+		</style>
 <?php
 /*
 TODO: 
-- RIMUOVERE IL PUNTO NEL CODICE FORNITORE
 - SISTEMARE IL CASO IN CUI VIENE INDICATO IL LOTTO SOLO UNA VOLTA IN QUANTO UGUALE PER PIù ARTICOLI
+potrei ipotizzare che se trovo un lotto si riferisca a tutte le righe precedenti che non ne avevano uno nello stesso ddt (dal'ultimo trovato)
 
+- controllare che tutte le vendite di grezzo abbiano un lotto
+	potrei verificare con una query il tipo di cliente del ddt se è mercato/supermercato lascio perdere...
+	altrimenti ci deve essere un lotto e ritorno un errore (potrebbe essere lento)
+- sistemare il caso in cui ci siano altre annotazioni nella riga del lotto (tipo: "26 bins")
 */
 include ('./core/config.inc.php');
-set_time_limit ( 0);
+set_time_limit ( 0 );
 
-//mostro le fatture 
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','24/08/2013','28/08/2013'),
+		'ddt_data'=>array('<>','01/01/2013','30/06/2013'),
 	)
 );
-function cella ($txt){
-	return "\n\t\t".'<td>'.$txt.'</td>';
+function cella ($txt, $colspan=0){
+	return "\n\t\t".'<td colspan="'.$colspan.'">'.$txt.'</td>';
 }
 function riga ($txt){
 	return "\n\t".'<tr>'.$txt.'</tr>';
@@ -39,8 +87,18 @@ function stampaUscite ($obj){
 	);
 }
 
+function fixArticolo ($articolo){
+	$articolo = str_replace('-', '',$articolo);//remove the "-" "--"
+
+	if (@$articolo[0]== 8 || @$articolo[0]== 7){
+		$articolo = substr($articolo, 1);
+	}
+
+	return $articolo;
+}
+
 function fixDate ($dateString){
-	$dateString = strtr($dateString, '.', '/');
+	$dateString = trim(strtr($dateString, '.', '/'));//remove spaces and replace the . with a /
 	$mydate = explode('/', $dateString);
 	
 	//fix day
@@ -55,48 +113,81 @@ function fixDate ($dateString){
 	if(strlen($mydate[2])==2){
 		$mydate[2] = '20'.$mydate[2];
 	}
-	
+
 	return implode($mydate, '/');
 }
 
-$prevObj = '';
+function sortableDate ($dateString){
+	$mydate = explode('/', $dateString);
+	
+	return $mydate[2].'-'.$mydate[1].'-'.$mydate[0];
+}
+
+
+$dbClienti = getDbClienti();
+$prevObj = array();
 $output = '';
 
 echo '<table class="spacedTable">';
 	$test->iterate(function($obj){
+		global $prevObj;
+		global $output;
 		//ho trovato un lotto
 		//presumo che si riferisca alla riga precedente
 		if (
 			$obj->cod_articolo->getVal() == ''
 			&& strpos($obj->descrizione->getVal(),'/P') !== false
 			){
-				global $prevObj;
-				global $output;
 
 				/*fix lotto description*/
 				$lotto = explode('-', $obj->descrizione->getVal());
-				
-				$codiceFornitore = $lotto[0];
+				$codiceFornitore = str_replace('.', '', $lotto[0]);
 				$dataFornitura = fixDate($lotto[1]);
 @				$lottoFornitura = $lotto[2];
-				$articoloFornito = $prevObj->cod_articolo->getVal();
 				
-				$chiaveDdt = $codiceFornitore.'-'.$dataFornitura;
-				$chiaveLottoProdotto = 'Prodotto: ('.$articoloFornito.') Lotto: ('. $lottoFornitura.')';
+				/*assegnazione del lotto alle righe in sospeso*/
+				foreach ($prevObj as $curObj){
+					$articoloFornito = fixArticolo($curObj->cod_articolo->getVal());
+					$chiaveDdt = sortableDate($dataFornitura).'-'.$codiceFornitore;
+					$chiaveLottoProdotto = 'Prodotto: ('.$articoloFornito.') Lotto: ('. $lottoFornitura.')';
+					$output[$chiaveDdt][$chiaveLottoProdotto][] = $curObj;
+				}
 				
-				$output [$chiaveDdt][$chiaveLottoProdotto][] = $prevObj;
-			
+				//se sono arrivato qui significa che ho trovato un lotto e l'ho assegnato a tutte le righe che avenvo in sospeso... posso ripulire la coda
+				$prevObj  = array();
+			}else{
+			//non ho trovato niente
+			//se ho altre righe in sospeso e questa riga fa parte dello stesso ddt di quella che ho in sospeso
+			if (count($prevObj)>0
+				&& $obj->ddt_numero->getVal() == $prevObj[count($prevObj)-1]->ddt_numero->getVal()
+				&& $obj->ddt_data->getVal() == $prevObj[count($prevObj)-1]->ddt_data->getVal()
+				){
+					//aggiugno questo alla mia coda in attesa di lotto
+					//assieme agli altri
+					$prevObj [] = $obj;
+			}else{
+				//o non avevo altre righe in sospeso : non faccio niente
+				//o non erano dello stesso ddt quindi 
+				//mando un avvertimento se si tratta di grezzo e non ci sono lotti per le righe precedenti
+				//:: righe scartate ::
+				/*todo*/
+				
+				//quindi procedo a ripulire la coda dal pregresso
+				//aggiugno questo alla mia coda in attesa di lotto
+				$prevObj  = array();
+				$prevObj [] = $obj;
 			}
-		global $prevObj;
-		$prevObj = $obj;
+		}
 	});
 
-	
+//ordino l'array per data
+ksort($output);
+
 foreach ($output as $key => $ddtFornitore){
-	echo '<b>Ddt: '.$key.'</b>';
-	echo '<table  class="spacedTable, borderTable">';
+	echo '<div class="lotto">Ddt: '.$key.'</div>';
+	echo '<table  class="spacedTable borderTable customTable">';
 	foreach ($ddtFornitore as $key2 => $partitaMerce){
-		echo riga(cella($key2));
+		echo riga(cella('<b>#############'.$key2.'</b>',$colspan=6));
 		foreach ($partitaMerce as $uscita){
 			echo stampaUscite($uscita);
 		}
