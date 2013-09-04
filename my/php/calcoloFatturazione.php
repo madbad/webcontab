@@ -21,8 +21,8 @@
 	$today = date("m-d-Y");
 	if(@$_POST['startDate']){$startDate=$_POST['startDate'];}else{$startDate=$today;}
 	if(@$_POST['endDate']){$endDate=$_POST['endDate'];}else{$endDate=$today;}
-	echo 'dal '.$_POST['startDate'];
-	echo '<br> al '.$_POST['endDate'].'<br><br>';
+	echo '<h1>Totali delle vendite effettuate <br>dal  '.$_POST['startDate'];
+	echo '<br> al '.$_POST['endDate'].'</h1><hr><br><br>';
 	?>
 	
 	<span class="hideOnPrint" id="myForm">	
@@ -79,48 +79,68 @@ include ('./core/config.inc.php');
 //error_reporting(0); //0=spento || -1=acceso
 page_start();
 
+$dbClienti=getDbClienti();
+
 $myArray=Array();
 $myArray['lavorato']='';
 $myArray['grezzo']='';
 $myArray['semilavorato']='';
 
 $totale=0;
-
+/*
 $radicchi=array('05','705','705-','705--','805','805-','805--','08','708','708-','708--','808','808-','808--','29','729','829');
 $insalate=array('01','01S','701','701S','801','801S','03','03S','703','703S','803','803S','25', '803-', '801-');
 $pdzucchero=array('31','731','831');
+*/
+
+function fixArticolo ($articolo){
+	$articolo = str_replace('-', '',$articolo);//remove the "-" "--"
+
+	if (@$articolo[0]== 8 || @$articolo[0]== 7){
+		$articolo = substr($articolo, 1);
+	}
+
+	return $articolo;
+}
 
 
 if($_POST['startDate']!=null && $_POST['endDate']!=null){
-	$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$_POST['startDate']."# AND F_DATBOL <= #".$_POST['endDate']."#");
-	echo '<b>Attenzione se si riscontrano differenze con i dati di contab (contab presenta meno peso) è perchè contab conta solo le riche con articoli invece noi contiamo anche le righe condescrizione ma senza articolo)</b><BR><BR>';
+	//$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE F_DATBOL >= #".$_POST['startDate']."# AND F_DATBOL <= #".$_POST['endDate']."#");
 
-	echo 'NB. forse restano da escludere (dalla query) le bolle di conto deposito (differenza residua di 150 kg su 30 giorni)';
-
-	foreach($result as $row){
-
-		$cliente=new ClienteFornitore(array('codice'=>$row['F_CODCLI']));
-
-		$tipo=$cliente->__classificazione->getVal();
-		//echo $tipo;
-		$articolo=$row['F_CODPRO'];
-		$descrizione=$row['F_DESPRO'];
-		$peso=$row['F_PESNET'];
-		$colli=$row['F_NUMCOL'];
-		//$peso=$row['F_QTA'];
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$_POST['startDate'],$_POST['endDate']),
+			'cod_cliente'=> array('!=','SGUJI','FACCI','FACCG','VIOLA'),
+		)
+	);
+	
+	$test->iterate(function($row){
+		global $myArray;
+		global $totale;
+		global $dbClienti;
+		$tipo = $dbClienti[$row->cod_cliente->getVal()]['__classificazione'];
 		
+		//fix articolo mi consente di raggrupppare per esempio 08 708 708-- tutto sotto 08
+		$articolo=fixArticolo($row->cod_articolo->getVal());
+		
+		$oArticolo = new Articolo (Array('codice'=>$articolo));
+		
+		$descrizione= $oArticolo->descrizione->getVal();
+		$peso=$row->peso_netto->getVal();
+		$colli=$row->colli->getVal();
+		
+		/*
 		if (in_array($articolo,$radicchi)) $descrizione=$articolo='**radicchi';
 		if (in_array($articolo,$insalate)) $descrizione=$articolo='**insalate';
 		if (in_array($articolo,$pdzucchero)) $descrizione=$articolo='**pdzucchero';
+		*/
 	
 		$done=false;
-		//echo $cliente->codice->getVal().'='.$peso.'<br>';
 		if($peso>0){
 			if ($tipo=='mercato' || $tipo=='supermercato'){
-				$myArray['lavorato'][$articolo.'*'.$descrizione]+=$peso;
-			//	if(($peso/$colli)>10){
-			//		echo $peso.':'.$colli.'='.round($peso/$colli,1).' ('.$descrizione.')<br>';
-			//	}
+			$myArray['lavorato'][$articolo.'*'.$descrizione]+=$peso;
+
 				$done=true;
 			}
 			if ($tipo=='semilavorato'){
@@ -137,7 +157,7 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 			}
 		}		
 		$totale+=$peso;
-	}
+	});
 }
 echo '<pre>';
 ksort($myArray['lavorato']);
@@ -145,8 +165,10 @@ ksort($myArray['grezzo']);
 ksort($myArray['semilavorato']);
 print_r($myArray);
 
-echo '<br><br>'.$totale;
+echo '<hr><h1>Peso totale: '.$totale.'</h1>';
 echo '<pre>';
+
+echo '<br>Ps.: Contab conta solo le righe con articoli invece noi contiamo anche le righe condescrizione ma senza articolo)</b><BR><BR>';
 
 page_end();
 ?>

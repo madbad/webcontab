@@ -1127,9 +1127,9 @@ class Riga extends MyClass {
 		$this->addProp('cod_cliente',				'F_CODCLI');
 
 		//configurazione database
-		$this->addProp('_dbName');		
+		$this->addProp('_dbName');
 		//chiave(i) di ricerca del database
-		$this->addProp('_dbIndex');		
+		$this->addProp('_dbIndex');
 		
 		//definisco alcune proprietà specifiche a seconda che si tratti di una riga ddt o di una riga fattura
 		switch ($params['_tipoRiga']){
