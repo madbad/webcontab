@@ -1737,6 +1737,21 @@ $test=new MyList(
 			$function($value,$args);
 		}
 	}
+	/* need to find a way to store the $out
+	function toJson(){
+		//try to use the toJson function of the object to create a json of the list
+		$out='';
+		$this->iterate(function ($myObj){
+			global $out;
+			$out.="{";
+			$out.= $myObj->toJson(1);
+		});
+		$out=substr($out, 0, -1);
+		$out.= "]";
+		echo "provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".$out;
+		return $out;
+	}
+	*/
 }
 
 function page_start(){
