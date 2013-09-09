@@ -966,7 +966,7 @@ class Ddt  extends MyClass {
 		$this->addProp('cod_destinazione',			'F_SUFFCLI');
 		$this->addProp('cod_causale',				'F_TIPODOC');//V=VENDITA D=DEPOSITO
 		$this->addProp('cod_mezzo',					'F_SPEDIZ');
-		$this->addProp('cod_vettore',				'F_VET');
+//		$this->addProp('cod_vettore',				'F_VET');
 //		$this->addProp('ora_inizio_trasporto',		'F_');
 //		$this->addProp('aspetto_beni',				'F_');
 //		$this->addProp('annotazioni',				'F_');
