@@ -36,7 +36,7 @@ $dbClienti=getDbClienti();
 		//$condizioniProdotti='';
 		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE $condizioniProdotti F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
 		
-		$out.="<table class=\"righe\"><tr><th colspan='6'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
+		$out.="<table class=\"righe smallFontTable\"><tr><th colspan='6'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
 		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Net</th><th>md</th><th>tara</th></tr>';
 		//this will containt table totals
 		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);

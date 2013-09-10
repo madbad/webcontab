@@ -12,13 +12,13 @@
 
 		.customTable td:first-child + td { 
 		/* column 2*/
-			width: 4em;
+			width: 5em;
 		
 		}
 		
 		.customTable td:first-child + td + td { 
 		/* column 3*/
-			width: 7em;
+			width: 8em;
 		
 		}
 		
@@ -29,12 +29,12 @@
 		}
 		.customTable td:first-child + td + td + td + td{ 
 		/* column 5*/
-			width: 4em;
+			width: 6.5em;
 		
 		}
 		.customTable td:first-child + td + td + td + td + td{ 
-		/* column 5*/
-			width: 4em;
+		/* column 6*/
+			width: 5em;
 		
 		}
 		
@@ -62,7 +62,7 @@ set_time_limit ( 0 );
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/01/2013','30/06/2013'),
+		'ddt_data'=>array('<>','06/09/2013','06/09/2013'),
 	)
 );
 function cella ($txt, $colspan=0){
