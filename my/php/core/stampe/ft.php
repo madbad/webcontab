@@ -178,8 +178,9 @@ function addDatiFattura ($ft,$pdf){
 		
 		
 		//modifico la banca di appoggio
-		//$ft->cod_banca->setVal('09'); //09 cerea banca
+		//$ft->cod_banca->setVal('01'); //09 cerea banca
 										//10 popolare di vicenza
+										//01 cassa di risparmio del veneto
 		
 	}else{
 		$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));

@@ -174,7 +174,7 @@ height:230,
 if (@$_POST['mode']=='print'){
     $table='<table class="rimanenze">';
     $table.='<tr><td colspan="2">Rimanenze</td></tr>';
-    $table.='<tr><td style="width:9em"></td><td style="width:8em"></td></tr>';
+    $table.='<tr><td style="width:6.5em"></td><td style="width:5.5em"></td></tr>';
     $table.='<tr><td><b>- pl</b></td><td></td></tr>';
     $table.='<tr><td><b>- ifco</b></td><td></td></tr>';
     $table.='<tr><td>+ pl</td><td></td></tr>';
