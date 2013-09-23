@@ -108,11 +108,11 @@ form label{
 	text-align:right;
 	border:1px solid #000000;
 	border-collapse: collapse;
-	margin-left:0.5em;
+	margin-left:0.6em;
 }
 .rimanenze td{
-	height:2em;
-	width:4em;
+	height:1.5em;
+	width:2em;
 	text-align:left;
 }
 
@@ -138,5 +138,5 @@ form label{
 
 
 .smallFontTable, .smallFontTable tr, .smallFontTable th, .smallFontTable td{
-	font-size:1em;
+	font-size:0.95em;
 }

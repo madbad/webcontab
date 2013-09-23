@@ -48,8 +48,8 @@ $stampaRighe= function ($obj){
 };
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','16/08/13','31/08/13'),
-		'cod_cliente'=>array('SEVEN'),
+		'ddt_data'=>array('<>','01/09/13','15/09/13'),
+		'cod_cliente'=>array('SMA'),
 	);
 
 $test=new MyList($params);
