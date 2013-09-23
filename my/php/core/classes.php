@@ -445,6 +445,11 @@ class MyClass extends DefaultClass{
 			//e aggiungo le graffea inizio e fine
 			$out='{'.$out.'}';
 		}
+		
+		//rimpiazzo gli a capo con uno spazio in quanto in json non sono consentiti
+		$out=str_replace("\r", " ", $out);
+		$out=str_replace("\n", " ", $out);
+		
 		return $out;
 	}		
 	
