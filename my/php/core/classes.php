@@ -411,6 +411,11 @@ class MyClass extends DefaultClass{
 					//altrimento si tratta di una semplice proprietà e la converto io in json
 					if($key[0]!='_'){
 						$val=$this->$key->getVal();
+						
+						//se il valore contiene delle " devo convertirle in \" in quanto json altrimenti va in conflitto
+						$val = str_replace('"', '\"', $val);
+						/**/
+						
 						$out.='"'.$key.'":"'.$val.'",';
 					}
 				}
@@ -424,7 +429,7 @@ class MyClass extends DefaultClass{
 					//echo "estendo $key<br>";
 					//$out.='"'.$subKey.'":{';
 					$out.='{';
-
+					
 					$out.='"_type":"'.strtolower(get_class($subValue)).'",';
 					$out.=$subValue->toJson(1);
 				}
@@ -1538,6 +1543,7 @@ example usage
 $test=new MyList(
 	array(
 		'_type'=>'Ddt',
+		'_select'=>'numero,data',		
 		'data'=>array('=','17/02/12'),		
 		'data'=>array('>','28/03/09'),
 		'data'=>array('<','17/02/12'),
@@ -1702,9 +1708,25 @@ $test=new MyList(
 			}
 			$c1++;
 		}	
+		
+		/*compose the select statement
+			if nothing is specified just select all
+		*/
+		if($params['_select']){
+			$indexes = explode(",", $params['_select']);
+			foreach($indexes as $key => $property){
+				if($key>0){
+					$select.=',';
+				}
+				$select.=$fakeObj->$property->campoDbf;
+			}
+		}else{
+			$select = '*';
+		}
+
 
 		//eseguo la query
-		$result=dbFrom($fakeObj->_dbName->getVal(), 'SELECT *', $where.$order);
+		$result=dbFrom($fakeObj->_dbName->getVal(), 'SELECT '.$select, $where.$order);
 		
 		//debug info 
 		//print_r($condition);
