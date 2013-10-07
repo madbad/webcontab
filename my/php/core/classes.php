@@ -1193,7 +1193,7 @@ class Articolo extends MyClass {
 		$this->addProp('codice',					'F_CODPRO');
 		$this->addProp('descrizione',				'F_DESPRO');
 		$this->addProp('descrizione2',				'F_DESPR2');
-		$this->addProp('descrizionelunga',			'F_MEMO');		
+		$this->addProp('descrizionelunga',			'F_MEMO');
 		$this->addProp('unitadimisura',				'F_UMACQ');
 		$this->addProp('cod_iva',					'F_CODIVA');
 

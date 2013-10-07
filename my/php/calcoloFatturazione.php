@@ -87,11 +87,11 @@ $myArray['grezzo']='';
 $myArray['semilavorato']='';
 
 $totale=0;
-/*
+
 $radicchi=array('05','705','705-','705--','805','805-','805--','08','708','708-','708--','808','808-','808--','29','729','829');
 $insalate=array('01','01S','701','701S','801','801S','03','03S','703','703S','803','803S','25', '803-', '801-');
 $pdzucchero=array('31','731','831');
-*/
+
 
 function fixArticolo ($articolo){
 	$articolo = str_replace('-', '',$articolo);//remove the "-" "--"
@@ -130,11 +130,11 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 		$peso=$row->peso_netto->getVal();
 		$colli=$row->colli->getVal();
 		
-		/*
+		
 		if (in_array($articolo,$radicchi)) $descrizione=$articolo='**radicchi';
 		if (in_array($articolo,$insalate)) $descrizione=$articolo='**insalate';
 		if (in_array($articolo,$pdzucchero)) $descrizione=$articolo='**pdzucchero';
-		*/
+		
 	
 		$done=false;
 		if($peso>0){
