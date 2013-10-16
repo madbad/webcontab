@@ -10,11 +10,12 @@ $out='<table>';
 $test=new MyList(
 	array(
 		'_type'=>'ClienteFornitore',
-		'tipo'=>array('<>','')
+		//'tipo'=>array('<>',''),
+		'cod_banca'=>array('!=','01','02','09','10'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
 	)
 );
 
-echo '<table style="font-size: x-small;">';
+echo '<table style="font-size: x-small;" class="borderTable">';
 //echo '<table>';
 
 
