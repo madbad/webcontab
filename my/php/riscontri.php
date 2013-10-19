@@ -87,7 +87,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 
 //mercato
 	echo '<h1>Mercato</h1>';
@@ -105,7 +105,7 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;
 	
-
+/*
 //ortom
 	echo '<h1>Ortomercato</h1>';
 	$test=new MyList(
