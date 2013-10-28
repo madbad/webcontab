@@ -3,9 +3,9 @@
 
 
 
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]).'//webContab/my/php/libs/FirePHPCore/FirePHP.class.php');
+//require_once(realpath($_SERVER["DOCUMENT_ROOT"]).'//webContab/my/php/libs/FirePHPCore/FirePHP.class.php');
 //classe per l'invio di email
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]).'//webContab/my/php/libs/phpmailer/class.phpmailer.php');
+//require_once(realpath($_SERVER["DOCUMENT_ROOT"]).'//webContab/my/php/libs/phpmailer/class.phpmailer.php');
 
 class DefaultClass {
     public function __call($method, $args)     {
@@ -29,6 +29,15 @@ class MyClass extends DefaultClass{
 	}
 	public function getDbName(){
 		return get_class($this);
+	}
+	public function getPropertiesNames(){
+		$props = get_object_vars($this);
+		$out='';
+		foreach ($props as $prop){
+			$out[]= $prop->nome;
+		}
+		print_r($out);
+		return $out;
 	}
 	public function mergeParams($params){
 		//importo eventuali valori delle proprietà che mi sono passato come $params nell'oggetto principale
@@ -123,12 +132,12 @@ class MyClass extends DefaultClass{
 		
 		$fieldsToAdd='';
 		//campi normali
-		$fieldsToAdd.=implode($fields,' TEXT, ').' TEXT, ';
+		$fieldsToAdd.=implode($fields,' TEXT, ').' TEXT,';
 		//campi indice
-		$fieldsToAdd.=implode($indexes,' TEXT NOT NULL, ').' TEXT NOT NULL, ';
+		//$fieldsToAdd.=implode($indexes,' TEXT NOT NULL, ');
 		//chiavi primarie
 		$fieldsToAdd.=' PRIMARY KEY ('.implode($indexes,',').')';
-		
+		echo $sqlite->database;
 		//apro il $DATAbase
 		$db = new SQLite3($sqlite->database);
 		//creo la tabella
@@ -256,18 +265,18 @@ class Ddt  extends MyClass {
 	function __construct($params) {
 		$this->addProp('numero', $NUMERATORE);
   		$this->addProp('data', $DATA);
-		$this->addProp('causale-codice', $CODICE);
-		$this->addProp('mezzo-codice', $CODICE);
-		$this->addProp('vettore-codice', $CODICE);
-		$this->addProp('fattura-numero', $NUMERATORE);
-		$this->addProp('fattura-data', $DATA);
+		$this->addProp('causale_codice', $CODICE);
+		$this->addProp('mezzo_codice', $CODICE);
+		$this->addProp('vettore_codice', $CODICE);
+		$this->addProp('fattura_numero', $NUMERATORE);
+		$this->addProp('fattura_data', $DATA);
 		$this->addProp('note');
 		
 		//$this->righe/**/
-		$this->righe=array();
+		//$this->righe=array();
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
 		return array('numero','data');
@@ -276,25 +285,25 @@ class Ddt  extends MyClass {
 
 class Riga extends MyClass {
 	function __construct($params) {
-		$this->addProp('ddt-data', $DATA);
-		$this->addProp('ddt-numero', $NUMERATORE);
+		$this->addProp('ddt_data', $DATA);
+		$this->addProp('ddt_numero', $NUMERATORE);
 		$this->addProp('numero', $NUMERATORE);
-		$this->addProp('articolo-codice', $CODICE);
-		$this->addProp('um-codice', $CODICE);
+		$this->addProp('articolo_codice', $CODICE);
+		$this->addProp('um_codice', $CODICE);
 		$this->addProp('prezzo', $IMPORTO);
 		$this->addProp('colli', $NUMERO);
-		$this->addProp('imballo-codice', $CODICE);
-		$this->addProp('peso_lordo', $NUMERO);
+		$this->addProp('imballo_codice', $CODICE);
+		$this->addProp('pesolordo', $NUMERO);
 		$this->addProp('tara', $NUMERO);
-		$this->addProp('peso_netto', $NUMERO);
+		$this->addProp('pesonetto', $NUMERO);
 		$this->addProp('lotto', $TESTO);
-		$this->addProp('iva-codice', $CODICE);
+		$this->addProp('iva_codice', $CODICE);
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
-		return array('ddt-data','ddt-numero','numero');
+		return array('ddt_data','ddt_numero','numero');
 	}
 }
 
@@ -302,11 +311,11 @@ class Articolo extends MyClass {
 	function __construct($params) {
 		$this->addProp('codice', $CODICE);
 		$this->addProp('descrizione', $TESTO);
-		$this->addProp('um-codice', $CODICE);
-		$this->addProp('iva-codice', $CODICE);
+		$this->addProp('um_codice', $CODICE);
+		$this->addProp('iva_codice', $CODICE);
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
 		return array('codice');
@@ -317,11 +326,11 @@ class Imballaggio extends MyClass {
 	function __construct($params) {
 		$this->addProp('codice', $CODICE);
 		$this->addProp('descrizione', $TESTO);
-		$this->addProp('tara_acquisto', $NUMERO);
-		$this->addProp('tara_vendita', $NUMERO);
+		$this->addProp('taraacquisto', $NUMERO);
+		$this->addProp('taravendita', $NUMERO);
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
 		return array('codice');
@@ -338,11 +347,11 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('cap', $NUMERO);
 		$this->addProp('alboautotrasportatori', $ALBO);
 
-		$this->addProp('mezzo-codice', $CODICE);
-		$this->addProp('vettore-codice', $CODICE);
-		$this->addProp('p_iva', $PARTITAIVA);
-		$this->addProp('cod_fiscale', $CODICEFISCALE);
-		$this->addProp('iva-codice', $CODICE);
+		$this->addProp('mezzo_codice', $CODICE);
+		$this->addProp('vettore_codice', $CODICE);
+		$this->addProp('piva', $PARTITAIVA);
+		$this->addProp('codfiscale', $CODICEFISCALE);
+		$this->addProp('iva_codice', $CODICE);
 		$this->addProp('telefono', $TELEFONO);
 		$this->addProp('cellulare', $TELEFONO);
 		$this->addProp('fax', $TELEFONO);
@@ -351,7 +360,7 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('valuta', $TESTO);
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
 		return array('codice');
@@ -364,7 +373,7 @@ class Iva extends MyClass {
 		$this->addProp('descrizione', $TESTO);
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
 		return array('codice');
@@ -378,7 +387,7 @@ class Causale extends MyClass {
 		$this->addProp('segno', $SEGNO);
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
 		return array('codice');
@@ -390,7 +399,7 @@ class Mezzo extends MyClass { //mittente / destinatario / vettore carico mittent
 		$this->addProp('descrizione', $TESTO);
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
 		return array('codice');
@@ -402,12 +411,11 @@ class Um extends MyClass {
 		$this->addProp('descrizione', $TESTO);
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
-		$this->mergeParams($params);
+		//$this->mergeParams($params);
 	}
 	function getDbKeys(){
 		return array('codice');
 	}
 }
-$test = new Ddt();
-$test->createDb();
+
 ?>
