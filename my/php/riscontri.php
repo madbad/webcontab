@@ -88,15 +88,15 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;
 */
-
+/*
 //mercato
 	echo '<h1>Mercato</h1>';
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>'05',
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA'),
+			'cod_articolo'=>array('=','837'),
+			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','MORAN','TESI'),
 			'prezzo'=>array('!=','0.001')
 		)
 	);
@@ -104,7 +104,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-	
+*/
 /*
 //ortom
 	echo '<h1>Ortomercato</h1>';
@@ -168,15 +168,15 @@ if (@$_GET['mode']=='print'){
 */
 //==============================================================================================================================
 
-	
+
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','49','56'),
+			//'cod_articolo'=>array('=','49','56'),
 			//'cod_articolo'=>array('=','60', '61','62','63'),
-			//'cod_articolo'=>array('=','19', '819'),
-			'cod_cliente'=>array('!=','VIOLA'),
+			'cod_articolo'=>array('=','20'),
+			'cod_cliente'=>array('=','VIOLA'),
 			//'cod_cliente'=>array('!=','SEVEN'),
 			//'prezzo'=>array('!=','0.001')
 		)

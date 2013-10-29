@@ -1,7 +1,7 @@
 <?php
 include ('./config.inc.php');
 
-$myClasses=['Ddt','Riga','Articolo','Imballaggio','ClienteFornitore','Iva','Causale','Mezzo','Um']; 
+$myClasses=array('Ddt','Riga','Articolo','Imballaggio','ClienteFornitore','Iva','Causale','Mezzo','Um'); 
 
 foreach ($myClasses as $myClass) {
 	$test = new $myClass();

@@ -19,7 +19,7 @@ $test=new MyList(
 	array(
 		'_type'=>'Articolo',
 		'codice'=>array('!=','niente'),
-		'cod_iva'=>array('=','22'),
+		//'cod_iva'=>array('=','22'),
 	)
 );
 echo '<table class="spacedTable borderTable">';

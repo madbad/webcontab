@@ -31,7 +31,7 @@ $config->pdfDir=realpath($_SERVER["DOCUMENT_ROOT"]).'/webcontab/my/php/core/stam
 **    sqLite
 -------------------------------------*/
 $config->sqlite=new stdClass();
-$config->sqlite->database =realpath($_SERVER["DOCUMENT_ROOT"]).'/webcontab/my/php/dati/sqliteDb/magazzino.sqlite3';
+$config->sqlite->database =realpath($_SERVER["DOCUMENT_ROOT"]).'/webcontab/my/php/core/extended/magazzino.sqlite3';
 /*-------------------------------------
 **    DATI AZIENDALI
 -------------------------------------*/
