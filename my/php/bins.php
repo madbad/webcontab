@@ -44,6 +44,10 @@ if (@$_GET['mode']=='print'){
 			$casse= round($obj->colli->getVal(),0);
 			$sommaCasse+=$casse;
 		}
+		//escludo i colli troppo piccoli (casse a perdere);
+		if($mediaCollo*1<100){
+			//continue;
+		}
 	
 		echo '<tr> ';
 		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
@@ -77,13 +81,12 @@ if (@$_GET['mode']=='print'){
 
 //==============================================================================================================================
 
-//martinelli
-$cliente= 'LAME2';
+$cliente= 'GIAC1';
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_cliente'=>$cliente,
+			'cod_cliente'=>array('=', $cliente),
 			'colli'=>array('!=', '0')
 		)
 	);

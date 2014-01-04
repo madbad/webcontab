@@ -27,10 +27,16 @@ $stampaRighe= function ($obj){
 				'IFCO 6416',
 				//'EURO CHEP',
 	);
-	$descrizione=$obj->descrizione->getVal();
+	$art= new Articolo(array('codice'=> $obj->cod_articolo->getVal()));
+	$descrizione= $art->descrizione->getVal();
+	//echo '<br>'.$descrizione;
+	//$descrizione=$obj->descrizione->getVal();
 
 	foreach ($ifco as $ifcoModel){
-		$found=stripos($obj->descrizione->getVal(), $ifcoModel);
+		//$found=stripos($obj->descrizione->getVal(), $ifcoModel);
+		//echo '<br>'.$obj->cod_articolo->extend()->descrizione->getVal();
+		//$art = $obj->cod_articolo->extend();
+		$found=stripos($descrizione, $ifcoModel);
 		if ($found){
 			$name=$obj->ddt_data->getFormatted().' :: ddt '.$obj->ddt_numero->getFormatted();
 @			$elenco[$name][$ifcoModel]+=$obj->colli->getVal();
@@ -43,12 +49,12 @@ $stampaRighe= function ($obj){
 	//se al termine non ho ancora trovato il modello IFCO e c'è una quantità di colli maggiore di zero (ovvero non si tratta di solo testo ma di un articolo)
 	//allora stampo la stringa di descrizione dell'articolo e la relativa data
 	if (!$found & $obj->colli->getVal()>0){
-		echo 'IFCO model not found <br>:: '.$obj->ddt_data->getFormatted().' :: '.$obj->descrizione->getVal().'<br>';
+		echo 'IFCO model not found <br>:: '.$obj->ddt_data->getFormatted().' :: '.$descrizione.'<br>';
 	}
 };
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/10/13','15/10/13'),
+		'ddt_data'=>array('<>','16/12/13','31/12/13'),
 		'cod_cliente'=>array('SMA'),
 	);
 

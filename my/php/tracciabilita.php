@@ -62,7 +62,7 @@ set_time_limit ( 0 );
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','19/10/2013','25/10/2013'),
+		'ddt_data'=>array('<>','30/12/2013','03/01/2014'),
 	)
 );
 function cella ($txt, $colspan=0){

@@ -28,7 +28,8 @@ $test=new MyList(
 	array(
 		'_type'=>'Ddt',
 		'data'=>array('<>','01/01/'.$anno,'31/12/'.$anno),
-		//'cod_cliente'=>'SEVEN'
+		//'cod_destinatario'=>array('!=','SGUJI','BELFR','AMATO','CALIM','DANFR','FTESI','GARLE','LAME2','MANTG','ESPOS','AZGI','BENIE','BISSM','BOLLA','BONER','CASAR','CHIE3','CORTE','DICAM','DOROM','FABBR','FACCG','FARED','FARET','FORMA','GAZZO','GIAC1','GIMMI2','GREE5','LEOPA','LORAL','MACER','MAEST','MARTI','MORAN','MUNAR','NOVUS','STEMI','ORTO3','PRIMF','SBIFL','SBIZZ','TARCI','TESI','TIATI','ZAPPO','SEVEN','SMA','ULISS','NIZZ2'),
+		//'cod_causale' => 'D'
 	)
 );
 
@@ -43,7 +44,7 @@ $test->iterate(function($obj){
 	$html.= '<td>'.$obj->cod_causale->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
-	$html.= '<td>'.$cliente->ragionesociale->getVal().'</td>';
+	$html.= '<td>( '.$obj->cod_destinatario->getVal().' ) '.$cliente->ragionesociale->getVal().'</td>';
 
 	$link= '<a href="./core/gestioneDdt.php?';
 	$link.= 'numero='.$obj->numero->getVal();
