@@ -98,7 +98,7 @@ if (@$_GET['mode']=='print'){
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>array('=','05'),
 			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA'),
-			'prezzo'=>array('!=','0.001')
+			//'prezzo'=>array('!=','0.001')
 		)
 	);
 	echo $tabellaH;
@@ -152,37 +152,26 @@ if (@$_GET['mode']=='print'){
 */
 
 //==============================================================================================================================
-
-//mercaato //capucci
-	
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','845'),
-			//'cod_articolo'=>array('=','49','949','56','956'),
-			//'cod_articolo'=>array('=','19','819'),
-			//'cod_articolo'=>array('=','20','820'),
-			//'cod_cliente'=>array('!=','MARTI','SEVEN','SMA','SGUJI','VIOLA')
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-//==============================================================================================================================
-
 /*
+19 CAPPUCCI
+36 SEDANO
+20 VERZE
+21 CAVOLFIORI
+43 CIPOLLOTTI
+47 ZUCCHINE
+49 MELANZANE
+50 ZUCCA
+*/
+
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','850'),
-			//'cod_articolo'=>array('=','60', '61','62','63'),
-			//'cod_articolo'=>array('=','842',''),
-			//'cod_cliente'=>array('=','VIOLA'),
+			'cod_articolo'=>array('=','19'),
+			//'cod_cliente'=>array('=','SEVEN'),
+			'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			'prezzo'=>array('!=','0.001')
+			//'prezzo'=>array('!=','0.001')
 		)
 	);
 	var_dump($test->_params['cod_articolo']);
@@ -191,7 +180,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
 //==============================================================================================================================
 
 /*

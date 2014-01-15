@@ -783,6 +783,8 @@ class Fattura extends MyClass{
 		//recupero l'importo della fattura
 		if ($this->_params['_autoExtend']!='intestazione'){
 			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".'F_NUMFAT'."=".odbc_access_escape_str($this->numero->getVal())." AND ".'F_DATFAT'."=#".odbc_access_escape_str($this->data->getVal()."#"));
+/*todo fix*///$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".'F_NUMFAT'."=".odbc_access_escape_str($this->numero->getVal())." AND ".'F_DATFAT'."=#".odbc_access_escape_str($this->data->getVal()."#")." AND F_TIPODOC=".odbc_access_escape_str($this->tipo->getVal()));
+			
 
 			foreach($result as $row){
 					$this->importo->setVal($row['F_IMPORTO']);
