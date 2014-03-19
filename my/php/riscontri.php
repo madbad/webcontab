@@ -157,7 +157,9 @@ if (@$_GET['mode']=='print'){
 36 SEDANO
 20 VERZE
 21 CAVOLFIORI
+42 PORRI
 43 CIPOLLOTTI
+45 BIANCO
 47 ZUCCHINE
 49 MELANZANE
 50 ZUCCA
@@ -167,11 +169,12 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','19'),
-			//'cod_cliente'=>array('=','SEVEN'),
-			'cod_cliente'=>array('!=','VIOLA'),
+			'cod_articolo'=>array('=','05'),
+			'cod_cliente'=>array('=','MARTI'),
+			//'cod_cliente'=>array('!=','BISCO'),
+			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			//'prezzo'=>array('!=','0.001')
+			'prezzo'=>array('!=','0.001')
 		)
 	);
 	var_dump($test->_params['cod_articolo']);

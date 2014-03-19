@@ -119,8 +119,8 @@ $sconti['percentualiPeriodici']=0;
 	$tabellaH.='</tr>';
 	$tabellaF='</table>';
 
-$start=$prevKey='01/01/13';
-$end='31/12/13';
+$start=$prevKey='01/01/14';
+$end='31/12/14';
 	
 	
 	$test=new MyList(
@@ -180,22 +180,27 @@ $guadagnoComplessivo=0;
 
 				$giorno=$link['nGiorno']+1;
 				switch ($articolo){
-					case '701':   $colonna='B';$manodopera=0.35;break;
-					case '703':   $colonna='C';$manodopera=0.35;break;
-					case '705':   $colonna='D';$manodopera=0.40;break;
-					case '705-':  $colonna='D';$manodopera=0.40;break;
-					case '705--': $colonna='D';$manodopera=0.40;break;
-					case '708':   $colonna='F';$manodopera=0.25;break;
-					case '708-':  $colonna='F';$manodopera=0.25;break;
-					case '708--': $colonna='F';$manodopera=0.25;break;
-					case '729':   $colonna='E';$manodopera=0.35;break;
-					case '731':   $colonna='G';$manodopera=0.20;break;
-					default:      $colonna='A';$manodopera=0.000001;break;
+					case '701':   $colonna='B';$cmanodopera='J';break;
+					case '703':   $colonna='C';$cmanodopera='K';break;
+					case '705':   $colonna='D';$cmanodopera='L';break;
+					case '705-':  $colonna='D';$cmanodopera='L';break;
+					case '705--': $colonna='D';$cmanodopera='L';break;
+					case '708':   $colonna='F';$cmanodopera='N';break;
+					case '708-':  $colonna='F';$cmanodopera='N';break;
+					case '708--': $colonna='F';$cmanodopera='N';break;
+					case '729':   $colonna='E';$cmanodopera='M';break;
+					case '729-':   $colonna='E';$cmanodopera='M';break;
+					case '731':   $colonna='G';$cmanodopera='O';break;
+					default:      $colonna='A';$cmanodopera=0.000001;break;
 				}
+				
+				
 				global $fileODS;
 				$costoBase=str_replace(',','.',$fileODS[$giorno][$colonna]);
 				echo '<td>'.$costoBase.'</td>';
 				echo '<td>'.$link['costoCassa'].'</td>';
+				
+				$manodopera = str_replace(',','.',$fileODS[$giorno][$cmanodopera]);
 				
 				$numPedane=str_replace(',','.',$fileODS[$giorno]['H']);
 				$costoTrasporto=round($numPedane*31/$sommaPesi[$key],3);

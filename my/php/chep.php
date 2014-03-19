@@ -53,19 +53,19 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
-		echo '<td>'.$obj->sum('colli').'</td>';				
+		echo '<td>'.$obj->sum('colli').'</td>';
 		echo '<td>'.$obj->sum('peso_netto').'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.round($obj->sum('peso_netto')/$obj->sum('colli'),2).'</td>';
-		echo '<td>'.$obj->sum('_totImponibileNetto').'</td>';			
+		echo '<td>'.$obj->sum('_totImponibileNetto').'</td>';
 		echo '</tr>';
 	};
 
 	$tabellaH='<table class="spacedTable, borderTable">';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
-	$tabellaF='</table><br><br>';
+	$tabellaF='</table>';
 
 	//CONTROLLO BANCALI CHEP
 	$test=new MyList(

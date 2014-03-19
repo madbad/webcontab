@@ -162,7 +162,7 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->SetFont($def_font, '', $def_size+5);
 
 
-	$perAnticipoFatture=false;
+	$perAnticipoFatture=FALSE;
 	if ($perAnticipoFatture){
 		//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
 		$pagamentoAMesi=2;
@@ -178,7 +178,7 @@ function addDatiFattura ($ft,$pdf){
 		
 		
 		//modifico la banca di appoggio
-		//$ft->cod_banca->setVal('10'); //09 cerea banca
+		//$ft->cod_banca->setVal('09'); //09 cerea banca
 										//10 popolare di vicenza
 										//01 cassa di risparmio del veneto
 		
