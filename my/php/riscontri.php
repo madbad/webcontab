@@ -169,8 +169,8 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','05'),
-			'cod_cliente'=>array('=','MARTI'),
+			'cod_articolo'=>array('=','819'),
+			'cod_cliente'=>array('=','SEVEN'),
 			//'cod_cliente'=>array('!=','BISCO'),
 			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
