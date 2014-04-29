@@ -84,8 +84,9 @@ $fileODS=$easy_ods_read->extract_data("0","366");
 //sconti
 $sconti['fissi']=0;
 $sconti['percentuali']=12.9/100;
-$sconti['collo']=0.02;
+$sconti['collo']=0.022;
 $sconti['percentualiPeriodici']=0;
+$costo_trasporto = 31;
 
 
 
@@ -203,7 +204,7 @@ $guadagnoComplessivo=0;
 				$manodopera = str_replace(',','.',$fileODS[$giorno][$cmanodopera]);
 				
 				$numPedane=str_replace(',','.',$fileODS[$giorno]['H']);
-				$costoTrasporto=round($numPedane*31/$sommaPesi[$key],3);
+				$costoTrasporto=round($numPedane*$costo_trasporto/$sommaPesi[$key],3);
 				//$costoTrasporto=round($numPedane,3);
 				
 				echo '<td>'.$costoTrasporto.'</td>';

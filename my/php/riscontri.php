@@ -44,11 +44,15 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$obj->peso_lordo->getFormatted(2).'</td>';
 		echo '<td>'.$obj->peso_netto->getFormatted(2).'</td>';
 		echo '<td>'.$obj->prezzo->getFormatted(3).'</td>';
-		echo '<td>'.round($obj->getPrezzoLordo(),3).'</td>';
-		echo '<td>'.round($obj->getPrezzoNetto(),3).'</td>';
-		echo '<td>'.round($obj->peso_netto->getVal()/$obj->colli->getVal(),2).'</td>';
+		$number = number_format($obj->getPrezzoLordo(),3,$separatoreDecimali=',',$separatoreMigliaia='.');
+		echo '<td>'.$number.'</td>';
+		$number = number_format($obj->getPrezzoNetto(),3,$separatoreDecimali=',',$separatoreMigliaia='.');
+		echo '<td>'.$number.'</td>';
+		$number = number_format($obj->peso_netto->getVal()/$obj->colli->getVal(),2,$separatoreDecimali=',',$separatoreMigliaia='.');
+		echo '<td>'.$number.'</td>';
 		$impNetto=$obj->peso_netto->getVal()*$obj->getPrezzoNetto();
-		echo '<td>'.round($impNetto,2).'</td>';
+		$number = number_format($impNetto,2,$separatoreDecimali=',',$separatoreMigliaia='.');
+		echo '<td>'.$number.'</td>';
 		$obj->_totImponibileNetto->setVal($impNetto);
 		//echo '<td>'.$obj->imponibile->getVal().'</td>';
 		echo '</tr>';
@@ -169,12 +173,12 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','819'),
-			'cod_cliente'=>array('=','SEVEN'),
+			'cod_articolo'=>array('=','42'),
+			'cod_cliente'=>array('!=','SEVEN'),
 			//'cod_cliente'=>array('!=','BISCO'),
 			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			'prezzo'=>array('!=','0.001')
+			//'prezzo'=>array('!=','0.001')
 		)
 	);
 	var_dump($test->_params['cod_articolo']);
