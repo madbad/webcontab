@@ -161,6 +161,7 @@ if (@$_GET['mode']=='print'){
 36 SEDANO
 20 VERZE
 21 CAVOLFIORI
+40 GENTILE
 42 PORRI
 43 CIPOLLOTTI
 45 BIANCO
@@ -173,7 +174,7 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','42'),
+			'cod_articolo'=>array('=','45', '08b'),
 			'cod_cliente'=>array('!=','SEVEN'),
 			//'cod_cliente'=>array('!=','BISCO'),
 			//'cod_cliente'=>array('=','MARTI'),
