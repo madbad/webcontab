@@ -74,7 +74,7 @@ if (@$_GET['mode']=='print'){
 	};
 
 	$tabellaH='<table class="spacedTable, borderTable">';
-	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td><td>(P.Lordo)</td>Peso Netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
+	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso lordo<td>Peso netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
@@ -174,8 +174,9 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','45', '08b'),
-			'cod_cliente'=>array('!=','SEVEN'),
+			//'cod_articolo'=>array('=','850'),
+			'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
+			'cod_cliente'=>array('=','SEVEN'),
 			//'cod_cliente'=>array('!=','BISCO'),
 			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
@@ -184,6 +185,7 @@ if (@$_GET['mode']=='print'){
 	);
 	var_dump($test->_params['cod_articolo']);
 	var_dump($test->_params['ddt_data']);
+	echo '<table><tr><td style="background-color:red;color:white;" >------</td><td>= manca ricavo</td></tr></table>';
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);

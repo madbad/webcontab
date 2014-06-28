@@ -81,19 +81,43 @@ if (@$_GET['mode']=='print'){
 
 //==============================================================================================================================
 
-$cliente= 'LAME2';
+$clienti=new MyList(
+	array(
+		'_type'=>'ClienteFornitore',
+		//'tipo'=>array('<>',''),
+		'cod_banca'=>array('!=','00000'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
+	)
+);
+
+$dbClienti=getDbClienti();
+
+$clienti->iterate(function($cliente){
+	global $dbClienti;
+	global $startDateR;
+	global $endDateR;
+	global $stampaRighe;
+	global $stampaTotali;
+	global $sommaBins;
+	global $sommaCasse;
+	global $$tabellaH;
+	global $$tabellaF;
+
+	$tipoCliente=$dbClienti[$cliente->codice->getVal()]['__classificazione'];
+	if($tipoCliente=='mercato'){return;}
+
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_cliente'=>array('=', $cliente),
+			'cod_cliente'=>array('=', $cliente->codice->getVal()),
 			'colli'=>array('!=', '0')
 		)
 	);
-	
+	echo 'count:'.count($test); 
+	if (count($test)<1){return;}
 	
 	echo '<b>USCITE IMBALLAGGI <br>';
-	$cliente= new ClienteFornitore(array('codice'=>$cliente));
+	//$cliente= new ClienteFornitore(array('codice'=>$cliente));
 	echo $cliente->ragionesociale->getVal();
 	echo '</b>';
 	echo '<br>Fax: '.$cliente->fax->getVal();
@@ -104,6 +128,8 @@ $cliente= 'LAME2';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test,$sommaBins,$sommaCasse);
 	echo $tabellaF;
+
+});
 
 	page_end();
 }
