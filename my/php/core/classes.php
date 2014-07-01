@@ -1126,7 +1126,7 @@ class Riga extends MyClass {
 		$this->addProp('prezzo',					'F_PREUNI');
 		$this->addProp('imponibile',				'F_IMPONI');
 		$this->addProp('importo_iva',				'F_IMPIVA');
-		$this->addProp('importo_totale',			'F_IMPORTO');		
+		$this->addProp('importo_totale',			'F_IMPORTO');
 		$this->addProp('colli',						'F_NUMCOL');
 //		$this->addProp('cod_imballo',				'F_');
 		$this->addProp('peso_lordo',				'F_QTA');
@@ -1150,7 +1150,7 @@ class Riga extends MyClass {
 				$this->addProp('ft_data',					'F_DATFAT');
 				$this->addProp('ft_numero',					'F_NUMFAT');
 				$this->_dbName->setVal('RIGHEFT');
-				$this->_dbIndex->setVal(array('ft_numero','ft_data','numero'));
+				$this->_dbIndex->setVal(array('ft_data','ft_numero','numero'));
 				break;
 			case  'ddt':
 				//per righe dei ddt
@@ -1158,12 +1158,12 @@ class Riga extends MyClass {
 				$this->addProp('ddt_numero',				'F_NUMBOL');
 				$this->addProp('peso_netto',				'F_PESNET');
 				$this->_dbName->setVal('RIGHEDDT');
-				$this->_dbIndex->setVal(array('ddt_numero','ddt_data','numero'));
+				$this->_dbIndex->setVal(array('ddt_data','ddt_numero','numero'));
 				break;
-		}		
+		}
 	
 		$this->addProp('_totImponibileNetto');
-		$this->_totImponibileNetto->setVal(0);			
+		$this->_totImponibileNetto->setVal(0);
 
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);

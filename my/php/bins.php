@@ -28,8 +28,7 @@ if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 </form> 
 
 <?php
-$sommaBins=0;
-$sommaCasse=0;
+
 if (@$_GET['mode']=='print'){
 	$stampaRighe= function ($obj){
 		global $sommaBins, $sommaCasse;
@@ -75,9 +74,7 @@ if (@$_GET['mode']=='print'){
 		echo '</tr>';
 	};
 
-	$tabellaH='<table class="spacedTable, borderTable">';
-	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>media collo</td><td>Bins</td><td>Casse</td></tr>';
-	$tabellaF='</table><br><br>';
+
 
 //==============================================================================================================================
 
@@ -99,8 +96,13 @@ $clienti->iterate(function($cliente){
 	global $stampaTotali;
 	global $sommaBins;
 	global $sommaCasse;
-	global $$tabellaH;
-	global $$tabellaF;
+	global $sommaBins;
+	$sommaBins=0;
+	global $sommaCasse;
+	$sommaCasse=0;
+	$tabellaH='<table class="spacedTable, borderTable">';
+	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>media collo</td><td>Bins</td><td>Casse</td></tr>';
+	$tabellaF='</table><br><br>';
 
 	$tipoCliente=$dbClienti[$cliente->codice->getVal()]['__classificazione'];
 	if($tipoCliente=='mercato'){return;}
@@ -113,8 +115,8 @@ $clienti->iterate(function($cliente){
 			'colli'=>array('!=', '0')
 		)
 	);
-	echo 'count:'.count($test); 
-	if (count($test)<1){return;}
+	//echo 'count:'.count($test->arr); 
+	if (count($test->arr)<1){return;}
 	
 	echo '<b>USCITE IMBALLAGGI <br>';
 	//$cliente= new ClienteFornitore(array('codice'=>$cliente));
