@@ -176,7 +176,7 @@ if (@$_GET['mode']=='print'){
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			//'cod_articolo'=>array('=','845'),
 			'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
-			//'cod_cliente'=>array('=','SEVEN'),
+			scon'cod_cliente'=>array('=','SEVEN'),
 			//'cod_cliente'=>array('!=','BISCO'),
 			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
