@@ -53,7 +53,26 @@ function findIfcoModel($art){
 	</head>
 
 	<body>
+<STYLE>
+table{
+border-collapse:separate; !important
+}
+td{
+text-align:right;
+}
+.articolo	{display: none; }
+.colli		{display: none; }
+.peso		{display: none; }
+.prezzo		{display: none; }
+.costobase	{display: none; }
+.cassa		{display: none; }
 
+.trasporto	{display: none; }
+.manodopera	{display: none; }
+.sconto		{display: none; }
+.costotale	{display: none; }
+}
+</STYLE>
 <?php
 
 
@@ -115,7 +134,7 @@ $costo_trasporto = 31;
 	$tabellaH='<table class="borderTable">';
 	$tabellaH.='<tr><td></td><td colspan="'.$colonne.'">Riccia</td><td colspan="'.$colonne.'">Scarola</td><td colspan="'.$colonne.'">Chioggia</td><td colspan="'.$colonne.'">Treviso</td><td colspan="'.$colonne.'">PDZ</td><td colspan="'.$colonne.'">Verona</td></tr>';
 	$tabellaH.='<tr><td>Data</td>';
-	$riga='<td>Art.</td><td>Colli</td><td>Peso</td><td>Prezzo</td><td>Costo Base</td><td>Costo Cassa</td><td>Costro Trasporto</td><td>Costo Manodopera</td><td>Costi Sconti</td><td>Costo Totale</td><td>Ricavno</td>';
+	$riga='<td class="articolo">Art.</td><td class="colli">Colli</td><td class="peso">Peso</td><td class="peso">Prezzo</td><td class="costobase">Costo Base</td><td class="cassa">Costo Cassa</td><td class="trasporto">Costro Trasporto</td><td class="manodopera">Costo Manodopera</td><td class="sconto">Costi Sconti</td><td class="costototale">Costo Totale</td><td class="ricavo">Ricavno</td>';
 	$tabellaH.=$riga.$riga.$riga.$riga.$riga.$riga;
 	$tabellaH.='</tr>';
 	$tabellaF='</table>';
@@ -169,15 +188,15 @@ $guadagnoComplessivo=0;
 			if(array_key_exists($articolo,$value) ){
 				$link=$value[$articolo];
 
-				echo '<td>'.$articolo.'</td>';
+				echo '<td class="articolo">'.$articolo.'</td>';
 			//	echo '<td>'.findIfcoModel($link['descrizione']).'</td>';
-				echo '<td>'.$link['colli'].'</td>';
+				echo '<td class="colli">'.$link['colli'].'</td>';
 				
 				$peso=str_replace(',','.',$link['peso']);
-				echo '<td>'.$peso.'</td>';
+				echo '<td class="peso">'.$peso.'</td>';
 				
 				$prezzo=str_replace(',','.',$link['prezzo']);
-				echo '<td>'.$prezzo.'</td>';
+				echo '<td class="prezzo">'.$prezzo.'</td>';
 
 				$giorno=$link['nGiorno']+1;
 				switch ($articolo){
@@ -198,8 +217,8 @@ $guadagnoComplessivo=0;
 				
 				global $fileODS;
 				$costoBase=str_replace(',','.',$fileODS[$giorno][$colonna]);
-				echo '<td>'.$costoBase.'</td>';
-				echo '<td>'.$link['costoCassa'].'</td>';
+				echo '<td  class="costobase">'.$costoBase.'</td>';
+				echo '<td class="cassa">'.$link['costoCassa'].'</td>';
 				
 				$manodopera = str_replace(',','.',$fileODS[$giorno][$cmanodopera]);
 				
@@ -207,18 +226,18 @@ $guadagnoComplessivo=0;
 				$costoTrasporto=round($numPedane*$costo_trasporto/$sommaPesi[$key],3);
 				//$costoTrasporto=round($numPedane,3);
 				
-				echo '<td>'.$costoTrasporto.'</td>';
-				echo '<td>'.$manodopera.'</td>';
+				echo '<td class="trasporto">'.$costoTrasporto.'</td>';
+				echo '<td class="manodopera">'.$manodopera.'</td>';
 				
 				global $sconti;
 				//$sconto=($link['colli'] * $sconti['collo'] / $link['peso']) + ($link['prezzo']*$sconti['percentuali']);
 				$sconto=($link['colli'] * $sconti['collo'] / $link['peso']) + (str_replace(',','.',$link['prezzo'])*$sconti['percentuali']);
 				$sconto=round($sconto, 3);
-				echo '<td>'.$sconto.'</td>';
+				echo '<td class="sconto">'.$sconto.'</td>';
 				
 				
 				$costoTotale=$costoBase+$link['costoCassa']+$costoTrasporto+$manodopera+$sconto;
-				echo '<td>'.$costoTotale.'</td>';
+				echo '<td class="costototale">'.$costoTotale.'</td>';
 				
 				$guadagnoArticolo=round(($prezzo-$costoTotale)*$peso,2);
 				if($guadagnoArticolo<0){$colore='red';}else{$colore='green';}
