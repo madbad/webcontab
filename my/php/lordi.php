@@ -39,9 +39,9 @@ include ('./core/config.inc.php');
 49 MELANZANE
 50 ZUCCA
 */
-$dataIniziale='01/06/14';
-$dataFinale='30/06/14';
-$cliente='AMATO';
+$dataIniziale='25/07/14';
+$dataFinale='01/08/14';
+$cliente='PRIMF';
 $imponibile=0;
 
 $oCliente = new ClienteFornitore(

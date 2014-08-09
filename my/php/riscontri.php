@@ -167,17 +167,19 @@ if (@$_GET['mode']=='print'){
 45 BIANCO
 47 ZUCCHINE
 49 MELANZANE
+56 MELANZANE VIOLA
 50 ZUCCA
+52 CETRIOLI
 */
 
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_articolo'=>array('=','845'),
-			'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
-			scon'cod_cliente'=>array('=','SEVEN'),
-			//'cod_cliente'=>array('!=','BISCO'),
+			'cod_articolo'=>array('=','42'),
+			//'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
+			//'cod_cliente'=>array('=','CALIM'),
+			//'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//'prezzo'=>array('!=','0.001')
@@ -192,7 +194,38 @@ if (@$_GET['mode']=='print'){
 	echo $tabellaF;
 
 //==============================================================================================================================
+/*
+//SOLO TUTTI I MERCATI
+$dbClienti=getDbClienti();
+$mercati[]='=';
+foreach ($dbClienti as $cliente){
+//print_r($cliente);
+	if ($cliente['__classificazione']=='mercato'){
+		$mercati[]= $cliente['codice'];
+	}
+}
 
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>array('=','01','03'),
+			//'cod_cliente'=>array('=','MORAN','TESI','ZANAR','GIAC1','NERIO'),
+			'cod_cliente'=>$mercati,
+			//'cod_cliente'=>array('=','MARTI'),
+			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
+			'prezzo'=>array('!=','0.001')
+		)
+	);
+	var_dump($test->_params['cod_articolo']);
+	var_dump($test->_params['ddt_data']);
+	echo '<table><tr><td style="background-color:red;color:white;" >------</td><td>= manca ricavo</td></tr></table>';
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
+*/
+//==============================================================================================================================
 /*
 	$test=new MyList(
 		array(

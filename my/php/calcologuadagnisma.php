@@ -60,6 +60,7 @@ border-collapse:separate; !important
 td{
 text-align:right;
 }
+/*
 .articolo	{display: none; }
 .colli		{display: none; }
 .peso		{display: none; }
@@ -71,6 +72,7 @@ text-align:right;
 .manodopera	{display: none; }
 .sconto		{display: none; }
 .costotale	{display: none; }
+*/
 }
 </STYLE>
 <?php

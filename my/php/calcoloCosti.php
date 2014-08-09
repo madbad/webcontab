@@ -51,11 +51,11 @@ $dbClienti=getDbClienti();
 				$netto=$row['F_PESNET']-$calopeso;
 				$media=round($netto/$row['F_NUMCOL'],1);
 				$tara=round(($row['F_QTA']-$row['F_PESNET'])/$row['F_NUMCOL'],3);
-				//$tara=$row['F_PESNET'].'::'.$row['F_QTA'];				
+				//$tara=$row['F_PESNET'].'::'.$row['F_QTA'];
 				$out.="\n<tr><td>".formatData($row['F_DATBOL'])."</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td><td>$tara</td></tr>";
 				$sum['NETTO']+=$netto;
 				$sum['F_NUMCOL']+=$row['F_NUMCOL'];
-			}	
+			}
 		}
 
 		$out.="<tr><th>Totali</th><th>-</th><th>".round($sum['F_NUMCOL'])."</th><th colspan='3'><b style='font-size:2em'>".$sum['NETTO']."</b></th></tr>";

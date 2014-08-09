@@ -78,18 +78,25 @@ if (@$_GET['mode']=='print'){
 
 //==============================================================================================================================
 
+$dbClienti=getDbClienti();
+$clientiSelez[]='=';
+foreach ($dbClienti as $cliente){
+	if ($cliente['__classificazione']!='mercato' && $cliente['__classificazione']!='supermercato'){
+		$clientiSelez[]= $cliente['codice'];
+	}
+}
+
+
 $clienti=new MyList(
 	array(
 		'_type'=>'ClienteFornitore',
-		//'tipo'=>array('<>',''),
-		'cod_banca'=>array('!=','00000'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
+		'codice'=>$clientiSelez
 	)
 );
 
-$dbClienti=getDbClienti();
 
 $clienti->iterate(function($cliente){
-	global $dbClienti;
+
 	global $startDateR;
 	global $endDateR;
 	global $stampaRighe;
@@ -104,9 +111,6 @@ $clienti->iterate(function($cliente){
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>media collo</td><td>Bins</td><td>Casse</td></tr>';
 	$tabellaF='</table><br><br>';
 
-	$tipoCliente=$dbClienti[$cliente->codice->getVal()]['__classificazione'];
-	if($tipoCliente=='mercato'){return;}
-
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -115,11 +119,11 @@ $clienti->iterate(function($cliente){
 			'colli'=>array('!=', '0')
 		)
 	);
-	//echo 'count:'.count($test->arr); 
+
 	if (count($test->arr)<1){return;}
 	
 	echo '<b>USCITE IMBALLAGGI <br>';
-	//$cliente= new ClienteFornitore(array('codice'=>$cliente));
+
 	echo $cliente->ragionesociale->getVal();
 	echo '</b>';
 	echo '<br>Fax: '.$cliente->fax->getVal();
