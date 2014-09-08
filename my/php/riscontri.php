@@ -170,17 +170,18 @@ if (@$_GET['mode']=='print'){
 56 MELANZANE VIOLA
 50 ZUCCA
 52 CETRIOLI
+60 PEPERONE
 */
 
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','42'),
+			'cod_articolo'=>array('=','842'),
 			//'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
 			//'cod_cliente'=>array('=','CALIM'),
 			//'cod_cliente'=>array('!=','VIOLA'),
-			//'cod_cliente'=>array('=','MARTI'),
+			//'cod_cliente'=>array('=','SMA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//'prezzo'=>array('!=','0.001')
 		)
