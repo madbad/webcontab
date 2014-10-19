@@ -116,6 +116,7 @@ $clienti->iterate(function($cliente){
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_cliente'=>array('=', $cliente->codice->getVal()),
+//			'cod_cliente'=>array('=', 'VOLOR'),
 			'colli'=>array('!=', '0')
 		)
 	);

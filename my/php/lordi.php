@@ -39,9 +39,9 @@ include ('./core/config.inc.php');
 49 MELANZANE
 50 ZUCCA
 */
-$dataIniziale='01/08/14';
-$dataFinale='31/08/14';
-$cliente='AMATO';
+$dataIniziale='01/10/14';
+$dataFinale='08/10/14';
+$cliente="L'OR";
 $imponibile=0;
 
 $oCliente = new ClienteFornitore(
@@ -105,6 +105,7 @@ echo '<br><br>';
 				//echo "<td $cssRight>".round($obj->getPrezzoNetto(),3)."</td>";
 				echo "<td $cssRight>"."</td>";
 				echo "<td $cssRight>".number_format($obj->getPrezzoLordo(),3)."</td>";
+			//	echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
 			echo "</tr>";
 		});
 		echo "<tr><td colspan='5'></tr>";

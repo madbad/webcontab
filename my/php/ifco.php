@@ -49,12 +49,16 @@ $stampaRighe= function ($obj){
 	//se al termine non ho ancora trovato il modello IFCO e c'è una quantità di colli maggiore di zero (ovvero non si tratta di solo testo ma di un articolo)
 	//allora stampo la stringa di descrizione dell'articolo e la relativa data
 	if (!$found & $obj->colli->getVal()>0){
-		echo 'IFCO model not found <br>:: '.$obj->ddt_data->getFormatted().' :: '.$descrizione.'<br>';
+		echo 'IFCO model not found <br>:: ';
+		echo $obj->ddt_data->getFormatted().' :: ';
+		echo $descrizione;
+		echo ' :: colli ';
+		echo $obj->colli->getFormatted().'<br>';
 	}
 };
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','16/08/14','31/08/14'),
+		'ddt_data'=>array('<>','16/09/14','30/09/14'),
 		'cod_cliente'=>array('SMA'),
 	);
 

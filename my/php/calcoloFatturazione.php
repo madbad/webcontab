@@ -140,7 +140,9 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 		if($peso>0){
 			if ($tipo=='mercato' || $tipo=='supermercato'){
 			$myArray['lavorato'][$articolo.'*'.$descrizione]+=$peso;
-
+/* //controllo singole righe
+if($articolo=='08' && $peso >500){echo $row->cod_cliente->getVal().'='.$peso."\n<br>";};
+*/
 				$done=true;
 			}
 			if ($tipo=='semilavorato'){
