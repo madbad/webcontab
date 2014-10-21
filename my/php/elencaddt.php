@@ -6,11 +6,17 @@
 include ('./core/config.inc.php');
 set_time_limit ( 0);
 
-//seleziono l'anno di cui mostrare le fatture
+//seleziono l'anno di cui mostrare i ddt
 if(@$_GET['anno']){
 	$anno=$_GET['anno'];
+	$Sgiorno = '01';
+	$Smese =  '01';
+	$Sgiorno = '31';
+	$Smese = '12';
 }else{
 	$anno= date("Y");
+	$Sgiorno = $Egiorno = date("d");
+	$Smese = $Emese =  date("m");
 }
 
 //creo la tabella di "selezione" anno
@@ -18,16 +24,16 @@ $html='<table class="titleTable"">';
 $html.='<tr>';
 $annoprec=$anno-1;
 $html.="<td><a href=?anno=$annoprec>< $annoprec</a></td>";
-$html.="<td>Fatture anno:<br>$anno</td>";
+$html.="<td>Ddt anno:<br>$anno</td>";
 $annosuc=$anno+1;
 $html.="<td><a href=?anno=$annosuc>$annosuc ></a></td>";
 $html.='</tr><table>';
 
-//mostro le fatture 
+//mostro le ddt 
 $test=new MyList(
 	array(
 		'_type'=>'Ddt',
-		'data'=>array('<>','01/01/'.$anno,'31/12/'.$anno),
+		'data'=>array('<>',$Sgiorno.'/'.$Smese.'/'.$anno,$Egiorno.'/'.$Emese.'/'.$anno),
 		//'cod_destinatario'=>array('!=','SGUJI','BELFR','AMATO','CALIM','DANFR','FTESI','GARLE','LAME2','MANTG','ESPOS','AZGI','BENIE','BISSM','BOLLA','BONER','CASAR','CHIE3','CORTE','DICAM','DOROM','FABBR','FACCG','FARED','FARET','FORMA','GAZZO','GIAC1','GIMMI2','GREE5','LEOPA','LORAL','MACER','MAEST','MARTI','MORAN','MUNAR','NOVUS','STEMI','ORTO3','PRIMF','SBIFL','SBIZZ','TARCI','TESI','TIATI','ZAPPO','SEVEN','SMA','ULISS','NIZZ2'),
 		//'cod_causale' => 'D'
 	)
