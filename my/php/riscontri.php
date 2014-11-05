@@ -177,7 +177,7 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','47','847'),
+			'cod_articolo'=>array('=','819','19'),
 			//'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
 			//'cod_cliente'=>array('=','CALIM'),
 			//'cod_cliente'=>array('=','BEFER','BELFR'),

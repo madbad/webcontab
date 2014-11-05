@@ -78,24 +78,46 @@ if (@$_GET['mode']=='print'){
 
 //==============================================================================================================================
 
+$clienti = new MyList(
+	array(
+		'_type'=>'ClienteFornitore',
+		'codice'=>array('<>',''),
+		//'tipo'=>array('<>',''),
+		//'cod_banca'=>array('!=','01','02','09','10'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
+	)
+);
+
+
 $dbClienti=getDbClienti();
+/*
 $clientiSelez[]='=';
 foreach ($dbClienti as $cliente){
 	if ($cliente['__classificazione']!='mercato' && $cliente['__classificazione']!='supermercato'){
 		$clientiSelez[]= $cliente['codice'];
 	}
 }
+*/
 
-
+/*
 $clienti=new MyList(
 	array(
 		'_type'=>'ClienteFornitore',
 		'codice'=>$clientiSelez
 	)
 );
-
+*/
 
 $clienti->iterate(function($cliente){
+global $dbClienti;
+	$clientedb = $dbClienti[$cliente->codice->getVal()];
+	if ($clientedb['__classificazione']!='mercato' && $clientedb['__classificazione']!='supermercato'){
+		//do nothing
+		echo '<BR>ok: '.$clientedb['__classificazione'].'<BR>'; 
+	}else{
+		echo '<BR>DO NOT DO IT: '.$clientedb['__classificazione'].'<BR>'; 
+		return;
+	}
+
 
 	global $startDateR;
 	global $endDateR;
