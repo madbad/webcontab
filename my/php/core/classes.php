@@ -1624,21 +1624,21 @@ $test=new MyList(
 				if (is_array($value) && is_array($tOperator)){
 					foreach ($value as $tKey => $tVal){
 						$operator[]=$tOperator[$tKey];
-						$newVal[]=$value[$tKey];	
-						$newKey[]=$key;						
+						$newVal[]=$value[$tKey];
+						$newKey[]=$key;
 					}
 				//altrimenti si ho un array di valori ma un solo operatore allora presumo che l'operatore sia lo stesso per tutti i valori
 				}else if (is_array($value) && !is_array($tOperator)){
 					foreach ($value as $tVal){
 						$operator[]=$tOperator;
 						$newVal[]=$tVal;
-						$newKey[]=$key;								
+						$newKey[]=$key;
 					}
 				}else{
 				//se innfino ho un solo valore e un solo operatore allora è tutto semplice 
 					$operator[]=$tOperator;
 					$newVal[]=$value;
-					$newKey[]=$key;							
+					$newKey[]=$key;
 				}
 			}
 		}
@@ -1648,7 +1648,7 @@ $test=new MyList(
 				$val=$fakeObj->$newKey[$h]->setVal($newVal[$h]);
 				//echo $operator;
 				$condition[$newKey[$h]][$operator[$h]][]=$val;
-		}			
+		}
 
 
 		$where='WHERE ';

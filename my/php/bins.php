@@ -77,18 +77,61 @@ if (@$_GET['mode']=='print'){
 
 
 //==============================================================================================================================
+//selezioni i ddt emessi nel periodo selezionato
+$elencoddt = new MyList(
+	array(
+		'_type'=>'Ddt',
+		'data'=>array('<>',$startDateR,$endDateR),
+		'_select'=>'cod_destinatario'
+	)
+);
+$clientiSelezionati = array();
+$clientiScartati;
+$dbClienti=getDbClienti();
+
+//ricavo dall'elenco dei ddt i codici clienti (escludendo i mercati e supermercati)
+$elencoddt->iterate(function($ddt){
+	global $clientiSelezionati;
+	global $clientiScartati;
+	global $dbClienti;
+	$codcliente=$ddt->cod_destinatario->getVal();
+	
+	$clientedb = $dbClienti[$codcliente];
+	
+	if ($clientedb['__classificazione']!='mercato' && $clientedb['__classificazione']!='supermercato'){
+		//se non è ne mercato ne supermercato lo seleziono
+		//echo '<BR>ok: '.$clientedb['__classificazione'].'<BR>'; 
+			$clientiSelezionati[$codcliente]=$codcliente;
+	}else{
+		//altrimenti no
+		//echo '<BR>DO NOT DO IT: '.$clientedb['__classificazione'].'<BR>'; 
+		$clientiScartati.='<br>'.$codcliente.' ('.$clientedb['__classificazione'].')';
+		return;
+	}
+	
+	//global dbClienti;
+
+
+});
+echo '<br>Clienti Scartati:<br>'.$clientiScartati;
+echo '<br>Clienti slezionati:';
+echo print_r($clientiSelezionati);
+
 
 $clienti = new MyList(
 	array(
 		'_type'=>'ClienteFornitore',
-		'codice'=>array('<>',''),
+		//'codice'=>array('<>',''),
+		'codice'=>$clientiSelezionati,
+		//'_select'=>'codice'
 		//'tipo'=>array('<>',''),
-		//'cod_banca'=>array('!=','01','02','09','10'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
+		//'cod_banca'=>array('!=','01','02','09','10'),//ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI
 	)
 );
 
+//print_r($clienti);
 
-$dbClienti=getDbClienti();
+
 /*
 $clientiSelez[]='=';
 foreach ($dbClienti as $cliente){
@@ -109,6 +152,7 @@ $clienti=new MyList(
 
 $clienti->iterate(function($cliente){
 global $dbClienti;
+/*
 	$clientedb = $dbClienti[$cliente->codice->getVal()];
 	if ($clientedb['__classificazione']!='mercato' && $clientedb['__classificazione']!='supermercato'){
 		//do nothing
@@ -117,7 +161,7 @@ global $dbClienti;
 		echo '<BR>DO NOT DO IT: '.$clientedb['__classificazione'].'<BR>'; 
 		return;
 	}
-
+*/
 
 	global $startDateR;
 	global $endDateR;
