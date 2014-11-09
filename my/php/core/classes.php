@@ -599,7 +599,9 @@ class Proprietà extends DefaultClass {
 	public function setVal($newVal){
 		//prima di impostare il valore eseguo dei controlli per verificare che sia corretto e delle trasformazioni se necessarie
 		if($this->nome[0]!='_'){
+
 			$type=$this->getDataType();
+
 			//se il campo è un numero di bolla o di fattura
 			//riempio di spazi da sinistra verso destra prima del numero fino ad arrivare 
 			//al numero di caratteri richiesto dal campo del database
@@ -609,7 +611,7 @@ class Proprietà extends DefaultClass {
 		
 			//se la data ha il formato aaaa/mm/gg la trasformo in mm-gg-aaaa
 			//come richiesto dal database
-			if($type['type']=='Date' && preg_match('/....-..-../',$newVal)){
+			else if($type['type']=='Date' && preg_match('/....-..-../',$newVal)){
 				$arr=explode("-", $newVal);
 										//mese   //giorno //anno
 				$newVal=mktime(0, 0, 0, $arr[1], $arr[2], $arr[0]);
@@ -618,14 +620,14 @@ class Proprietà extends DefaultClass {
 			
 			//se la data ha il formato gg/mm/aaaa la trasformo in mm-gg-aaaa
 			//come richiesto dal database
-			if($type['type']=='Date' && preg_match('/.*\/.*\/.*/',$newVal)){
 
+			else if($type['type']=='Date' && preg_match('/.*\/.*\/.*/',$newVal)){
 				$arr=explode("/", $newVal);
 										//mese   //giorno //anno
 				$newVal=mktime(0, 0, 0, $arr[1], $arr[0], $arr[2]);
 				$newVal=date ( 'm-d-Y' , $newVal);
 			}
-			if($type['type']=='Memo'){
+			else if($type['type']=='Memo'){
 				//tolgo un carattere strano che compare alcune volte nei campi di tipo Memo
 				$newVal=str_replace("ì","",$newVal);
 			}
