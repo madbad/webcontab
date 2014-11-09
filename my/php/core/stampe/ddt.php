@@ -17,6 +17,8 @@ TODO:
 
 function addIntestazioneDdt ($pdf){
 	$html= '<img src="'.realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/img/ddt.svg" height="1040">';
+//	$html= '<img src="'.realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/img/ddt.png" height="1040">';
+
 	$pdf->writeHTMLCell($w=0, $h=0, $x='0', $y='0', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 }
