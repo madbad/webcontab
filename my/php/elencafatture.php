@@ -26,6 +26,7 @@ $test=new MyList(
 	array(
 		'_type'=>'Fattura',
 		'data'=>array('<>','01/01/'.$anno,'31/12/'.$anno),
+		//'_select'=>'numero,data,cod_cliente,tipo' //this was a try to optimize the select statement but gives no performance increase... It is even a little bit slower
 		//'cod_cliente'=>'SEVEN'
 	)
 );
@@ -56,6 +57,7 @@ $dbClienti->iterate(function($myCliente){
 });
 
 //stampo la lista delle fatture
+
 $test->iterate(function($obj){
 	global $html;
 	global $dbClientiWithIndex;
@@ -101,5 +103,6 @@ $test->iterate(function($obj){
 //	$html.= '<td><a href=""><img src="./img/email.svg" alt="Invia PEC" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/ok.svg" alt="Stato: OK" width="30px"></a></td>';
 });
+
 $html.='</table>';
 echo $html;
