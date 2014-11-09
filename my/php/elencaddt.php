@@ -11,41 +11,84 @@ if(@$_GET['anno']){
 	$anno=$_GET['anno'];
 	$Sgiorno = '01';
 	$Smese =  '01';
-	$Sgiorno = '31';
-	$Smese = '12';
+	$Egiorno = '31';
+	$Emese = '12';
+	$Sdate=$Sgiorno.'/'.$Smese.'/'.$anno;
+	$Edate=$Egiorno.'/'.$Emese.'/'.$anno;
 }else{
-	$anno= date("Y");
-	$Sgiorno = $Egiorno = date("d");
-	$Smese = $Emese =  date("m");
+	if($_GET['date']){
+		$temp=$_GET['date'];
+		$anno=explode("/",$temp);
+		$anno=$anno[2];
+		$Sdate = $Edate = $_GET['date'];	
+		//echo $anno;
+		//echo $Sdate;
+	}else{
+		$anno=date('Y');
+		$Sdate = $Edate = date('d/m/Y');
+	}
+	$fixedDate= str_replace('/','-',$Sdate);
+	$prevDate =date('d/m/Y', strtotime($fixedDate .' -1 day'));
+	$nextDate = date('d/m/Y', strtotime($fixedDate .' +1 day'));
 }
 
-//creo la tabella di "selezione" anno
+//creo la tabella di "selezione" anno e/o giorno
 $html='<table class="titleTable"">';
 $html.='<tr>';
 $annoprec=$anno-1;
-$html.="<td><a href=?anno=$annoprec>< $annoprec</a></td>";
-$html.="<td>Ddt anno:<br>$anno</td>";
+$html.="<td><a href=?anno=$annoprec>< $annoprec</a>";
+$html.="<br><a href=?date=$prevDate><$prevDate </a></td>";
+$html.="</td>";
+$html.="<td>Ddt anno:<br><a href=?anno=$anno>$anno</a><br>$Sdate</td>";
 $annosuc=$anno+1;
-$html.="<td><a href=?anno=$annosuc>$annosuc ></a></td>";
+$html.="<td><a href=?anno=$annosuc>$annosuc ></a>";
+$html.="<br><a href=?date=$nextDate>$nextDate> </a></td>";
 $html.='</tr><table>';
 
 //mostro le ddt 
 $test=new MyList(
 	array(
 		'_type'=>'Ddt',
-		'data'=>array('<>',$Sgiorno.'/'.$Smese.'/'.$anno,$Egiorno.'/'.$Emese.'/'.$anno),
+		'data'=>array('<>',$Sdate, $Edate),
 		//'cod_destinatario'=>array('!=','SGUJI','BELFR','AMATO','CALIM','DANFR','FTESI','GARLE','LAME2','MANTG','ESPOS','AZGI','BENIE','BISSM','BOLLA','BONER','CASAR','CHIE3','CORTE','DICAM','DOROM','FABBR','FACCG','FARED','FARET','FORMA','GAZZO','GIAC1','GIMMI2','GREE5','LEOPA','LORAL','MACER','MAEST','MARTI','MORAN','MUNAR','NOVUS','STEMI','ORTO3','PRIMF','SBIFL','SBIZZ','TARCI','TESI','TIATI','ZAPPO','SEVEN','SMA','ULISS','NIZZ2'),
 		//'cod_causale' => 'D'
 	)
 );
 
-$elenco=array();
+//ottengo una lista dei codici clienti 
+//(mi serve per creare una cache degli oggetti cliente in modo da non dover fare poi una query per ogni singolo oggetto cliente)
+$codiciCliente =array('=');
+$test->iterate(function($obj){
+	global $codiciCliente;
+	$codiceCliente=$obj->cod_destinatario->getVal();
+	$codiciCliente[$codiceCliente]= $codiceCliente;
+});
+
+//ricavo dalla lista precedente gli "oggetti" cliente
+$dbClienti=new MyList(
+	array(
+		'_type'=>'ClienteFornitore',
+		'codice'=>$codiciCliente,
+	)
+);
+
+//creo un nuovo array che ha per "indice" il codice cliente in modo da rendere più semplice ritrovare "l'oggetto" cliente
+$dbClientiWithIndex = array();
+$dbClienti->iterate(function($myCliente){
+	global $dbClientiWithIndex;
+	$codcliente = $myCliente->codice->getVal();
+	$dbClientiWithIndex[$codcliente]= $myCliente;
+});
+
+
 $test->iterate(function($obj){
 	global $html;
+	global $dbClientiWithIndex;
+	
 	$cod_causale=$obj->cod_causale->getVal();
 	$html.= "<tr class='$cod_causale'>";
 
-	$cliente=$obj->cod_destinatario->extend();
+	$cliente = $dbClientiWithIndex[$obj->cod_destinatario->getVal()];
 	
 	$html.= '<td>'.$obj->cod_causale->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
@@ -84,22 +127,6 @@ $test->iterate(function($obj){
 //	$html.= '<td><a href=""><img src="./img/pdf.svg" alt="Visualizza PDF" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/email.svg" alt="Invia PEC" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/ok.svg" alt="Stato: OK" width="30px"></a></td>';
-
-	
-/****************************/
-
-$params=array(
-	'numero' => $obj->numero->getVal(),
-	'data'   => $obj->data->getVal(),
-	'cod_causale'  => $obj->cod_causale->getVal()
-);
-
-/*
-	global $elenco;
-	$cliente=$obj->cod_cliente->extend()->ragionesociale->getVal();
-	$elenco[$cliente]='*'.$obj->cod_cliente->getVal().'*'.$obj->cod_cliente->extend()->p_iva->getVal().' <br>';
-	//array_push($elenco,$obj->cod_cliente->extend()->ragionesociale->getVal());
-*/
 });
 $html.='</table>';
 echo $html;
