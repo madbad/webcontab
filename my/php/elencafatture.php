@@ -21,7 +21,7 @@ $annosuc=$anno+1;
 $html.="<td><a href=?anno=$annosuc>$annosuc ></a></td>";
 $html.='</tr><table class="spacedTable, borderTable">';
 
-//mostro le fatture 
+//ottengo la lista fatture
 $test=new MyList(
 	array(
 		'_type'=>'Fattura',
@@ -30,13 +30,39 @@ $test=new MyList(
 	)
 );
 
-$elenco=array();
+//ottengo una lista dei codici clienti 
+//(mi serve per creare una cache degli oggetti cliente in modo da non dover fare poi una query per ogni singolo oggetto cliente)
+$codiciCliente =array('=');
+$test->iterate(function($obj){
+	global $codiciCliente;
+	$codiceCliente=$obj->cod_cliente->getVal();
+	$codiciCliente[$codiceCliente]= $codiceCliente;
+});
+
+//ricavo dalla lista precedente gli "oggetti" cliente
+$dbClienti=new MyList(
+	array(
+		'_type'=>'ClienteFornitore',
+		'codice'=>$codiciCliente,
+	)
+);
+
+//creo un nuovo array che ha per "indice" il codice cliente in modo da rendere più semplice ritrovare "l'oggetto" cliente
+$dbClientiWithIndex = array();
+$dbClienti->iterate(function($myCliente){
+	global $dbClientiWithIndex;
+	$codcliente = $myCliente->codice->getVal();
+	$dbClientiWithIndex[$codcliente]= $myCliente;
+});
+
+//stampo la lista delle fatture
 $test->iterate(function($obj){
 	global $html;
+	global $dbClientiWithIndex;
 	$tipo=$obj->tipo->getVal();
 	$html.= "<tr class='$tipo'>";
 
-	$cliente=$obj->cod_cliente->extend();
+	$cliente = $dbClientiWithIndex[$obj->cod_cliente->getVal()];
 	
 	$html.= '<td>'.$obj->tipo->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
@@ -67,31 +93,13 @@ $test->iterate(function($obj){
 		}	
 	}
 
-
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
-	
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/pdf.svg" alt="Visualizza PDF" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/email.svg" alt="Invia PEC" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/ok.svg" alt="Stato: OK" width="30px"></a></td>';
-
-	
-/****************************/
-
-$params=array(
-	'numero' => $obj->numero->getVal(),
-	'data'   => $obj->data->getVal(),
-	'tipo'  => $obj->tipo->getVal()
-);
-
-/*
-	global $elenco;
-	$cliente=$obj->cod_cliente->extend()->ragionesociale->getVal();
-	$elenco[$cliente]='*'.$obj->cod_cliente->getVal().'*'.$obj->cod_cliente->extend()->p_iva->getVal().' <br>';
-	//array_push($elenco,$obj->cod_cliente->extend()->ragionesociale->getVal());
-*/
 });
 $html.='</table>';
 echo $html;
