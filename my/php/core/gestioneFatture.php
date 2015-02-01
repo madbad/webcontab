@@ -22,7 +22,7 @@ switch ($_GET["do"]){
 		$myFt->stampa();
 		//memorizzo la data di stampa
 		$myFt->__datastampa->setVal(date("d/m/Y"));
-		$myFt->saveSqlDbData();		
+		$myFt->saveSqlDbData();
 		break;	
 }
 ?>

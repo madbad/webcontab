@@ -39,10 +39,13 @@ if (@$_GET['mode']=='print'){
 		echo '<tr '.$color.'> ';
 		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
 		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
+//		echo '<td>'.$obj->cod_cliente->getVal().' # '.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
 		echo '<td>'.$obj->cod_cliente->getVal().'</td>';
 		echo '<td>'.$obj->colli->getFormatted(0).'</td>';
+		if($obj->peso_lordo->getVal() != $obj->peso_netto->getVal()){$warningPeso='<span style="color:orange"><b>*****</b></span>';}else{$warningPeso='';};
 		echo '<td>'.$obj->peso_lordo->getFormatted(2).'</td>';
-		echo '<td>'.$obj->peso_netto->getFormatted(2).'</td>';
+		echo '<td>'.$obj->peso_netto->getFormatted(2).$warningPeso.'</td>';
+
 		echo '<td>'.$obj->prezzo->getFormatted(3).'</td>';
 		$number = number_format($obj->getPrezzoLordo(),3,$separatoreDecimali=',',$separatoreMigliaia='.');
 		echo '<td>'.$number.'</td>';
@@ -78,7 +81,7 @@ if (@$_GET['mode']=='print'){
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
-/*
+
 //martinelli
 	echo '<h1>Martinelli</h1>';
 	$test=new MyList(
@@ -153,15 +156,18 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
 
 //==============================================================================================================================
 /*
 19 CAPPUCCI
 36 SEDANO
+37 CATALOGNA
 20 VERZE
 21 CAVOLFIORI
+39 LATTUGA
 40 GENTILE
+41 GENTILE ROSSA
 42 PORRI
 43 CIPOLLOTTI
 45 BIANCO
@@ -172,16 +178,16 @@ if (@$_GET['mode']=='print'){
 52 CETRIOLI
 60 PEPERONE
 */
-
+/*
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','819','19'),
+			'cod_articolo'=>array('=','819'),
 			//'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
 			//'cod_cliente'=>array('=','CALIM'),
 			//'cod_cliente'=>array('=','BEFER','BELFR'),
-			'cod_cliente'=>array('=','SEVEN'),
+			//'cod_cliente'=>array('!=','SEVEN','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//'prezzo'=>array('!=','0.001')
 		)
@@ -193,7 +199,7 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 //==============================================================================================================================
 /*
 //SOLO TUTTI I MERCATI

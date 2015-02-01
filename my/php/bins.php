@@ -113,9 +113,9 @@ $elencoddt->iterate(function($ddt){
 
 
 });
-echo '<br>Clienti Scartati:<br>'.$clientiScartati;
-echo '<br>Clienti slezionati:';
-echo print_r($clientiSelezionati);
+//echo '<br>Clienti Scartati:<br>'.$clientiScartati;
+//echo '<br>Clienti slezionati:';
+//echo print_r($clientiSelezionati);
 
 
 $clienti = new MyList(
