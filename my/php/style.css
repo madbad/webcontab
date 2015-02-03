@@ -140,3 +140,67 @@ form label{
 .smallFontTable, .smallFontTable tr, .smallFontTable th, .smallFontTable td{
 	font-size:0.95em;
 }
+
+
+
+/*###### SPINNER #####*/
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}
+ 
+@-webkit-keyframes spinner {
+    to {-webkit-transform: rotate(360deg);}
+}
+ 
+.spinner {
+    min-width: 24px;
+    min-height: 24px;
+}
+ 
+.spinner:before {
+    content: 'Loading…';
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    width: 16px;
+    height: 16px;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+ 
+.spinner:not(:required):before {
+    content: '';
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, .3);
+    border-top-color: rgba(0, 0, 0, .6);
+    animation: spinner .6s linear infinite;
+    -webkit-animation: spinner .6s linear infinite;
+}
+#infobox {
+    padding: 0.5em;
+    padding-left: 2em;
+    position: fixed;
+    background-color: rgba(156, 188, 203, 1);
+    opacity: 0.9;
+    border-radius: 0.5em;
+    border-color: #216EB1;
+    border: 2px solid rgba(6, 94, 150, 1);
+
+}
+.hidden{
+	display: none;
+	visibility: hidden;
+}
+
+.fixedTopBar{
+width:100%;
+position:fixed;
+background:grey;
+border-bottom:2px solid black;
+padding:0.5em;
+margin:-1em;
+}
+.fixedTopBar button{
+font-size:1.5em;
+
+}

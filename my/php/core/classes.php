@@ -14,14 +14,14 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]).'//webContab/my/php/libs/phpmai
 $DataTypeInfo=array();//contiene i paramatri del database per ogni campo del database stesso
 page_start();
 /*
-$log->log('Plain MessagePHP');     // or FB::
-$log->info('Info MessagePHP');     // or FB::
-$log->warn('Warn MessagePHP');     // or FB::
-$log->error('Error MessagePHP');   // or FB::
+//$log->log('Plain MessagePHP');     // or FB::
+//$log->info('Info MessagePHP');     // or FB::
+//$log->warn('Warn MessagePHP');     // or FB::
+//$log->error('Error MessagePHP');   // or FB::
  
-$log->log('Message','Optional Label');
+//$log->log('Message','Optional Label');
  
-$log->fb('Message', FirePHP::*);
+//$log->fb('Message', FirePHP::*);
 */
 
 class execStats {
@@ -104,7 +104,7 @@ function dbFrom($dbName, $toSelect, $operators){
 		//uso il risultato della cache
 		$records=$cache[$query];
 		$statsQrueyCached++;
-//$log->info($query.' ***** [CACHED]');
+////$log->info($query.' ***** [CACHED]');
 	}else{
 		//query execution
 		$result = odbc_exec($odbc, $query) or die (odbc_errormsg().'<br><br>La query da eseguire era:<br>'.$query);
@@ -125,7 +125,7 @@ function dbFrom($dbName, $toSelect, $operators){
 				$DataTypeInfo[$tableName][$fieldName]['scale']=odbc_field_scale($result,$i); //bho - vuoto?
 				$DataTypeInfo[$tableName][$fieldName]['precision']=odbc_field_precision($result,$i); //bho - vuoto?
 				//$DataTypeInfo['bho']=odbc_result_all(odbc_gettypeinfo($odbc));
-				//$log->info($DataTypeInfo);
+				////$log->info($DataTypeInfo);
 			}
 			//print_r($DataTypeInfo);
 		}
@@ -139,7 +139,7 @@ function dbFrom($dbName, $toSelect, $operators){
 		$cache[$query]=$records;
 
 		$thisqueryStats->stop();
-		$log->info($query.' ***** '.$thisqueryStats->printStats());
+		//$log->info($query.' ***** '.$thisqueryStats->printStats());
 	}
 
 	
@@ -309,7 +309,7 @@ class MyClass extends DefaultClass{
 		if(!isset($this->_params['_autoExtend'])){$this->_params['_autoExtend']=1;}
 		switch ($this->_params['_autoExtend']) {
 			case -1://-1= non fare niente.
-				$log->warn("Oggetto dichiarato NON estensibile!");
+				//$log->warn("Oggetto dichiarato NON estensibile!");
 				break;
 			case 'intestazione'://-1= recupera solo l'intestazione
 				$this->getDataFromDb();
@@ -895,6 +895,7 @@ class Fattura extends MyClass{
 			$mail->Password   = $pec->Password;
 			//$mail->AddAddress($cliente->ragionesociale->getVal(), $cliente->pec->getVal()); //destinatario
 			$mail->AddAddress($cliente->__pec->getVal(), $cliente->ragionesociale->getVal()); //destinatario
+			
 			//mi faccio mandare la ricevuta di lettura
 			$mail->ConfirmReadingTo=$pec->ReplyTo->Mail;
 			$mail->SetFrom($pec->From->Mail, $pec->From->Name);
@@ -914,25 +915,28 @@ class Fattura extends MyClass{
 			//var_dump($mail);
 			
 			if($mail->Send()){
-				$html= '<h2 style="color:green">Messaggio Inviato</h2>';
-				$html.= '<br>Il messaggio con oggetto: ';
-				$html.= '<b>'.$mail->Subject.'</b>';
-				$html.='<br>E\' stato inviato a: <b>'.$cliente->ragionesociale->getVal().'</b>';
-				$html.='<br>all\'indirizzo: <b>'.$cliente->__pec->getVal().'</b>';
-				$html.='<br>con allegato il file: <b>'.$this->getPdfFileUrl().'</b>';
+			//	$html= '<h2 style="color:green">Messaggio Inviato</h2>';
+			//	$html.= '<br>Il messaggio con oggetto: ';
+			//	$html.= '<b>'.$mail->Subject.'</b>';
+			//	$html.='<br>E\' stato inviato a: <b>'.$cliente->ragionesociale->getVal().'</b>';
+			//	$html.='<br>all\'indirizzo: <b>'.$cliente->__pec->getVal().'</b>';
+			//	$html.='<br>con allegato il file: <b>'.$this->getPdfFileUrl().'</b>';
 				
 				//memorizzo la data di invio
 				$this->__datainviopec->setVal(date("d/m/Y"));
 				$this->saveSqlDbData();
 				//mostro il messaggio di avvenuto invio
-				echo $html;
-				var_dump($message);
+			//	echo $html;
+			//	var_dump($message);
+				//all seems ok
+				return true;
 			}
 		} catch (phpmailerException $e) {
 			echo $e->errorMessage(); //Pretty error messages from PHPMailer
 		} catch (Exception $e) {
 			echo $e->getMessage(); //Boring error messages from anything else!
 		}
+		return false;
 	}
 	public function getScadenzaPagamento(){
 		$dataFt=$this->data->getVal();
@@ -1786,29 +1790,33 @@ $test=new MyList(
 }
 
 function page_start(){
+
 	//zipped content
 	//ob_start('ob_gzhandler');
 	//normal content
-	ob_start();
+//	ob_start();
 	global $log, $queryStats, $pageStats, $cache, $statsQrueyCached, $statsQrueyExecuted, $out;
-	$log = FirePHP::getInstance(true);
+	//$log = FirePHP::getInstance(true);
 	$queryStats= new execStats('query');
 	$pageStats= new execStats('page');
 	$pageStats->start();
 	$cache=array();
 	$statsQrueyCached=0;
 	$statsQrueyExecuted=0;
+
 }
 function page_end(){
+
 	global $log, $queryStats, $pageStats, $cache, $statsQrueyCached, $statsQrueyExecuted, $out;
 
-	$log->info($queryStats->printStats());
-	$log->info('Queri Eseguite: '.$statsQrueyExecuted.' | Query Risparmiate (cache): '.$statsQrueyCached);
+	//$log->info($queryStats->printStats());
+	//$log->info('Queri Eseguite: '.$statsQrueyExecuted.' | Query Risparmiate (cache): '.$statsQrueyCached);
 
 	$pageStats->stop();
-	$log->info($pageStats->printStats());
-	ob_flush() ;
-	ob_end_flush ();
+	//$log->info($pageStats->printStats());
+//	ob_flush() ;
+//	ob_end_flush ();
+
 }
 
 function CassaIFCO($nome, $costo, $tara, $cassePerBancale){
