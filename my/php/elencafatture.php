@@ -12,7 +12,7 @@ if(@$_GET['anno']){
 }
 
 //creo la tabella di "selezione" anno
-$html='<table class="titleTable"">';
+$html='<table class="titleTable">';
 $html.='<tr>';
 $annoprec=$anno-1;
 $html.="<td><a href=?anno=$annoprec>< $annoprec</a></td>";
@@ -61,8 +61,16 @@ $dbClienti->iterate(function($myCliente){
 $test->iterate(function($obj){
 	global $html;
 	global $dbClientiWithIndex;
+	
+	$jsonData="{
+		data:".$obj->data->getFormatted().",
+		numero:".$obj->numero->getVal().",
+		tipo:".$obj->tipo->getVal().",
+	}";
+	
+	
 	$tipo=$obj->tipo->getVal();
-	$html.= "<tr class='$tipo'>";
+	$html.= "<tr class='$tipo' jsonData='".$jsonData."'>";
 
 	$cliente = $dbClientiWithIndex[$obj->cod_cliente->getVal()];
 	
