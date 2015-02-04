@@ -15,12 +15,15 @@
 		var confirmMessage='';
 		
 		for (var i = 0; i < fatture.length; ++i) {
+			//console.log(fatture[i].dataset.json);
 			var oFattura = JSON.parse(fatture[i].dataset.json);
+			//console.log(oFattura);
 			confirmMessage += "\n"+oFattura.tipo+" "+oFattura.numero+" del "+oFattura.data+" - "+oFattura.cliente;
 			//confirmMessage+= "\n"+oFattura.tipo;
 			mails[i]= JSON.parse(fatture[i].dataset.json);
+			delete mails[i].cliente; //to prevent trouble with strange chars (& etc..) on json parsing on server side
 		}
-
+		
 		// chiedo conferma prima di proseguire
 		if(!confirm ("Si desidera veramente inviare le seguenti \n"+fatture.length+"\n fatture?\n\n"+confirmMessage)){
 			return;
@@ -31,7 +34,7 @@
 		spinner.classList.add('spinner');
 		infobox.classList.remove('hidden');
 		
-
+		
 		//una stringa json che identifica tutte le fatture da inviare
 		var jsonMails=JSON.stringify(mails);
 		
@@ -71,7 +74,83 @@
 		
 		// function to update the infobox with the server reply
 		function statusUpdate() {
-			console.log('Update');
+			//console.log('Update');
+			serverinfobox.innerHTML = xmlhttp.responseText;
+		}
+		 
+		// Check for new content from the server every 0.5 seconds
+		var interval = setInterval(statusUpdate, 500);
+	}
+	function stampa(){
+		var fatture = document.querySelectorAll("input:checked");
+		var infobox = document.querySelector("#infobox");
+		var localinfobox = document.querySelector("#localinfobox");
+		var serverinfobox = document.querySelector("#serverinfobox");
+		var spinner = document.querySelector("#infobox");
+		var mails=[];
+		var confirmMessage='';
+		
+		for (var i = 0; i < fatture.length; ++i) {
+			//console.log(fatture[i].dataset.json);
+			var oFattura = JSON.parse(fatture[i].dataset.json);
+			//console.log(oFattura);
+			confirmMessage += "\n"+oFattura.tipo+" "+oFattura.numero+" del "+oFattura.data+" - "+oFattura.cliente;
+			
+			//confirmMessage+= "\n"+oFattura.tipo;
+			mails[i]= JSON.parse(fatture[i].dataset.json);
+			delete mails[i].cliente; //to prevent trouble with strange chars (& etc..) on json parsing on server side
+		}
+		
+		// chiedo conferma prima di proseguire
+		if(!confirm ("Si desidera veramente stampare le seguenti \n"+fatture.length+"\n fatture?\n\n"+confirmMessage)){
+			return;
+		}
+		
+		serverinfobox.innerHtml='';
+		localinfobox.innerHTML ='Printing <b>'+fatture.length+'<b> files!';
+		spinner.classList.add('spinner');
+		infobox.classList.remove('hidden');
+		
+		//una stringa json che identifica tutte le fatture da inviare
+		var jsonMails=JSON.stringify(mails);
+		
+		//SEND THE REQUEST TO THE SERVER
+		var xmlhttp;
+		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}else{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		//cosa faccio quando la richiesta è finita?
+		xmlhttp.onreadystatechange=function(){
+			//request finished succefully
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				serverinfobox.innerHTML = xmlhttp.responseText;
+				localinfobox.innerHTML += '<br><B>DONE!!</B>';
+				spinner.classList.remove('spinner');
+				clearInterval(interval);
+				infobox.querySelector("button").classList.remove('hidden');
+				infobox.querySelector("button").onclick=function (){
+					infobox.classList.add('hidden');
+					infobox.querySelector("button").classList.add('hidden');
+					infobox.querySelector("button").onclick=function(){};
+				}
+			}
+			//request still pending but some data is available
+			if(xmlhttp.readyState == 3) {
+				serverinfobox.innerHTML = xmlhttp.responseText;
+			}
+		}
+		
+		//xmlhttp.open("POST","./wait.php",true);
+		xmlhttp.open("POST","./core/gestioneFatture.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("do=stampa&fatture="+jsonMails);
+		
+		// function to update the infobox with the server reply
+		function statusUpdate() {
+			//console.log('Update');
 			serverinfobox.innerHTML = xmlhttp.responseText;
 		}
 		 
@@ -125,7 +204,8 @@
 <button onclick="javascript:selectAll()">Seleziona tutte</button>
 <button onclick="javascript:deselectAll()">Deseleziona tutte</button>
 <button onclick="javascript:selectNotSent()">Seleziona non inviate</button>
-<button onclick="javascript:sendMails()">Invia PEC di tutte le fatture spuntate</button>
+<button onclick="javascript:sendMails()">Invia PEC fatture spuntate</button>
+<button onclick="javascript:stampa()">Stampa fatture spuntate</button>
 </div>
 
 <div id="infobox" class="hidden">
@@ -208,10 +288,13 @@ $test->iterate(function($obj){
 		"data":"'.$obj->data->getFormatted().'",
 		"numero":"'.$obj->numero->getVal().'",
 		"tipo":"'.$tipo.'",
-		"cliente":"'.$cliente->ragionesociale->getVal().'"
+		"cliente":"'.str_replace("'"," ",$cliente->ragionesociale->getVal()).'"
 		}';
-	
-	
+		//in cliente replace ' with a space since is causing troubles in json parsing
+		
+//		"cliente":"'.$cliente->ragionesociale->getVal().'"
+//		"cliente":'.json_encode($cliente->ragionesociale->getVal()).'
+
 	$html.= "<tr class='$tipo'>";
 	
 	if($dataInvioPec){
@@ -245,8 +328,7 @@ $test->iterate(function($obj){
 				$html.= '<td>'.$link.'&do=inviaPec">Invia Mail</a></td>';
 			}else{
 				$html.= '<td>Impossibile inviare la PEC: Manca l\'indirizzo!</td>';
-
-			}			
+			}
 		}
 	//}else{
 		$datastampa=$obj->__datastampa->getVal();
@@ -254,7 +336,7 @@ $test->iterate(function($obj){
 			@$html.= '<td style="background-color:#66ff00;">Stampata il '.$dataInvioPec.$link.'&do=stampaCliente"><br>Ristampa?</a></td>';
 		}else{
 			$html.= '<td>'.$link.'&do=stampaCliente">Stampa copia cliente</a></td>';		
-		}	
+		}
 	//}
 
 	//visulizza
