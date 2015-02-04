@@ -104,9 +104,9 @@
 			target.classList.remove('hidden');
 			//console.log(fatture[i].dataset.pecsent);
 			if(fatture[i].dataset.pecsent=="false"){
-				target.classList.remove('hidden');					
+				target.classList.remove('hidden');
 			}else{
-				target.classList.add('hidden');			
+				target.classList.add('hidden');
 			}
 		}
 	}
