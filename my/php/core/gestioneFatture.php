@@ -92,11 +92,12 @@ print_r($fatture);
 				//exec("lp file.pdf");
 				
 				//windows only
-				$acroreaderexe = '"C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe"';
+				$acroreaderexe = '"C:\Programmi\Adobe\Reader 11.0\Reader\AcroRd32.exe"';
 				$filename = '"'.$myFt->getPdfFileUrl().'"';
-				$printername = '"Hp Lasejet"';
-				$drivername = '"Hp Lasejet"';
-				$portname = '"IP_192.168.10.110"';
+				$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
+				$drivername = '"Hp LaseJet M1530 MFP Series PCL 6"';
+				//$portname = '"IP_192.168.10.110"';
+				$portname = '"HPLaserJetM1536dnfMFP_copy_1"';
 				// acroreader.exe /t <filename> <printername> <drivername> <portname>
 				//"C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe" /t "C:\Folder\File.pdf" "Brother MFC-7820N USB Printer" "Brother MFC-7820N USB Printer" "IP_192.168.10.110"
 				$printCommand = $acroreaderexe.' /t '.$filename.' '.$printername.' '.$drivername.' '.$portname;

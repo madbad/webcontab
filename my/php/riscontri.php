@@ -13,7 +13,7 @@ include ('./core/config.inc.php');
 	</head>
 
 	<body>
-<?php 
+<?php
 $today = date("j/n/Y"); 
 if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$today;}
 if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
@@ -25,7 +25,7 @@ if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 	<label>Start date2</label> <input type="text" name="startDateR" value="<?php echo $startDateR ?>"/>
 	<label>End date2</label> <input type="text" name="endDateR" value="<?php echo $endDateR ?>"/>	
 	<button type="submit">Search</button>
-</form> 
+</form>
 
 <?php
 
@@ -183,11 +183,12 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','19'),
+			//'cod_articolo'=>array('=','850'),
 			//'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
 			//'cod_cliente'=>array('=','CALIM'),
 			//'cod_cliente'=>array('=','BEFER','BELFR'),
-			'cod_cliente'=>array('=','VIOLA'),
+			'cod_cliente'=>array('=','PRIMF'),
+			//'colli'=>array('!=','0'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//'prezzo'=>array('!=','0.001')
 		)
@@ -323,4 +324,49 @@ foreach ($dbClienti as $cliente){
 	page_end();
 }
 ?>
+<table>
+<tr>
+<td>
+<table style="font-size:1.2em;" class="borderTable spacedTable">
+	<tr>
+		<td></td>
+		<td>Colli</td>
+		<td>_Peso_</td>
+	</tr>
+	<tr>
+		<td>Rim.Iniziale</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Entrate</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Uscite</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Rim.Finale</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+</td>
+<td>
+<table style="font-size:1.2em;" class="borderTable spacedTable">
+		<tr><td>Ricavo Lordo</td><td width="100px"></td></tr>
+		<tr><td>cassa</td><td></td></tr>
+		<tr><td>trasporto</td><td></td></tr>
+		<tr><td>provvigione</td><td></td></tr>
+		<tr><td>provvigione</td><td></td></tr>
+		<tr><td>manodopera</td><td></td></tr>
+		<tr><td><b>netto<b></td><td></td></tr>
+		<tr><td>prezzo pagabile</td><td></td></tr>
+</table>
+</td>
+</tr>
+</table>
 </body>
