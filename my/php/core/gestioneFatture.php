@@ -1,7 +1,17 @@
 <?php
 include ('./config.inc.php');
 
-
+function execInBackground($cmd) {
+    if (substr(php_uname(), 0, 7) == "Windows"){
+        //pclose(popen("start /B ". $cmd, "r"));
+        //popen("start /B ". $cmd, "r"); 
+		$shell = new COM("WScript.Shell");
+		$shell->run($command, 0, false);
+    }
+    else {
+        exec($cmd . " > /dev/null &");  
+    }
+} 
 if (@$_GET["do"]){
 	//mi preparo i parametri di ricerca della fattura
 	$params=array(
@@ -69,6 +79,8 @@ if (@$_POST["do"]){
 			}
 			break;
 		case 'stampa':
+		//execInBackground('"C:\Programmi\Adobe\Reader 11.0\Reader\AcroRd32.exe"');
+		exec('start /b "C:\Programmi\Adobe\Reader 11.0\Reader\AcroRd32.exe" "C:\Programmi\EasyPHP-5.3.9\www\webcontab\my\php\core\stampe\myfile.pdf"');
 			//needed to prevent a bug flushing output to the broser
 			header( 'Content-type: text/html; charset=utf-8' );
 echo $_POST["fatture"];
@@ -93,14 +105,15 @@ print_r($fatture);
 				
 				//windows only
 				$acroreaderexe = '"C:\Programmi\Adobe\Reader 11.0\Reader\AcroRd32.exe"';
+				//$acroreaderexe = '"C:\Programmi\Foxit Software\Foxit Reader\FoxitReader.exe"';
 				$filename = '"'.$myFt->getPdfFileUrl().'"';
 				$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
 				$drivername = '"Hp LaseJet M1530 MFP Series PCL 6"';
 				//$portname = '"IP_192.168.10.110"';
 				$portname = '"HPLaserJetM1536dnfMFP_copy_1"';
 				// acroreader.exe /t <filename> <printername> <drivername> <portname>
-				//"C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe" /t "C:\Folder\File.pdf" "Brother MFC-7820N USB Printer" "Brother MFC-7820N USB Printer" "IP_192.168.10.110"
-				$printCommand = $acroreaderexe.' /t '.$filename.' '.$printername.' '.$drivername.' '.$portname;
+				//"C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe" /h /t "C:\Folder\File.pdf" "Brother MFC-7820N USB Printer" "Brother MFC-7820N USB Printer" "IP_192.168.10.110"
+				$printCommand = $acroreaderexe.' /T '.$filename.' '.$printername.' '.$drivername.' '.$portname;
 				echo '<br>'.$printCommand;
 				//flush the output to the browser
 				flush();
