@@ -39,10 +39,14 @@ include ('./core/config.inc.php');
 49 MELANZANE
 50 ZUCCA
 */
-$dataIniziale='10/01/2015';
-$dataFinale='17/01/2015';
-$cliente="BEFER";
+$dataIniziale='15/01/2015';
+$dataFinale='31/01/2015';
+$cliente="BELFR";
 $imponibile=0;
+$colliddt=0;
+$pesoddt=0;
+$colliricavo=0;
+$pesoricavo=0;
 
 $oCliente = new ClienteFornitore(
 			array(
@@ -76,6 +80,10 @@ echo '<br><br>';
 		echo "<td>Prezzo lordo</td>";
 	echo "</tr>";
 	$ddtlist->iterate(function($obj){
+		global $colliddt;
+		global $pesoddt;
+		global $colliricavo;
+		global $pesoricavo;
 		
 		$righe = new MyList(
 			array(
@@ -84,10 +92,22 @@ echo '<br><br>';
 			'ddt_numero'=>$obj->numero->getVal()
 			)
 		);
-		echo "<tr><td colspan='5'><b>DDT ".$obj->numero->getVal()." DEL ".$obj->data->getFormatted()."</b></td></tr>";
+		echo "\n<tr><td colspan='5'><b>DDT ".$obj->numero->getVal()." DEL ".$obj->data->getFormatted()."</b></td></tr>";
+		$colliddt=0;
+		$pesoddt=0;
 		$righe->iterate(function($obj){
 			global $imponibile;
+			global $colliddt;
+			global $pesoddt;
+			
 			$imponibile += $obj->imponibile->getVal();
+			
+			//colcolo totale peso e colli del ddt //escludendo le righe senza colli (albotrans assolve)
+			if($obj->colli->getVal()>0){
+				$colliddt+= $obj->colli->getVal();
+				$pesoddt+= $obj->peso_netto->getVal();
+			}
+			
 			//evito le righe vuote
 			if($obj->peso_netto->getVal()==0){return;}
 			//se manca l'articolo
@@ -96,7 +116,6 @@ echo '<br><br>';
 			}else{
 				$descrizione ='****';
 			}
-
 			$cssRight=" style='text-align:right;' ";
 			echo "<tr>";
 				echo "<td>".$descrizione."</td>";
@@ -108,10 +127,14 @@ echo '<br><br>';
 			//	echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
 			echo "</tr>";
 		});
-		echo "<tr><td colspan='5'></tr>";
+		echo "<tr><td colspan='5'>Colli: $colliddt - Peso:$pesoddt</tr>";
+		$colliricavo+=$colliddt;
+		$pesoricavo+=$pesoddt;
 	});
 	echo "</table>";
-	echo '<b>Totale imponibile: '.number_format($imponibile,2).'</b>';
+	echo "\n<b>Totale imponibile: ".number_format($imponibile,2).'</b>';
+	echo "\n<br>Totale colli: $colliricavo";
+	echo "\n<br>Totale peso: $pesoricavo";
 	page_end();
 
 ?>
