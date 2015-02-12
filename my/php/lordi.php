@@ -39,9 +39,9 @@ include ('./core/config.inc.php');
 49 MELANZANE
 50 ZUCCA
 */
-$dataIniziale='15/01/2015';
-$dataFinale='31/01/2015';
-$cliente="BELFR";
+$dataIniziale='01/01/2015';
+$dataFinale='15/01/2015';
+$cliente="CAPAS";
 $imponibile=0;
 $colliddt=0;
 $pesoddt=0;
@@ -119,11 +119,11 @@ echo '<br><br>';
 			$cssRight=" style='text-align:right;' ";
 			echo "<tr>";
 				echo "<td>".$descrizione."</td>";
-				echo "<td $cssRight>".number_format($obj->colli->getVal(),0)."</td>";
-				echo "<td $cssRight>".number_format($obj->peso_netto->getVal(),1)."</td>";
+				echo "<td $cssRight>".number_format($obj->colli->getVal(),0,',','')."</td>";
+				echo "<td $cssRight>".number_format($obj->peso_netto->getVal(),1,',','')."</td>";
 				//echo "<td $cssRight>".round($obj->getPrezzoNetto(),3)."</td>";
 				echo "<td $cssRight>"."</td>";
-				echo "<td $cssRight>".number_format($obj->getPrezzoLordo(),3)."</td>";
+				echo "<td $cssRight>".number_format($obj->getPrezzoLordo(),3,',','')."</td>";
 			//	echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
 			echo "</tr>";
 		});
