@@ -2,12 +2,12 @@
 include ('./core/config.inc.php');
 //require_once('./classes.php');
 //page_start();
-		
+
 function formatData($data){
 	$newData=explode("-", $data);
 	return $newData[2].'/'.$newData[1];
+}
 
-}		
 //mi memorizzo il database clienti	(dove ho salvato se sono mercati supermercati o altro)	
 $dbClienti=getDbClienti();
 
@@ -45,7 +45,7 @@ $dbClienti=getDbClienti();
 		//while($row = odbc_fetch_array($result)){
 			$codCliente=$row['F_CODCLI'];
 			$tipoCliente=$dbClienti["$codCliente"]['__classificazione'];
-			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato')){
+			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato') /*| $codCliente=='BRUNF'*//*ABILITA UNO SPECIFICO CODICE CLIENTE ANCHE SE NON RIENTRA TRA IL LAVORTO*/){
 
 				$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
 				$netto=$row['F_PESNET']-$calopeso;
