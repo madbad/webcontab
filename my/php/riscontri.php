@@ -184,10 +184,10 @@ if (@$_GET['mode']=='print'){
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			//'cod_articolo'=>array('=','850'),
-			//'cod_articolo'=>array('=','11','911','113','111','8112','112','9112','8111', '8111-', '9111', '9111-'),
-			//'cod_cliente'=>array('=','CALIM'),
+			'cod_articolo'=>array('=','20'),
+			'cod_cliente'=>array('=','VIOLA'),
 			//'cod_cliente'=>array('=','BEFER','BELFR'),
-			'cod_cliente'=>array('=','PRIMF'),
+			//'cod_cliente'=>array('=','PRIMF'),
 			//'colli'=>array('!=','0'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//'prezzo'=>array('!=','0.001')
