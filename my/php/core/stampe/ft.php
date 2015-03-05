@@ -178,7 +178,7 @@ function addDatiFattura ($ft,$pdf){
 		
 		
 		//modifico la banca di appoggio
-		$ft->cod_banca->setVal('02'); //09 cerea banca
+		$ft->cod_banca->setVal('10'); //09 cerea banca
 										//10 popolare di vicenza
 										//01 cassa di risparmio del veneto
 										//02 banco popolare di verona
@@ -246,6 +246,7 @@ function addTotaliFattura($ft, $pdf){
 
 	
 	//il cliente ha lettera di intento? se si stampo la dicitura che la riguarda
+	
 	$cliente=$ft->cod_cliente->extend();
 	if ($cliente->lettera_intento_num->getVal()){
 		$numero=$cliente->lettera_intento_num->getVal();
@@ -254,6 +255,7 @@ function addTotaliFattura($ft, $pdf){
 		$html .='<li><b>Vs.Dichiarazione di intento n. '.$numero.' Registrata al n. '.$numeroInterno.' del '.$data.'</b></li>';
 	
 	}
+	
 	$html .='</ul>';
 
 	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);

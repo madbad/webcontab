@@ -82,6 +82,8 @@ if (@$_GET['mode']=='print'){
 
 //==============================================================================================================================
 /*
+echo '<h1>'.$startDateR.'</h1><hr>';
+
 //martinelli
 	echo '<h1>Martinelli</h1>';
 	$test=new MyList(
@@ -97,22 +99,7 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;
 
-//mercato
-	echo '<h1>Mercato</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','05'),
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA'),
-			//'prezzo'=>array('!=','0.001')
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-
+	
 //ortom
 	echo '<h1>Ortomercato</h1>';
 	$test=new MyList(
@@ -126,15 +113,15 @@ if (@$_GET['mode']=='print'){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
-
-//sma
-	echo '<h1>Sma</h1>';
+	
+//sisa
+	echo '<h1>Sisa</h1>';
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>'705',
+			'cod_articolo'=>'05',
+			'cod_cliente'=>'SISA',
 		)
 	);
 	echo $tabellaH;
@@ -142,6 +129,21 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali($test);
 	echo $tabellaF;
 
+//mercato
+	echo '<h1>Mercato</h1>';
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>array('=','05'),
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA'),
+			//'prezzo'=>array('!=','0.001')
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
 
 //II
 	echo '<h1>Mercato II</h1>';
@@ -183,11 +185,11 @@ if (@$_GET['mode']=='print'){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_articolo'=>array('=','850'),
-			'cod_articolo'=>array('=','20'),
-			'cod_cliente'=>array('=','VIOLA'),
-			//'cod_cliente'=>array('=','BEFER','BELFR'),
-			//'cod_cliente'=>array('=','PRIMF'),
+			'cod_articolo'=>array('=','842'),
+			//'cod_articolo'=>array('=','805'),
+			//'cod_cliente'=>array('!=','VIOLA','MARTI'),
+			'cod_cliente'=>array('=','SEVEN'),
+			//'cod_cliente'=>array('!=','MARTI','VIOLA'),
 			//'colli'=>array('!=','0'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//'prezzo'=>array('!=','0.001')
