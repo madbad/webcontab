@@ -81,7 +81,7 @@ if (@$_GET['mode']=='print'){
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
-/*
+
 echo '<h1>'.$startDateR.'</h1><hr>';
 
 //martinelli
@@ -158,7 +158,7 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
 
 //==============================================================================================================================
 /*
@@ -180,7 +180,7 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 52 CETRIOLI
 60 PEPERONE
 */
-
+/*
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -202,7 +202,7 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 //==============================================================================================================================
 /*
 //SOLO TUTTI I MERCATI

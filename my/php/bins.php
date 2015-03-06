@@ -13,6 +13,7 @@ include ('./core/config.inc.php');
 	</head>
 
 	<body>
+	<h1>Uscite imballaggi</h1>
 <?php 
 $today = date("j/n/Y"); 
 if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$today;}
@@ -175,7 +176,7 @@ global $dbClienti;
 	$sommaCasse=0;
 	$tabellaH='<table class="spacedTable, borderTable">';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>media collo</td><td>Bins</td><td>Casse</td></tr>';
-	$tabellaF='</table><br><br>';
+	$tabellaF='</table><br>';
 
 	$test=new MyList(
 		array(
@@ -189,13 +190,13 @@ global $dbClienti;
 
 	if (count($test->arr)<1){return;}
 	
-	echo '<b>USCITE IMBALLAGGI <br>';
+	echo '<table><tr><td><b>'.$cliente->ragionesociale->getVal();
+	//echo '</td><td>';
+	echo '</b><br>Tel: '.$cliente->telefono->getVal();
+	echo ' ### Fax: '.$cliente->fax->getVal();
+	echo ' ### Cell: '.$cliente->cellulare->getVal();
+	echo '</td></tr></table>';
 
-	echo $cliente->ragionesociale->getVal();
-	echo '</b>';
-	echo '<br>Fax: '.$cliente->fax->getVal();
-	echo '<br>Tel: '.$cliente->telefono->getVal();
-	echo '<br>Cell: '.$cliente->cellulare->getVal();
 	
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
