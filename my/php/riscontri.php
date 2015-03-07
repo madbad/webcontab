@@ -188,10 +188,10 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 			//'cod_articolo'=>array('=','842'),
 			//'cod_articolo'=>array('=','805'),
 			//'cod_cliente'=>array('!=','VIOLA','MARTI'),
-			'cod_cliente'=>array('=','SISA'),
 			//'cod_cliente'=>array('!=','MARTI','VIOLA'),
-			//'colli'=>array('!=','0'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
+			'cod_cliente'=>array('=','SISA'),
+			//'colli'=>array('!=','0'),
 			//'prezzo'=>array('!=','0.001')
 		)
 	);
@@ -269,55 +269,6 @@ foreach ($dbClienti as $cliente){
 	echo '<pre style="font-size:x-small;">';
 	print_r($test->_params);
 	echo '</pre>';
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-*/
-//==============================================================================================================================
-
-/*
-	//CONTROLLO SGUAZZABIA
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','20'),  //20=VERZE   19=CAPUCCI   36=SEDANO
-			'cod_cliente'=>array('=','SGUJI'),
-			//'prezzo'=>array('!=','0.001'),
-		)
-	);	
-*/
-//==============================================================================================================================
-/*
-	//CONTROLLO SGUAZZABIA
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','47', '947'),  //20=VERZE   19=CAPUCCI   36=SEDANO	47=zucchine	43=cipollotti
-			'cod_cliente'=>array('!=','SEVEN'),
-		)
-	);
-*/
-/*
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-*/
-//==============================================================================================================================
-
-/*
-	//CONTROLLO BINS CASTELLO
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','500', '501'),
-			//'cod_cliente'=>array('=','CASTE', 'CAST2'),
-		)
-	);
 	echo $tabellaH;
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
