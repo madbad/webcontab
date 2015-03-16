@@ -13,9 +13,240 @@ TODO:
 - modifica per orario di stampa
 - modifica per causale ** c/commissione
 */
+error_reporting(-1); //0=spento || -1=acceso
+function buildEmptyModule($pdf){
+
+	$style='';
+	$def_font='helvetica';
+	$def_size=8;
+	$def_verde= array(85,190,180);
+	$def_bianco= array(999,999,999);
+	/*##############################
+	  #   RIQUADRI                 #  
+	  ##############################*/
+	//stile della linea dei riquadri
+	$pdf->SetLineStyle(array('width' => 0.2, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def_verde));
+	//RIQUADRO DESTINATARIO
+	$pdf->RoundedRect($x=107, $y=24, $w=72, $h=32.6, 2.0, '1111', 'DF', $style, $def_bianco);
+
+	//RIQUADRO NUMERO DOCUMENTO
+	$pdf->RoundedRect($x=17.5, $y=56.5, $w=22.8, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO DATA DOCUMENTO
+	$pdf->RoundedRect($x=40.3, $y=56.5, $w=28, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO TIPOMERCE
+	$pdf->RoundedRect($x=68.3, $y=56.5, $w=110.7, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+
+	//RIQUADRO CAUSALE DEL TRASPORTO
+	$pdf->RoundedRect($x=17.5, $y=64.5, $w=43.8, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO CAUSALE A MEZZO
+	$pdf->RoundedRect($x=61.3, $y=64.5, $w=43.8, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO INIZIO TRASPORTO
+	$pdf->RoundedRect($x=105.1, $y=64.5, $w=60, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO PAGINA
+	$pdf->RoundedRect($x=165.1, $y=64.5, $w=13.9, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+
+	//RIQUADRO COD.ARTICOLO
+	$pdf->RoundedRect($x=17.5, $y=72.5, $w=18.5, $h=153, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO DESCRIZIONE BENI
+	$pdf->RoundedRect($x=36, $y=72.5, $w=83, $h=153, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO UM
+	$pdf->RoundedRect($x=119, $y=72.5, $w=7, $h=153, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO COLLI
+	$pdf->RoundedRect($x=126, $y=72.5, $w=11, $h=153, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO PESO LORDO
+	$pdf->RoundedRect($x=137, $y=72.5, $w=16.5, $h=153, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO PESO NETTOLORDO
+	$pdf->RoundedRect($x=153.5, $y=72.5, $w=16.5, $h=153, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO TARA
+	$pdf->RoundedRect($x=170, $y=72.5, $w=9, $h=153, 2.0, '1111', 'DF', $style, $def_bianco);
+
+	//RIQUADRO ASPETTO DEI BENI
+	$pdf->RoundedRect($x=17.5, $y=225.5, $w=119.5, $h=7, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO TOT COLLI
+	$pdf->RoundedRect($x=137, $y=225.5, $w=21, $h=7, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO TOT PESO
+	$pdf->RoundedRect($x=158, $y=225.5, $w=21, $h=7, 2.0, '1111', 'DF', $style, $def_bianco);
+	
+	//RIQUADRO FIRMA VETTORE
+	$pdf->RoundedRect($x=17.5, $y=232.5, $w=101.5, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO FIRMA DEL CONDUCENTE
+	$pdf->RoundedRect($x=119, $y=232.5, $w=60, $h=8, 2.0, '1111', 'DF', $style, $def_bianco);
+
+	//RIQUADRO INCARICATO DEL TRASPORTO
+	$pdf->RoundedRect($x=17.5, $y=240.5, $w=101.5, $h=11, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO DATA E ORA DEL RITIRO
+	$pdf->RoundedRect($x=119, $y=240.5, $w=60, $h=11, 2.0, '1111', 'DF', $style, $def_bianco);
+
+	//RIQUADRO ANNOTAZIONI
+	$pdf->RoundedRect($x=17.5, $y=251.5, $w=101.5, $h=11, 2.0, '1111', 'DF', $style, $def_bianco);
+	//RIQUADRO FIRMA DESTINATARIO
+	$pdf->RoundedRect($x=119, $y=251.5, $w=60, $h=11, 2.0, '1111', 'DF', $style, $def_bianco);
+
+	/*##############################
+	  #   SCRITTE RIQUADRI         #  
+	  ##############################*/
+	$def_font='helvetica';
+	$def_size=4.5;
+
+	//
+	$pdf->SetTextColor(109,109,109);
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->Text($x=107, $y=24+0.5, "DESTINATARIO");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=17.5, $y=56.5+0.5, "NUM.DOC.");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=40.3, $y=56.5+0.5, "DATA.DOC.");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=68.3, $y=56.5+0.5, "TIPO MERCE");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=17.5, $y=64.5+0.5, "CAUSALE DEL TRASPORTO");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=61.3, $y=64.5+0.5, "A MEZZO");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=105.1, $y=64.5+0.5, "INIZIO TRASPORTO");
+	//----DIFF---
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=105.1, $y=69.5+0.5, "DATA");
+	//----DIFF---
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=139.1, $y=69.5+0.5, "ORA");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=165.1, $y=64.5+0.5, "PAGINA");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=20, $y=72.5+0.5, "COD.ARTICOLO");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=60, $y=72.5+0.5, "DESCRIZIONE DEI BENI (Natura - Qualita')");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=119.5, $y=72.5+0.5, "U.M.");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=128, $y=72.5+0.5, "COLLI");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=138.8, $y=72.5+0.5, "PESO LORDO");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=155.5, $y=72.5+0.5, "PESO NETTO");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=171.5, $y=72.5+0.5, "TARA");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=17.5, $y=225.5+0.5, "ASPETTO ESTERIORE DEI BENI");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=137, $y=225.5+0.5, "N. COLLI");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=158, $y=225.5+0.5, "PESO");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=17.5, $y=232.5+0.5, "FIRMA DEL VETTORE");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=119, $y=232.5+0.5, "FIRMA DEL CONDUCENTE");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=17.5, $y=240.5+0.5, "INCARICATO DEL TRASPORTO: DITTA, RESIDENZA, O DOMICILIO (Comune, Via, N.)");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=119, $y=240.5+0.5, "DATA E ORA DEL RITIRO");
+	//
+	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=17.5, $y=251.5+0.5, "ANNOTAZIONI - VARIAZIONI");
+	//
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->SetTextColor(85,190,180);
+	$pdf->Text($x=119, $y=251.5+0.5, "FIRMA DEL DESTINATARIO");
+	
+	/*##############################
+	  #   INTESTAZIONE         #  
+	  ##############################*/
+  	$azienda=$GLOBALS['config']->azienda;
+	$html= '<img src="'.$azienda->_logo->getVal().'" width="238" height="90">';
+	$pdf->writeHTMLCell($w=0, $h=0, $x='17.5', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);	  
+	  
+	  
+	$pdf->SetFont($def_font, 'B', $def_size+4);
+	$pdf->SetTextColor(0,0,0);
+	$pdf->Text($x=17.5, $y=33, "DI BRUN G. & G. S.R.L. Unipersonale"); 
+
+	$pdf->SetFont($def_font, '', $def_size+2);
+	$pdf->SetTextColor(0,0,0);
+	$pdf->Text($x=17.5, $y=37, "Via Camagre, 38/B - 37063 ISOLA DELLA SCALA (Verona)");
+	$pdf->Text($x=17.5, $y=40, "Telefono 045 6630397 - Fax 045 7302598");
+	$pdf->Text($x=17.5, $y=43, "Capitale Sociale € 41.600,00 i.v.");
+	$pdf->Text($x=17.5, $y=46, "R.E.A. VR- 185024");
+	$pdf->Text($x=17.5, $y=49, "Reg.Imprese di Verona, Codice Fiscale e Partita IVA 01588530236");
+	$pdf->Text($x=17.5, $y=52, "BNDOO n° 0001691/VR - Indirizzo PEC: lafavorita_srl@pec.it");
+	
+	/*##############################
+	  #   SCRITTE VARIE            #  
+	  ##############################*/
+	// ddt
+	$pdf->SetFont($def_font, 'B', $def_size+3);
+	$pdf->SetTextColor(0,0,0);
+	$pdf->Text($x=110, $y=18, "DOCUMENTO DI TRASPORTO");
+
+	// ddt
+	$pdf->SetFont($def_font, '', $def_size+1.5);
+	$pdf->SetTextColor(109,109,109);
+	$pdf->Text($x=150, $y=19, "(D.P.R. 472 del 18/08/96)");
+	
+	// reclami (sul fondo)
+	$pdf->SetFont($def_font, 'B', $def_size+3);
+	$pdf->SetTextColor(0,0,0);
+	$pdf->Text($x=50, $y=270, "NON SI ACCETTANO RECLAMI DOPO L'USCITA DELLA MERCE DAL MAGAZZINO");
+	
+	// codice (sul lato sinistro
+	$pdf->SetLineStyle(array('width' => 0.2, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def_bianco));
+	$pdf->SetFont($def_font, 'B', $def_size+2);
+	$pdf->StartTransform();
+$pdf->setXY(14,226.5);
+	$pdf->Rotate(90);
+	$pdf->Cell(0,0,'CODICE DI CONVERSIONE ALFA/NUMERICO D.M. 30.03.92: A=1 E=2 G=3 H=4 M=5 P=6 S=7 T=8 K=9 Z=0 ,=,',1,1,'L',0,'');
+	//$pdf->Text($x=100, $y=100, "CODICE DI CONVERSIONE ALFA/NUMERICO D.M. 30.03.92: A=1 E=2 G=3 H=4 M=5 P=6 S=7 T=8 K=9 Z=0 ,=,");
+	$pdf->StopTransform();	
+	
+	$pdf->SetTextColor(0,0,0);
+}
 
 function addIntestazioneDdt ($pdf){
-	$html= '<img src="'.realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/img/ddt.svg" height="1040">';
+//	$html= '<img src="'.realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/img/ddt.svg" height="1040">';
 //	$html= '<img src="'.realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/img/ddt.png" height="1040">';
 
 	$pdf->writeHTMLCell($w=0, $h=0, $x='0', $y='0', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
@@ -117,6 +348,8 @@ function generaPdfDdt($ddt){
 	//   DDT PAGE
 	//-----------------------------------------------------
 	$pdf->AddPage();
+	
+buildEmptyModule($pdf);
 	
 	//immagine di sfondo del DDT inclusa l'intestazione
 	addIntestazioneDdt($pdf);
@@ -276,6 +509,7 @@ function generaPdfDdt($ddt){
 	//inviamo il file pdf
 	//$pdf->Output('DDT_'.$ddt->numero->getVal().'__'.$ddt->data->getVal().'.pdf', 'I');
 	$nomefile=$ddt->getPdfFileName();
+
 	@$pdf->Output($GLOBALS['config']->pdfDir."/ddt/".$nomefile, 'F');	
 }
 ?>
