@@ -93,7 +93,7 @@ $test->iterate(function($obj){
 	$html.= '<td>'.$obj->cod_causale->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
-	$html.= '<td>( '.$obj->cod_destinatario->getVal().' ) '.$cliente->ragionesociale->getVal().'</td>';
+	$html.= '<td>( '.$obj->cod_destinazione->getVal().'**'.$obj->cod_destinatario->getVal().' ) '.$cliente->ragionesociale->getVal().'</td>';
 
 	$link= '<a href="./core/gestioneDdt.php?';
 	$link.= 'numero='.$obj->numero->getVal();

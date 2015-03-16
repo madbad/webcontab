@@ -190,7 +190,8 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 			//'cod_cliente'=>array('!=','VIOLA','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			'cod_cliente'=>array('=','SISA'),
+			'cod_cliente'=>array('=','BELFR'),
+			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
 			//'prezzo'=>array('!=','0.001')
 		)

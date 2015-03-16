@@ -14,7 +14,6 @@ TODO:
 - modifica per causale ** c/commissione
 */
 
-
 function addIntestazioneDdt ($pdf){
 	$html= '<img src="'.realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/img/ddt.svg" height="1040">';
 //	$html= '<img src="'.realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/img/ddt.png" height="1040">';
@@ -78,6 +77,14 @@ function generaPdfDdt($ddt){
 	// create new PDF document
 	$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+	//load some custom fonts
+	//$pdf->addTTFfont(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/fonts/SourceSansPro-Regular.ttf', 'TrueTypeUnicode', '', 32);
+	//$pdf->addTTFfont(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/fonts/ARIALN.TTF', 'TrueTypeUnicode', '', 32);
+	//$pdf->AddFont('arial','',realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/fonts/ARIALN.php');
+	//$pdf->AddFont('ArialNarrowB','B','ARIALNB.php');
+	//$pdf->AddFont('ArialNarrowBI','BI','ARIALNBI.php');
+	//$fontname = TCPDF_FONTS::addTTFfont(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/'.'/fonts/ARIALN.TTF', 'TrueTypeUnicode', '', 96);
+	
 	// set document information
 	$pdf->SetCreator(PDF_CREATOR);
 	$pdf->SetAuthor('La Favorita di Brun G. & G. Srl Unip.');
