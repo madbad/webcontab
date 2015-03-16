@@ -19,7 +19,8 @@ function buildEmptyModule($pdf){
 	$style='';
 	$def_font='helvetica';
 	$def_size=8;
-	$def_verde= array(85,190,180);
+	//$def_verde= array(85,190,180);//SCURO
+	$def_verde= array(168,236,134);//CHIARO
 	$def_bianco= array(999,999,999);
 	/*##############################
 	  #   RIQUADRI                 #  
@@ -94,11 +95,11 @@ function buildEmptyModule($pdf){
 	$pdf->Text($x=107, $y=24+0.5, "DESTINATARIO");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=17.5, $y=56.5+0.5, "NUM.DOC.");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=40.3, $y=56.5+0.5, "DATA.DOC.");
 	//
 	$pdf->SetFont($def_font, '', $def_size);
@@ -130,31 +131,31 @@ function buildEmptyModule($pdf){
 	$pdf->Text($x=165.1, $y=64.5+0.5, "PAGINA");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=20, $y=72.5+0.5, "COD.ARTICOLO");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=60, $y=72.5+0.5, "DESCRIZIONE DEI BENI (Natura - Qualita')");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=119.5, $y=72.5+0.5, "U.M.");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=128, $y=72.5+0.5, "COLLI");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=138.8, $y=72.5+0.5, "PESO LORDO");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=155.5, $y=72.5+0.5, "PESO NETTO");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=171.5, $y=72.5+0.5, "TARA");
 	//
 	$pdf->SetFont($def_font, '', $def_size);
@@ -174,7 +175,7 @@ function buildEmptyModule($pdf){
 	$pdf->Text($x=17.5, $y=232.5+0.5, "FIRMA DEL VETTORE");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=119, $y=232.5+0.5, "FIRMA DEL CONDUCENTE");
 	//
 	$pdf->SetFont($def_font, '', $def_size);
@@ -190,7 +191,7 @@ function buildEmptyModule($pdf){
 	$pdf->Text($x=17.5, $y=251.5+0.5, "ANNOTAZIONI - VARIAZIONI");
 	//
 	$pdf->SetFont($def_font, 'B', $def_size);
-	$pdf->SetTextColor(85,190,180);
+	$pdf->SetTextColor(168,236,134);
 	$pdf->Text($x=119, $y=251.5+0.5, "FIRMA DEL DESTINATARIO");
 	
 	/*##############################
@@ -198,8 +199,11 @@ function buildEmptyModule($pdf){
 	  ##############################*/
   	$azienda=$GLOBALS['config']->azienda;
 	$html= '<img src="'.$azienda->_logo->getVal().'" width="238" height="90">';
-	$pdf->writeHTMLCell($w=0, $h=0, $x='17.5', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);	  
+	$pdf->writeHTMLCell($w=0, $h=0, $x='17.5', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 	  
+	$html= '<img src="'.$azienda->_logobg->getVal().'" width="475" height="227">';
+	$pdf->writeHTMLCell($w=0, $h=0, $x='35', $y='115', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+
 	  
 	$pdf->SetFont($def_font, 'B', $def_size+4);
 	$pdf->SetTextColor(0,0,0);
@@ -236,11 +240,125 @@ function buildEmptyModule($pdf){
 	$pdf->SetLineStyle(array('width' => 0.2, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def_bianco));
 	$pdf->SetFont($def_font, 'B', $def_size+2);
 	$pdf->StartTransform();
-$pdf->setXY(14,226.5);
+	$pdf->setXY(14,226.5);
 	$pdf->Rotate(90);
 	$pdf->Cell(0,0,'CODICE DI CONVERSIONE ALFA/NUMERICO D.M. 30.03.92: A=1 E=2 G=3 H=4 M=5 P=6 S=7 T=8 K=9 Z=0 ,=,',1,1,'L',0,'');
+	$pdf->StopTransform();
 	//$pdf->Text($x=100, $y=100, "CODICE DI CONVERSIONE ALFA/NUMERICO D.M. 30.03.92: A=1 E=2 G=3 H=4 M=5 P=6 S=7 T=8 K=9 Z=0 ,=,");
-	$pdf->StopTransform();	
+	
+	/*##############################
+	  #   TABELLE HACCP            #  
+	  ##############################*/
+	$pdf->SetLineStyle(array('width' => 0.2, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0,0,0)));
+	//
+	$pdf->setXY(105,182);
+	$pdf->Cell ($w=24, $h=5, $txt='LA FAVORITA', $border=1, $ln=0, $align='C', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=FALSE, $calign='T', $valign='M');
+	//
+	$pdf->setXY(129,182);
+	$pdf->Cell ($w=50, $h=5, $txt='TIMBRO CONTROLLO AZIEDALE', $border=1, $ln=0, $align='C', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//
+	$pdf->setXY(105,187);
+	$pdf->Cell ($w=48.5, $h=5, $txt='CONTROLLO', $border=1, $ln=0, $align='C', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//
+	$pdf->setXY(153.5,187);
+	$pdf->Cell ($w=12.75, $h=2, $txt='ESITO', $border=1, $ln=0, $align='C', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->SetFont($def_font, 'B', $def_size);
+	$pdf->setXY(153.5,190);
+	$pdf->Cell ($w=6.375, $h=2.3, $txt='SI', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+
+	$pdf->setXY(159.875,190);
+	$pdf->Cell ($w=6.375, $h=2.3, $txt='NO', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->SetFont($def_font, 'B', $def_size+3);
+	//
+	$pdf->setXY(166.25,187);
+	$pdf->Cell ($w=12.75, $h=5, $txt='FIRMA', $border=1, $ln=0, $align='C', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//
+	$pdf->setXY(105,192);
+	$pdf->Cell ($w=48.5, $h=3, $txt='MERCE CONFORME AL\'ORDINE', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+
+	//--------------------------------
+	$pdf->setXY(105,195);
+	$pdf->Cell ($w=48.5, $h=3, $txt='IMBALLAGGIO INTEGRO', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//
+	$pdf->setXY(105,198);
+	$pdf->Cell ($w=48.5, $h=3, $txt='ETICHETTATURA CORRETTA', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//
+	$pdf->setXY(105,201);
+	$pdf->Cell ($w=48.5, $h=3, $txt='LOTTO CORRETTO', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//
+	$pdf->setXY(105,204);
+	$pdf->Cell ($w=48.5, $h=6, $txt="TEMPERATURA PRODOTTO", $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->Text($x=105, $y=207, "(ove applicabile)");
+	//
+	$pdf->setXY(105,210);
+	$pdf->Cell ($w=48.5, $h=3, $txt='PULIZIA DELL\'AUTOMEZZO', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//
+	$pdf->setXY(105,213);
+	$pdf->Cell ($w=48.5, $h=6, $txt='TEMPERATURA DELL\'AUTOMEZZO', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->Text($x=105, $y=216, "(ove applicabile)");
+	//
+	$pdf->setXY(105,219);
+	$pdf->Cell ($w=48.5, $h=3, $txt='MERCE', $border=1, $ln=0, $align='C', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	
+	$pdf->SetFont($def_font, 'B', $def_size+1);
+	//
+	$pdf->setXY(105,222);
+	$pdf->Cell ($w=24.25, $h=3.5, $txt='Liberalizzata (      )', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//
+	$pdf->setXY(129.25,222);
+	$pdf->Cell ($w=24.25, $h=3.5, $txt='In attesa di sblocco (      )', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	
+	
+	//si-no
+	$pdf->setXY(153.5,192);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(159.975,192);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(166.35,192);
+	$pdf->Cell ($w=12.75, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//si-no
+	$pdf->setXY(153.5,195);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(159.975,195);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(166.35,195);
+	$pdf->Cell ($w=12.75, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//si-no
+	$pdf->setXY(153.5,198);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(159.975,198);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(166.35,198);
+	$pdf->Cell ($w=12.75, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//si-no
+	$pdf->setXY(153.5,201);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(159.975,201);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(166.35,201);
+	$pdf->Cell ($w=12.75, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->SetFont($def_font, 'B', $def_size+3);
+	//°c
+	$pdf->setXY(153.5,204);
+	$pdf->Cell ($w=12.75, $h=6, $txt='C', $border=1, $ln=0, $align='R', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(166.35,204);
+	$pdf->Cell ($w=12.75, $h=6, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//si-no
+	$pdf->setXY(153.5,210);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(159.975,210);
+	$pdf->Cell ($w=6.375, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(166.35,210);
+	$pdf->Cell ($w=12.75, $h=3, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//°c
+	$pdf->setXY(153.5,213);
+	$pdf->Cell ($w=12.75, $h=6, $txt='°C', $border=1, $ln=0, $align='R', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	$pdf->setXY(166.35,213);
+	$pdf->Cell ($w=12.75, $h=6, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+	//sigla
+	$pdf->setXY(153.5,219);
+	$pdf->Cell ($w=25.5, $h=6.5, $txt='', $border=1, $ln=0, $align='L', $fill=TRUE, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M');
+
 	
 	$pdf->SetTextColor(0,0,0);
 }
