@@ -142,12 +142,14 @@
 				serverinfobox.innerHTML = xmlhttp.responseText;
 			}
 		}
+		//get the string to append to the url to have anticipo fatture enabled
+		var strAntFt=getAnticipoFattureParams();
 		
 		//xmlhttp.open("POST","./wait.php",true);
 		xmlhttp.open("POST","./core/gestioneFatture.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("do=stampa&fatture="+jsonMails);
-		
+		xmlhttp.send("do=stampa"+strAntFt+"&fatture="+jsonMails);
+		console.log("do=stampa"+strAntFt+"&fatture="+jsonMails);
 		// function to update the infobox with the server reply
 		function statusUpdate() {
 			//console.log('Update');
@@ -195,7 +197,25 @@
 			var target=fatture[i].parentNode.parentNode; //the tr
 			target.classList.remove('hidden');
 		}
-	}	
+	}
+	function getAnticipoFattureParams(){
+		var antfatture = document.querySelector("#anticipofatture");
+		var enabled=antfatture.querySelector("[name=toggle]");
+		var mesi=antfatture.querySelector("[name=mesi]");
+		var banca=antfatture.querySelector("[name=banca]");
+
+		var string='';
+		
+		if(enabled.value=="true"){
+			string+='&anticipofatture='+enabled.value;
+			string+='&mesi='+mesi.value;
+			if(banca.value!=''){
+				string+='&banca='+banca.value;
+			}
+		}
+		console.log(string);
+		return string;
+	}
 	
 	</script>
 </head>
@@ -216,8 +236,26 @@
 	<button class="hidden">Hide</button>
 </div>
 <br><br><br>
+
+<div id="anticipofatture" style="font-size:1em;">
 <button onclick="javascript:showAll()">Mostra tutte</button>
 <button onclick="javascript:showOnlyNotSent()">Mostra solo non inviate</button>
+	Stampa per anticipo fatture:
+	<select name="toggle">
+		<option value="false">no</option>
+		<option value="true">yes</option>
+	</select>
+	Mesi:
+	<input type="number" name="mesi" value="2" style="width:4em;">
+	Banca:
+	<select name="banca">
+		<option value="">Lascia Default</option>
+		<option value="01">01 - C.R.Veneto</option>
+		<option value="02">02 - B.Pop.Verona</option>
+		<option value="09">09 - Cerea Banca</option>
+		<option value="10">10 - B.Pop.Vicenza</option>
+	</select>
+</div>
 <?php
 include ('./core/config.inc.php');
 set_time_limit ( 0);
