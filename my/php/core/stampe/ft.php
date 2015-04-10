@@ -165,7 +165,7 @@ function addDatiFattura ($ft,$pdf){
 	$perAnticipoFatture=FALSE;
 	if ($perAnticipoFatture){
 		//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
-		$pagamentoAMesi=2;
+		$pagamentoAMesi=3;
 		$data=explode('/',$ft->data->getFormatted());
 		$anno=$data[2];
 		$mese=$data[1]+$pagamentoAMesi;
@@ -178,7 +178,7 @@ function addDatiFattura ($ft,$pdf){
 		
 		
 		//modifico la banca di appoggio
-		$ft->cod_banca->setVal('10'); //09 cerea banca
+		$ft->cod_banca->setVal('01'); //09 cerea banca
 										//10 popolare di vicenza
 										//01 cassa di risparmio del veneto
 										//02 banco popolare di verona
