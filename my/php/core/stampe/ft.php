@@ -161,11 +161,10 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->Text(18, 83, 'Condizioni di pagamento');
 	$pdf->SetFont($def_font, '', $def_size+5);
 
+	if(array_key_exists('anticipofatture',$_POST)){
 
-	$perAnticipoFatture=FALSE;
-	if ($perAnticipoFatture){
 		//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
-		$pagamentoAMesi=3;
+		$pagamentoAMesi=$_POST['mesi'];
 		$data=explode('/',$ft->data->getFormatted());
 		$anno=$data[2];
 		$mese=$data[1]+$pagamentoAMesi;
@@ -178,10 +177,12 @@ function addDatiFattura ($ft,$pdf){
 		
 		
 		//modifico la banca di appoggio
-		$ft->cod_banca->setVal('01'); //09 cerea banca
+		if(array_key_exists('banca',$_POST)){
+			$ft->cod_banca->setVal($_POST['banca']); //09 cerea banca
 										//10 popolare di vicenza
 										//01 cassa di risparmio del veneto
 										//02 banco popolare di verona
+		}
 		
 	}else{
 		$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));
