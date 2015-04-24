@@ -39,9 +39,9 @@ include ('./core/config.inc.php');
 49 MELANZANE
 50 ZUCCA
 */
-$dataIniziale='18/02/2015';
-$dataFinale='21/02/2015';
-$cliente="BEFER";
+$dataIniziale='01/04/2015';
+$dataFinale='09/04/2015';
+$cliente="PRIMF";
 $imponibile=0;
 $colliddt=0;
 $pesoddt=0;

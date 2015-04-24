@@ -13,13 +13,16 @@ include ('./core/config.inc.php');
 	</head>
 
 	<body>
-	<h1>Uscite imballaggi</h1>
+
 <?php 
 $today = date("j/n/Y"); 
 if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$today;}
 if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 
 ?>
+	<h1>Uscite imballaggi || 
+	<?php echo $startDateR; ?> =>  <?php echo $endDateR; ?>
+	</h1>
 <form name="input" action="./bins.php?mode=print" method="get">
 	<input type="text" name="mode" value="print" style="display:none"/>
 	

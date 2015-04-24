@@ -185,12 +185,12 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_articolo'=>array('=','842'),
-			//'cod_articolo'=>array('=','805'),
+			//'cod_articolo'=>array('!=','BSEVEN'),
+			//'cod_articolo'=>array('=','843'),
 			//'cod_cliente'=>array('!=','VIOLA','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			'cod_cliente'=>array('=','BELFR'),
+			'cod_cliente'=>array('=','MARTI'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
 			//'prezzo'=>array('!=','0.001')
