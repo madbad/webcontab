@@ -40,8 +40,8 @@ include ('./core/config.inc.php');
 50 ZUCCA
 */
 $dataIniziale='01/04/2015';
-$dataFinale='09/04/2015';
-$cliente="PRIMF";
+$dataFinale='30/04/2015';
+$cliente="DANFR";
 $imponibile=0;
 $colliddt=0;
 $pesoddt=0;

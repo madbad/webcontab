@@ -22,7 +22,10 @@ switch ($_GET["do"]){
 		$myDdt->stampa();
 		//memorizzo la data di stampa
 		$myDdt->__datastampa->setVal(date("d/m/Y"));
-		$myDdt->saveSqlDbData();		
-		break;	
+		$myDdt->saveSqlDbData();
+		break;
+	case 'mail':
+		$myDdt->inviaMail();
+		break;
 }
 ?>

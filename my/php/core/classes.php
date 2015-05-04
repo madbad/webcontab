@@ -1081,7 +1081,7 @@ class Ddt  extends MyClass {
 			//echo 'il file non esiste devo generarlo!!';
 			$this->generaPdf();
 		}
-		return $fileUrl;	
+		return $fileUrl;
 	}
 	
 	public function generaPdf(){
@@ -1097,8 +1097,86 @@ class Ddt  extends MyClass {
 		// e inviamolo al browser
 		readfile($pdfUrl);
 	}	
-	public function stampa(){
+	public function inviaMail(){
+		//rigenero il file pdf del ddt
+		$this->generaPdf($this);
+	
+		//importo i dati di configurazione della pec
+		$gmail=$GLOBALS['config']->gmail;
+		$cliente=$this->cod_destinatario->extend();
+		//var_dump($cliente);
+		$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
 
+		$mail->IsSMTP(); // telling the class to use SMTP
+
+		try {
+			$mail->Host       = $gmail->Host;
+			$mail->SMTPDebug  = $gmail->SMTPDebug;
+			$mail->SMTPAuth   = $gmail->SMTPAuth;
+			$mail->Port       = $gmail->Port;
+			$mail->Username   = $gmail->Username;
+			$mail->Password   = $gmail->Password;
+			
+			$mail->SMTPSecure = "tls";
+			
+			//$mail->AddAddress($cliente->ragionesociale->getVal(), $cliente->pec->getVal()); //destinatario
+			if($cliente->__mailddt->getVal()==''){
+				echo 'Impossibile procedere all\'invio del ddt. Nessun indirizzo email associato al cliente';
+				echo '<br>'.$this->cod_destinatario->getVal();
+				echo '<br>'.$cliente->ragionesociale->getVal();
+			}
+			//qui dovrei avere un elenco di indirizzi email separati da una virgola","
+			//invio la mail ad ogni indirizzo
+			$indirizzimail = explode(",", $cliente->__mailddt->getVal());
+			foreach ($indirizzimail as $mailcliente){
+				$mail->AddAddress($mailcliente, $cliente->ragionesociale->getVal()); //destinatario
+			}
+			//ne invio una copia anche a me per conoscenza
+			$mail->AddAddress('lafavorita_srl@libero.it', 'La Favorita Srl'); //mia copia per conoscenza
+
+			//mi faccio mandare la ricevuta di lettura
+			$mail->ConfirmReadingTo=$gmail->ReplyTo->Mail;
+			$mail->SetFrom($gmail->From->Mail, $gmail->From->Name);
+			$mail->AddReplyTo($gmail->ReplyTo->Mail, $gmail->ReplyTo->Name);
+
+			$mail->Subject = 'Invio DDT '.$this->getPdfFileName(); //oggetto
+			//$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
+			//  $mail->MsgHTML(file_get_contents('contents.html'));
+			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";
+			$message.='DDT'.'. Nr. '.$this->numero->getVal().' del '.$this->data->getFormatted();
+			$message.="<br><br>Distinti saluti<br>".$GLOBALS['config']->azienda->ragionesociale->getVal();;
+
+			$mail->MsgHTML($message);
+			//$mail->Body($message); 
+
+			//allego il pdf della fattura
+			$mail->AddAttachment($this->getPdfFileUrl()); 
+			//var_dump($mail);
+
+			if($mail->Send()){
+			//	$html= '<h2 style="color:green">Messaggio Inviato</h2>';
+			//	$html.= '<br>Il messaggio con oggetto: ';
+			//	$html.= '<b>'.$mail->Subject.'</b>';
+			//	$html.='<br>E\' stato inviato a: <b>'.$cliente->ragionesociale->getVal().'</b>';
+			//	$html.='<br>all\'indirizzo: <b>'.$cliente->__pec->getVal().'</b>';
+			//	$html.='<br>con allegato il file: <b>'.$this->getPdfFileUrl().'</b>';
+				
+				//memorizzo la data di invio
+//				$this->__datainviopec->setVal(date("d/m/Y"));
+//				$this->saveSqlDbData();
+				//mostro il messaggio di avvenuto invio
+			//	echo $html;
+			//	var_dump($message);
+				//all seems ok
+				return true;
+			}
+
+		} catch (phpmailerException $e) {
+			echo $e->errorMessage(); //Pretty error messages from PHPMailer
+		} catch (Exception $e) {
+			echo $e->getMessage(); //Boring error messages from anything else!
+		}
+		return false;
 	}
 }
 
@@ -1270,7 +1348,10 @@ class ClienteFornitore extends MyClass {
 		//proprietà aggiunte nel file sql
 		$this->addProp('__pec',						'');
 		$this->addProp('__provvigione',				'');
-		$this->addProp('__classificazione',			'');		
+		$this->addProp('__classificazione',			'');
+		$this->addProp('__mailddt',			'');
+		$this->addProp('__mailft',			'');
+		$this->addProp('__mail',			'');
 		
 		//configurazione database
 		$this->addProp('_dbName');

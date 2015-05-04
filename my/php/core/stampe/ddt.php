@@ -550,6 +550,10 @@ buildEmptyModule($pdf);
 	$html = '<table style="border:0px solid #000000;margin:0px;padding:5px;">';
 	foreach ($ddt->righe as $key => $value) {
 		$riga=$ddt->righe[$key];
+		
+		if($_GET['force_nascondiprezzo']){
+			$riga->prezzo->setVal('');
+		}
 
 		//riga normale
 		$html.= MyOwnDdtRow(	$riga->cod_articolo->getVal(),

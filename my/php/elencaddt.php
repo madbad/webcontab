@@ -20,7 +20,7 @@ if(@$_GET['anno']){
 		$temp=$_GET['date'];
 		$anno=explode("/",$temp);
 		$anno=$anno[2];
-		$Sdate = $Edate = $_GET['date'];	
+		$Sdate = $Edate = $_GET['date'];
 		//echo $anno;
 		//echo $Sdate;
 	}else{
@@ -43,7 +43,7 @@ $html.="<td>Ddt anno:<br><a href=?anno=$anno>$anno</a><br>$Sdate</td>";
 $annosuc=$anno+1;
 $html.="<td><a href=?anno=$annosuc>$annosuc ></a>";
 $html.="<br><a href=?date=$nextDate>$nextDate> </a></td>";
-$html.='</tr><table>';
+$html.='</tr><table class="spacedTable, borderTable">';
 
 //mostro le ddt 
 $test=new MyList(
@@ -107,20 +107,23 @@ $test->iterate(function($obj){
 		if($dataInvioPec){
 			$html.= '<td style="background-color:#66ff00;">Inviata il '.$dataInvioPec.$link.'&do=inviaPec"><br>Reinvia?</a></td>';
 		}else{
-			$html.= '<td>'.$link.'&do=inviaPec">Invia Mail</a></td>';		
+			$html.= '<td>'.$link.'&do=inviaPec">Invia Mail</a></td>';
 		}
 	}else{
 		$datastampa=$obj->__datastampa->getVal();
 		if($datastampa){
 			@$html.= '<td style="background-color:#66ff00;">Stampata il '.$dataInvioPec.$link.'&do=stampaCliente"><br>Ristampa?</a></td>';
 		}else{
-			$html.= '<td>'.$link.'&do=stampaCliente">Stampa copia cliente</a></td>';		
+			$html.= '<td>'.$link.'&do=stampaCliente">Stampa copia cliente</a></td>';
 		}	
 	}
 	*/
 
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
+	$html.= '<td>'.$link.'&do=mail">Mail</a></td>';
+	$html.= '<td>'.$link.'&do=mail&force_nascondiprezzo=true">Mail (prezzo nascosto)</a></td>';
+	
 	
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';
