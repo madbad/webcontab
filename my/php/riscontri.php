@@ -186,11 +186,11 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			//'cod_articolo'=>array('!=','BSEVEN'),
-			'cod_articolo'=>array('=','05'),
+			'cod_articolo'=>array('=','05','805'),
 			//'cod_cliente'=>array('!=','VIOLA','MARTI'),
 			//'cod_cliente'=>array('!=','MARTI','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			'cod_cliente'=>array('=','FACCG'),
+			//'cod_cliente'=>array('=','FACCG'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
 			//'prezzo'=>array('!=','0.001')

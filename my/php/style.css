@@ -202,5 +202,19 @@ margin:-1em;
 }
 .fixedTopBar button{
 font-size:1.5em;
-
 }
+.fixedTopRightBar{
+width:30%;
+position:fixed;
+background:grey;
+border-bottom:2px solid black;
+padding:0.5em;
+margin:-1em;
+right:0px;
+}
+.fixedTopRightBar label{
+width: 5em;
+display: inline-block;
+}
+
+
