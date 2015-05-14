@@ -22,6 +22,14 @@ include ('./core/config.inc.php');
 		<title>WebContab Calcolo costi</title>
 		<meta charset="utf-8">
 	</head>
+	<div class="fixedTopRightBar">
+		<form action="./lordi.php" method="post">
+			<label>Cliente</label><input name="cliente" type="text" value="<?php echo $_POST['cliente']; ?>" autofocus>
+			<br><label>dal</label><input name="dal" type="date" value="<?php echo $_POST['dal']; ?>">
+			<br><label>al</label><input name="al" type="date" value="<?php echo $_POST['al']; ?>">
+			<br><input type="submit" value="invia">
+		</form>
+	</div>
 
 	<body>
 <?php
@@ -39,9 +47,16 @@ include ('./core/config.inc.php');
 49 MELANZANE
 50 ZUCCA
 */
-$dataIniziale='01/04/2015';
-$dataFinale='30/04/2015';
-$cliente="DANFR";
+//print_r($_POST);
+$dataIniziale=$_POST['dal'];
+$dataFinale=$_POST['al'];
+$cliente=$_POST['cliente'];
+
+
+//$dataIniziale='28/04/2015';
+//$dataFinale='28/04/2015';
+//$cliente="FTESI";
+
 $imponibile=0;
 $colliddt=0;
 $pesoddt=0;

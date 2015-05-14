@@ -605,6 +605,10 @@ buildEmptyModule($pdf);
 		if ($destinatario->cod_vettore->getVal() *1 == 0){
 			$destinatario->cod_vettore->setVal('02');
 		} 
+		//FORZO IL VETTORE CHE VOGLIO IO
+		if ($_GET['force_vettore']){
+			$destinatario->cod_vettore->setVal($_GET['force_vettore']);
+		} 
 
 		//MODIFICO IL VETTORE A MIO PIACIMENTO
 		//$destinatario->cod_vettore->setVal('14');//02=translusia	24=facchini 14=ROCCO TRASPORTI

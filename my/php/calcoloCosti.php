@@ -194,7 +194,7 @@ if (@$_POST['mode']=='print'){
 					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 33,
 					"colliPedana" => 104,
-					"costoCassa" => 0.43);
+					"costoCassa" => 0.67);//cassa nuova bianca
 	$html.=getArticleTable($params);
 	/* vecchi conteggi sma
 	//supermercati
@@ -228,7 +228,7 @@ if (@$_POST['mode']=='print'){
 					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 33,
 					"colliPedana" => 104,
-					"costoCassa" => 0.43);
+					"costoCassa" => 0.67);//cassa nuova bianca
 	$html.=getArticleTable($params);
 	// supermercati
 	/*  vecchi conteggi sma
@@ -264,7 +264,7 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.3, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 112,
-						"costoCassa" => 0.39);
+						"costoCassa" => 0.41);
 		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('708','808','708-','808-','708--','808--'),
@@ -273,7 +273,7 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.4,
 						"costoPedana" => 33,
 						"colliPedana" => 80,
-						"costoCassa" => 0.67);
+						"costoCassa" => 0.68);
 		$html.=getArticleTable($params);
         $html.=$table;
   
@@ -284,11 +284,11 @@ if (@$_POST['mode']=='print'){
 		$params = array("articles" => array('29'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.5, //0.3
+						"abbuonoPerCollo" => 0.4, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 112,
 						"costoCassa" => 0.34);
-		$html.=getArticleTable($params);		
+		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('729','829','729-','829-'),
 						"startDate" => $startDateR,
@@ -310,8 +310,8 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.5, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 104,
-						"costoCassa" => 0.43);
-		$html.=getArticleTable($params);		
+						"costoCassa" => 0.40);
+		$html.=getArticleTable($params);
 		$params = array("articles" => array('731','831'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
@@ -332,8 +332,8 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.5, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 112,
-						"costoCassa" => 0.39);
-		$html.=getArticleTable($params);		
+						"costoCassa" => 0.41);
+		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('705','805','705-','805-','705--','805--' ),
 						"startDate" => $startDateR,
