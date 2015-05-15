@@ -160,23 +160,32 @@ page_end();
     <head>
         <title>WebContab Calcolo costi</title>
         <meta charset="utf-8">
-		
-		<!--ExtJs-->
-		<script src="./../js/ext.js/ext-all.js" type="text/javascript"></script>
 
-		<link href="./../js/ext.js/resources/css/ext-all.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript">
-		Ext.require(['*']);
-		</script>
- 		<script src="./../js/ext.js/locale/ext-lang-it.js" type="text/javascript"></script>
+		<!-- load polymer
+		<script src="./../js/components/bower_components/polymer/polymer.min.js" log=""></script> -->
+		<script src="./../js/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+		<link rel="import" href="./../js/components/bower_components/polymer/polymer.html">
 
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
     </head>
      <body>
+<polymer-element name="proto-element">
+  <template>
+    <span>I'm <b>proto-element</b>. Check out my prototype.</span>
+  </template>
+  <script>
+    Polymer({
+      ready: function() {
+        //...
+		console.log('component ready');
+      }
+    });
+  </script>
+</polymer-element>
 
 <table class="borderTable">
-
+<polymer-element>test</polymer-element>
 <?php 
 echo $righe; 
 ?>
