@@ -115,7 +115,7 @@ function saveToDbMeloni($obj){
 $righevenditecontab=new MyList(
 	array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/01/10','14/05/13'),
+		'ddt_data'=>array('<>','01/01/10','01/01/14'),
 		'cod_articolo'=>array('=','11','111','112','113',
 								  '8111','8112','8111-',
 								  '911', '9111', '9112'),
@@ -127,24 +127,15 @@ $righevenditecontab=new MyList(
 $elenca = function($riga, $righe){
 //print_r($riga);
 	global $righe;
+	$newObj= new stdclass();
 	$fields = explode(',', 'numero,ddt_data,ddt_numero,peso_netto,cod_articolo,cod_cliente,colli,prezzo');
-	if($righe==''){
-		$righe .='<tr>';
-		foreach ($riga as $name =>$value){
-			if(in_array($name, $fields)){
-				$righe .='<td>'.$name.'</td>';
-			}
-		}
-		$righe .='</tr>';
-	}
-
-	$righe .='<tr>';
 	foreach ($riga as $name =>$value){
 		if(in_array($name, $fields)){
-			$righe .='<td>'.$riga->$name->valore.'</td>';
+			$newObj->$name = $riga->$name->valore;
 		}
 	}
-	$righe .='</tr>';
+	$righe .="\n<x-rigavendite json='".json_encode($newObj)."'></x-rigavendite>";
+
 //saveToDbMeloni($riga);
 	//echo $riga->toJson();
 };
@@ -165,30 +156,17 @@ page_end();
 		<script src="./../js/components/bower_components/polymer/polymer.min.js" log=""></script> -->
 		<script src="./../js/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 		<link rel="import" href="./../js/components/bower_components/polymer/polymer.html">
+		<link rel="import" href="./riga.html">
 
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
     </head>
      <body>
-<polymer-element name="proto-element">
-  <template>
-    <span>I'm <b>proto-element</b>. Check out my prototype.</span>
-  </template>
-  <script>
-    Polymer({
-      ready: function() {
-        //...
-		console.log('component ready');
-      }
-    });
-  </script>
-</polymer-element>
 
-<table class="borderTable">
-<polymer-element>test</polymer-element>
+
+<!--<x-rigavendite dati="{"thisis":"json"}">test</x-rigavendite>-->
 <?php 
 echo $righe; 
 ?>
 
-</table>
 </body>
