@@ -188,7 +188,7 @@ if (@$_POST['mode']=='print'){
 //riccia
 	// mercato
 	
-	$params = array("articles" => array('01','01S'),
+	$params = array("articles" => array('01','01S','01F'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.5, //0.3
@@ -208,7 +208,7 @@ if (@$_POST['mode']=='print'){
 	$html.=getArticleTable($params);
 	*/
 	//supermercati
-	$params = array("articles" => array('801-'),
+	$params = array("articles" => array('801-','801F-'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.4,
@@ -222,7 +222,7 @@ if (@$_POST['mode']=='print'){
 	$html.="</div><div class='tableContainer'>";
 	$html.="<h1>Scarola</h1>";
 	// mercato
-	$params = array("articles" => array('03','03S'),
+	$params = array("articles" => array('03','03S','03F'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.5, //0.3
@@ -242,7 +242,7 @@ if (@$_POST['mode']=='print'){
 	$html.=getArticleTable($params);
 	*/
 	//supermercati
-	$params = array("articles" => array('803-'),
+	$params = array("articles" => array('803-','803F-'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.4,
@@ -258,7 +258,7 @@ if (@$_POST['mode']=='print'){
         $html.="<h1>Tondo</h1>";
 //chioggia
 		// mercato
-		$params = array("articles" => array('08'),
+		$params = array("articles" => array('08','08P'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3, //0.3
@@ -393,7 +393,30 @@ if (@$_POST['mode']=='print'){
 		$html.=getArticleTable($params);
         $html.=$table;
 */
-
+//VERZE
+/*
+		$html.="</div><div class='tableContainer'>";
+        $html.="<h1>Verze</h1>";
+		// mercato
+		$params = array('articles' => array('20'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.3, //0.3
+						"costoPedana" => 33,
+						"colliPedana" => 104,
+						"costoCassa" => 0.43);
+		$html.=getArticleTable($params);
+		// supermercati
+		$params = array("articles" => array('820'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.4,
+						"costoPedana" => 33,
+						"colliPedana" => 60,
+						"costoCassa" => 0.70);
+		$html.=getArticleTable($params);
+        $html.=$table;
+*/
 	}
 
 

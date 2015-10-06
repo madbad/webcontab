@@ -110,7 +110,8 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$_POST['startDate'],$_POST['endDate']),
+			//'ddt_data'=>array('<>',$_POST['startDate'],$_POST['endDate']),
+			'ddt_data'=>array('=','04/08/15','06/08/15','11/08/15','13/08/15','18/08/15','20/08/15','25/08/15','27/08/15' ),
 			'cod_cliente'=> array('!=','SGUJI','FACCI','FACCG','VIOLA'),
 		)
 	);
@@ -140,9 +141,9 @@ if($_POST['startDate']!=null && $_POST['endDate']!=null){
 		if($peso>0){
 			if ($tipo=='mercato' || $tipo=='supermercato'){
 			$myArray['lavorato'][$articolo.'*'.$descrizione]+=$peso;
-/* //controllo singole righe
+ //controllo singole righe
 if($articolo=='08' && $peso >500){echo $row->cod_cliente->getVal().'='.$peso."\n<br>";};
-*/
+
 				$done=true;
 			}
 			if ($tipo=='semilavorato'){

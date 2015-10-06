@@ -35,13 +35,13 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
 		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
 		echo '<td>'.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
-		echo '<td>'.$obj->cod_articolo->getVal().'</td>';		
-		echo '<td>'.$obj->colli->getVal().'</td>';				
-		echo '<td>'.$obj->peso_netto->getVal().'</td>';
+		echo '<td>'.$obj->cod_articolo->getVal().'</td>';
+		echo '<td>'.$obj->colli->getFormatted(0).'</td>';
+		echo '<td>'.$obj->peso_netto->getFormatted(2).'</td>';
 		//if($obj->prezzo->getVal()*1>0.001){$prezzo=$obj->prezzo->getVal();}else{$prezzo='';}
 		//echo '<td>'.$obj->imponibile->getVal().'</td>';
-		echo '<td>'.$obj->prezzo->getVal().'</td>';
-		//echo '<td>'.$obj->imponibile->getVal().'</td>';			
+		echo '<td>'.$obj->prezzo->getFormatted(3).'</td>';
+		//echo '<td>'.$obj->imponibile->getVal().'</td>';
 		echo '</tr>';
 	};
 /*
@@ -67,7 +67,7 @@ if (@$_GET['mode']=='print'){
 //			'cod_articolo'=>array('=','11','111','112','113',
 //								      '911','9111','9112','9113',
 //			),
-			'cod_articolo'=>array('=','11','911','113','111', '8111','8112','112','9112', '8111-', '9111'),
+			'cod_articolo'=>array('=','11','911','113','111', '1113040', '1113050', '1114060', '8111','8112','112','9112', '8111-', '9111', '91113040'),
 
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
 			//'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),

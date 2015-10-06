@@ -139,6 +139,7 @@ echo '<br><br>';
 				//echo "<td $cssRight>".round($obj->getPrezzoNetto(),3)."</td>";
 				echo "<td $cssRight>"."</td>";
 				echo "<td $cssRight>".number_format($obj->getPrezzoLordo(),3,',','')."</td>";
+				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto(),3,',','')."</td>";
 			//	echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
 			echo "</tr>";
 		});

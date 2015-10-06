@@ -237,13 +237,13 @@ function addTotaliFattura($ft, $pdf){
 	$pdf->SetFont($def_font, '', $def_size);
 	//$pdf->Text($x=15, $y=263, "-CONTRIBUTO CONAI ASSOLTO OVE DOVUTO \n -ALTRO dsfsdf sfsfsf sdf sfsfs");
 
-	$html = '<ul style="color:'.$def_verde.'"><LI>-</LI><li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li><li>TOTALE FATTURA SALVO ERRORI E OMISSIONI</li></ul>';
+	//$html = '<ul style="color:'.$def_verde.'"><LI>-</LI><li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li><li>TOTALE FATTURA SALVO ERRORI E OMISSIONI</li></ul>';
 
 	$html = '<ul><li style="color:white;">-</li>';//ne lascio uno bianco per evitare un bug che creava un punto della lista più grande degli altri
 	$html .='<li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li>';
 	$html .='<li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li>';
 	$html .='<li>SALVO ERRORI E OMISSIONI</li>';
-	$html .='<li>ASSOLVE AGLI OBBLIGHI DI CUI ALL\'ART.62, COMMA 1, DEL DECRETO LEGGE 24/01/2012, N.1, CONVERTITO CON MODIFICAZIONI DALLA LEGGE 24/03/12, N.27.<li>';
+	$html .='<li>ASSOLVE AGLI OBBLIGHI DI CUI ALL\'ART.62, COMMA 1, DEL DECRETO LEGGE 24/01/2012, N.1, CONVERTITO CON MODIFICAZIONI DALLA LEGGE 24/03/12, N.27.</li>';
 
 	
 	//il cliente ha lettera di intento? se si stampo la dicitura che la riguarda
@@ -258,8 +258,8 @@ function addTotaliFattura($ft, $pdf){
 	}
 	
 	$html .='</ul>';
-
-	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
+	//sto un po' più in alto in modo da evitare la riga biancha
+	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=259, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 	
 	//dettaglio IVA
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));

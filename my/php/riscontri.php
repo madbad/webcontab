@@ -185,12 +185,14 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_articolo'=>array('!=','BSEVEN'),
-			'cod_articolo'=>array('=','05','805'),
-			//'cod_cliente'=>array('!=','VIOLA','MARTI'),
+			//'cod_iva'=>array('=','88'),
+			//'cod_articolo'=>array('=','20','820'),
+			'cod_articolo'=>array('=','842'),
+			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
+			//'cod_cliente'=>array('=','SEVEN'),
 			//'cod_cliente'=>array('!=','MARTI','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			//'cod_cliente'=>array('=','FACCG'),
+			//cod_cliente'=>array('!=','FACCI','FACCG'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
 			//'prezzo'=>array('!=','0.001')
@@ -220,7 +222,7 @@ foreach ($dbClienti as $cliente){
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','01','03'),
+			'cod_articolo'=>array('=','08'),
 			//'cod_cliente'=>array('=','MORAN','TESI','ZANAR','GIAC1','NERIO'),
 			'cod_cliente'=>$mercati,
 			//'cod_cliente'=>array('=','MARTI'),

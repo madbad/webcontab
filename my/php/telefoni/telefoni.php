@@ -130,7 +130,7 @@ function generaRubrica(){
 */
 	//cerco duplicati
 	searchDuplicatesNumbers($righe);
-	
+
 	$border = ' style="border: 0.5px solid black;" ';
 	$col1 =   ' style="width: 370px;" ';
 	$col2 =   ' style="width: 180px; font-size:20px;" ';
@@ -141,6 +141,7 @@ function generaRubrica(){
 	foreach ($righe as $key => $value) {
 		//SE è UN'EMAIL O UN SITO INTERNET PASSO AL PROSSIMO
 		if($value['C']=='MAIL'){ continue;}
+		if($value['C']=='PEC'){ continue;}
 		if($value['C']=='WEB'){ continue;}
 		
 		//GESTIONE LETTERE DELLE PAGINE
@@ -171,7 +172,7 @@ function generaRubrica(){
 	@$pdf->Output("./rubrica.pdf", 'F');
 	//e ne invio una copia al browser per visualizzarlo
 	//@$pdf->Output('Rubrica.pdf', 'I');
-	
+
 }
 generaRubrica();
 
