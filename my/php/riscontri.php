@@ -37,7 +37,8 @@ if (@$_GET['mode']=='print'){
 	}
 
 		echo '<tr '.$color.'> ';
-		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
+		
+		echo '<td>'.$obj->cod_articolo->getVal().' # '.$obj->ddt_numero->getVal().'</td>';
 		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
 //		echo '<td>'.$obj->cod_cliente->getVal().' # '.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
 		echo '<td>'.$obj->cod_cliente->getVal().'</td>';
@@ -129,6 +130,21 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 	$stampaTotali($test);
 	echo $tabellaF;
 
+//sisa
+	echo '<h1>Sogegross</h1>';
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>'05',
+			'cod_cliente'=>'SOGEG',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
+	
 //mercato
 	echo '<h1>Mercato</h1>';
 	$test=new MyList(
@@ -136,7 +152,7 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>array('=','05'),
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA'),
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG'),
 			//'prezzo'=>array('!=','0.001')
 		)
 	);
@@ -185,11 +201,11 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_iva'=>array('=','88'),
-			//'cod_articolo'=>array('=','20','820'),
-			'cod_articolo'=>array('=','842'),
+			//'cod_iva'=>array('=','840'),
+			//'cod_articolo'=>array('!=','BSEVEN'),
+			'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
-			//'cod_cliente'=>array('=','SEVEN'),
+			'cod_cliente'=>array('=','SEVEN'),
 			//'cod_cliente'=>array('!=','MARTI','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//cod_cliente'=>array('!=','FACCI','FACCG'),
