@@ -21,10 +21,26 @@ if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 ?>
 <form name="input" action="./riscontri.php?mode=print" method="get">
 	<input type="text" name="mode" value="print" style="display:none"/>
-	
+	<!--
 	<label>Start date2</label> <input type="text" name="startDateR" value="<?php echo $startDateR ?>"/>
-	<label>End date2</label> <input type="text" name="endDateR" value="<?php echo $endDateR ?>"/>	
+	<label>End date2</label> <input type="text" name="endDateR" value="<?php echo $endDateR ?>"/>
+	-->
+	<textarea name="query" rows="4" cols="50"  style="font-size: 0,5em;width:100%;height:30%">
+\$test=new MyList(
+	array(
+		'_type'=>'Riga',
+		'ddt_data'=>array('<>','01/01/16','31/01/16'),
+		'cod_articolo'=>array('=','850'),
+		//cod_cliente'=>array('!=','FACCI','FACCG'),
+		//'cod_destinatario'=>array('=','RAVEN'),
+		//'colli'=>array('!=','0'),
+		//'prezzo'=>array('!=','0.001')
+		//'cod_iva'=>array('=','840'),
+	)
+);
+	</textarea> 
 	<button type="submit">Search</button>
+
 </form>
 
 <?php
@@ -114,23 +130,8 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-	
-//sisa
-	echo '<h1>Sisa</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>'05',
-			'cod_cliente'=>'SISA',
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
 
-//sisa
+//sogegross
 	echo '<h1>Sogegross</h1>';
 	$test=new MyList(
 		array(
@@ -196,17 +197,18 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 52 CETRIOLI
 60 PEPERONE
 */
-
-	$test=new MyList(
+$query = "
+	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'ddt_data'=>array('<>','01/01/16','31/01/16'),
 			//'cod_iva'=>array('=','840'),
-			//'cod_articolo'=>array('!=','BSEVEN'),
-			'cod_articolo'=>array('=','801-','803-','01','03'),
+			'cod_articolo'=>array('=','850'),
+			//'cod_articolo'=>array('=','','56'),
+			//'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
-			'cod_cliente'=>array('=','SEVEN'),
-			//'cod_cliente'=>array('!=','MARTI','VIOLA'),
+			//'cod_cliente'=>array('!=','SEVEN'),
+			//'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//cod_cliente'=>array('!=','FACCI','FACCG'),
 			//'cod_destinatario'=>array('=','RAVEN'),
@@ -214,6 +216,31 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 			//'prezzo'=>array('!=','0.001')
 		)
 	);
+";
+
+
+/*
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			//'cod_iva'=>array('=','840'),
+			'cod_articolo'=>array('=','850'),
+			//'cod_articolo'=>array('=','','56'),
+			//'cod_articolo'=>array('=','801-','803-','01','03'),
+			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
+			//'cod_cliente'=>array('!=','SEVEN'),
+			//'cod_cliente'=>array('!=','VIOLA'),
+			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
+			//cod_cliente'=>array('!=','FACCI','FACCG'),
+			//'cod_destinatario'=>array('=','RAVEN'),
+			//'colli'=>array('!=','0'),
+			//'prezzo'=>array('!=','0.001')
+		)
+	);
+*/
+
+eval ($query);
 	var_dump($test->_params['cod_articolo']);
 	var_dump($test->_params['ddt_data']);
 	echo '<table><tr><td style="background-color:red;color:white;" >------</td><td>= manca ricavo</td></tr></table>';
