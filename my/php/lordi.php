@@ -104,6 +104,7 @@ echo '<br><br>';
 			array(
 			'_type'=>'Riga',
 			'ddt_data'=>$obj->data->getVal(),
+			//'cod_articolo'=>array('!=','100'),
 			'ddt_numero'=>$obj->numero->getVal()
 			)
 		);

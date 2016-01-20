@@ -86,6 +86,7 @@ $elencoddt = new MyList(
 	array(
 		'_type'=>'Ddt',
 		'data'=>array('<>',$startDateR,$endDateR),
+		'cod_causale'=>array('=','V'),
 		'_select'=>'cod_destinatario'
 	)
 );

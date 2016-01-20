@@ -201,13 +201,13 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/01/16','31/01/16'),
-			//'cod_iva'=>array('=','840'),
-			'cod_articolo'=>array('=','850'),
+			'ddt_data'=>array('<>','01/12/15','31/12/15'),
+			//'cod_iva'=>array('=','19','819'),
+			'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
 			//'cod_articolo'=>array('=','','56'),
 			//'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
-			//'cod_cliente'=>array('!=','SEVEN'),
+			'cod_cliente'=>array('=','SEVEN','MARTI','SOGEG'),
 			//'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
 			//cod_cliente'=>array('!=','FACCI','FACCG'),
@@ -217,7 +217,16 @@ $query = "
 		)
 	);
 ";
-
+/*
+$query = new MyList(
+	array(
+		'_type'=>'Riga',
+		'ddt_data'=>array('<>','01/12/2015','31/12/2015'),
+		//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
+		//'cod_cliente'=>array('=','SEVEN','MARTI','SOGEG'),
+	)
+);
+*/
 
 /*
 	$test=new MyList(
