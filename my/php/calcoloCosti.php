@@ -169,6 +169,12 @@ height:230,
 <span>
 
 <?php
+/*
+$costoPolistirolo3050
+$costoPlastica3050bianca
+$costoPolistirolo3050
+$costoPolistirolo3050
+*/
 
 
 if (@$_POST['mode']=='print'){
@@ -194,7 +200,7 @@ if (@$_POST['mode']=='print'){
 					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 33,
 					"colliPedana" => 104,
-					"costoCassa" => 0.67);//cassa nuova bianca
+					"costoCassa" => 0.81);//cassa nuova bianca vergine
 	$html.=getArticleTable($params);
 	/* vecchi conteggi sma
 	//supermercati
@@ -228,7 +234,7 @@ if (@$_POST['mode']=='print'){
 					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 33,
 					"colliPedana" => 104,
-					"costoCassa" => 0.67);//cassa nuova bianca
+					"costoCassa" => 0.81);//cassa nuova bianca
 	$html.=getArticleTable($params);
 	// supermercati
 	/*  vecchi conteggi sma
@@ -264,7 +270,7 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.3, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 112,
-						"costoCassa" => 0.41);
+						"costoCassa" => 0.44);
 		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('708','808','708-','808-','708--','808--'),
@@ -332,7 +338,7 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.5, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 112,
-						"costoCassa" => 0.41);
+						"costoCassa" => 0.44);
 		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('705','805','705-','805-','705--','805--' ),
