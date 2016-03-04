@@ -261,7 +261,7 @@ $params['rexExp']=regular expression
 	$result=new stdClass();
 	if(empty($error)){
 		$result->result=true;
-		$result->errors=$error;				
+		$result->errors=$error;
 	}else{
 		$result->result=false;
 		$result->errors=$error;
@@ -293,7 +293,7 @@ class MyClass extends DefaultClass{
 		return $this;
   	}
   	public function getName(){
-  		return get_class($this);	
+  		return get_class($this);
 	}
 	public function mergeParams($params){
 		//importo eventuali valori delle proprietà che mi sono passato come $params nell'oggetto principale
@@ -335,7 +335,7 @@ class MyClass extends DefaultClass{
 		global $log;
 		if (!isset($this->_params['_result'])){
 			//imposto la clausola where a seconda delle chiavi di ricerca del DB per la classe corrente
-			//imposto la clausola order a seconda delle chiavi di ricerca del DB per la classe corrente			
+			//imposto la clausola order a seconda delle chiavi di ricerca del DB per la classe corrente
 			$where='WHERE ';
 			$order=' ORDER BY ';
 			$indexes=$this->_dbIndex->getVal();
@@ -470,7 +470,7 @@ class MyClass extends DefaultClass{
 		}
 		
 		$sqlite=$GLOBALS['config']->sqlite;
-		$table=$this->_dbName->getVal();	
+		$table=$this->_dbName->getVal();
 		$indexes=$this->_dbIndex->getVal();
 		
 		$fieldsToAdd='';
@@ -496,9 +496,8 @@ class MyClass extends DefaultClass{
 			return;
 		}
 		
-		
 		$sqlite=$GLOBALS['config']->sqlite;
-		$table=$this->_dbName->getVal();	
+		$table=$this->_dbName->getVal();
 		$indexes=$this->_dbIndex->getVal();
 		
 		//elenco di tutti i campi da aggiornare
@@ -539,12 +538,12 @@ class MyClass extends DefaultClass{
 		
 		$sqlite=$GLOBALS['config']->sqlite;
 		$key=$this->_dbIndex->getVal();
-		$table=$this->_dbName->getVal();	
-				
+		$table=$this->_dbName->getVal();
+		
 		$where='WHERE ';
 		$order=' ORDER BY ';
 		$indexes=$this->_dbIndex->getVal();
-			
+		
 		foreach($indexes as $key => $property){
 			if($key>0){
 				$where.=' AND ';
@@ -560,7 +559,7 @@ class MyClass extends DefaultClass{
 			}
 			$where.=$this->$property->nome."=".$separatore.odbc_access_escape_str($this->$property->getVal()).$separatore;
 			$order.=$this->$property->nome;
-		}			
+		}
 		//la stringa della query
 		$query='SELECT * FROM '.$table.' '.$where.$order;
 		//apro il database ed eseguo la query
@@ -572,7 +571,7 @@ class MyClass extends DefaultClass{
 				$this->$key->setVal($value);
 			}
 		}
-		//fine estensione oggetto		
+		//fine estensione oggetto
 		return;
 	}
 	public function getSqlDbFieldsNames(){
@@ -583,7 +582,7 @@ class MyClass extends DefaultClass{
 				$result[]=$key;
 			}
 		}
-		return $result;		
+		return $result;
 	}
 }
 
@@ -599,16 +598,16 @@ class Proprietà extends DefaultClass {
 	public function setVal($newVal){
 		//prima di impostare il valore eseguo dei controlli per verificare che sia corretto e delle trasformazioni se necessarie
 		if($this->nome[0]!='_'){
-
+			
 			$type=$this->getDataType();
-
+			
 			//se il campo è un numero di bolla o di fattura
 			//riempio di spazi da sinistra verso destra prima del numero fino ad arrivare 
 			//al numero di caratteri richiesto dal campo del database
 			if($type['name']=='F_NUMBOL' || $type['name']=='F_NUMFAT'){
 				$newVal=str_pad($newVal, $type['len'], " ", STR_PAD_LEFT);  
 			}
-		
+			
 			//se la data ha il formato aaaa/mm/gg la trasformo in mm-gg-aaaa
 			//come richiesto dal database
 			else if($type['type']=='Date' && preg_match('/....-..-../',$newVal)){
@@ -692,7 +691,6 @@ class Proprietà extends DefaultClass {
 					$params=Array('codice'=>$this->valore, 'cod_cliente'=>$this->_parent->cod_destinatario->getVal());
 				}
 				return new DestinazioneCliente($params);
-
 		}
 		//se ha un valore ma non è nessuno dei precedenti allora la proprietà non è estendibile
 		return false;
@@ -708,7 +706,6 @@ class Proprietà extends DefaultClass {
 		$parentObj=$this->_parent;
 		$tableName=$parentObj->_dbName->getVal();
 		$fieldName=$this->campoDbf;
-		
 		
 		if(!array_key_exists($tableName,$DataTypeInfo)){
 			//$result=dbFrom($tableName, 'SELECT *', "");
@@ -787,13 +784,12 @@ class Fattura extends MyClass{
 			$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".'F_NUMFAT'."=".odbc_access_escape_str($this->numero->getVal())." AND ".'F_DATFAT'."=#".odbc_access_escape_str($this->data->getVal()."#"));
 /*todo fix*///$result=dbFrom($this->_dbName2->getVal(), 'SELECT *', "WHERE ".'F_NUMFAT'."=".odbc_access_escape_str($this->numero->getVal())." AND ".'F_DATFAT'."=#".odbc_access_escape_str($this->data->getVal()."#")." AND F_TIPODOC=".odbc_access_escape_str($this->tipo->getVal()));
 			
-
 			foreach($result as $row){
 					$this->importo->setVal($row['F_IMPORTO']);
 			}
 		}
 		
-		//recupero le righe della fattura	
+		//recupero le righe della fattura
 		if ($this->_params['_autoExtend']!='intestazione'){
 			$result=dbFrom($this->_dbName3->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
 				foreach($result as $row){
@@ -820,7 +816,7 @@ class Fattura extends MyClass{
 				&& $riga->imponibile->getVal()*1!=''){
 				$codIva=$riga->cod_iva->getVal();
 				@$imponibili[$codIva]['imponibile']+=$riga->imponibile->getVal();
-				@$imponibili[$codIva]['importo_iva']+=$riga->importo_iva->getVal();		
+				@$imponibili[$codIva]['importo_iva']+=$riga->importo_iva->getVal();
 			}
 		}
 		return $imponibili;
@@ -837,7 +833,7 @@ class Fattura extends MyClass{
 		$data=$newVal;
 		
 		$nomefile=$data.'_'.$tipo.$numero.'.pdf';
-		return $nomefile;	
+		return $nomefile;
 	}
 	
 	public function getPdfFileUrl(){
@@ -854,15 +850,15 @@ class Fattura extends MyClass{
 			//echo 'il file non esiste devo generarlo!!';
 			$this->generaPdf();
 		}
-		return $fileUrl;	
+		return $fileUrl;
 	}
 	
 	public function generaPdf(){
-		return generaPdfFt($this);	
+		return generaPdfFt($this);
 	}
 	
 	public function visualizzaPdf(){
-		$this->generaPdf($this);	
+		$this->generaPdf($this);
 		//url completo del file pdf
 		$pdfUrl=$this->getPdfFileUrl();
 		// impostiamo l'header di un file pdf
@@ -876,7 +872,7 @@ class Fattura extends MyClass{
 	
 	public function inviaPec(){
 		//rigenero il file pdf della fattura
-		$this->generaPdf($this);	
+		$this->generaPdf($this);
 	
 		//importo i dati di configurazione della pec
 		$pec=$GLOBALS['config']->pec;
@@ -1003,7 +999,6 @@ class Ddt  extends MyClass {
 		$this->addProp('note',						'F_NOTE');
 		$this->addProp('note1',						'F_NOTE1');
 		$this->addProp('note2',						'F_NOTE2');
-
 		
 		$this->righe=array();
 		
@@ -1019,7 +1014,7 @@ class Ddt  extends MyClass {
 //print_r($params);
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
-//print_r($this->_params);		
+//print_r($this->_params);
 		//print_r($params['_result']);
 		//avvio il recupero dei dati
 		$this->autoExtend();
@@ -1040,7 +1035,6 @@ class Ddt  extends MyClass {
 						'_result'=>$row,
 					);
 					array_push($this->righe, new Riga($params));
-
 			}
 		}
 
@@ -1064,7 +1058,7 @@ class Ddt  extends MyClass {
 		$data=$newVal;
 		
 		$nomefile=$data.'_DdT'.$numero.'.pdf';
-		return $nomefile;	
+		return $nomefile;
 	}
 	
 	public function getPdfFileUrl(){
@@ -1089,7 +1083,7 @@ class Ddt  extends MyClass {
 	}
 	
 	public function visualizzaPdf(){
-		$this->generaPdf($this);	
+		$this->generaPdf($this);
 		//url completo del file pdf
 		$pdfUrl=$this->getPdfFileUrl();
 		// impostiamo l'header di un file pdf
@@ -1100,7 +1094,7 @@ class Ddt  extends MyClass {
 	public function inviaMail(){
 		//rigenero il file pdf del ddt
 		$this->generaPdf($this);
-	
+		
 		//importo i dati di configurazione della pec
 		$gmail=$GLOBALS['config']->gmail;
 		$cliente=$this->cod_destinatario->extend();
@@ -1182,7 +1176,7 @@ class Ddt  extends MyClass {
 
 class Riga extends MyClass {
 	function __construct($params) {
-	
+		
 		//di che tipo di riga si tratta?
 		//se non lo so cerco di indovinare dagli altri parametri che mi sono passato
 		if (!array_key_exists('_tipoRiga', $params)){
@@ -1198,7 +1192,7 @@ class Riga extends MyClass {
 				//$callee = next(debug_backtrace());
 				//trigger_error("Impossibile determinare il tipo di Riga richiesta".' in <strong>'.$callee['file'].'</strong> on line <strong>'.$callee['line'].'</strong>', E_USER_ERROR);
 				var_dump($params);
-				trigger_error("Impossibile determinare il tipo di Riga richiesta", E_USER_ERROR);			
+				trigger_error("Impossibile determinare il tipo di Riga richiesta", E_USER_ERROR);
 		}
 
 		
@@ -1276,7 +1270,7 @@ class Riga extends MyClass {
 		}else{
 			return $this->prezzo->getVal();
 		}
-	}	
+	}
 }
 
 class Articolo extends MyClass {
@@ -1300,7 +1294,7 @@ class Articolo extends MyClass {
 		$this->mergeParams($params);
 		
 		//avvio il recupero dei dati
-		$this->autoExtend();	
+		$this->autoExtend();
 	}
 }
 
@@ -1315,7 +1309,7 @@ class Imballaggio extends MyClass {
 
 class ClienteFornitore extends MyClass {
 	function __construct($params) {
-		//$this->addProp('codice',					'F_CODFOR');	
+		//$this->addProp('codice',					'F_CODFOR');
 		$this->addProp('codice',					'F_CODCLI');
 		$this->addProp('ragionesociale',			'F_RAGSOC');
 		$this->addProp('via',						'F_INDIRI');
@@ -1389,7 +1383,7 @@ class DestinazioneCliente extends MyClass {
 	function __construct($params) {
 		$this->addProp('codice',					'F_SUFFCLI');
 		$this->addProp('cod_cliente',				'F_CODCLI');
-		$this->addProp('ragionesociale',			'F_RAGSOC');	
+		$this->addProp('ragionesociale',			'F_RAGSOC');
 		$this->addProp('via',						'F_INDIRI');
 		$this->addProp('paese',						'F_LOCALI');
 		$this->addProp('citta',						'F_PROV');
@@ -1399,16 +1393,16 @@ class DestinazioneCliente extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('DESTINAZIONICLIENTI');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice','cod_cliente'));
-				
+		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
 		//avvio il recupero dei dati
-		$this->autoExtend();		
+		$this->autoExtend();
 	}
 	/*
 	public function getDataFromDb(){
@@ -1434,7 +1428,7 @@ class DestinazioneCliente extends MyClass {
 class Vettore extends MyClass {
 	function __construct($params) {
 		$this->addProp('codice',					'F_CODVET');
-		$this->addProp('ragionesociale',			'F_DESVET');	
+		$this->addProp('ragionesociale',			'F_DESVET');
 		$this->addProp('via',						'F_INDIRI');
 		$this->addProp('paese',						'F_LOCALI');
 		$this->addProp('cap',						'F_CAP');
@@ -1443,23 +1437,23 @@ class Vettore extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANAGRAFICAVETTORI');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice'));
-				
+		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
 		//avvio il recupero dei dati
-		$this->autoExtend();		
+		$this->autoExtend();
 	}
 }
 
 class CausalePagamento extends MyClass {
 	function __construct($params) {
 		$this->addProp('codice',					'F_CODPAG');
-		$this->addProp('descrizione',				'F_DESPAG');	
+		$this->addProp('descrizione',				'F_DESPAG');
 		$this->addProp('tipo',						'F_TIPPAG'); //1=RIMESSA DIRETTA // 3=RICEVUTA BANCARIA // 5=BONIFICO	
 		$this->addProp('scadenza',					'F_SCAD_1');
 		$this->addProp('finemese',					'F_FIMESE');
@@ -1467,7 +1461,7 @@ class CausalePagamento extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('CAUSALIPAGAMENTO');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice'));
@@ -1488,11 +1482,11 @@ class CausaleIva extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('CAUSALIIVA');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice'));
-				
+		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -1509,11 +1503,11 @@ class ListinoPrezzi extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('LISTINOPREZZI');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice'));
-				
+		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -1532,16 +1526,16 @@ class Banca extends MyClass {
 		$this->addProp('contocorrente',				'F_CONTOCOR');
 		
 		//proprietà aggiunte nel file sql
-		$this->addProp('__iban',					'');	
+		$this->addProp('__iban',					'');
 		
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANAGRAFICABANCHE');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice'));
-				
+		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -1554,7 +1548,7 @@ class Banca extends MyClass {
 	public function getDataFromDbCallBack(){
 		//ricavo ulteriori dati dal database sqLite
 		$this->getSqlDbData();
-	}	
+	}
 }
 
 class CausaliMagazzino extends MyClass {
@@ -1567,11 +1561,11 @@ class CausaliMagazzino extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('CAUSALIMAGAZZINO');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice'));
-				
+		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -1584,15 +1578,15 @@ class CausaliSpedizione extends MyClass {
 	function __construct($params) {
 		$this->addProp('codice',					'F_CODSPE');
 		$this->addProp('descrizione',				'F_DESSPE');
-				
+		
 		//configurazione database
 		$this->addProp('_dbName','');
 		$this->_dbName->setVal('CAUSALISPEDIZIONE');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice'));
-				
+		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -1613,11 +1607,11 @@ class AnnotazioniDdt extends MyClass {
 		//configurazione database
 		$this->addProp('_dbName');
 		$this->_dbName->setVal('ANNOTAZIONIDDT');
-
+		
 		//chiave(i) di ricerca del database
 		$this->addProp('_dbIndex');
 		$this->_dbIndex->setVal(array('codice'));
-				
+		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
 		
@@ -1632,8 +1626,8 @@ example usage
 $test=new MyList(
 	array(
 		'_type'=>'Ddt',
-		'_select'=>'numero,data',		
-		'data'=>array('=','17/02/12'),		
+		'_select'=>'numero,data',
+		'data'=>array('=','17/02/12'),
 		'data'=>array('>','28/03/09'),
 		'data'=>array('<','17/02/12'),
 		'data'=>array('<>','01/01/09','01/01/11'),
@@ -1646,18 +1640,18 @@ $test=new MyList(
 	
 		$tiporiga='ddt';
 		//$tiporiga='ft';
-	
+		
 		$this->_params=$params;
 		$numeroDiValori=0;
 		//inizializzo larray che conterrà gli oggetti della lista
 		$this->arr=array();
-	
+		
 		$objType=$params['_type'];
 		$fakeObj=new $objType(array('_autoExtend'=>'-1'
 									,'_tipoRiga'=>$tiporiga     /*hack to fix (non è detto che sia una riga ddt, anzi non è proprio detto che sia una riga)*/
 									));
 		$condition=array();
-		$i=0;		
+		$i=0;
 		$operator=null;
 		$newVal=null;
 		$newKey=null;
@@ -1736,11 +1730,10 @@ $test=new MyList(
 				//echo $operator;
 				$condition[$newKey[$h]][$operator[$h]][]=$val;
 		}
-
-
+		
 		$where='WHERE ';
 		$order=' ORDER BY ';
-
+		
 		//recupero i campi di ordinamento // clausola order
 		$indexes=$fakeObj->_dbIndex->getVal();
 		foreach($indexes as $key => $property){
@@ -1770,12 +1763,12 @@ $test=new MyList(
 					//echo $c3.' '.$myOperatorKey.'<br>';
 					if ($c3>0){
 						if($myOperatorKey=='='){
-							$where.=' OR ';						
+							$where.=' OR ';
 						}else{
-							$where.=' AND ';						
+							$where.=' AND ';
 						}
-					}	
-			
+					}
+					
 					$property=$myKey;
 					$val=$val;
 					$operator=$myOperatorKey;
@@ -1785,7 +1778,6 @@ $test=new MyList(
 						case 'Date': $separatore="#";break;
 						case 'Numeric': $separatore="";break;
 						default: $separatore="'";break;
-			
 					}
 					$where.=$fakeObj->$property->campoDbf.$operator.$separatore.odbc_access_escape_str($val).$separatore;
 					$c3++;
@@ -1796,7 +1788,7 @@ $test=new MyList(
 				$where.=') ';
 			}
 			$c1++;
-		}	
+		}
 		
 		/*compose the select statement
 			if nothing is specified just select all
@@ -1826,7 +1818,6 @@ $test=new MyList(
 					'_result'=>$row,
 					'_autoExtend'=>'intestazione',
 					'_tipoRiga'=>$tiporiga     /*hack to fix (non è detto che sia una riga ddt, anzi non è proprio detto che sia una riga)*/
-					
 			));
 			//print_r($obj);
 			$this->add($obj);
