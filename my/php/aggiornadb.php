@@ -26,32 +26,31 @@ $nuoveRighe=new MyList(
 //  3   //
 //salva le righe ottenute nel mio database
 $func = function ($obj){
-	echo '<br>';
+	$keys=array();
+	$values=array();
 	foreach($obj as $key => $value) {
 		if($key[0]=='_') continue;
+		//echo '**';
+		/*
 		echo '<br>';
 		echo $key.':';
 		echo $value->getVal();
+		*/
+		$keys[]="'".$key."'";
+		$values[]="'".$value->getVal()."'";
 	}
+	$table="'BACKUPRIGHEDDT'";
+	$query ='INSERT INTO '.$table.' ('.implode(",", $keys).')';
+	$query .=' VALUES ('.implode(",", $values).');';
+	ECHO $query;
+	$sqlite=$GLOBALS['config']->sqlite;
+	$myDbArray=array();
+	$table='BACKUPRIGHEDDT';
+	$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
+	$db->query($query);
 };
+
 $nuoveRighe->iterate($func);
-
-
-
-$sqlite=$GLOBALS['config']->sqlite;
-$myDbArray=array();
-$table='ANAGRAFICACLIENTI';
-$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
-//faccio una query e stampo i risultati
-$results = $db->query('SELECT * FROM '.$table);
-while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-	//global $myArray;
-	$myDbArray[$row['codice']]=$row;
-	//var_dump($row);
-}
-
-
-
 
 ?>
 </body>
