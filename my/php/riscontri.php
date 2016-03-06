@@ -100,6 +100,9 @@ if (@$_GET['mode']=='print'){
 //==============================================================================================================================
 /*
 echo '<h1>'.$startDateR.'</h1><hr>';
+$startDateR='01/01/16';
+$endDateR='31/01/16';
+
 
 //martinelli
 	echo '<h1>Martinelli</h1>';
@@ -197,69 +200,7 @@ echo '<h1>'.$startDateR.'</h1><hr>';
 52 CETRIOLI
 60 PEPERONE
 */
-$query = "
-	\$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/12/15','31/12/15'),
-			//'cod_iva'=>array('=','19','819'),
-			'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
-			//'cod_articolo'=>array('=','','56'),
-			//'cod_articolo'=>array('=','801-','803-','01','03'),
-			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
-			'cod_cliente'=>array('=','SEVEN','MARTI','SOGEG'),
-			//'cod_cliente'=>array('!=','VIOLA'),
-			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			//cod_cliente'=>array('!=','FACCI','FACCG'),
-			//'cod_destinatario'=>array('=','RAVEN'),
-			//'colli'=>array('!=','0'),
-			//'prezzo'=>array('!=','0.001')
-		)
-	);
-";
-/*
-$query = new MyList(
-	array(
-		'_type'=>'Riga',
-		'ddt_data'=>array('<>','01/12/2015','31/12/2015'),
-		//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
-		//'cod_cliente'=>array('=','SEVEN','MARTI','SOGEG'),
-	)
-);
-*/
 
-/*
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			//'cod_iva'=>array('=','840'),
-			'cod_articolo'=>array('=','850'),
-			//'cod_articolo'=>array('=','','56'),
-			//'cod_articolo'=>array('=','801-','803-','01','03'),
-			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
-			//'cod_cliente'=>array('!=','SEVEN'),
-			//'cod_cliente'=>array('!=','VIOLA'),
-			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			//cod_cliente'=>array('!=','FACCI','FACCG'),
-			//'cod_destinatario'=>array('=','RAVEN'),
-			//'colli'=>array('!=','0'),
-			//'prezzo'=>array('!=','0.001')
-		)
-	);
-*/
-
-eval ($query);
-	var_dump($test->_params['cod_articolo']);
-	var_dump($test->_params['ddt_data']);
-	echo '<table><tr><td style="background-color:red;color:white;" >------</td><td>= manca ricavo</td></tr></table>';
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-
-//==============================================================================================================================
-/*
 //SOLO TUTTI I MERCATI
 $dbClienti=getDbClienti();
 $mercati[]='=';
@@ -270,18 +211,29 @@ foreach ($dbClienti as $cliente){
 	}
 }
 
-	$test=new MyList(
+$query = "
+	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','08'),
-			//'cod_cliente'=>array('=','MORAN','TESI','ZANAR','GIAC1','NERIO'),
-			'cod_cliente'=>$mercati,
-			//'cod_cliente'=>array('=','MARTI'),
+			'ddt_data'=>array('<>','01/02/16','01/03/16'),
+			//'cod_iva'=>array('=','20'),
+			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
+			'cod_articolo'=>array('=','850'),
+			//'cod_articolo'=>array('=','801-','803-','01','03'),
+			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
+			//'cod_cliente'=>array('=','SEVEN','MARTI','SOGEG'),
+			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
+			//'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			'prezzo'=>array('!=','0.001')
+			//cod_cliente'=>array('!=','FACCI','FACCG'),
+			//'cod_destinatario'=>array('=','RAVEN'),
+			//'colli'=>array('!=','0'),
+			//'prezzo'=>array('!=','0.001')
 		)
 	);
+";
+
+eval ($query);
 	var_dump($test->_params['cod_articolo']);
 	var_dump($test->_params['ddt_data']);
 	echo '<table><tr><td style="background-color:red;color:white;" >------</td><td>= manca ricavo</td></tr></table>';
@@ -289,7 +241,7 @@ foreach ($dbClienti as $cliente){
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
 //==============================================================================================================================
 /*
 	$test=new MyList(
