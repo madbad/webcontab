@@ -203,25 +203,31 @@ $endDateR='31/01/16';
 
 //SOLO TUTTI I MERCATI
 $dbClienti=getDbClienti();
-$mercati[]='=';
+$mercati[]='!=';
 foreach ($dbClienti as $cliente){
 //print_r($cliente);
-	if ($cliente['__classificazione']=='mercato'){
-		$mercati[]= $cliente['codice'];
+	if ($cliente['__classificazione']=='supermercato' || $cliente['__classificazione']=='mercato'){
+		$mercati[]= addslashes($cliente['codice']);
 	}
 }
-
+$strMercati ='array(\''.implode("','",$mercati).'\')';
+//echo "*****(".$strMercati.")*****";
 $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/02/16','01/03/16'),
+			'ddt_data'=>array('<>','01/01/16','31/01/16'),
 			//'cod_iva'=>array('=','20'),
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
-			'cod_articolo'=>array('=','850'),
+			//'cod_articolo'=>array('=','850'),
 			//'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
-			//'cod_cliente'=>array('=','SEVEN','MARTI','SOGEG'),
+			//'cod_cliente'=>array('!=','SEVEN'),
+			//'cod_articolo'=>array('!=','BSEVEN'),
+			//'cod_articolo'=>array('=','01','03','01S','03S','01F','03F'),
+			'cod_articolo'=>array('=','31'),
+			'cod_cliente'=>".$strMercati.",
+			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
 			//'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
@@ -232,7 +238,7 @@ $query = "
 		)
 	);
 ";
-
+echo $query;
 eval ($query);
 	var_dump($test->_params['cod_articolo']);
 	var_dump($test->_params['ddt_data']);
