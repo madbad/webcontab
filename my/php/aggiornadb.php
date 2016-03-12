@@ -21,6 +21,12 @@ $nuoveRighe=new MyList(
 		'ddt_numero'=>array('>',$ultimoDdtNumero),
 	)
 );
+	$table="'BACKUPRIGHEDDT'";
+	$query="SELECT MAX( ddt_numero )  FROM '".$table."'";
+	ECHO $query;
+	$sqlite=$GLOBALS['config']->sqlite;
+	$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
+	print_r($db->query($query));
 
 //////////
 //  3   //
@@ -50,7 +56,7 @@ $func = function ($obj){
 	$db->query($query);
 };
 
-$nuoveRighe->iterate($func);
+//$nuoveRighe->iterate($func);
 
 ?>
 </body>
