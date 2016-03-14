@@ -3,14 +3,33 @@
 <?php
 include ('./core/config.inc.php');
 
-echo 'test';
 //////////
 //  1   //
 //quale è l'ultimo ddt (data e numero) che ho salvato nel mio database?
-$ultimoDdtData= "02/03/2016";
-$ultimoDdtNumero= "430";
-echo 'test2';
+$table="BACKUPRIGHEDDT";
+//select the max date
+$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."'";
+$db = new SQLite3($GLOBALS['config']->sqlite->dir.'/myDb.sqlite3');
+$result = $db->query($query);
+$ultimoDdtData = '';
+$ultimoDdtNumero = '';
+while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+	$ultimoDdtData = $row['DataUltimoDdt'];
+}
 
+//select the max ddt
+$query="SELECT MAX( ddt_numero ) as NumeroUltimoDdt  FROM '".$table."' WHERE ddt_data ='".$ultimoDdtData."'" ;
+$db = new SQLite3($GLOBALS['config']->sqlite->dir.'/myDb.sqlite3');
+$result = $db->query($query);
+while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+	$ultimoDdtNumero =  $row['NumeroUltimoDdt'];
+	}
+/*
+$ultimoDdtData= "10/08/2014";
+$ultimoDdtNumero= "3079";
+*/
+echo "Ultimo ddt memorizzato è il <br>";
+echo "N. ".$ultimoDdtNumero." del (mm-gg-aaa) ".$ultimoDdtData;
 //////////
 //  2   //
 //ottieni le righe di tutti i ddt successivi al mio
@@ -21,12 +40,6 @@ $nuoveRighe=new MyList(
 		'ddt_numero'=>array('>',$ultimoDdtNumero),
 	)
 );
-	$table="'BACKUPRIGHEDDT'";
-	$query="SELECT MAX( ddt_numero )  FROM '".$table."'";
-	ECHO $query;
-	$sqlite=$GLOBALS['config']->sqlite;
-	$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
-	print_r($db->query($query));
 
 //////////
 //  3   //
@@ -45,18 +58,22 @@ $func = function ($obj){
 		$keys[]="'".$key."'";
 		$values[]="'".$value->getVal()."'";
 	}
+	echo '<br>Sto salvando il ddt ';
+	echo "N. ".$obj->ddt_numero->getVal()." del (mm-gg-aaa) ".$obj->ddt_data->getVal()." riga ". $obj->numero->getVal();
+
 	$table="'BACKUPRIGHEDDT'";
 	$query ='INSERT INTO '.$table.' ('.implode(",", $keys).')';
 	$query .=' VALUES ('.implode(",", $values).');';
-	ECHO $query;
+	//ECHO $query;
 	$sqlite=$GLOBALS['config']->sqlite;
 	$myDbArray=array();
 	$table='BACKUPRIGHEDDT';
 	$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
 	$db->query($query);
-};
 
-//$nuoveRighe->iterate($func);
+};
+echo "Sono state selezionate righe: ". (count($nuoveRighe)-1);
+$nuoveRighe->iterate($func);
 
 ?>
 </body>
