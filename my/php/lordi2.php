@@ -47,6 +47,10 @@ include ('./core/config.inc.php');
 49 MELANZANE
 50 ZUCCA
 */
+//OVERRIDE DEFAULT CONFIG
+//$config->pathToDbFiles= 'F:/CONTAB';
+
+
 //print_r($_POST);
 $dataIniziale=$_POST['dal'];
 $dataFinale=$_POST['al'];
@@ -59,7 +63,9 @@ $cliente=$_POST['cliente'];
 
 $imponibile=0;
 $colliddt=0;
-$pesoddt=0;
+$pesoddtRiscontrato=0;
+$pesoddtPartenza=0;
+$pesoddtPartenzaTot=0;
 $colliricavo=0;
 $pesoricavo=0;
 
@@ -116,21 +122,21 @@ echo '<br><br>';
 	//select from sqlite
 	$table="";
 	$query ="SELECT * FROM 'BACKUPRIGHEDDT'
-			WHERE ddt_data >= '".fixDateForSql($dataFinale)."'
-			and ddt_data <= '".fixDateForSql($dataIniziale)."'
+			WHERE ddt_data >= '".fixDateForSql($dataIniziale)."'
+			and ddt_data <= '".fixDateForSql($dataFinale)."'
 			and cod_cliente = '".$cliente."';";
 	
-	echo $query;
+	//echo $query;
 	$sqlite=$GLOBALS['config']->sqlite;
 	$table='BACKUPRIGHEDDT';
 	$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
 	$result = $db->query($query);
 	$sqlResult = array();
-	echo "***";
+	//echo "***";
 	while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-	echo "***";
+	//echo "***";
 		$key =trim($row['ddt_numero'])."#".trim($row['ddt_data'])."#".trim($row['numero'])."#".trim($row['cod_articolo']);
-		echo '<br> ('.$key.')';
+		//echo '<br> ('.$key.')';
 		$sqlResult[$key] =  $row;
 	}
 /*
@@ -141,19 +147,23 @@ print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
 	echo "<tr>";
 		echo "<td>Articolo</td>";
 		echo "<td>Colli</td>";
-		echo "<td>Peso netto Partenza</td>";
-		echo "<td>Peso netto Riscontrato</td>";
+		echo "<td>Peso netto<br>Partenza</td>";
+		echo "<td>Peso netto<br>Riscontrato</td>";
 		echo "<td>Differenza</td>";
 		echo "<td>Prezzo netto</td>";
 		echo "<td>Prezzo lordo</td>";
 	echo "</tr>";
 	$ddtlist->iterate(function($obj){
 		global $colliddt;
-		global $pesoddt;
+		global $pesoddtRiscontrato;
 		global $colliricavo;
 		global $pesoricavo;
-			global $sqlResult;
-
+		global $sqlResult;
+		global $pesoddtPartenza;
+		global $pesoddtPartenzaTot;
+		
+		$pesoddtPartenza=0;
+		
 		
 		$righe = new MyList(
 			array(
@@ -165,12 +175,14 @@ print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
 		);
 		echo "\n<tr><td colspan='5'><b>DDT ".$obj->numero->getVal()." DEL ".$obj->data->getFormatted()."</b></td></tr>";
 		$colliddt=0;
-		$pesoddt=0;
+		$pesoddtRiscontrato=0;
 		$righe->iterate(function($obj){
 			global $imponibile;
 			global $colliddt;
-			global $pesoddt;
+			global $pesoddtRiscontrato;
 			global $sqlResult;
+			global $pesoddtPartenza;
+
 			$css ='';
 
 			$key =trim($obj->ddt_numero->getVal())."#".$obj->ddt_data->getVal()."#".$obj->numero->getVal()."#".$obj->cod_articolo->getVal();
@@ -181,7 +193,7 @@ print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
 				
 				//remove this element from the array
 				unset($sqlResult[$key]);
-				
+				$pesoddtPartenza += $partenza['peso_netto'];
 				$differenzaPesoKg = $obj->peso_netto->getVal()-$partenza['peso_netto'];
 				$differenzaPesoPercentuale = $differenzaPesoKg * 100 /$partenza['peso_netto'];
 				
@@ -201,7 +213,7 @@ print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
 			//colcolo totale peso e colli del ddt //escludendo le righe senza colli (albotrans assolve)
 			if($obj->colli->getVal()>0){
 				$colliddt+= $obj->colli->getVal();
-				$pesoddt+= $obj->peso_netto->getVal();
+				$pesoddtRiscontrato+= $obj->peso_netto->getVal();
 			}
 			
 			//evito le righe vuote
@@ -221,7 +233,7 @@ print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
 				echo "<td $cssRight $css>".number_format($obj->colli->getVal(),0,',','')."</td>";
 				echo "<td $cssRight $css>".number_format($partenza['peso_netto'],1,',','')."</td>";
 				echo "<td $cssRight $css>".number_format($obj->peso_netto->getVal(),1,',','')."</td>";
-				echo "<td $cssRight $css>".number_format($differenzaPesoKg,1,',','')." (".$differenzaPesoPercentuale."%)</td>";
+				echo "<td $cssRight $css>".number_format($differenzaPesoKg,1,',','')." (".round($differenzaPesoPercentuale,0)."%)</td>";
 				//echo "<td $cssRight>".round($obj->getPrezzoNetto(),3)."</td>";
 				echo "<td $cssRight $css>"."</td>";
 				echo "<td $cssRight $css>".number_format($obj->getPrezzoLordo(),3,',','')."</td>";
@@ -229,23 +241,35 @@ print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
 			//	echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
 			echo "</tr>";
 		});
-		echo "<tr><td colspan='5'>Colli Riscontrati: $colliddt - Peso Riscontrato:$pesoddt ::";
+		echo "<tr style='color:grey'><td colspan='7'>Colli Riscontrati: $colliddt";
+		echo " ## Peso: $pesoddtPartenza => ";
+		echo " $pesoddtRiscontrato ##";
+		echo " (".($pesoddtPartenza -$pesoddtRiscontrato).") ##";
+		echo " (".round(($pesoddtRiscontrato - $pesoddtPartenza)/$colliddt,2)."/kg-collo) ";
+		echo " (".round(($pesoddtRiscontrato - $pesoddtPartenza)*100 / $pesoddtPartenza,0)."%) ";
+		
 		
 		$partialkey = trim($obj->numero->getVal())."#".$obj->data->getVal();
 		$delettedRows = filterArrayByPartialKeyMatch($sqlResult, $partialkey);
-		echo count($delettedRows);
+		//echo count($delettedRows)-1;
 		
 		echo "</td></tr>";
 		$colliricavo+=$colliddt;
-		$pesoricavo+=$pesoddt;
-		
-
+		$pesoricavo+=$pesoddtRiscontrato;
+		$pesoddtPartenzaTot += $pesoddtPartenza;
 		
 	});
 	echo "</table>";
 	echo "\n<b>Totale imponibile: ".number_format($imponibile,2).'</b>';
 	echo "\n<br>Totale colli: $colliricavo";
-	echo "\n<br>Totale peso: $pesoricavo";
+	echo "\n<br>Totale peso Partenza: ";
+	echo "\n<br>Totale peso Riscontrato: $pesoricavo";
+	echo "\n<br>------------------------";
+	echo "\n<br>Totale peso mancante: ".($pesoddtPartenzaTot-$pesoricavo);
+	echo "\n<br>Percentuale: ".round(($pesoddtPartenzaTot-$pesoricavo)*100/$pesoddtPartenzaTot,0)."%";
+	echo "\n<br>Al collo: ".round(($pesoddtPartenzaTot-$pesoricavo)/$colliricavo,2)."kg.";
+	
+	
 	page_end();
 
 ?>
