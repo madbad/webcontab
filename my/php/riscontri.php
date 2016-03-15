@@ -100,8 +100,8 @@ if (@$_GET['mode']=='print'){
 //==============================================================================================================================
 /*
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/01/16';
-$endDateR='31/01/16';
+$startDateR='01/02/16';
+$endDateR='29/02/16';
 
 
 //martinelli
@@ -178,8 +178,8 @@ $endDateR='31/01/16';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
 
+*/
 //==============================================================================================================================
 /*
 19 CAPPUCCI
@@ -216,7 +216,7 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/01/16','31/01/16'),
+			'ddt_data'=>array('<>','01/01/16','31/03/16'),
 			//'cod_iva'=>array('=','20'),
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
 			//'cod_articolo'=>array('=','850'),
@@ -225,8 +225,8 @@ $query = "
 			//'cod_cliente'=>array('!=','SEVEN'),
 			//'cod_articolo'=>array('!=','BSEVEN'),
 			//'cod_articolo'=>array('=','01','03','01S','03S','01F','03F'),
-			'cod_articolo'=>array('=','31'),
-			'cod_cliente'=>".$strMercati.",
+			'cod_articolo'=>array('=','07'),
+			//'cod_cliente'=>".$strMercati.",
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
 			//'cod_cliente'=>array('!=','VIOLA'),
@@ -238,7 +238,7 @@ $query = "
 		)
 	);
 ";
-echo $query;
+//echo $query;
 eval ($query);
 	var_dump($test->_params['cod_articolo']);
 	var_dump($test->_params['ddt_data']);
