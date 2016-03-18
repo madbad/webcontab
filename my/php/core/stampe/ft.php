@@ -4,14 +4,19 @@
 	e lei ne prepara la stampa
 ----------------------------------------------------------------------------------------------------------
 */
+// define some default property
+$def = new stdClass();
+$def->fontName = 'helvetica';
+$def->fontSize = 8;
+$def->color->verde = array(168,236,134);
+$def->color->bianco = array(999,999,999);
+$def->color->nero = array(0,0,0);
+
 function addIntestazione ($pdf){
-	$style='';
-	$def_font='helvetica';
-	$def_size=8;
-	$def_verde= array(168,236,134);
-	$def_bianco= array(999,999,999);
+	global $def;
+	
 	//imposto carattere
-	$pdf->SetFont($def_font, 'I', $def_size-1);
+	$pdf->SetFont($def->fontName, 'I', $def->fontSize-1);
 	
 	//importo i dati dell'azienda emittente della fattura
 	$azienda=$GLOBALS['config']->azienda;
@@ -32,29 +37,24 @@ function addIntestazione ($pdf){
 }
 
 function addDestinatario ($ft,$pdf){
-	$style='';
-	$def_font='helvetica';
-	$def_size=8;
-	$def_verde= array(168,236,134);
-	$def_bianco= array(999,999,999);
-	$mod=14;
+	global $def;
 /*
 	//destinazione se diversa dal destinatario
 	if($ft->cod_cliente->getVal()!=''){
 		//bordo destinazione
-		$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-		$pdf->RoundedRect(110, 30+$mod, 80, 24, 5.0, '1010', 'DF', $style, $def_bianco);
+		$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+		$pdf->RoundedRect(110, 30+$mod, 80, 24, 5.0, '1010', 'DF', $style, $def->color->bianco);
 	
-		$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def_size-5);	
+		$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def->fontSize-5);	
 		$html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>Z<BR>I<BR>O<BR>N<BR>E';
 		$pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=44+4, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='CENTER', $autopadding=true);
 	
 		$destinazione=$ft->cod_destinazione->extend();
 		//dati intestazione ddt
-		$pdf->SetFont($def_font, 'b', $def_size+1.4);
+		$pdf->SetFont($def->fontName, 'b', $def->fontSize+1.4);
 		$pdf->Text(114, 37+$mod, $destinazione->ragionesociale->getVal());
 		//$pdf->Text(114, 41+$mod, 'Unipersonale');
-		$pdf->SetFont($def_font, '', $def_size);
+		$pdf->SetFont($def->fontName, '', $def->fontSize);
 		$pdf->Text(114, 45+$mod, $destinazione->via->getVal());
 		$pdf->Text(114, 49+$mod, $destinazione->cap->getVal().' '.$destinazione->paese->getVal(). ' ('.$destinazione->citta->getVal().')');
 	}	
@@ -62,47 +62,40 @@ function addDestinatario ($ft,$pdf){
 	
 	//destinatario
 	$cliente=$ft->cod_cliente->extend();
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(110, 10+$mod, 80, 25, 5.0, '1010', 'DF', $style, array(230,230,230));//grigio chiaro
-	$pdf->SetFont($def_font, 'b', $def_size+0.8);
-	$pdf->Text(114, 11+$mod, $cliente->ragionesociale->getVal());
-	//$pdf->Text(114, 15+$mod, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
-	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect(110, 24, 80, 25, 5.0, '1010', 'DF', $style='', array(230,230,230));//grigio chiaro
+	$pdf->SetFont($def->fontName, 'B', $def->fontSize+0.8);
+	$pdf->Text(114, 25, $cliente->ragionesociale->getVal());
+	//$pdf->Text(114, 29, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
+	$pdf->SetFont($def->fontName, '', $def->fontSize);
 
-	
-	$pdf->Text(114, 20+$mod, $cliente->via->getVal());
-	$pdf->Text(114, 23+$mod, $cliente->cap->getVal().' '.$cliente->paese->getVal(). ' ('.$cliente->citta->getVal().')');
-	$pdf->SetFont($def_font, 'b', $def_size+1);
+	$pdf->Text(114, 34, $cliente->via->getVal());
+	$pdf->Text(114, 37, $cliente->cap->getVal().' '.$cliente->paese->getVal(). ' ('.$cliente->citta->getVal().')');
+	$pdf->SetFont($def->fontName, 'B', $def->fontSize+1);
 	
 	if($cliente->p_iva->getVal()!=''){
 		$piva=$cliente->p_iva->getVal();
 	}else{
-	//echo $cliente->sigla_paese->getVal()+'*******';
 		$piva=$cliente->sigla_paese->getVal().' '.$cliente->p_iva_cee->getVal();
 	}
-	$pdf->Text(114, 27+$mod, 'Partitita IVA: '.$piva);
-	$pdf->SetFont($def_font, '', $def_size);
-	$pdf->Text(114, 31+$mod, 'Codice Fiscale: '.$cliente->cod_fiscale->getVal());
+	$pdf->Text(114, 41, 'Partitita IVA: '.$piva);
+	$pdf->SetFont($def->fontName, '', $def->fontSize);
+	$pdf->Text(114, 45, 'Codice Fiscale: '.$cliente->cod_fiscale->getVal());
 
-	$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def_size-5);
+	$pdf->SetFont(PDF_FONT_MONOSPACED, 'B', $def->fontSize-5);
 	$html='D<BR>E<BR>S<BR>T<BR>I<BR>N<BR>A<BR>T<BR>A<BR>R<BR>I<BR>O';
 	$pdf->writeHTMLCell($w=0, $h=0, $x='110', $y=20+4, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='CENTER', $autopadding=true);
 }
 
 function addDatiFattura ($ft,$pdf){
-	$style='';
-	$def_font='helvetica';
-	$def_size=8;
-	$def_verde= array(168,236,134);
-	$def_bianco= array(999,999,999);
-	//**********************************************************
-	//**********************************************************
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(15, 70, 100, 10, 5.0, '0101', 'DF', $style, $def_verde);
+	global $def;
+
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect(15, 70, 100, 10, 5.0, '0101', 'DF', $style='', $def->color->verde);
 	//
-	$pdf->SetFont($def_font, '', $def_size-3);
+	$pdf->SetFont($def->fontName, '', $def->fontSize-3);
 	$pdf->Text(18, 71, 'Tipo doc.');
-	$pdf->SetFont($def_font, '', $def_size+5);
+	$pdf->SetFont($def->fontName, '', $def->fontSize+5);
 	
 	$tipoDoc='';
 	if ($ft->tipo->getVal()=='F' || $ft->tipo->getVal()=='f'){
@@ -115,11 +108,10 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->writeHTMLCell($w=185, $h=30, $x=18, $y=74, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 
 	//
-	$pdf->SetFont($def_font, '', $def_size-3);
+	$pdf->SetFont($def->fontName, '', $def->fontSize-3);
 	$pdf->Text(65, 71, 'Numero Doc.');
-	$pdf->SetFont($def_font, '', $def_size+5);
-	//$pdf->Text(65, 74,  trim($ft->numero->getFormatted(0)));
-
+	$pdf->SetFont($def->fontName, '', $def->fontSize+5);
+	
 	//aggiungo la stringa "/anno" se dopo il 2013
 	$anno=explode('/',$ft->data->getFormatted());
 	if ($anno[2]*1>=2013){
@@ -132,34 +124,34 @@ function addDatiFattura ($ft,$pdf){
 	$pdf->writeHTMLCell($w=20, $h=9, $x=60, $y=74, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='left', $autopadding=false);
 	
 	//
-	$pdf->SetFont($def_font, '', $def_size-3);
+	$pdf->SetFont($def->fontName, '', $def->fontSize-3);
 	$pdf->Text(85, 71, 'Data Doc.');
-	$pdf->SetFont($def_font, '', $def_size+5);
+	$pdf->SetFont($def->fontName, '', $def->fontSize+5);
 	$pdf->Text(85, 74, $ft->data->getFormatted());
 	
 	//**********************************************************
 	//**********************************************************
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(125, 70, 65, 10, 5.0, '0101', 'DF', $style, $def_bianco);
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect(125, 70, 65, 10, 5.0, '0101', 'DF', $style='', $def->color->bianco);
 	
 	//
-	$pdf->SetFont($def_font, '', $def_size-3);
+	$pdf->SetFont($def->fontName, '', $def->fontSize-3);
 	$pdf->Text(138, 71, 'Valuta');
-	$pdf->SetFont($def_font, '', $def_size+5);
+	$pdf->SetFont($def->fontName, '', $def->fontSize+5);
 	$pdf->Text(138, 74, $ft->valuta->getVal());	
 	//
-	$pdf->SetFont($def_font, '', $def_size-3);
+	$pdf->SetFont($def->fontName, '', $def->fontSize-3);
 	$pdf->Text(177, 71, 'Pagina');
-	$pdf->SetFont($def_font, '', $def_size+5);
+	$pdf->SetFont($def->fontName, '', $def->fontSize+5);
 	$pdf->Text(177, 74, $ft->pagina);
 	//**********************************************************
 	//**********************************************************
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect(15, 82, 175, 10, 5.0, '0101', 'DF', $style, $def_bianco);
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect(15, 82, 175, 10, 5.0, '0101', 'DF', $style='', $def->color->bianco);
 	//
-	$pdf->SetFont($def_font, '', $def_size-3);
+	$pdf->SetFont($def->fontName, '', $def->fontSize-3);
 	$pdf->Text(18, 83, 'Condizioni di pagamento');
-	$pdf->SetFont($def_font, '', $def_size+5);
+	$pdf->SetFont($def->fontName, '', $def->fontSize+5);
 
 	if(array_key_exists('anticipofatture',$_POST)){
 
@@ -175,7 +167,6 @@ function addDatiFattura ($ft,$pdf){
 		$giorni=$num = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); 
 		$pdf->Text(18, 86, strtolower('bonif.bancario '.($pagamentoAMesi*30).' gg df fm - Scadenza '.$giorni.'/'.$mese.'/'.$anno));
 		
-		
 		//modifico la banca di appoggio
 		if(array_key_exists('banca',$_POST)){
 			$ft->cod_banca->setVal($_POST['banca']); //09 cerea banca
@@ -185,59 +176,44 @@ function addDatiFattura ($ft,$pdf){
 		}
 		
 	}else{
+		
 		$pdf->Text(18, 86, strtolower($ft->cod_pagamento->extend()->descrizione->getVal()));
-		/*
-		//non decommentare questa parte di codice in quanto normalmente non indichiamo la scadenza delle fatture
-		$pdf->SetFont($def_font, '', $def_size-3);
-		$pdf->Text(78, 83, 'Scadenza pagamento');
-		$pdf->SetFont($def_font, '', $def_size+5);
-		$pdf->Text(78, 86, $ft->getScadenzaPagamento());
-		*/
+		
 	}
 	
-	$pdf->SetFont($def_font, '', $def_size-3);
+	$pdf->SetFont($def->fontName, '', $def->fontSize-3);
 	$pdf->Text(125, 83, 'Banca di appoggio');
-	$pdf->SetFont($def_font, '', $def_size+4);
+	$pdf->SetFont($def->fontName, '', $def->fontSize+4);
 	
 	//se non è presente un codice banca il programma crashava
 	if($ft->cod_banca->extend()){
-//		$pdf->Text(125, 86, strtolower($ft->cod_banca->extend()->__iban->getVal()));
-
-		$pdf->Text(125, 86, $ft->cod_banca->extend()->__iban->getVal());	
+		$pdf->Text(125, 86, $ft->cod_banca->extend()->__iban->getVal());
 	}
 
 }
 
 function addFineCorpoFattura($ft, $pdf){
-	$style='';
-	$def_font='helvetica';
-	$def_size=8;
-	$def_verde= array(168,236,134);
-	$def_bianco= array(999,999,999);
-	//**********************************************************
-	//**********************************************************
-	$pdf->SetFont($def_font, '', $def_size);
+	global $def;
+
+	$pdf->SetFont($def->fontName, '', $def->fontSize);
 	$ft->html.= '</tr></table>';
 	$pdf->writeHTMLCell($w=164, $h=10, $x=15, $y=95.5, $ft->html, $border=1, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 
 }
 
 function addTotaliFattura($ft, $pdf){
-	$style='';
-	$def_font='helvetica';
-	$def_size=8;
-	$def_verde= array(168,236,134);
-	$def_bianco= array(999,999,999);
+	global $def;
+	
 	//**********************************************************
 	//**********************************************************
 	//annotazioni
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect($x=15, $y=263, $w=93, $h=31, 5.0, '1010', 'DF', $style, $def_bianco);
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect($x=15, $y=263, $w=93, $h=31, 5.0, '1010', 'DF', $style = '', $def->color->bianco);
 	
-	$pdf->SetFont($def_font, '', $def_size);
+	$pdf->SetFont($def->fontName, '', $def->fontSize);
 	//$pdf->Text($x=15, $y=263, "-CONTRIBUTO CONAI ASSOLTO OVE DOVUTO \n -ALTRO dsfsdf sfsfsf sdf sfsfs");
 
-	//$html = '<ul style="color:'.$def_verde.'"><LI>-</LI><li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li><li>TOTALE FATTURA SALVO ERRORI E OMISSIONI</li></ul>';
+	//$html = '<ul style="color:'.$def->color->verde.'"><LI>-</LI><li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li><li>CONTRIBUTO CONAI ASSOLTO OVE DOVUTO</li><li>TOTALE FATTURA SALVO ERRORI E OMISSIONI</li></ul>';
 
 	$html = '<ul><li style="color:white;">-</li>';//ne lascio uno bianco per evitare un bug che creava un punto della lista più grande degli altri
 	$html .='<li>PESI NETTI RISCONTRATI ALL\'ARRIVO</li>';
@@ -262,8 +238,8 @@ function addTotaliFattura($ft, $pdf){
 	$pdf->writeHTMLCell($w=93, $h=31, $x=15, $y=259, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 	
 	//dettaglio IVA
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect($x=110, $y=263, $w=80, $h=19, 5.0, '1010', 'DF', $style, $def_bianco);
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect($x=110, $y=263, $w=80, $h=19, 5.0, '1010', 'DF', $style = '', $def->color->bianco);
 
 	//imponibili e iva
 	$imponibili=$ft->calcolaTotaliImponibiliIva();
@@ -285,39 +261,35 @@ function addTotaliFattura($ft, $pdf){
 	$pdf->writeHTMLCell($w=80, $h=19, $x=110, $y=263, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=false);
 
 	//totale fattura
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect($x=110, $y=285, $w=80, $h=9, 5.0, '1010', 'DF', $style, $def_verde);
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect($x=110, $y=285, $w=80, $h=9, 5.0, '1010', 'DF', $style = '', $def->color->verde);
 
 	$html = 'Totale Documento';
 	$pdf->writeHTMLCell($w=80, $h=9, $x=110, $y=285, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 
-	$pdf->SetFont($def_font, '', $def_size+5);
+	$pdf->SetFont($def->fontName, '', $def->fontSize+5);
 	$html = $ft->valuta->getVal();
 	$pdf->writeHTMLCell($w=80, $h=9, $x=123, $y=288, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 	
-	$pdf->SetFont($def_font, '', $def_size+9);
+	$pdf->SetFont($def->fontName, '', $def->fontSize+9);
 	//$pdf->Text(167, 286, $ft->importo->getFormatted());
 	$html = '<div style="text-align:right;">'.$ft->importo->getFormatted(2).'</div>';
 	$pdf->writeHTMLCell($w=58, $h=9, $x=130, $y=286, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='left', $autopadding=false);
 }
 function addInizioCorpoFattura($ft, $pdf){
-	$style='';
-	$def_font='helvetica';
-	$def_size=8;
-	$def_verde= array(168,236,134);
-	$def_bianco= array(999,999,999);
+	global $def;
 	//**********************************************************
 	//**********************************************************
-	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-	$pdf->RoundedRect($x=15, $y=95, $w=175, $h=166, 5.0, '0000', 'DF', $style, $def_bianco);
-	$pdf->SetFont($def_font, '', $def_size-3);
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect($x=15, $y=95, $w=175, $h=166, 5.0, '0000', 'DF', $style = '', $def->color->bianco);
+	$pdf->SetFont($def->fontName, '', $def->fontSize-3);
 	$ft->html = '<table style="border:0px solid #000000;margin:0px;padding:5px;"><tr>';
 	$ft->html.= '<td width="70px;">Cod.Articolo</td><td  width="200px;">Descrizione dei Beni (natura e qualita)</td><td width="40px;">Colli</td><td width="60px;">Prezzo</td><td width="40px;">U.M.</td><td width="80px;">Quantita</td><td  width="90px;">Imponibile</td><td  width="40px;">IVA</td>';
 
-	$ft->html.= MyOwnRow('','','','','','','','','' );
+	$ft->html.= MyOwnRow($pdf,'','','','','','','','','' );
 	
 	// righe verticali nelle righe del ddt
-	$style3 = array('width' => 0.2, 'cap' => 'butt', 'join' => 'round', 'dash' => '0', 'color' => $def_verde);
+	$style3 = array('width' => 0.2, 'cap' => 'butt', 'join' => 'round', 'dash' => '0', 'color' => $def->color->verde);
 	$dist=33;
 	$inizioRigaV=100;
 	$fineRigaV=258;
@@ -341,55 +313,73 @@ function addInizioCorpoFattura($ft, $pdf){
 	//**********************************************************
 	//*********************************************************
 	
-function MyOwnRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
-
-$pdf->Text (
-				$x,
-				$y,
-				$txt,
-				$fstroke = false,
-				$fclip = false,
-				$ffill = true,
-				$border = 0,
-				$ln = 0,
-				$align = '',
-				$fill = false,
-				$link = '',
-				$stretch = 0,
-				$ignore_min_height = false,
-				$calign = 'T',
-				$valign = 'M', /* should be "C" ?? */
-				$rtloff = false 
-			);
+$myownRowRighe = 0;
+function MyOwnRow($pdf,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
+	global $def;
+	global $myownRowRighe;
+	$myownRowRighe++;
+	$altezzaRiga = 3.74;
+	
+	//$pdf->SetTextColor(50,100,100);
+	$pdf->SetTextColor(0,0,0);
 
 
+	for ($column = 1; $column <= 9; $column++){
+		$varName = 'a'.$column;
+		$txt = $$varName; //$a1, $a2, $a3, etc
+		// starting position of the first row and column
+		$x = 15.2; //orizontal (coolumn)
+		$y = 96 - $altezzaRiga + ( $altezzaRiga * $myownRowRighe); //vertical (row)
+		
+		//set special ddt case
+		$txt = str_replace('<b><i>', '',$txt);
+		$txt = str_replace('</i></b>', '',$txt);
+		//(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.' ? '<b><i>'.$riga->descrizione->getVal().'</i></b>' : $riga->descrizione->getVal()),
+		(substr($txt,0,9)=='D.d.T. N.') ? $pdf->SetFont($def->fontName, 'BI', $def->fontSize) : $pdf->SetFont($def->fontName, '', $def->fontSize);
+		
+		//set alignement
+		switch ($column) {
+			case 1: $align ='L'; break;
+			case 2: $align ='L'; break;
+			case 3: $align ='R'; break;//r
+			case 4: $align ='R'; break;//r
+			case 5: $align ='L'; break;//c
+			case 6: $align ='R'; break;//r
+			case 7: $align ='R'; break;//r
+			case 8: $align ='R'; break;//r
+			case 9: $align ='L'; break;
+		}
+		//set alignement
+		switch ($column) {
+			case 9: $x = 400;break;
+			case 8: $x = 140;break; //iva
+			case 7: $x = 126;break;  //imp
+			case 6: $x = 103;break; //q
+			case 5: $x = 121;break; //kg
+			case 4: $x = 68;break; //prezzo
+			case 3: $x = 52;break; //colli
+			case 2: $x = 33;break; //descrizione
+			case 1: $x = 15;break; //codice
+		}
 
-	$mystyle='style="text-align:left;padding:20px;" padding="2" align="left"';
-	$mystyle2='style="text-align:right;padding:20px;" padding="2"  align="right"';
-	$mystyle3='style="text-align:center;padding:20px;" padding="2"  align="center"';
-	//$mystyle=$mystyle2='';
-	$out= '</tr><tr>';
-	$out.= "<td width='62px;' $mystyle>$a1</td>"; //codice
-	$out.= "<td width='205px;' $mystyle>$a2</td>"; //descrizione
-	$out.= "<td width='40px;' $mystyle2>$a3 &nbsp;</td>"; //colli
-	$out.= "<td width='51px;' $mystyle2>$a4  </td>"; //prezzo
-	$out.= "<td width='47px;' $mystyle3>$a5</td>"; //um
-	$out.= "<td width='82px;' $mystyle2>$a6 &nbsp;</td>"; //lordo
-	$out.= "<td width='85px;' $mystyle2>$a7 &nbsp;&nbsp;</td>"; //tara
-	$out.= "<td width='40px;' $mystyle2>$a8</td>"; //netto
-	if ($a9!=''){
-		$out.="</tr><tr><td></td><td colspan='3'><span style='font-size:4px;'>         Lotto: $a9</span></td><td></td><td></td><td></td><td></td>";
+$pdf->SetXY($x, $y);
+$pdf->Cell 	(
+			$w=50,
+		  	$h = 10,
+		  	$txt,
+		  	$border = 0,
+		  	$ln = 0,
+		  	$align,
+		  	$fill = false,
+		  	$link = '',
+		  	$stretch = 0,
+		  	$ignore_min_height = false,
+		  	$calign = 'T',
+		  	$valign = 'M' 
+	); 
 	}
-	return $out;
+	return;
 }
-
-
-
-
-
-
-
-
 
 //**********************************************************
 //**********************************************************
@@ -416,25 +406,17 @@ class MYPDF extends TCPDF {
 
 //**********************************************************
 function generaPdfFt($ft){
+	global $def;
 	global $azienda;
+	$style='';
+
 	$ft->pagina=1;
 	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
 
 	//to fix... se vedo che funziona correttamente posso eliminare questo passaggio	
 	$ft->verificaCalcoli();	
 	
-	
 	$GLOBALS['img_file']='';
-	
-	$style='';
-	$def_font='helvetica';
-	$def_size=8;
-	$def_verde= array(168,236,134);
-	$def_bianco= array(999,999,999);
-
-
-
-
 
 	// create new PDF document
 	$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -492,13 +474,17 @@ function generaPdfFt($ft){
 			addFineCorpoFattura($ft, $pdf);
 			
 			//aggiungo una nota sul fatto che la fattura continua sulla pagina successiva
-			$pdf->SetFont($def_font, 'I', $def_size);
+			$pdf->SetFont($def->fontName, 'I', $def->fontSize);
 			$pdf->Text($x=150, $y=270, 'continua su pagina '.($ft->pagina+1));
 			
 			//inizio una nuova pagina
 			$pdf->AddPage();
 			//aggiorno il contatore delle pagine
 			$ft->pagina++;
+			
+			//resetto il contatore delle righe
+			global $myownRowRighe;
+			$myownRowRighe = 0;
 
 			addIntestazione($pdf);
 			addDestinatario($ft, $pdf);
@@ -514,11 +500,10 @@ function generaPdfFt($ft){
 		}
 		$contaRighe++;
 		$riga=$ft->righe[$key];
-		//echo "Key: $key; Value: $value<br />\n";
-		// number_format($number, 2, ',', ' ');
 		
 		//riga normale
-		$ft->html.= MyOwnRow(substr($riga->cod_articolo->getVal(),0,8),//abbrevio per questioni di spazio il codice articolo a 8 caratteri
+		$ft->html.= MyOwnRow($pdf,
+							substr($riga->cod_articolo->getVal(),0,8),//abbrevio per questioni di spazio il codice articolo a 8 caratteri
 							(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.' ? '<b><i>'.$riga->descrizione->getVal().'</i></b>' : $riga->descrizione->getVal()),
 							($riga->colli->getVal()*1>0 ? $riga->colli->getFormatted(0) : ''),
 							($riga->prezzo->getVal()*1>0 ? $riga->prezzo->getFormatted(3) : ''),
@@ -534,7 +519,7 @@ function generaPdfFt($ft){
 			$descrizione2=$riga->cod_articolo->extend()->descrizione2->getVal();
 			//var_dump($descrizone2);
 			if($descrizione2!=''){
-				$ft->html.= MyOwnRow('',$descrizione2,'','','','','','','' );
+				$ft->html.= MyOwnRow($pdf,'',$descrizione2,'','','','','','','' );
 			}
 
 			//descrizione lunga
@@ -544,7 +529,7 @@ function generaPdfFt($ft){
 				foreach ($righeL as $rigaL){
 					if(strlen($rigaL)>1){
 						//var_dump($rigaL);
-						$ft->html.= MyOwnRow('',$rigaL,'','','','','','','' );
+						$ft->html.= MyOwnRow($pdf,'',$rigaL,'','','','','','','' );
 					}
 				}
 			}
@@ -553,12 +538,9 @@ function generaPdfFt($ft){
 	}
 	//chiudo il corpo fattura corrente
 	addFineCorpoFattura($ft, $pdf);
-	//**********************************************************
-	//**********************************************************
 	addTotaliFattura($ft, $pdf);
 
-	//**********************************************************
-	//**********************************************************
+	//nome del file generato
 	$nomefile=$ft->getPdfFileName();
 	//salvo il file
 	@$pdf->Output($GLOBALS['config']->pdfDir."/ft/".$nomefile, 'F');
