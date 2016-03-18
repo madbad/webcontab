@@ -25,7 +25,7 @@ function addIntestazione ($pdf){
 	$html.= '<br>R.E.A. '.$azienda->_rea->getVal();
 	$html.= '<br>Reg.Imprese '.$azienda->_registroimprese->getVal();
 	$html.= '<br>Codice Fiscale '.$azienda->cod_fiscale->getVal();
-	$html.= '<br>Partita IVA '.$azienda->p_iva->getVal();
+	$html.= '<br>Partita IVA '.$azienda->p_iva->getVal();	
 	$html.= '<br>BNDOO n.'.$azienda->_bndoo->getVal();
 	$html.= '<br>PEC: '.$azienda->_emailpec->getVal();
 	$pdf->writeHTMLCell($w=0, $h=0, $x='15', $y='5', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
@@ -333,7 +333,7 @@ function addInizioCorpoFattura($ft, $pdf){
 	$dist+=23;
 	$pdf->Line($dist, $inizioRigaV, $dist, $fineRigaV, $style3);
 	$dist+=25;
-	$pdf->Line($dist, $inizioRigaV, $dist, $fineRigaV, $style3);
+	$pdf->Line($dist, $inizioRigaV, $dist, $fineRigaV, $style3);		
 
 }
 
@@ -342,31 +342,9 @@ function addInizioCorpoFattura($ft, $pdf){
 	//*********************************************************
 	
 function MyOwnRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9){
-
-$pdf->Text (
-				$x,
-				$y,
-				$txt,
-				$fstroke = false,
-				$fclip = false,
-				$ffill = true,
-				$border = 0,
-				$ln = 0,
-				$align = '',
-				$fill = false,
-				$link = '',
-				$stretch = 0,
-				$ignore_min_height = false,
-				$calign = 'T',
-				$valign = 'M', /* should be "C" ?? */
-				$rtloff = false 
-			);
-
-
-
 	$mystyle='style="text-align:left;padding:20px;" padding="2" align="left"';
 	$mystyle2='style="text-align:right;padding:20px;" padding="2"  align="right"';
-	$mystyle3='style="text-align:center;padding:20px;" padding="2"  align="center"';
+	$mystyle3='style="text-align:center;padding:20px;" padding="2"  align="center"';		
 	//$mystyle=$mystyle2='';
 	$out= '</tr><tr>';
 	$out.= "<td width='62px;' $mystyle>$a1</td>"; //codice
@@ -510,7 +488,7 @@ function generaPdfFt($ft){
 			//azzero il contatore delle righe
 			$contaRighe=0;
 			//ricomincio il corpo fattura sulla nuova pagina
-			addInizioCorpoFattura($ft, $pdf);
+			addInizioCorpoFattura($ft, $pdf);			
 		}
 		$contaRighe++;
 		$riga=$ft->righe[$key];
