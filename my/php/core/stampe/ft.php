@@ -8,6 +8,7 @@
 $def = new stdClass();
 $def->fontName = 'helvetica';
 $def->fontSize = 8;
+$def->color = new stdClass();
 $def->color->verde = array(168,236,134);
 $def->color->bianco = array(999,999,999);
 $def->color->nero = array(0,0,0);
@@ -465,6 +466,8 @@ function generaPdfFt($ft){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	$contaRighe=0;
+	global $myownRowRighe;
+	$myownRowRighe=0;
 	$ft->html='';
 	addInizioCorpoFattura($ft, $pdf);
 	
