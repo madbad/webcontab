@@ -47,6 +47,9 @@ $nuoveRighe=new MyList(
 $func = function ($obj){
 	$keys=array();
 	$values=array();
+	//escape string for sqlite query
+	$obj->cod_cliente->setVal(SQLite3::escapeString($obj->ddt_numero->getVal()));
+	
 	foreach($obj as $key => $value) {
 		if($key[0]=='_') continue;
 		//echo '**';
