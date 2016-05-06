@@ -100,8 +100,8 @@ if (@$_GET['mode']=='print'){
 //==============================================================================================================================
 /*
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/02/16';
-$endDateR='29/02/16';
+$startDateR='01/03/16';
+$endDateR='31/03/16';
 
 
 //martinelli
@@ -157,7 +157,7 @@ $endDateR='29/02/16';
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>array('=','05'),
 			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG'),
-			//'prezzo'=>array('!=','0.001')
+			'prezzo'=>array('!=','0.001')
 		)
 	);
 	echo $tabellaH;
@@ -178,8 +178,8 @@ $endDateR='29/02/16';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
 */
+
 //==============================================================================================================================
 /*
 19 CAPPUCCI
@@ -209,14 +209,14 @@ foreach ($dbClienti as $cliente){
 	if ($cliente['__classificazione']=='supermercato' || $cliente['__classificazione']=='mercato'){
 		$mercati[]= addslashes($cliente['codice']);
 	}
-}
+};
 $strMercati ='array(\''.implode("','",$mercati).'\')';
 //echo "*****(".$strMercati.")*****";
 $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/01/16','31/03/16'),
+			'ddt_data'=>array('<>','01/04/16','30/04/16'),
 			//'cod_iva'=>array('=','20'),
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
 			//'cod_articolo'=>array('=','850'),
@@ -225,21 +225,23 @@ $query = "
 			//'cod_cliente'=>array('!=','SEVEN'),
 			//'cod_articolo'=>array('!=','BSEVEN'),
 			//'cod_articolo'=>array('=','01','03','01S','03S','01F','03F'),
-			'cod_articolo'=>array('=','07'),
+			'cod_articolo'=>array('=','42','942'),
 			//'cod_cliente'=>".$strMercati.",
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
 			//'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
-			//cod_cliente'=>array('!=','FACCI','FACCG'),
+			//'cod_cliente'=>array('=','SEVEN'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
-			//'prezzo'=>array('!=','0.001')
+			'prezzo'=>array('!=','0.001')
 		)
 	);
 ";
 //echo $query;
 eval ($query);
+
+//var_dump($test);
 	var_dump($test->_params['cod_articolo']);
 	var_dump($test->_params['ddt_data']);
 	echo '<table><tr><td style="background-color:red;color:white;" >------</td><td>= manca ricavo</td></tr></table>';

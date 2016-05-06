@@ -54,6 +54,7 @@ include ('./core/config.inc.php');
 //print_r($_POST);
 $dataIniziale=$_POST['dal'];
 $dataFinale=$_POST['al'];
+//$cliente=str_replace("'", "\'",$_POST['cliente']);
 $cliente=$_POST['cliente'];
 
 
@@ -124,7 +125,7 @@ echo '<br><br>';
 	$query ="SELECT * FROM 'BACKUPRIGHEDDT'
 			WHERE ddt_data >= '".fixDateForSql($dataIniziale)."'
 			and ddt_data <= '".fixDateForSql($dataFinale)."'
-			and cod_cliente = '".$cliente."';";
+			and cod_cliente = '".SQLite3::escapeString($cliente)."';";
 	
 	//echo $query;
 	$sqlite=$GLOBALS['config']->sqlite;
