@@ -777,6 +777,31 @@ class Fattura extends MyClass{
 		//genero il database sqLite
 		$this->generateSqlDb();
   	}
+	public function getRighe(){
+		$result=dbFrom($this->_dbName3->getVal(), 'SELECT *', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
+			foreach($result as $row){
+				//array_push($this->righe, new Riga(array('ddt_numero'=>$this->numero->getVal(),'ddt_data'=>$this->data->getVal(),'numero'=>$row['F_PROGRE'])));
+				/*todo fix righe*/
+				//echo 'test';
+				$params=array(
+					'ft_numero'=>$this->numero->getVal(),
+					'ft_data'=>$this->data->getVal(),
+					'numero'=>$row['F_PROGRE'],
+					'_result'=>$row,
+				);
+				array_push($this->righe, new Riga($params));
+		}
+	}
+	
+	public function getTotaleImponibile(){
+		$result=dbFrom($this->_dbName3->getVal(), 'SELECT F_IMPONI', "WHERE ".$this->numero->campoDbf."='".odbc_access_escape_str($this->numero->getVal())."' AND ".$this->data->campoDbf."=#".odbc_access_escape_str($this->data->getVal()."#"));
+		$imponibile = 0;
+		foreach($result as $row){
+				//echo $row['F_IMPONI'];
+				$imponibile += 1 * $row['F_IMPONI'];
+		}
+		return $imponibile;
+	}
 	
 	public function getDataFromDbCallBack(){
 		//recupero l'importo della fattura
