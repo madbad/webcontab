@@ -61,8 +61,8 @@ $func = function ($obj){
 		$keys[]="'".$key."'";
 		$values[]="'".$value->getVal()."'";
 	}
-	echo '<br>Sto salvando il ddt ';
-	echo "N. ".$obj->ddt_numero->getVal()." del (mm-gg-aaa) ".$obj->ddt_data->getVal()." riga ". $obj->numero->getVal();
+	echo "\n".'<br>Sto salvando il ddt ';
+	echo "\n"."N. ".$obj->ddt_numero->getVal()." del (mm-gg-aaa) ".$obj->ddt_data->getVal()." riga ". $obj->numero->getVal();
 
 	$table="'BACKUPRIGHEDDT'";
 	$query ='INSERT INTO '.$table.' ('.implode(",", $keys).')';
