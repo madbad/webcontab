@@ -611,7 +611,7 @@ buildEmptyModule($pdf);
 		} 
 
 		//MODIFICO IL VETTORE A MIO PIACIMENTO
-		//$destinatario->cod_vettore->setVal('14');//02=translusia	24=facchini 14=ROCCO TRASPORTI
+		//$destinatario->cod_vettore->setVal('41');//02=translusia	24=facchini 14=ROCCO TRASPORTI
 		
 		$vettore= $destinatario->cod_vettore->extend();
 

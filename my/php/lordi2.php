@@ -235,7 +235,9 @@ print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
 				echo "<td $cssRight $css>".number_format($partenza['peso_netto'],1,',','')."</td>";
 				echo "<td $cssRight $css>".number_format($obj->peso_netto->getVal(),1,',','')."</td>";
 				echo "<td $cssRight $css>".number_format($differenzaPesoKg,1,',','')." (".round($differenzaPesoPercentuale,0)."%)</td>";
-				//echo "<td $cssRight>".round($obj->getPrezzoNetto(),3)."</td>";
+				if (FALSE){
+					echo "<td $cssRight>".round($obj->getPrezzoNetto(),3)."</td>";
+				}
 				echo "<td $cssRight $css>"."</td>";
 				echo "<td $cssRight $css>".number_format($obj->getPrezzoLordo(),3,',','')."</td>";
 				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto(),3,',','')."</td>";

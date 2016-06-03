@@ -11,8 +11,9 @@ $test=new MyList(
 	array(
 		'_type'=>'ClienteFornitore',
 		//'tipo'=>array('<>',''),
-		'cod_banca'=>array('!=','01','02','09','10'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
-	)
+		//'cod_banca'=>array('!=','01','02','09','10'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
+		'cod_banca'=>array('!=','aa'),
+		)
 );
 
 echo '<table style="font-size: x-small;" class="borderTable">';
@@ -22,9 +23,11 @@ echo '<table style="font-size: x-small;" class="borderTable">';
 $out.=$test->iterate(function($obj){
 	$out='<tr>';
 	$out.='<td>'.$obj->codice->getVal().'</td>';
-	$out.='<td>'.$obj->ragionesociale->getVal().'==>'.$obj->sigla_paese->getVal().'</td>';
+	$out.='<td>'.$obj->ragionesociale->getVal()/*.'==>'.$obj->sigla_paese->getVal()*/.'</td>';
+	$out.='<td>'.$obj->p_iva->getVal().'</td>';
+
 	if($obj->cod_pagamento->getVal()!=''){
-		$out.='<td>'.$obj->cod_pagamento->getVal().'</td>';
+		//$out.='<td>'.$obj->cod_pagamento->getVal().'</td>';
 		$out.='<td>'.$obj->cod_pagamento->extend()->descrizione->getVal().'</td>';
 	}else{
 		$out.='<td></td>';
