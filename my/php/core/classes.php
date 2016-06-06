@@ -106,6 +106,7 @@ function dbFrom($dbName, $toSelect, $operators){
 		$statsQrueyCached++;
 ////$log->info($query.' ***** [CACHED]');
 	}else{
+		//echo "\n\n<br>".$query."\n\n<br>";
 		//query execution
 		$result = odbc_exec($odbc, $query) or die (odbc_errormsg().'<br><br>La query da eseguire era:<br>'.$query);
 		$statsQrueyExecuted++;
@@ -1719,6 +1720,12 @@ $test=new MyList(
 						array_shift($value);//rimuovo la condizione e lascio il valore/valori
 						//$numeroDiValori=count($value);
 						break;
+					case 'LIKE'://diverso da
+						$tOperator=' LIKE ';
+						array_shift($value);//rimuovo la condizione e lascio il valore/valori
+						//$numeroDiValori=count($value);
+						break;
+						
 					default:
 						//se non è nessuno dei precedenti vuol dire che ho passato solo uno /dei valori da confrontare
 						//e quindi presumo che l'operatore sia '='
