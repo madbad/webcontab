@@ -32,6 +32,7 @@ echo $_GET["query"]
 
 	$query= "SELECT sum(F_IMPONI), F_CODCLI, F_STATO FROM 03FARIGD.DBF "." WHERE F_DATFAT > #2015-01-01# AND F_DATFAT < #2015-12-31# GROUP BY F_CODCLI, F_STATO ORDER BY sum(F_IMPONI) DESC";
 
+	$query= "SELECT * FROM 03ANPROD.DBF WHERE F_DESPRO LIKE '%MELONI%' ORDER BY F_DESPRO DESC";
 	//$query= "SELECT * FROM 03FARIGD.DBF "." WHERE F_NUMFAT='       1';";
 
 	$result = odbc_exec($odbc, $query) or die (odbc_errormsg().'<br><br>La query da eseguire era:<br>'.$query);

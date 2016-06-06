@@ -44,31 +44,49 @@ if (@$_GET['mode']=='print'){
 		//echo '<td>'.$obj->imponibile->getVal().'</td>';
 		echo '</tr>';
 	};
-/*
+
 	$stampaTotali= function ($obj){
 		echo '<tr>';
 		echo '<td>'.'Totali'.'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
-		echo '<td>'.$obj->sum('colli').'</td>';				
+		echo '<td>'.'-'.'</td>';
+		echo '<td>'.$obj->sum('colli').'</td>';
 		echo '<td>'.$obj->sum('peso_netto').'</td>';
 		echo '<td>'.$obj->sum('imponibile').'</td>';
 		echo '</tr>';
 	};
-*/
+
 	$tabellaH='<table class="spacedTable, borderTable">';
 	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Articolo</td><td>Colli</td><td>Peso Netto</td><td>___Prezzo___</td>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
 
+	
+	
+	
+	
+	$listaMeloni=new MyList(
+		array(
+			'_type'=>'Articolo',
+			'descrizione'=>array('LIKE','%MELONI%'),
+		)
+	);
+	
+	$codicimeloni=array();
+	$codicimeloni[]='=';
+	$listaMeloni->iterate(function ($obj){
+		global $codicimeloni;
+		$codicimeloni[]=$obj->codice->getVal();
+		//echo '<br>'.$obj->descrizione->getVal();
+		//echo '<br>'.$obj->codice->getVal();
+	});
+	
+	
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-//			'cod_articolo'=>array('=','11','111','112','113',
-//								      '911','9111','9112','9113',
-//			),
-			'cod_articolo'=>array('=','11','911','113','111', '1113040', '11130405', '11130406', '1113050', '11130505', '11130506', '111305067', '1114060', '8111','8112','112','9112', '8111-', '9111', '91113040',),
-
+			'cod_articolo'=> $codicimeloni,
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
 			//'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),
 			//'cod_cliente'=>array('=','MORIN'),
