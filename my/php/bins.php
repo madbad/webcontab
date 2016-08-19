@@ -128,6 +128,7 @@ $clienti = new MyList(
 		'_type'=>'ClienteFornitore',
 		//'codice'=>array('<>',''),
 		'codice'=>$clientiSelezionati,
+		//'codice'=>'MANCI',
 		//'_select'=>'codice'
 		//'tipo'=>array('<>',''),
 		//'cod_banca'=>array('!=','01','02','09','10'),//ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI

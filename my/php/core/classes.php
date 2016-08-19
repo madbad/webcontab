@@ -1123,6 +1123,7 @@ class Ddt  extends MyClass {
 		
 		//importo i dati di configurazione della pec
 		$gmail=$GLOBALS['config']->gmail;
+		//$gmail=$GLOBALS['config']->liberomail;
 		$cliente=$this->cod_destinatario->extend();
 		//var_dump($cliente);
 		$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
@@ -1138,6 +1139,7 @@ class Ddt  extends MyClass {
 			$mail->Password   = $gmail->Password;
 			
 			$mail->SMTPSecure = "tls";
+			//$mail->SMTPSecure = "SSL";
 			
 			//$mail->AddAddress($cliente->ragionesociale->getVal(), $cliente->pec->getVal()); //destinatario
 			if($cliente->__mailddt->getVal()==''){

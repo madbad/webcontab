@@ -100,8 +100,8 @@ if (@$_GET['mode']=='print'){
 //==============================================================================================================================
 /*
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/04/16';
-$endDateR='31/04/16';
+$startDateR='01/06/16';
+$endDateR='20/06/16';
 
 
 //martinelli
@@ -156,7 +156,7 @@ $endDateR='31/04/16';
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>array('=','05'),
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG'),
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG','GIAC1'),
 			'prezzo'=>array('!=','0.001')
 		)
 	);
@@ -178,8 +178,8 @@ $endDateR='31/04/16';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
 
+*/
 //==============================================================================================================================
 /*
 19 CAPPUCCI
@@ -216,22 +216,23 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/05/16','31/05/16'),
+			'ddt_data'=>array('<>','01/07/16','12/08/16'),
 			//'cod_iva'=>array('=','20'),
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
-			//'cod_articolo'=>array('=','850'),
+			'cod_articolo'=>array('=','850'),
+			//'cod_articolo'=>array('=','819'),
 			//'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
-			//'cod_cliente'=>array('!=','SEVEN'),
+			//'cod_articolo'=>array('=','842'),
 			//'cod_articolo'=>array('!=','BSEVEN'),
 			//'cod_articolo'=>array('=','01','03','01S','03S','01F','03F'),
-			'cod_articolo'=>array('=','849'),
+			//'cod_articolo'=>array('=','847'),
 			//'cod_cliente'=>".$strMercati.",
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
 			//'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('=','VIOLA'),
-			//'cod_cliente'=>array('!=','MARTI','LAME2','MORAN','TESI'),
+			//'cod_cliente'=>array('=','SOGEG'),
 			//'cod_cliente'=>array('=','SEVEN'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),

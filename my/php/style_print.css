@@ -5,9 +5,24 @@
 .hideOnPrint{
 	display:none;
 }
-@PAGE landscape {size: landscape;}
-TABLE {PAGE: landscape;}
-@page rotated { size : landscape }
+
 pre{
 font-size:14px;
 }
+
+@page { 
+ 	size: landscape;
+	/*
+	transform: Scale(0.90,0.90);
+	transform: rotate(270deg);
+	*/
+	writing-mode: tb-rl;
+}
+html,body {
+	height:21cm;/*21*/
+	width:29.7cm;/*29.7*/
+	/*transform: scale(0.70,0.70);*/
+	transform: rotate(270deg);
+}
+
+

@@ -75,6 +75,8 @@ hr{
 
 .tableContainer {
 	float:left;
+	width:10.5em;
+	padding:0.2em;
 }
 .righe, .righe tr, .righe td,  .righe th{
 	font-size:small;
@@ -110,6 +112,9 @@ form label{
 	border-collapse: collapse;
 	margin-left:0.6em;
 }
+.rimanenze{
+width:96%;
+}
 .rimanenze td{
 	height:1.5em;
 	width:2em;
@@ -138,7 +143,7 @@ form label{
 
 
 .smallFontTable, .smallFontTable tr, .smallFontTable th, .smallFontTable td{
-	font-size:0.95em;
+	font-size:0.88em;
 }
 
 

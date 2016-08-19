@@ -241,6 +241,9 @@ print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
 				echo "<td $cssRight $css>"."</td>";
 				echo "<td $cssRight $css>".number_format($obj->getPrezzoLordo(),3,',','')."</td>";
 				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto(),3,',','')."</td>";
+				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto()*$obj->peso_netto->getVal(),3,',','')."</td>";
+
+				
 			//	echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
 			echo "</tr>";
 		});

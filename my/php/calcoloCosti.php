@@ -98,7 +98,7 @@ $dbClienti=getDbClienti();
 	  
 	?>
 	
-	<span class="hideOnPrint" id="myForm">	
+	<span class="hideOnPrint" id="myForm">
 	</span>
 	<script>
 		Ext.create('Ext.form.Panel', {
@@ -180,7 +180,7 @@ $costoPolistirolo3050
 if (@$_POST['mode']=='print'){
     $table='<table class="rimanenze">';
     $table.='<tr><td colspan="2">Rimanenze</td></tr>';
-    $table.='<tr><td style="width:6.5em"></td><td style="width:5.5em"></td></tr>';
+    $table.='<tr><td class="rimanenzecellone"></td><td class="rimanenzecelltwo"></td></tr>';
     $table.='<tr><td><b>- pl</b></td><td></td></tr>';
     $table.='<tr><td><b>- ifco</b></td><td></td></tr>';
     $table.='<tr><td>+ pl</td><td></td></tr>';
@@ -200,7 +200,8 @@ if (@$_POST['mode']=='print'){
 					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 33,
 					"colliPedana" => 104,
-					"costoCassa" => 0.81);//cassa nuova bianca vergine
+					//"costoCassa" => 0.81);//cassa nuova bianca vergine
+					"costoCassa" => 0.43);//cassa vecchia
 	$html.=getArticleTable($params);
 	/* vecchi conteggi sma
 	//supermercati
@@ -234,7 +235,8 @@ if (@$_POST['mode']=='print'){
 					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 33,
 					"colliPedana" => 104,
-					"costoCassa" => 0.81);//cassa nuova bianca
+					//"costoCassa" => 0.81);//cassa nuova bianca
+					"costoCassa" => 0.43);//cassa vecchia
 	$html.=getArticleTable($params);
 	// supermercati
 	/*  vecchi conteggi sma
@@ -350,6 +352,33 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.67);
 		$html.=getArticleTable($params);
         $html.=$table;
+
+
+		$html.="</div><div class='tableContainer'>";
+        $html.="<h1>Sedano</h1>";
+//sedano
+		// mercato
+		$params = array('articles' => array('36'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.3, //0.3
+						"costoPedana" => 33,
+						"colliPedana" => 104,
+						"costoCassa" => 0.40);
+		$html.=getArticleTable($params);
+		// supermercati
+		$params = array("articles" => array('836'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.4,
+						"costoPedana" => 33,
+						"colliPedana" => 80,
+						"costoCassa" => 0.67);
+		$html.=getArticleTable($params);
+        $html.=$table;
+
+		
+		
 /*
 		$html.="</div><div class='tableContainer'>";
         $html.="<h1>Finocchio</h1>";

@@ -90,6 +90,7 @@ if (@$_GET['mode']=='print'){
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
 			//'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),
 			//'cod_cliente'=>array('=','MORIN'),
+			//'cod_cliente'=>array('=','BERTO'),
 
 			//'prezzo'=>array('=','0.001'),
 			
