@@ -10,8 +10,9 @@ $def->fontName = 'helvetica';
 $def->fontSize = 8;
 $def->color = new stdClass();
 $def->color->verde = array(168,236,134);
-$def->color->bianco = array(999,999,999);
+$def->color->bianco = array(255,255,255);
 $def->color->nero = array(0,0,0);
+$def->color->grigio = array(230,230,230);
 
 function addIntestazione ($pdf){
 	global $def;
@@ -64,7 +65,7 @@ function addDestinatario ($ft,$pdf){
 	//destinatario
 	$cliente=$ft->cod_cliente->extend();
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
-	$pdf->RoundedRect(110, 24, 80, 25, 5.0, '1010', 'DF', $style='', array(230,230,230));//grigio chiaro
+	$pdf->RoundedRect(110, 24, 80, 25, 5.0, '1010', 'DF', $style='', $def->color->grigio);//grigio chiaro
 	$pdf->SetFont($def->fontName, 'B', $def->fontSize+0.8);
 	$pdf->Text(114, 25, $cliente->ragionesociale->getVal());
 	//$pdf->Text(114, 29, 'Unipersonale'); //TODO SECONDA RIGA RAG.SOCIALE
