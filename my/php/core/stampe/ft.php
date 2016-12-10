@@ -210,7 +210,7 @@ function addTotaliFattura($ft, $pdf){
 	//**********************************************************
 	//annotazioni
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
-	$pdf->RoundedRect($x=15, $y=263, $w=93, $h=31, 5.0, '1010', 'DF', $style = '', $def->color->bianco);
+	$pdf->RoundedRect($x=15, $y=263, $w=93, $h=28.5, 5.0, '1010', 'DF', $style = '', $def->color->bianco);
 	
 	$pdf->SetFont($def->fontName, '', $def->fontSize);
 	//$pdf->Text($x=15, $y=263, "-CONTRIBUTO CONAI ASSOLTO OVE DOVUTO \n -ALTRO dsfsdf sfsfsf sdf sfsfs");
@@ -264,19 +264,19 @@ function addTotaliFattura($ft, $pdf){
 
 	//totale fattura
 	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
-	$pdf->RoundedRect($x=110, $y=285, $w=80, $h=9, 5.0, '1010', 'DF', $style = '', $def->color->verde);
+	$pdf->RoundedRect($x=110, $y=283, $w=80, $h=9, 5.0, '1010', 'DF', $style = '', $def->color->verde);
 
 	$html = 'Totale Documento';
-	$pdf->writeHTMLCell($w=80, $h=9, $x=110, $y=285, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
+	$pdf->writeHTMLCell($w=80, $h=9, $x=110, $y=283, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 
 	$pdf->SetFont($def->fontName, '', $def->fontSize+5);
 	$html = $ft->valuta->getVal();
-	$pdf->writeHTMLCell($w=80, $h=9, $x=123, $y=288, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
+	$pdf->writeHTMLCell($w=80, $h=9, $x=123, $y=286, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='right', $autopadding=false);
 	
 	$pdf->SetFont($def->fontName, '', $def->fontSize+9);
 	//$pdf->Text(167, 286, $ft->importo->getFormatted());
 	$html = '<div style="text-align:right;">'.$ft->importo->getFormatted(2).'</div>';
-	$pdf->writeHTMLCell($w=58, $h=9, $x=130, $y=286, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='left', $autopadding=false);
+	$pdf->writeHTMLCell($w=58, $h=9, $x=130, $y=284.5, $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='left', $autopadding=false);
 }
 function addInizioCorpoFattura($ft, $pdf){
 	global $def;

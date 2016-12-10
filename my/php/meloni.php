@@ -41,7 +41,7 @@ if (@$_GET['mode']=='print'){
 		//if($obj->prezzo->getVal()*1>0.001){$prezzo=$obj->prezzo->getVal();}else{$prezzo='';}
 		//echo '<td>'.$obj->imponibile->getVal().'</td>';
 		echo '<td>'.$obj->prezzo->getFormatted(3).'</td>';
-		//echo '<td>'.$obj->imponibile->getVal().'</td>';
+		echo '<td>'.$obj->imponibile->getVal().'</td>';
 		echo '</tr>';
 	};
 
@@ -53,12 +53,13 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.$obj->sum('colli').'</td>';
 		echo '<td>'.$obj->sum('peso_netto').'</td>';
+		echo '<td>'.'-'.'</td>';		
 		echo '<td>'.$obj->sum('imponibile').'</td>';
 		echo '</tr>';
 	};
 
 	$tabellaH='<table class="spacedTable, borderTable">';
-	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Articolo</td><td>Colli</td><td>Peso Netto</td><td>___Prezzo___</td>'; //<td>Imponibile Memo.</td>
+	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Articolo</td><td>Colli</td><td>Peso Netto</td><td>___Prezzo___</td><td>IMPONIBILE</td>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
 
 	
@@ -87,9 +88,10 @@ if (@$_GET['mode']=='print'){
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=> $codicimeloni,
+			//'cod_causale'=> array('=','V'),
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
 			//'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),
-			//'cod_cliente'=>array('=','MORIN'),
+			'cod_cliente'=>array('=','PAROD'),
 			//'cod_cliente'=>array('=','BERTO'),
 
 			//'prezzo'=>array('=','0.001'),

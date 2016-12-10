@@ -216,10 +216,11 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/07/16','12/08/16'),
-			//'cod_iva'=>array('=','20'),
+			'ddt_data'=>array('<>','01/11/16','30/11/16'),
+			//'cod_iva'=>array('=','50',''),
+			'cod_articolo'=>array('!=','BSEVEN'),
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
-			'cod_articolo'=>array('=','850'),
+			'cod_articolo'=>array('=','45'),
 			//'cod_articolo'=>array('=','819'),
 			//'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
@@ -233,7 +234,8 @@ $query = "
 			//'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('=','VIOLA'),
 			//'cod_cliente'=>array('=','SOGEG'),
-			//'cod_cliente'=>array('=','SEVEN'),
+			//'cod_cliente'=>array('=','FACCG'),
+			'cod_cliente'=>array('=','SEVEN'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
 			//'prezzo'=>array('!=','0.001')

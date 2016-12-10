@@ -143,7 +143,7 @@ if (@$_POST["do"]){
 					$sumatrapdfexe = 'C:\Programmi\SumatraPDF\SumatraPDF.exe';
 					$filename = '"'.$myFt->getPdfFileUrl().'"';
 					$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
-					$printername = '"\\\\SERVER\PDFCreator"';
+					//$printername = '"\\\\SERVER\PDFCreator"';
 					//$drivername = '"Hp LaseJet M1530 MFP Series PCL 6"';
 					//$portname = '"IP_192.168.10.110"';
 					//$portname = '"HPLaserJetM1536dnfMFP_copy_1"';

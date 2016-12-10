@@ -48,7 +48,14 @@ $dbClienti=getDbClienti();
 			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato') /*| $codCliente=='BRUNF'*//*ABILITA UNO SPECIFICO CODICE CLIENTE ANCHE SE NON RIENTRA TRA IL LAVORTO*/){
 
 				$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
-				$netto=$row['F_PESNET']-$calopeso;
+				
+				//se ho gia ricevuto il riscontro peso non tolgo il calo peso... il peso è già corretto!
+				if($row['F_PESNET'] == $row['F_QTA']){
+					$netto=$row['F_PESNET'];
+				}else{
+					$netto=$row['F_PESNET']-$calopeso;
+				}
+				
 				$media=round($netto/$row['F_NUMCOL'],1);
 				$tara=round(($row['F_QTA']-$row['F_PESNET'])/$row['F_NUMCOL'],3);
 				//$tara=$row['F_PESNET'].'::'.$row['F_QTA'];
@@ -320,7 +327,7 @@ if (@$_POST['mode']=='print'){
 						"colliPedana" => 104,
 						"costoCassa" => 0.40);
 		$html.=getArticleTable($params);
-		$params = array("articles" => array('731','831'),
+		$params = array("articles" => array('731','831','831-'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
@@ -337,7 +344,7 @@ if (@$_POST['mode']=='print'){
 		$params = array('articles' => array('05'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.5, //0.3
+						"abbuonoPerCollo" => 0.3, //0.3//0.5
 						"costoPedana" => 33,
 						"colliPedana" => 112,
 						"costoCassa" => 0.44);
@@ -353,11 +360,11 @@ if (@$_POST['mode']=='print'){
 		$html.=getArticleTable($params);
         $html.=$table;
 
-
+//sedano
+	if(0){
 		$html.="</div><div class='tableContainer'>";
         $html.="<h1>Sedano</h1>";
-//sedano
-		// mercato
+	// mercato
 		$params = array('articles' => array('36'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
@@ -376,8 +383,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.67);
 		$html.=getArticleTable($params);
         $html.=$table;
-
-		
+	}
 		
 /*
 		$html.="</div><div class='tableContainer'>";
