@@ -202,6 +202,7 @@ function getDbClienti(){
 	}
 	return $myDbArray;
 }
+
 function odbc_access_escape_str($str) {
 	$out="";
 	for($a=0; $a<strlen($str); $a++) {
@@ -1376,12 +1377,28 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('__mail',			'');
 		
 		//configurazione database
-		$this->addProp('_dbName');
-		$this->_dbName->setVal('ANAGRAFICACLIENTI');
+		if($params['_tipo']=="fornitore"){
+		echo "\N".'RICHIESTO FORNITORE<BR>';
+			$this->addProp('_dbName');
+			$this->_dbName->setVal('ANAGRAFICAFORNITORI');
+			
+			$this->addProp('codice',					'F_CODFOR');
+			
+			//chiave(i) di ricerca del database
+			$this->addProp('_dbIndex');
+			$this->_dbIndex->setVal(array('codice'));
 
-		//chiave(i) di ricerca del database
-		$this->addProp('_dbIndex');
-		$this->_dbIndex->setVal(array('codice'));
+		}else{
+			$this->addProp('_dbName');
+			$this->_dbName->setVal('ANAGRAFICACLIENTI');
+
+			//chiave(i) di ricerca del database
+			$this->addProp('_dbIndex');
+			$this->_dbIndex->setVal(array('codice'));
+			
+		}
+
+
 		
 		//importo eventuali valori delle proprietà che mi sono passato come $params
 		$this->mergeParams($params);
@@ -1389,13 +1406,17 @@ class ClienteFornitore extends MyClass {
 		//avvio il recupero dei dati
 		$this->autoExtend();
 		
+		if($params['_tipo']!="fornitore"){
 		//genero il database sql se non esiste
 		$this->generateSqlDb();
+		}
 	}
 
 	public function getDataFromDbCallBack(){
+		if($this->_dbName->getVal()=='ANAGRAFICACLIENTI'){
 		//ricavo ulteriori dati dal database sqLite
 		$this->getSqlDbData();
+		}
 	/*
 		if($this->_params['_autoExtend']!=-1){
 			//importo altri dati dal mio database esterno

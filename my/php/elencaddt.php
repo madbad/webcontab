@@ -64,21 +64,48 @@ $test->iterate(function($obj){
 	$codiciCliente[$codiceCliente]= $codiceCliente;
 });
 
-//ricavo dalla lista precedente gli "oggetti" cliente
-$dbClienti=new MyList(
-	array(
-		'_type'=>'ClienteFornitore',
-		'codice'=>$codiciCliente,
-	)
-);
 
-//creo un nuovo array che ha per "indice" il codice cliente in modo da rendere più semplice ritrovare "l'oggetto" cliente
-$dbClientiWithIndex = array();
-$dbClienti->iterate(function($myCliente){
-	global $dbClientiWithIndex;
-	$codcliente = $myCliente->codice->getVal();
-	$dbClientiWithIndex[$codcliente]= $myCliente;
-});
+/////////////////////////////////////////
+//per i clienti
+/////////////////////////////////////////
+	//ricavo dalla lista precedente gli "oggetti" cliente
+	$dbClienti=new MyList(
+		array(
+			'_type'=>'ClienteFornitore',
+			'codice'=>$codiciCliente,
+		)
+	);
+
+	//creo un nuovo array che ha per "indice" il codice cliente in modo da rendere più semplice ritrovare "l'oggetto" cliente
+	$dbClientiWithIndex = array();
+	$dbClienti->iterate(function($myCliente){
+		global $dbClientiWithIndex;
+		$codcliente = $myCliente->codice->getVal();
+		$dbClientiWithIndex[$codcliente]= $myCliente;
+	});
+
+/////////////////////////////////////////
+//per i fornitori
+/////////////////////////////////////////
+	//ricavo dalla lista precedente gli "oggetti" cliente
+	$dbFornitori=new MyList(
+		array(
+			'_type'=>'ClienteFornitore',
+			'codice'=>$codiciCliente,
+			'_tipo'=>'fornitore',
+		)
+	);
+
+	//creo un nuovo array che ha per "indice" il codice cliente in modo da rendere più semplice ritrovare "l'oggetto" cliente
+	$dbFornitoriWithIndex = array();
+	$dbFornitori->iterate(function($myFornitore){
+		global $dbFornitoriWithIndex;
+		$codfornitore = $myFornitore->codice->getVal();
+		$dbFornitoriWithIndex[$codfornitore]= $myFornitore;
+	});
+	//print_r($dbFornitoriWithIndex);
+/////////////////////////////////////////
+/////////////////////////////////////////
 
 
 $test->iterate(function($obj){
@@ -88,8 +115,17 @@ $test->iterate(function($obj){
 	$cod_causale=$obj->cod_causale->getVal();
 	$html.= "<tr class='$cod_causale'>";
 
-	$cliente = $dbClientiWithIndex[$obj->cod_destinatario->getVal()];
-	
+	if( $obj->tipocodiceclientefornitore->getVal() == "C"){
+		$cliente = $dbClientiWithIndex[$obj->cod_destinatario->getVal()];
+	}else{ // if fornitore
+		//this is a stub... creo un codice cliente vuoto giusto per non far andare in panico ilprogramma... in realtà dovrei cercare un codice fornitore 
+		$cliente = new ClienteFornitore(array(
+			'codice'=>$obj->cod_destinatario->getVal(),
+			'_tipo'=>'fornitore',
+		));
+		//print_r($cliente);
+	}
+
 	$html.= '<td>'.$obj->cod_causale->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
@@ -123,6 +159,7 @@ $test->iterate(function($obj){
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
 	$html.= '<td>'.$link.'&do=mail">Mail</a></td>';
 	$html.= '<td>'.$link.'&do=mail&force_nascondiprezzo=true">Mail (prezzo nascosto)</a></td>';
+	$html.= '<td>'.$link.'&do=stampa">Stampa</a></td>';
 	
 	
 	$html.="</tr>\n";

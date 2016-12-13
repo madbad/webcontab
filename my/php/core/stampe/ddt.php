@@ -379,7 +379,16 @@ function addDestinatarioDdt ($ddt,$pdf){
 	
 	$fromLeft=107;
 	
-	$destinatario=$ddt->cod_destinatario->extend();	
+	
+	if($ddt->tipocodiceclientefornitore->getVal()=='C'){
+		$destinatario=$ddt->cod_destinatario->extend();
+	}else{
+		$destinatario=new ClienteFornitore(array(
+		'codice'=>$ddt->cod_destinatario->getVal(),
+		'_tipo'=>'fornitore',
+		));
+	}
+	
 	$pdf->SetFont($def_font, 'b', $def_size+1.4);
 	$pdf->Text($fromLeft, 0*$riga+$mod, $destinatario->ragionesociale->getVal());
 	$pdf->SetFont($def_font, '', $def_size);
@@ -498,7 +507,8 @@ buildEmptyModule($pdf);
 		$causale='VENDITA';
 	}else if($ddt->cod_causale->getVal()=='D'){
 		//si tratta di "redo da c/deposito" "c/riparazone" "omaggio" etc...
-		$causale='RESO DA C/DEP.TO';
+		//$causale='RESO DA C/DEP.TO';
+		$causale='OMAGGIO';
 	}
 	$pdf->Text(18, 58+8, $causale);
 
@@ -518,7 +528,7 @@ buildEmptyModule($pdf);
 	$pdf->Text(18, 58+8*21.2, 'VISIBILE');/*todo*/
 	
 	//totale colli
-	$pdf->Text(140, 58+8*21.2, $ddt->tot_colli->getFormatted(0));	
+	$pdf->Text(140, 58+8*21.2, $ddt->tot_colli->getFormatted(0));
 	
 	//totale peso lordo
 	$pdf->Text(160, 58+8*21.2, $ddt->tot_peso->getFormatted(2));
