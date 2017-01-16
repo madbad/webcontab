@@ -33,19 +33,34 @@ switch ($_GET["do"]){
 
 		$myDdt->generaPdf();
 		$myDdt->getPdfFileUrl();
+		if(true){
+			$acroreaderexe = '"C:\Programmi\Adobe\Reader 11.0\Reader\AcroRd32.exe"';
+			//$acroreaderexe = '"C:\Programmi\Foxit Software\Foxit Reader\FoxitReader.exe"';
+			$filename = '"'.$myDdt->getPdfFileUrl().'"';
+			$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
+			$drivername = '"Hp LaseJet M1530 MFP Series PCL 6"';
+			//$portname = '"IP_192.168.10.110"';
+			$portname = '"HPLaserJetM1536dnfMFP_copy_1"';
+			// acroreader.exe /t <filename> <printername> <drivername> <portname>
+			//"C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe" /h /t "C:\Folder\File.pdf" "Brother MFC-7820N USB Printer" "Brother MFC-7820N USB Printer" "IP_192.168.10.110"
+			$printCommand = $acroreaderexe.' /T '.$filename.' '.$printername.' '.$drivername.' '.$portname;
+			echo '<br>'.$printCommand;
 		
-		$sumatrapdfexe = 'C:\Programmi\SumatraPDF\SumatraPDF.exe';
-		$filename = '"'.$myDdt->getPdfFileUrl().'"';
-		$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
-		//$printername = '"\\\\SERVER\PDFCreator"';
-		//$drivername = '"Hp LaseJet M1530 MFP Series PCL 6"';
-		//$portname = '"IP_192.168.10.110"';
-		//$portname = '"HPLaserJetM1536dnfMFP_copy_1"';
-		// acroreader.exe /t <filename> <printername> <drivername> <portname>
-		//"C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe" /h /t "C:\Folder\File.pdf" "Brother MFC-7820N USB Printer" "Brother MFC-7820N USB Printer" "IP_192.168.10.110"
-		//for command line options see: https://github.com/sumatrapdfreader/sumatrapdf/wiki/Command-line-arguments
-		$printCommand = $sumatrapdfexe.' -print-to '.$printername.' -print-settings "1x,fit" -silent -exit-when-done '.$filename;
-		echo '<br>'.$printCommand;
+		}else{
+			$sumatrapdfexe = 'C:\Programmi\SumatraPDF\SumatraPDF.exe';
+			$filename = '"'.$myDdt->getPdfFileUrl().'"';
+			$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
+			//$printername = '"\\\\SERVER\PDFCreator"';
+			//$drivername = '"Hp LaseJet M1530 MFP Series PCL 6"';
+			//$portname = '"IP_192.168.10.110"';
+			//$portname = '"HPLaserJetM1536dnfMFP_copy_1"';
+			// acroreader.exe /t <filename> <printername> <drivername> <portname>
+			//"C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe" /h /t "C:\Folder\File.pdf" "Brother MFC-7820N USB Printer" "Brother MFC-7820N USB Printer" "IP_192.168.10.110"
+			//for command line options see: https://github.com/sumatrapdfreader/sumatrapdf/wiki/Command-line-arguments
+			$printCommand = $sumatrapdfexe.' -print-to '.$printername.' -print-settings "1x,fit" -silent -exit-when-done '.$filename;
+			echo '<br>'.$printCommand;
+		}
+
 		//flush the output to the browser
 		flush();
 		ob_flush();
