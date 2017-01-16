@@ -7,8 +7,8 @@ include ('./core/config.inc.php');
 //  1   //
 //quale è l'ultimo ddt (data e numero) che ho salvato nel mio database?
 $table="BACKUPRIGHEDDT";
-//select the max date
-$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."'";
+//select the max date from this year = 2017
+$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2017'"; 
 $db = new SQLite3($GLOBALS['config']->sqlite->dir.'/myDb.sqlite3');
 $result = $db->query($query);
 $ultimoDdtData = '';
