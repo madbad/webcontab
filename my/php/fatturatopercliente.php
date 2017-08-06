@@ -14,7 +14,7 @@ set_time_limit ( 0);
 $test=new MyList(
 	array(
 		'_type'=>'Fattura',
-		'data'=>array('<>','01/12/2015','30/12/2015'),
+		'data'=>array('<>','01/01/2016','30/11/2016'),
 		'_autoExtend'=>'1',
 		//'_select'=>'numero,data,cod_cliente,tipo' //this was a try to optimize the select statement but gives no performance increase... It is even a little bit slower
 		//'cod_cliente'=>'SEVEN'

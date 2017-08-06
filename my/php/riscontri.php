@@ -100,8 +100,8 @@ if (@$_GET['mode']=='print'){
 //==============================================================================================================================
 /*
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/06/16';
-$endDateR='20/06/16';
+$startDateR='01/05/17';
+$endDateR='17/05/17';
 
 
 //martinelli
@@ -178,10 +178,11 @@ $endDateR='20/06/16';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
 */
+
 //==============================================================================================================================
 /*
+17 CAPPUCCI ROSSI
 19 CAPPUCCI
 36 SEDANO
 37 CATALOGNA
@@ -201,12 +202,14 @@ $endDateR='20/06/16';
 60 PEPERONE
 */
 
+//FINO AL 29/06/17 GIà CONTROLLATO PAN DI ZUCHERO DORO MERCATO
+
 //SOLO TUTTI I MERCATI
 $dbClienti=getDbClienti();
-$mercati[]='!=';
+$mercati[]='=';
 foreach ($dbClienti as $cliente){
 //print_r($cliente);
-	if ($cliente['__classificazione']=='supermercato' || $cliente['__classificazione']=='mercato'){
+	if (/*$cliente['__classificazione']=='supermercato' ||*/ $cliente['__classificazione']=='mercato'){
 		$mercati[]= addslashes($cliente['codice']);
 	}
 };
@@ -216,25 +219,29 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/11/16','30/11/16'),
-			//'cod_iva'=>array('=','50',''),
-			'cod_articolo'=>array('!=','BSEVEN'),
+			'ddt_data'=>array('<>','01/06/17','30/06/17'),
+			//'cod_iva'=>array('=','42',''),
+			//'cod_articolo'=>array('=','849','49','56','856'), //MELANZANE
+			//'cod_articolo'=>array('=','843','43','57','857'),//CIPOLLE CIPOLLOTTI
+			//'cod_articolo'=>array('=','847','47','471421','47714','947'),
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
-			'cod_articolo'=>array('=','45'),
-			//'cod_articolo'=>array('=','819'),
+			'cod_articolo'=>array('=','42','942','842'),
+			//'cod_articolo'=>array('=','49'),
+			//'cod_articolo'=>array('=','45'),
 			//'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
 			//'cod_articolo'=>array('=','842'),
-			//'cod_articolo'=>array('!=','BSEVEN'),
+			//'cod_articolo'=>array('=','817','17','917'),
+			//'cod_articolo'=>array('=','947','47','471421','47714','847'),
 			//'cod_articolo'=>array('=','01','03','01S','03S','01F','03F'),
-			//'cod_articolo'=>array('=','847'),
+			//'cod_articolo'=>array('=','817','17','917'),
 			//'cod_cliente'=>".$strMercati.",
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
 			//'cod_cliente'=>array('!=','VIOLA'),
-			//'cod_cliente'=>array('=','VIOLA'),
-			//'cod_cliente'=>array('=','SOGEG'),
-			//'cod_cliente'=>array('=','FACCG'),
+			//'cod_cliente'=>array('!=','VIOLA'),
+			//'cod_cliente'=>array('=','MAEST'),
+			//'cod_cliente'=>array('=','BRUNF'),
 			'cod_cliente'=>array('=','SEVEN'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),

@@ -1,3 +1,4 @@
+
 <?php
 include ('./core/config.inc.php');
 $elenco=array();

@@ -36,7 +36,7 @@ if (@$_GET["do"]){
 			//memorizzo la data di stampa
 			$myFt->__datastampa->setVal(date("d/m/Y"));
 			$myFt->saveSqlDbData();
-			break;	
+			break;
 	}
 }
 if (@$_POST["do"]){

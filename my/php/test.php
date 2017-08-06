@@ -279,8 +279,7 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.3, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 112,
-						"costoCassa" => 0.56); //BLU DA 13
-						//"costoCassa" => 0.46); //POLISTIROLO
+						"costoCassa" => 0.44);
 		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('708','808','708-','808-','708--','808--'),

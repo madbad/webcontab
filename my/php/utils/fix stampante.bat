@@ -4,4 +4,4 @@ net use LPT1 /Delete
 NET use LPT1: \\POSTO2\OLIVETTI309 /persistent:yes
 
 @echo Imposto la stampante LPT3 su zebra
-NET use LPT1: \\POSTO2\ZebraZ4M /persistent:yes
+@NET use LPT1: \\POSTO2\ZebraZ4M /persistent:yes
