@@ -159,6 +159,7 @@
 		// Check for new content from the server every 0.5 seconds
 		var interval = setInterval(statusUpdate, 500);
 	}
+	/*
 	function stampaCopiaCliente(){
 		var fatture = document.querySelectorAll("input:checked");
 		var infobox = document.querySelector("#infobox");
@@ -237,6 +238,7 @@
 		// Check for new content from the server every 0.5 seconds
 		var interval = setInterval(statusUpdate, 500);
 	}
+	*/
 	function selectAll(){
 		var fatture = document.querySelectorAll("input[type=checkbox]");
 		for (var i = 0; i < fatture.length; ++i) {
@@ -252,6 +254,13 @@
 	function selectNotSent(){
 		deselectAll();
 		var fatture = document.querySelectorAll("input[data-pecsent]");
+		for (var i = 0; i < fatture.length; ++i) {
+			fatture[i].checked = true;
+		}
+	}
+	function selectNotPrintedForReceiver(){
+		deselectAll();
+		var fatture = document.querySelectorAll("input[data-printedforreceiver]");
 		for (var i = 0; i < fatture.length; ++i) {
 			fatture[i].checked = true;
 		}
@@ -299,11 +308,12 @@
 </head>
 <body>
 <div class="fixedTopBar">
-<button onclick="javascript:selectAll()">Seleziona tutte</button>
-<button onclick="javascript:deselectAll()">Deseleziona tutte</button>
-<button onclick="javascript:selectNotSent()">Seleziona non inviate</button>
-<button onclick="javascript:sendMails()">Invia PEC fatture spuntate</button>
-<button onclick="javascript:stampa()">Stampa fatture spuntate</button>
+<button onclick="javascript:selectAll()">Sel. Tutte</button>
+<button onclick="javascript:deselectAll()">Sel. Nessuna</button>
+<button onclick="javascript:selectNotSent()">Sel. Non inviate</button>
+<button onclick="javascript:selectNotPrintedForReceiver()">Sel. Da stampare</button>
+<button onclick="javascript:sendMails()">Invia PEC FT spuntate</button>
+<button onclick="javascript:stampa()">Stampa FT spuntate</button>
 </div>
 
 <div id="infobox" class="hidden">
@@ -337,6 +347,9 @@
 <?php
 include ('./core/config.inc.php');
 set_time_limit ( 0);
+
+//elenco dei codici cliente che richiedono stampa della fattura
+$clientiDaStampare = array('TOMAS','TESI','MORAN','TESTO','FARET','VIOLA','PALAZ','MAHAL','AMBRN');
 
 //seleziono l'anno di cui mostrare le fatture
 if(@$_GET['anno']){
@@ -395,7 +408,9 @@ $dbClienti->iterate(function($myCliente){
 $test->iterate(function($obj){
 	global $html;
 	global $dbClientiWithIndex;
+	global $clientiDaStampare;
 	$dataInvioPec=$obj->__datainviopec->getVal();
+	$dataStampaPerDestinatario=$obj->__datastampa->getVal();
 	
 	$tipo=$obj->tipo->getVal();
 	$cliente = $dbClientiWithIndex[$obj->cod_cliente->getVal()];
@@ -420,8 +435,18 @@ $test->iterate(function($obj){
 		$pecSent='data-pecsent="false"';
 		$checked='checked';
 	}
+	if($dataStampaPerDestinatario){
+		$printedForReceiver=''; //'data-printedforreceiver="true"';
+	}else{
+		if (in_array($obj->cod_cliente->getVal(), $clientiDaStampare)){
+			$printedForReceiver='data-printedforreceiver="false"';
+		}else{
+			$printedForReceiver=''; //'data-printedforreceiver="true"';
+		}
+	}
 	
-	$html.= '<td><input type="checkbox" data-json=\''.$jsonData.'\' '.$pecSent.' '.$checked.'></td>';
+	
+	$html.= '<td><input type="checkbox" data-json=\''.$jsonData.'\' '.$pecSent.' '.$printedForReceiver.' '.$checked.'></td>';
 	$html.= '<td>'.$obj->tipo->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
@@ -447,11 +472,11 @@ $test->iterate(function($obj){
 			}
 		}
 	//}else{
-		$datastampa=$obj->__datastampa->getVal();
-		if($datastampa){
+
+		if($dataStampaPerDestinatario){
 			@$html.= '<td style="background-color:#66ff00;">Stampata il '.$dataInvioPec.$link.'&do=stampaCliente"><br>Ristampa?</a></td>';
 		}else{
-			$html.= '<td>'.$link.'&do=stampaCliente">Stampa copia cliente</a></td>';		
+			$html.= '<td>'.$link.'&do=stampaCliente">Stampa copia cliente</a></td>';
 		}
 	//}
 
