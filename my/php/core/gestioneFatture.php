@@ -37,7 +37,13 @@ if (@$_GET["do"]){
 			$myFt->__datastampa->setVal(date("d/m/Y"));
 			$myFt->saveSqlDbData();
 			break;
-	}
+		case 'stampaInterna':
+			$myFt->stampa();
+			//memorizzo la data di stampa
+			$myFt->__datastampainterna->setVal(date("d/m/Y"));
+			$myFt->saveSqlDbData();
+			break;
+		}
 }
 if (@$_POST["do"]){
 	//eseguo l'azione richiesta
@@ -79,6 +85,8 @@ if (@$_POST["do"]){
 			}
 			break;
 		case 'stampa':
+		case 'stampaInterna':
+		case 'stampaCliente':
 			if(false){//stampa usando adobe reader
 				exec('start /b "C:\Programmi\Adobe\Reader 11.0\Reader\AcroRd32.exe" "C:\Programmi\EasyPHP-5.3.9\www\webcontab\my\php\core\stampe\myfile.pdf"');
 				//needed to prevent a bug flushing output to the broser
@@ -99,6 +107,16 @@ if (@$_POST["do"]){
 					$myFt= new Fattura($params);
 					$myFt->generaPdf();
 					$myFt->getPdfFileUrl();
+					
+					//update database
+					if($_POST["do"]='stampaInterna'){
+						$myFt->__datastampainterna->setVal(date("d/m/Y"));
+						$myFt->saveSqlDbData();
+					}
+					if($_POST["do"]='stampaCliente'){
+						$myFt->__datastampa->setVal(date("d/m/Y"));
+						$myFt->saveSqlDbData();
+					}
 					
 					//linux only
 					//exec("lp file.pdf");
@@ -139,6 +157,16 @@ if (@$_POST["do"]){
 					$myFt= new Fattura($params);
 					$myFt->generaPdf();
 					$myFt->getPdfFileUrl();
+					
+					//update database
+					if($_POST["do"]='stampaInterna'){
+						$myFt->__datastampainterna->setVal(date("d/m/Y"));
+						$myFt->saveSqlDbData();
+					}
+					if($_POST["do"]='stampaCliente'){
+						$myFt->__datastampa->setVal(date("d/m/Y"));
+						$myFt->saveSqlDbData();
+					}
 					
 					$sumatrapdfexe = 'C:\Programmi\SumatraPDF\SumatraPDF.exe';
 					$filename = '"'.$myFt->getPdfFileUrl().'"';

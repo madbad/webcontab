@@ -81,7 +81,7 @@
 		// Check for new content from the server every 0.5 seconds
 		var interval = setInterval(statusUpdate, 500);
 	}
-	function stampa(){
+	function stampa(mode){
 		var fatture = document.querySelectorAll("input:checked");
 		var infobox = document.querySelector("#infobox");
 		var localinfobox = document.querySelector("#localinfobox");
@@ -148,6 +148,14 @@
 		//xmlhttp.open("POST","./wait.php",true);
 		xmlhttp.open("POST","./core/gestioneFatture.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		if(mode='stampaInterna'){
+			xmlhttp.send("do=stampaInterna"+strAntFt+"&fatture="+jsonMails);
+			}else if(mode='stampaCliente'){
+			xmlhttp.send("do=stampaCliente"+strAntFt+"&fatture="+jsonMails);
+		}
+		else{
+			xmlhttp.send("do=stampa"+strAntFt+"&fatture="+jsonMails);
+		}
 		xmlhttp.send("do=stampa"+strAntFt+"&fatture="+jsonMails);
 		console.log("do=stampa"+strAntFt+"&fatture="+jsonMails);
 		// function to update the infobox with the server reply
@@ -159,86 +167,6 @@
 		// Check for new content from the server every 0.5 seconds
 		var interval = setInterval(statusUpdate, 500);
 	}
-	/*
-	function stampaCopiaCliente(){
-		var fatture = document.querySelectorAll("input:checked");
-		var infobox = document.querySelector("#infobox");
-		var localinfobox = document.querySelector("#localinfobox");
-		var serverinfobox = document.querySelector("#serverinfobox");
-		var spinner = document.querySelector("#infobox");
-		var mails=[];
-		var confirmMessage='';
-		
-		for (var i = 0; i < fatture.length; ++i) {
-			//console.log(fatture[i].dataset.json);
-			var oFattura = JSON.parse(fatture[i].dataset.json);
-			//console.log(oFattura);
-			confirmMessage += "\n"+oFattura.tipo+" "+oFattura.numero+" del "+oFattura.data+" - "+oFattura.cliente;
-			
-			//confirmMessage+= "\n"+oFattura.tipo;
-			mails[i]= JSON.parse(fatture[i].dataset.json);
-			delete mails[i].cliente; //to prevent trouble with strange chars (& etc..) on json parsing on server side
-		}
-		
-		// chiedo conferma prima di proseguire
-		if(!confirm ("Si desidera veramente stampare le seguenti \n"+fatture.length+"\n fatture?\n\n"+confirmMessage)){
-			return;
-		}
-		
-		serverinfobox.innerHtml='';
-		localinfobox.innerHTML ='Printing <b>'+fatture.length+'<b> files!';
-		spinner.classList.add('spinner');
-		infobox.classList.remove('hidden');
-		
-		//una stringa json che identifica tutte le fatture da inviare
-		var jsonMails=JSON.stringify(mails);
-		
-		//SEND THE REQUEST TO THE SERVER
-		var xmlhttp;
-		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}else{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		
-		//cosa faccio quando la richiesta è finita?
-		xmlhttp.onreadystatechange=function(){
-			//request finished succefully
-			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				serverinfobox.innerHTML = xmlhttp.responseText;
-				localinfobox.innerHTML += '<br><B>DONE!!</B>';
-				spinner.classList.remove('spinner');
-				clearInterval(interval);
-				infobox.querySelector("button").classList.remove('hidden');
-				infobox.querySelector("button").onclick=function (){
-					infobox.classList.add('hidden');
-					infobox.querySelector("button").classList.add('hidden');
-					infobox.querySelector("button").onclick=function(){};
-				}
-			}
-			//request still pending but some data is available
-			if(xmlhttp.readyState == 3) {
-				serverinfobox.innerHTML = xmlhttp.responseText;
-			}
-		}
-		//get the string to append to the url to have anticipo fatture enabled
-		var strAntFt=getAnticipoFattureParams();
-		
-		//xmlhttp.open("POST","./wait.php",true);
-		xmlhttp.open("POST","./core/gestioneFatture.php",true);
-		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("do=stampa"+strAntFt+"&fatture="+jsonMails);
-		console.log("do=stampa"+strAntFt+"&fatture="+jsonMails);
-		// function to update the infobox with the server reply
-		function statusUpdate() {
-			//console.log('Update');
-			serverinfobox.innerHTML = xmlhttp.responseText;
-		}
-		 
-		// Check for new content from the server every 0.5 seconds
-		var interval = setInterval(statusUpdate, 500);
-	}
-	*/
 	function selectAll(){
 		var fatture = document.querySelectorAll("input[type=checkbox]");
 		for (var i = 0; i < fatture.length; ++i) {
@@ -268,7 +196,7 @@
 	function showOnlyNotSent(){
 		var fatture = document.querySelectorAll("input[type=checkbox]");
 		for (var i = 0; i < fatture.length; ++i) {
-			var target=fatture[i].parentNode.parentNode; //the tr
+			var target=fatture[i].parentNode.parentNode.parentNode; //the tr
 			target.classList.remove('hidden');
 			//console.log(fatture[i].dataset.pecsent);
 			if(fatture[i].dataset.pecsent=="false"){
@@ -278,10 +206,26 @@
 			}
 		}
 	}
+	function showOnlyClient(){
+		cliente = prompt("Cliente da mostrare", "Ragione sociale");
+		var fatture = document.querySelectorAll("input[type=checkbox]");
+		//console.log(fatture);
+		for (var i = 0; i < fatture.length; ++i) {
+			var target=fatture[i].parentNode.parentNode.parentNode; //the tr
+			target.classList.remove('hidden');
+			console.log(JSON.parse(fatture[i].dataset.json).cliente.toLowerCase(), cliente.toLowerCase(), JSON.parse(fatture[i].dataset.json).cliente.toLowerCase().indexOf(cliente.toLowerCase()));
+
+			if(JSON.parse(fatture[i].dataset.json).cliente.toLowerCase().indexOf(cliente.toLowerCase()) < 0){
+				target.classList.add('hidden');
+			}else{
+				target.classList.remove('hidden');
+			}
+		}
+	}
 	function showAll(){
 		var fatture = document.querySelectorAll("input[type=checkbox]");
 		for (var i = 0; i < fatture.length; ++i) {
-			var target=fatture[i].parentNode.parentNode; //the tr
+			var target=fatture[i].parentNode.parentNode.parentNode; //the tr
 			target.classList.remove('hidden');
 		}
 	}
@@ -308,12 +252,36 @@
 </head>
 <body>
 <div class="fixedTopBar">
-<button onclick="javascript:selectAll()">Sel. Tutte</button>
-<button onclick="javascript:deselectAll()">Sel. Nessuna</button>
-<button onclick="javascript:selectNotSent()">Sel. Non inviate</button>
-<button onclick="javascript:selectNotPrintedForReceiver()">Sel. Da stampare</button>
-<button onclick="javascript:sendMails()">Invia PEC FT spuntate</button>
-<button onclick="javascript:stampa()">Stampa FT spuntate</button>
+	<div class="dropdownMenu">
+	  <span class="dropItem">Seleziona</span>
+	  <div class="dropdownMenu-content">
+		<a href="javascript:selectAll()">Tutte</a>
+		<a href="javascript:deselectAll()">Nessuna</a>
+		<a href="javascript:selectNotSent()">Non inviate</a>
+		<a href="javascript:selectNotPrintedForReceiver()">Da stampare</a>
+	  </div>
+	</div>
+	<div class="dropdownMenu">
+	  <span class="dropItem">Invia PEC</span>
+	  <div class="dropdownMenu-content">
+		<a href="javascript:sendMails()">Invia PEC FT spuntate</a>
+	  </div>
+	</div>
+	<div class="dropdownMenu">
+	  <span class="dropItem">Stampa</span>
+	  <div class="dropdownMenu-content">
+		<a href="javascript:stampa('stampaInterna')">Interna</a>
+		<a href="javascript:stampa('stampaCliente')">Cliente</a>
+	  </div>
+	</div>
+	<div class="dropdownMenu">
+	  <span class="dropItem">Mostra</span>
+	  <div class="dropdownMenu-content">
+		<a href="javascript:showAll()">Tutte</a>
+		<a href="javascript:showOnlyNotSent()">Non inviate</a>
+		<a href="javascript:showOnlyClient()">Filtra per cliente</a>
+	  </div>
+	</div>
 </div>
 
 <div id="infobox" class="hidden">
@@ -326,8 +294,6 @@
 <br><br><br>
 
 <div id="anticipofatture" style="font-size:1em;">
-<button onclick="javascript:showAll()">Mostra tutte</button>
-<button onclick="javascript:showOnlyNotSent()">Mostra solo non inviate</button>
 	Stampa per anticipo fatture:
 	<select name="toggle">
 		<option value="false">no</option>
@@ -349,7 +315,7 @@ include ('./core/config.inc.php');
 set_time_limit ( 0);
 
 //elenco dei codici cliente che richiedono stampa della fattura
-$clientiDaStampare = array('TOMAS','TESI','MORAN','TESTO','FARET','VIOLA','PALAZ','MAHAL','AMBRN');
+$clientiDaStampare = array('TOMAS','TESI','MORAN','TESTO','FARET','VIOLA','PALAZ','MAHAL','AMBRN','DOROD');
 
 //seleziono l'anno di cui mostrare le fatture
 if(@$_GET['anno']){
@@ -411,6 +377,8 @@ $test->iterate(function($obj){
 	global $clientiDaStampare;
 	$dataInvioPec=$obj->__datainviopec->getVal();
 	$dataStampaPerDestinatario=$obj->__datastampa->getVal();
+	$dataStampaInterna=$obj->__datastampainterna->getVal();
+
 	
 	$tipo=$obj->tipo->getVal();
 	$cliente = $dbClientiWithIndex[$obj->cod_cliente->getVal()];
@@ -445,8 +413,7 @@ $test->iterate(function($obj){
 		}
 	}
 	
-	
-	$html.= '<td><input type="checkbox" data-json=\''.$jsonData.'\' '.$pecSent.' '.$printedForReceiver.' '.$checked.'></td>';
+	$html.= '<td><label class="container"><input type="checkbox" data-json=\''.$jsonData.'\' '.$pecSent.' '.$printedForReceiver.' '.$checked.'><span class="checkmark"></span></label></td>';
 	$html.= '<td>'.$obj->tipo->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
@@ -454,7 +421,7 @@ $test->iterate(function($obj){
 	$html.= '<td><small>('.$cliente->codice->getVal().')</small> '.$cliente->ragionesociale->getVal().'</td>';
 	$html.= '<td><small>'.$cliente->__pec->getVal().'</small></td>';
 	
-	$link= '<a href="./core/gestioneFatture.php?';
+	$link= '<a target="_blank" href="./core/gestioneFatture.php?';
 	$link.= 'numero='.$obj->numero->getVal();
 	$link.= '&data='.$obj->data->getVal();
 	$link.= '&tipo='.$tipo;
@@ -474,11 +441,18 @@ $test->iterate(function($obj){
 	//}else{
 
 		if($dataStampaPerDestinatario){
-			@$html.= '<td style="background-color:#66ff00;">Stampata il '.$dataInvioPec.$link.'&do=stampaCliente"><br>Ristampa?</a></td>';
+			@$html.= '<td style="background-color:#66ff00;">Stampata il '.$dataStampaPerDestinatario.$link.'&do=stampaCliente"><br>Ristampa?</a></td>';
 		}else{
 			$html.= '<td>'.$link.'&do=stampaCliente">Stampa copia cliente</a></td>';
 		}
-	//}
+		if($dataStampaInterna){
+			@$html.= '<td style="background-color:#66ff00;">Stampata il '.$dataStampaInterna.$link.'&do=stampaInterna"><br>Ristampa?</a></td>';
+		}else{
+			$html.= '<td>'.$link.'&do=stampaInterna">Stampa copia interna</a></td>';
+		}
+
+
+//}
 
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
