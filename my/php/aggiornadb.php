@@ -7,8 +7,9 @@ include ('./core/config.inc.php');
 //  1   //
 //quale è l'ultimo ddt (data e numero) che ho salvato nel mio database?
 $table="BACKUPRIGHEDDT";
-//select the max date from this year = 2017
-$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2017'"; 
+
+//select the max date from this year = 2018
+$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2018'"; 
 $db = new SQLite3($GLOBALS['config']->sqlite->dir.'/myDb.sqlite3');
 $result = $db->query($query);
 $ultimoDdtData = '';
@@ -25,8 +26,8 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 	$ultimoDdtNumero =  $row['NumeroUltimoDdt'];
 	}
 /*
-$ultimoDdtData= "01/02/2016";
-$ultimoDdtNumero= "1";
+$ultimoDdtData= "01/01/2018";
+$ultimoDdtNumero= "0";
 */
 echo "Ultimo ddt memorizzato è il <br>";
 echo "N. ".$ultimoDdtNumero." del (mm-gg-aaa) ".$ultimoDdtData;
