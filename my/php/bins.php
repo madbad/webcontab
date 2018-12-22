@@ -8,7 +8,7 @@ include ('./core/config.inc.php');
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>WebContab Calcolo costi</title>
+		<title>WebContab - Uscite imballaggi</title>
 		<meta charset="utf-8">
 	</head>
 
@@ -62,6 +62,7 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$mediaCollo.'</td>';
 		echo '<td>'.$bins.'</td>';
 		echo '<td>'.$casse.'</td>';
+		echo '<td><a href="http://localhost/webContab/my/php/core/gestioneDdt.php?numero='.$obj->ddt_numero->getVal().'&data='.$obj->ddt_data->getVal().'&cod_causale=V&do=visualizza">vedi</a></td>';
 		echo '</tr>';
 	};
 	$stampaTotali= function ($obj,$sommaBins,$sommaCasse){
@@ -75,6 +76,7 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.'-'.'</td>';
 		echo '<td><b>'.$sommaBins.'</b></td>';
 		echo '<td><b>'.$sommaCasse.'</b></td>';
+		echo '<td>-</td>';
 		echo '</tr>';
 	};
 
@@ -128,7 +130,7 @@ $clienti = new MyList(
 		'_type'=>'ClienteFornitore',
 		//'codice'=>array('<>',''),
 		'codice'=>$clientiSelezionati,
-		//'codice'=>'MARCH',
+		//'codice'=>'FACC2',
 		//'_select'=>'codice'
 		//'tipo'=>array('<>',''),
 		//'cod_banca'=>array('!=','01','02','09','10'),//ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI
@@ -180,7 +182,7 @@ global $dbClienti;
 	global $sommaCasse;
 	$sommaCasse=0;
 	$tabellaH='<table class="spacedTable, borderTable">';
-	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>media collo</td><td>Bins</td><td>Casse</td></tr>';
+	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>media collo</td><td>Bins</td><td>Casse</td><td>+</td></tr>';
 	$tabellaF='</table><br>';
 
 	$test=new MyList(

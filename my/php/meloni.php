@@ -92,8 +92,10 @@ if (@$_GET['mode']=='print'){
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI'),
 			//'cod_cliente'=>array('=','SALVA','MAROC','FERRN','PAROD'),
 			//'cod_cliente'=>array('=','PAROD'),
-			'cod_cliente'=>array('=','PAROD'),
-
+			//'cod_cliente'=>array('=','PAROD'),
+			//'cod_cliente'=>array('=','SEVEN'),
+			//'cod_cliente'=>array('=','CALAN'),
+			'cod_cliente'=>array('!=','DOROD'),
 			//'prezzo'=>array('=','0.001'),
 			
 			

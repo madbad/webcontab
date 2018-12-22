@@ -12,7 +12,7 @@ ping 127.0.0.1 -n 91 > nul
 
 
 @echo Avvio Firefox...
-START ""  "C:\Programmi\Mozilla Firefox\firefox.exe" -no-remote -p lafavorita
+START ""  "C:\Programmi\Mozilla Firefox\firefox.exe" -p lafavorita
 @echo Avvio Firefox...FATTO
 ping 127.0.0.1 -n 31 > nul
 

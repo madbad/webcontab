@@ -148,9 +148,9 @@
 		//xmlhttp.open("POST","./wait.php",true);
 		xmlhttp.open("POST","./core/gestioneFatture.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		if(mode='stampaInterna'){
+		if(mode=='stampaInterna'){
 			xmlhttp.send("do=stampaInterna"+strAntFt+"&fatture="+jsonMails);
-			}else if(mode='stampaCliente'){
+		}else if(mode=='stampaCliente'){
 			xmlhttp.send("do=stampaCliente"+strAntFt+"&fatture="+jsonMails);
 		}
 		else{

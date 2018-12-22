@@ -82,6 +82,7 @@ echo '<br><br>';
 		array(
 			'_type'=>'Ddt',
 			'data'=>array('<>',$dataIniziale,$dataFinale),
+//			'data'=>array('=','14/07/18','16/07/18','18/07/18','23/07/18','24/07/18'),
 			'cod_destinatario'=>array('=',$cliente),
 		)
 	);

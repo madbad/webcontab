@@ -755,6 +755,7 @@ class Fattura extends MyClass{
 		//proprietà aggiunte nel file sql
 		$this->addProp('__datainviopec','');
 		$this->addProp('__datastampa','');
+		$this->addProp('__datastampainterna','');
 		
 		$this->righe=array();
 
@@ -917,6 +918,14 @@ class Fattura extends MyClass{
 			$mail->Username   = $pec->Username;
 			$mail->Password   = $pec->Password;
 			//$mail->AddAddress($cliente->ragionesociale->getVal(), $cliente->pec->getVal()); //destinatario
+			//indirizzo mail alternativo
+			/*
+			$indirizzimail = explode(",", $cliente->__mailft->getVal());
+			foreach ($indirizzimail as $mailcliente){
+				$mail->AddAddress($mailcliente, $cliente->ragionesociale->getVal()); //destinatario
+			}
+			*/
+			//indirizzo mail PEC
 			$mail->AddAddress($cliente->__pec->getVal(), $cliente->ragionesociale->getVal()); //destinatario
 			
 			//mi faccio mandare la ricevuta di lettura

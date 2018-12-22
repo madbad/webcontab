@@ -159,11 +159,11 @@ if (@$_POST["do"]){
 					$myFt->getPdfFileUrl();
 					
 					//update database
-					if($_POST["do"]='stampaInterna'){
+					if($_POST["do"]=='stampaInterna'){
 						$myFt->__datastampainterna->setVal(date("d/m/Y"));
 						$myFt->saveSqlDbData();
 					}
-					if($_POST["do"]='stampaCliente'){
+					if($_POST["do"]=='stampaCliente'){
 						$myFt->__datastampa->setVal(date("d/m/Y"));
 						$myFt->saveSqlDbData();
 					}

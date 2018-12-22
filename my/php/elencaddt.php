@@ -10,9 +10,9 @@ set_time_limit ( 0);
 if(@$_GET['anno']){
 	$anno=$_GET['anno'];
 	$Sgiorno = '01';
-	$Smese =  '01';
+	$Smese =   '01';
 	$Egiorno = '31';
-	$Emese = '12';
+	$Emese =   '12';
 	$Sdate=$Sgiorno.'/'.$Smese.'/'.$anno;
 	$Edate=$Egiorno.'/'.$Emese.'/'.$anno;
 }else{
@@ -27,7 +27,7 @@ if(@$_GET['anno']){
 		$anno=date('Y');
 		$Sdate = $Edate = date('d/m/Y');
 	}
-	$fixedDate= str_replace('/','-',$Sdate);
+	$fixedDate= str_replace('/','.',$Sdate);
 	$prevDate =date('d/m/Y', strtotime($fixedDate .' -1 day'));
 	$nextDate = date('d/m/Y', strtotime($fixedDate .' +1 day'));
 }

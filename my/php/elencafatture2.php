@@ -14,7 +14,7 @@ set_time_limit ( 0);
 $test=new MyList(
 	array(
 		'_type'=>'Fattura',
-		'data'=>array('<>','01/01/2016','30/11/2016'),
+		'data'=>array('<>','02/04/2018','30/05/2018'),
 	)
 );
 

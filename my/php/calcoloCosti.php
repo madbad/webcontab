@@ -34,9 +34,16 @@ $dbClienti=getDbClienti();
 		$condizioniProdotti="($condizioniProdotti) AND";
 		//decommentare la linea seguente per usare il vecchio metodo che selezionava tutti i prodotti (anche quelli che non ci interesavano)
 		//$condizioniProdotti='';
-		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE $condizioniProdotti F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+		if ($params["cliente"]){
+			$condizioniCliente=" AND F_CODCLI='".$params["cliente"]."' ";
+		}else{
+			$condizioniCliente='';
+		}
 		
-		$out.="<table class=\"righe smallFontTable\"><tr><th colspan='6'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";	
+		$result=dbFrom('RIGHEDDT', 'SELECT *', "WHERE $condizioniProdotti F_DATBOL >= #".$params['startDate']."# AND F_DATBOL <= #".$params['endDate']."# $condizioniCliente ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE");
+		
+		//$out.="<table class=\"righe smallFontTable\"><tr><th colspan='6'>cod:".join(",", $params['articles'])." <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";
+		$out.="<table class=\"righe smallFontTable\"><tr><th colspan='6'> <br>( ".$params['startDate']." > ".$params['endDate']." )</th></tr>";
 		$out.='<tr><th>Data</th><th>Cliente</th><th>Colli</th><th>p.Net</th><th>md</th><th>tara</th></tr>';
 		//this will containt table totals
 		$sum=array('NETTO'=>0,'F_NUMCOL'=>0);
@@ -45,8 +52,26 @@ $dbClienti=getDbClienti();
 		//while($row = odbc_fetch_array($result)){
 			$codCliente=$row['F_CODCLI'];
 			$tipoCliente=$dbClienti["$codCliente"]['__classificazione'];
-			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato') /*| $codCliente=='BRUNF'*//*ABILITA UNO SPECIFICO CODICE CLIENTE ANCHE SE NON RIENTRA TRA IL LAVORTO*/){
+			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato') && ($codCliente!="MARTI") /*| $codCliente=='BRUNF'*//*ABILITA UNO SPECIFICO CODICE CLIENTE ANCHE SE NON RIENTRA TRA IL LAVORTO*/){
 
+				$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
+				
+				//se ho gia ricevuto il riscontro peso non tolgo il calo peso... il peso è già corretto!
+				if($row['F_PESNET'] == $row['F_QTA']){
+					$netto=$row['F_PESNET'];
+				}else{
+					$netto=$row['F_PESNET']-$calopeso;
+				}
+				
+				$media=round($netto/$row['F_NUMCOL'],1);
+				$tara=round(($row['F_QTA']-$row['F_PESNET'])/$row['F_NUMCOL'],3);
+				//$tara=$row['F_PESNET'].'::'.$row['F_QTA'];
+				$out.="\n<tr><td>".formatData($row['F_DATBOL'])."</td><td>$row[F_CODCLI]</td><td>".round($row['F_NUMCOL'])."</td><td>$netto</td><td>$media</td><td>$tara</td></tr>";
+				$sum['NETTO']+=$netto;
+				$sum['F_NUMCOL']+=$row['F_NUMCOL'];
+			}
+			IF(($row['F_CODCLI']=="MARTI") && ($params['cliente']=="MARTI")){
+				//echo $row['F_CODCLI']
 				$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
 				
 				//se ho gia ricevuto il riscontro peso non tolgo il calo peso... il peso è già corretto!
@@ -190,8 +215,10 @@ if (@$_POST['mode']=='print'){
     $table.='<tr><td class="rimanenzecellone"></td><td class="rimanenzecelltwo"></td></tr>';
     $table.='<tr><td><b>- pl</b></td><td></td></tr>';
     $table.='<tr><td><b>- ifco</b></td><td></td></tr>';
+    $table.='<tr><td><b>- vassoi</b></td><td></td></tr>';
     $table.='<tr><td>+ pl</td><td></td></tr>';
     $table.='<tr><td>+ ifco</td><td></td></tr>';
+    $table.='<tr><td>+ vassoi</td><td></td></tr>';
     $table.='<tr><td>Tot.<br><br><br></td><td style="border:4px solid #000000"></td></tr>';
     $table.='</table>';
     $html='';
@@ -207,8 +234,8 @@ if (@$_POST['mode']=='print'){
 					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 33,
 					"colliPedana" => 104,
-					"costoCassa" => 0.81);//cassa nuova bianca vergine
-					//"costoCassa" => 0.43);//cassa vecchia
+					//"costoCassa" => 0.81);//cassa nuova bianca vergine
+					"costoCassa" => 0.43);//cassa vecchia
 	$html.=getArticleTable($params);
 	/* vecchi conteggi sma
 	//supermercati
@@ -222,7 +249,7 @@ if (@$_POST['mode']=='print'){
 	$html.=getArticleTable($params);
 	*/
 	//supermercati
-	$params = array("articles" => array('801-','801F-'),
+	$params = array("articles" => array('801-','801F-','601'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.4,
@@ -242,8 +269,8 @@ if (@$_POST['mode']=='print'){
 					"abbuonoPerCollo" => 0.5, //0.3
 					"costoPedana" => 33,
 					"colliPedana" => 104,
-					"costoCassa" => 0.81);//cassa nuova bianca
-					//"costoCassa" => 0.43);//cassa vecchia
+					//"costoCassa" => 0.81);//cassa nuova bianca
+					"costoCassa" => 0.43);//cassa vecchia
 	$html.=getArticleTable($params);
 	// supermercati
 	/*  vecchi conteggi sma
@@ -257,7 +284,7 @@ if (@$_POST['mode']=='print'){
 	$html.=getArticleTable($params);
 	*/
 	//supermercati
-	$params = array("articles" => array('803-','803F-'),
+	$params = array("articles" => array('803-','803F-','603'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.4,
@@ -273,17 +300,17 @@ if (@$_POST['mode']=='print'){
         $html.="<h1>Tondo</h1>";
 //chioggia
 		// mercato
-		$params = array("articles" => array('08','08P'),
+		$params = array("articles" => array('08','08P','08POL','08G'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 112,
 						"costoCassa" => 0.56); //BLU DA 13
-						//"costoCassa" => 0.46); //POLISTIROLO
+						//"costoCassa" => 0.47); //POLISTIROLO
 		$html.=getArticleTable($params);
 		// supermercati
-		$params = array("articles" => array('708','808','708-','808-','708--','808--'),
+		$params = array("articles" => array('708','808','708-','808-','708--','808--','608','608-'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
@@ -291,6 +318,30 @@ if (@$_POST['mode']=='print'){
 						"colliPedana" => 80,
 						"costoCassa" => 0.68);
 		$html.=getArticleTable($params);
+		/*
+		// VASSOI
+		$params = array('articles' => array('VAS08'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.2, //0.3//0.5
+						"costoPedana" => 33,
+						"colliPedana" => 124,
+						"costoCassa" => 0.57); //0,37 cassa + 0,05 x4 vassoi
+		$html.=getArticleTable($params);
+		*/
+		// MARTINELLI
+		$params = array('articles' => array('08'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.0, //0.3//0.5
+						"costoPedana" => 33,
+						"colliPedana" => 124,
+						"costoCassa" => 0.59, //0,40 cassa pl305016 + 0,031 x4 vassoi+ 0,015 x 4conezioni film
+						"cliente"=>"MARTI");
+		$html.=getArticleTable($params);
+		
+		
+		
         $html.=$table;
   
 		$html.="</div><div class='tableContainer'>";
@@ -307,7 +358,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.56); //cassa blu
 		$html.=getArticleTable($params);
 		// supermercati
-		$params = array("articles" => array('729','829','729-','829-'),
+		$params = array("articles" => array('729','829','729-','829-','629'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
@@ -315,6 +366,29 @@ if (@$_POST['mode']=='print'){
 						"colliPedana" => 80,
 						"costoCassa" => 0.67);
 		$html.=getArticleTable($params);
+		/*
+		// VASSOI
+		$params = array('articles' => array('VAS29'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.1, //0.3//0.5
+						"costoPedana" => 33,
+						"colliPedana" => 124,
+						"costoCassa" => 0.67); //0,37 cassa + 0,05 x4 vassoi
+		$html.=getArticleTable($params);
+		*/
+		// MARTINELLI
+		$params = array('articles' => array('29'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.0, //0.3//0.5
+						"costoPedana" => 33,
+						"colliPedana" => 124,
+						"costoCassa" => 0.68, //0,40 cassa pl305016 + 0,031 x6 vassoi+ 0,015 x 6 conezioni film
+						"cliente"=>"MARTI");
+		$html.=getArticleTable($params);
+		
+		
         $html.=$table;
   
         //$html.='<div style="page-break-before: always"></div>';
@@ -329,7 +403,7 @@ if (@$_POST['mode']=='print'){
 						"colliPedana" => 104,
 						"costoCassa" => 0.40);
 		$html.=getArticleTable($params);
-		$params = array("articles" => array('731','831','831-'),
+		$params = array("articles" => array('731','831','831-','631'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
@@ -346,19 +420,40 @@ if (@$_POST['mode']=='print'){
 		$params = array('articles' => array('05'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.3, //0.3//0.5
+						"abbuonoPerCollo" => 0.1, //0.3//0.5
 						"costoPedana" => 33,
 						"colliPedana" => 112,
-						"costoCassa" => 0.44);
+						"costoCassa" => 0.47);//POLISTIROLO
 		$html.=getArticleTable($params);
 		// supermercati
-		$params = array("articles" => array('705','805','705-','805-','705--','805--' ),
+		$params = array("articles" => array('705','805','705-','805-','705--','805--','605' ),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
 						"costoPedana" => 33,
 						"colliPedana" => 80,
 						"costoCassa" => 0.67);
+		$html.=getArticleTable($params);
+		/*
+		// VASSOI
+		$params = array('articles' => array('VAS05'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.1, //0.3//0.5
+						"costoPedana" => 33,
+						"colliPedana" => 124,
+						"costoCassa" => 0.67); //0,37 cassa + 0,05 x6 vassoi
+		$html.=getArticleTable($params);
+		*/
+		// MARTINELLI
+		$params = array('articles' => array('05'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.0, //0.3//0.5
+						"costoPedana" => 33,
+						"colliPedana" => 124,
+						"costoCassa" => 0.68, //0,40 cassa pl305016 + 0,031 x6 vassoi+ 0,015 x 6 conezioni film
+						"cliente"=>"MARTI");
 		$html.=getArticleTable($params);
         $html.=$table;
 
@@ -399,7 +494,7 @@ if (@$_POST['mode']=='print'){
 						"costoPedana" => 33,
 						"colliPedana" => 112,
 						"costoCassa" => 0.38);
-		$html.=getArticleTable($params);		
+		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('726','826'),
 						"startDate" => $startDateR,

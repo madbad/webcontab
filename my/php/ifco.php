@@ -19,7 +19,7 @@ echo '<div class="columns">';
 $stampaRighe= function ($obj){
 	global $elenco;
 	global $totali;
-
+/*
 	$ifco=array('IFCO 4310',
 				'IFCO 4314',
 				'IFCO 6410',
@@ -27,6 +27,15 @@ $stampaRighe= function ($obj){
 				'IFCO 6416',
 				//'EURO CHEP',
 	);
+*/
+	$ifco=array('POLYM 4316',
+				'POLYM 6411',
+				'POLYM 6413',
+				'POLYM 6416',
+				'POLYM 6419',
+				//'EURO CHEP',
+	);
+	
 	$art= new Articolo(array('codice'=> $obj->cod_articolo->getVal()));
 	$descrizione= $art->descrizione->getVal();
 	//echo '<br>'.$descrizione;
@@ -57,9 +66,16 @@ $stampaRighe= function ($obj){
 		echo $obj->colli->getFormatted().'<br>';
 	}
 };
+/*
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','16/07/17','31/07/17'),
+		'ddt_data'=>array('<>','15/05/18','31/05/18'),
+		'cod_cliente'=>array('EUROV'),
+	);
+*/
+$params=array(
+		'_type'=>'Riga',
+		'ddt_data'=>array('<>','08/12/18','14/12/18'),
 		'cod_cliente'=>array('SEVEN'),
 	);
 

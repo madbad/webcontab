@@ -509,6 +509,7 @@ buildEmptyModule($pdf);
 		//si tratta di "redo da c/deposito" "c/riparazone" "omaggio" etc...
 		//$causale='RESO DA C/DEP.TO';
 		$causale='OMAGGIO';
+		//$causale='RESO MERCE N/C';
 	}
 	$pdf->Text(18, 58+8, $causale);
 
@@ -528,7 +529,7 @@ buildEmptyModule($pdf);
 	$pdf->Text(18, 58+8*21.2, 'VISIBILE');/*todo*/
 	
 	//totale colli
-	$pdf->Text(140, 58+8*21.2, $ddt->tot_colli->getFormatted(0));
+	$pdf->Text(140, 58+8*21.2, $ddt->tot_colli->getFormatted(0)+1);
 	
 	//totale peso lordo
 	$pdf->Text(160, 58+8*21.2, $ddt->tot_peso->getFormatted(2));
@@ -618,6 +619,7 @@ buildEmptyModule($pdf);
 		//FORZO IL VETTORE CHE VOGLIO IO
 		if ($_GET['force_vettore']){
 			$destinatario->cod_vettore->setVal($_GET['force_vettore']);
+			//$destinatario->cod_vettore->setVal('02');
 		} 
 
 		//MODIFICO IL VETTORE A MIO PIACIMENTO
