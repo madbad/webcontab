@@ -8,6 +8,9 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]).'//webContab/my/php/libs/FirePH
 include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/ddt.php');
 //genera i file pdf delle fatture
 include (realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/ft.php');
+//genera i file XML delle fatture
+include (realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/ftXml.php');
+
 //classe per l'invio di email
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]).'//webContab/my/php/libs/phpmailer/class.phpmailer.php');
 
@@ -1006,6 +1009,11 @@ class Fattura extends MyClass{
 			trigger_error("[ERRORE] Il totale fattura non coincide: <br>".var_dump($totFattura).' Da Fattura <br>'.var_dump($totFatturaDaImponibili).' Da imponibili<br>'.$verifica.'<br>',E_USER_ERROR);
 		}
 	}
+
+	public function generaXml(){
+		return generaXmlFt($this);
+	}	
+	
 }
 
 class Ddt  extends MyClass {
@@ -1381,9 +1389,21 @@ class ClienteFornitore extends MyClass {
 		$this->addProp('__pec',						'');
 		$this->addProp('__provvigione',				'');
 		$this->addProp('__classificazione',			'');
-		$this->addProp('__mailddt',			'');
-		$this->addProp('__mailft',			'');
-		$this->addProp('__mail',			'');
+		$this->addProp('__mailddt',					'');
+		$this->addProp('__mailft',					'');
+		$this->addProp('__mail',					'');
+		$this->addProp('__ragionesociale',			'');
+		$this->addProp('__via',						'');
+		$this->addProp('__paese',					'');
+		$this->addProp('__cap',						'');
+		$this->addProp('__citta',					'');
+		$this->addProp('__nazione',					'');
+		$this->addProp('__p_iva',					'');
+		$this->addProp('__cod_fiscale',				'');
+		$this->addProp('__SDIcodice',				'');
+		$this->addProp('__SDIpec',					'');
+		$this->addProp('__ispersonafisica',			'');
+
 		
 		//configurazione database
 		if($params['_tipo']=="fornitore"){

@@ -31,6 +31,10 @@ if (@$_GET["do"]){
 		case 'visualizza':
 			$myFt->visualizzaPdf();
 			break;
+		case 'generaXml':
+			$myFt->generaXml();
+			break;
+
 		case 'stampaCliente':
 			$myFt->stampa();
 			//memorizzo la data di stampa

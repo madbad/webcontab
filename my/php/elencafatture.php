@@ -414,7 +414,7 @@ $test->iterate(function($obj){
 	}
 	
 	$html.= '<td><label class="container"><input type="checkbox" data-json=\''.$jsonData.'\' '.$pecSent.' '.$printedForReceiver.' '.$checked.'><span class="checkmark"></span></label></td>';
-	$html.= '<td>'.$obj->tipo->getVal().'</td>';
+	$html.= '<td>'/*.$obj->tipo->getVal().*/.$obj->cod_pagamento->getVal().' **** '.$obj->cod_pagamento->extend()->descrizione->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
 	//$html.= '<td>'.$obj->importo->getFormatted().'</td>';
@@ -456,6 +456,7 @@ $test->iterate(function($obj){
 
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
+	$html.= '<td>'.$link.'&do=generaXml">Genera XML</a></td>';	
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/pdf.svg" alt="Visualizza PDF" width="30px"></a></td>';
