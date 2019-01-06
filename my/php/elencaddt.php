@@ -161,6 +161,13 @@ $test->iterate(function($obj){
 	$html.= '<td>'.$link.'&do=mail">Mail</a></td>';
 	$html.= '<td>'.$link.'&do=mail&force_nascondiprezzo=true">Mail (prezzo nascosto)</a></td>';
 	$html.= '<td>'.$link.'&do=stampa">Stampa</a></td>';
+
+	//link fattura
+	$link= '<a target="_blank" href="./core/gestioneFatture.php?';
+	$link.= 'numero='.number_format($obj->fattura_numero->getVal()*1,$decimali=0,$separatoreDecimali=',',$separatoreMigliaia='.');
+	$link.= '&data='.$obj->fattura_data->getVal();
+	$link.= '&cod_causale='.'F';
+	$html.= '<td>'.$link.'&do=visualizza">Fattura '.number_format($obj->fattura_numero->getVal()*1,$decimali=0,$separatoreDecimali=',',$separatoreMigliaia='.').' del '.$obj->fattura_data->getVal().' </a></td>';
 	
 	
 	$html.="</tr>\n";

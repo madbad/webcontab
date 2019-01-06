@@ -27,6 +27,9 @@ $out.=$test->iterate(function($obj){
 	$out.='<td>'.$obj->ragionesociale->getVal()/*.'==>'.$obj->sigla_paese->getVal()*/.'</td>';
 	$out.='<td>'.$obj->p_iva->getVal().'</td>';
 	$out.='<td>'.$obj->citta->getVal().'</td>';
+
+	$out.='<td>'.$obj->cod_fiscale->getVal().'</td>';
+	$out.='<td>'.$obj->sigla_paese->getVal().'</td>';
 	
 	if($obj->cod_pagamento->getVal()!=''){
 		//$out.='<td>'.$obj->cod_pagamento->getVal().'</td>';

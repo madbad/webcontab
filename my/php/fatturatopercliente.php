@@ -85,8 +85,8 @@ print_r($fatturato);
 $date_start='2018-01-01';
 $date_end='2018-03-31';
 */
-$date_start='2017-01-01';
-$date_end='2017-12-31';
+$date_start='2015-01-01';
+$date_end='2018-12-31';
 
 $result = dbFrom('RIGHEFT', 'SELECT sum(F_IMPONI) AS IMPONIBILE, F_CODCLI', "WHERE F_DATFAT >= #".$date_start."# AND F_DATFAT <= #".$date_end."# GROUP BY F_CODCLI");
 //PRINT_R($result);
@@ -111,7 +111,26 @@ echo $date_start ,' => ';
 echo $date_end."<br>\n";
 echo '<table>';
 foreach ($sorted as $item){
-	echo "<TR><td>".$item['F_CODCLI']."</td><td style='text-align:right;'>".str_replace(".",",",round($item['IMPONIBILE'],2))."</td></TR>";
+$cli=new ClienteFornitore(
+	array(
+		'_type'=>'ClienteFornitore',
+		//'tipo'=>array('<>',''),
+		//'cod_banca'=>array('!=','01','02','09','10'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
+		'codice'=>array('=',$item['F_CODCLI']),
+		//'cod_banca'=>array('=','04'),
+		'_autoExtend'=>'1',
+		)
+);
+$cli->autoExtend();
+//print_r($cli);
+
+//	echo "<TR><td>".$item['F_CODCLI']."</td><td style='text-align:right;'>".str_replace(".",",",round($item['IMPONIBILE'],2))."</td></TR>";
+	echo "<TR><td>".$item['F_CODCLI']."</td><td style='text-align:right;'>".str_replace(".",",",round($item['IMPONIBILE'],2))."</td>";
+	echo "<td>".$cli->ragionesociale->getVal()."</td>";
+	echo "<td>".$cli->cod_iva->getVal()."</td>";
+	echo "<td>".$cli->cod_fiscale->getVal()."</td>";
+	echo "<td>".$cli->sigla_paese->getVal()."</td>";
+	echo "</tr>";
 }
 echo '</table>';
 ?>
