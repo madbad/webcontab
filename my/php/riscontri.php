@@ -290,11 +290,11 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/11/17','31/12/17'),
+			'ddt_data'=>array('<>','01/11/18','31/12/18'),
 			//'cod_articolo'=>array('=','843'),
 			//'cod_iva'=>array('=','42',''), 
 			//'cod_articolo'=>array('=','03','01'), 
-			'cod_articolo'=>array('=','100'), //CONF.NATALIZIA
+			//'cod_articolo'=>array('=','100'), //CONF.NATALIZIA
 			//'cod_articolo'=>array('=','36','836'), //SEDANO
 			//'cod_articolo'=>array('=','17'), //CAPPUCCI ROSSI
 			//'cod_articolo'=>array('=','18','818'), //CAPPUCCI CUOR DI BUE
@@ -317,7 +317,7 @@ $query = "
 			//'cod_articolo'=>array('=','947','47','471421','47714','847','647'),
 			//'cod_articolo'=>array('=','32'),
 			//'cod_articolo'=>array('=','01','03','01S','03S','01F','03F'),
-			//'cod_articolo'=>array('=','08'),
+			'cod_articolo'=>array('=','45','08B'),
 			//'cod_cliente'=>".$strMercati.",
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),

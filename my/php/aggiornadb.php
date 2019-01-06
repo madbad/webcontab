@@ -3,13 +3,24 @@
 <?php
 include ('./core/config.inc.php');
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/*
+SUL CAMBIO ANNO
+MODIFICARE 			A RIGA 23 L'ANNO
+E DECOMMENTARE 		SU RIGA 40-41 
+MODIFICANDO CON I DATI RELATIVI AL NUOVO ANNO
+*///ESEGUIR UNA VOLTA LA COPIA DEI DATI E POI RICOMMENTARE LE RIGHE 40-41
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
 //////////
 //  1   //
 //quale è l'ultimo ddt (data e numero) che ho salvato nel mio database?
 $table="BACKUPRIGHEDDT";
 
 //select the max date from this year = 2018
-$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2018'"; 
+$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2019'"; 
 $db = new SQLite3($GLOBALS['config']->sqlite->dir.'/myDb.sqlite3');
 $result = $db->query($query);
 $ultimoDdtData = '';
@@ -26,7 +37,7 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 	$ultimoDdtNumero =  $row['NumeroUltimoDdt'];
 	}
 /*
-$ultimoDdtData= "01/01/2018";
+$ultimoDdtData= "01/01/2019";
 $ultimoDdtNumero= "0";
 */
 echo "Ultimo ddt memorizzato è il <br>";
