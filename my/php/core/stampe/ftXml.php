@@ -1,4 +1,53 @@
 <?php
+//da verificare
+//http://127.0.0.1:8887/webcontab/my/php/core/gestioneFatture.php?numero=%20%20%20%20%20%2075&data=02-28-2018&tipo=F&do=generaXml
+//tutte le note di acrredito
+/*
+RIF. NS. DDT.N.3268-26.12.17
+VEDI NS. FATT.N.547-30.12.2017
+
+
+RESO CON DDT.N.15/B-09.02.18
+VEDI NS. FATT.N.61-28.02.18
+..............................
+RIF. NS.DDT N.293-03.02.18
+            N.284-02.2.18
+            N.293-03.02.18
+            N.284-02.02.18
+
+			
+RESO CON DDT.N.40028-11.01.18
+RESO CON DDT.N.40013-05.01.18			
+NS. DDT.N.119-13.01.18
+******************************
+VEDI NS. FATT.N.13-26.01.18			
+
+
+
+NOTA DI ACCREDITO CLIENTE
+PER DIFFERENZA PESI RIF.NS.
+NS. FATTURE EMESSE N.
+  88 DEL 22.03.2018
+ 111 DEL 31.03.2018
+
+ 
+NOTA DI ACCREDITO CLIENTE
+PER DIFFERENZA PESO E PREZZO
+RIF.NS.FATT.N.107-27.03.1
+
+ 
+RESO CON DDT.N.654-18.04.18
+03
+IND.SCAROLA IT
+0,570
+KG
+624,00
+355,68
+4
+******************************
+RIF.NS.DDT.N.879-05.04.18
+RIF.NS.FATT.N.158-30.04.18 
+*/
 /* -------------------------------------------------------------------------------------------------------
 	Questa libreria esegue la stampa di 
 	e lei ne prepara la stampa
@@ -105,13 +154,16 @@ function generaXmlFt($myFt){
 	*/
 
 	$dati->fattura = new stdClass();
+	/*
 	$dati->fattura->tipo = 'TD01';
 	$dati->fattura->divisa = 'EUR';
 	$dati->fattura->numero = '130';
 	$dati->fattura->data = '2018-12-23';
 	$dati->fattura->importo = '100,20';
 	$dati->fattura->causale = 'vendita';
+	*/
 	$dati->fattura->righe = array();
+	/*
 	$dati->fattura->righe[0] = new stdClass();
 	$dati->fattura->righe[0]->numero ='';
 	$dati->fattura->righe[0]->cod_articolo = '';
@@ -124,7 +176,9 @@ function generaXmlFt($myFt){
 	$dati->fattura->righe[0]->colli = '';
 	$dati->fattura->righe[0]->peso_lordo = '';
 	$dati->fattura->righe[0]->cod_iva = '';
+	*/
 	$dati->fattura->pagamento = new stdClass();
+
 	if(	$myFt->cod_pagamento->getVal()=='30'){//bonifico 30 gg data fattura fine mese
 		$dati->fattura->pagamento->modalita='MP05';
 	}else if($myFt->cod_pagamento->getVal()=='BO'){//bonifico
@@ -137,7 +191,6 @@ function generaXmlFt($myFt){
 		exit("Condizione di pagamento non valida '01'");
 	}
 		
-	
 
 	/*==============================================================================
 
@@ -221,7 +274,7 @@ function generaXmlFt($myFt){
 
 
 	//================DATI DESTINATARIO FATTURA
-	$dati->fattura = new stdClass();
+//	$dati->fattura = new stdClass();
 	/*todo: controlla per altriu tipi: acconto, nota debito e simili*/
 	/* todo:altri tipi di fattura
 	TD01  Fattura 
@@ -269,12 +322,42 @@ function generaXmlFt($myFt){
 	//print_r($myFt->righe);
 	foreach ($myFt->righe as $key => $value) {
 		$riga=$myFt->righe[$key];
+	//echo $riga->numero->getVal().':'.$riga->numero->getVal()."/n";
+		//tralascio qualche riga che è solo descrittiva
+		
+		if($riga->cod_articolo->getVal() == 'BSEVEN'){
+			$currentDdt->righeDelDDT--;
+			continue;
+		}
+		
+		if($riga->cod_articolo->getVal() == 'ASSOLVE'){
+			$currentDdt->righeDelDDT--;
+			continue;			
+		}
+
+		
+		if(!(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.') && ($riga->peso_lordo->getVal() == 0)){
+			$currentDdt->righeDelDDT--;
+			continue;			
+		}
+
+
+		/*
+		if($riga->imponibile->getVal()*1 < 0.001){
+			//$currentDdt->righeDelDDT--;
+			continue;				
+		}
+		*/
+		
+		
+
 
 		//si tratta di una riga di descrizione ddt
 		//D.d.T. N.3160 - 01.12.2018
 		if(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.'){
 			if($currentDdt->righeDelDDT>0){
-				exit("Stiamo cambiando ddt anche se le righe del ddt precedente non sono ancora finite");
+				/*todo: potrei controllare il ddt e vedere se ci sono righe di puro testo: magari lasciando un warning in un log*/
+				exit("Stiamo cambiando ddt anche se le righe del ddt precedente non sono ancora finite. Vecchio ddt:".$currentDdt->numero." ne restano ".$currentDdt->righeDelDDT);
 			}
 			
 			
@@ -299,6 +382,8 @@ function generaXmlFt($myFt){
 			//go to the net iteration
 			continue;
 		}
+
+
 		
 		
 		/*todo:verifica descrizione lunga di un articolo*/
@@ -337,6 +422,9 @@ function generaXmlFt($myFt){
 		
 		*/
 		
+
+		
+		
 		//si tratta di una normale riga appartenente ad un ddt
 		$dati->fattura->righe[$contaRighe] = new stdClass();
 		$dati->fattura->righe[$contaRighe]->numero =$contaRighe;
@@ -350,11 +438,30 @@ function generaXmlFt($myFt){
 		$dati->fattura->righe[$contaRighe]->colli = ($riga->colli->getVal()*1>0 ? $riga->colli->getFormatted(0) : '');
 		$dati->fattura->righe[$contaRighe]->peso_lordo = formatImporto($riga->peso_lordo->valore);
 		$dati->fattura->righe[$contaRighe]->cod_iva = formatImporto($riga->cod_iva->getVal());
-
-		$currentDdt->riferimentoRighe[]= $contaRighe;
 		
-		if($currentDdt->righeDelDDT==0){
-			exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero);
+		
+		//se si tratta di una riga di sconto
+		if($riga->cod_articolo=='SCONTO2'){
+			//questa riga (di sconto, non si riferisce ad alcun ddt)
+			/*
+			SC = sconto
+			PR = premio
+			AB = abbuono
+			AC = spesa accessori
+			*/
+			$dati->fattura->righe[$contaRighe]->tipocessioneprestazione ='SC';
+		}else if (strpos($riga->descrizione->getVal(), 'PROVVIGIONE') !== false) {
+			//ho trovato una riga di provvigione, non si riferisce ad alcun ddt
+			$dati->fattura->righe[$contaRighe]->tipocessioneprestazione ='AC';
+			
+		}else{
+			//non è ne uno sconto ne una provvigione... dovrebbe quindi avere riferimento in un ddt
+			$currentDdt->riferimentoRighe[]= $contaRighe;
+		}	
+		
+		//SE HO FINITO LE RIGHE DEL DDT E NON E' UNA RIGA DI PROVVIGIONE ALLORA MI BLOCCO PERCHE' QUALCOSA NON VA
+		if($currentDdt->righeDelDDT==0 && !strpos($riga->descrizione->getVal(), 'PROVVIGIONE')){
+			exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->descrizione->getVal());				
 		}
 		$currentDdt->righeDelDDT--;
 		
@@ -490,7 +597,10 @@ function generaXmlFt($myFt){
 				$last->addChild('UnitaMisura',		$riga->unita_misura);
 				$last->addChild('PrezzoUnitario',	$riga->prezzo);
 				$last->addChild('PrezzoTotale',		$riga->importo_totale);
-				$last->addChild('AliquotaIVA',		$riga->cod_iva);	
+				$last->addChild('AliquotaIVA',		$riga->cod_iva);
+				if(property_exists ($riga,'tipocessioneprestazione')){
+					$last->addChild('TipoCessionePrestazione',	$riga->tipocessioneprestazione);
+				}
 		}
 		
 		
@@ -550,17 +660,22 @@ function generaXmlFt($myFt){
 				MP20   SEPA Direct Debit CORE 
 				MP21   SEPA Direct Debit B2B 
 				MP22   Trattenuta su somme già riscosse 
-				*/				
-				$last->addChild('ModalitaPagamento',$dati->fattura->pagamento->modalita);
-				$last->addChild('DataScadenzaPagamento',formatDate('dd/mm/yyyy','yyyy-mm-dd',$myFt->getScadenzaPagamento())); /*todo : siamo sicuri di volerla inserire?*/
-				$last->addChild('ImportoPagamento',formatImporto($myFt->importo->valore));
-				//se bonifico mostro le coordinate
-				if($dati->fattura->pagamento->modalita=='MP05'){
-					if($myFt->cod_banca->getVal()==''){
-						exit("Modalita di pagamento 'bonifico' ma nessuna coordinata specificata");
+				*/
+				if($dati->fattura->pagamento->modalita !=''){
+					$last->addChild('ModalitaPagamento',$dati->fattura->pagamento->modalita);				
+					$last->addChild('DataScadenzaPagamento',formatDate('dd/mm/yyyy','yyyy-mm-dd',$myFt->getScadenzaPagamento())); /*todo : siamo sicuri di volerla inserire?*/
+					$last->addChild('ImportoPagamento',formatImporto($myFt->importo->valore));
+					//se bonifico mostro le coordinate
+					if($dati->fattura->pagamento->modalita=='MP05'){
+						if($myFt->cod_banca->getVal()==''){
+							exit("Modalita di pagamento 'bonifico' ma nessuna coordinata specificata");
+						}
+						$last->addChild('IBAN',$myFt->cod_banca->extend()->__iban->getVal());
 					}
-					$last->addChild('IBAN',$myFt->cod_banca->extend()->__iban->getVal());
+				}else{
+					//$log->warn("Nessuna modalita di pagamento indicata");	
 				}
+
 				
 	header('Content-type: text/xml');
 	$filename= $dati->emittente->partitaIvaNazione.$dati->emittente->partitaIvaCodice.'_'.$dati->ProgressivoInvio.'.xml';
