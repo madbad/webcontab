@@ -1,4 +1,10 @@
 <?php
+include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/ValidatorInterface.php');
+include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/Validator.php');
+include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/Exception/ExceptionInterface.php');
+include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/Exception/InvalidXmlStructureException.php');
+include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/Exception/InvalidXsdStructureComplianceException.php');
+
 //da verificare
 //http://127.0.0.1:8887/webcontab/my/php/core/gestioneFatture.php?numero=%20%20%20%20%20%2075&data=02-28-2018&tipo=F&do=generaXml
 //tutte le note di acrredito
@@ -52,10 +58,6 @@ RIF.NS.FATT.N.158-30.04.18
 	Questa libreria esegue la stampa di 
 	e lei ne prepara la stampa
 ----------------------------------------------------------------------------------------------------------
-*/
-/*
-include ('./../config.inc.php');
-set_time_limit ( 0);
 */
 
 /*============================================================
@@ -133,7 +135,7 @@ function generaXmlFt($myFt){
 	$dati->emittente->datiREA->StatoLiquidazione = "LN";
 	*/
 
-	$dati->ProgressivoInvio = '00001';/*todo: massimo 10 caratteri*/
+	$dati->ProgressivoInvio = '00001';/*todo: massimo 10 caratteri:: ma il nome file ne contiene massimo 5*/
 	$dati->FormatoTrasmissione = 'FPR12'; //(FPR12 = tra privati  || FPA12 = pubblica amministrazione)
 
 	/*
@@ -439,9 +441,9 @@ function generaXmlFt($myFt){
 		$dati->fattura->righe[$contaRighe]->peso_lordo = formatImporto($riga->peso_lordo->valore);
 		$dati->fattura->righe[$contaRighe]->cod_iva = formatImporto($riga->cod_iva->getVal());
 		
-		
+
 		//se si tratta di una riga di sconto
-		if($riga->cod_articolo=='SCONTO2'){
+		if($riga->cod_articolo->getVal()=='SCONTO2'){
 			//questa riga (di sconto, non si riferisce ad alcun ddt)
 			/*
 			SC = sconto
@@ -592,15 +594,18 @@ function generaXmlFt($myFt){
 		foreach ($dati->fattura->righe as $key => $riga){
 				$last = $xml->FatturaElettronicaBody->DatiBeniServizi->addChild('DettaglioLinee');
 				$last->addChild('NumeroLinea',		$riga->numero);
+
+				if(property_exists ($riga,'tipocessioneprestazione')){
+					$last->addChild('TipoCessionePrestazione',	$riga->tipocessioneprestazione);
+				}
+
 				$last->addChild('Descrizione',		$riga->descrizione);
 				$last->addChild('Quantita',			$riga->peso_lordo);
 				$last->addChild('UnitaMisura',		$riga->unita_misura);
 				$last->addChild('PrezzoUnitario',	$riga->prezzo);
 				$last->addChild('PrezzoTotale',		$riga->importo_totale);
 				$last->addChild('AliquotaIVA',		$riga->cod_iva);
-				if(property_exists ($riga,'tipocessioneprestazione')){
-					$last->addChild('TipoCessionePrestazione',	$riga->tipocessioneprestazione);
-				}
+
 		}
 		
 		
@@ -686,6 +691,19 @@ function generaXmlFt($myFt){
 	$xmlDocument->formatOutput = true;
 	$xmlDocument->loadXML($xml->asXML());
 
-	echo $xmlDocument->saveXML();
+
+
+
+//validate the XML file before showin it
+
+	if (!$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/Schema_del_file_xml_FatturaPA_versione_1.2.xsd')) {
+		error_reporting(-1);
+		$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/Schema_del_file_xml_FatturaPA_versione_1.2.xsd');
+		print '<b>DOMDocument::schemaValidate() Generated Errors!</b>';
+	}else{
+		echo $xmlDocument->saveXML();
+	}
+
+
 }
 ?>
