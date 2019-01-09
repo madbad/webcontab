@@ -369,6 +369,7 @@ $dbClienti->iterate(function($myCliente){
 	$dbClientiWithIndex[$codcliente]= $myCliente;
 });
 
+
 //stampo la lista delle fatture
 
 $test->iterate(function($obj){
@@ -453,10 +454,16 @@ $test->iterate(function($obj){
 
 
 //}
-
+$temp = '<br>SDI:'.$cliente->__SDIcodice->getVal();
+$temp.='<br>PEC:'.$cliente->__SDIpec->getVal();
+$temp.='<br>RAGSOC:'.$cliente->__ragionesociale->getVal();
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
-	$html.= '<td>'.$link.'&do=generaXml">Genera XML</a></td>';	
+	if($cliente->__SDIcodice->getVal()!='' || $cliente->__SDIpec->getVal()!=''){
+		$html.= '<td style="background-color:#66ff00;">'.$link.'&do=generaXml">Genera XML'.$temp.'</a></td>';	
+	}else{
+		$html.= '<td style="background-color:red">Anagrafica incompleta. Mancano codice SDI o PEC</td>';	
+	}
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/pdf.svg" alt="Visualizza PDF" width="30px"></a></td>';
