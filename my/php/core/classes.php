@@ -1084,7 +1084,7 @@ echo 'test2';
 			$mail->ConfirmReadingTo=$pec->ReplyTo->Mail;
 			$mail->SetFrom($pec->From->Mail, $pec->From->Name);
 			$mail->AddReplyTo($pec->ReplyTo->Mail, $pec->ReplyTo->Name);
-			$mail->Subject = 'Invio fattura elettronica'.$this->getUniqueXmlFileName(); //oggetto
+			$mail->Subject = 'Invio fattura elettronica'.$this->getXmlFileName(); //oggetto
 
 			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";
 			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";		
@@ -1096,7 +1096,7 @@ echo 'test2';
 			//$mail->Body($message); 
 
 			//allego l'xml della fattura
-			$mail->AddAttachment($this->getPdfFileUrl()); 
+			$mail->AddAttachment($this->getXmlFileUrl()); 
 			
 			//var_dump($mail);
 			
