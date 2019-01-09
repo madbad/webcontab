@@ -852,7 +852,9 @@ class Fattura extends MyClass{
 		}
 		return $imponibili;
 	}
-	
+	//////////////////////////////
+	// funzioni PDF :inizio
+	//////////////////////////////
 	public function getPdfFileName(){
 		$numero=str_replace(" ", "0", $this->numero->getVal());
 		$tipo=$this->tipo->getVal();
@@ -900,6 +902,87 @@ class Fattura extends MyClass{
 	public function stampa(){
 
 	}
+	//////////////////////////////
+	// funzioni PDF :fine
+	//////////////////////////////
+	//////////////////////////////
+	// funzioni XML :inizio
+	//////////////////////////////
+	public function getXmlFileName(){
+		if($this->nomeFileXml !=''){
+			return $this->nomeFileXml;
+		}
+		
+		$nomeFile = $GLOBALS['config']->azienda->sigla_paese->getVal();
+		$nomeFile .= $GLOBALS['config']->azienda->p_iva->getVal();
+		$nomeFile .= '_';
+		$nomeFile .= $this->getProgressivoInvioSDI();
+		$nomeFile .= '.xml';
+
+		$this->nomeFileXml = $nomeFile;
+		return $this->nomeFileXml;
+	}
+	public function getProgressivoInvioSDI(){
+		if($this->progressivoInvioSDI !=''){
+			return $this->progressivoInvioSDI;
+		}
+		
+		
+		/*
+		//conto i file presenti nella directory
+		$fileCount = 0;
+		 echo $GLOBALS['config']->xmlDir;
+		while(($file = readdir($GLOBALS['config']->xmlDir)) !== false) {
+			echo '*';
+			//Se i file sono nascosti non gli conta
+			if ($file[0] != ".") $count++;
+		}
+		*/
+		$fi = new FilesystemIterator($GLOBALS['config']->xmlDir, FilesystemIterator::SKIP_DOTS);
+		$fileCount = iterator_count($fi);
+		
+		$progressivoInvio = str_pad ( $fileCount+1 , $pad_length=5 , $pad_string="0" , $pad_type=STR_PAD_LEFT );
+		$this->progressivoInvioSDI=$progressivoInvio;
+		return $this->progressivoInvioSDI;
+	}
+	
+	public function getXmlFileUrl(){
+		//il nome del file esempio: 20120121_N00000001.pdf
+		$filename=$this->getXmlFileName();
+
+		//l'url completo del file esempio: c:/Program%20Files/EasyPHP-5.3.6.0/www/webcontab/my/php/stampe/ftXml/IT01588530236_00001.xml
+		$fileUrl=$GLOBALS['config']->xmlDir.'/'.$filename;
+		
+		/*
+		//verifichiamo che il file esista prima di comunicarlo
+		//altrimenti lo generiamo "al volo"
+
+		if(!file_exists($fileUrl)){
+			//echo 'il file non esiste devo generarlo!!';
+			$this->generaPdf();
+		}
+		*/
+		return $fileUrl;
+	}
+	
+	public function generaXml(){
+		return generaXmlFt($this);
+	}
+	
+	public function visualizzaXml(){
+//		$this->generaXml($this);
+		//url completo del file pdf
+//		$pdfUrl=$this->getXmlFileUrl();
+		// impostiamo l'header di un file pdf
+//		header('Content-type: application/pdf');
+		// e inviamolo al browser
+//		readfile($pdfUrl);
+	}	
+
+	//////////////////////////////
+	// funzioni XML :fine
+	//////////////////////////////
+
 	
 	public function inviaPec(){
 		//rigenero il file pdf della fattura
@@ -973,6 +1056,74 @@ class Fattura extends MyClass{
 		}
 		return false;
 	}
+	public function inviaSDI(){
+		//rigenero il file pdf della fattura
+echo 'test';	
+		$this->generaXml($this);
+echo 'test2';	
+		//importo i dati di configurazione della pec
+		$pec=$GLOBALS['config']->pec;
+		//$cliente=$this->cod_cliente->extend();
+		//var_dump($cliente);
+		$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
+
+		$mail->IsSMTP(); // telling the class to use SMTP
+
+		try {
+			$mail->Host       = $pec->Host;
+			$mail->SMTPDebug  = $pec->SMTPDebug;
+			$mail->SMTPAuth   = $pec->SMTPAuth;
+			$mail->Port       = $pec->Port;
+			$mail->Username   = $pec->Username;
+			$mail->Password   = $pec->Password;
+
+			//indirizzo mail PEC
+			$mail->AddAddress($GLOBALS['config']->SDIpec, 'SDI'); //destinatario
+			
+			//mi faccio mandare la ricevuta di lettura
+			$mail->ConfirmReadingTo=$pec->ReplyTo->Mail;
+			$mail->SetFrom($pec->From->Mail, $pec->From->Name);
+			$mail->AddReplyTo($pec->ReplyTo->Mail, $pec->ReplyTo->Name);
+			$mail->Subject = 'Invio fattura elettronica'.$this->getUniqueXmlFileName(); //oggetto
+
+			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";
+			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";		
+			$message.=$this->tipo->getVal().'. Nr. '.$this->numero->getVal().' del '.$this->data->getFormatted();
+			
+
+
+			$mail->MsgHTML($message);
+			//$mail->Body($message); 
+
+			//allego l'xml della fattura
+			$mail->AddAttachment($this->getPdfFileUrl()); 
+			
+			//var_dump($mail);
+			
+			if($mail->Send()){
+			//	$html= '<h2 style="color:green">Messaggio Inviato</h2>';
+			//	$html.= '<br>Il messaggio con oggetto: ';
+			//	$html.= '<b>'.$mail->Subject.'</b>';
+			//	$html.='<br>E\' stato inviato a: <b>'.$cliente->ragionesociale->getVal().'</b>';
+			//	$html.='<br>all\'indirizzo: <b>'.$cliente->__pec->getVal().'</b>';
+			//	$html.='<br>con allegato il file: <b>'.$this->getPdfFileUrl().'</b>';
+				
+				//memorizzo la data di invio
+	//			$this->__datainviopec->setVal(date("d/m/Y"));
+	//			$this->saveSqlDbData();
+				//mostro il messaggio di avvenuto invio
+			//	echo $html;
+			//	var_dump($message);
+				//all seems ok
+				return true;
+			}
+		} catch (phpmailerException $e) {
+			echo $e->errorMessage(); //Pretty error messages from PHPMailer
+		} catch (Exception $e) {
+			echo $e->getMessage(); //Boring error messages from anything else!
+		}
+		return false;
+	}
 	public function getScadenzaPagamento(){
 		$dataFt=$this->data->getVal();
 		$condizioni=$this->cod_pagamento->extend();
@@ -1009,10 +1160,11 @@ class Fattura extends MyClass{
 			trigger_error("[ERRORE] Il totale fattura non coincide: <br>".var_dump($totFattura).' Da Fattura <br>'.var_dump($totFatturaDaImponibili).' Da imponibili<br>'.$verifica.'<br>',E_USER_ERROR);
 		}
 	}
-
+	/*
 	public function generaXml(){
 		return generaXmlFt($this);
-	}	
+	}
+	*/
 	
 }
 

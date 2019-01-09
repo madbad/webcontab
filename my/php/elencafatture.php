@@ -460,9 +460,12 @@ $temp.='<br>RAGSOC:'.$cliente->__ragionesociale->getVal();
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
 	if($cliente->__SDIcodice->getVal()!='' || $cliente->__SDIpec->getVal()!=''){
-		$html.= '<td style="background-color:#66ff00;">'.$link.'&do=generaXml">Genera XML'.$temp.'</a></td>';	
+		$html.= '<td style="background-color:#66ff00;">'.$link.'&do=generaXml">Genera XML'.$temp.'</a><br>';	
+		$html.= $link.'&do=inviaSDI">Invio al SDI</a></td>';	
+
 	}else{
-		$html.= '<td style="background-color:red">Anagrafica incompleta. Mancano codice SDI o PEC</td>';	
+		$html.= '<td style="background-color:red">'.$link.'&do=generaXml">Anagrafica incompleta. Mancano codice SDI o PEC</a><br>';
+		$html.= $link.'&do=inviaSDI">Invio al SDI</a></td>';	
 	}
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';

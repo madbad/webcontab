@@ -130,13 +130,14 @@ function generaXmlFt($myFt){
 	$dati->emittente->sede->nazione = "IT";
 
 	$dati->emittente->datiREA->Ufficio = "VR";
-	$dati->emittente->datiREA->NumeroREA = "18024";
+	$dati->emittente->datiREA->NumeroREA = "185024";
 	$dati->emittente->datiREA->CapitaleSociale = "41600.00";
 	$dati->emittente->datiREA->SocioUnico = "SU";
 	$dati->emittente->datiREA->StatoLiquidazione = "LN";
 	*/
 
-	$dati->ProgressivoInvio = '00001';/*todo: massimo 10 caratteri:: ma il nome file ne contiene massimo 5*/
+	//$dati->ProgressivoInvio = '00001';/*todo: massimo 10 caratteri:: ma il nome file ne contiene massimo 5*/
+	$dati->ProgressivoInvio = $myFt->getProgressivoInvioSDI();
 	$dati->FormatoTrasmissione = 'FPR12'; //(FPR12 = tra privati  || FPA12 = pubblica amministrazione)
 
 	/*
@@ -189,9 +190,13 @@ function generaXmlFt($myFt){
 	}else if($myFt->cod_pagamento->getVal()=='12'){ //BON.BAN.30 GG D.F.
 		$dati->fattura->pagamento->modalita='MP05';
 	}else if($myFt->cod_pagamento->getVal()=='RD'){ //RIMESSA DIRETTA A VISTA
-		exit("Condizione di pagamento non valida 'RD'");
+		$dati->fattura->pagamento->modalita='MP05';
+		//todo:ho forzato questa a bonifico bancario
+		//exit("Condizione di pagamento non valida 'RD'");
 	}else if($myFt->cod_pagamento->getVal()=='01'){ //RIMESSA DIRETTA 30 GG DF
-		exit("Condizione di pagamento non valida '01'");
+		$dati->fattura->pagamento->modalita='MP05';
+		//todo:ho forzato questa a bonifico bancario
+		//exit("Condizione di pagamento non valida '01'");
 	}
 		
 
@@ -226,7 +231,7 @@ function generaXmlFt($myFt){
 	$dati->emittente->sede->nazione = "IT";
 
 	$dati->emittente->datiREA->Ufficio = "VR";
-	$dati->emittente->datiREA->NumeroREA = "18024";
+	$dati->emittente->datiREA->NumeroREA = "185024";
 	$dati->emittente->datiREA->CapitaleSociale = "41600.00";
 	$dati->emittente->datiREA->SocioUnico = "SU";
 	$dati->emittente->datiREA->StatoLiquidazione = "LN";
@@ -297,7 +302,9 @@ function generaXmlFt($myFt){
 	/*fine:todo*/
 	//================DATI GENERALI FATTURA
 	$dati->fattura->divisa = $myFt->valuta->getVal();
-	$dati->fattura->numero = trim($myFt->numero->getVal());
+
+	$anno=explode('/',$myFt->data->getFormatted());	
+	$dati->fattura->numero = trim($myFt->numero->getVal()).'/'.$anno[2]; //aggiungo la stringa "/anno" se dopo il 2013
 	$dati->fattura->data = formatDate('mm-dd-yyyy','yyyy-mm-dd',$myFt->data->getVal());
 	$dati->fattura->importo = formatImporto($myFt->importo->valore);
 	//$dati->fattura->causale = 'vendita';/*todo:al momento non la usiamo in quanto opzionale*/
@@ -463,7 +470,7 @@ function generaXmlFt($myFt){
 		}	
 		
 		//SE HO FINITO LE RIGHE DEL DDT E NON E' UNA RIGA DI PROVVIGIONE ALLORA MI BLOCCO PERCHE' QUALCOSA NON VA
-		if($currentDdt->righeDelDDT==0 && !strpos($riga->descrizione->getVal(), 'PROVVIGIONE')){
+		if($currentDdt->righeDelDDT==0 && !strpos($riga->descrizione->getVal(), 'PROVVIGIONE') && ($riga->cod_articolo->getVal()!='SCONTO2')){
 			exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->descrizione->getVal());				
 		}
 		$currentDdt->righeDelDDT--;
@@ -669,7 +676,7 @@ function generaXmlFt($myFt){
 				*/
 				if($dati->fattura->pagamento->modalita !=''){
 					$last->addChild('ModalitaPagamento',$dati->fattura->pagamento->modalita);				
-					$last->addChild('DataScadenzaPagamento',formatDate('dd/mm/yyyy','yyyy-mm-dd',$myFt->getScadenzaPagamento())); /*todo : siamo sicuri di volerla inserire?*/
+//todo					$last->addChild('DataScadenzaPagamento',formatDate('dd/mm/yyyy','yyyy-mm-dd',$myFt->getScadenzaPagamento())); /*todo : siamo sicuri di volerla inserire?*/
 					$last->addChild('ImportoPagamento',formatImporto($myFt->importo->valore));
 					//se bonifico mostro le coordinate
 					if($dati->fattura->pagamento->modalita=='MP05'){
@@ -683,9 +690,7 @@ function generaXmlFt($myFt){
 				}
 
 				
-	header('Content-type: text/xml');
-	$filename= $dati->emittente->partitaIvaNazione.$dati->emittente->partitaIvaCodice.'_'.$dati->ProgressivoInvio.'.xml';
-	header("Content-disposition: inline; filename=".$filename);
+	//$filename= $dati->emittente->partitaIvaNazione.$dati->emittente->partitaIvaCodice.'_'.$dati->ProgressivoInvio.'.xml';
 
 	$xmlDocument = new DOMDocument('1.0');
 	$xmlDocument->preserveWhiteSpace = false;
@@ -702,7 +707,16 @@ function generaXmlFt($myFt){
 		$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/Schema_del_file_xml_FatturaPA_versione_1.2.xsd');
 		print '<b>DOMDocument::schemaValidate() Generated Errors!</b>';
 	}else{
+		//save the file
+		//$xmlDocument->save($myFt->getXmlFileUrl().'.bozza');
+		$xmlDocument->save($myFt->getXmlFileUrl());
+		//display it
+		$filename=$myFt->getXmlFileName();
+		/*
+		header("Content-disposition: inline; filename=".$filename);
+		header('Content-type: text/xml');
 		echo $xmlDocument->saveXML();
+		*/
 	}
 
 

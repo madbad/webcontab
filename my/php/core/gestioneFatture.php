@@ -34,7 +34,9 @@ if (@$_GET["do"]){
 		case 'generaXml':
 			$myFt->generaXml();
 			break;
-
+		case 'inviaSDI':
+			$myFt->inviaSDI();
+			break;
 		case 'stampaCliente':
 			$myFt->stampa();
 			//memorizzo la data di stampa
