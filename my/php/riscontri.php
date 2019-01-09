@@ -290,7 +290,7 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/11/18','31/12/18'),
+			'ddt_data'=>array('<>','01/12/18','31/12/18'),
 			//'cod_articolo'=>array('=','843'),
 			//'cod_iva'=>array('=','42',''), 
 			//'cod_articolo'=>array('=','03','01'), 
@@ -301,7 +301,7 @@ $query = "
 			//'cod_articolo'=>array('=','819','19','619','619+'), //CAPPUCCI
 			//'cod_articolo'=>array('=','20','820'),  //VERZE
 			//'cod_articolo'=>array('=','21','821'),  //CAVOLFIORI
-			//'cod_articolo'=>array('=','50','850','650','650+'), //ZUCCHE
+			'cod_articolo'=>array('=','50','850','650','650+'), //ZUCCHE
 			//'cod_articolo'=>array('=','65'), //PEPERONCINI PICCANTI
 			//'cod_articolo'=>array('=','8111'), //MELONI
 			//'cod_articolo'=>array('=','849','49','56','856','649','646'), //MELANZANE
@@ -317,11 +317,11 @@ $query = "
 			//'cod_articolo'=>array('=','947','47','471421','47714','847','647'),
 			//'cod_articolo'=>array('=','32'),
 			//'cod_articolo'=>array('=','01','03','01S','03S','01F','03F'),
-			'cod_articolo'=>array('=','45','08B'),
+			//'cod_articolo'=>array('=','45','08B'),
 			//'cod_cliente'=>".$strMercati.",
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
-			//'cod_cliente'=>array('=','VIOLA'),
+			'cod_cliente'=>array('!=','VIOLA'),
 			//'cod_cliente'=>array('=','MAEST'),
 			//'cod_cliente'=>array('=','BRUNF'),
 			//'cod_cliente'=>array('=','ABBAS'),

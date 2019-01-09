@@ -1,10 +1,11 @@
 <?php
+/*
 include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/ValidatorInterface.php');
 include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/Validator.php');
 include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/Exception/ExceptionInterface.php');
 include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/Exception/InvalidXmlStructureException.php');
 include(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/libs/php-validatore-fattura-elettronica/lib/Exception/InvalidXsdStructureComplianceException.php');
-
+*/
 //da verificare
 //http://127.0.0.1:8887/webcontab/my/php/core/gestioneFatture.php?numero=%20%20%20%20%20%2075&data=02-28-2018&tipo=F&do=generaXml
 //tutte le note di acrredito

@@ -419,7 +419,15 @@ if (@$_POST['mode']=='print'){
 						"colliPedana" => 60,
 						"costoCassa" => 0.70);
 		$html.=getArticleTable($params);
-        $html.=$table;
+		$params = array("articles" => array('631FLOW'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.0,
+						"costoPedana" => 4.0,
+						"colliPedana" => 40,
+						"costoCassa" => 0.68);
+		$html.=getArticleTable($params);
+		$html.=$table;
 
 		$html.="</div><div class='tableContainer'>";
         $html.="<h1>Semil.</h1>";
