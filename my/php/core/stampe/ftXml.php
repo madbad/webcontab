@@ -504,6 +504,7 @@ function generaXmlFt($myFt){
 		$last->addChild('ProgressivoInvio',$dati->ProgressivoInvio);
 		$last->addChild('FormatoTrasmissione',$dati->FormatoTrasmissione);
 		
+		//mi sa che è un controllo duplicato con quello del blocco "if/elseif" qua sotto
 		if($dati->destinatario->codiceSDI == '' && $dati->destinatario->pec ==''){
 			exit("Non trovo ne un codice ne un INDIRIZZO PEC da utilizzare");
 		}
@@ -513,15 +514,19 @@ function generaXmlFt($myFt){
 			$last->addChild('CodiceDestinatario',$dati->destinatario->codiceSDI);
 		}else if($dati->destinatario->pec!=''){
 			//se non ho specificato un codice destinatario ma ho un indirizzo pec uso il codice destinatario "0000000"
-			$last->addChild('CodiceDestinatario','0000000');	
+			$last->addChild('CodiceDestinatario','0000000');
+			$last->addChild('PECDestinatario',$dati->destinatario->pec);
+		}else{
+			exit("Non trovo ne un codice ne un INDIRIZZO PEC da utilizzare");			
 		}
 		
+		/*
 		if($dati->destinatario->pec!=''){
 			if($dati->destinatario->codiceSDI==''){		
+			}
 		}
-			
-		}
-		$last->addChild('PECDestinatario',$dati->destinatario->pec);
+		*/
+
 		
 		
 	$last = $xml->FatturaElettronicaHeader->addChild('CedentePrestatore');
@@ -578,6 +583,8 @@ function generaXmlFt($myFt){
 			$last->addChild('Data',$dati->fattura->data);
 			$last->addChild('Numero',$dati->fattura->numero);
 			$last->addChild('ImportoTotaleDocumento',$dati->fattura->importo);
+			$last->addChild('Causale','Contributo CONAI assolto ove dovuto.');
+			$last->addChild('Causale',"Assolve gli obblighi di cui all'articolo 62, comma 1, del decreto legge 24 gennaio 2012, n. 1, convertito, con modificazioni, dalla legge 24 marzo 2012, n. 27");
 			/* non abbligatorio, lasciamo stare?
 			$last->addChild('Causale',$dati->fattura->causale);
 			*/
