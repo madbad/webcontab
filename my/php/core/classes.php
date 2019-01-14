@@ -842,6 +842,10 @@ class Fattura extends MyClass{
 	
 	public function calcolaTotaliImponibiliIva(){
 		$imponibili=Array();
+		if(!$this->righe){
+			//echo 'NON HO LE RIGHE DI QUESTA FATTURA!!!';
+			$this->getRighe();
+		}
 		foreach ($this->righe as $riga){
 			if ($riga->imponibile->getVal()*1!='0.0'
 				&& $riga->imponibile->getVal()*1!=''){
@@ -850,6 +854,7 @@ class Fattura extends MyClass{
 				@$imponibili[$codIva]['importo_iva']+=$riga->importo_iva->getVal();
 			}
 		}
+		//print_r($imponibili);
 		return $imponibili;
 	}
 	//////////////////////////////
@@ -1700,7 +1705,7 @@ class CausalePagamento extends MyClass {
 		$this->mergeParams($params);
 		
 		//avvio il recupero dei dati
-		$this->autoExtend();	
+		$this->autoExtend();
 	}
 }
 
