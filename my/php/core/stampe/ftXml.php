@@ -264,9 +264,9 @@ function generaXmlFt($myFt){
 	if($cliente->__SDIpec->getVal()!=''){
 		$dati->destinatario->pec = $cliente->__SDIpec->getVal();
 	}else if($cliente->__pec->getVal()!=''){
-		$dati->destinatario->pec = $cliente->__pec->getVal();		
+		$dati->destinatario->pec = $cliente->__pec->getVal();
 	}else{
-		$dati->destinatario->pec = '';				
+		$dati->destinatario->pec = '';
 	}
 	$dati->destinatario->partitaIvaNazione = $cliente->__nazione->getVal();
 	$dati->destinatario->partitaIvaCodice = $cliente->__p_iva->getVal(); //$cliente->p_iva_cee->getVal()
@@ -463,15 +463,17 @@ function generaXmlFt($myFt){
 		}else if (strpos($riga->descrizione->getVal(), 'PROVVIGIONE') !== false) {
 			//ho trovato una riga di provvigione, non si riferisce ad alcun ddt
 			$dati->fattura->righe[$contaRighe]->tipocessioneprestazione ='AC';
-			
+		}else if (strpos($riga->descrizione->getVal(), 'COMMISSIONE') !== false) {
+			//ho trovato una riga di commissione, non si riferisce ad alcun ddt
+			$dati->fattura->righe[$contaRighe]->tipocessioneprestazione ='AC';
 		}else{
 			//non è ne uno sconto ne una provvigione... dovrebbe quindi avere riferimento in un ddt
 			$currentDdt->riferimentoRighe[]= $contaRighe;
 		}	
 		
 		//SE HO FINITO LE RIGHE DEL DDT E NON E' UNA RIGA DI PROVVIGIONE ALLORA MI BLOCCO PERCHE' QUALCOSA NON VA
-		if($currentDdt->righeDelDDT==0 && !strpos($riga->descrizione->getVal(), 'PROVVIGIONE') && ($riga->cod_articolo->getVal()!='SCONTO2')){
-			exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->descrizione->getVal());				
+		if($currentDdt->righeDelDDT==0 && !strpos($riga->descrizione->getVal(), 'PROVVIGIONE') && ($riga->cod_articolo->getVal()!='SCONTO2')&& ($riga->cod_articolo->getVal()!='COMMISSIONE')){
+			exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->descrizione->getVal());
 		}
 		$currentDdt->righeDelDDT--;
 		
@@ -497,8 +499,8 @@ function generaXmlFt($myFt){
 	$last = $xml->addChild('FatturaElettronicaHeader');
 		$last = $last->addChild('DatiTrasmissione');
 			$last = $last->addChild('IdTrasmittente');
-				$last->addChild('IdPaese',$dati->destinatario->partitaIvaNazione);
-				$last->addChild('IdCodice',$dati->destinatario->partitaIvaCodice);
+				$last->addChild('IdPaese',$dati->emittente->partitaIvaNazione);
+				$last->addChild('IdCodice',$dati->emittente->codiceFiscale);
 
 	$last = $xml->FatturaElettronicaHeader->DatiTrasmissione;
 		$last->addChild('ProgressivoInvio',$dati->ProgressivoInvio);
@@ -644,7 +646,7 @@ function generaXmlFt($myFt){
 			$last->addChild('Imposta',formatImporto($importoIva));
 			$last->addChild('EsigibilitaIVA','I');//immediata... potrebbe essere differita
 			
-		}		
+		}
 		
 		//
 		$last = $xml->FatturaElettronicaBody->addChild('DatiPagamento');

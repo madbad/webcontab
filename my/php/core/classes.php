@@ -1063,9 +1063,9 @@ class Fattura extends MyClass{
 	}
 	public function inviaSDI(){
 		//rigenero il file pdf della fattura
-echo 'test';	
+
 		$this->generaXml($this);
-echo 'test2';	
+
 		//importo i dati di configurazione della pec
 		$pec=$GLOBALS['config']->pec;
 		//$cliente=$this->cod_cliente->extend();
@@ -1089,12 +1089,19 @@ echo 'test2';
 			$mail->ConfirmReadingTo=$pec->ReplyTo->Mail;
 			$mail->SetFrom($pec->From->Mail, $pec->From->Name);
 			$mail->AddReplyTo($pec->ReplyTo->Mail, $pec->ReplyTo->Name);
-			$mail->Subject = 'Invio fattura elettronica'.$this->getXmlFileName(); //oggetto
-
-			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";
-			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";		
-			$message.=$this->tipo->getVal().'. Nr. '.$this->numero->getVal().' del '.$this->data->getFormatted();
+			//Invio a SDI - 20190115_F00000001 - File IT01588530236_00001.xml - FT n.1 del 15-01-2019 - Primo Invio
+			$mail->Subject = 'Invio a SDI - '.substr($this->getPdfFileName(), 0, -4).' - File '.$this->getXmlFileName().' - '.$this->tipo->getVal().'. Nr. '.trim($this->numero->getVal()).' del '.$this->data->getFormatted().' - Primo Invio'; //oggetto
 			
+			/*
+			Si invia in allegato file relativo alla Fattura Elettronica
+			FT n.1 del 15-01-2019
+			File IT01588530236_00001.xml
+			Primo invio 
+			*/
+			//$message="[Messaggio automatizzato] <br><br>\n\n Si invia in allegato file relativo alla Fattura Elettronica";
+			$message="<br>\n".$this->tipo->getVal().'. Nr. '.$this->numero->getVal().' del '.$this->data->getFormatted();
+			$message.="<br>\n"."File ".$this->getXmlFileName();
+			$message.="<br>\n"."Primo invio";
 
 
 			$mail->MsgHTML($message);
