@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:FatturaElettronica xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" versione="FPR12" xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+  <FatturaElettronicaHeader>
+    <DatiTrasmissione>
+      <IdTrasmittente>
+        <IdPaese>IT</IdPaese>
+        <IdCodice>01444220287</IdCodice>
+      </IdTrasmittente>
+      <ProgressivoInvio>00001</ProgressivoInvio>
+      <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+      <CodiceDestinatario>0000000</CodiceDestinatario>
+      <PECDestinatario>CALIMERO.SRL@LEGALMAIL.IT</PECDestinatario>
+    </DatiTrasmissione>
+    <CedentePrestatore>
+      <DatiAnagrafici>
+        <IdFiscaleIVA>
+          <IdPaese>IT</IdPaese>
+          <IdCodice>01588530236</IdCodice>
+        </IdFiscaleIVA>
+        <CodiceFiscale>01588530236</CodiceFiscale>
+        <Anagrafica>
+          <Denominazione>La Favorita di Brun G. </Denominazione>
+        </Anagrafica>
+        <RegimeFiscale>RF01</RegimeFiscale>
+      </DatiAnagrafici>
+      <Sede>
+        <Indirizzo>Camagre, 38/B</Indirizzo>
+        <CAP>37063</CAP>
+        <Comune>Isola della Scala</Comune>
+        <Provincia>VR</Provincia>
+        <Nazione>IT</Nazione>
+      </Sede>
+      <IscrizioneREA>
+        <Ufficio>VR</Ufficio>
+        <NumeroREA>18024</NumeroREA>
+        <CapitaleSociale>41600.00</CapitaleSociale>
+        <SocioUnico>SU</SocioUnico>
+        <StatoLiquidazione>LN</StatoLiquidazione>
+      </IscrizioneREA>
+    </CedentePrestatore>
+    <CessionarioCommittente>
+      <DatiAnagrafici>
+        <IdFiscaleIVA>
+          <IdPaese>IT</IdPaese>
+          <IdCodice>01444220287</IdCodice>
+        </IdFiscaleIVA>
+        <Anagrafica>
+          <Denominazione>CALIMERO ORTOFRUTTA SRL</Denominazione>
+        </Anagrafica>
+      </DatiAnagrafici>
+      <Sede>
+        <Indirizzo>CORSO STATI UNITI, 50</Indirizzo>
+        <CAP>35127</CAP>
+        <Comune>MERCATO ORTOFRUTTICOLO</Comune>
+        <Provincia>PD</Provincia>
+        <Nazione>IT</Nazione>
+      </Sede>
+    </CessionarioCommittente>
+  </FatturaElettronicaHeader>
+  <FatturaElettronicaBody>
+    <DatiGenerali>
+      <DatiGeneraliDocumento>
+        <TipoDocumento>TD01</TipoDocumento>
+        <Divisa>EUR</Divisa>
+        <Data>2018-12-15</Data>
+        <Numero>     569</Numero>
+        <ImportoTotaleDocumento>530.60</ImportoTotaleDocumento>
+        <Causale>vendita</Causale>
+      </DatiGeneraliDocumento>
+      <DatiDDT>
+        <NumeroDDT>3160</NumeroDDT>
+        <DataDDT>2018-12-01</DataDDT>
+        <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+        <RiferimentoNumeroLinea>2</RiferimentoNumeroLinea>
+      </DatiDDT>
+      <DatiDDT>
+        <NumeroDDT>3193</NumeroDDT>
+        <DataDDT>2018-12-05</DataDDT>
+        <RiferimentoNumeroLinea>3</RiferimentoNumeroLinea>
+        <RiferimentoNumeroLinea>4</RiferimentoNumeroLinea>
+      </DatiDDT>
+      <DatiDDT>
+        <NumeroDDT>3219</NumeroDDT>
+        <DataDDT>2018-12-08</DataDDT>
+        <RiferimentoNumeroLinea>5</RiferimentoNumeroLinea>
+        <RiferimentoNumeroLinea>6</RiferimentoNumeroLinea>
+      </DatiDDT>
+      <DatiDDT>
+        <NumeroDDT>3233</NumeroDDT>
+        <DataDDT>2018-12-11</DataDDT>
+        <RiferimentoNumeroLinea>7</RiferimentoNumeroLinea>
+        <RiferimentoNumeroLinea>8</RiferimentoNumeroLinea>
+        <RiferimentoNumeroLinea>9</RiferimentoNumeroLinea>
+      </DatiDDT>
+    </DatiGenerali>
+    <DatiBeniServizi>
+      <DettaglioLinee>
+        <NumeroLinea>1</NumeroLinea>
+        <Descrizione>IND.RICCIA IT</Descrizione>
+        <Quantita>86.00</Quantita>
+        <PrezzoUnitario>1.00</PrezzoUnitario>
+        <PrezzoTotale>86.00</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>2</NumeroLinea>
+        <Descrizione>IND.SCAROLA IT</Descrizione>
+        <Quantita>86.00</Quantita>
+        <PrezzoUnitario>1.01</PrezzoUnitario>
+        <PrezzoTotale>86.86</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>3</NumeroLinea>
+        <Descrizione>IND.RICCIA IT</Descrizione>
+        <Quantita>81.00</Quantita>
+        <PrezzoUnitario>1.40</PrezzoUnitario>
+        <PrezzoTotale>113.40</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>4</NumeroLinea>
+        <Descrizione>IND.SCAROLA IT</Descrizione>
+        <Quantita>83.00</Quantita>
+        <PrezzoUnitario>1.38</PrezzoUnitario>
+        <PrezzoTotale>114.54</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>5</NumeroLinea>
+        <Descrizione>IND.SCAROLA IT</Descrizione>
+        <Quantita>53.00</Quantita>
+        <PrezzoUnitario>1.32</PrezzoUnitario>
+        <PrezzoTotale>69.96</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>6</NumeroLinea>
+        <Descrizione>IND.RICCIA IT</Descrizione>
+        <Quantita>27.00</Quantita>
+        <PrezzoUnitario>1.00</PrezzoUnitario>
+        <PrezzoTotale>27.00</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>7</NumeroLinea>
+        <Descrizione>IND.SCAROLA IT</Descrizione>
+        <Quantita>62.00</Quantita>
+        <PrezzoUnitario>1.00</PrezzoUnitario>
+        <PrezzoTotale>62.00</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>8</NumeroLinea>
+        <Descrizione>IND.RICCIA IT</Descrizione>
+        <Quantita>20.00</Quantita>
+        <PrezzoUnitario>1.00</PrezzoUnitario>
+        <PrezzoTotale>20.00</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>9</NumeroLinea>
+        <Descrizione>MENO PROVVIGIONE DEL 12%</Descrizione>
+        <Quantita>1.00</Quantita>
+        <PrezzoUnitario>-69.57</PrezzoUnitario>
+        <PrezzoTotale>-69.57</PrezzoTotale>
+        <AliquotaIVA>4.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DatiRiepilogo>
+        <AliquotaIVA>4.00</AliquotaIVA>
+        <ImponibileImporto>510.19</ImponibileImporto>
+        <Imposta>20.41</Imposta>
+        <EsigibilitaIVA>I</EsigibilitaIVA>
+      </DatiRiepilogo>
+    </DatiBeniServizi>
+    <DatiPagamento>
+      <CondizioniPagamento>TP01</CondizioniPagamento>
+      <DettaglioPagamento>
+        <ModalitaPagamento>MP19</ModalitaPagamento>
+        <DataScadenzaPagamento>2017-02-20</DataScadenzaPagamento>
+        <ImportoPagamento>2440.00</ImportoPagamento>
+      </DettaglioPagamento>
+    </DatiPagamento>
+  </FatturaElettronicaBody>
+</p:FatturaElettronica>
