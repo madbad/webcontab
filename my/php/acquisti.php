@@ -1,7 +1,7 @@
 <?php
 
 $dir= './dati/fattureElettronicheAcquisto/2019/02/';
-$dir= './core/stampe/ftXml/';
+//$dir= './core/stampe/ftXml/';
 
 
 if ($handle = opendir($dir)) {

@@ -36,8 +36,8 @@ if($_GET['fileUrl']!=''){
 		
 		case "p7m":
 			//echo 'xml.p7m';
-			//$openSSLDir='C:/Program Files (x86)/EasyPHP-5.3.9/www/webcontab/my/php/libs/openssl-1.0.2q-i386-win32/';
-			$openSSLDir='C:/Programmi/EasyPHP-5.3.9/www/webcontab/my/php/libs/openssl-1.0.2q-i386-win32/';
+			$openSSLDir='C:/Program Files (x86)/EasyPHP-5.3.9/www/webcontab/my/php/libs/openssl-1.0.2q-i386-win32/';
+			//$openSSLDir='C:/Programmi/EasyPHP-5.3.9/www/webcontab/my/php/libs/openssl-1.0.2q-i386-win32/';
 			$openSSLDirExecutableUrl = $openSSLDir."openssl.exe";
 			//C:\Program Files (x86)\EasyPHP-5.3.9\www\webcontab\my\php\libs\openssl-1.0.2q-i386-win32>openssl.exe  smime -decrypt -verify -inform DER -in "test.xml.p7m" -noverify -out "test.xml"
 			//$urlFileFattura=$openSSLDir.'test.xml.p7m';
@@ -79,9 +79,49 @@ if($_GET['fileUrl']!=''){
 	$xmlDocument->loadXML($xml->asXML());
 
 	//send it to the browser
-	header("Content-disposition: inline; filename=".$urlFileFattura);
-	header('Content-type: text/xml');
-	echo $xmlDocument->saveXML();
+	//header("Content-disposition: inline; filename=".$urlFileFattura);
+	//header('Content-type: text/xml');
+	//echo $xmlDocument->saveXML();
+	
+	//print_r($xml);
+	//echo "test\n";
+	$test=$xml->xpath('//FatturaElettronicaBody/Allegati');
+	//print_r($test);
+	
+	/*
+		text/plain
+		text/html
+		text/javascript
+		text/css
+		image/jpeg
+		image/png
+		audio/mpeg
+		audio/ogg
+		audio/*
+		video/mp4
+		application/*
+		application/json
+		application/ecmascript
+		application/octet-stream	
+		
+		application/pdf
+		application/zip
+	
+	*/
+	
+	
+	
+	$filename = 	$xml->xpath('//FatturaElettronicaBody/Allegati/NomeAttachment');
+	$fileblob64 = 	$xml->xpath('//FatturaElettronicaBody/Allegati/Attachment');
+
+	$filename = 	$filename[0];
+	$fileblob64 = 	$fileblob64[0];
+
+	$filetype = '';
+	echo "<a href='data:application/octet-stream;base64,".$fileblob64."' download='$filename' >$filename</a>";
+	
+	
+	
 }else{
 echo 'manca il parametro file';
 }
