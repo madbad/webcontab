@@ -454,18 +454,24 @@ $test->iterate(function($obj){
 
 
 //}
+/*
 $temp = '<br>SDI:'.$cliente->__SDIcodice->getVal();
 $temp.='<br>PEC:'.$cliente->__SDIpec->getVal();
 $temp.='<br>RAGSOC:'.$cliente->__ragionesociale->getVal();
+*/
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
-	if($cliente->__SDIcodice->getVal()!='' || $cliente->__SDIpec->getVal()!=''){
-		$html.= '<td style="background-color:#66ff00;">'.$link.'&do=generaXml">Genera XML'.$temp.'</a><br>';	
-		$html.= $link.'&do=inviaSDI">Invio al SDI</a></td>';	
+	
+	if($cliente->__SDIcodice->getVal()=='' ||  ($cliente->__SDIcodice->getVal()=='' && $cliente->__SDIpec->getVal()=='')){
+		$html.= '<td style="background-color:red">AnagraficaIncompleta:<br>Mancano codice SDI o PEC<br>';
+		$html.= $link.'&do=generaXml">Genera XML</a><br>';
 
+		}else if($cliente->__ragionesociale->getVal()==''){
+		$html.= $link.'&do=inviaSDI">AnagraficaIncompleta:<br>Manca la ragione sociale/dati anagrafici<br>';
+		$html.= $link.'&do=generaXml">Genera XML</a><br>';
 	}else{
-		$html.= '<td style="background-color:red">'.$link.'&do=generaXml">Anagrafica incompleta. Mancano codice SDI o PEC</a><br>';
-		$html.= $link.'&do=inviaSDI">Invio al SDI</a></td>';	
+		$html.= '<td style="background-color:#66ff00;">'.$link.'&do=generaXml">Genera XML'.$temp.'</a><br>';
+		$html.= $link.'&do=inviaSDI">Invio al SDI</a></td>';
 	}
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';

@@ -13,6 +13,7 @@ $def->color->verde = array(168,236,134);
 $def->color->bianco = array(255,255,255);
 $def->color->nero = array(0,0,0);
 $def->color->grigio = array(230,230,230);
+$def->color->rosso = array(242,28,0);
 
 function addIntestazione ($pdf){
 	global $def;
@@ -158,7 +159,8 @@ function addDatiFattura ($ft,$pdf){
 	if(array_key_exists('anticipofatture',$_POST)){
 
 		//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
-		$pagamentoAMesi=$_POST['mesi'];
+		//$pagamentoAMesi=$_POST['mesi'];
+		$pagamentoAMesi=1;
 		$data=explode('/',$ft->data->getFormatted());
 		$anno=$data[2];
 		$mese=$data[1]+$pagamentoAMesi;
@@ -544,6 +546,18 @@ function generaPdfFt($ft){
 	addFineCorpoFattura($ft, $pdf);
 	addTotaliFattura($ft, $pdf);
 
+	//aggiungo la non validita ai fini fiscali
+	//bordo destinazione
+	$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $def->color->nero));
+	$pdf->RoundedRect(75, 51, 115, 17, 5.0, '1010', 'DF', $style, $def->color->rosso );	
+	
+	$pdf->SetFont($def->fontName, 'b', $def->fontSize+6.0);
+	$pdf->Text(80, 52, "COPIA NON VALIDA AI FINI FISCALI");
+	$pdf->SetFont($def->fontName, '', $def->fontSize+1.4);
+	$pdf->Text(80, 58, "la copia valida ai fini fiscali vi e' stata recapitata a mezzo SDI oppure");
+	$pdf->Text(80, 61, "e' consultabili presso l’area dedicata del sito dell’Agenzia delle Entrate");
+	
+	
 	//nome del file generato
 	$nomefile=$ft->getPdfFileName();
 	//salvo il file

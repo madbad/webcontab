@@ -75,7 +75,7 @@ $params=array(
 */
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','31/12/18','06/01/19'),
+		'ddt_data'=>array('<>','25/01/19','31/01/19'),
 		'cod_cliente'=>array('SEVEN'),
 	);
 

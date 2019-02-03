@@ -17,6 +17,7 @@ if(@$_GET['anno']){
 	$Edate=$Egiorno.'/'.$Emese.'/'.$anno;
 }else{
 	if($_GET['date']){
+		//echo $_GET['date'];
 		$temp=$_GET['date'];
 		$anno=explode("/",$temp);
 		$anno=$anno[2];
@@ -27,9 +28,13 @@ if(@$_GET['anno']){
 		$anno=date('Y');
 		$Sdate = $Edate = date('d/m/Y');
 	}
-	$fixedDate= str_replace('/','.',$Sdate);
-	$prevDate =date('d/m/Y', strtotime($fixedDate .' -1 day'));
-	$nextDate = date('d/m/Y', strtotime($fixedDate .' +1 day'));
+	$miadata= explode("/",$Sdate);
+	if(strlen($miadata[2])==2){$miadata[2]='20'.$miadata[2];}
+	$miadatastr =$miadata[0].'-'.$miadata[1].'-'.$miadata[2]; 
+
+	$prevDate =date('d/m/Y', strtotime($miadatastr .' -1 day'));
+	$nextDate = date('d/m/Y', strtotime($miadatastr .' +1 day'));
+	
 }
 
 //creo la tabella di "selezione" anno e/o giorno

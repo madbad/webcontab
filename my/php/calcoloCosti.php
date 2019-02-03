@@ -237,6 +237,17 @@ if (@$_POST['mode']=='print'){
 					//"costoCassa" => 0.81);//cassa nuova bianca vergine
 					"costoCassa" => 0.43);//cassa vecchia
 	$html.=getArticleTable($params);
+	
+	$params = array("articles" => array('01','01S','01F','01SE'),
+					"startDate" => $startDate,
+					"endDate" => $endDate,
+					"abbuonoPerCollo" => 0.5, //0.3
+					"costoPedana" => 33,
+					"colliPedana" => 104,
+					//"costoCassa" => 0.81);//cassa nuova bianca vergine
+					"costoCassa" => 0.43,
+					"cliente"=>"MARTI");//cassa vecchia
+	$html.=getArticleTable($params);
 	/* vecchi conteggi sma
 	//supermercati
 	$params = array("articles" => array('701','701S','801','801S'),
@@ -271,6 +282,16 @@ if (@$_POST['mode']=='print'){
 					"colliPedana" => 104,
 					//"costoCassa" => 0.81);//cassa nuova bianca
 					"costoCassa" => 0.43);//cassa vecchia
+	$html.=getArticleTable($params);
+	$params = array("articles" => array('03','03S','03F','03SE'),
+					"startDate" => $startDate,
+					"endDate" => $endDate,
+					"abbuonoPerCollo" => 0.5, //0.3
+					"costoPedana" => 33,
+					"colliPedana" => 104,
+					//"costoCassa" => 0.81);//cassa nuova bianca vergine
+					"costoCassa" => 0.43,
+					"cliente"=>"MARTI");//cassa vecchia
 	$html.=getArticleTable($params);
 	// supermercati
 	/*  vecchi conteggi sma
@@ -433,7 +454,7 @@ if (@$_POST['mode']=='print'){
         $html.="<h1>Semil.</h1>";
 //verona
 		// mercato
-		$params = array('articles' => array('05'),
+		$params = array('articles' => array('05','05P'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.1, //0.3//0.5
