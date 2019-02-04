@@ -1570,7 +1570,7 @@ class ClienteFornitore extends MyClass {
 
 		
 		//configurazione database
-		if($params['_tipo']=="fornitore"){
+		if(isset($params['_tipo']) && $params['_tipo']=="fornitore"){
 		echo "\N".'RICHIESTO FORNITORE<BR>';
 			$this->addProp('_dbName');
 			$this->_dbName->setVal('ANAGRAFICAFORNITORI');
@@ -1599,7 +1599,7 @@ class ClienteFornitore extends MyClass {
 		//avvio il recupero dei dati
 		$this->autoExtend();
 		
-		if($params['_tipo']!="fornitore"){
+		if(isset($params['_tipo']) && $params['_tipo']!="fornitore"){
 		//genero il database sql se non esiste
 		$this->generateSqlDb();
 		}
@@ -2154,4 +2154,116 @@ $ifco=array('IFCO 4310'=>CassaIFCO('IFCO 4310',0.555,1.0,160),
 			'IFCO 6413'=>CassaIFCO('IFCO 6413',0.68,1.4,70),
 			'IFCO 6416'=>CassaIFCO('IFCO 6416',0.70,1.6,60)
 );
+
+
+function leggiFatturaXml ($urlFileFattura){
+	global $config;
+	$fileTemporaneo ='';
+
+	
+	$file_parts = pathinfo($urlFileFattura);
+	switch($file_parts['extension'])
+	{
+		case "xml":
+			$fileTemporaneo = $urlFileFattura;
+			//echo 'xml';
+		break;
+		
+		case "XML":
+			$fileTemporaneo = $urlFileFattura;
+			//echo 'xml';
+		break;
+		
+		case "p7m":
+			//echo 'xml.p7m';
+			//$openSSLDir='C:/Program Files (x86)/EasyPHP-5.3.9/www/webcontab/my/php/libs/openssl-1.0.2q-i386-win32/';
+			//$openSSLDir='C:/Programmi/EasyPHP-5.3.9/www/webcontab/my/php/libs/openssl-1.0.2q-i386-win32/';
+			$openSSLDirExecutableUrl = $config->openSSLDir."/openssl.exe";
+			//C:\Program Files (x86)\EasyPHP-5.3.9\www\webcontab\my\php\libs\openssl-1.0.2q-i386-win32>openssl.exe  smime -decrypt -verify -inform DER -in "test.xml.p7m" -noverify -out "test.xml"
+			//$urlFileFattura=$openSSLDir.'test.xml.p7m';
+			//$urlFileFattura=$openSSLDir.$_GET['fileUrl'];
+			$fileTemporaneo =$config->openSSLDir.'/test.xml';
+			//echo '"'.$openSSLDirExecutableUrl.'" smime -verify -noverify -in "'.$urlFileFattura.'" -inform DER -out "'.$fileTemporaneo.'"';
+			exec('"'.$openSSLDirExecutableUrl.'" smime -verify -noverify -in "'.$urlFileFattura.'" -inform DER -out "'.$fileTemporaneo.'"', $output, $returnvalue);
+			/*
+			echo $urlFileFattura;
+			echo '>>>'. implode($output, '####');
+			echo ' || '.$returnvalue.' <<<<'."\n<br>";
+			*/
+		break;
+
+		case "": // Handle file extension for files ending in '.'
+		case NULL: // Handle no file extension
+		break;
+	}
+
+	
+	if (file_exists($fileTemporaneo)) {
+		$xml = simplexml_load_file($fileTemporaneo);
+	} else {
+		exit('Failed to open: '.$fileTemporaneo);
+	}
+
+	//add the stylesheet tag
+	$node   = dom_import_simplexml($xml);
+	//$pi     = $node->ownerDocument->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="http://127.0.0.1/webcontab/my/php/fatturaordinaria_v1.2.1.xsl"');
+	$pi     = $node->ownerDocument->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="http://localhost/webcontab/my/php/fatturaordinaria_v1.2.1.xsl"');
+
+	$firstSibling = $node->parentNode->firstChild;  
+	$result = $node->parentNode->insertBefore( $pi, $firstSibling );
+
+	//create  a new document to add the formatting
+	$xmlDocument = new DOMDocument('1.0');
+	$xmlDocument->preserveWhiteSpace = false;
+	$xmlDocument->formatOutput = true;
+	//import our old document
+	$xmlDocument->loadXML($xml->asXML());
+	
+	return $xmlDocument;
+
+	//send it to the browser
+	//header("Content-disposition: inline; filename=".$urlFileFattura);
+	//header('Content-type: text/xml');
+	//echo $xmlDocument->saveXML();
+	
+	//print_r($xml);
+	//echo "test\n";
+	$test=$xml->xpath('//FatturaElettronicaBody/Allegati');
+	//print_r($test);
+	
+	/*
+		text/plain
+		text/html
+		text/javascript
+		text/css
+		image/jpeg
+		image/png
+		audio/mpeg
+		audio/ogg
+		audio/*
+		video/mp4
+		application/*
+		application/json
+		application/ecmascript
+		application/octet-stream	
+		
+		application/pdf
+		application/zip
+	
+	*/
+	
+	
+	
+	$filename = 	$xml->xpath('//FatturaElettronicaBody/Allegati/NomeAttachment');
+	$fileblob64 = 	$xml->xpath('//FatturaElettronicaBody/Allegati/Attachment');
+
+	$filename = 	$filename[0];
+	$fileblob64 = 	$fileblob64[0];
+
+	$filetype = '';
+	echo "<a href='data:application/octet-stream;base64,".$fileblob64."' download='$filename' >$filename</a>";
+	
+		
+	
+}
 ?>

@@ -15,7 +15,7 @@
 
 error_reporting(-1); //0=spento || -1=acceso
 set_time_limit (0); //0=nessun limite di tempo
-
+/*
 if($_GET['fileUrl']!=''){
 	$urlFileFattura =$_GET['fileUrl'];
 	$fileTemporaneo ='';
@@ -88,26 +88,25 @@ if($_GET['fileUrl']!=''){
 	$test=$xml->xpath('//FatturaElettronicaBody/Allegati');
 	//print_r($test);
 	
-	/*
-		text/plain
-		text/html
-		text/javascript
-		text/css
-		image/jpeg
-		image/png
-		audio/mpeg
-		audio/ogg
-		audio/*
-		video/mp4
-		application/*
-		application/json
-		application/ecmascript
-		application/octet-stream	
-		
-		application/pdf
-		application/zip
 	
-	*/
+	//	text/plain
+	//	text/html
+		//text/javascript
+	//	text/css
+	//	image/jpeg
+	//	image/png
+	//	audio/mpeg
+	//	audio/ogg
+	//	video/mp4
+
+	//	application/json
+	//	application/ecmascript
+	//	application/octet-stream	
+	//	
+	//	application/pdf
+	//	application/zip
+	
+	
 	
 	
 	
@@ -125,4 +124,16 @@ if($_GET['fileUrl']!=''){
 }else{
 echo 'manca il parametro file';
 }
+*/
+include ('./core/config.inc.php');
+$xmlDomDocument = leggiFatturaXml($_GET['fileUrl']);
+
+//send it to the browser
+header("Content-disposition: inline; filename=".$_GET['fileUrl']);
+header('Content-type: text/xml');
+echo $xmlDomDocument->saveXML();	
+
+
+
+
 ?>
