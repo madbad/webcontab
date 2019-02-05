@@ -342,13 +342,19 @@ function generaXmlFt($myFt){
 		
 		if($riga->cod_articolo->getVal() == 'ASSOLVE'){
 			$currentDdt->righeDelDDT--;
-			continue;			
+			continue;
 		}
-
-		
-		if(!(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.') && ($riga->peso_lordo->getVal() == 0)){
-			$currentDdt->righeDelDDT--;
-			continue;			
+/*
+		echo $riga->descrizione->getVal().'<BR>';
+		echo !(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.');
+		echo (substr($riga->descrizione->getVal(),0,3)=='DDT');
+		ECHO '<BR><BR>';
+*/
+		if((!(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.') && ($riga->peso_lordo->getVal() == 0))){
+			if((!(substr($riga->descrizione->getVal(),0,3)=='DDT') && ($riga->peso_lordo->getVal() == 0))){
+				$currentDdt->righeDelDDT--;
+				continue;
+			}
 		}
 
 
@@ -364,15 +370,24 @@ function generaXmlFt($myFt){
 
 		//si tratta di una riga di descrizione ddt
 		//D.d.T. N.3160 - 01.12.2018
-		if(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.'){
+		if(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.' || substr($riga->descrizione->getVal(),0,3)=='DDT'){
 			if($currentDdt->righeDelDDT>0){
 				/*todo: potrei controllare il ddt e vedere se ci sono righe di puro testo: magari lasciando un warning in un log*/
 				exit("Stiamo cambiando ddt anche se le righe del ddt precedente non sono ancora finite. Vecchio ddt:".$currentDdt->numero." ne restano ".$currentDdt->righeDelDDT);
 			}
 			
-			
-			//echo $riga->descrizione->getVal()."\n";
-			preg_match('/D.d.T. N.(.*?) - (.*?)$/', $riga->descrizione->getVal(), $match);
+			if(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.'){
+				//echo $riga->descrizione->getVal()."\n";
+				preg_match('/D.d.T. N.(.*?) - (.*?)$/', $riga->descrizione->getVal(), $match);
+				$stoFatturendoDdtNonMiei=false;
+			}
+			if(substr($riga->descrizione->getVal(),0,3)=='DDT'){
+				//echo $riga->descrizione->getVal()."\n";
+				preg_match('/DDT(.*?) DEL (.*?)$/', $riga->descrizione->getVal(), $match);
+				$stoFatturendoDdtNonMiei=true;
+			}
+
+
 			//print_r($match);
 			$currentDdt = $dati->riferimentoDdt[] = new stdClass();
 			$currentDdt->numero = $match[1];
@@ -472,7 +487,7 @@ function generaXmlFt($myFt){
 		}	
 		
 		//SE HO FINITO LE RIGHE DEL DDT E NON E' UNA RIGA DI PROVVIGIONE ALLORA MI BLOCCO PERCHE' QUALCOSA NON VA
-		if($currentDdt->righeDelDDT==0 && !strpos($riga->descrizione->getVal(), 'PROVVIGIONE') && ($riga->cod_articolo->getVal()!='SCONTO2')&& ($riga->cod_articolo->getVal()!='COMMISSIONE')){
+		if($currentDdt->righeDelDDT==0 && !strpos($riga->descrizione->getVal(), 'PROVVIGIONE') && ($riga->cod_articolo->getVal()!='SCONTO2')&& ($riga->cod_articolo->getVal()!='COMMISSIONE') && !$stoFatturendoDdtNonMiei){
 			exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->descrizione->getVal());
 		}
 		$currentDdt->righeDelDDT--;
