@@ -18,14 +18,20 @@ if( isset($_GET['anno']) && isset($_GET['mese'])){
 	$mese = $_GET['mese'];
 }else{
 	$anno = date('Y');
-	$mese = date('m');	
+	$mese = date('m');
 }
 
 
 
 
 $dir= $tipo.$anno.'/'.$mese.'/';
+if(isset($_GET['mode'])){
+	if($_GET['mode']=='vendite'){
+		$dir= './core/stampe/ftXml/';
+	}
+}
 //$dir= './core/stampe/ftXml/';
+//$dir= './dati/fattureElettronicheAcquisto/2019/02/Ricevute Consegna/';
 
 /*
 if ($handle = opendir($dir)) {

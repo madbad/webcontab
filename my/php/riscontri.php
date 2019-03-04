@@ -112,10 +112,10 @@ if (@$_GET['mode']=='print'){
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
-/*
+
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/12/18';
-$endDateR='31/12/18';
+$startDateR='01/02/19';
+$endDateR='28/02/19';
 
 
 //martinelli
@@ -169,7 +169,7 @@ $endDateR='31/12/18';
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','05','05P','05G','05PZ8','VAS05'),
+			'cod_articolo'=>array('=','05','05P','05G','05PZ8','05PZ15','VAS05'),
 			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG','GIAC1'),
 			//'prezzo'=>array('!=','0.001')
 		)
@@ -193,7 +193,7 @@ $endDateR='31/12/18';
 	$stampaTotali($test);
 	echo $tabellaF;
 
-*/
+
 //==============================================================================================================================
 
 /*
@@ -271,7 +271,7 @@ $endDateR='31/08/18';
 52 CETRIOLI
 60 PEPERONE
 */
-
+/*
 //FINO AL 29/06/17 GIà CONTROLLATO PAN DI ZUCHERO DORO MERCATO
 
 //SOLO TUTTI I MERCATI
@@ -290,7 +290,7 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/01/19','31/01/19'),
+			'ddt_data'=>array('<>','01/02/19','28/02/19'),
 			//'cod_articolo'=>array('=','631FLOW'),
 			//'cod_articolo'=>array('=','843'),
 			//'cod_iva'=>array('=','42',''), 
@@ -310,7 +310,7 @@ $query = "
 			//'cod_articolo'=>array('=','847','647','47','471421','47714','947'),//ZUCCHINE
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
 			//'cod_articolo'=>array('=','42','942','842','842-'), //PORRI
-			'cod_articolo'=>array('=','45','845'),  //BIANCO
+			//'cod_articolo'=>array('=','45','845'),  //BIANCO
 			//'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
 			//'cod_articolo'=>array('=','842'),
@@ -333,7 +333,7 @@ $query = "
 			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_articolo'=>array('=','29','VAS29'),
 			//'cod_cliente'=>array('=','FACCG'),
-			'cod_cliente'=>array('!=','VIOLA'),
+			'cod_cliente'=>array('=','SEVEN'),
 			//'cod_articolo'=>array('=','19','05','819'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
@@ -355,7 +355,7 @@ eval ($query);
 
 
 
-
+*/
 
 
 

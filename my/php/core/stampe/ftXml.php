@@ -294,11 +294,12 @@ function generaXmlFt($myFt){
  	*/
 	
 	if($myFt->tipo->getVal()=='F'){//se fattura
-		$dati->fattura->tipo = 'TD01';		
+		$dati->fattura->tipo = 'TD01';
 	}
-	if($myFt->tipo->getVal()=='N'){//se nota di credito
-		$dati->fattura->tipo = 'TD04';		
+	if($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n'){//se nota di credito
+		$dati->fattura->tipo = 'TD04';
 	}
+
 	/*fine:todo*/
 	//================DATI GENERALI FATTURA
 	$dati->fattura->divisa = $myFt->valuta->getVal();
@@ -361,13 +362,13 @@ function generaXmlFt($myFt){
 		/*
 		if($riga->imponibile->getVal()*1 < 0.001){
 			//$currentDdt->righeDelDDT--;
-			continue;				
+			continue;
 		}
 		*/
 		
 		
 
-
+//echo $currentDdt->righeDelDDT.' ** '.$riga->descrizione->getVal()."\n<br>";
 		//si tratta di una riga di descrizione ddt
 		//D.d.T. N.3160 - 01.12.2018
 		if(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.' || substr($riga->descrizione->getVal(),0,3)=='DDT'){
@@ -487,7 +488,7 @@ function generaXmlFt($myFt){
 		}	
 		
 		//SE HO FINITO LE RIGHE DEL DDT E NON E' UNA RIGA DI PROVVIGIONE ALLORA MI BLOCCO PERCHE' QUALCOSA NON VA
-		if($currentDdt->righeDelDDT==0 && !strpos($riga->descrizione->getVal(), 'PROVVIGIONE') && ($riga->cod_articolo->getVal()!='SCONTO2')&& ($riga->cod_articolo->getVal()!='COMMISSIONE') && !$stoFatturendoDdtNonMiei){
+		if($currentDdt->righeDelDDT==0 && !(strpos($riga->descrizione->getVal(), 'PROVVIGIONE') || strpos($riga->descrizione->getVal(), 'COMMISSIONE') || ($riga->cod_articolo->getVal()!='SCONTO2')) && !$stoFatturendoDdtNonMiei){
 			exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->descrizione->getVal());
 		}
 		$currentDdt->righeDelDDT--;

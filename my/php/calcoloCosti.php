@@ -321,7 +321,7 @@ if (@$_POST['mode']=='print'){
         $html.="<h1>Tondo</h1>";
 //chioggia
 		// mercato
-		$params = array("articles" => array('08','08P','08POL','08G'),
+		$params = array("articles" => array('08','08P','08POL','08G','08TRAD'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3, //0.3
@@ -454,7 +454,7 @@ if (@$_POST['mode']=='print'){
         $html.="<h1>Semil.</h1>";
 //verona
 		// mercato
-		$params = array('articles' => array('05','05P'),
+		$params = array('articles' => array('05','05P','05G','05PL'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.1, //0.3//0.5
