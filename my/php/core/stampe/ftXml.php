@@ -22,12 +22,12 @@ RIF. NS.DDT N.293-03.02.18
             N.293-03.02.18
             N.284-02.02.18
 
-			
+
 RESO CON DDT.N.40028-11.01.18
-RESO CON DDT.N.40013-05.01.18			
+RESO CON DDT.N.40013-05.01.18
 NS. DDT.N.119-13.01.18
 ******************************
-VEDI NS. FATT.N.13-26.01.18			
+VEDI NS. FATT.N.13-26.01.18
 
 
 
@@ -158,6 +158,13 @@ function generaXmlFt($myFt){
 	*/
 
 	$dati->fattura = new stdClass();
+	
+	//struttura dati note credito
+	$dati->notacredito =  new stdClass();
+	$dati->notacredito->rifNsDDT = array();
+	$dati->notacredito->rifNsFT = array();
+	$dati->notacredito->rifLoroDDT = array();
+	
 	/*
 	$dati->fattura->tipo = 'TD01';
 	$dati->fattura->divisa = 'EUR';
@@ -345,19 +352,67 @@ function generaXmlFt($myFt){
 			$currentDdt->righeDelDDT--;
 			continue;
 		}
-/*
-		echo $riga->descrizione->getVal().'<BR>';
-		echo !(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.');
-		echo (substr($riga->descrizione->getVal(),0,3)=='DDT');
-		ECHO '<BR><BR>';
-*/
+		if((substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.')){
+		}elseif(substr($riga->descrizione->getVal(),0,3)=='DDT'){
+		}elseif(substr($riga->descrizione->getVal(),0,10)=='RIF.NS.DDT'){
+		}elseif(substr($riga->descrizione->getVal(),0,10)=='RIF.VS.DDT'){
+		}elseif(substr($riga->descrizione->getVal(),0,10)=='RIF.NS.FT.'){
+		}elseif(($riga->peso_lordo->getVal() == 0)){//SE NON E' NESSUNO DEI PRECEDENTI E NON HA UNA QUANTITA' PASSO ALLA PROSSIMA RIGA DA INTERPRETARE
+			$currentDdt->righeDelDDT--;
+			continue;
+		}
+		
+		/*
+		//se non è una riga descrizione ddt automatica
 		if((!(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.') && ($riga->peso_lordo->getVal() == 0))){
+		    //e non è una riga descrizione ddt manuale
 			if((!(substr($riga->descrizione->getVal(),0,3)=='DDT') && ($riga->peso_lordo->getVal() == 0))){
+				//allora salto questa riga
 				$currentDdt->righeDelDDT--;
 				continue;
 			}
 		}
+		*/
+		
+		//SE SI TRATTA DI UNA NOTA DI ACCREDITO CERCO I RIFERIMENTI DDT E FATTURA
+		if ($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n'){
+			//echo substr($riga->descrizione->getVal(),0,10);
+			if(substr($riga->descrizione->getVal(),0,10)=='RIF.NS.DDT'){
+			//echo 'Eureca2!';
+				preg_match('/RIF.NS.DDT (.*?) - (.*?)$/', $riga->descrizione->getVal(), $match);
+				$dati->notacredito->rifNsDDT[] = new stdClass();
+				$index = count($dati->notacredito->rifNsDDT)-1;
+				$dati->notacredito->rifNsDDT[$index]->numero =$match[1];
+				$dati->notacredito->rifNsDDT[$index]->data =$match[2];
+				$dati->notacredito->rifNsDDT[$index]->riferimentoRighe = array();;
+				continue;
+			}
+			//RIFERIMENTO NS FT se nota credito
+			if(substr($riga->descrizione->getVal(),0,10)=='RIF.NS.FT.'){
+				$test=preg_match('/RIF.NS.FT.(.*?) - (.*?)$/', $riga->descrizione->getVal(), $match);
+				if($test ==0){
+					preg_match('/RIF.NS.FT.(.*?)-(.*?)$/', $riga->descrizione->getVal(), $match);
+				}
 
+				//echo $test;
+				$dati->notacredito->rifNsFT[]  = new stdClass();
+				$index = count($dati->notacredito->rifNsFT)-1;
+				$dati->notacredito->rifNsFT[$index]->numero =$match[1];
+				$dati->notacredito->rifNsFT[$index]->data =$match[2];
+				$dati->notacredito->rifNsFT[$index]->riferimentoRighe = array();;
+				continue;
+			}
+			//RIFERIMENTO LORO DDT se nota credito
+			if(substr($riga->descrizione->getVal(),0,10)=='RIF.VS.DDT'){
+				preg_match('/RIF.VS.DDT (.*?) - (.*?)$/', $riga->descrizione->getVal(), $match);
+				$dati->notacredito->rifLoroDDT[] = new stdClass();
+				$index = count($dati->notacredito->rifLoroDDT)-1;
+				$dati->notacredito->rifLoroDDT[$index]->numero = $match[1];
+				$dati->notacredito->rifLoroDDT[$index]->data = $match[2];
+				$dati->notacredito->rifLoroDDT[$index]->riferimentoRighe = array();;
+				continue;
+			}
+		}
 
 		/*
 		if($riga->imponibile->getVal()*1 < 0.001){
@@ -448,7 +503,6 @@ function generaXmlFt($myFt){
 		
 		*/
 		
-
 		
 		
 		//si tratta di una normale riga appartenente ad un ddt
@@ -483,13 +537,30 @@ function generaXmlFt($myFt){
 			//ho trovato una riga di commissione, non si riferisce ad alcun ddt
 			$dati->fattura->righe[$contaRighe]->tipocessioneprestazione ='AC';
 		}else{
-			//non è ne uno sconto ne una provvigione... dovrebbe quindi avere riferimento in un ddt
-			$currentDdt->riferimentoRighe[]= $contaRighe;
-		}	
+			//se non è nessuna delle precedenti
+			//se è una nota di accredito aggiungo i riferimenti del ddt di vendita, della fattura di vendita, e del ddt di reso
+			//altrimenti è una fattura normale e quindi
+			//se è una fattura normale aggiungo il riferimento del ddt di vendita
+
+			if ($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n'){
+				$dati->notacredito->rifNsDDT->riferimentoRighe = $contaRighe;
+				$dati->notacredito->rifNsFT->riferimentoRighe = $contaRighe;
+				$dati->notacredito->rifLoroDDT->riferimentoRighe = $contaRighe;
+
+			
+			}else{
+				//non è ne uno sconto ne una provvigione... dovrebbe quindi avere riferimento in un ddt
+				$currentDdt->riferimentoRighe[]= $contaRighe;
+			}
+		}
 		
 		//SE HO FINITO LE RIGHE DEL DDT E NON E' UNA RIGA DI PROVVIGIONE ALLORA MI BLOCCO PERCHE' QUALCOSA NON VA
-		if($currentDdt->righeDelDDT==0 && !(strpos($riga->descrizione->getVal(), 'PROVVIGIONE') || strpos($riga->descrizione->getVal(), 'COMMISSIONE') || ($riga->cod_articolo->getVal()!='SCONTO2')) && !$stoFatturendoDdtNonMiei){
-			exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->descrizione->getVal());
+		if($currentDdt->righeDelDDT==0 && !(strpos($riga->descrizione->getVal(), 'PROVVIGIONE') || strpos($riga->descrizione->getVal(), 'COMMISSIONE') || ($riga->cod_articolo->getVal()=='SCONTO2')) && !$stoFatturendoDdtNonMiei){
+			//DO ERRORE SOLO SE NON è UNA NOTA DI ACCREDITO
+			//echo $myFt->tipo->getVal();
+			if ($myFt->tipo->getVal()!='N' && $myFt->tipo->getVal()!='n'){
+				exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->cod_articolo->getVal().'=>'.$riga->descrizione->getVal());
+			}
 		}
 		$currentDdt->righeDelDDT--;
 		
@@ -535,7 +606,7 @@ function generaXmlFt($myFt){
 			$last->addChild('CodiceDestinatario','0000000');
 			$last->addChild('PECDestinatario',$dati->destinatario->pec);
 		}else{
-			exit("Non trovo ne un codice ne un INDIRIZZO PEC da utilizzare");			
+			exit("Non trovo ne un codice ne un INDIRIZZO PEC da utilizzare");
 		}
 		
 		/*
@@ -551,7 +622,7 @@ function generaXmlFt($myFt){
 		$last = $last->addChild('DatiAnagrafici');
 			$last = $last->addChild('IdFiscaleIVA');
 					$last->addChild('IdPaese',$dati->emittente->partitaIvaNazione);
-					$last->addChild('IdCodice',$dati->emittente->partitaIvaCodice);			
+					$last->addChild('IdCodice',$dati->emittente->partitaIvaCodice);
 			
 			$xml->FatturaElettronicaHeader->CedentePrestatore->DatiAnagrafici->addChild('CodiceFiscale', $dati->emittente->codiceFiscale);
 			
@@ -610,6 +681,45 @@ function generaXmlFt($myFt){
 			/*va aggiunto il riferimento ad altre fatture*/
 			/*DatiFattureCollegate*/
 
+	
+		//SE NOTA DI ACCREDITO
+		if($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n'){
+		//print_r($dati->notacredito->rifNsDDT);
+		//print_r($dati->notacredito->rifLoroDDT);
+		//print_r($dati->notacredito->rifNsFT);
+		
+			//ns fattura
+			$last = $xml->FatturaElettronicaBody->DatiGenerali;
+			foreach ($dati->notacredito->rifNsFT as $key => $ft){
+				$last =  $xml->FatturaElettronicaBody->DatiGenerali->addChild('DatiFattureCollegate');
+				$last->addChild('IdDocumento', $ft->numero);
+				$last->addChild('Data', formatDate('dd.mm.yyyy','yyyy-mm-dd',$ft->data));
+				foreach ($ft->riferimentoRighe as $key2 => $riferimentoRiga){
+					$last->addChild('RiferimentoNumeroLinea', $riferimentoRiga); /*non va valorizato se c'è solo 1 ddt*/
+				}
+			}
+			//ns ddt
+			$last = $xml->FatturaElettronicaBody->DatiGenerali;
+			foreach ($dati->notacredito->rifNsDDT as $key => $ddt){
+				$last =  $xml->FatturaElettronicaBody->DatiGenerali->addChild('DatiDDT');
+				$last->addChild('NumeroDDT', $ddt->numero);
+				$last->addChild('DataDDT', formatDate('dd.mm.yyyy','yyyy-mm-dd',$ddt->data));
+				foreach ($ddt->riferimentoRighe as $key2 => $riferimentoRiga){
+					$last->addChild('RiferimentoNumeroLinea', $riferimentoRiga); /*non va valorizato se c'è solo 1 ddt*/
+				}
+			}
+			//loro ddt
+			$last = $xml->FatturaElettronicaBody->DatiGenerali;
+			foreach ($dati->notacredito->rifLoroDDT as $key => $ddt){
+				$last =  $xml->FatturaElettronicaBody->DatiGenerali->addChild('DatiDDT');
+				$last->addChild('NumeroDDT', $ddt->numero);
+				$last->addChild('DataDDT', formatDate('dd.mm.yyyy','yyyy-mm-dd',$ddt->data));
+				foreach ($ddt->riferimentoRighe as $key2 => $riferimentoRiga){
+					$last->addChild('RiferimentoNumeroLinea', $riferimentoRiga); /*non va valorizato se c'è solo 1 ddt*/
+				}
+			}
+		}
+		
 		//da ripetere per ogni ddt
 		foreach ($dati->riferimentoDdt as $key => $ddt){
 			$last =  $xml->FatturaElettronicaBody->DatiGenerali->addChild('DatiDDT');
@@ -619,6 +729,8 @@ function generaXmlFt($myFt){
 						$last->addChild('RiferimentoNumeroLinea', $riferimentoRiga); /*non va valorizato se c'è solo 1 ddt*/
 					}
 		}
+		
+		
 		
 		$last = $xml->FatturaElettronicaBody->addChild('DatiBeniServizi');
 		
@@ -656,7 +768,7 @@ function generaXmlFt($myFt){
 			$imponibileIva=$val['imponibile'];
 			$importoIva=$val['importo_iva'];
 
-			$last = $xml->FatturaElettronicaBody->DatiBeniServizi->addChild('DatiRiepilogo');		
+			$last = $xml->FatturaElettronicaBody->DatiBeniServizi->addChild('DatiRiepilogo');
 			$last->addChild('AliquotaIVA',formatImporto($codIva));
 			$last->addChild('ImponibileImporto',formatImporto($imponibileIva));
 			$last->addChild('Imposta',formatImporto($importoIva));

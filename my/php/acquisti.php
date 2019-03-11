@@ -101,12 +101,12 @@ echo $dir."<br>";
 
 
 function scan_dir($dir) {
-    $ignored = array('.', '..', '.svn', '.htaccess','_MT_001.xml');
+    $ignored = array('.', '..', '.svn', '.htaccess','_MT_001.xml','_MT_002.xml');
 	$ignoredFiles = '_MT_001.xml';
 
     $files = array();    
     foreach (scandir($dir) as $file) {
-		if (strpos($file,'_MT_001.xml')) continue; //ignora i file ricevuta
+		if (strpos($file,'_MT_001.xml') || strpos($file,'_MT_002.xml')) continue; //ignora i file ricevuta
         if (in_array($file, $ignored)) continue;
         $files[$file] = filemtime($dir . '/' . $file);
     }
