@@ -300,7 +300,7 @@ function generaXmlFt($myFt){
 	TD06  Parcella 
  	*/
 	
-	if($myFt->tipo->getVal()=='F'){//se fattura
+	if($myFt->tipo->getVal()=='F' || $myFt->tipo->getVal()=='f' ){//se fattura
 		$dati->fattura->tipo = 'TD01';
 	}
 	if($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n'){//se nota di credito
@@ -559,7 +559,7 @@ function generaXmlFt($myFt){
 			//DO ERRORE SOLO SE NON è UNA NOTA DI ACCREDITO
 			//echo $myFt->tipo->getVal();
 			if ($myFt->tipo->getVal()!='N' && $myFt->tipo->getVal()!='n'){
-				exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->cod_articolo->getVal().'=>'.$riga->descrizione->getVal());
+//				exit("Stiamo utilizzando piu righe di quelle del ddt.Riga: ".$contaRighe." del ddt ".$currentDdt->numero." ---->".$riga->cod_articolo->getVal().'=>'.$riga->descrizione->getVal());
 			}
 		}
 		$currentDdt->righeDelDDT--;

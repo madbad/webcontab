@@ -2204,11 +2204,17 @@ function leggiFatturaXml ($urlFileFattura){
 		exit('Failed to open: '.$fileTemporaneo);
 	}
 
-	//add the stylesheet tag
+	//load the file as simplexml
 	$node   = dom_import_simplexml($xml);
+	
+	//remove their stylesheet if present
+	if($node->parentNode->firstChild->nodeName == 'xml-stylesheet'){
+		$node->parentNode->removeChild($node->parentNode->firstChild);
+	}
+	
+	//load our own stylesheet
 	//$pi     = $node->ownerDocument->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="http://127.0.0.1/webcontab/my/php/fatturaordinaria_v1.2.1.xsl"');
 	$pi     = $node->ownerDocument->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="http://localhost/webcontab/my/php/fatturaordinaria_v1.2.1.xsl"');
-
 	$firstSibling = $node->parentNode->firstChild;  
 	$result = $node->parentNode->insertBefore( $pi, $firstSibling );
 
@@ -2245,7 +2251,7 @@ function leggiFatturaXml ($urlFileFattura){
 		application/*
 		application/json
 		application/ecmascript
-		application/octet-stream	
+		application/octet-stream
 		
 		application/pdf
 		application/zip
