@@ -4,8 +4,8 @@ include ('./core/config.inc.php');
 ?>
 <?php 
 $today = date("j/n/Y"); 
-$startDate='01/02/2019';
-$endDate='28/02/2019';
+$startDate='01/04/2019';
+$endDate='30/04/2019';
 
 $mancanti = array();
 
@@ -13,7 +13,7 @@ $stampaRighe= function ($obj){
 	global $mancanti;
 //echo '<br>'.$obj->cod_cliente->extend()->ragionesociale->getVal();
 //echo '<br>'.$obj->ddt_numero->getVal();
-$ddt = '<br>-'.$obj->ddt_numero->getVal().' '.$obj->ddt_data->getFormatted();
+$ddt = '<br>- n.'.$obj->ddt_numero->getVal().' del '.$obj->ddt_data->getFormatted();
 if (!in_array($ddt,$mancanti)){
 	$mancanti['<br><br>'.$obj->cod_cliente->extend()->ragionesociale->getVal()];
 }
@@ -35,7 +35,6 @@ $mancanti['<br><br>'.$obj->cod_cliente->extend()->ragionesociale->getVal()][$ddt
 	*/
 };
 
-
 $test=new MyList(
 	array(
 		'_type'=>'Riga',
@@ -45,7 +44,17 @@ $test=new MyList(
 	)
 );
 $test->iterate($stampaRighe);
-print_r($mancanti);
+
+
+foreach ($mancanti as $clienteKey => $clienteValue){
+	echo '<br><br>'.$clienteKey;
+	foreach ($clienteValue as $ddtKey => $ddtValue){
+		if(strlen($ddtKey)>2){
+			echo $ddtKey.'';
+		}
+	}
+}
+//print_r($mancanti);
 page_end();
 
 ?>

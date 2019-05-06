@@ -4,6 +4,28 @@
 	<meta charset="utf-8">
 	<title>Elenca fatture</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	
+	<script>
+const copyToClipboard = str => {
+  const el = document.createElement('textarea');  // Create a <textarea> element
+  el.value = str;                                 // Set its value to the string that you want copied
+  el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof
+  el.style.position = 'absolute';                 
+  el.style.left = '-9999px';                      // Move outside the screen to make it invisible
+  document.body.appendChild(el);                  // Append the <textarea> element to the HTML document
+  const selected =            
+    document.getSelection().rangeCount > 0        // Check if there is any content selected previously
+      ? document.getSelection().getRangeAt(0)     // Store selection if found
+      : false;                                    // Mark as false to know no selection existed before
+  el.select();                                    // Select the <textarea> content
+  document.execCommand('copy');                   // Copy - only works as a result of a user action (e.g. click events)
+  document.body.removeChild(el);                  // Remove the <textarea> element
+  if (selected) {                                 // If a selection existed before copying
+    document.getSelection().removeAllRanges();    // Unselect everything on the HTML document
+    document.getSelection().addRange(selected);   // Restore the original selection
+  }
+};
+	</script>
 </head>
 <body>
 
@@ -129,29 +151,57 @@ foreach ($files as $key => $file) {
 	
 @	$filename = 	$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/Allegati/NomeAttachment')->item(0)->nodeValue;
 @	$fileblob64 = 	$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/Allegati/Attachment')->item(0)->nodeValue;
-
-	$linkAllegato = "<a href='data:application/octet-stream;base64,".$fileblob64."' download='$filename' >$filename</a>";
-
-	?>
+	if($filename){
+		$linkAllegato = "<a href='data:application/octet-stream;base64,".$fileblob64."' download='$filename' title='$filename'>All.to</a>";
+	}else{
+		$linkAllegato = '';
+	}
 	
+	//echo $xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody')->item(0)->textContent;
+	$trovataStringa = false;
+	if(stripos($xmlDomDocument->saveXML(),'CL824RV') || stripos($xmlDomDocument->saveXML(),'CL 824 RV')){
+		$trovataStringa = true;
+	}
+	
+	?>
+
 	<tr>
-		<td><?php echo $fileDate; ?></td>
+		<td style="font-size:0.6em;"><?php echo $fileDate; ?></td>
 		<td><?php echo $fileUrl; ?></td>
-		<td> <?php echo $linkAllegato; ?></td>
+		<td>
+			<?php 
+				echo $linkAllegato;
+				if($trovataStringa){
+					echo 'CAMION!!';
+				}
+			?>
+		
+		</td>
 		<td>
 			<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Denominazione')->item(0)->nodeValue; ?>
 			<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Nome')->item(0)->nodeValue; ?>
-			<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Cognome')->item(0)->nodeValue; ?>		
+			<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Cognome')->item(0)->nodeValue; ?>
 		</td>
+		<td style="text-align:left"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/Numero')->item(0)->nodeValue; ?></td>
+		<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/Data')->item(0)->nodeValue; ?></td>
+		<!--
 		<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/ImportoPagamento')->item(0)->nodeValue; ?></td>
-		<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/IBAN')->item(0)->nodeValue; ?></td>
-	<tr>
+		-->
+		<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento')->item(0)->nodeValue; ?></td>
+		
+		<td style="text-align:right">
+			<?php
+				if($xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/IBAN')->item(0)->nodeValue){
+					$iban = $xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/IBAN')->item(0)->nodeValue;
+					echo '<a href="javascript:return false;" onclick="copyToClipboard(this.title)" title="'.$iban.'">IBAN</a>';
+				}
+			?>
+		</td>
+	</tr>
 	<?php
 }
-
-
-
 ?>
-
+</table>
+<br>Fine<br>
 </body>
 </html>

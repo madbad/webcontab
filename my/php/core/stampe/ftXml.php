@@ -314,7 +314,7 @@ function generaXmlFt($myFt){
 	$anno=explode('/',$myFt->data->getFormatted());	
 	$dati->fattura->numero = trim($myFt->numero->getVal()).'/'.$anno[2]; //aggiungo la stringa "/anno" se dopo il 2013
 	$dati->fattura->data = formatDate('mm-dd-yyyy','yyyy-mm-dd',$myFt->data->getVal());
-	$dati->fattura->importo = formatImporto($myFt->importo->valore);
+	$dati->fattura->importo = formatImporto(abs($myFt->importo->valore)); //mi salvo il valore assoluto** le note di accredito mi davano un valore negativo
 	//$dati->fattura->causale = 'vendita';/*todo:al momento non la usiamo in quanto opzionale*/
 
 	//================DATI RIGHE FATTURA
@@ -352,7 +352,7 @@ function generaXmlFt($myFt){
 			$currentDdt->righeDelDDT--;
 			continue;
 		}
-		if((substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.')){
+		if((strtoupper(substr($riga->descrizione->getVal(),0,9))==strtoupper('D.d.T. N.'))){
 		}elseif(substr($riga->descrizione->getVal(),0,3)=='DDT'){
 		}elseif(substr($riga->descrizione->getVal(),0,10)=='RIF.NS.DDT'){
 		}elseif(substr($riga->descrizione->getVal(),0,10)=='RIF.VS.DDT'){
@@ -426,15 +426,15 @@ function generaXmlFt($myFt){
 //echo $currentDdt->righeDelDDT.' ** '.$riga->descrizione->getVal()."\n<br>";
 		//si tratta di una riga di descrizione ddt
 		//D.d.T. N.3160 - 01.12.2018
-		if(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.' || substr($riga->descrizione->getVal(),0,3)=='DDT'){
+		if(strtoupper(substr($riga->descrizione->getVal(),0,9))==strtoupper('D.d.T. N.') || substr($riga->descrizione->getVal(),0,3)=='DDT'){
 			if($currentDdt->righeDelDDT>0){
 				/*todo: potrei controllare il ddt e vedere se ci sono righe di puro testo: magari lasciando un warning in un log*/
 				exit("Stiamo cambiando ddt anche se le righe del ddt precedente non sono ancora finite. Vecchio ddt:".$currentDdt->numero." ne restano ".$currentDdt->righeDelDDT);
 			}
 			
-			if(substr($riga->descrizione->getVal(),0,9)=='D.d.T. N.'){
+			if(strtoupper(substr($riga->descrizione->getVal(),0,9))==strtoupper('D.d.T. N.')){
 				//echo $riga->descrizione->getVal()."\n";
-				preg_match('/D.d.T. N.(.*?) - (.*?)$/', $riga->descrizione->getVal(), $match);
+				preg_match('/D.D.T. N.(.*?) - (.*?)$/', strtoupper($riga->descrizione->getVal()), $match);
 				$stoFatturendoDdtNonMiei=false;
 			}
 			if(substr($riga->descrizione->getVal(),0,3)=='DDT'){
@@ -671,7 +671,7 @@ function generaXmlFt($myFt){
 			$last->addChild('Divisa',$dati->fattura->divisa);
 			$last->addChild('Data',$dati->fattura->data);
 			$last->addChild('Numero',$dati->fattura->numero);
-			$last->addChild('ImportoTotaleDocumento',$dati->fattura->importo);
+			$last->addChild('ImportoTotaleDocumento',$dati->fattura->importo); //per il totale documente considero il valore assoluto (nelle note di accredito mi uscia a meno)
 			$last->addChild('Causale','Contributo CONAI assolto ove dovuto.');
 			$last->addChild('Causale',"Assolve gli obblighi di cui all'articolo 62, comma 1, del decreto legge 24 gennaio 2012, n. 1, convertito, con modificazioni, dalla legge 24 marzo 2012, n. 27");
 			/* non abbligatorio, lasciamo stare?

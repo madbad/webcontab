@@ -1287,7 +1287,7 @@ class Ddt  extends MyClass {
 	}
 	
 	public function generaPdf(){
-		return generaPdfDdt($this);	
+		return generaPdfDdt($this);
 	}
 	
 	public function visualizzaPdf(){

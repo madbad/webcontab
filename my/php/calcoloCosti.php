@@ -219,7 +219,7 @@ if (@$_POST['mode']=='print'){
     $table.='<tr><td>+ pl</td><td></td></tr>';
     $table.='<tr><td>+ ifco</td><td></td></tr>';
     $table.='<tr><td>+ vassoi</td><td></td></tr>';
-    $table.='<tr><td>Tot.<br><br><br></td><td style="border:4px solid #000000"></td></tr>';
+    $table.='<tr><td colspan="2" style="border:4px solid #000000">Tot.<br><br><br></td></tr>';
     $table.='</table>';
     $html='';
   
@@ -321,7 +321,7 @@ if (@$_POST['mode']=='print'){
         $html.="<h1>Tondo</h1>";
 //chioggia
 		// mercato
-		$params = array("articles" => array('08','08P','08POL','08G','08TRAD'),
+		$params = array("articles" => array('08','08B','08F','08G','08P','08POL','08PZ11','08TRAD'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.3, //0.3
@@ -454,7 +454,7 @@ if (@$_POST['mode']=='print'){
         $html.="<h1>Semil.</h1>";
 //verona
 		// mercato
-		$params = array('articles' => array('05','05P','05G','05PL'),
+		$params = array('articles' => array('05','05G','05P','05PL','05PZ12','05PZ1215','05PZ15','05PZ8'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.1, //0.3//0.5

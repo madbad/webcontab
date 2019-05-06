@@ -131,7 +131,7 @@ $xmlDomDocument = leggiFatturaXml($_GET['fileUrl']);
 //send it to the browser
 header("Content-disposition: inline; filename=".$_GET['fileUrl']);
 header('Content-type: text/xml');
-echo $xmlDomDocument->saveXML();	
+echo $xmlDomDocument->saveXML();
 
 
 
