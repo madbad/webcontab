@@ -112,10 +112,10 @@ if (@$_GET['mode']=='print'){
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
-
+/*
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/02/19';
-$endDateR='28/02/19';
+$startDateR='01/04/19';
+$endDateR='31/04/19';
 
 
 //martinelli
@@ -171,7 +171,7 @@ $endDateR='28/02/19';
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>array('=','05','05P','05G','05PZ8','05PZ15','VAS05'),
 			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG','GIAC1'),
-			//'prezzo'=>array('!=','0.001')
+			'prezzo'=>array('!=','0.001')
 		)
 	);
 	echo $tabellaH;
@@ -193,13 +193,13 @@ $endDateR='28/02/19';
 	$stampaTotali($test);
 	echo $tabellaF;
 
-
+*/
 //==============================================================================================================================
 
 /*
 //zucchine
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/08/18';
+$startDateR='01/07/18';
 $endDateR='31/08/18';
 
 //ortom
@@ -248,8 +248,8 @@ $endDateR='31/08/18';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
 
+*/
 //==============================================================================================================================
 /*
 17 CAPPUCCI ROSSI
@@ -271,7 +271,7 @@ $endDateR='31/08/18';
 52 CETRIOLI
 60 PEPERONE
 */
-/*
+
 //FINO AL 29/06/17 GIà CONTROLLATO PAN DI ZUCHERO DORO MERCATO
 
 //SOLO TUTTI I MERCATI
@@ -290,8 +290,8 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/02/19','28/02/19'),
-			//'cod_articolo'=>array('=','631FLOW'),
+			'ddt_data'=>array('<>','01/04/19','30/04/19'),
+			//'cod_articolo'=>array('=','639'),
 			//'cod_articolo'=>array('=','843'),
 			//'cod_iva'=>array('=','42',''), 
 			//'cod_articolo'=>array('=','03','01'), 
@@ -299,7 +299,7 @@ $query = "
 			//'cod_articolo'=>array('=','36','836'), //SEDANO
 			//'cod_articolo'=>array('=','17'), //CAPPUCCI ROSSI
 			//'cod_articolo'=>array('=','18','818'), //CAPPUCCI CUOR DI BUE
-			//'cod_articolo'=>array('=','819','19','619','619+'), //CAPPUCCI
+			'cod_articolo'=>array('=','819','819','19','619','619+'), //CAPPUCCI
 			//'cod_articolo'=>array('=','20','820'),  //VERZE
 			//'cod_articolo'=>array('=','21','821'),  //CAVOLFIORI
 			//'cod_articolo'=>array('=','50','850','650','650+'), //ZUCCHE
@@ -355,7 +355,7 @@ eval ($query);
 
 
 
-*/
+
 
 
 
