@@ -103,9 +103,10 @@ foreach ($entrate as $key => $entrata){
 		//se mi serve utilizzo tutta la vendita
 		if ($colliMancanti >= $uscite[0]['colli']){
 			$riscontro = $uscite[0];
-			array_shift($uscite);
 			
 			$colliMancanti -= $uscite[0]['colli'];
+
+			array_shift($uscite);
 			
 		//altrimenti (se luscita è maggiore di quello che mi serve) ne uso solo una parte
 		}else{
