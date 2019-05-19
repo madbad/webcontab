@@ -100,6 +100,13 @@ foreach ($entrate as $key => $entrata){
 	//finche mi mancano riscontri e ho ancora vendite da utilizzare
 	while ($colliMancanti > 0 && (count($uscite) > 0)){
 		
+		//se la data che sto usando delle uscite è anteriore alla mia entrata merce non la considero e passoa quella dopo
+		if(myStrToTime($uscite[0]['data']) > myStrToTime($entrata['data']) ){
+			echo "\nHo scartato una vendita";
+			array_shift($uscite);
+			continue;
+		}
+		
 		//se mi serve utilizzo tutta la vendita
 		if ($colliMancanti >= $uscite[0]['colli']){
 			$riscontro = $uscite[0];
@@ -133,4 +140,10 @@ foreach ($entrate as $key => $entrata){
 
 print_r($entrate);
 
+
+function myStrToTime($date){
+	$date = '25/05/2010';
+	$date = str_replace('/', '-', $date);
+	return date('Y-m-d', strtotime($date));
+}
 ?>
