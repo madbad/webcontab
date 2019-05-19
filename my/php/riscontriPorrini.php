@@ -101,7 +101,7 @@ foreach ($entrate as $key => $entrata){
 	while ($colliMancanti > 0 && (count($uscite) > 0)){
 		
 		//se la data che sto usando delle uscite è anteriore alla mia entrata merce non la considero e passoa quella dopo
-		if(myStrToTime($uscite[0]['data']) > myStrToTime($entrata['data']) ){
+		if(myStrToTime($uscite[0]['data']) < myStrToTime($entrata['data']) ){
 			echo "\nHo scartato una vendita";
 			array_shift($uscite);
 			continue;
