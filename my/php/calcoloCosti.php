@@ -263,10 +263,10 @@ if (@$_POST['mode']=='print'){
 	$params = array("articles" => array('801-','801F-','601'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.4,
+					"abbuonoPerCollo" => 0.3,
 					"costoPedana" => 33,
 					"colliPedana" => 140,
-					"costoCassa" => 0.56);
+					"costoCassa" => 0.52);
     $html.=getArticleTable($params);
     $html.=$table;
 	
@@ -308,10 +308,10 @@ if (@$_POST['mode']=='print'){
 	$params = array("articles" => array('803-','803F-','603'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.4,
+					"abbuonoPerCollo" => 0.3,
 					"costoPedana" => 33,
 					"colliPedana" => 140,
-					"costoCassa" => 0.56);
+					"costoCassa" => 0.52);
     $html.=getArticleTable($params);
     $html.=$table;
 

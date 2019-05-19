@@ -32,6 +32,7 @@ if (@$_GET["do"]){
 			$myFt->visualizzaPdf();
 			break;
 		case 'generaXml':
+			$GLOBALS['isTempFile']=true;
 			$myFt->generaXml();
 			break;
 		case 'inviaSDI':

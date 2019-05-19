@@ -112,10 +112,10 @@ if (@$_GET['mode']=='print'){
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
-/*
+
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/04/19';
-$endDateR='31/04/19';
+$startDateR='21/04/19';
+$endDateR='30/04/19';
 
 
 //martinelli
@@ -193,7 +193,7 @@ $endDateR='31/04/19';
 	$stampaTotali($test);
 	echo $tabellaF;
 
-*/
+
 //==============================================================================================================================
 
 /*
@@ -271,7 +271,7 @@ $endDateR='31/08/18';
 52 CETRIOLI
 60 PEPERONE
 */
-
+/*
 //FINO AL 29/06/17 GIà CONTROLLATO PAN DI ZUCHERO DORO MERCATO
 
 //SOLO TUTTI I MERCATI
@@ -290,7 +290,8 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/04/19','30/04/19'),
+			'ddt_data'=>array('<>','01/12/18','30/04/19'),
+			//'cod_articolo'=>array('=','639'),
 			//'cod_articolo'=>array('=','639'),
 			//'cod_articolo'=>array('=','843'),
 			//'cod_iva'=>array('=','42',''), 
@@ -299,7 +300,7 @@ $query = "
 			//'cod_articolo'=>array('=','36','836'), //SEDANO
 			//'cod_articolo'=>array('=','17'), //CAPPUCCI ROSSI
 			//'cod_articolo'=>array('=','18','818'), //CAPPUCCI CUOR DI BUE
-			'cod_articolo'=>array('=','819','819','19','619','619+'), //CAPPUCCI
+			//'cod_articolo'=>array('=','819','819','19','619','619+'), //CAPPUCCI
 			//'cod_articolo'=>array('=','20','820'),  //VERZE
 			//'cod_articolo'=>array('=','21','821'),  //CAVOLFIORI
 			//'cod_articolo'=>array('=','50','850','650','650+'), //ZUCCHE
@@ -326,7 +327,8 @@ $query = "
 			//'cod_cliente'=>array('=','MAEST'),
 			//'cod_cliente'=>array('=','BRUNF'),
 			//'cod_cliente'=>array('=','ABBAS'),
-			//'cod_articolo'=>array('!=','BSEVEN'),
+			//'cod_articolo'=>array('!=','BSEVEN','631FLOW','31FLOW'),
+			'cod_articolo'=>array('=','631FLOW','31FLOW'),
 			//'cod_articolo'=>array('=','829','629','829-'),
 			//'cod_cliente'=>array('!=','ABBAS','SEVEN'),
 			//'cod_cliente'=>array('!=','SEVEN','TESI','GIAC1','MARTI','BRUNF','NERIO','LAME2'),
@@ -354,7 +356,7 @@ eval ($query);
 	echo $tabellaF;
 
 
-
+*/
 
 
 

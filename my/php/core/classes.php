@@ -943,8 +943,16 @@ class Fattura extends MyClass{
 			if ($file[0] != ".") $count++;
 		}
 		*/
+		
+		//conto i file ufficiali
 		$fi = new FilesystemIterator($GLOBALS['config']->xmlDir, FilesystemIterator::SKIP_DOTS);
 		$fileCount = iterator_count($fi);
+		
+		//conto i file temporanei
+		if($GLOBALS['isTempFile']){
+			$fi = new FilesystemIterator($GLOBALS['config']->xmlDir.'/../ftXml_prove', FilesystemIterator::SKIP_DOTS);
+			$fileCount += iterator_count($fi);
+		}
 		
 		$progressivoInvio = str_pad ( $fileCount+1 , $pad_length=5 , $pad_string="0" , $pad_type=STR_PAD_LEFT );
 		$this->progressivoInvioSDI=$progressivoInvio;
@@ -955,18 +963,14 @@ class Fattura extends MyClass{
 		//il nome del file esempio: 20120121_N00000001.pdf
 		$filename=$this->getXmlFileName();
 
-		//l'url completo del file esempio: c:/Program%20Files/EasyPHP-5.3.6.0/www/webcontab/my/php/stampe/ftXml/IT01588530236_00001.xml
-		$fileUrl=$GLOBALS['config']->xmlDir.'/'.$filename;
-		
-		/*
-		//verifichiamo che il file esista prima di comunicarlo
-		//altrimenti lo generiamo "al volo"
-
-		if(!file_exists($fileUrl)){
-			//echo 'il file non esiste devo generarlo!!';
-			$this->generaPdf();
+		if($GLOBALS['isTempFile']){
+			//l'url completo del file esempio: c:/Program%20Files/EasyPHP-5.3.6.0/www/webcontab/my/php/stampe/ftXml/IT01588530236_00001.xml
+			$fileUrl=$GLOBALS['config']->xmlDir.'/../ftXml_prove/'.$filename;
+		}else{
+			//l'url completo del file esempio: c:/Program%20Files/EasyPHP-5.3.6.0/www/webcontab/my/php/stampe/ftXml/IT01588530236_00001.xml
+			$fileUrl=$GLOBALS['config']->xmlDir.'/'.$filename;
 		}
-		*/
+		
 		return $fileUrl;
 	}
 	
