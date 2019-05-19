@@ -105,6 +105,8 @@ foreach ($entrate as $key => $entrata){
 			$riscontro = $uscite[0];
 			array_shift($uscite);
 			
+			$colliMancanti -= $uscite[0]['colli'];
+			
 		//altrimenti (se luscita è maggiore di quello che mi serve) ne uso solo una parte
 		}else{
 			//mi ricavo il riscontro
@@ -116,7 +118,10 @@ foreach ($entrate as $key => $entrata){
 			
 			//scalo la parte di riscontro che ho usato dalle vendite
 			$uscite[0]['colli'] -= $riscontro['colli'];
-			$uscite[0]['peso'] -=$riscontro['peso'];				
+			$uscite[0]['peso'] -=$riscontro['peso'];
+
+			//mi ricordo che ho finito con queste entrate
+			$colliMancanti = 0;
 		}
 		
 		//associo il riscontro all'entrata
