@@ -120,7 +120,7 @@ foreach ($entrate as $key => $entrata){
 			//mi ricavo il riscontro
 			$riscontro= array();
 			$riscontro['colli']=$colliMancanti;
-			$riscontro['peso']=$colliMancanti*($uscite[0]['peso']);				
+			$riscontro['peso']=$colliMancanti*($uscite[0]['peso']/$uscite[0]['colli']);				
 			$riscontro['ddt']=$uscite[0]['ddt'];
 			$riscontro['data']=$uscite[0]['data'];
 			
