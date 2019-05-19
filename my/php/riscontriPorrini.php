@@ -125,7 +125,7 @@ foreach ($entrate as $key => $entrata){
 		}
 		
 		//associo il riscontro all'entrata
-		array_push($entrata['riscontri'], $riscontro);
+		array_push($entrate[$key]['riscontri'], $riscontro);
 		
 	}
 }
