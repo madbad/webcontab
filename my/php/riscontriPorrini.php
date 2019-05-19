@@ -142,7 +142,7 @@ print_r($entrate);
 
 
 function myStrToTime($date){
-	$date = '25/05/2010';
+	//$date = '25/05/2010';
 	$date = str_replace('/', '-', $date);
 	return date('Y-m-d', strtotime($date));
 }
