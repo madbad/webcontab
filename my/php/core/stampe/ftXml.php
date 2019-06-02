@@ -855,7 +855,7 @@ function generaXmlFt($myFt){
 		echo $xmlDocument->saveXML();
 		*/
 	}
-
-
+	//no error so far we are good ?
+	return true;
 }
 ?>

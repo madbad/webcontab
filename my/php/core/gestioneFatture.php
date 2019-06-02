@@ -193,6 +193,43 @@ if (@$_POST["do"]){
 					exec($printCommand);
 				}
 			}
+		case 'generaXml':
+			//needed to prevent a bug flushing output to the broser
+			header( 'Content-type: text/html; charset=utf-8' );
+			//
+			$fatture = json_decode($_POST["fatture"]);
+			//echo $_POST["fatture"];
+			//mi preparo i parametri di ricerca della fattura
+			$count=0;
+			foreach ($fatture as $fattura){
+				$count++;
+				$params=array(
+					'numero' => $fattura->numero,
+					'data'   => $fattura->data,
+					'tipo'  => $fattura->tipo
+				);
+				//genero il mio oggetto fattura
+				$myFt= new Fattura($params);
+				
+				$GLOBALS['isTempFile']=true;
+				
+				if($myFt->generaXml()){
+					echo "\n<br>$count) (OK) - ";
+					echo $fattura->tipo;
+					echo ' '.$fattura->numero;
+					echo ' del '.$fattura->data;
+				}else{
+					echo "\n<br>$count) (ERROR) - ";
+					echo $fattura->tipo;
+					echo ' '.$fattura->numero;
+					echo ' del '.$fattura->data;
+				};
+				
+				//flush the output to the browser
+				flush();
+				ob_flush();	
+			}
+			break;
 		break;
 	}
 }

@@ -508,8 +508,8 @@ buildEmptyModule($pdf);
 	}else if($ddt->cod_causale->getVal()=='D'){
 		//si tratta di "redo da c/deposito" "c/riparazone" "omaggio" etc...
 		//$causale='RESO DA C/DEP.TO';
-		$causale='OMAGGIO';
-		//$causale='RESO MERCE N/C';
+		//$causale='OMAGGIO';
+		$causale='RESO MERCE N/C';
 	}
 	$pdf->Text(18, 58+8, $causale);
 

@@ -167,6 +167,88 @@
 		// Check for new content from the server every 0.5 seconds
 		var interval = setInterval(statusUpdate, 500);
 	}
+	function generaXml(){
+		var fatture = document.querySelectorAll("input:checked");
+		var infobox = document.querySelector("#infobox");
+		var localinfobox = document.querySelector("#localinfobox");
+		var serverinfobox = document.querySelector("#serverinfobox");
+		var spinner = document.querySelector("#infobox");
+		var elencoFatture=[];
+		var confirmMessage='';
+		
+		for (var i = 0; i < fatture.length; ++i) {
+			//console.log(fatture[i].dataset.json);
+			var oFattura = JSON.parse(fatture[i].dataset.json);
+			//console.log(oFattura);
+			confirmMessage += "\n"+oFattura.tipo+" "+oFattura.numero+" del "+oFattura.data+" - "+oFattura.cliente;
+			
+			//confirmMessage+= "\n"+oFattura.tipo;
+			elencoFatture[i]= JSON.parse(fatture[i].dataset.json);
+			delete elencoFatture[i].cliente; //to prevent trouble with strange chars (& etc..) on json parsing on server side
+		}
+		
+		// chiedo conferma prima di proseguire
+		if(!confirm ("Si desidera veramente generare i file XML per le seguenti \n"+fatture.length+"\n fatture?\n\n"+confirmMessage)){
+			return;
+		}
+		
+		serverinfobox.innerHtml='';
+		localinfobox.innerHTML ='Genero n.<b>'+fatture.length+'<b> files XML!';
+		spinner.classList.add('spinner');
+		infobox.classList.remove('hidden');
+		
+		//una stringa json che identifica tutte le fatture da inviare
+		var jsonList=JSON.stringify(elencoFatture);
+		
+		//SEND THE REQUEST TO THE SERVER
+		var xmlhttp;
+		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}else{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		//cosa faccio quando la richiesta è finita?
+		xmlhttp.onreadystatechange=function(){
+			//request finished succefully
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				serverinfobox.innerHTML = xmlhttp.responseText;
+				localinfobox.innerHTML += '<br><B>DONE!!</B>';
+				spinner.classList.remove('spinner');
+				clearInterval(interval);
+				infobox.querySelector("button").classList.remove('hidden');
+				infobox.querySelector("button").onclick=function (){
+					infobox.classList.add('hidden');
+					infobox.querySelector("button").classList.add('hidden');
+					infobox.querySelector("button").onclick=function(){};
+				}
+			}
+			//request still pending but some data is available
+			if(xmlhttp.readyState == 3) {
+				serverinfobox.innerHTML = xmlhttp.responseText;
+			}
+		}
+		//get the string to append to the url to have anticipo fatture enabled
+		var strAntFt=getAnticipoFattureParams();
+		
+		//xmlhttp.open("POST","./wait.php",true);
+		xmlhttp.open("POST","./core/gestioneFatture.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+		//il mio url dovrebbe essere così
+		//http://localhost/webContab/my/php/core/gestioneFatture.php?numero=%20%20%20%20%20164&data=06-03-2019&tipo=F&do=generaXml
+		
+		xmlhttp.send("do=generaXml&fatture="+jsonList);
+		console.log("do=generaXml&fatture="+jsonList);
+		// function to update the infobox with the server reply
+		function statusUpdate() {
+			//console.log('Update');
+			serverinfobox.innerHTML = xmlhttp.responseText;
+		}
+		 
+		// Check for new content from the server every 0.5 seconds
+		var interval = setInterval(statusUpdate, 500);
+	}
 	function selectAll(){
 		var fatture = document.querySelectorAll("input[type=checkbox]");
 		for (var i = 0; i < fatture.length; ++i) {
@@ -272,6 +354,12 @@
 	  <div class="dropdownMenu-content">
 		<a href="javascript:stampa('stampaInterna')">Interna</a>
 		<a href="javascript:stampa('stampaCliente')">Cliente</a>
+	  </div>
+	</div>
+	<div class="dropdownMenu">
+	  <span class="dropItem">Ft Elettronica</span>
+	  <div class="dropdownMenu-content">
+		<a href="javascript:generaXml()">Genera XML</a>
 	  </div>
 	</div>
 	<div class="dropdownMenu">
