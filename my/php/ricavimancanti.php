@@ -4,8 +4,8 @@ include ('./core/config.inc.php');
 ?>
 <?php 
 $today = date("j/n/Y"); 
-$startDate='01/04/2019';
-$endDate='30/04/2019';
+$startDate='01/05/2019';
+$endDate='31/05/2019';
 
 $mancanti = array();
 

@@ -19,10 +19,10 @@ set_time_limit ( 0);
 $params = 	array(
 		'_type'=>'Fattura',
 		'data'=>array('<>','01/01/2019','28/02/2019'),
-		'cod_cliente'=>'MAEST',
+		'cod_cliente'=>'PRIMF',
 	);
 $paramsC= Array(
-	'codice'=> 'MAEST',
+	'codice'=> 'PRIMF',
 );
 //print_r($paramsC);
 $cliente= new ClienteFornitore($paramsC);

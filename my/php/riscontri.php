@@ -112,10 +112,10 @@ if (@$_GET['mode']=='print'){
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
-
+/*
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='21/04/19';
-$endDateR='30/04/19';
+$startDateR='01/05/19';
+$endDateR='20/05/19';
 
 
 //martinelli
@@ -192,15 +192,15 @@ $endDateR='30/04/19';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-
+*/
 
 //==============================================================================================================================
 
-/*
+
 //zucchine
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/07/18';
-$endDateR='31/08/18';
+$startDateR='01/01/19';
+$endDateR='18/06/19';
 
 //ortom
 	echo '<h1>Ortomercato</h1>';
@@ -249,7 +249,7 @@ $endDateR='31/08/18';
 	$stampaTotali($test);
 	echo $tabellaF;
 
-*/
+
 //==============================================================================================================================
 /*
 17 CAPPUCCI ROSSI
@@ -290,8 +290,8 @@ $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/12/18','30/04/19'),
-			//'cod_articolo'=>array('=','639'),
+			'ddt_data'=>array('<>','01/06/19','30/06/19'),
+			'cod_articolo'=>array('=','619','619+','619-','19'),
 			//'cod_articolo'=>array('=','639'),
 			//'cod_articolo'=>array('=','843'),
 			//'cod_iva'=>array('=','42',''), 
@@ -328,7 +328,7 @@ $query = "
 			//'cod_cliente'=>array('=','BRUNF'),
 			//'cod_cliente'=>array('=','ABBAS'),
 			//'cod_articolo'=>array('!=','BSEVEN','631FLOW','31FLOW'),
-			'cod_articolo'=>array('=','631FLOW','31FLOW'),
+			//'cod_articolo'=>array('=','631FLOW','31FLOW'),
 			//'cod_articolo'=>array('=','829','629','829-'),
 			//'cod_cliente'=>array('!=','ABBAS','SEVEN'),
 			//'cod_cliente'=>array('!=','SEVEN','TESI','GIAC1','MARTI','BRUNF','NERIO','LAME2'),
@@ -355,8 +355,8 @@ eval ($query);
 	$stampaTotali($test);
 	echo $tabellaF;
 
-
 */
+
 
 
 
