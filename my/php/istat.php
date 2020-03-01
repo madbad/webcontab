@@ -1,7 +1,7 @@
 
 <?php
 include ('./core/config.inc.php');
-
+//error_reporting(-1); //0=spento || -1=acceso
 $today = date("j/n/Y"); 
 if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$today;}
 if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
@@ -80,9 +80,13 @@ $stampaRighe= function ($obj){
 
 
 //==============================================================================================================================
-echo "<table>";
+echo "<table class='borderTable'><tr><td>Cliente</td><td>Colli</td><td>Peso</td><td>Importo</td></tr>";
 $dbClienti=getDbClienti();
 $mercati[]='=';
+global $totColli;
+global $totPeso;
+global $totImporto;
+
 foreach ($dbClienti as $cliente){
 	if (
 			$cliente['__classificazione']=='supermercato' ||
@@ -92,7 +96,7 @@ foreach ($dbClienti as $cliente){
 				\$test=new MyList(
 					array(
 						'_type'=>'Riga',
-						'ddt_data'=>array('<>','12/03/19','12/03/19'),
+						'ddt_data'=>array('<>','01/01/19','31/12/19'),
 						'cod_articolo'=>array('=','21','921','821','621','26','926','826','826-','01F','01S','01SE','01','901','801-','701','801','701S','801S','801F-','03S','03SE','03','903','803-','703','803','703S','803S','03F','803F-','731','631','631FLOW','31FLOW','831-','831','31','931','24','900','05PZ12','05PZ15','05PZ8','05G','05P','805','805-','605','05PL','29','929','829','829-','629','VAS29','729','729-','05','905','VAS05','08P','08G','08','908','808','808-','608','608-','08F','08POL','08TRAD','VAS08','705','705-','705--','08B','908B','36','936','836','836-','20','920','820'),
 						//'cod_cliente'=>".$strMercati.",
 						'cod_cliente'=>'".$cliente['codice']."',
@@ -110,8 +114,18 @@ foreach ($dbClienti as $cliente){
 			echo "<td>".$test->sum('peso_netto')."</td>";
 			echo "<td>".$test->sum('_totImponibileNetto')."</td>";
 			echo "</tr>";
+			global $totColli;
+			global $totPeso;
+			global $totImporto;
+			
+			$totColli +=$test->sum('colli');
+			$totPeso +=$test->sum('peso_netto');
+			$totImporto +=$test->sum('_totImponibileNetto');
+			
 		}
 };
+//number_format ( float $number , int $decimals = 0 , string $dec_point = "." , string $thousands_sep = "," ) 
+echo "<tr style='font-weight:bold'><td>TOTALI</td><td>".number_format($totColli, 2,',','.')."</td><td>".number_format($totPeso, 2,',','.')."</td><td>".number_format($totImporto, 2,',','.')."</td></tr>";
 echo "</table>";
 
 

@@ -3,9 +3,26 @@ include ('./core/config.inc.php');
 
 ?>
 <?php 
-$today = date("j/n/Y"); 
-$startDate='01/05/2019';
-$endDate='31/05/2019';
+
+if (true){
+	$anno = $_GET['anno'];
+	$mese = $_GET['mese'];
+	$giorni = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); // 31
+
+	$today = date("j/n/Y"); 
+	$startDate='01/01/2020';
+	$endDate='31/01/2020';
+
+}else{
+	$anno = date("Y");
+	$mese = date("n")-1;
+	$giorni = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); // 31
+
+	date("Y");
+	$startDate='01/'.$mese.'/'.$anno;
+	$endDate=$giorni.'/'.$mese.'/'.$anno;
+}
+
 
 $mancanti = array();
 
@@ -39,7 +56,8 @@ $test=new MyList(
 	array(
 		'_type'=>'Riga',
 		'ddt_data'=>array('<>',$startDate,$endDate),
-		'cod_articolo'=>array('=','01','03','05','31', '08'),
+		'cod_cliente'=>array('!=','VIOLA','FACCG'),		
+		'cod_articolo'=>array('!=','ASSOLVE','BSEVEN',''),
 		'prezzo'=>array('=','0.001'),
 	)
 );

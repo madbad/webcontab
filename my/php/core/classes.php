@@ -98,7 +98,7 @@ function dbFrom($dbName, $toSelect, $operators){
 	//query string
 	//	$query= "SELECT * FROM ".$dbFile." WHERE F_DATBOL >= #".$startDate."# AND F_DATBOL <= #".$endDate."# ORDER BY F_DATBOL, F_NUMBOL, F_PROGRE ";
 	$query= $toSelect." FROM ".$dbFile." $operators";
-
+//echo $query;
 	//echo '<br>'.$query;
 	$cacheEnabled=TRUE;
 	$isCached=array_key_exists($query, $cache);
@@ -759,6 +759,7 @@ class Fattura extends MyClass{
 		$this->addProp('__datainviopec','');
 		$this->addProp('__datastampa','');
 		$this->addProp('__datastampainterna','');
+		$this->addProp('__nomefilexml','');
 		
 		$this->righe=array();
 
@@ -914,8 +915,10 @@ class Fattura extends MyClass{
 	// funzioni XML :inizio
 	//////////////////////////////
 	public function getXmlFileName(){
-		if($this->nomeFileXml !=''){
-			return $this->nomeFileXml;
+		if(property_exists($this, 'nomeFileXml')){
+			if($this->nomeFileXml !=''){
+				return $this->nomeFileXml;
+			}			
 		}
 		
 		$nomeFile = $GLOBALS['config']->azienda->sigla_paese->getVal();
@@ -928,10 +931,11 @@ class Fattura extends MyClass{
 		return $this->nomeFileXml;
 	}
 	public function getProgressivoInvioSDI(){
-		if($this->progressivoInvioSDI !=''){
-			return $this->progressivoInvioSDI;
+		if(property_exists($this, 'progressivoInvioSDI')){
+			if($this->progressivoInvioSDI !=''){
+				return $this->progressivoInvioSDI;
+			}
 		}
-		
 		
 		/*
 		//conto i file presenti nella directory
@@ -1131,6 +1135,9 @@ class Fattura extends MyClass{
 			//	echo $html;
 			//	var_dump($message);
 				//all seems ok
+				//memorizzo la data di invio
+				$this->__nomefilexml->setVal($this->getXmlFileName());
+				$this->saveSqlDbData();
 				return true;
 			}
 		} catch (phpmailerException $e) {
@@ -2060,7 +2067,7 @@ $test=new MyList(
 
 		//eseguo la query
 		$result=dbFrom($fakeObj->_dbName->getVal(), 'SELECT '.$select, $where.$order);
-		
+//echo 'SELECT '.$select.$where.$order;
 		//debug info 
 		//print_r($condition);
 		//print_r($result);
@@ -2187,8 +2194,19 @@ function leggiFatturaXml ($urlFileFattura){
 			//$urlFileFattura=$openSSLDir.'test.xml.p7m';
 			//$urlFileFattura=$openSSLDir.$_GET['fileUrl'];
 			$fileTemporaneo =$config->openSSLDir.'/test.xml';
-			//echo '"'.$openSSLDirExecutableUrl.'" smime -verify -noverify -in "'.$urlFileFattura.'" -inform DER -out "'.$fileTemporaneo.'"';
+
+			//provo con la modalita normale
 			exec('"'.$openSSLDirExecutableUrl.'" smime -verify -noverify -in "'.$urlFileFattura.'" -inform DER -out "'.$fileTemporaneo.'"', $output, $returnvalue);
+
+			//se non ce l'ho fatta (non esiste il file estratto dalla firma)
+			//provo prima a decodificare da base64
+			if (!file_exists($fileTemporaneo)) {
+				$fileTemporaneo2 =$config->openSSLDir.'/test2.xml';
+				$encodedTxt = base64_decode(file_get_contents($urlFileFattura));
+				$encodedFile = file_put_contents($fileTemporaneo2, $encodedTxt);
+				exec('"'.$openSSLDirExecutableUrl.'" smime -verify -noverify -in "'.$fileTemporaneo2.'" -inform DER -out "'.$fileTemporaneo.'"', $output, $returnvalue);
+			}
+
 			/*
 			echo $urlFileFattura;
 			echo '>>>'. implode($output, '####');
@@ -2205,7 +2223,7 @@ function leggiFatturaXml ($urlFileFattura){
 	if (file_exists($fileTemporaneo)) {
 		$xml = simplexml_load_file($fileTemporaneo);
 	} else {
-		exit('Failed to open: '.$fileTemporaneo);
+		exit('Non sono riuscito ad estrapolare i contenuti dal file: '.$fileTemporaneo.' for '.$urlFileFattura);
 	}
 
 	//load the file as simplexml
@@ -2218,7 +2236,7 @@ function leggiFatturaXml ($urlFileFattura){
 	
 	//load our own stylesheet
 	//$pi     = $node->ownerDocument->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="http://127.0.0.1/webcontab/my/php/fatturaordinaria_v1.2.1.xsl"');
-	$pi     = $node->ownerDocument->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="http://localhost/webcontab/my/php/fatturaordinaria_v1.2.1.xsl"');
+	$pi     = $node->ownerDocument->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="http://192.168.1.110/webcontab/my/php/fatturaordinaria_v1.2.1.xsl"');
 	$firstSibling = $node->parentNode->firstChild;  
 	$result = $node->parentNode->insertBefore( $pi, $firstSibling );
 
@@ -2228,6 +2246,10 @@ function leggiFatturaXml ($urlFileFattura){
 	$xmlDocument->formatOutput = true;
 	//import our old document
 	$xmlDocument->loadXML($xml->asXML());
+	
+	//cancello il file temporanei che usato per la decodifica del p7m
+	unlink('C:\Programmi\EasyPHP-5.3.9\www/webContab/my/php/libs/openssl-1.0.2q-i386-win32/test.xml');
+	unlink('C:\Programmi\EasyPHP-5.3.9\www/webContab/my/php/libs/openssl-1.0.2q-i386-win32/test2.xml');
 	
 	return $xmlDocument;
 

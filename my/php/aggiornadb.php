@@ -18,9 +18,9 @@ MODIFICANDO CON I DATI RELATIVI AL NUOVO ANNO
 //  1   //
 //quale è l'ultimo ddt (data e numero) che ho salvato nel mio database?
 $table="BACKUPRIGHEDDT";
-
+echo $GLOBALS['config']->sqlite->dir.'/myDb.sqlite3'; 
 //select the max date from this year = 2018
-$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2019'"; 
+$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2020'"; 
 $db = new SQLite3($GLOBALS['config']->sqlite->dir.'/myDb.sqlite3');
 $result = $db->query($query);
 $ultimoDdtData = '';
@@ -37,11 +37,11 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 	$ultimoDdtNumero =  $row['NumeroUltimoDdt'];
 	}
 /*
-$ultimoDdtData= "01/01/2019";
+$ultimoDdtData= "01/01/2020";
 $ultimoDdtNumero= "0";
 */
-echo "Ultimo ddt memorizzato è il <br>";
-echo "N. ".$ultimoDdtNumero." del (mm-gg-aaa) ".$ultimoDdtData;
+echo "\n<br>Ultimo ddt memorizzato è il";
+echo "\n<br>N. ".$ultimoDdtNumero." del (mm-gg-aaa) ".$ultimoDdtData;
 //////////
 //  2   //
 //ottieni le righe di tutti i ddt successivi al mio
@@ -73,8 +73,8 @@ $func = function ($obj){
 		$keys[]="'".$key."'";
 		$values[]="'".$value->getVal()."'";
 	}
-	echo "\n".'<br>Sto salvando il ddt ';
-	echo "\n"."N. ".$obj->ddt_numero->getVal()." del (mm-gg-aaa) ".$obj->ddt_data->getVal()." riga ". $obj->numero->getVal();
+	echo "\n<br>".'<br>Sto salvando il ddt ';
+	echo "\n<br>"."N. ".$obj->ddt_numero->getVal()." del (mm-gg-aaa) ".$obj->ddt_data->getVal()." riga ". $obj->numero->getVal();
 
 	$table="'BACKUPRIGHEDDT'";
 	$query ='INSERT INTO '.$table.' ('.implode(",", $keys).')';
@@ -87,7 +87,7 @@ $func = function ($obj){
 	$db->query($query);
 
 };
-echo "Sono state selezionate righe: ". (count($nuoveRighe)-1);
+echo "\n<br>Sono state selezionate righe: ". (count($nuoveRighe)-1);
 $nuoveRighe->iterate($func);
 
 ?>

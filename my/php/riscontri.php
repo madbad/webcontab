@@ -55,7 +55,27 @@ $listaMeloni->iterate(function ($obj){
 	//echo '<br>'.$obj->codice->getVal();
 });
 */
+$listaZucchine=new MyList(
+	array(
+		'_type'=>'Articolo',
+		'descrizione'=>array('LIKE','%ZUCCHIN%'),
+	)
+);
 
+
+$codiciZucchine="'='";
+$arrayCodiciZucchine=array();
+
+$listaZucchine->iterate(function ($obj){
+	global $codiciZucchine;
+	global $arrayCodiciZucchine;
+	
+//	$codiciZucchine[]=$obj->codice->getVal();
+	$codiciZucchine.=",'".$obj->codice->getVal()."'";
+	$arrayCodiciZucchine[] = $obj->codice->getVal();
+	//echo '<br>'.$obj->descrizione->getVal();
+	//echo '<br>'.$obj->codice->getVal();
+});
 
 
 
@@ -112,10 +132,10 @@ if (@$_GET['mode']=='print'){
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
-/*
+
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/05/19';
-$endDateR='20/05/19';
+$startDateR='16/01/20';
+$endDateR='31/01/20';
 
 
 //martinelli
@@ -171,7 +191,7 @@ $endDateR='20/05/19';
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
 			'cod_articolo'=>array('=','05','05P','05G','05PZ8','05PZ15','VAS05'),
 			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG','GIAC1'),
-			'prezzo'=>array('!=','0.001')
+			//'prezzo'=>array('!=','0.001')
 		)
 	);
 	echo $tabellaH;
@@ -192,15 +212,16 @@ $endDateR='20/05/19';
 	$test->iterate($stampaRighe);
 	$stampaTotali($test);
 	echo $tabellaF;
-*/
+
 
 //==============================================================================================================================
 
-
+/*
 //zucchine
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/01/19';
-$endDateR='18/06/19';
+$startDateR='01/11/19';
+$endDateR='30/11/19';
+print_r($arrayCodiciZucchine);
 
 //ortom
 	echo '<h1>Ortomercato</h1>';
@@ -208,7 +229,7 @@ $endDateR='18/06/19';
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','847','47','471421','47714','947'),//ZUCCHINE
+			'cod_articolo'=>$arrayCodiciZucchine,
 			'cod_cliente'=>'SEVEN',
 		)
 	);
@@ -223,8 +244,23 @@ $endDateR='18/06/19';
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','847','47','471421','47714','947'),//ZUCCHINE
+			'cod_articolo'=>$arrayCodiciZucchine,
 			'cod_cliente'=>'ABBAS',
+		)
+	);
+	echo $tabellaH;
+	$test->iterate($stampaRighe);
+	$stampaTotali($test);
+	echo $tabellaF;
+
+//mediglia
+	echo '<h1>Mediglia</h1>';
+	$test=new MyList(
+		array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>$arrayCodiciZucchine,
+			'cod_cliente'=>'LAME2',
 		)
 	);
 	echo $tabellaH;
@@ -238,9 +274,9 @@ $endDateR='18/06/19';
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','847','47','471421','47714','947'),//ZUCCHINE
+			'cod_articolo'=>$arrayCodiciZucchine,
 			'cod_cliente'=>'ABBAS',
-			'cod_cliente'=>array('!=','ABBAS','SEVEN'),
+			'cod_cliente'=>array('!=','ABBAS','SEVEN','LAME2'),
 			//'prezzo'=>array('!=','0.001')
 		)
 	);
@@ -249,7 +285,7 @@ $endDateR='18/06/19';
 	$stampaTotali($test);
 	echo $tabellaF;
 
-
+*/
 //==============================================================================================================================
 /*
 17 CAPPUCCI ROSSI
@@ -284,34 +320,40 @@ foreach ($dbClienti as $cliente){
 		$mercati[]= addslashes($cliente['codice']);
 	}
 };
+//echo $codiciZucchine;
 $strMercati ='array(\''.implode("','",$mercati).'\')';
 //echo "*****(".$strMercati.")*****";
 $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/06/19','30/06/19'),
-			'cod_articolo'=>array('=','619','619+','619-','19'),
+			'ddt_data'=>array('<>','01/01/20','31/01/20'),
+			//'cod_articolo'=>array(".$codiciZucchine."),
+			//'cod_articolo'=>array('==','631FLOW'),			
+			//'cod_articolo'=>array('=','39'),
+			//'cod_articolo'=>array('=','619','619+','619-','19'),
 			//'cod_articolo'=>array('=','639'),
-			//'cod_articolo'=>array('=','843'),
+			//'cod_articolo'=>array('=','640','639'),
 			//'cod_iva'=>array('=','42',''), 
 			//'cod_articolo'=>array('=','03','01'), 
 			//'cod_articolo'=>array('=','100'), //CONF.NATALIZIA
 			//'cod_articolo'=>array('=','36','836'), //SEDANO
 			//'cod_articolo'=>array('=','17'), //CAPPUCCI ROSSI
 			//'cod_articolo'=>array('=','18','818'), //CAPPUCCI CUOR DI BUE
-			//'cod_articolo'=>array('=','819','819','19','619','619+'), //CAPPUCCI
+			'cod_articolo'=>array('=','819','819','19','619','619+'), //CAPPUCCI
 			//'cod_articolo'=>array('=','20','820'),  //VERZE
-			//'cod_articolo'=>array('=','21','821'),  //CAVOLFIORI
-			//'cod_articolo'=>array('=','50','850','650','650+'), //ZUCCHE
+			//'cod_articolo'=>array('=','21','21V','621','821','921'),  //CAVOLFIORI
+			//'cod_articolo'=>array('=','50','850','650','650+','650-'), //ZUCCHE
+			//'cod_articolo'=>array('=','650','650+'), //ZUCCHE
 			//'cod_articolo'=>array('=','65'), //PEPERONCINI PICCANTI
 			//'cod_articolo'=>array('=','8111'), //MELONI
 			//'cod_articolo'=>array('=','849','49','56','856','649','646'), //MELANZANE
 			//'cod_articolo'=>array('=','843','43','57','857'),//CIPOLLE CIPOLLOTTI
 			//'cod_articolo'=>array('=','847','647','47','471421','47714','947'),//ZUCCHINE
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
-			//'cod_articolo'=>array('=','42','942','842','842-'), //PORRI
-			//'cod_articolo'=>array('=','45','845'),  //BIANCO
+			//'cod_articolo'=>array('=','42','942','842','842-','642','642+','642-'), //PORRI
+			//'cod_articolo'=>array('=','45','845','645','645+' ),  //BIANCO
+			//'cod_articolo'=>array('=','645'),  //BIANCO
 			//'cod_articolo'=>array('=','801-','803-','01','03'),
 			//'cod_articolo'=>array('=','11','911','113','111','1113050','1113040','91113040','1114060', '8111','8112','112','9112', '8111-', '9111'),
 			//'cod_articolo'=>array('=','842'),
@@ -324,7 +366,7 @@ $query = "
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
 			//'cod_cliente'=>array('=','SEVEN'),
-			//'cod_cliente'=>array('=','MAEST'),
+			//'cod_cliente'=>array('=','SOGEG'),
 			//'cod_cliente'=>array('=','BRUNF'),
 			//'cod_cliente'=>array('=','ABBAS'),
 			//'cod_articolo'=>array('!=','BSEVEN','631FLOW','31FLOW'),
@@ -334,12 +376,12 @@ $query = "
 			//'cod_cliente'=>array('!=','SEVEN','TESI','GIAC1','MARTI','BRUNF','NERIO','LAME2'),
 			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_articolo'=>array('=','29','VAS29'),
-			//'cod_cliente'=>array('=','FACCG'),
-			'cod_cliente'=>array('=','SEVEN'),
-			//'cod_articolo'=>array('=','19','05','819'),
+			//'cod_cliente'=>array('!=','SEVEN'),
+			//'cod_cliente'=>array('=','SOGEG'),			
+			'cod_cliente'=>array('!=','SEVEN','VIOLA'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
-			//'prezzo'=>array('!=','0.001')
+			//'prezzo'=>array('!=','0.001','0.000')
 		)
 	);
 ";
@@ -355,11 +397,11 @@ eval ($query);
 	$stampaTotali($test);
 	echo $tabellaF;
 
+
+
+
+
 */
-
-
-
-
 
 
 //==============================================================================================================================

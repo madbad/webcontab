@@ -214,11 +214,11 @@ if (@$_POST['mode']=='print'){
     $table.='<tr><td colspan="2">Rimanenze</td></tr>';
     $table.='<tr><td class="rimanenzecellone"></td><td class="rimanenzecelltwo"></td></tr>';
     $table.='<tr><td><b>- pl</b></td><td></td></tr>';
-    $table.='<tr><td><b>- ifco</b></td><td></td></tr>';
-    $table.='<tr><td><b>- vassoi</b></td><td></td></tr>';
+    $table.='<tr><td><b>- Poly</b></td><td></td></tr>';
+    $table.='<tr><td><b>- Pad.</b></td><td></td></tr>';
     $table.='<tr><td>+ pl</td><td></td></tr>';
-    $table.='<tr><td>+ ifco</td><td></td></tr>';
-    $table.='<tr><td>+ vassoi</td><td></td></tr>';
+    $table.='<tr><td>+ Poly</td><td></td></tr>';
+    $table.='<tr><td>+ Pad.</td><td></td></tr>';
     $table.='<tr><td colspan="2" style="border:4px solid #000000">Tot.<br><br><br></td></tr>';
     $table.='</table>';
     $html='';
@@ -260,7 +260,7 @@ if (@$_POST['mode']=='print'){
 	$html.=getArticleTable($params);
 	*/
 	//supermercati
-	$params = array("articles" => array('801-','801F-','601'),
+	$params = array("articles" => array('801','801-','801F-','601'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.3,
@@ -305,7 +305,7 @@ if (@$_POST['mode']=='print'){
 	$html.=getArticleTable($params);
 	*/
 	//supermercati
-	$params = array("articles" => array('803-','803F-','603'),
+	$params = array("articles" => array('803','803-','803F-','603'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.3,
@@ -331,7 +331,7 @@ if (@$_POST['mode']=='print'){
 						//"costoCassa" => 0.47); //POLISTIROLO
 		$html.=getArticleTable($params);
 		// supermercati
-		$params = array("articles" => array('708','808','708-','808-','708--','808--','608','608-'),
+		$params = array("articles" => array('708','808','808+','708-','808-','708--','808--','608','608-','608+'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
@@ -379,7 +379,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.56); //cassa blu
 		$html.=getArticleTable($params);
 		// supermercati
-		$params = array("articles" => array('729','829','729-','829-','629'),
+		$params = array("articles" => array('729','829','729-','829-','629','629-','629+'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
@@ -424,7 +424,7 @@ if (@$_POST['mode']=='print'){
 						"colliPedana" => 104,
 						"costoCassa" => 0.40);
 		$html.=getArticleTable($params);
-		$params = array("articles" => array('731','831','831-','631'),
+		$params = array("articles" => array('731','831','831-','631','631+'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
@@ -440,7 +440,7 @@ if (@$_POST['mode']=='print'){
 						"colliPedana" => 60,
 						"costoCassa" => 0.70);
 		$html.=getArticleTable($params);
-		$params = array("articles" => array('631FLOW'),
+		$params = array("articles" => array('631FLOW','631FLOW6','631FLOW6+'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.0,

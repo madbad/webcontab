@@ -28,6 +28,7 @@ $stampaRighe= function ($obj){
 				//'EURO CHEP',
 	);
 */
+
 	$ifco=array('POLYM 4316',
 				'POLYM 6411',
 				'POLYM 6413',
@@ -75,7 +76,7 @@ $params=array(
 */
 $params=array(
 		'_type'=>'Riga',
-		'ddt_data'=>array('<>','17/02/19','22/02/19'),
+		'ddt_data'=>array('<>','18/09/19','22/09/19'),
 		'cod_cliente'=>array('SEVEN'),
 	);
 

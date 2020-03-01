@@ -22,9 +22,10 @@ include ('./core/config.inc.php');
 $test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/06/17','31/10/17'),
+			'ddt_data'=>array('<>','01/01/20','31/01/20'),
 			//'cod_articolo'=>array('=','847'),
-			'cod_cliente'=>array('=','MARTI'),
+			//'cod_cliente'=>array('=','SEVEN'),
+			'cod_cliente'=>array('=','SOGEG'),
 		)
 	);
 

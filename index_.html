@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button</title>    
+</head>
+<body>
+<element name=”x-choice” extends=”div” constructor=”ChoiceControl”>
+    <template>
+        <div id=”choice”>
+            <div id=”icon” class=”mask”></div>
+            <content select=”h3:first-of-type”></content>
+            <aside>
+                <content select=”*”></content>
+            </aside>
+        </div>
+    </template>
+</element>
+<x-choice value=”semantics”>
+    <h3>Semantics</h3>
+    <p>Giving meaning to structure, semantics are front and…</p>
+</x-choice>
+<x-choice value=”offline-storage”>
+    <h3>Offline & Storage</h3>
+    <p>Web apps can start faster and work even if there is no…</p>
+</x-choice>
+</body>
+</html>

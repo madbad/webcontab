@@ -25,8 +25,8 @@ include ('./core/config.inc.php');
 	<div class="fixedTopRightBar">
 		<form action="./lordi2.php" method="post">
 			<label>Cliente</label><input name="cliente" type="text" value="<?php echo $_POST['cliente']; ?>" autofocus>
-			<br><label>dal</label><input name="dal" type="date" value="<?php echo $_POST['dal']; ?>">
-			<br><label>al</label><input name="al" type="date" value="<?php echo $_POST['al']; ?>">
+			<br><label>dal</label><input name="dal" type="text" value="<?php echo $_POST['dal']; ?>">
+			<br><label>al</label><input name="al" type="text" value="<?php echo $_POST['al']; ?>">
 			<br><input type="submit" value="invia">
 		</form>
 	</div>
@@ -132,19 +132,20 @@ echo '<br><br>';
 	$sqlite=$GLOBALS['config']->sqlite;
 	$table='BACKUPRIGHEDDT';
 	$db = new SQLite3($sqlite->dir.'/myDb.sqlite3');
+	//echo $query;
 	$result = $db->query($query);
 	$sqlResult = array();
 	//echo "***";
 	while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-	//echo "***";
+	//echo "***|";
 		$key =trim($row['ddt_numero'])."#".trim($row['ddt_data'])."#".trim($row['numero'])."#".trim($row['cod_articolo']);
 		//echo '<br> ('.$key.')';
 		$sqlResult[$key] =  $row;
 	}
-/*
-	print_r($sqlResult);
-print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
-*/
+
+	//print_r($sqlResult);
+//print_r(filterArrayByPartialKeyMatch($sqlResult, '3080#11-08-2014#15.0#820'));
+
 	echo '<table class="spacedTable, borderTable">';
 	echo "<tr>";
 		echo "<td>Articolo</td>";

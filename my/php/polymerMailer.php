@@ -1,14 +1,27 @@
 <?php
 include ('./core/config.inc.php');
+//echo $_GET['date'];
+//echo array_key_exists("date",$_GET);
 
+if(array_key_exists('date',$_GET)){
+	if( preg_match('/^[0-9]{2}\/[0-9]{2}\/[0-9]{2}\z/', $_GET['date']) ) {
+		$dataMovimenti = $_GET['date'];
+	}else{
+		exit('Formato data errato!');
+	}
 
-$dataMovimenti = date("d/m/y");
+}else{
+	$dataMovimenti = date("d/m/y");
+}
 //$dataMovimenti = date("22/02/19");
+
+//echo $dataMovimenti;
+//exit('Mi fermo qui stavo provando!');
 
 $riferimentoDDT ='';
 
 /*********************************
-   ESTRAGGO I DATI ODIERNI
+   ESTRAGGO I DATI DELLA DATA INDDICATA
 **********************************/
 $testoFile='';
 
@@ -44,6 +57,7 @@ $stampaRighe= function ($obj){
 @			$elenco[$name]['ddt']['numero'] = $obj->ddt_numero->getFormatted();
 @			$elenco[$name]['modelloCasse'] = $ifcoModel; 
 			$elenco[$name]['numeroCasse'] += $obj->colli->getVal();
+			$elenco[$name]['cod_cliente'] = $obj->cod_cliente->getVal();
 			//exit the foreach cicle
 @			$totali["\nsommaTotale\n------------"]+=$obj->colli->getVal();
 @			$totali[$ifcoModel]+=$obj->colli->getVal();
@@ -65,14 +79,17 @@ $stampaRighe= function ($obj){
 $params=array(
 		'_type'=>'Riga',
 		'ddt_data'=>array('<>',$dataMovimenti,$dataMovimenti),
-		'cod_cliente'=>array('SEVEN'),
+		'cod_cliente'=>array('SEVEN','SOGEG'),
 	);
 
 	
-$cliente = new ClienteFornitore(array('codice'=>'SEVEN'));
+//$cliente = new ClienteFornitore(array('codice'=>'SEVEN'));
 
 $test=new MyList($params);
 $test->iterate($stampaRighe);
+
+
+//print_r($test);
 
 foreach ($elenco as $ddt){
 
@@ -101,9 +118,10 @@ foreach ($elenco as $ddt){
 	$testoFile.= str_replace(' ','',$ddt['ddt']['numero']).'|';
 
 	//7 CODICE CONTROPARTE
-	$testoFile.= 'SEVEN'.'|';
+	$testoFile.= $ddt['cod_cliente'].'|';
 
 	// 8 CONTROPARTE: RAGIONE SOCIALE
+	$cliente = new ClienteFornitore(array('codice'=>$ddt['cod_cliente']));
 	$testoFile.= $cliente->ragionesociale->getVal().'|';
 	
 	// 9 CONTROPARTE: INDIRIZZO

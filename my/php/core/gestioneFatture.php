@@ -100,7 +100,7 @@ if (@$_POST["do"]){
 				header( 'Content-type: text/html; charset=utf-8' );
 				echo $_POST["fatture"];
 				$fatture = json_decode($_POST["fatture"]);
-				print_r($fatture);
+				//print_r($fatture);
 				//mi preparo i parametri di ricerca della fattura
 				$count=0;
 				foreach ($fatture as $fattura){
@@ -177,7 +177,9 @@ if (@$_POST["do"]){
 					
 					$sumatrapdfexe = 'C:\Programmi\SumatraPDF\SumatraPDF.exe';
 					$filename = '"'.$myFt->getPdfFileUrl().'"';
-					$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
+					//$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
+					$printername = '"HPNUOVA"';
+
 					//$printername = '"\\\\SERVER\PDFCreator"';
 					//$drivername = '"Hp LaseJet M1530 MFP Series PCL 6"';
 					//$portname = '"IP_192.168.10.110"';
@@ -193,16 +195,20 @@ if (@$_POST["do"]){
 					exec($printCommand);
 				}
 			}
+			break;
 		case 'generaXml':
 			//needed to prevent a bug flushing output to the broser
 			header( 'Content-type: text/html; charset=utf-8' );
 			//
 			$fatture = json_decode($_POST["fatture"]);
-			//echo $_POST["fatture"];
+			print_r($fatture);
 			//mi preparo i parametri di ricerca della fattura
 			$count=0;
 			foreach ($fatture as $fattura){
 				$count++;
+				
+				//echo "\n<br>************".$count.'/'.count($fatture);
+				
 				$params=array(
 					'numero' => $fattura->numero,
 					'data'   => $fattura->data,
@@ -225,12 +231,49 @@ if (@$_POST["do"]){
 					echo ' del '.$fattura->data;
 				};
 				
+				echo '************'.'done';
 				//flush the output to the browser
 				flush();
 				ob_flush();	
 			}
 			break;
-		break;
+		case 'inviaSDI':
+			//needed to prevent a bug flushing output to the broser
+			header( 'Content-type: text/html; charset=utf-8' );
+			//
+			$fatture = json_decode($_POST["fatture"]);
+			//echo $_POST["fatture"];
+			//mi preparo i parametri di ricerca della fattura
+			$count=0;
+			foreach ($fatture as $fattura){
+				$count++;
+				$params=array(
+					'numero' => $fattura->numero,
+					'data'   => $fattura->data,
+					'tipo'  => $fattura->tipo
+				);
+				//genero il mio oggetto fattura
+				$myFt= new Fattura($params);
+				
+				$GLOBALS['isTempFile']=false;
+				
+				if($myFt->inviaSDI()){
+					echo "\n<br>$count) (OK) - ";
+					echo $fattura->tipo;
+					echo ' '.$fattura->numero;
+					echo ' del '.$fattura->data;
+				}else{
+					echo "\n<br>$count) (ERROR) - ";
+					echo $fattura->tipo;
+					echo ' '.$fattura->numero;
+					echo ' del '.$fattura->data;
+				};
+				
+				//flush the output to the browser
+				flush();
+				ob_flush();	
+			}
+			break;
 	}
 }
 ?>

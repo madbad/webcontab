@@ -82,7 +82,7 @@ if (@$_GET['mode']=='print'){
 		//echo '<br>'.$obj->codice->getVal();
 	});
 	
-	
+//print_r($codicimeloni);	
 	$test=new MyList(
 		array(
 			'_type'=>'Riga',
@@ -94,6 +94,7 @@ if (@$_GET['mode']=='print'){
 			//'cod_cliente'=>array('=','PAROD'),
 			//'cod_cliente'=>array('=','PAROD'),
 			//'cod_cliente'=>array('=','SOGEG'),
+			//'cod_cliente'=>array('=','SEVEN'),
 			//'cod_cliente'=>array('=','CALAN'),
 			//'cod_cliente'=>array('!=','DOROD'),
 			//'cod_cliente'=>array('!=','DOROD'),

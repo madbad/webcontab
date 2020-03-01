@@ -237,6 +237,7 @@ function generaXmlFt($myFt){
 	$dati->emittente->sede->cap = $config->azienda->cap->getVal();
 	$dati->emittente->sede->nazione = "IT";
 
+	$dati->emittente->datiREA = new stdClass();
 	$dati->emittente->datiREA->Ufficio = "VR";
 	$dati->emittente->datiREA->NumeroREA = "185024";
 	$dati->emittente->datiREA->CapitaleSociale = "41600.00";
@@ -336,6 +337,7 @@ function generaXmlFt($myFt){
 	$contaRighe=1;
 	$currentDdt;
 	$dati->riferimentoDdt = array();
+	$causaleMode=false;
 
 	//print_r($myFt->righe);
 	foreach ($myFt->righe as $key => $value) {
@@ -352,6 +354,28 @@ function generaXmlFt($myFt){
 			$currentDdt->righeDelDDT--;
 			continue;
 		}
+		//modalita causale
+		//inizio
+		if($riga->descrizione->getVal() == 'CAUSALE'){
+			$causaleMode=true;
+			$currentDdt->righeDelDDT--;
+			continue;
+		}
+		//fine
+		if($riga->descrizione->getVal() == '******************************' && $causaleMode=true){
+			$causaleMode=false;
+			$currentDdt->righeDelDDT--;
+			continue;
+		}		
+		//durante
+		if($causaleMode==true){
+			$dati->fattura->causale .= $riga->descrizione->getVal().' ';
+			$currentDdt->righeDelDDT--;
+			continue;
+		}
+		//fine modalita causale
+		
+		
 		if((strtoupper(substr($riga->descrizione->getVal(),0,9))==strtoupper('D.d.T. N.'))){
 		}elseif(substr($riga->descrizione->getVal(),0,3)=='DDT'){
 		}elseif(substr($riga->descrizione->getVal(),0,10)=='RIF.NS.DDT'){
@@ -517,7 +541,11 @@ function generaXmlFt($myFt){
 		$dati->fattura->righe[$contaRighe]->importo_totale = formatImporto($riga->imponibile->valore);
 		$dati->fattura->righe[$contaRighe]->colli = ($riga->colli->getVal()*1>0 ? $riga->colli->getFormatted(0) : '');
 		$dati->fattura->righe[$contaRighe]->peso_lordo = formatImporto($riga->peso_lordo->valore);
-		$dati->fattura->righe[$contaRighe]->cod_iva = formatImporto($riga->cod_iva->getVal());
+		if(is_numeric($riga->cod_iva->getVal())){
+			$dati->fattura->righe[$contaRighe]->cod_iva = formatImporto($riga->cod_iva->getVal());		
+		}else{
+			$dati->fattura->righe[$contaRighe]->cod_iva = $riga->cod_iva->getVal();
+		}
 		
 
 		//se si tratta di una riga di sconto
@@ -533,9 +561,13 @@ function generaXmlFt($myFt){
 		}else if (strpos($riga->descrizione->getVal(), 'PROVVIGIONE') !== false) {
 			//ho trovato una riga di provvigione, non si riferisce ad alcun ddt
 			$dati->fattura->righe[$contaRighe]->tipocessioneprestazione ='AC';
+			//per le righe di provvigione forzo la unita di misura a NR perche la marisa non ce la mette mai
+			$dati->fattura->righe[$contaRighe]->unita_misura = 'NR';
 		}else if (strpos($riga->descrizione->getVal(), 'COMMISSIONE') !== false) {
 			//ho trovato una riga di commissione, non si riferisce ad alcun ddt
 			$dati->fattura->righe[$contaRighe]->tipocessioneprestazione ='AC';
+			//per le righe di commissione forzo la unita di misura a NR perche la marisa non ce la mette mai
+			$dati->fattura->righe[$contaRighe]->unita_misura = 'NR';
 		}else{
 			//se non è nessuna delle precedenti
 			//se è una nota di accredito aggiungo i riferimenti del ddt di vendita, della fattura di vendita, e del ddt di reso
@@ -671,12 +703,36 @@ function generaXmlFt($myFt){
 			$last->addChild('Divisa',$dati->fattura->divisa);
 			$last->addChild('Data',$dati->fattura->data);
 			$last->addChild('Numero',$dati->fattura->numero);
+			
+			//calcolo bollo
+			$imponibili=$myFt->calcolaTotaliImponibiliIva();
+			foreach ($imponibili as $codIva =>$val){
+				$iva=new CausaleIva(array('codice'=>(string)$codIva));
+				//$codIva
+				$descrizioneIva=$iva->descrizione->getVal();
+				$imponibileIva=$val['imponibile'];
+				$importoIva=$val['importo_iva'];
+				
+				if($codIva=='E15'){
+					//echo "\n\n\n\n".$imponibileIva."\n\n\n";
+					if($imponibileIva > 77.47){
+						$sezBollo = $last->addChild('DatiBollo');
+						$sezBollo->addChild('BolloVirtuale','SI');
+						$sezBollo->addChild('ImportoBollo','2.00');						
+					}
+				}
+			}
+
+			
+			
 			$last->addChild('ImportoTotaleDocumento',$dati->fattura->importo); //per il totale documente considero il valore assoluto (nelle note di accredito mi uscia a meno)
 			$last->addChild('Causale','Contributo CONAI assolto ove dovuto.');
 			$last->addChild('Causale',"Assolve gli obblighi di cui all'articolo 62, comma 1, del decreto legge 24 gennaio 2012, n. 1, convertito, con modificazioni, dalla legge 24 marzo 2012, n. 27");
-			/* non abbligatorio, lasciamo stare?
-			$last->addChild('Causale',$dati->fattura->causale);
-			*/
+
+			if($dati->fattura->causale!=''){
+				$last->addChild('Causale',$dati->fattura->causale);				
+			}
+
 			
 			/*va aggiunto il riferimento ad altre fatture*/
 			/*DatiFattureCollegate*/
@@ -749,8 +805,13 @@ function generaXmlFt($myFt){
 				$last->addChild('UnitaMisura',		$riga->unita_misura);
 				$last->addChild('PrezzoUnitario',	$riga->prezzo);
 				$last->addChild('PrezzoTotale',		$riga->importo_totale);
-				$last->addChild('AliquotaIVA',		$riga->cod_iva);
-
+				
+				if($riga->cod_iva == 'E15'){
+					$last->addChild('AliquotaIVA','0.00');
+					$last->addChild('Natura','N1');
+				}else{
+					$last->addChild('AliquotaIVA', $riga->cod_iva);
+				}
 		}
 		
 		
@@ -767,13 +828,32 @@ function generaXmlFt($myFt){
 			$descrizioneIva=$iva->descrizione->getVal();
 			$imponibileIva=$val['imponibile'];
 			$importoIva=$val['importo_iva'];
-
-			$last = $xml->FatturaElettronicaBody->DatiBeniServizi->addChild('DatiRiepilogo');
-			$last->addChild('AliquotaIVA',formatImporto($codIva));
-			$last->addChild('ImponibileImporto',formatImporto($imponibileIva));
-			$last->addChild('Imposta',formatImporto($importoIva));
-			$last->addChild('EsigibilitaIVA','I');//immediata... potrebbe essere differita
 			
+			if($codIva=='E15'){
+				/*
+			  <DatiRiepilogo>
+				<AliquotaIVA>0.00</AliquotaIVA>
+				<Natura>N6</Natura>
+				<ImponibileImporto>63.00</ImponibileImporto>
+				<Imposta>0.00</Imposta>
+				<RiferimentoNormativo>non soggetto art.74 c7 DPR633/72 inv.c.</RiferimentoNormativo>
+			  </DatiRiepilogo>	
+			  */
+				$last = $xml->FatturaElettronicaBody->DatiBeniServizi->addChild('DatiRiepilogo');
+				$last->addChild('AliquotaIVA','0.00');
+				$last->addChild('Natura','N1');
+				$last->addChild('ImponibileImporto',formatImporto($imponibileIva));
+				$last->addChild('Imposta','0.00');
+				$last->addChild('EsigibilitaIVA','I');//immediata... potrebbe essere differita
+				$last->addChild('RiferimentoNormativo','Escluso Art.15');	
+			}else{
+
+				$last = $xml->FatturaElettronicaBody->DatiBeniServizi->addChild('DatiRiepilogo');
+				$last->addChild('AliquotaIVA',formatImporto($codIva));
+				$last->addChild('ImponibileImporto',formatImporto($imponibileIva));
+				$last->addChild('Imposta',formatImporto($importoIva));
+				$last->addChild('EsigibilitaIVA','I');//immediata... potrebbe essere differita
+			}
 		}
 		
 		//
@@ -836,13 +916,14 @@ function generaXmlFt($myFt){
 
 
 
-
 //validate the XML file before showin it
 
 	if (!$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/Schema_del_file_xml_FatturaPA_versione_1.2.xsd')) {
 		error_reporting(-1);
 		$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/Schema_del_file_xml_FatturaPA_versione_1.2.xsd');
 		print '<b>DOMDocument::schemaValidate() Generated Errors!</b>';
+		
+		echo $xmlDocument->saveXML();
 	}else{
 		//save the file
 		//$xmlDocument->save($myFt->getXmlFileUrl().'.bozza');

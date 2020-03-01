@@ -10,13 +10,36 @@
 include ('./core/config.inc.php');
 set_time_limit ( 0);
 
+
+
+
+
+//ricavo dalla lista precedente gli "oggetti" cliente
+$dbClienti=new MyList(
+	array(
+		'_type'=>'ClienteFornitore',
+		'codice'=>array('!=',''),
+	)
+);
+
+//creo un nuovo array che ha per "indice" il codice cliente in modo da rendere più semplice ritrovare "l'oggetto" cliente
+$dbClientiWithIndex = array();
+$dbClienti->iterate(function($myCliente){
+	global $dbClientiWithIndex;
+	$codcliente = $myCliente->codice->getVal();
+	$dbClientiWithIndex[$codcliente]= $myCliente;
+});
+//print_r($dbClientiWithIndex);
+
+
+
 $fatturato= array();
 
 //ottengo la lista fatture
 $test=new MyList(
 	array(
 		'_type'=>'Fattura',
-		'data'=>array('<>','02/04/2018','30/05/2018'),
+		'data'=>array('<>','01/01/2019','31/07/2019'),
 		'_autoExtend'=>'1',
 		//'_select'=>'numero,data,cod_cliente,tipo' //this was a try to optimize the select statement but gives no performance increase... It is even a little bit slower
 		//'cod_cliente'=>'SEVEN'
@@ -25,6 +48,7 @@ $test=new MyList(
 
 //ottengo una lista dei codici clienti 
 //(mi serve per creare una cache degli oggetti cliente in modo da non dover fare poi una query per ogni singolo oggetto cliente)
+
 $codiciCliente =array('=');
 $test->iterate(function($obj){
 	global $codiciCliente;
@@ -45,6 +69,7 @@ function td($txt){
 	$html.= '<td>'.$txt.'</td>';
 
 }
+/*
 //creo un nuovo array che ha per "indice" il codice cliente in modo da rendere più semplice ritrovare "l'oggetto" cliente
 $dbClientiWithIndex = array();
 $dbClienti->iterate(function($myCliente){
@@ -52,7 +77,7 @@ $dbClienti->iterate(function($myCliente){
 	$codcliente = $myCliente->codice->getVal();
 	$dbClientiWithIndex[$codcliente]= $myCliente;
 });
-
+*/
 //stampo la lista delle fatture
 /*
 $html='<table class="borderTable spacedTable">';
@@ -85,8 +110,8 @@ print_r($fatturato);
 $date_start='2018-01-01';
 $date_end='2018-03-31';
 */
-$date_start='2015-01-01';
-$date_end='2018-12-31';
+$date_start='2019-01-01';
+$date_end='2019-12-31';
 
 $result = dbFrom('RIGHEFT', 'SELECT sum(F_IMPONI) AS IMPONIBILE, F_CODCLI', "WHERE F_DATFAT >= #".$date_start."# AND F_DATFAT <= #".$date_end."# GROUP BY F_CODCLI");
 //PRINT_R($result);
@@ -109,30 +134,29 @@ function array_orderby()
 $sorted = array_orderby($result, 'IMPONIBILE', SORT_DESC);
 echo $date_start ,' => ';
 echo $date_end."<br>\n";
-echo '<table>';
+echo '<table class="borderTable">';
+$totaleFatturatoPeriodo = 0;
 foreach ($sorted as $item){
-$cli=new ClienteFornitore(
-	array(
-		'_type'=>'ClienteFornitore',
-		//'tipo'=>array('<>',''),
-		//'cod_banca'=>array('!=','01','02','09','10'),/*ELENCA TUTTI I CLIENTI CHE HANNO UN CODICE BANCA CHE NON è TRA LE NOSTRE CORRENTI*/
-		'codice'=>array('=',$item['F_CODCLI']),
-		//'cod_banca'=>array('=','04'),
-		'_autoExtend'=>'1',
-		)
-);
-$cli->autoExtend();
-//print_r($cli);
+	global $dbClientiWithIndex;
+	global $totaleFatturatoPeriodo;
+$cli=$dbClientiWithIndex[$item['F_CODCLI']];
 
+//print_r($cli);
+	$totaleFatturatoPeriodo+= $item['IMPONIBILE'];
 //	echo "<TR><td>".$item['F_CODCLI']."</td><td style='text-align:right;'>".str_replace(".",",",round($item['IMPONIBILE'],2))."</td></TR>";
 	echo "<TR><td>".$item['F_CODCLI']."</td><td style='text-align:right;'>".str_replace(".",",",round($item['IMPONIBILE'],2))."</td>";
 	echo "<td>".$cli->ragionesociale->getVal()."</td>";
 	echo "<td>".$cli->cod_iva->getVal()."</td>";
-	echo "<td>".$cli->cod_fiscale->getVal()."</td>";
-	echo "<td>".$cli->sigla_paese->getVal()."</td>";
+	echo "<td>".$cli->via->getVal()."</td>";	
+	echo "<td>".$cli->paese->getVal()."</td>";	
+	echo "<td>".$cli->citta->getVal()."</td>";	
+	echo "<td>".$cli->p_iva->getVal()."</td>";
+//	echo "<td>".$cli->cod_fiscale->getVal()."</td>";
+//	echo "<td>".$cli->sigla_paese->getVal()."**</td>";
 	echo "</tr>";
 }
 echo '</table>';
+echo 'Totale:'.str_replace(".",",",round($totaleFatturatoPeriodo,2))
 ?>
 
 </body>

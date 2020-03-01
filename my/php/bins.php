@@ -62,7 +62,7 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$mediaCollo.'</td>';
 		echo '<td>'.$bins.'</td>';
 		echo '<td>'.$casse.'</td>';
-		echo '<td><a href="http://localhost/webContab/my/php/core/gestioneDdt.php?numero='.$obj->ddt_numero->getVal().'&data='.$obj->ddt_data->getVal().'&cod_causale=V&do=visualizza">vedi</a></td>';
+		echo '<td><a href="./core/gestioneDdt.php?numero='.$obj->ddt_numero->getVal().'&data='.$obj->ddt_data->getVal().'&cod_causale=V&do=visualizza">vedi</a></td>';
 		echo '</tr>';
 	};
 	$stampaTotali= function ($obj,$sommaBins,$sommaCasse){

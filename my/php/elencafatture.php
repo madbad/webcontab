@@ -249,6 +249,88 @@
 		// Check for new content from the server every 0.5 seconds
 		var interval = setInterval(statusUpdate, 500);
 	}
+	function inviaSDI(){
+		var fatture = document.querySelectorAll("input:checked");
+		var infobox = document.querySelector("#infobox");
+		var localinfobox = document.querySelector("#localinfobox");
+		var serverinfobox = document.querySelector("#serverinfobox");
+		var spinner = document.querySelector("#infobox");
+		var elencoFatture=[];
+		var confirmMessage='';
+		
+		for (var i = 0; i < fatture.length; ++i) {
+			//console.log(fatture[i].dataset.json);
+			var oFattura = JSON.parse(fatture[i].dataset.json);
+			//console.log(oFattura);
+			confirmMessage += "\n"+oFattura.tipo+" "+oFattura.numero+" del "+oFattura.data+" - "+oFattura.cliente;
+			
+			//confirmMessage+= "\n"+oFattura.tipo;
+			elencoFatture[i]= JSON.parse(fatture[i].dataset.json);
+			delete elencoFatture[i].cliente; //to prevent trouble with strange chars (& etc..) on json parsing on server side
+		}
+		
+		// chiedo conferma prima di proseguire
+		if(!confirm ("Si desidera veramente generare i file XML per le seguenti \n"+fatture.length+"\n fatture?\n\n"+confirmMessage)){
+			return;
+		}
+		
+		serverinfobox.innerHtml='';
+		localinfobox.innerHTML ='Invio n.<b>'+fatture.length+'<b> files XML!';
+		spinner.classList.add('spinner');
+		infobox.classList.remove('hidden');
+		
+		//una stringa json che identifica tutte le fatture da inviare
+		var jsonList=JSON.stringify(elencoFatture);
+		
+		//SEND THE REQUEST TO THE SERVER
+		var xmlhttp;
+		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}else{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		//cosa faccio quando la richiesta è finita?
+		xmlhttp.onreadystatechange=function(){
+			//request finished succefully
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				serverinfobox.innerHTML = xmlhttp.responseText;
+				localinfobox.innerHTML += '<br><B>DONE!!</B>';
+				spinner.classList.remove('spinner');
+				clearInterval(interval);
+				infobox.querySelector("button").classList.remove('hidden');
+				infobox.querySelector("button").onclick=function (){
+					infobox.classList.add('hidden');
+					infobox.querySelector("button").classList.add('hidden');
+					infobox.querySelector("button").onclick=function(){};
+				}
+			}
+			//request still pending but some data is available
+			if(xmlhttp.readyState == 3) {
+				serverinfobox.innerHTML = xmlhttp.responseText;
+			}
+		}
+		//get the string to append to the url to have anticipo fatture enabled
+		var strAntFt=getAnticipoFattureParams();
+		
+		//xmlhttp.open("POST","./wait.php",true);
+		xmlhttp.open("POST","./core/gestioneFatture.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+		//il mio url dovrebbe essere così
+		//http://localhost/webContab/my/php/core/gestioneFatture.php?numero=%20%20%20%20%20164&data=06-03-2019&tipo=F&do=generaXml
+		
+		xmlhttp.send("do=inviaSDI&fatture="+jsonList);
+		console.log("do=inviaSDI&fatture="+jsonList);
+		// function to update the infobox with the server reply
+		function statusUpdate() {
+			//console.log('Update');
+			serverinfobox.innerHTML = xmlhttp.responseText;
+		}
+		 
+		// Check for new content from the server every 0.5 seconds
+		var interval = setInterval(statusUpdate, 500);
+	}
 	function selectAll(){
 		var fatture = document.querySelectorAll("input[type=checkbox]");
 		for (var i = 0; i < fatture.length; ++i) {
@@ -360,6 +442,7 @@
 	  <span class="dropItem">Ft Elettronica</span>
 	  <div class="dropdownMenu-content">
 		<a href="javascript:generaXml()">Genera XML</a>
+		<a href="javascript:inviaSDI()">Invia SDI</a>
 	  </div>
 	</div>
 	<div class="dropdownMenu">
@@ -467,7 +550,7 @@ $test->iterate(function($obj){
 	$dataInvioPec=$obj->__datainviopec->getVal();
 	$dataStampaPerDestinatario=$obj->__datastampa->getVal();
 	$dataStampaInterna=$obj->__datastampainterna->getVal();
-
+	$nomeFileXmlSDI = $obj->__nomefilexml->getVal();
 	
 	$tipo=$obj->tipo->getVal();
 	$cliente = $dbClientiWithIndex[$obj->cod_cliente->getVal()];
@@ -550,16 +633,20 @@ $temp.='<br>RAGSOC:'.$cliente->__ragionesociale->getVal();
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
 	
-	if($cliente->__SDIcodice->getVal()=='' ||  ($cliente->__SDIcodice->getVal()=='' && $cliente->__SDIpec->getVal()=='')){
+	if($cliente->__SDIcodice->getVal()=='' && $cliente->__SDIpec->getVal()==''){
 		$html.= '<td style="background-color:red">AnagraficaIncompleta:<br>Mancano codice SDI o PEC<br>';
 		$html.= $link.'&do=generaXml">Genera XML</a><br>';
 
-		}else if($cliente->__ragionesociale->getVal()==''){
+	}else if($cliente->__ragionesociale->getVal()==''){
 		$html.= $link.'&do=inviaSDI">AnagraficaIncompleta:<br>Manca la ragione sociale/dati anagrafici<br>';
 		$html.= $link.'&do=generaXml">Genera XML</a><br>';
 	}else{
-		$html.= '<td style="background-color:#66ff00;">'.$link.'&do=generaXml">Genera XML'.$temp.'</a><br>';
-		$html.= $link.'&do=inviaSDI">Invio al SDI</a></td>';
+		if($nomeFileXmlSDI!=''){
+			$html.= '<td style="background-color:#007d02">SDI file: <br>'.$nomeFileXmlSDI.'.</td>';			
+		}else{
+			$html.= '<td style="background-color:#6eff14;">'.$link.'&do=generaXml">Genera XML</a><br>';
+			$html.= $link.'&do=inviaSDI">Invio al SDI</a></td>';				
+		}
 	}
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';

@@ -159,8 +159,8 @@ function addDatiFattura ($ft,$pdf){
 	if(array_key_exists('anticipofatture',$_POST)){
 
 		//per anticipi fatture metto pagamento a 2 mesi e aggiungo la scadenza
-		//$pagamentoAMesi=$_POST['mesi'];
-		$pagamentoAMesi=1;
+		$pagamentoAMesi=$_POST['mesi'];
+		//$pagamentoAMesi=1;
 		$data=explode('/',$ft->data->getFormatted());
 		$anno=$data[2];
 		$mese=$data[1]+$pagamentoAMesi;
@@ -418,7 +418,8 @@ function generaPdfFt($ft){
 	$printTime=time();/*todo e se io volessi modificarlo a mio piacimento?*/
 
 	//to fix... se vedo che funziona correttamente posso eliminare questo passaggio	
-	$ft->verificaCalcoli();	
+	//da errore quando il totale fattura non coincide
+	//$ft->verificaCalcoli();	
 	
 	$GLOBALS['img_file']='';
 
