@@ -106,18 +106,15 @@ $dbClienti=getDbClienti();
     <head>
         <title>WebContab Calcolo costi</title>
         <meta charset="utf-8">
-		
-		<!--ExtJs-->
-		<script src="./../js/ext.js/ext-all.js" type="text/javascript"></script>
-
-		<link href="./../js/ext.js/resources/css/ext-all.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript">
-		Ext.require(['*']);
-		</script>
- 		<script src="./../js/ext.js/locale/ext-lang-it.js" type="text/javascript"></script>
-
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
+		<style>
+		body{
+			color: black;
+			font-size: 12px;
+			font-family: tahoma,arial,verdana,sans-serif;
+		}
+		</style>
     </head>
      <body>
 	<?php
@@ -129,77 +126,67 @@ $dbClienti=getDbClienti();
 	if(@$_POST['endDateR']){$endDateR=$_POST['endDateR'];}else{$endDateR=$today;}
 	  
 	?>
+<style>
+.dateform{
+	border: 1px solid #00a3f5;
+padding: 0.2em;
 	
-	<span class="hideOnPrint" id="myForm">
-	</span>
-	<script>
-		Ext.create('Ext.form.Panel', {
-			//renderTo: Ext.getBody(),
-			renderTo: document.getElementById('myForm'),
-			name: 'input',
-			method: 'POST',
-			layout: {
-    type: 'vbox',
-    align: 'right'
-},
-width:350,
-height:230,
-			url: './calcoloCosti.php',
-			standardSubmit: true,
-			bodyStyle: 'padding:10px',
-			title: 'Selezione parametri',
-			items: [{
-				xtype: 'hiddenfield',
-				name: 'mode',
-				value: 'print'
-			}, {
-				xtype: 'datefield',
-				format: 'm-d-Y',
-				anchor: '100%',
-				fieldLabel: 'From',
-				name: 'startDate',
-				value: '<?php echo $startDate ?>'  // defaults to today
-			}, {
-				xtype: 'datefield',
-				format: 'm-d-Y',
-				anchor: '100%',
-				fieldLabel: 'To',
-				name: 'endDate',
-				value: '<?php echo $endDate ?>' // defaults to today
-			}, {
-				xtype: 'datefield',
-				format: 'm-d-Y',
-				anchor: '100%',
-				fieldLabel: 'From (R)',
-				name: 'startDateR',
-				value: '<?php echo $startDateR ?>'  // defaults to today
-			}, {
-				xtype: 'datefield',
-				format: 'm-d-Y',
-				anchor: '100%',
-				fieldLabel: 'To (R)',
-				name: 'endDateR',
-				value: '<?php echo $endDateR ?>'  // defaults to today
-			}, {
-				xtype: 'checkboxfield',
-				boxLabel  : 'Includi radicchi',
-				name: 'extraProducts',
-				checked   : <?php if(@$_POST['extraProducts']) {echo 'true';}else{echo 'false';}  ?>,
+}
+.dateformtitle{
+	background-color: #00a3f5;
+	width:100%;
+	padding:0.5em;	
+	display:inline-block;
+	font-size:1.5em;
+}
+.dateselector{
+	padding:0.3em;	
+	font-size:1.2em;	
+	
+}
+.dateselectordescription{
+	width:10em;
+	display:inline-block;
+	padding:0.8em;	
+}
+dateselectorcheckbox{
+	font-size:2em;
+	padding:0.3em;
+	transform: scale(2);
+	
+}
+</style>
+<form action="./calcoloCosti.php" class="dateform hideOnPrint" method="post"> 
+<span class="dateformtitle">Selezione parametri</span>
+<br> <span class="dateselectordescription">From:</span>
+<input class="dateselector" type="date" id="startDate" name="startDate" value="<?php echo $startDate ?>">
+<br> <span class="dateselectordescription">to:</span>
+<input class="dateselector" type="date" id="endDate" name="endDate" value="<?php echo $endDate ?>">
+<br> <span class="dateselectordescription">From (R):</span>
+<input class="dateselector" type="date" id="startDateR" name="startDateR" value="<?php echo $startDateR ?>">
+<br> <span class="dateselectordescription">to (R):</span>
+<input class="dateselector" type="date" id="endDateR" name="endDateR" value="<?php echo $endDateR ?>">
+<br>
+<input class="dateselectorcheckbox" type="checkbox" id="extraProducts" name="extraProducts" style="padding:2em;"><label for="extraProducts" class="dateselectorcheckbox" <?php if(@$_POST['extraProducts']){echo 'checked';}?>> Includi radicchi</label>
+<br>
+<input name="mode" value="print" style="display: none;">
 
-			}],
-			// Reset and Submit buttons
-			buttons: [{
-				text: 'Submit',
-				handler: function() {
-					var form = this.up('form').getForm();
-					form.submit();
-				}
-			}],
-		});
-	</script>
+<input type="submit" value="Submit" style="padding:1em;width:20em;">
+</form>
+<script>
+if(document.getElementById('startDate').value==""){
+	
 
-<span>
+	var myDate = new Date();
 
+	
+	document.getElementById('startDate').valueAsDate = myDate;
+	document.getElementById('endDate').valueAsDate = myDate;
+	document.getElementById('startDateR').valueAsDate = myDate;
+	myDate.setDate(myDate.getDate() -1);	
+	document.getElementById('endDateR').valueAsDate = myDate;
+}
+</script>
 <?php
 /*
 $costoPolistirolo3050
@@ -318,7 +305,7 @@ if (@$_POST['mode']=='print'){
     if(@$_POST['extraProducts']){
         //$html.='<div style="page-break-before: always"></div>';
 		$html.="</div><div class='tableContainer'>";
-        $html.="<h1>Tondo</h1>";
+        $html.="<h1>CH</h1>";
 //chioggia
 		// mercato
 		$params = array("articles" => array('08','08B','08F','08G','08P','08POL','08PZ11','08TRAD'),
@@ -366,7 +353,7 @@ if (@$_POST['mode']=='print'){
         $html.=$table;
   
 		$html.="</div><div class='tableContainer'>";
-        $html.="<h1>Lungo</h1>";
+        $html.="<h1>TV</h1>";
 //treviso
 		// mercato
 		$params = array("articles" => array('29'),
@@ -414,7 +401,7 @@ if (@$_POST['mode']=='print'){
   
         //$html.='<div style="page-break-before: always"></div>';
 		$html.="</div><div class='tableContainer'>";
-        $html.="<h1>P.di Zucchero</h1>";
+        $html.="<h1>PDZ</h1>";
 //pan di zucchero
 		$params = array("articles" => array('31'),
 						"startDate" => $startDateR,
@@ -451,7 +438,7 @@ if (@$_POST['mode']=='print'){
 		$html.=$table;
 
 		$html.="</div><div class='tableContainer'>";
-        $html.="<h1>Semil.</h1>";
+        $html.="<h1>VR</h1>";
 //verona
 		// mercato
 		$params = array('articles' => array('05','05G','05P','05PL','05PZ12','05PZ1215','05PZ15','05PZ8'),
