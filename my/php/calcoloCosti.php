@@ -182,9 +182,9 @@ if(document.getElementById('startDate').value==""){
 	
 	document.getElementById('startDate').valueAsDate = myDate;
 	document.getElementById('endDate').valueAsDate = myDate;
-	document.getElementById('startDateR').valueAsDate = myDate;
-	myDate.setDate(myDate.getDate() -1);	
 	document.getElementById('endDateR').valueAsDate = myDate;
+	myDate.setDate(myDate.getDate() -1);	
+	document.getElementById('startDateR').valueAsDate = myDate;
 }
 </script>
 <?php
