@@ -527,6 +527,7 @@ function generaPdfFt($ft){
 			//var_dump($descrizone2);
 			if($descrizione2!=''){
 				$ft->html.= MyOwnRow($pdf,'',$descrizione2,'','','','','','','' );
+				$contaRighe++;
 			}
 
 			//descrizione lunga
@@ -537,6 +538,7 @@ function generaPdfFt($ft){
 					if(strlen($rigaL)>1){
 						//var_dump($rigaL);
 						$ft->html.= MyOwnRow($pdf,'',$rigaL,'','','','','','','' );
+						$contaRighe++;
 					}
 				}
 			}

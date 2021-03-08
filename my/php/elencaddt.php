@@ -70,6 +70,12 @@ $test->iterate(function($obj){
 	$codiciCliente[$codiceCliente]= $codiceCliente;
 });
 
+if(count($codiciCliente)<2){
+	echo $html;
+	echo '<br><h2><center>Nessun ddt per questa data</center></h2>';
+	exit();
+	
+}
 
 /////////////////////////////////////////
 //per i clienti

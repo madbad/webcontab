@@ -5,6 +5,20 @@ body{
 	font-size:1em;
 }
 
+.printed {
+	color:#002863;
+}
+.notprinted {
+	color:#ba2106;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
 /*###### PAGE #####*/
 @PAGE landscape {size: landscape;}
 @page rotated { size : landscape }
@@ -343,3 +357,41 @@ display: inline-block;
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 } 
+
+
+.costiinput{
+    width: 100%;
+    font-size: 2 !important;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    height: 2.0em;
+    display: block;
+    text-align:right;
+}
+.costiinput:hover{
+	background-color:yellow;
+}
+.totalepeso{
+	font-size:2.5em;
+}
+.nobleft{
+	border-left:1px solid white !important;
+}
+.nobright{
+	border-right:1px solid white !important;
+}
+.nobtop{
+	border-top:0px !important;
+}
+.nobbottom{
+	border-bottom:0px !important;
+}
+
+.alignRight{
+	text-align:right;
+}
+.alignLeft{
+	text-align:left;
+
+}

@@ -9,7 +9,7 @@ $stampaRighe= function ($obj){
 	echo '<td>'.$obj->codice->getVal().'</td>';
 	echo '<td>'.$obj->descrizione->getVal().'</td>';
 	echo '<td>'.$obj->descrizione2->getVal().'</td>';
-	echo '<td><pre>'.$obj->descrizionelunga->getVal().'</pre></td>';
+	echo '<td><!--<pre>-->'.$obj->descrizionelunga->getVal().'<!--</pre>--></td>';
 	echo '<td>'.$obj->cod_iva->getVal().'</td>';
 //	echo '<td><pre>'.str_replace("ì","",$obj->descrizionelunga->getVal()).'</pre></td>';
 	echo '</tr>';

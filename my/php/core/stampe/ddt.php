@@ -6,6 +6,25 @@
 	e lei ne prepara la stampa
 ----------------------------------------------------------------------------------------------------------
 */
+
+function MyOwnDdtRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8){
+	$righeCorpoUsate++;
+	$toRigth='style="text-align:rigth;" align="rigth"';
+
+	$html= "<tr>";
+	$html.= "<td width='70px;'>$a1</td>"; //ARTICOLO
+	$html.= "<td  width='245px;'>$a2</td>"; //DESCRIZIONE
+	$html.= "<td width='40px;' $toRigth>$a3</td>"; //PREZZO
+	$html.= "<td width='25px;' $toRigth>$a4</td>"; //UM
+	$html.= "<td width='40px;' $toRigth>$a5</td>"; //COLLI
+	$html.= "<td width='56px;' $toRigth>$a6</td>"; //LORDO
+	$html.= "<td width='56px;' $toRigth>$a7</td>"; //NETTO
+	$html.= "<td  width='35px;' $toRigth>$a8</td>"; //TARA
+	$html.= "</tr>";
+	return $html;
+}
+
+
 /*
 TODO:
 - verifica per più di una pagina
@@ -508,8 +527,8 @@ buildEmptyModule($pdf);
 	}else if($ddt->cod_causale->getVal()=='D'){
 		//si tratta di "redo da c/deposito" "c/riparazone" "omaggio" etc...
 		//$causale='RESO DA C/DEP.TO';
-		//$causale='OMAGGIO';
-		$causale='RESO MERCE N/C';
+		$causale='OMAGGIO';
+		//$causale='RESO MERCE N/C';
 	}
 	$pdf->Text(18, 58+8, $causale);
 
@@ -541,22 +560,7 @@ buildEmptyModule($pdf);
 	//**********************************************************
 	//**********************************************************
 	$righeCorpoUsate=0;
-	function MyOwnDdtRow($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8){
-		$righeCorpoUsate++;
-		$toRigth='style="text-align:rigth;" align="rigth"';
 
-		$html= "<tr>";
-		$html.= "<td width='70px;'>$a1</td>"; //ARTICOLO
-		$html.= "<td  width='245px;'>$a2</td>"; //DESCRIZIONE
-		$html.= "<td width='40px;' $toRigth>$a3</td>"; //PREZZO
-		$html.= "<td width='25px;' $toRigth>$a4</td>"; //UM
-		$html.= "<td width='40px;' $toRigth>$a5</td>"; //COLLI
-		$html.= "<td width='56px;' $toRigth>$a6</td>"; //LORDO
-		$html.= "<td width='56px;' $toRigth>$a7</td>"; //NETTO
-		$html.= "<td  width='35px;' $toRigth>$a8</td>"; //TARA
-		$html.= "</tr>";
-		return $html;
-	}
 
 	$html = '<table style="border:0px solid #000000;margin:0px;padding:5px;">';
 	foreach ($ddt->righe as $key => $value) {
@@ -650,4 +654,6 @@ buildEmptyModule($pdf);
 
 	@$pdf->Output($GLOBALS['config']->pdfDir."/ddt/".$nomefile, 'F');	
 }
+
+
 ?>

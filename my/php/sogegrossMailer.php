@@ -1,6 +1,7 @@
 <?php
 include ('./core/config.inc.php');
 set_time_limit ( 0);
+include ('./updateContab.php');
 
 $today = date('d/m/Y');
 
@@ -8,7 +9,7 @@ $ddtodierni=new MyList(
 	array(
 		'_type'=>'Ddt',
 		'data'=>array('=',$today),
-		'cod_destinatario'=>array('=','SOGEG'),
+		'cod_destinatario'=>array('=','SOGEG',''),
 		'cod_causale' => array('!=','D')
 	)
 );

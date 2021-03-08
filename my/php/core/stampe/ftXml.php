@@ -293,16 +293,35 @@ function generaXmlFt($myFt){
 //	$dati->fattura = new stdClass();
 	/*todo: controlla per altriu tipi: acconto, nota debito e simili*/
 	/* todo:altri tipi di fattura
-	TD01  Fattura 
-	TD02  Acconto/Anticipo su fattura 
-	TD03  Acconto/Anticipo su parcella 
-	TD04  Nota di Credito 
-	TD05  Nota di Debito 
-	TD06  Parcella 
- 	*/
+		TD01		fattura
+		TD02		acconto/anticipo su fattura
+		TD03		acconto/anticipo su parcella
+		TD04		nota di credito
+		TD05		nota di debito
+		TD06		parcella
+		TD16		integrazione fattura reverse charge interno
+		TD17		integrazione/autofattura per acquisto servizi dall'estero
+		TD18		integrazione per acquisto di beni intracomunitari
+		TD19		integrazione/autofattura per acquisto di beni ex art.17 c.2 DPR 633/72
+		TD20		autofattura per regolarizzazione e integrazione delle fatture (ex art.6 c.8 e 9-bis d.lgs. 471/97  o  art.46 c.5 D.L. 331/93)
+		TD21		autofattura per splafonamento
+		TD22		estrazione beni da Deposito IVA
+		TD23		estrazione beni da Deposito IVA con versamento dell'IVA
+		TD24		fattura differita di cui all'art. 21, comma 4, lett. a)
+		TD25		fattura differita di cui all'art. 21, comma 4, terzo periodo lett. b)
+		TD26		cessione di beni ammortizzabili e per passaggi interni (ex art.36 DPR 633/72)
+		TD27		fattura per autoconsumo o per cessioni gratuite senza rivalsa
+	*/
 	
-	if($myFt->tipo->getVal()=='F' || $myFt->tipo->getVal()=='f' ){//se fattura
-		$dati->fattura->tipo = 'TD01';
+	if($myFt->tipo->getVal()=='F' || $myFt->tipo->getVal()=='f' ){
+		//todo
+		//se fattura qui dovremmo cercare di fare meglio
+		//potrebbe essere una fattura senza ddt
+		//una fattura di beni ammortizzabili
+		//una nota di debito
+		//altro
+		//una td25 per consegne effetuate dal nostro subfornitore direttamente al cliente
+		$dati->fattura->tipo = 'TD24';
 	}
 	if($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n'){//se nota di credito
 		$dati->fattura->tipo = 'TD04';
@@ -451,11 +470,12 @@ function generaXmlFt($myFt){
 		//si tratta di una riga di descrizione ddt
 		//D.d.T. N.3160 - 01.12.2018
 		if(strtoupper(substr($riga->descrizione->getVal(),0,9))==strtoupper('D.d.T. N.') || substr($riga->descrizione->getVal(),0,3)=='DDT'){
+/*
 			if($currentDdt->righeDelDDT>0){
-				/*todo: potrei controllare il ddt e vedere se ci sono righe di puro testo: magari lasciando un warning in un log*/
+				//todo: potrei controllare il ddt e vedere se ci sono righe di puro testo: magari lasciando un warning in un log
 				exit("Stiamo cambiando ddt anche se le righe del ddt precedente non sono ancora finite. Vecchio ddt:".$currentDdt->numero." ne restano ".$currentDdt->righeDelDDT);
 			}
-			
+*/			
 			if(strtoupper(substr($riga->descrizione->getVal(),0,9))==strtoupper('D.d.T. N.')){
 				//echo $riga->descrizione->getVal()."\n";
 				preg_match('/D.D.T. N.(.*?) - (.*?)$/', strtoupper($riga->descrizione->getVal()), $match);
@@ -604,12 +624,24 @@ function generaXmlFt($myFt){
 	/*==============================================================================
 
 	==============================================================================*/
+	/*
+<ns2:FatturaElettronica versione="FPR12"
+    xmlns:ns2="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
+	 * */
+	
+	
+	
 	$xml = new SimpleXMLElement('<p:p:FatturaElettronica/>');
+	//$xml = new SimpleXMLElement('<p:FatturaElettronica/>');
 	$xml->addAttribute('xmlns:xmlns:ds',"http://www.w3.org/2000/09/xmldsig#");
 	$xml->addAttribute('xmlns:xmlns:p',"http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2");
+	//$xml->addAttribute('xmlns:xmlns:p',"http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0");
+
 	$xml->addAttribute('xmlns:xmlns:xsi',"http://www.w3.org/2001/XMLSchema-instance");
 	$xml->addAttribute('versione',"FPR12");
-	$xml->addAttribute('xsi:xsi:schemaLocation',"http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd");
+	//$xml->addAttribute('xsi:xsi:schemaLocation',"http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd");
+	$xml->addAttribute('xsi:xsi:schemaLocation'," http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 https://www.agenziaentrate.gov.it/portale/documents/20143/2931841/Schema_VFPR12.xsd");
+
 
 	/*
 	$xml->addAttribute('version', '1.0');
@@ -791,6 +823,35 @@ function generaXmlFt($myFt){
 		$last = $xml->FatturaElettronicaBody->addChild('DatiBeniServizi');
 		
 		
+		/*
+			N1		escluse ex art. 15
+		no	N2		non soggette  (codice non più valido per le fatture emesse a partire dal primo gennaio 2021)
+			N2.1		non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del DPR 633/72
+			N2.2		non soggette - altri casi
+		no	N3		non imponibili  (codice non più valido per le fatture emesse a partire dal primo gennaio 2021)
+			N3.1		non imponibili - esportazioni
+			N3.2		non imponibili - cessioni intracomunitarie
+			N3.3		non imponibili - cessioni verso San Marino
+			N3.4		non imponibili - operazioni assimilate alle cessioni all'esportazione
+			N3.5		non imponibili - a seguito di dichiarazioni d'intento
+			N3.6		non imponibili - altre operazioni che non concorrono alla formazione del plafond
+			N4		esenti
+			N5		regime del margine / IVA non esposta in fattura
+			N6		inversione contabile (per le operazioni in reverse charge ovvero nei casi di autofatturazione per acquisti extra UE di servizi ovvero per importazioni di beni nei soli casi previsti)  (codice non più valido per le fatture emesse a partire dal primo gennaio 2021)
+			N6.1		inversione contabile - cessione di rottami e altri materiali di recupero
+			N6.2		inversione contabile - cessione di oro e argento puro
+			N6.3		inversione contabile - subappalto nel settore edile
+			N6.4		inversione contabile - cessione di fabbricati
+			N6.5		inversione contabile - cessione di telefoni cellulari
+			N6.6		inversione contabile - cessione di prodotti elettronici
+			N6.7		inversione contabile - prestazioni comparto edile e settori connessi
+			N6.8		inversione contabile - operazioni settore energetico
+			N6.9		inversione contabile - altri casi
+			N7		IVA assolta in altro stato UE (prestazione di servizi di telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-sexies lett. f, g, art. 74-sexies DPR 633/72)
+
+		*/
+		
+		
 		//da ripetere per ogni riga
 		foreach ($dati->fattura->righe as $key => $riga){
 				$last = $xml->FatturaElettronicaBody->DatiBeniServizi->addChild('DettaglioLinee');
@@ -815,8 +876,6 @@ function generaXmlFt($myFt){
 		}
 		
 		
-
-
 		//riepilogo dati fattura (per ogni aliquota)
 
 		$imponibili=$myFt->calcolaTotaliImponibiliIva();
@@ -845,7 +904,7 @@ function generaXmlFt($myFt){
 				$last->addChild('ImponibileImporto',formatImporto($imponibileIva));
 				$last->addChild('Imposta','0.00');
 				$last->addChild('EsigibilitaIVA','I');//immediata... potrebbe essere differita
-				$last->addChild('RiferimentoNormativo','Escluso Art.15');	
+				$last->addChild('RiferimentoNormativo','Escluso Art.15');
 			}else{
 
 				$last = $xml->FatturaElettronicaBody->DatiBeniServizi->addChild('DatiRiepilogo');
@@ -915,12 +974,17 @@ function generaXmlFt($myFt){
 	$xmlDocument->loadXML($xml->asXML());
 
 
-
 //validate the XML file before showin it
 
+/*
 	if (!$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/Schema_del_file_xml_FatturaPA_versione_1.2.xsd')) {
 		error_reporting(-1);
 		$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/Schema_del_file_xml_FatturaPA_versione_1.2.xsd');
+*/
+	if (!$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/FatturaElettronicaSpecifiche1.6.2/Schema_VFPR12.xsd')) {
+		error_reporting(-1);
+		$xmlDocument->schemaValidate(realpath($_SERVER["DOCUMENT_ROOT"]).'/webContab/my/php/core/stampe/FatturaElettronicaSpecifiche1.6.2/Schema_VFPR12.xsd');
+
 		print '<b>DOMDocument::schemaValidate() Generated Errors!</b>';
 		
 		echo $xmlDocument->saveXML();

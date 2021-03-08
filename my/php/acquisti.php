@@ -28,7 +28,87 @@ const copyToClipboard = str => {
 	</script>
 </head>
 <body>
+<?php
 
+?>
+
+<script>
+function searchFormCancel(){
+	console.log('cancel form');
+	document.querySelector("input[name='searchString'").value="";
+}
+
+function searchFormSubmit(){
+	//fix the url
+	console.log('test1')
+	newurl = window.location.href;
+	console.log('test2')
+
+	newurl = newurl.replace('&searchString=<?php if(isset($_GET['searchString'])){echo $_GET['searchString'];}?>','')
+	console.log('test3')
+	/*
+	if(!newurl.search('\?')){
+		newurl+='?dummy=0'
+	}
+	*/
+	console.log('test4')
+	newurl+="&searchString="+document.querySelector("input[name='searchString'").value;
+	console.log('test5')
+	window.location.href= newurl;
+	console.log('test6')
+}
+</script>
+
+<input type="text" name="searchString"
+placeholder="cerca e filtra"
+style="
+width: 80%;
+border: 1px solid darkblue;
+border-radius: 0.3em;
+font-size: 2em;
+color: darkblue;
+padding: 0.3em;
+margin: 0.5em;"
+value="<?php if(isset($_GET['searchString'])){echo $_GET['searchString'];}?>"
+>
+
+<button 
+onclick="searchFormCancel()"
+style="font-size:2em;
+width:2em;
+height:2em;
+color:white;
+border: 1px solid darkred;
+border-radius: 0.3em;
+font-size: 2em;
+background-color: darkred;
+padding: 0.3em;
+margin: 0.1em;">
+&#x1F5D1; </button>
+
+
+<button 
+onclick="searchFormSubmit()"
+style="font-size:2em;
+width:2em;
+height:2em;
+color:white;
+border: 1px solid darkgreen;
+border-radius: 0.3em;
+font-size: 2em;
+background-color: darkgreen;
+padding: 0.3em;
+margin: 0.1em;">
+&#x1f50d;
+</button>
+<script>
+document.querySelector("input[name='searchString'").select();
+document.querySelector("input[name='searchString'").addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+	searchFormSubmit();
+}});
+</script>
 <?php
 include ('./core/config.inc.php');
 
@@ -36,64 +116,30 @@ include ('./core/config.inc.php');
 $tipo = './dati/fattureElettronicheAcquisto/';
 
 if( isset($_GET['anno']) && isset($_GET['mese'])){
+	//se ho impostato anno e mese
 	$anno = $_GET['anno'];
 	$mese = $_GET['mese'];
+	//
+	$dir= $tipo.$anno.'/'.$mese.'/';
+	
+}else if ( isset($_GET['anno']) && !isset($_GET['mese'])){
+	// ho impostato solo l'anno
+	$anno = $_GET['anno'];
+
 }else{
+	// in tutti gli altri casi
+	// mostro il mese e anno correnti
 	$anno = date('Y');
 	$mese = date('m');
 }
 
 
-
-
-$dir= $tipo.$anno.'/'.$mese.'/';
+//vendite
 if(isset($_GET['mode'])){
 	if($_GET['mode']=='vendite'){
 		$dir= './core/stampe/ftXml/';
 	}
 }
-//$dir= './core/stampe/ftXml/';
-//$dir= './dati/fattureElettronicheAcquisto/2019/02/Ricevute Consegna/';
-
-/*
-if ($handle = opendir($dir)) {
-    while (false !== ($file = readdir($handle))) 
-    { 
-		if(strpos($file,'_MT_001.xml')){
-		 echo '';
-		}else{
-			if ($file != "." && $file != "..") {
-				
-				$file_parts = pathinfo($file);
-
-				switch($file_parts['extension'])
-				{
-					case "xml":
-					//echo 'xml';
-					break;
-
-					case "p7m":
-					//echo 'xml.p7m';
-					break;
-
-					case "": // Handle file extension for files ending in '.'
-					case NULL: // Handle no file extension
-					break;
-				}
-			
-			echo date('Y-m-d h:i:s',filemtime($dir.$file));
-			echo " <a href='./visualizzaFattureXml.php?fileUrl=$dir$file' target='_blank'>$file</a><br>\n"; 
-				//echo filemtime($dir.$file);
-
-
-
-
-				} 
-		}
-	}
-    closedir($handle); 
-}
-*/
 
 //selezione anno
 $html='<table class="titleTable">';
@@ -120,15 +166,36 @@ echo $dir."<br>";
 
 
 
+//tabella vera e propria
+if( isset($anno) && isset($mese)){
+	//mostro il mese richiesto
+	$dir= $tipo.$anno.'/'.$mese.'/';
+	mostraMese($dir);
+}elseif(isset($anno) && !isset($mese)){
+	//mostro l'anno richiesto
+	for ($i = 1; $i <= 11; $i++) {
+		if(strlen($i) < 2 ){
+			$mese = '0'.$i;	
+		}else{
+			$mese = $i;				
+		}
+		$dir= $tipo.$anno.'/'.$mese.'/';
+		mostraMese($dir);
+	}		
+}
 
 
-function scan_dir($dir) {
-    $ignored = array('.', '..', '.svn', '.htaccess','_MT_001.xml','_MT_002.xml');
+
+// ##############################################
+//  seguono funzioni
+// ##############################################
+function cercaFilesNellaDirectory($dir) {
+    $ignored = array('.', '..', '.svn', '.htaccess','_MT_001.xml','_MT_002.xml','zip','.cache');
 	$ignoredFiles = '_MT_001.xml';
 
     $files = array();    
     foreach (scandir($dir) as $file) {
-		if (strpos($file,'_MT_001.xml') || strpos($file,'_MT_002.xml')) continue; //ignora i file ricevuta
+		if (strpos($file,'_MT_001.xml') || strpos($file,'_MT_002.xml') || strpos($file,'zip')) continue; //ignora i file ricevuta e i file zip
         if (in_array($file, $ignored)) continue;
         $files[$file] = filemtime($dir . '/' . $file);
     }
@@ -140,68 +207,101 @@ function scan_dir($dir) {
     return ($files) ? $files : false;
 }
 
-$files = scan_dir($dir);
+function mostraMese($dir){
+	$files = cercaFilesNellaDirectory($dir);
 
-foreach ($files as $key => $file) {
-	$fileDate = date('d-m-Y h:i:s',filemtime($dir.$file));
-	$fileUrl = " <a href='./visualizzaFattureXml.php?fileUrl=$dir$file' target='_blank'>$file</a><br>\n";
-
-	$xmlDomDocument = leggiFatturaXml($dir.$file);
-	$xmlDomDocumentXpath = new DOMXpath($xmlDomDocument);
-	
-@	$filename = 	$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/Allegati/NomeAttachment')->item(0)->nodeValue;
-@	$fileblob64 = 	$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/Allegati/Attachment')->item(0)->nodeValue;
-	if($filename){
-		$linkAllegato = "<a href='data:application/octet-stream;base64,".$fileblob64."' download='$filename' title='$filename'>All.to</a>";
-	}else{
-		$linkAllegato = '';
-	}
-	
-	//echo $xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody')->item(0)->textContent;
-	$trovataStringa = false;
-	if(stripos($xmlDomDocument->saveXML(),'CL824RV') || stripos($xmlDomDocument->saveXML(),'CL 824 RV')){
-		$trovataStringa = true;
-	}
-	
-	?>
-
-	<tr>
-		<td style="font-size:0.6em;"><?php echo $fileDate; ?></td>
-		<td><?php echo $fileUrl; ?></td>
-		<td>
-			<?php 
-				echo $linkAllegato;
-				if($trovataStringa){
-					echo 'CAMION!!';
-				}
-			?>
+	foreach ($files as $key => $file) {
 		
-		</td>
-		<td>
-			<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Denominazione')->item(0)->nodeValue; ?>
-			<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Nome')->item(0)->nodeValue; ?>
-			<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Cognome')->item(0)->nodeValue; ?>
-		</td>
-		<td style="text-align:left"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/Numero')->item(0)->nodeValue; ?></td>
-		<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/Data')->item(0)->nodeValue; ?></td>
-		<!--
-		<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/ImportoPagamento')->item(0)->nodeValue; ?></td>
-		-->
-		<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento')->item(0)->nodeValue; ?></td>
+		$givePrintedClass = '';
+		if(xmlPrintedStatus($dir.$file)){
+			$givePrintedClass = ' class="printed" '; 
+		}else{
+			$givePrintedClass = ' class="notprinted" '; 
+		}
+
 		
-		<td style="text-align:right">
-			<?php
-				if($xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/IBAN')->item(0)->nodeValue){
-					$iban = $xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/IBAN')->item(0)->nodeValue;
-					echo '<a href="javascript:return false;" onclick="copyToClipboard(this.title)" title="'.$iban.'">IBAN</a>';
-				}
-			?>
-		</td>
-	</tr>
-	<?php
+		$fileDate = date('d-m-Y h:i:s',filemtime($dir.$file));
+		$fileUrl = " <a $givePrintedClass href='./visualizzaFattureXml.php?fileUrl=$dir$file' target='_blank'>$file</a><br>\n";
+
+		$xmlDomDocument = leggiFatturaXml($dir.$file);
+		//se non sono riuscito a leggere la fattura passo al documento successivo
+		if(!$xmlDomDocument){
+			echo '<tr><td>Non sono riuscito a leggere il documento.'.$dir.$file.'</td></tr>';
+			continue;
+		}
+		
+		
+		$xmlDomDocumentXpath = new DOMXpath($xmlDomDocument);
+		
+	@	$filename = 	$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/Allegati/NomeAttachment')->item(0)->nodeValue;
+	@	$fileblob64 = 	$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/Allegati/Attachment')->item(0)->nodeValue;
+		if($filename){
+			$linkAllegato = "<a href='data:application/octet-stream;base64,".$fileblob64."' download='$filename' title='$filename'>All.to</a>";
+		}else{
+			$linkAllegato = '';
+		}
+		
+		//echo $xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody')->item(0)->textContent;
+		$trovataStringa = false;
+		if(stripos($xmlDomDocument->saveXML(),'CL824RV') || stripos($xmlDomDocument->saveXML(),'CL 824 RV')
+			|| stripos($xmlDomDocument->saveXML(),'FY330NX') || stripos($xmlDomDocument->saveXML(),'FY 330 NX')){
+			$trovataStringa = true;
+		}
+		
+		//stampa solo se trovo questra stringa
+//		if(!stripos($xmlDomDocument->saveXML(),'FACCINI')){
+
+		if(isset($_GET['searchString'])){
+			if(!stripos($xmlDomDocument->saveXML(),$_GET['searchString'])){
+				continue;
+			}
+		}
+
+		
+		?>
+
+		<tr>
+			<td style="font-size:0.6em;"><?php echo $fileDate; ?></td>
+			<td><?php echo $fileUrl; ?></td>
+			<td>
+				<?php 
+					echo $linkAllegato;
+					if($trovataStringa){
+						echo 'CAMION!!';
+					}
+				?>
+			
+			</td>
+			<td>
+				<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Denominazione')->item(0)->nodeValue; ?>
+				<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Nome')->item(0)->nodeValue; ?>
+				<?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici/Anagrafica/Cognome')->item(0)->nodeValue; ?>
+			</td>
+			<td style="text-align:left"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/Numero')->item(0)->nodeValue; ?></td>
+			<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/Data')->item(0)->nodeValue; ?></td>
+			<!--
+			<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/ImportoPagamento')->item(0)->nodeValue; ?></td>
+			-->
+			<td style="text-align:right"><?php echo @$xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento')->item(0)->nodeValue; ?></td>
+			
+			<td style="text-align:right">
+				<?php
+					if($xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/IBAN')->item(0)->nodeValue){
+						$iban = $xmlDomDocumentXpath->evaluate('//FatturaElettronicaBody/DatiPagamento/DettaglioPagamento/IBAN')->item(0)->nodeValue;
+						echo '<a href="javascript:return false;" onclick="copyToClipboard(this.title)" title="'.$iban.'">IBAN</a>';
+					}
+				?>
+			</td>
+		</tr>
+		<?php
+	}
 }
 ?>
 </table>
 <br>Fine<br>
+<script>
+	//scroll to the end of the page
+	window.scrollTo(0,document.body.scrollHeight);
+</script>
 </body>
 </html>

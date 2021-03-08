@@ -1,21 +1,31 @@
 <?php
 include ('./core/config.inc.php');
-
+include ('./richiestaricavi.php');
 ?>
 <?php 
 
-if (true){
+if (array_key_exists('mese',$_GET)){
+/*
 	$anno = $_GET['anno'];
 	$mese = $_GET['mese'];
 	$giorni = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); // 31
-
+*/
 	$today = date("j/n/Y"); 
-	$startDate='01/01/2020';
-	$endDate='31/01/2020';
+	$startDate='01/01/2021';
+	$endDate='31/01/2021';
 
 }else{
+	
 	$anno = date("Y");
 	$mese = date("n")-1;
+
+	if($mese == 00){
+		$anno = date("Y")*1-1;
+		$mese = 12;
+		
+	}
+	//echo $mese;
+	//echo $anno;
 	$giorni = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); // 31
 
 	date("Y");
@@ -28,28 +38,15 @@ $mancanti = array();
 
 $stampaRighe= function ($obj){
 	global $mancanti;
-//echo '<br>'.$obj->cod_cliente->extend()->ragionesociale->getVal();
-//echo '<br>'.$obj->ddt_numero->getVal();
-$ddt = '<br>- n.'.$obj->ddt_numero->getVal().' del '.$obj->ddt_data->getFormatted();
-if (!in_array($ddt,$mancanti)){
-	$mancanti['<br><br>'.$obj->cod_cliente->extend()->ragionesociale->getVal()];
-}
-$mancanti['<br><br>'.$obj->cod_cliente->extend()->ragionesociale->getVal()][$ddt]='*';
-
-	/*
-	echo '<tr>';
-	echo '<td>'.$obj->ddt_numero->getVal().'</td>';
-	echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
-	echo '<td>'.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
-	echo '<td>'.$obj->cod_articolo->getVal().'</td>';
-	echo '<td>'.$obj->colli->getVal().'</td>';
-	echo '<td>'.$obj->peso_netto->getVal().'</td>';
-	//if($obj->prezzo->getVal()*1>0.001){$prezzo=$obj->prezzo->getVal();}else{$prezzo='';}
-	//echo '<td>'.$obj->imponibile->getVal().'</td>';
-	echo '<td>'.$obj->prezzo->getVal().'</td>';
-	//echo '<td>'.$obj->imponibile->getVal().'</td>';
-	echo '</tr>';
-	*/
+	//echo '<br>'.$obj->cod_cliente->extend()->ragionesociale->getVal();
+	//echo '<br>'.$obj->ddt_numero->getVal();
+	$ddt = '<br>- n.'.$obj->ddt_numero->getVal().' del '.$obj->ddt_data->getFormatted();
+	if (!in_array($ddt,$mancanti)){
+		@$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()];
+	}
+	$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()]['codcliente']=$obj->cod_cliente->getVal();
+	$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()]['mail']=$obj->cod_cliente->extend()->__mail->getVal();
+	$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()]['ddt'][$ddt]='*';
 };
 
 $test=new MyList(
@@ -59,18 +56,41 @@ $test=new MyList(
 		'cod_cliente'=>array('!=','VIOLA','FACCG'),		
 		'cod_articolo'=>array('!=','ASSOLVE','BSEVEN',''),
 		'prezzo'=>array('=','0.001'),
+		//'cod_causale' =>array('=','V'), //SOLO LE BOLLE DI VENDITA
 	)
 );
 $test->iterate($stampaRighe);
 
-
 foreach ($mancanti as $clienteKey => $clienteValue){
-	echo '<br><br>'.$clienteKey;
-	foreach ($clienteValue as $ddtKey => $ddtValue){
+	
+	$matchCliente = (substr($clienteKey,0,10) == substr($_GET['mailacliente'],0,10));
+	
+	if (!isset($_GET['mailacliente']) or $matchCliente){
+		echo '<hr><br><br>'.$clienteKey;
+		echo '<br> <a href="?mailacliente='.$clienteKey.'">Invia mail a: '.$clienteValue['mail'].'</a>';
+		echo '<br>';
+	}
+	$elencoDdt='';
+	foreach ($clienteValue['ddt'] as $ddtKey => $ddtValue){
 		if(strlen($ddtKey)>2){
-			echo $ddtKey.'';
+			if (!isset($_GET['mailacliente']) or $matchCliente){
+				echo $ddtKey.'';
+			}
+			$elencoDdt.= "\n".$ddtKey;
 		}
 	}
+	
+	//echo "\n <br>".$clienteKey;
+	//echo "\n <br>".$_GET['mailacliente'];
+	if($matchCliente){
+		echo '<hr><br><br>'.$clienteKey;		
+		echo '<br><b>Inviata mail!</b>';
+		inviaMailRichiestaRicavi($clienteKey,$clienteValue['mail'],$elencoDdt);
+		//inviaMailRichiestaRicavi($clienteKey,'lafavorita_srl@libero.it',$elencoDdt);
+
+	}
+	
+
 }
 //print_r($mancanti);
 page_end();

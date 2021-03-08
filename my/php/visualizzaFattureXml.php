@@ -126,6 +126,9 @@ echo 'manca il parametro file';
 }
 */
 include ('./core/config.inc.php');
+
+xmlMarkAsPrinted($_GET['fileUrl']);
+
 $xmlDomDocument = leggiFatturaXml($_GET['fileUrl']);
 
 //send it to the browser

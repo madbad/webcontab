@@ -350,9 +350,23 @@
 			fatture[i].checked = true;
 		}
 	}
+	function selectNotSDISent(){
+		deselectAll();
+		var fatture = document.querySelectorAll("input[data-sdisent=false]");
+		for (var i = 0; i < fatture.length; ++i) {
+			fatture[i].checked = true;
+		}
+	}
 	function selectNotPrintedForReceiver(){
 		deselectAll();
 		var fatture = document.querySelectorAll("input[data-printedforreceiver]");
+		for (var i = 0; i < fatture.length; ++i) {
+			fatture[i].checked = true;
+		}
+	}
+	function selectNotPrintedForUs(){
+		deselectAll();
+		var fatture = document.querySelectorAll("input[data-printedforus=false]");
 		for (var i = 0; i < fatture.length; ++i) {
 			fatture[i].checked = true;
 		}
@@ -421,8 +435,10 @@
 	  <div class="dropdownMenu-content">
 		<a href="javascript:selectAll()">Tutte</a>
 		<a href="javascript:deselectAll()">Nessuna</a>
-		<a href="javascript:selectNotSent()">Non inviate</a>
-		<a href="javascript:selectNotPrintedForReceiver()">Da stampare</a>
+		<a href="javascript:selectNotSent()">Non inviate (PEC)</a>
+		<a href="javascript:selectNotPrintedForReceiver()">Da stampare (cliente)</a>
+		<a href="javascript:selectNotPrintedForUs()">Da stampare (interna)</a>
+		<a href="javascript:selectNotSDISent()">Non inviate (SDI)</a>
 	  </div>
 	</div>
 	<div class="dropdownMenu">
@@ -551,6 +567,13 @@ $test->iterate(function($obj){
 	$dataStampaPerDestinatario=$obj->__datastampa->getVal();
 	$dataStampaInterna=$obj->__datastampainterna->getVal();
 	$nomeFileXmlSDI = $obj->__nomefilexml->getVal();
+
+	if($obj->__nomefilexml->getVal()!=''){
+		$boolGiaInviatoSDI=true;
+	}else{
+		$boolGiaInviatoSDI=false;
+	}
+	
 	
 	$tipo=$obj->tipo->getVal();
 	$cliente = $dbClientiWithIndex[$obj->cod_cliente->getVal()];
@@ -568,13 +591,25 @@ $test->iterate(function($obj){
 
 	$html.= "<tr class='$tipo'>";
 	
+	//check se inviata pec
 	if($dataInvioPec){
 		$pecSent=''; //'data-pecsent="true"';
-		$checked='';
+		//$checked='';
 	}else{
 		$pecSent='data-pecsent="false"';
+		//$checked='checked';
+	}
+	
+	//check se inviata SDI
+	if($boolGiaInviatoSDI){
+		$sdiSent='data-sdisent="true"';
+		$checked='';
+	}else{
+		$sdiSent='data-sdisent="false"';
 		$checked='checked';
 	}
+	
+	// ho stampato la copia per il destinatario?
 	if($dataStampaPerDestinatario){
 		$printedForReceiver=''; //'data-printedforreceiver="true"';
 	}else{
@@ -584,8 +619,15 @@ $test->iterate(function($obj){
 			$printedForReceiver=''; //'data-printedforreceiver="true"';
 		}
 	}
+
+	// ho stampato la nostra copia interna?
+	if($dataStampaInterna){
+		$printedForUs='data-printedforus="true"';
+	}else{
+		$printedForUs='data-printedforus="false"';
+	}
 	
-	$html.= '<td><label class="container"><input type="checkbox" data-json=\''.$jsonData.'\' '.$pecSent.' '.$printedForReceiver.' '.$checked.'><span class="checkmark"></span></label></td>';
+	$html.= '<td><label class="container"><input type="checkbox" data-json=\''.$jsonData.'\' '.$pecSent.' '.$sdiSent.' '.$printedForReceiver.' '.$printedForUs.' '.$checked.'><span class="checkmark"></span></label></td>';
 	$html.= '<td>'/*.$obj->tipo->getVal().*/.$obj->cod_pagamento->getVal().' **** '.$obj->cod_pagamento->extend()->descrizione->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';
@@ -605,7 +647,7 @@ $test->iterate(function($obj){
 			$html.= '<td style="background-color:#66ff00;">Inviata il '.$dataInvioPec.$link.'&do=inviaPec"><br>Reinvia?</a></td>';
 		}else{
 			if($cliente->__pec->getVal()!=''){
-				$html.= '<td>'.$link.'&do=inviaPec">Invia Mail</a></td>';
+				$html.= '<td>'.$link.'&do=inviaPec">Invia Mail Pec</a></td>';
 			}else{
 				$html.= '<td>Impossibile inviare la PEC: Manca l\'indirizzo!</td>';
 			}
@@ -622,6 +664,9 @@ $test->iterate(function($obj){
 		}else{
 			$html.= '<td>'.$link.'&do=stampaInterna">Stampa copia interna</a></td>';
 		}
+//invia mail ordinaria
+		$html.= '<td>'.$link.'&do=inviaMail">Invia Mail Ordinaria</a></td>';
+
 
 
 //}

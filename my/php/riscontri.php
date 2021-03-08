@@ -8,23 +8,121 @@ include ('./core/config.inc.php');
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>WebContab Calcolo costi</title>
+		<title>WebContab RISCONTRI</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
+		<style>
+		body{
+			color: black;
+			font-size: 12px;
+			font-family: tahoma,arial,verdana,sans-serif;
+		}
+
+		.dateform{
+			border: 1px solid #00a3f5;
+		padding: 0.2em;
+			
+		}
+		.dateformtitle{
+			background-color: #00a3f5;
+			width:100%;
+			padding:0.5em;	
+			display:inline-block;
+			font-size:1.5em;
+		}
+		.dateselector{
+			padding:0.3em;	
+			font-size:1.2em;	
+			
+		}
+		.dateselectordescription{
+			width:10em;
+			display:inline-block;
+			padding:0.8em;	
+		}
+		dateselectorcheckbox{
+			font-size:2em;
+			padding:0.3em;
+			transform: scale(2);
+			
+		}
+		</style>
+		<script>
+		function aggiornaListaCodici(){
+			listaCodici = [];
+			var checkboxes = document.getElementsByClassName("checkboxCodici");
+			for (index in checkboxes){
+				checkbox = checkboxes[index];
+				//console.log('1', checkbox);
+				if (checkbox.checked){
+					listaCodici.push(checkbox.value);
+				}
+			}
+			console.log(listaCodici);
+			var inputListaCodici = document.getElementsByName("listaCodici")[0];
+			inputListaCodici.value = listaCodici.join();
+		}	
+		function checkAll(){
+			var checkboxes = document.getElementsByClassName("checkboxCodici");
+			for (index in checkboxes){
+				checkbox = checkboxes[index];
+				checkbox.checked=true;
+			}
+			aggiornaListaCodici();
+		}
+		function unCheckAll(){
+			var checkboxes = document.getElementsByClassName("checkboxCodici");
+			for (index in checkboxes){
+				checkbox = checkboxes[index];
+				checkbox.checked=false;
+			}
+			aggiornaListaCodici();
+		}
+		</script>
+
 	</head>
 
 	<body>
 <?php
-$today = date("j/n/Y"); 
-if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$today;}
-if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
+//$today = date("j/n/Y"); 
 
+$lastDayOfPrevMonth = date('Y-m-d', strtotime('last day of previous month'));
+$firstDayOfPrevMonth = date('Y-m-d', strtotime('first day of previous month'));
+
+//$today = date("m-d-Y");
+
+if(@$_GET['startDateR']){$startDateR=$_GET['startDateR'];}else{$startDateR=$firstDayOfPrevMonth;}
+if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$lastDayOfPrevMonth;}
+if(@$_GET['articolo']){$articolo=$_GET['articolo'];}else{
+	echo('Specificare un articolo da cercare');
+}
+if(@$_GET['listaCodici']){$listaCodici=$_GET['listaCodici'];}
 ?>
-<form name="input" action="./riscontri.php?mode=print" method="get">
+
+<form name="input" action="./riscontri.php?mode=print" method="get" class="dateform hideOnPrint">
 	<input type="text" name="mode" value="print" style="display:none"/>
+
+	<span class="dateformtitle">Selezione parametri</span>
+
+	<br> <span class="dateselectordescription">Start Date:</span>
+	<input class="dateselector" type="date" name="startDateR" value="<?php echo $startDateR ?>"/>
+
+	<br> <span class="dateselectordescription">End Date:</span>
+	<input class="dateselector" type="date" name="endDateR" value="<?php echo $endDateR ?>"/>
+
+	<br> <span class="dateselectordescription">Articolo:</span>
+	<input type="text" name="articolo" value="<?php echo $articolo ?>"/>
+	
+	<input type="text" name="codiceArticoloDaRimuovere" value="<?php echo $_GET['codiceArticoloDaRimuovere'] ?>"/>	
+
+	<br> <span class="dateselectordescription">Liste codici:</span>
+	<input type="text" name="listaCodici" value="<?php echo $listaCodici ?>"/>
+	
+	<br>
+	<input type="submit" value="Submit" style="padding:1em;width:20em;">
+	
 	<!--
-	<label>Start date2</label> <input type="text" name="startDateR" value="<?php echo $startDateR ?>"/>
-	<label>End date2</label> <input type="text" name="endDateR" value="<?php echo $endDateR ?>"/>
-	-->
 	<textarea name="query" rows="4" cols="50"  style="font-size: 0,5em;width:100%;height:30%">
 \$test=new MyList(
 	array(
@@ -39,42 +137,53 @@ if(@$_GET['endDateR']){$endDateR=$_GET['endDateR'];}else{$endDateR=$today;}
 	)
 );
 	</textarea> 
-	<button type="submit">Search</button>
-
+	-->
 </form>
-
+<br>
+<input type="button" onclick="checkAll()" value="Check all">
+/
+<input type="button" onclick="unCheckAll()" value="UN-Check all">
+<br>
 <?php
 
-$codicimeloni=array();
-$codicimeloni[]='=';
-/*
-$listaMeloni->iterate(function ($obj){
-	global $codicimeloni;
-	$codicimeloni[]=$obj->codice->getVal();
-	//echo '<br>'.$obj->descrizione->getVal();
-	//echo '<br>'.$obj->codice->getVal();
-});
-*/
-$listaZucchine=new MyList(
-	array(
-		'_type'=>'Articolo',
-		'descrizione'=>array('LIKE','%ZUCCHIN%'),
-	)
-);
-
-
-$codiciZucchine="'='";
-$arrayCodiciZucchine=array();
-
-$listaZucchine->iterate(function ($obj){
-	global $codiciZucchine;
-	global $arrayCodiciZucchine;
+if($listaCodici!=''){
+	$listaCodici = explode(',',$listaCodici);
+	$listaArticoli=new MyList(
+		array(
+			'_type'=>'Articolo',
+			'codice'=>$listaCodici,
+		)
+	);	
 	
-//	$codiciZucchine[]=$obj->codice->getVal();
-	$codiciZucchine.=",'".$obj->codice->getVal()."'";
-	$arrayCodiciZucchine[] = $obj->codice->getVal();
-	//echo '<br>'.$obj->descrizione->getVal();
-	//echo '<br>'.$obj->codice->getVal();
+}else{
+	$listaArticoli=new MyList(
+		array(
+			'_type'=>'Articolo',
+			//'descrizione'=>array('LIKE','%ZUCCHI%'),
+			'descrizione'=>array('LIKE','%'.$articolo.'%'),
+		)
+	);	
+}
+
+
+
+$codiciArticoli="'='";
+$arrayCodiciArticoli=array();
+
+$listaArticoli->iterate(function ($obj){
+	global $codiciArticoli;
+	global $arrayCodiciArticoli;
+	
+	$codiciArticoli.=",'".$obj->codice->getVal()."'";
+	$arrayCodiciArticoli[] = $obj->codice->getVal();
+
+	echo '<br><label>';
+	echo '<input class="checkboxCodici" type="checkbox" onclick="aggiornaListaCodici()" value="'.$obj->codice->getVal().'" checked>';
+	echo '';
+	echo $obj->codice->getVal();
+	echo ' => '.$obj->descrizione->getVal();
+	echo '</label>';
+
 });
 
 
@@ -88,8 +197,9 @@ if (@$_GET['mode']=='print'){
 
 		echo '<tr '.$color.'> ';
 		
-		echo '<td>'.$obj->cod_articolo->getVal().' # '.$obj->ddt_numero->getVal().'</td>';
+		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
 		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
+		echo '<td>'.$obj->cod_articolo->getVal().'</td>';
 //		echo '<td>'.$obj->cod_cliente->getVal().' # '.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
 		echo '<td>'.$obj->cod_cliente->getVal().'</td>';
 		echo '<td>'.$obj->colli->getFormatted(0).'</td>';
@@ -114,6 +224,7 @@ if (@$_GET['mode']=='print'){
 	$stampaTotali= function ($obj){
 		echo '<tr>';
 		echo '<td>'.'-'.'</td>';
+		echo '<td>'.'-'.'</td>';		
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.$obj->sum('colli').'</td>';
@@ -121,21 +232,26 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.$obj->sum('peso_netto').'</td>';
 		echo '<td>'.'-'.'</td>';
 		echo '<td>'.'-'.'</td>';
-		echo '<td>'.'-'.'</td>';
+		echo '<td>'.round($obj->sum('_totImponibileNetto')/$obj->sum('peso_netto'),4).'</td>'; //media del prezzo
 		echo '<td>'.round($obj->sum('peso_netto')/$obj->sum('colli'),2).'</td>';
 		echo '<td>'.$obj->sum('_totImponibileNetto').'</td>';
 		echo '</tr>';
 	};
+	$calcolaImponibileNetto= function ($obj){
+		$impNetto=$obj->peso_netto->getVal()*$obj->getPrezzoNetto();
+		$obj->_totImponibileNetto->setVal($impNetto);
+	};
+
 
 	$tabellaH='<table class="spacedTable, borderTable">';
-	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso lordo<td>Peso netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
+	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Art.</td><td>Cliente</td><td>Colli</td><td>Peso lordo<td>Peso netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
 	$tabellaF='</table><br><br>';
 
 //==============================================================================================================================
-
+/*
 echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='16/01/20';
-$endDateR='31/01/20';
+$startDateR='01/05/20';
+$endDateR='31/05/20';
 
 
 //martinelli
@@ -189,9 +305,9 @@ $endDateR='31/01/20';
 		array(
 			'_type'=>'Riga',
 			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>array('=','05','05P','05G','05PZ8','05PZ15','VAS05'),
-			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG','GIAC1'),
-			//'prezzo'=>array('!=','0.001')
+			'cod_articolo'=>array('=','05','05P','05G','05PZ8','no 05PZ15','VAS05'),
+			'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SISA','SOGEG','GIAC1','BERTO'),
+			'prezzo'=>array('!=','0.001')
 		)
 	);
 	echo $tabellaH;
@@ -213,78 +329,154 @@ $endDateR='31/01/20';
 	$stampaTotali($test);
 	echo $tabellaF;
 
-
+*/
 //==============================================================================================================================
 
-/*
+
 //zucchine
-echo '<h1>'.$startDateR.'</h1><hr>';
-$startDateR='01/11/19';
-$endDateR='30/11/19';
-print_r($arrayCodiciZucchine);
+//$startDateR='01/06/20';
+//$endDateR='30/06/20';
+//print_r($arrayCodiciZucchine);
+
+$parametriRicerca = array(
+	'_type'=>'Riga',
+	'ddt_data'=>array('<>',$startDateR,$endDateR),
+	'cod_articolo'=>$arrayCodiciArticoli,
+);
 
 //ortom
-	echo '<h1>Ortomercato</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>$arrayCodiciZucchine,
-			'cod_cliente'=>'SEVEN',
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
+	$parametriRicerca['cod_cliente']='SEVEN';
+	$test=new MyList($parametriRicerca);
+	if(count($test->arr)>0){
+		echo '<h1>Ortomercato</h1>';
+		echo $tabellaH;
+		//tutte le righe
+		$test->iterate($stampaRighe);
+		$stampaTotali($test);
+
+		//fai i totali di quelli con prezzo
+		$parametriRicerca['prezzo']=array('!=','0.001');
+		$test=new MyList($parametriRicerca);
+		$test->iterate($calcolaImponibileNetto);
+		$stampaTotali($test);
+		echo $tabellaF;			
+	}
+
 
 //abbascia
-	echo '<h1>Abbascia</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>$arrayCodiciZucchine,
-			'cod_cliente'=>'ABBAS',
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
+	$parametriRicerca['cod_cliente']='ABBAS';
+	unset($parametriRicerca['prezzo']);
+	$test=new MyList($parametriRicerca);
+	if(count($test->arr)>0){
+		echo '<h1>Abbascia</h1>';
+		echo $tabellaH;
+		//tutte le righe
+		$test->iterate($stampaRighe);
+		$stampaTotali($test);
+
+		//fai i totali di quelli con prezzo
+		$parametriRicerca['prezzo']=array('!=','0.001');
+		$test=new MyList($parametriRicerca);
+		$test->iterate($calcolaImponibileNetto);
+		$stampaTotali($test);
+		echo $tabellaF;			
+	}
 
 //mediglia
-	echo '<h1>Mediglia</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>$arrayCodiciZucchine,
-			'cod_cliente'=>'LAME2',
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
-	
-//mercato
-	echo '<h1>Mercato</h1>';
-	$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>',$startDateR,$endDateR),
-			'cod_articolo'=>$arrayCodiciZucchine,
-			'cod_cliente'=>'ABBAS',
-			'cod_cliente'=>array('!=','ABBAS','SEVEN','LAME2'),
-			//'prezzo'=>array('!=','0.001')
-		)
-	);
-	echo $tabellaH;
-	$test->iterate($stampaRighe);
-	$stampaTotali($test);
-	echo $tabellaF;
+	$parametriRicerca['cod_cliente']='LAME2';
+	unset($parametriRicerca['prezzo']);
+	$test=new MyList($parametriRicerca);
+	if(count($test->arr)>0){
+		echo '<h1>Mediglia</h1>';
+		echo $tabellaH;
+		//tutte le righe
+		$test->iterate($stampaRighe);
+		$stampaTotali($test);
 
+		//fai i totali di quelli con prezzo
+		$parametriRicerca['prezzo']=array('!=','0.001');
+		$test=new MyList($parametriRicerca);
+		$test->iterate($calcolaImponibileNetto);
+		$stampaTotali($test);
+		echo $tabellaF;			
+	}
+
+//martinelli
+	$parametriRicerca['cod_cliente']='MARTI';
+	unset($parametriRicerca['prezzo']);
+	$test=new MyList($parametriRicerca);
+	if(count($test->arr)>0){
+		echo '<h1>Martinelli</h1>';
+		echo $tabellaH;
+		//tutte le righe
+		$test->iterate($stampaRighe);
+		$stampaTotali($test);
+
+		//fai i totali di quelli con prezzo
+		$parametriRicerca['prezzo']=array('!=','0.001');
+		$test=new MyList($parametriRicerca);
+		$test->iterate($calcolaImponibileNetto);
+		$stampaTotali($test);
+		echo $tabellaF;			
+	}
+
+//$codiceDaRimuovere = '4721+';
+/*
+$codiceDaRimuovere = $_GET['codiceArticoloDaRimuovere'];
+$tobeRemoved = array_search($codiceDaRimuovere, $arrayCodiciArticoli);
+
+if(count($tobeRemoved)){
+	unset($arrayCodiciArticoli[$tobeRemoved]);
+}
+
+$parametriRicerca['cod_articolo']=$arrayCodiciArticoli;
+*/
+
+//mercato
+	$parametriRicerca['cod_cliente']=array('!=','ABBAS','SEVEN','LAME2','MARTI');
+	unset($parametriRicerca['prezzo']);
+	$test=new MyList($parametriRicerca);
+
+	if(count($test->arr)>0){
+		echo '<h1>Mercato</h1>';
+		echo $tabellaH;
+		//tutte le righe
+		$test->iterate($stampaRighe);
+		$stampaTotali($test);
+
+		//fai i totali di quelli con prezzo
+		$parametriRicerca['prezzo']=array('!=','0.001');
+		$test=new MyList($parametriRicerca);
+		$test->iterate($calcolaImponibileNetto);
+		$stampaTotali($test);
+		echo $tabellaF;			
+	}
+/*
+if(count($tobeRemoved)){
+
+	$parametriRicerca=array(
+			'_type'=>'Riga',
+			'ddt_data'=>array('<>',$startDateR,$endDateR),
+			'cod_articolo'=>$codiceDaRimuovere,
+			'cod_cliente'=>array('!=','ABBAS','SEVEN','LAME2','MARTI'),
+	);
+
+
+	$test=new MyList($parametriRicerca);
+	if(count($test->arr)>0){
+		echo '<h1>Mercato seconda </h1>';
+		echo $tabellaH;
+		//tutte le righe
+		$test->iterate($stampaRighe);
+		$stampaTotali($test);
+
+		//fai i totali di quelli con prezzo
+		$parametriRicerca['prezzo']=array('!=','0.001');
+		$test=new MyList($parametriRicerca);
+		$test->iterate($calcolaImponibileNetto);
+		$stampaTotali($test);
+	}
+}
 */
 //==============================================================================================================================
 /*
@@ -320,36 +512,42 @@ foreach ($dbClienti as $cliente){
 		$mercati[]= addslashes($cliente['codice']);
 	}
 };
-//echo $codiciZucchine;
+//echo $codiciArticoli;
 $strMercati ='array(\''.implode("','",$mercati).'\')';
 //echo "*****(".$strMercati.")*****";
 $query = "
 	\$test=new MyList(
 		array(
 			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/01/20','31/01/20'),
-			//'cod_articolo'=>array(".$codiciZucchine."),
+			'ddt_data'=>array('<>','01/01/20','30/06/20'),
+			//'cod_articolo'=>array(".$codiciArticoli."),
+			'cod_articolo'=>array(".$codiciMeloni."),
 			//'cod_articolo'=>array('==','631FLOW'),			
 			//'cod_articolo'=>array('=','39'),
+			//'cod_articolo'=>array('=','05'),
 			//'cod_articolo'=>array('=','619','619+','619-','19'),
 			//'cod_articolo'=>array('=','639'),
 			//'cod_articolo'=>array('=','640','639'),
 			//'cod_iva'=>array('=','42',''), 
 			//'cod_articolo'=>array('=','03','01'), 
+			//'cod_articolo'=>array('=','52'), 
 			//'cod_articolo'=>array('=','100'), //CONF.NATALIZIA
 			//'cod_articolo'=>array('=','36','836'), //SEDANO
 			//'cod_articolo'=>array('=','17'), //CAPPUCCI ROSSI
 			//'cod_articolo'=>array('=','18','818'), //CAPPUCCI CUOR DI BUE
-			'cod_articolo'=>array('=','819','819','19','619','619+'), //CAPPUCCI
+			//'cod_articolo'=>array('=','96'), //PISELLI
+			//'cod_articolo'=>array('=','51'), //FAGIOLINI
+			//'cod_articolo'=>array('=','819','819','19','619','619+'), //CAPPUCCI
 			//'cod_articolo'=>array('=','20','820'),  //VERZE
 			//'cod_articolo'=>array('=','21','21V','621','821','921'),  //CAVOLFIORI
-			//'cod_articolo'=>array('=','50','850','650','650+','650-'), //ZUCCHE
+			//'cod_articolo'=>array('=','50','50ZA','850','650','650+','650-','650ZA'), //ZUCCHE
 			//'cod_articolo'=>array('=','650','650+'), //ZUCCHE
 			//'cod_articolo'=>array('=','65'), //PEPERONCINI PICCANTI
 			//'cod_articolo'=>array('=','8111'), //MELONI
 			//'cod_articolo'=>array('=','849','49','56','856','649','646'), //MELANZANE
 			//'cod_articolo'=>array('=','843','43','57','857'),//CIPOLLE CIPOLLOTTI
 			//'cod_articolo'=>array('=','847','647','47','471421','47714','947'),//ZUCCHINE
+			//'cod_articolo'=>array('=','52'),//CETRIOLI
 			//'cod_articolo'=>array('=','01','01-','801','801-','03','03-','803','803-'),
 			//'cod_articolo'=>array('=','42','942','842','842-','642','642+','642-'), //PORRI
 			//'cod_articolo'=>array('=','45','845','645','645+' ),  //BIANCO
@@ -365,20 +563,21 @@ $query = "
 			//'cod_cliente'=>".$strMercati.",
 			//'cod_cliente'=>array('!=','MARTI','FACCG','FACCI','SEVEN','SMA','SGUJI','ORTO3','GIAC1','LAME2','PASTA'),
 			//'cod_cliente'=>array('!=','VIOLA','SEVEN','MARTI'),
-			//'cod_cliente'=>array('=','SEVEN'),
+			'cod_cliente'=>array('=','SEVEN'),
 			//'cod_cliente'=>array('=','SOGEG'),
 			//'cod_cliente'=>array('=','BRUNF'),
 			//'cod_cliente'=>array('=','ABBAS'),
-			//'cod_articolo'=>array('!=','BSEVEN','631FLOW','31FLOW'),
-			//'cod_articolo'=>array('=','631FLOW','31FLOW'),
+			//'cod_articolo'=>array('!=','BSEVEN','631FLOW','31FLOW','631FLOW6'),
+			//'cod_articolo'=>array('=','631FLOW','31FLOW','631FLOW6'),
+			//'cod_articolo'=>array('=','BSEVEN'),
 			//'cod_articolo'=>array('=','829','629','829-'),
 			//'cod_cliente'=>array('!=','ABBAS','SEVEN'),
 			//'cod_cliente'=>array('!=','SEVEN','TESI','GIAC1','MARTI','BRUNF','NERIO','LAME2'),
 			//'cod_cliente'=>array('=','MARTI'),
 			//'cod_articolo'=>array('=','29','VAS29'),
-			//'cod_cliente'=>array('!=','SEVEN'),
-			//'cod_cliente'=>array('=','SOGEG'),			
-			'cod_cliente'=>array('!=','SEVEN','VIOLA'),
+			//'cod_cliente'=>array('!=','SEVEN','MARTI','VIOLA','GIMM2'),
+			//'cod_cliente'=>array('!=','SEVEN'),			
+			//'cod_cliente'=>array('=','FACCG'),
 			//'cod_destinatario'=>array('=','RAVEN'),
 			//'colli'=>array('!=','0'),
 			//'prezzo'=>array('!=','0.001','0.000')

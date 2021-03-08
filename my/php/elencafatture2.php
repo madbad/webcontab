@@ -18,11 +18,11 @@ set_time_limit ( 0);
 
 $params = 	array(
 		'_type'=>'Fattura',
-		'data'=>array('<>','01/01/2019','30/09/2019'),
-		'cod_cliente'=>'ABBAS',
+		'data'=>array('<>','01/06/2020','28/02/2021'),
+		'cod_cliente'=>'SEVEN',
 	);
 $paramsC= Array(
-	'codice'=> 'ABBAS',
+	'codice'=> $params['cod_cliente'],
 );
 //print_r($paramsC);
 $cliente= new ClienteFornitore($paramsC);
@@ -57,10 +57,18 @@ $test->iterate(function($obj){
 	//$obj->getRighe();
 	//print_r($obj);
 	global $fatturato;
+	
 	$codiceCliente=$obj->cod_cliente->getVal();
 	//$imponibile_fattura = $obj->getTotaleImponibile();
 	$importiFattura = $obj->calcolaTotaliImponibiliIva();
 	$importiFattura = $importiFattura[4];
+	
+	
+	if($obj->tipo->getVal()=="n"){
+		$importiFattura['imponibile'] = abs($importiFattura['imponibile'])*-1;
+		$importiFattura['importo_iva'] = abs($importiFattura['importo_iva'])*-1;
+	}
+	
 	//print_r($importiFattura);
 	$fatturato[$codiceCliente]['imponibile'] += $importiFattura['imponibile'];
 	$fatturato[$codiceCliente]['importo_iva'] += $importiFattura['importo_iva'];

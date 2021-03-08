@@ -27,6 +27,7 @@ include ('./core/config.inc.php');
 			<label>Cliente</label><input name="cliente" type="text" value="<?php echo $_POST['cliente']; ?>" autofocus>
 			<br><label>dal</label><input name="dal" type="text" value="<?php echo $_POST['dal']; ?>">
 			<br><label>al</label><input name="al" type="text" value="<?php echo $_POST['al']; ?>">
+			<br><label> DebugPrezzi  </label> <input class="dateselectorcheckbox" type="checkbox" name="debugPrezzi" <?php if(@$_POST['debugPrezzi']){echo 'checked';}?>>
 			<br><input type="submit" value="invia">
 		</form>
 	</div>
@@ -49,6 +50,8 @@ include ('./core/config.inc.php');
 */
 //OVERRIDE DEFAULT CONFIG
 //$config->pathToDbFiles= 'F:/CONTAB';
+
+$prodotti=array();
 
 
 //print_r($_POST);
@@ -164,6 +167,7 @@ echo '<br><br>';
 		global $sqlResult;
 		global $pesoddtPartenza;
 		global $pesoddtPartenzaTot;
+
 		
 		$pesoddtPartenza=0;
 		
@@ -185,6 +189,7 @@ echo '<br><br>';
 			global $pesoddtRiscontrato;
 			global $sqlResult;
 			global $pesoddtPartenza;
+			global $prodotti;
 
 			$css ='';
 
@@ -232,7 +237,20 @@ echo '<br><br>';
 			$css = " style='$css' ";
 
 			echo "<tr>";
-				echo "<td $css>".$descrizione."</td>";
+				echo "<td $css>";
+				/*todo add more like piccolo etc*/
+				$outDescr = str_replace(' CAT.II','<span style="background-color:black;color:white"> CAT.II </span>',$descrizione); 
+				$outDescr = str_replace(' PICCOLO ','<span style="background-color:black;color:white"> PICCOLO </span>',$outDescr); 
+				$outDescr = str_replace(' 12 E 15 PZ ','<span style="background-color:black;color:white"> 12 E 15 PZ </span>',$outDescr); 
+				$outDescr = str_replace(' 15 PZ ','<span style="background-color:black;color:white"> 15 PZ </span>',$outDescr); 
+				$outDescr = str_replace(' 18 PZ','<span style="background-color:black;color:white"> 18 PZ</span>',$outDescr); 
+				$outDescr = str_replace(' APERTA ','<span style="background-color:black;color:white"> APERTA </span>',$outDescr); 
+				$outDescr = str_replace(' GROSSO ','<span style="background-color:black;color:white"> GROSSO </span>',$outDescr); 
+				$outDescr = str_replace(' FLOWPACK ','<span style="background-color:black;color:white"> FLOWPACK </span>',$outDescr); 
+
+				echo  $outDescr;
+				echo '</td>';
+				//echo $descrizione."</td>";
 				echo "<td $cssRight $css>".number_format($obj->colli->getVal(),0,',','')."</td>";
 				echo "<td $cssRight $css>".number_format($partenza['peso_netto'],1,',','')."</td>";
 				echo "<td $cssRight $css>".number_format($obj->peso_netto->getVal(),1,',','')."</td>";
@@ -245,12 +263,24 @@ echo '<br><br>';
 				}
 				echo "<td $cssRight $css>".number_format($obj->getPrezzoLordo(),3,',','')."</td>";
 				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto(),3,',','')."</td>";
-				if (FALSE){
+				if ($_POST['debugPrezzi']){
 					echo "<td $cssRight>".number_format($obj->getPrezzoNetto()*$obj->peso_netto->getVal(),3,',','')."</td>";
 				}				
 
 				
-			//	echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
+				//echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
+				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto()*$obj->peso_netto->getVal(),3)."</td>";
+				$codArt = $obj->cod_articolo->getVal();
+				if(!array_key_exists($codArt,$prodotti)){
+					$prodotti[$codArt]['descrizione']= $descrizione;
+					$prodotti[$codArt]['peso']= 0;
+					$prodotti[$codArt]['importo']= 0;
+				}
+				$prodotti[$codArt]['peso'] += $obj->peso_netto->getVal();
+				$prodotti[$codArt]['importo'] +=	$obj->getPrezzoLordo() * $obj->peso_netto->getVal();	
+//echo $codArt.'->'.$prodotti[$codArt]['peso']."<br>";
+//echo $codArt.'->'.$prodotti[$codArt]['importo']."<br>";
+//echo $codArt = $prodotti[$codArt]['peso']."<br>";$obj->peso_netto->getVal()
 			echo "</tr>";
 		});
 		echo "<tr style='color:grey'><td colspan='7'>Colli Riscontrati: $colliddt";
@@ -272,6 +302,7 @@ echo '<br><br>';
 		
 	});
 	echo "</table>";
+	echo '<table><tr><td>';
 	echo "\n<b>Totale imponibile: ".number_format($imponibile,2).'</b>';
 	echo "\n<br>Totale colli: $colliricavo";
 	echo "\n<br>Totale peso Partenza: ";
@@ -281,7 +312,35 @@ echo '<br><br>';
 	echo "\n<br>Percentuale: ".round(($pesoddtPartenzaTot-$pesoricavo)*100/$pesoddtPartenzaTot,0)."%";
 	echo "\n<br>Al collo: ".round(($pesoddtPartenzaTot-$pesoricavo)/$colliricavo,2)."kg.";
 	
-	
+	echo '</td><td>';
+	echo '<BR><BR><CENTER><B>- - - M E D I E - - -</B></CENTER>';
+	echo '<table class="borderTable" WIDTH="100%">';
+	echo	'
+		<tr>
+		<td>Articolo</td>
+		<td>Peso</td>
+		<td>Media Prezzo (lordo)</td>
+		</tr>
+	';
+	foreach($prodotti as $prodotto){
+		if($prodotto['descrizione']=='****'){continue;}
+
+		
+		echo '<tr><td>';
+		echo "\n".$prodotto['descrizione'];
+		echo '</td><td STYLE="text-align:right">';
+		echo $prodotto['peso'].' KG';
+		echo '</td><td STYLE="text-align:right">';
+		echo number_format($prodotto['importo'] / $prodotto['peso'],2,',','').' EUR';
+		//echo ": ".$prodotto['importo'];
+		//echo " :::  ".$prodotto['peso'];
+		echo '</td></tr>';
+
+	}
+	echo '</table>';
+
+
+	echo '</tr></table>';
 	page_end();
 
 ?>

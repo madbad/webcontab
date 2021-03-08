@@ -52,6 +52,16 @@ $dbClienti=getDbClienti();
 		//while($row = odbc_fetch_array($result)){
 			$codCliente=$row['F_CODCLI'];
 			$tipoCliente=$dbClienti["$codCliente"]['__classificazione'];
+			
+			
+			//può essere che un nuovo cliente non sia ancora stato classificato
+			//stampo un allert così se necessario vado ad inserirlo
+			if(!array_key_exists($codCliente,$dbClienti)){
+				echo '<br>!!! Cliente non presente nel nostro database !!! =>'.$codCliente;
+				//echo array_keys($dbClienti);
+			}
+
+		
 			if (in_array($row['F_CODPRO'],$params['articles']) && ($tipoCliente=='mercato' || $tipoCliente=='supermercato') && ($codCliente!="MARTI") /*| $codCliente=='BRUNF'*//*ABILITA UNO SPECIFICO CODICE CLIENTE ANCHE SE NON RIENTRA TRA IL LAVORTO*/){
 
 				$calopeso=round(round($row['F_NUMCOL'])*$params['abbuonoPerCollo']);
@@ -235,17 +245,6 @@ if (@$_POST['mode']=='print'){
 					"costoCassa" => 0.43,
 					"cliente"=>"MARTI");//cassa vecchia
 	$html.=getArticleTable($params);
-	/* vecchi conteggi sma
-	//supermercati
-	$params = array("articles" => array('701','701S','801','801S'),
-					"startDate" => $startDate,
-					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.7,
-					"costoPedana" => 33,
-					"colliPedana" => 60,
-					"costoCassa" => 0.70);
-	$html.=getArticleTable($params);
-	*/
 	//supermercati
 	$params = array("articles" => array('801','801-','801F-','601'),
 					"startDate" => $startDate,
@@ -314,7 +313,7 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.3, //0.3
 						"costoPedana" => 33,
 						"colliPedana" => 112,
-						"costoCassa" => 0.56); //BLU DA 13
+						"costoCassa" => 0.38); //NERA DA 13
 						//"costoCassa" => 0.47); //POLISTIROLO
 		$html.=getArticleTable($params);
 		// supermercati
@@ -360,10 +359,10 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4, //0.3
-						"costoPedana" => 33,
+						"costoPedana" => 33,					
 						"colliPedana" => 112,
-						//"costoCassa" => 0.34);
-						"costoCassa" => 0.56); //cassa blu
+						"costoCassa" => 0.38); //NERA DA 13
+						//"costoCassa" => 0.56); //cassa blu
 		$html.=getArticleTable($params);
 		// supermercati
 		$params = array("articles" => array('729','829','729-','829-','629','629-','629+'),
@@ -450,7 +449,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => 0.47);//POLISTIROLO
 		$html.=getArticleTable($params);
 		// supermercati
-		$params = array("articles" => array('705','805','705-','805-','705--','805--','605' ),
+		$params = array("articles" => array('705','805','705-','805-','705--','805--','605','605+' ),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,

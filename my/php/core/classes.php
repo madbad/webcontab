@@ -1147,6 +1147,90 @@ class Fattura extends MyClass{
 		}
 		return false;
 	}
+	public function inviaMail(){
+		//rigenero il file pdf del ddt
+		$this->generaPdf($this);
+		
+		//importo i dati di configurazione della pec
+		$gmail=$GLOBALS['config']->gmail;
+		//$gmail=$GLOBALS['config']->liberomail;
+		$cliente=$this->cod_cliente->extend();
+		//var_dump($cliente);
+		$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
+
+		$mail->IsSMTP(); // telling the class to use SMTP
+
+		try {
+			$mail->Host       = $gmail->Host;
+			$mail->SMTPDebug  = $gmail->SMTPDebug;
+			$mail->SMTPAuth   = $gmail->SMTPAuth;
+			$mail->Port       = $gmail->Port;
+			$mail->Username   = $gmail->Username;
+			$mail->Password   = $gmail->Password;
+			
+			$mail->SMTPSecure = "tls";
+			//$mail->SMTPSecure = "SSL";
+			
+			//$mail->AddAddress($cliente->ragionesociale->getVal(), $cliente->pec->getVal()); //destinatario
+			if($cliente->__mailddt->getVal()==''){
+				echo 'Impossibile procedere all\'invio della fattura. Nessun indirizzo email associato al cliente';
+				echo '<br>'.$this->cod_destinatario->getVal();
+				echo '<br>'.$cliente->ragionesociale->getVal();
+			}
+			//qui dovrei avere un elenco di indirizzi email separati da una virgola","
+			//invio la mail ad ogni indirizzo
+			$indirizzimail = explode(",", $cliente->__mailddt->getVal());
+			foreach ($indirizzimail as $mailcliente){
+				$mail->AddAddress($mailcliente, $cliente->ragionesociale->getVal()); //destinatario
+			}
+			//ne invio una copia anche a me per conoscenza
+			$mail->AddAddress('lafavorita_srl@libero.it', 'La Favorita Srl'); //mia copia per conoscenza
+
+			//mi faccio mandare la ricevuta di lettura
+			$mail->ConfirmReadingTo=$gmail->ReplyTo->Mail;
+			$mail->SetFrom($gmail->From->Mail, $gmail->From->Name);
+			$mail->AddReplyTo($gmail->ReplyTo->Mail, $gmail->ReplyTo->Name);
+
+			$mail->Subject = 'Invio Fattura '.$this->getPdfFileName(); //oggetto
+			//$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
+			//  $mail->MsgHTML(file_get_contents('contents.html'));
+			$message="[Messaggio automatizzato] <br><br>\n\n Si trasmette in allegato<br>\n";
+			$message.='Fattura'.'. Nr. '.$this->numero->getVal().' del '.$this->data->getFormatted();
+			$message.="<br><br>Distinti saluti<br>".$GLOBALS['config']->azienda->ragionesociale->getVal();;
+
+			$mail->MsgHTML($message);
+			//$mail->Body($message); 
+
+			//allego il pdf della fattura
+			$mail->AddAttachment($this->getPdfFileUrl()); 
+			//var_dump($mail);
+
+			if($mail->Send()){
+			//	$html= '<h2 style="color:green">Messaggio Inviato</h2>';
+			//	$html.= '<br>Il messaggio con oggetto: ';
+			//	$html.= '<b>'.$mail->Subject.'</b>';
+			//	$html.='<br>E\' stato inviato a: <b>'.$cliente->ragionesociale->getVal().'</b>';
+			//	$html.='<br>all\'indirizzo: <b>'.$cliente->__pec->getVal().'</b>';
+			//	$html.='<br>con allegato il file: <b>'.$this->getPdfFileUrl().'</b>';
+				
+				//memorizzo la data di invio
+//				$this->__datainviopec->setVal(date("d/m/Y"));
+//				$this->saveSqlDbData();
+				//mostro il messaggio di avvenuto invio
+			//	echo $html;
+			//	var_dump($message);
+				//all seems ok
+				return true;
+			}
+
+		} catch (phpmailerException $e) {
+			echo $e->errorMessage(); //Pretty error messages from PHPMailer
+		} catch (Exception $e) {
+			echo $e->getMessage(); //Boring error messages from anything else!
+		}
+		return false;
+	}
+
 	public function getScadenzaPagamento(){
 		$dataFt=$this->data->getVal();
 		$condizioni=$this->cod_pagamento->extend();
@@ -2223,7 +2307,8 @@ function leggiFatturaXml ($urlFileFattura){
 	if (file_exists($fileTemporaneo)) {
 		$xml = simplexml_load_file($fileTemporaneo);
 	} else {
-		exit('Non sono riuscito ad estrapolare i contenuti dal file: '.$fileTemporaneo.' for '.$urlFileFattura);
+		echo('<span style="background-color:red;">Non sono riuscito ad estrapolare i contenuti dal file: '.$fileTemporaneo.' for '.$urlFileFattura.'</span>');
+		return;
 	}
 
 	//load the file as simplexml
@@ -2298,4 +2383,31 @@ function leggiFatturaXml ($urlFileFattura){
 		
 	
 }
+
+
+
+//utilità per capire e segnare l'avvenuta stampa di un file di acquisto
+function xmlPrintedStatus($xmlFile){
+	$xmlDir = pathinfo($xmlFile,PATHINFO_DIRNAME);
+	$xmlFileName = pathinfo($xmlFile,PATHINFO_BASENAME);
+	$xmlInternalDataFile = $xmlDir.'/.cache/printed/'.$xmlFileName;
+	//echo "\n<br>".$xmlInternalDataFile;
+	return file_exists($xmlInternalDataFile);
+}
+function xmlMarkAsPrinted($xmlFile){
+	$xmlDir = pathinfo($xmlFile,PATHINFO_DIRNAME);
+	$xmlFileName = pathinfo($xmlFile,PATHINFO_BASENAME);
+	$xmlInternalDataFile = $xmlDir.'/.cache/printed/'.$xmlFileName;
+	//echo "\n<br>".$xmlInternalDataFile;
+	
+	if (!file_exists($xmlDir.'/.cache/printed')) {
+		mkdir($xmlDir.'/.cache/printed', 0777, true);
+	}
+	
+	if(!touch($xmlInternalDataFile)){
+		echo 'impossibile creare il file: '.$xmlInternalDataFile;
+	};
+	return;
+}
+
 ?>

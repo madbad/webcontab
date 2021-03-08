@@ -33,7 +33,7 @@ switch ($_GET["do"]){
 
 		$myDdt->generaPdf();
 		$myDdt->getPdfFileUrl();
-		if(true){
+		if(false){
 			$acroreaderexe = '"C:\Programmi\Adobe\Reader 11.0\Reader\AcroRd32.exe"';
 			//$acroreaderexe = '"C:\Programmi\Foxit Software\Foxit Reader\FoxitReader.exe"';
 			$filename = '"'.$myDdt->getPdfFileUrl().'"';
@@ -49,7 +49,8 @@ switch ($_GET["do"]){
 		}else{
 			$sumatrapdfexe = 'C:\Programmi\SumatraPDF\SumatraPDF.exe';
 			$filename = '"'.$myDdt->getPdfFileUrl().'"';
-			$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
+			//$printername = '"HP LaserJet M1530 MFP Series PCL 6"';
+			$printername = '"HPNUOVA"';
 			//$printername = '"\\\\SERVER\PDFCreator"';
 			//$drivername = '"Hp LaseJet M1530 MFP Series PCL 6"';
 			//$portname = '"IP_192.168.10.110"';

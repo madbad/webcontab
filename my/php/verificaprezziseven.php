@@ -19,29 +19,43 @@ include ('./core/config.inc.php');
 //==============================================================================================================================
 //fino al 31/05/17 ok
 //==============================================================================================================================
-$test=new MyList(
-		array(
-			'_type'=>'Riga',
-			'ddt_data'=>array('<>','01/01/20','31/01/20'),
-			//'cod_articolo'=>array('=','847'),
-			//'cod_cliente'=>array('=','SEVEN'),
-			'cod_cliente'=>array('=','SOGEG'),
-		)
-	);
 
-$prezzi=array();
+function verifica($codCliente){
+	echo "<h1>$codCliente</h1>";
 
-$test->iterate(function ($obj){
-	global $prezzi;
-	//$obj->cod_articolo->getVal();
-	//$obj->prezzo->getVal();
-	if ($prezzi[$obj->cod_articolo->getVal()] != $obj->prezzo->getVal()){
-		echo '<br> prezzo per ';
-		echo $obj->ddt_data->getFormatted();
-		echo ' prezzo per '.$obj->cod_articolo->getVal().' era '.$prezzi[$obj->cod_articolo->getVal()].' diventa '.$obj->prezzo->getVal();
-		$prezzi[$obj->cod_articolo->getVal()] = $obj->prezzo->getVal();
-	}
-});
+	$test=new MyList(
+			array(
+				'_type'=>'Riga',
+				'ddt_data'=>array('<>','01/02/21','28/02/21'),
+				//'cod_articolo'=>array('=','847'),
+				'cod_cliente'=>array('=',$codCliente),
+				//'cod_cliente'=>array('=','SOGEG'),
+				//'cod_cliente'=>array('=','MARTI'),
+				//'cod_cliente'=>array('=','LAME2'),
+				//'cod_cliente'=>array('=','BRUNF'),
+			)
+		);
 
+	$prezzi=array();
+
+	$test->iterate(function ($obj){
+		global $prezzi;
+		//$obj->cod_articolo->getVal();
+		//$obj->prezzo->getVal();
+		if ($prezzi[$obj->cod_articolo->getVal()] != $obj->prezzo->getVal()){
+			echo '<br> prezzo per ';
+			echo $obj->ddt_data->getFormatted();
+			echo ' prezzo per '.$obj->cod_articolo->getVal().' era '.$prezzi[$obj->cod_articolo->getVal()].' diventa '.$obj->prezzo->getVal();
+			$prezzi[$obj->cod_articolo->getVal()] = $obj->prezzo->getVal();
+		}
+		if($obj->peso_netto->getVal() != $obj->peso_lordo->getVal()){
+			echo '<br> Manca Riscontro (?): '.$obj->ddt_data->getVal().' '.$obj->ddt_numero->getVal().' '.$obj->cod_articolo->getVal();
+		}
+	});	
+
+}
+verifica('SEVEN');
+verifica('SOGEG');
+verifica('MARTI');
 ?>
 </body>

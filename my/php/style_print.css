@@ -9,6 +9,12 @@
 pre{
 font-size:14px;
 }
+
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 /*
 @page { 
  	size: landscape;

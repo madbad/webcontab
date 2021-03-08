@@ -28,6 +28,9 @@ if (@$_GET["do"]){
 		case 'inviaPec':
 			$myFt->inviaPec();
 			break;
+		case 'inviaMail':
+			$myFt->inviaMail();
+			break;
 		case 'visualizza':
 			$myFt->visualizzaPdf();
 			break;
