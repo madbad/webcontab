@@ -1,192 +1,172 @@
-<!DOCTYPE html>
-<html lang="IT"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <title>WebContab Calcolo costi</title>
-        <meta charset="utf-8">
-        <!--
-		<link rel="stylesheet" type="text/css" href="style.css">
-		-->
-
-		<link rel="stylesheet" type="text/css" href="culdip_files/style_print.css" media="print">
-		<style>
-		#selettoreDati{
-			padding:1em;
-			position:absolute; 
-			top:0px; 
-			left:0px; 
-			z-index:100;
-			opacity:0.1;
-			background-color:green;
-			font-size:1.5em;
-		}
-		#selettoreDati:hover{
-			opacity:0.9
-		}
-		#selettoreDati input {
-			font-size:1.0em;
-		}
-		</style>
-    </head>
-     <body>
-<div id="selettoreDati">
-<form action="./fattura.ods.php" class="dateform hideOnPrint" method="post"> 
-	<span class="dateformtitle">Selezione parametri</span>
-	<br> <span class="dateselectordescription" style="width:5em;display:inline-block;">From:</span>
-	<input class="dateselector" type="date" name="inizio" value="2023-06-01">
-	<br> <span class="dateselectordescription" style="width:5em;display:inline-block;">to:</span>
-	<input class="dateselector" type="date" name="fine" value="2023-06-30">
-	<br><input list="fornitori" type="text" name="fornitore" value="KULDIP" autofocus="">
-	<datalist id="fornitori"><option value="KULDIP
-"></option><option value="TUNG
-"></option><option value="BUONA TERRA
-"></option><option value="GURU NANAK
-"></option><option value="ASHA
-"></option><option value="PARMINDER
-"></option><option value="ZILOCCHI
-"></option><option value="NICOLIS
-"></option><option value="ORTO DI KAUR
-"></option><option value="GURDEEP
-"></option><option value="SHANGARA
-"></option><option value="VEER
-"></option><option value="VEER
-"></option><option value="FACCINI
-"></option><option value="SANDEEP
-"></option><option value="SCHIAVO
-"></option><option value="HARBHINDER
-"></option><option value="ZOHRA
-"></option><option value="MAAN
-"></option><option value="NDBK
-"></option><option value="ROSSIGNOLI
-"></option><option value="SIDHU
-"></option><option value="AMNINDER
-"></option><option value="ZAPPOLA
-"></option><option value="HARJIT
-"></option><option value="MUHAMMAD
-"></option><option value="SCOLARI
-"></option><option value="HARPAL
-"></option><option value="TIZIANI
-"></option><option value="BRUNO
-"></option><option value="MIGLIORINI
-"></option><option value="TORRESANI
-"></option><option value="GIANELLO
-"></option><option value="SUKHWINDER
-"></option><option value="SARTAJ
-"></option><option value="BALJINDER
-"></option><option value="MANJIT
-"></option><option value="NANAK
-"></option></datalist>	<br><input type="submit" value="Submit" style="padding:1em;width:20em;">
-</form>
-</div>
+<link rel="stylesheet" type="text/css" href="culdip_files/style_print.css" media="print">
 <style>
 html{
-padding-left:2.5em;
-padding-right:2.5em;
+	width: 210mm;
+	height: 287mm; /*297*/
+	margin: 0mm;
+	padding:0mm;
 }
-@page { size: auto;  margin: 0mm; }
+
+body {
+	width: 210mm;
+	height: 287mm;  /*297*/
+	/*border:0.3mm solid black;*/
+	margin: 0mm;
+	padding:0mm;
+}
+@page {
+  size: A4;
+  margin: 0mm;
+}
+
+@media print {
+  .pagebreak {page-break-after: always;}
+}
 
 #venditore{
-	/*border:1px solid black;*/
-	width:90%;
-	padding:1em;
-	font-size:1.2em;
+	width:15cm;
+	font-size:0.35cm;
+	position:absolute;
+	top:0.5cm;
+	left:0.5cm;
 }
 
 .nomeAzienda{
-	font-size:1.6em;
+	font-size:0.7cm;
 	font-weight:bold;
 }
 
 #acquirente{
-	border:1px solid black;
-	width:40%;
+	border:0.3mm solid black;
+	width:9cm;
+	padding:0.3cm;
+	font-size:0.35cm;
+
 	position:absolute;
-	right:3em;
-	padding:1em;
-	top:10em;
+	left:9cm;
+	top:3cm;
 
 }
 #datiFattura{
-	width:100%;
-	top:20em;
+	width: 190mm;
+
 	position:absolute;
+	top:7.5cm;
+	left:0.5cm;
 }
 #datiFattura div{
-	font-size:1em;
+	font-size:0.35cm;
 	color:grey;
 	display:inline-block;
-	width:10em;
-	border:1px solid black;
+	width:6cm;
+	border:0.3mm solid black;
 }
 #datiFattura div span{
 	display:block;
 	color:black;
-	font-size:1.3em;
+	font-size:0.35cm;
 	font-weight:bold;
 }
 #acquirente span{
 	display: inline-block;
-	width: 7em;
+	width: 3cm;
 }
 #righeFattura{
-	top:28em;
+	width: 190mm;
+	
 	position:absolute;
-	width:90%;
+	top:10cm;
+	left:0.5cm;
 }
 
 #righeFattura table{
 	width:100%;
 }
 #righeFattura th{
-	border:1px solid black;
+	border:0.3mm solid black;
 	border-collapse: collapse;
 }
 
-#righeFattura table, tr, td{
-	border:1px solid black;
+#righeFattura table, #righeFattura tr, #righeFattura td{
+	border:0.3mm solid black;
 	border-collapse: collapse;
-	border-top:0px solid black;
-	border-bottom:0px solid black;
-	padding-left:0.3em;
-	padding-right:0.3em;
-	padding-top:0em;
-	padding-bottom:0em;
-	font-size:0.93em;
+	border-top:0mm solid black;
+	border-bottom:0mm solid black;
+	padding-left:0.1cm;
+	padding-right:0.1cm;
+	padding-top:0cm;
+	padding-bottom:0cm;
+	font-size:0.35cm;
 }
 #riferimentoDDT{
+	width: 190mm;
+	
 	position:absolute;
-	top:70em;
-	border:1px solid black;
-	width:90%;
+	top:21cm;	
+	left:0.5cm;
+	border:0.3mm solid black;
+	
+
 }
 #ddt{
 	columns: 5;
-	column-rule: 2px solid grey;
-	padding:0.5em;
+	column-rule: 0.1mm solid grey;
+	padding:0.1cm;
+
+	font-size:0.30cm;
+
 }
 
 
 #riferimentoDDT span{
 	/*
-	border: 1px solid gray;
-	padding:0.3em;
+	border: 1mm solid gray;
+	padding:0.1cm;
 	*/
 }
 #annotazioni{
+	width: 11cm;
+
 	position:absolute;
-	top:85em;
-	border:1px solid black;
-	width: 50%;
-	left:2em;
+	top:25cm;	
+	left:0.5cm;
+	
+	border:0.3mm solid black;
+	font-size:0.35cm;
+}
+#annotazioni ul{
+	padding-left: 0.4cm;
 }
 #castelletto{
+	width: 7.5cm;
+	
 	position:absolute;
-	top:85em;
-	border:1px solid black;
-	width: 35%;
-	right:2em;
+	top:25cm;	
+	left:12cm;
+	border:0.3mm solid black;
+}
+#castelletto td{
+	font-size:0.40cm;	
+
 }
 .textRight{
-text-align:right;
+	text-align:right;
+}
+
+.dettaglio{
+	padding:1cm;
+	
+}
+.dettaglio table{
+	width:16cm;
+	
+}
+
+.dettaglio table, .dettaglio td{
+	border:0.3mm solid black;
+	border-collapse: collapse;
+	font-size:0.30cm;
+	padding:0.1mm;
 }
 </style>
 
@@ -279,7 +259,7 @@ text-align:right;
 		foreach ($fattura->ddt as $ddt) {
 			echo '<span> N. '.$ddt['numero'].' del '.$ddt['data'].'</span><br>';
 		}
-	?><div>
+	?></div>
 </div>
 
 <div id="annotazioni">
@@ -308,5 +288,57 @@ LEGGE 24/01/2012, N.1,  CONVERTITO CON MODIFICAZIONI DALLA LEGGE
 		<td class="textRight"><b><?php echo number_format($fattura->totale,2,',','.'); ?></b></td>
 	</tr>
 	</tbody></table>
+</div>
+
+<div class="pagebreak"></div>
+<div class="dettaglio">
+<table>
+<tr>
+<td>ddt</td>
+<td>data</td>
+<td>fornitore</td>
+<td>articolo</td>
+<td>colli</td>
+<td>peso</td>
+<td>prezzo</td>
+</tr>
+<?php
+		$contarighe= 0;
+		foreach ($fattura->righeOriginali as $riga) {
+			$contarighe++;
+			if($contarighe > 65){
+				$contarighe= 0;
+				echo '</table></div><div class="pagebreak"></div>';
+
+				echo '<div class="dettaglio">';
+				echo '<table>';
+				echo '<tr>';
+				echo '<td>ddt</td>';
+				echo '<td>data</td>';
+				echo '<td>fornitore</td>';
+				echo '<td>articolo</td>';
+				echo '<td>colli</td>';
+				echo '<td>peso</td>';
+				echo '<td>prezzo</td>';
+			
+			}
+			echo '<tr>';
+			echo '<td>'.$riga['ddt'].'</td>';
+			echo '<td>'.$riga['data'].'</td>';
+			echo '<td>'.$riga['fornitore'].'</td>';
+			echo '<td>'.$riga['articolo'].'</td>';
+			/*
+			echo '<td class="textRight">'.number_format($riga['colli']*1,0,',','.').'</td>';
+			echo '<td class="textRight">'.number_format($riga['peso']*1,1,',','.').'</td>';
+			echo '<td class="textRight">'.number_format($riga['prezzo']*1,3,',','.').'</td>';
+			*/
+			echo '<td class="textRight">'.$riga['colli'].'</td>';
+			echo '<td class="textRight">'.$riga['peso'].'</td>';
+			echo '<td class="textRight">'.$riga['prezzo'].'</td>';
+
+			echo '</tr>';
+		}
+?>
+</table>
 </div>
 </body></html>

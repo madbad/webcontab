@@ -163,6 +163,7 @@ SINGH MAAN DARSHAN
 VIA MEZZAVILLA N.21
 37060 SORGA' (VR)
 04612830234
+SNGDSH61R10Z222V
 ----
 NDBK
 N.DBK LOGISTICA TRASPORTI SRLS
@@ -303,6 +304,21 @@ VIA BOSCHI N.
 37060 ERBE' (VR)
 03216380232
 DROMHL79R14E349R
+----
+LOVEPREET
+AZ.AGR. GREWAL DI SINGH LOVEPREET
+VIA DEGLI ALPINI N.16
+37054 NOGARA (VR)
+04936200239
+SNGLPR02P01Z222K
+----
+DHANOA
+SOC.AGR.DHANOA S.S.
+VIA FABBRICHE N.6
+37054 BOVOLONE (VR)
+04936250234
+04936250234
+----
 ";
 $fornitori = explode("----",$fornitori);
 //print_r($fornitori);
@@ -380,9 +396,9 @@ if (array_key_exists("inizio", $_POST)){
 		</style>
     </head>
      <body>
-	 <!--
-<div id="selettoreDati">
-<form action="./fattura.ods.php" class="dateform hideOnPrint" method="post"> 
+
+<div id="selettoreDati" class="hideOnPrint">
+<form action="./fattura.ods.php" class="dateform" method="post"> 
 	<span class="dateformtitle">Selezione parametri</span>
 	<br> <span class="dateselectordescription" style="width:5em;display:inline-block;">From:</span>
 	<input class="dateselector" type="date" name="inizio" value="<?php echo $inizio ?>">
@@ -401,7 +417,7 @@ if (array_key_exists("inizio", $_POST)){
 			//echo $fornitore[0].'<<';
 			//print_r($fornitore[0]);
 			$code = trim($temp[1]);
-			echo   '<option value="'.$temp[1].'">';
+			echo   "\n".'<option value="'.$temp[1].'">';
 		}
 		echo '</datalist>';
 		/*---------------------------------------------------*/
@@ -410,21 +426,8 @@ if (array_key_exists("inizio", $_POST)){
 	<BR><input type="submit" value="Submit" style="padding:1em;width:20em;">
 </form>
 </div>
--->
-<?php
-/*
-$codiceFornitore = "PARMINDER";
-$inizio = "01-07-2022";
-$fine = "31-07-2022";
-*/
-/*
-if ($codiceFornitore==''){
-	echo $codiceFornitore;
-	echo 'mmancano dati';
-	exit;
-}
-*/
 
+<?php
 function importNumber($number){
 	$number = str_replace('.', '',$number);
 	$number = str_replace(',', '.',$number);
@@ -432,14 +435,6 @@ function importNumber($number){
 }
 
 function exportNumber($number,$precision=2){
-/*
-	 number_format(
-    float $num,
-    int $decimals = 0,
-    ?string $decimal_separator = ".",
-    ?string $thousands_separator = ","
-): string
-*/
 	return number_format($number,$precision,',','.');
 }
 
@@ -447,14 +442,25 @@ $totali= array();
 
 function estraiDatiFattura(){
 	//criteri di filtraggio
+	/*
 	$datainiziale = 20230901;
 	$datafinale = 20230930;
 	$nomefoglio = 2020;
 	$fornitore ='KULDIP';
-
+	*/
+	global $inizio;
+	global $fine;
+	global $codiceFornitore;
+	
+	$datainiziale = str_replace('-','',$inizio);
+	$datafinale = str_replace('-','',$fine);
+	$nomefoglio = 2020;
+	$fornitore = $codiceFornitore;
+		
 	//output
 	$fattura = new stdClass();
 	$fattura->righe = array();
+	$fattura->righeOriginali = array();
 	$fattura->ddt = array();
 	$fattura->imponibile = 0;
 
@@ -541,12 +547,25 @@ function estraiDatiFattura(){
 		}
 		
 		$fattura->imponibile +=importNumber($riga->childNodes->item($PESO)->nodeValue)*$fattura->righe[$suddivisore]['PREZZO'];
+		
+		$nuovaRiga=count ($fattura->righeOriginali);
+		$fattura->righeOriginali[$nuovaRiga]['ddt']  = $riga->childNodes->item($NUMERO)->nodeValue;
+		$fattura->righeOriginali[$nuovaRiga]['data']= $riga->childNodes->item($DATA)->nodeValue;
+		$fattura->righeOriginali[$nuovaRiga]['fornitore']= $riga->childNodes->item($FORNITORE)->nodeValue;
+		$fattura->righeOriginali[$nuovaRiga]['articolo']= $riga->childNodes->item($ARTICOLO)->nodeValue;
+		$fattura->righeOriginali[$nuovaRiga]['colli'] = $riga->childNodes->item($COLLI)->nodeValue;
+		$fattura->righeOriginali[$nuovaRiga]['peso'] = $riga->childNodes->item($PESO)->nodeValue;
+		$fattura->righeOriginali[$nuovaRiga]['prezzo'] = $riga->childNodes->item($PREZZO)->nodeValue;
 	}
 	return $fattura;
 }
 
 //estrapolo i dati fattura dal file ODS
 $fattura = estraiDatiFattura();
+
+//riordino le righe in modo da unire gli articoli
+krsort($fattura->righe);
+
 
 //arrotondamenti dei totali
 $fattura->imponibile = round($fattura->imponibile,2);
