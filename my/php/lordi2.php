@@ -28,6 +28,7 @@ include ('./core/config.inc.php');
 			<br><label>dal</label><input name="dal" type="text" value="<?php echo $_POST['dal']; ?>">
 			<br><label>al</label><input name="al" type="text" value="<?php echo $_POST['al']; ?>">
 			<br><label> DebugPrezzi  </label> <input class="dateselectorcheckbox" type="checkbox" name="debugPrezzi" <?php if(@$_POST['debugPrezzi']){echo 'checked';}?>>
+			<br><label> DebugPrezziLordi  </label> <input class="dateselectorcheckbox" type="checkbox" name="debugPrezziLordi" <?php if(@$_POST['debugPrezziLordi']){echo 'checked';}?>>
 			<br><input type="submit" value="invia">
 		</form>
 	</div>
@@ -265,6 +266,9 @@ echo '<br><br>';
 				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto(),3,',','')."</td>";
 				if ($_POST['debugPrezzi']){
 					echo "<td $cssRight>".number_format($obj->getPrezzoNetto()*$obj->peso_netto->getVal(),3,',','')."</td>";
+				}				
+				if ($_POST['debugPrezziLordi']){
+					echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3,',','')."</td>";
 				}				
 
 				
