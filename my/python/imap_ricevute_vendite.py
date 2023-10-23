@@ -8,7 +8,7 @@ import sys, socket, imaplib, email, os, re
 # SET ME PLEASE
 #
 HOST = 'imaps.pec.aruba.it'         # Il server IMAP, p.es. imap.gmail.com
-USER = 'something@something.it'      # L'indirizzo, p.es. tuoNome@gmail.com
+USER = 'something@pec.it'      # L'indirizzo, p.es. tuoNome@gmail.com
 PASS = 'something'                 # La password (qui leggibile da tutti !!)
 MAILBOX = 'INBOX'
 
@@ -132,6 +132,12 @@ for uid in mail_list:
                     if bool(fileName):
                         #where we want to save the file
                         #filePath = os.path.join('C:/pec/', fileName)
+                        
+                        #if the folder does not exist create it
+                        folderPath = 'C:/Programmi/EasyPHP-5.3.9/www/webContab/my/php/core/stampe/RICEVUTE/';
+                        if not os.path.exist(folderPath)
+                            os.makedirs(folderPath)                        
+                        
                         filePath = os.path.join('C:/Programmi/EasyPHP-5.3.9/www/webContab/my/php/core/stampe/RICEVUTE/', fileName)
                         #if this fine does not exist save it
                         if not os.path.isfile(filePath) :

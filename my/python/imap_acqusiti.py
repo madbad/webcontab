@@ -8,7 +8,7 @@ import sys, socket, imaplib, email, os, re, datetime, time
 # SET ME PLEASE
 #
 HOST = 'imaps.pec.aruba.it'         # Il server IMAP, p.es. imap.gmail.com
-USER = 'something@something.it'      # L'indirizzo, p.es. tuoNome@gmail.com
+USER = 'something'      # L'indirizzo, p.es. tuoNome@gmail.com
 PASS = 'something'                 # La password (qui leggibile da tutti !!)
 MAILBOX = 'INBOX'
 
@@ -145,13 +145,33 @@ for uid in mail_list:
                     if bool(fileName):
                         #where we want to save the file
                         #filePath = os.path.join('C:/pec/', fileName)
-                        filePath = os.path.join('C:/Programmi/EasyPHP-5.3.9/www/webContab/my/php/dati/fattureElettronicheAcquisto/'+year+'/'+month+'/', fileName)
+                        
+                        #if the folder does not exist create it
+                        folderPath = 'C:/Programmi/EasyPHP-5.3.9/www/webcontab/my/php/dati/fattureElettronicheAcquisto/'+year+'/'+month+'/';
+                        if not os.path.exists(folderPath) :
+                            os.makedirs(folderPath, 0o777)
+                        
+                        filePath = os.path.join('C:/Programmi/EasyPHP-5.3.9/www/webcontab/my/php/dati/fattureElettronicheAcquisto/'+year+'/'+month+'/', fileName)
                         #if this fine does not exist save it
                         if not os.path.isfile(filePath) :
                             print ("    Saving this file {}".format(fileName))
                             fp = open(filePath, 'wb')
                             fp.write(part.get_payload(decode=True))
                             fp.close()
+                            
+                            #salvo la data di ricezione
+                            print ("    Salvo la data di ricezione".format(fileName))
+                            dirPath2 = 'C:/Programmi/EasyPHP-5.3.9/www/webcontab/my/php/dati/fattureElettronicheAcquisto/'+year+'/'+month+'/.cache/dataricezione/';
+                            filePath2 = os.path.join(dirPath2, fileName+'.txt')
+                            if not os.path.exists(dirPath2) :
+                                os.makedirs(dirPath2, 0o777)
+                            #now.strftime("%m/%d/%Y, %H:%M:%S")
+                            #mailDateString = time.strftime('%Y-%m-%dT%H:%M:%SZ', mailDate)
+                            mailDateString = time.strftime("%d/%m/%Y, %H:%M:%S %z", mailDate)
+                            #mailDateString = time.strftime("%c", mailDate)
+                            fp2 = open(filePath2, 'wt')
+                            fp2.write(mailDateString)
+                            fp2.close()
                             
                             #remember this email was successfull so that we can mark them as read afterward
                             readmails.append(uid)
