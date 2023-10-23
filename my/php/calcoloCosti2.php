@@ -545,7 +545,7 @@ if (@$_POST['mode']=='print'){
 		getData($params);
 		*/
 		// MARTINELLI
-		$params = array('articles' => array('05'),
+		$params = array('articles' => array('05','05P'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.0, //0.3//0.5
