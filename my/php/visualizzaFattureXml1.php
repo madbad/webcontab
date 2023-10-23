@@ -101,7 +101,7 @@ if($_GET['fileUrl']!=''){
 
 	//	application/json
 	//	application/ecmascript
-	//	application/octet-stream
+	//	application/octet-stream	
 	//	
 	//	application/pdf
 	//	application/zip
@@ -128,23 +128,15 @@ echo 'manca il parametro file';
 include ('./core/config.inc.php');
 
 xmlMarkAsPrinted($_GET['fileUrl']);
-/*
-if (false){
+
 $xmlDomDocument = leggiFatturaXml($_GET['fileUrl']);
+
 //send it to the browser
 header("Content-disposition: inline; filename=".$_GET['fileUrl']);
 header('Content-type: text/xml');
 echo $xmlDomDocument->saveXML();
-}
-*/
 
 
-
-$fileDataRicezione = dirname($_GET['fileUrl']).'/.cache/dataricezione/'.basename ($_GET['fileUrl']).'.txt';
-$dataRicezione = file_get_contents($fileDataRicezione);
-
-echo 'Data di ricezione: '.$dataRicezione;
-echo '<br><iframe frameborder="0" style="height: 98%; overflow:scroll; width: 98%" type="application/xml" src="./visualizzaFattureXml1.php?fileUrl='.$_GET['fileUrl'].'"></iframe>'
 
 
 ?>
