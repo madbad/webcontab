@@ -69,9 +69,14 @@ $elencoDDT->iterate(function($obj){
 		
 		//genero il pdf del ddt
 		//e ricavo il nome del file da allegare (il nome deve essere quello della postazione che esegue selenium)
-		$obj->generaPdf();
+		//$obj->generaPdf();
+		
+		//copio il file in una cartella raggiungibile da linux
+		copy($obj->getPdfFileUrl(),'c:/stampeddt/'.$obj->getPdfFileName());
+		
 		//$allegato = $obj->getPdfFileUrl();
-		$allegato = '/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/'.$obj->getPdfFileName();
+		//$allegato = '/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/'.$obj->getPdfFileName();
+		$allegato = '/home/brungionni/mnt/dati/stampeddt/'.$obj->getPdfFileName();
 
 		//python /home/brungionni/Utils/testselenium.py --destinatario="Gaspare ExAstro - Cavallaro" --allegato="/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/20231019_DdT00003600.pdf"
 		$fileContent .= "\n".'python /home/brungionni/Utils/testselenium.py --destinatario="'.$destinatario.'" --allegato="'.$allegato.'"';
