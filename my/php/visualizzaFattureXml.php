@@ -143,8 +143,8 @@ echo $xmlDomDocument->saveXML();
 $fileDataRicezione = dirname($_GET['fileUrl']).'/.cache/dataricezione/'.basename ($_GET['fileUrl']).'.txt';
 $dataRicezione = file_get_contents($fileDataRicezione);
 
-echo 'Data di ricezione: '.$dataRicezione;
-echo '<br><iframe frameborder="0" style="height: 98%; overflow:scroll; width: 98%" type="application/xml" src="./visualizzaFattureXml1.php?fileUrl='.$_GET['fileUrl'].'"></iframe>'
+echo '<div style="position: absolute;margin-top: -10px;">Data di ricezione: '.$dataRicezione.'</div>';
+echo '<div><iframe onload=\'javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));\' frameborder="0" style=" width: 98%; display:block" type="application/xml" src="./visualizzaFattureXml1.php?fileUrl='.$_GET['fileUrl'].'"></iframe></div>'
 
 
 ?>
