@@ -113,7 +113,14 @@ document.querySelector("input[name='searchString'").addEventListener("keyup", fu
 include ('./core/config.inc.php');
 
 //acquisti
-$tipo = './dati/fattureElettronicheAcquisto/';
+if( isset($_GET['gimmi'])){
+	//gimmi
+	$tipo = './../../../webstore/dati/brungimmi/fattureElettronicheAcquisto/';
+}else{
+	//favorita
+	$tipo = './dati/fattureElettronicheAcquisto/';
+}
+echo $tipo;
 
 if( isset($_GET['anno']) && isset($_GET['mese'])){
 	//se ho impostato anno e mese
