@@ -226,7 +226,7 @@ echo '<br><br>';
 			if($obj->colli->getVal()>0){
 				$colliddt+= $obj->colli->getVal();
 				$pesoddtRiscontrato+= $obj->peso_netto->getVal();
-				$imponibileddt+=$obj->peso_netto->getVal()*$obj->getPrezzoNetto();
+				$imponibileddt+=$obj->peso_netto->getVal()*$obj->prezzo->getVal();//getPrezzoNetto();
 				//$imponibileddt+=1;
 				//echo "\n<br>". $obj->imponibile->getVal()*1;
 			}
@@ -298,7 +298,7 @@ echo '<br><br>';
 		echo " (".($pesoddtPartenza -$pesoddtRiscontrato).") ##";
 		echo " (".round(($pesoddtRiscontrato - $pesoddtPartenza)/$colliddt,2)."/kg-collo) ";
 		echo " (".round(($pesoddtRiscontrato - $pesoddtPartenza)*100 / $pesoddtPartenza,0)."%) ";
-		echo " <span class='hideOnPrint;' style='color:blue; float:right;'>EUR ".round($imponibileddt,2).'<span>';
+		echo " <span class='hideOnPrint' style='color:blue; float:right;'>EUR ".round($imponibileddt,2).'<span>';
 		
 		$partialkey = trim($obj->numero->getVal())."#".$obj->data->getVal();
 		$delettedRows = filterArrayByPartialKeyMatch($sqlResult, $partialkey);
