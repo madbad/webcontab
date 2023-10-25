@@ -22,7 +22,7 @@ include ('./core/config.inc.php');
 		<title>WebContab Calcolo costi</title>
 		<meta charset="utf-8">
 	</head>
-	<div class="fixedTopRightBar">
+	<div class="fixedTopRightBar hideOnPrint">
 		<form action="./lordi2.php" method="post">
 			<label>Cliente</label><input name="cliente" type="text" value="<?php echo $_POST['cliente']; ?>" autofocus>
 			<br><label>dal</label><input name="dal" type="text" value="<?php echo $_POST['dal']; ?>">
@@ -162,13 +162,14 @@ echo '<br><br>';
 	echo "</tr>";
 	$ddtlist->iterate(function($obj){
 		global $colliddt;
+		global $imponibileddt;
 		global $pesoddtRiscontrato;
 		global $colliricavo;
 		global $pesoricavo;
 		global $sqlResult;
 		global $pesoddtPartenza;
 		global $pesoddtPartenzaTot;
-
+		
 		
 		$pesoddtPartenza=0;
 		
@@ -183,15 +184,17 @@ echo '<br><br>';
 		);
 		echo "\n<tr><td colspan='5'><b>DDT ".$obj->numero->getVal()." DEL ".$obj->data->getFormatted()."</b></td></tr>";
 		$colliddt=0;
+		$imponibileddt=0;
 		$pesoddtRiscontrato=0;
 		$righe->iterate(function($obj){
 			global $imponibile;
 			global $colliddt;
+			global $imponibileddt;
 			global $pesoddtRiscontrato;
 			global $sqlResult;
 			global $pesoddtPartenza;
 			global $prodotti;
-
+			
 			$css ='';
 
 			$key =trim($obj->ddt_numero->getVal())."#".$obj->ddt_data->getVal()."#".$obj->numero->getVal()."#".$obj->cod_articolo->getVal();
@@ -223,6 +226,9 @@ echo '<br><br>';
 			if($obj->colli->getVal()>0){
 				$colliddt+= $obj->colli->getVal();
 				$pesoddtRiscontrato+= $obj->peso_netto->getVal();
+				$imponibileddt+=$obj->peso_netto->getVal()*$obj->getPrezzoNetto();
+				//$imponibileddt+=1;
+				//echo "\n<br>". $obj->imponibile->getVal()*1;
 			}
 			
 			//evito le righe vuote
@@ -233,10 +239,10 @@ echo '<br><br>';
 			}else{
 				$descrizione ='****';
 			}
-
+			
 			$cssRight=" style='text-align:right;$css' ";
 			$css = " style='$css' ";
-
+			
 			echo "<tr>";
 				echo "<td $css>";
 				/*todo add more like piccolo etc*/
@@ -248,7 +254,7 @@ echo '<br><br>';
 				$outDescr = str_replace(' APERTA ','<span style="background-color:black;color:white"> APERTA </span>',$outDescr); 
 				$outDescr = str_replace(' GROSSO ','<span style="background-color:black;color:white"> GROSSO </span>',$outDescr); 
 				$outDescr = str_replace(' FLOWPACK ','<span style="background-color:black;color:white"> FLOWPACK </span>',$outDescr); 
-
+				
 				echo  $outDescr;
 				echo '</td>';
 				//echo $descrizione."</td>";
@@ -266,11 +272,10 @@ echo '<br><br>';
 				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto(),3,',','')."</td>";
 				if ($_POST['debugPrezzi']){
 					echo "<td $cssRight>".number_format($obj->getPrezzoNetto()*$obj->peso_netto->getVal(),3,',','')."</td>";
-				}				
+				}
 				if ($_POST['debugPrezziLordi']){
 					echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3,',','')."</td>";
-				}				
-
+				}
 				
 				//echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
 				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto()*$obj->peso_netto->getVal(),3)."</td>";
@@ -281,7 +286,7 @@ echo '<br><br>';
 					$prodotti[$codArt]['importo']= 0;
 				}
 				$prodotti[$codArt]['peso'] += $obj->peso_netto->getVal();
-				$prodotti[$codArt]['importo'] +=	$obj->getPrezzoLordo() * $obj->peso_netto->getVal();	
+				$prodotti[$codArt]['importo'] += $obj->getPrezzoLordo() * $obj->peso_netto->getVal();
 //echo $codArt.'->'.$prodotti[$codArt]['peso']."<br>";
 //echo $codArt.'->'.$prodotti[$codArt]['importo']."<br>";
 //echo $codArt = $prodotti[$codArt]['peso']."<br>";$obj->peso_netto->getVal()
@@ -293,7 +298,7 @@ echo '<br><br>';
 		echo " (".($pesoddtPartenza -$pesoddtRiscontrato).") ##";
 		echo " (".round(($pesoddtRiscontrato - $pesoddtPartenza)/$colliddt,2)."/kg-collo) ";
 		echo " (".round(($pesoddtRiscontrato - $pesoddtPartenza)*100 / $pesoddtPartenza,0)."%) ";
-		
+		echo " <span class='hideOnPrint;' style='color:blue; float:right;'>EUR ".round($imponibileddt,2).'<span>';
 		
 		$partialkey = trim($obj->numero->getVal())."#".$obj->data->getVal();
 		$delettedRows = filterArrayByPartialKeyMatch($sqlResult, $partialkey);
