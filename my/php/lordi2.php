@@ -29,6 +29,7 @@ include ('./core/config.inc.php');
 			<br><label>al</label><input name="al" type="text" value="<?php echo $_POST['al']; ?>">
 			<br><label> DebugPrezzi  </label> <input class="dateselectorcheckbox" type="checkbox" name="debugPrezzi" <?php if(@$_POST['debugPrezzi']){echo 'checked';}?>>
 			<br><label> DebugPrezziLordi  </label> <input class="dateselectorcheckbox" type="checkbox" name="debugPrezziLordi" <?php if(@$_POST['debugPrezziLordi']){echo 'checked';}?>>
+			<br><label> Escludi no ricavo </label> <input class="dateselectorcheckbox" type="checkbox" name="escludiNoRicavo" <?php if(@$_POST['escludiNoRicavo']){echo 'checked';}?>>
 			<br><input type="submit" value="invia">
 		</form>
 	</div>
@@ -194,6 +195,12 @@ echo '<br><br>';
 			global $sqlResult;
 			global $pesoddtPartenza;
 			global $prodotti;
+			
+//			echo $_POST['escludiNoRicavo'];
+			if($_POST['escludiNoRicavo'] && $obj->prezzo->getVal() == '0.001'){
+				return;
+			}
+			
 			
 			$css ='';
 
