@@ -14,8 +14,8 @@ def config(mode):
     if mode=="favo":
         #config FAVORITA
         HOST = 'imaps.pec.aruba.it'         # Il server IMAP, p.es. imap.gmail.com
-        USER = 'lafavorita_srl@pec.it'      # L'indirizzo, p.es. tuoNome@gmail.com
-        PASS = '6come1brun'                 # La password (qui leggibile da tutti !!)
+        USER = ''      # L'indirizzo, p.es. tuoNome@gmail.com
+        PASS = ''                 # La password (qui leggibile da tutti !!)
         MAILBOX = 'INBOX'
         CARTELLA_ACQUISTI = 'C:/Programmi/EasyPHP-5.3.9/www/webcontab/my/php/dati/fattureElettronicheAcquisto/'
         CARTELLA_RICEVUTE_VENDITE = 'C:/Programmi/EasyPHP-5.3.9/www/webContab/my/php/core/stampe/RICEVUTE/'
@@ -23,8 +23,8 @@ def config(mode):
     if mode=="gimmi":
         #config GIMMI
         HOST = 'imaps.pec.aruba.it'         # Il server IMAP, p.es. imap.gmail.com
-        USER = 'lafavorita_srl@pec.it'      # L'indirizzo, p.es. tuoNome@gmail.com
-        PASS = '6come1brun'                 # La password (qui leggibile da tutti !!)
+        USER = ''      # L'indirizzo, p.es. tuoNome@gmail.com
+        PASS = ''                 # La password (qui leggibile da tutti !!)
         MAILBOX = 'INBOX'
         CARTELLA_ACQUISTI = 'C:/Programmi/EasyPHP-5.3.9/www/webstore/dati/brungimmi/fattureElettronicheAcquisto/'
         CARTELLA_RICEVUTE_VENDITE = 'C:/Programmi/EasyPHP-5.3.9/www/webstore/dati/brungimmi/fattureVenditaXML/RICEVUTE/'
