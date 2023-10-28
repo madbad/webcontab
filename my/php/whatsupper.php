@@ -39,7 +39,12 @@ $clientiWhatsup['O2000']="Orto 2000 Gianni";
 $clientiWhatsup['CALIM']="Calimero - STEFANO";
 $clientiWhatsup['ABBA2']="Abbascia Domenico";
 $clientiWhatsup['PRIMO']="Tesini";
-//$fornitori['']="Gaspare ExAstro - Cavallaro"
+$clientiWhatsup['CENTF']="Fabio Centrofrutta";
+$clientiWhatsup['MANGH']="Manghi Samuele";
+$clientiWhatsup['BACUL']="Pompeo - Bacullo SrL Mi";
+$clientiWhatsup['CAVAG']="Gaspare ExAstro - Cavallaro";
+$clientiWhatsup['PAGA2']="Lazzarin Venditore Fausto Zugno";
+
 
 $elencoDDT=new MyList(
 	array(
@@ -64,19 +69,28 @@ $elencoDDT->iterate(function($obj){
 	//$obj->cod_causale->getVal()
 	if(array_key_exists ($obj->cod_destinatario->getVal(), $clientiWhatsup)){
 		
+		$params=array(
+			'numero' => $obj->numero->getVal(),
+			'data'   => $obj->data->getVal(),
+			'cod_causale'  => $obj->cod_causale->getVal()
+		);
+		//genero il mio oggetto ddt
+		$myDdt= new Ddt($params);
+		
 		//ricavo il nome testuale del destinatario
 		$destinatario = $clientiWhatsup[$obj->cod_destinatario->getVal()];
 		
 		//genero il pdf del ddt
 		//e ricavo il nome del file da allegare (il nome deve essere quello della postazione che esegue selenium)
-		//$obj->generaPdf();
+		//$myDdt->autoExtend();
+		$myDdt->generaPdf();
 		
 		//copio il file in una cartella raggiungibile da linux
-		copy($obj->getPdfFileUrl(),'c:/stampeddt/'.$obj->getPdfFileName());
+		//copy($obj->getPdfFileUrl(),'c:/stampeddt/'.$obj->getPdfFileName());
 		
 		//$allegato = $obj->getPdfFileUrl();
-		//$allegato = '/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/'.$obj->getPdfFileName();
-		$allegato = '/home/brungionni/mnt/dati/stampeddt/'.$obj->getPdfFileName();
+		$allegato = '/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/'.$myDdt->getPdfFileName();
+		//$allegato = '/home/brungionni/mnt/dati/stampeddt/'.$obj->getPdfFileName();
 
 		//python /home/brungionni/Utils/testselenium.py --destinatario="Gaspare ExAstro - Cavallaro" --allegato="/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/20231019_DdT00003600.pdf"
 		$fileContent .= "\n".'python /home/brungionni/Utils/testselenium.py --destinatario="'.$destinatario.'" --allegato="'.$allegato.'"';
