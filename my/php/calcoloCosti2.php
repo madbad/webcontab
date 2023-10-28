@@ -3,6 +3,38 @@ include ('./core/config.inc.php');
 //require_once('./classes.php');
 //page_start();
 
+$copertina = new stdClass();
+$copertina->costo = 0.075;
+
+$vassoio = new stdClass();
+$vassoio->costo= 0.049;
+
+$film = new stdClass();//su m2
+$film->costo= 0.01;
+
+$cassapl304013nera = new stdClass();
+$cassapl304013nera->costo = 0.50;
+$cassapl304013nera->collipedana = 150;
+$cassapl305013nera = new stdClass();
+$cassapl305013nera->costo = 0.51;
+$cassapl305013nera->collipedana = 120;
+$cassapl305016nera = new stdClass();
+$cassapl305016nera->costo = 0.56;
+$cassapl305016nera->collipedana = 104;
+$cassapl305023nera = new stdClass();
+$cassapl305023nera->costo = 0.77;
+$cassapl305023nera->collipedana = 72;
+
+
+
+$cassapolymer4416 = new stdClass();
+$cassapolymer4416->costo = 0.54;
+$cassapolymer4416->collipedana = 88;
+$cassapolymer6413 = new stdClass();
+$cassapolymer4416->costo = 0.71;
+$cassapolymer4416->collipedana = 48;
+
+
 
 // Takes raw data from the request
 $json = file_get_contents('php://input');
@@ -279,7 +311,7 @@ dateselectorcheckbox{
 	<br> <span class="dateselectordescription">to (R):</span>
 	<input class="dateselector" type="date" id="endDateR" name="endDateR" value="<?php echo $endDateR ?>">
 	<br>
-	<input class="dateselectorcheckbox" type="checkbox" id="extraProducts" name="extraProducts" style="padding:2em;"><label for="extraProducts" class="dateselectorcheckbox" <?php if(@$_POST['extraProducts']){echo 'checked';}?>> Includi radicchi</label>
+	<input class="dateselectorcheckbox" type="checkbox" id="extraProducts" name="extraProducts" style="padding:2em;" <?php if(in_array("extraProducts",$_POST)){echo ' checked';}?>><label for="extraProducts" class="dateselectorcheckbox" > Includi radicchi <?PHP echo $_POST['extraProducts'];print_r($_POST)?></label>
 	<br>
 	<input name="mode" value="print" style="display: none;">
 
@@ -325,21 +357,19 @@ if (@$_POST['mode']=='print'){
 	$params = array("articles" => array('01','01S','01F','01SE'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.5, //0.3
-					"costoPedana" => 33,
-					"colliPedana" => 104,
-					//"costoCassa" => 0.81);//cassa nuova bianca vergine
-					"costoCassa" => 0.43);//cassa vecchia
+					"abbuonoPerCollo" => 0.25, //0.3
+					"costoPedana" => 50,
+					"colliPedana" => $cassapl305016nera->collipedana,
+					"costoCassa" => $cassapl305016nera->costo + $copertina->costo);
 	getData($params,'RICCIA','MERCATI');
 	
 	$params = array("articles" => array('01','01S','01F','01SE'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.5, //0.3
-					"costoPedana" => 33,
-					"colliPedana" => 104,
-					//"costoCassa" => 0.81);//cassa nuova bianca vergine
-					"costoCassa" => 0.43,
+					"abbuonoPerCollo" =>  0.25, //0.3
+					"costoPedana" => 30,
+					"colliPedana" => $cassapl305016nera->collipedana,
+					"costoCassa" => $cassapl305016nera->costo + $copertina->costo,
 					"cliente"=>"MARTI");//cassa vecchia
 	getData($params,'RICCIA','MARTINELLI');
 	//supermercati
@@ -347,9 +377,9 @@ if (@$_POST['mode']=='print'){
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.3,
-					"costoPedana" => 33,
-					"colliPedana" => 140,
-					"costoCassa" => 0.52);
+					"costoPedana" => 4,
+					"colliPedana" => $polymer4416->costo,
+					"costoCassa" => $polymer4416->costo);
 	getData($params,'RICCIA','SUPERMERCATI');
 	
 //scarola  
@@ -357,41 +387,28 @@ if (@$_POST['mode']=='print'){
 	$params = array("articles" => array('03','03S','03F','03SE'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.5, //0.3
-					"costoPedana" => 33,
-					"colliPedana" => 104,
-					//"costoCassa" => 0.81);//cassa nuova bianca
-					"costoCassa" => 0.43);//cassa vecchia
+					"abbuonoPerCollo" =>  0.25, //0.3
+					"costoPedana" => 50,
+					"colliPedana" => $cassapl305016nera->collipedana,
+					"costoCassa" => $cassapl305016nera->costo + $copertina->costo);
 	getData($params,'SCAROLA','MERCATI');
 	$params = array("articles" => array('03','03S','03F','03SE'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.5, //0.3
-					"costoPedana" => 33,
-					"colliPedana" => 104,
-					//"costoCassa" => 0.81);//cassa nuova bianca vergine
-					"costoCassa" => 0.43,
+					"abbuonoPerCollo" =>  0.25, //0.3
+					"costoPedana" => 30,
+					"colliPedana" => $cassapl305016nera->collipedana,
+					"costoCassa" => $cassapl305016nera->costo + $copertina->costo,
 					"cliente"=>"MARTI");//cassa vecchia
 	getData($params,'SCAROLA','MARTINELLI');
-	// supermercati
-	/*  vecchi conteggi sma
-	$params = array("articles" => array('703','703S','803','803S'),
-					"startDate" => $startDate,
-					"endDate" => $endDate,
-					"abbuonoPerCollo" => 0.7,
-					"costoPedana" => 33,
-					"colliPedana" => 60,
-					"costoCassa" => 0.70);
-	getData($params);
-	*/
 	//supermercati
 	$params = array("articles" => array('803','803-','803F-','603'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" => 0.3,
-					"costoPedana" => 33,
-					"colliPedana" => 140,
-					"costoCassa" => 0.52);
+					"costoPedana" => 4,
+					"colliPedana" => $polymer4416->collipedana,
+					"costoCassa" => $polymer4416->costo);
 	getData($params,'SCAROLA','SUPERMERCATI');
 
 
@@ -401,40 +418,29 @@ if (@$_POST['mode']=='print'){
 		$params = array("articles" => array('08','08B','08F','08G','08P','08POL','08PZ11','08TRAD'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.3, //0.3
-						"costoPedana" => 33,
-						"colliPedana" => 112,
-						"costoCassa" => 0.38); //NERA DA 13
-						//"costoCassa" => 0.47); //POLISTIROLO
+						"abbuonoPerCollo" => 0.25, //0.3
+						"costoPedana" => 50,
+						"colliPedana" => $cassapl305013nera->collipedana,
+						"costoCassa" => $cassapl305013nera->costo + $copertina->costo);
 		getData($params,'CH','MERCATI');
 		// supermercati
 		$params = array("articles" => array('708','808','808+','708-','808-','708--','808--','608','608-','608+'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 33,
-						"colliPedana" => 80,
-						"costoCassa" => 0.68);
+						"abbuonoPerCollo" => 0.2,
+						"costoPedana" => 4,
+						"colliPedana" => $polymer6413->collipedana,
+						"costoCassa" => $polymer6413->costo);
 		getData($params,'CH','SUPERMERCATI');
-		/*
 		// VASSOI
-		$params = array('articles' => array('VAS08'),
-						"startDate" => $startDateR,
-						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.2, //0.3//0.5
-						"costoPedana" => 33,
-						"colliPedana" => 124,
-						"costoCassa" => 0.57); //0,37 cassa + 0,05 x4 vassoi
-		getData($params);
-		*/
 		// MARTINELLI
 		$params = array('articles' => array('08'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.0, //0.3//0.5
-						"costoPedana" => 33,
-						"colliPedana" => 124,
-						"costoCassa" => 0.59, //0,40 cassa pl305016 + 0,031 x4 vassoi+ 0,015 x 4conezioni film
+						"costoPedana" => 30,
+						"colliPedana" => $cassapl305023nera->collipedana,
+						"costoCassa" =>  $cassapl305023nera->costo + $vassoio->costo * 6 + $film->costo * 6,
 						"cliente"=>"MARTI");
 		getData($params,'CH','MARTINELLI');
 		
@@ -443,40 +449,29 @@ if (@$_POST['mode']=='print'){
 		$params = array("articles" => array('29'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.4, //0.3
-						"costoPedana" => 33,					
-						"colliPedana" => 112,
-						"costoCassa" => 0.38); //NERA DA 13
-						//"costoCassa" => 0.56); //cassa blu
+						"abbuonoPerCollo" => 0.3, //0.3
+						"costoPedana" => 50,					
+						"colliPedana" => $cassapl305013nera->collipedana,
+						"costoCassa" => $cassapl305013nera->costo + $copertina->costo);
 		getData($params,'TV','MERCATI');
 		// supermercati
 		$params = array("articles" => array('729','829','729-','829-','629','629-','629+'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 33,
-						"colliPedana" => 80,
-						"costoCassa" => 0.67);
+						"costoPedana" => 4,
+						"colliPedana" => $polymer6413->collipedana,
+						"costoCassa" => $polymer6413->costo);
 		getData($params,'TV','SUPERMERCATI');
-		/*
-		// VASSOI
-		$params = array('articles' => array('VAS29'),
-						"startDate" => $startDateR,
-						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.1, //0.3//0.5
-						"costoPedana" => 33,
-						"colliPedana" => 124,
-						"costoCassa" => 0.67); //0,37 cassa + 0,05 x4 vassoi
-		getData($params);
-		*/
+		//VASSOI
 		// MARTINELLI
 		$params = array('articles' => array('29'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.0, //0.3//0.5
-						"costoPedana" => 33,
-						"colliPedana" => 124,
-						"costoCassa" => 0.68, //0,40 cassa pl305016 + 0,031 x6 vassoi+ 0,015 x 6 conezioni film
+						"costoPedana" => 30,
+						"colliPedana" => $cassapl305013nera->collipedana,
+						"costoCassa" =>  $cassapl305013nera->costo + $vassoio->costo * 6 + $film->costo * 6,
 						"cliente"=>"MARTI");
 		getData($params,'TV','MARTINELLI');
 		
@@ -484,34 +479,34 @@ if (@$_POST['mode']=='print'){
 		$params = array("articles" => array('31'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.5, //0.3
-						"costoPedana" => 33,
-						"colliPedana" => 104,
-						"costoCassa" => 0.40);
+						"abbuonoPerCollo" => 0.4, //0.3
+						"costoPedana" => 50,
+						"colliPedana" => $cassapl305016nera->collipedana,
+						"costoCassa" => $cassapl305013nera->costo);
 		getData($params,'PDZ','MERCATI');
 		$params = array("articles" => array('731','831','831-','631','631+'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 33,
-						"colliPedana" => 60,
-						"costoCassa" => 0.70);
+						"abbuonoPerCollo" => 0,
+						"costoPedana" => 0,
+						"colliPedana" => 0,
+						"costoCassa" => 0);
 		getData($params,'PDZ','FLOWPACK');
 		$params = array("articles" => array('31FLOW'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.1,
-						"costoPedana" => 33,
-						"colliPedana" => 60,
-						"costoCassa" => 0.70);
+						"costoPedana" => 0,
+						"colliPedana" => 0,
+						"costoCassa" => 0);
 		getData($params,'PDZ','FLOPPATO');
 		$params = array("articles" => array('631FLOW','631FLOW6','631FLOW6+'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.0,
-						"costoPedana" => 4.0,
-						"colliPedana" => 40,
-						"costoCassa" => 0.68);
+						"costoPedana" => 0,
+						"colliPedana" => 0,
+						"costoCassa" => 0);
 		getData($params,'PDZ','SEVEN-FLOW');
 
 //verona
@@ -520,38 +515,28 @@ if (@$_POST['mode']=='print'){
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.1, //0.3//0.5
-						"costoPedana" => 33,
-						"colliPedana" => 112,
-						"costoCassa" => 0.47);//POLISTIROLO
+						"costoPedana" => 50,
+						"colliPedana" => $cassapl305013nera->collipedana,
+						"costoCassa" => $cassapl305013nera->costo + $copertina->costo);
 	getData($params,'VR','MERCATI');
 		// supermercati
 		$params = array("articles" => array('705','805','705-','805-','705--','805--','605','605+' ),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
-						"costoPedana" => 33,
-						"colliPedana" => 80,
-						"costoCassa" => 0.67);
+						"costoPedana" => 0,
+						"colliPedana" => 0,
+						"costoCassa" => 0);
 	getData($params,'VR','SUPERMERCATI');
-		/*
 		// VASSOI
-		$params = array('articles' => array('VAS05'),
-						"startDate" => $startDateR,
-						"endDate" => $endDateR,
-						"abbuonoPerCollo" => 0.1, //0.3//0.5
-						"costoPedana" => 33,
-						"colliPedana" => 124,
-						"costoCassa" => 0.67); //0,37 cassa + 0,05 x6 vassoi
-		getData($params);
-		*/
 		// MARTINELLI
 		$params = array('articles' => array('05','05P'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.0, //0.3//0.5
-						"costoPedana" => 33,
-						"colliPedana" => 124,
-						"costoCassa" => 0.68, //0,40 cassa pl305016 + 0,031 x6 vassoi+ 0,015 x 6 conezioni film
+						"costoPedana" => 30,
+						"colliPedana" => $cassapl305013nera->collipedana,
+						"costoCassa" => $cassapl305013nera->costo + $copertina->costo,
 						"cliente"=>"MARTI");
 	getData($params,'VR','MARTINELLI');
     
