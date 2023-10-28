@@ -261,6 +261,7 @@ echo '<br><br>';
 				$outDescr = str_replace(' APERTA ','<span style="background-color:black;color:white"> APERTA </span>',$outDescr); 
 				$outDescr = str_replace(' GROSSO ','<span style="background-color:black;color:white"> GROSSO </span>',$outDescr); 
 				$outDescr = str_replace(' FLOWPACK ','<span style="background-color:black;color:white"> FLOWPACK </span>',$outDescr); 
+				$outDescr = str_replace(' 21+CM','<span style="background-color:black;color:white"> 21+CM </span>',$outDescr); 
 				
 				echo  $outDescr;
 				echo '</td>';
