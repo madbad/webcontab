@@ -306,7 +306,7 @@ LEGGE 24/01/2012, N.1,  CONVERTITO CON MODIFICAZIONI DALLA LEGGE
 		$contarighe= 0;
 		foreach ($fattura->righeOriginali as $riga) {
 			$contarighe++;
-			if($contarighe > 65){
+			if($contarighe > 60){
 				$contarighe= 0;
 				echo '</table></div><div class="pagebreak"></div>';
 
