@@ -1,8 +1,8 @@
 @echo Avvio automatico dei servizi...
 
-@echo Avvio VPN
-start "" "C:\Programmi\OpenVPN\bin\openvpn-gui.exe" --connect server2.ovpn
-ping 192.0.2.2 -n 1 -w 15000 > nul
+rem @echo Avvio VPN
+rem start "" "C:\Programmi\OpenVPN\bin\openvpn-gui.exe" --connect server2.ovpn
+rem ping 192.0.2.2 -n 1 -w 15000 > nul
 
 @echo Comunico il mio indirizzo IP...
 call winhttpjs.bat  http://www.madbad.altervista.org/lavoro/ping.php
