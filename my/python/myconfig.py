@@ -12,6 +12,7 @@ def config(mode):
     global MAIL_SDI
     
     if mode=="favo":
+        print("favo mode")
         #config FAVORITA
         HOST = 'imaps.pec.aruba.it'         # Il server IMAP, p.es. imap.gmail.com
         USER = 'lafavorita_srl@pec.it'      # L'indirizzo, p.es. tuoNome@gmail.com
@@ -21,10 +22,11 @@ def config(mode):
         CARTELLA_RICEVUTE_VENDITE = 'C:/Programmi/EasyPHP-5.3.9/www/webContab/my/php/core/stampe/RICEVUTE/'
         MAIL_SDI = 'sdi20@pec.fatturapa.it'
     if mode=="gimmi":
+        print("gimmi mode")
         #config GIMMI
         HOST = 'imaps.pec.aruba.it'         # Il server IMAP, p.es. imap.gmail.com
-        USER = 'lafavorita_srl@pec.it'      # L'indirizzo, p.es. tuoNome@gmail.com
-        PASS = '6come1brun'                 # La password (qui leggibile da tutti !!)
+        USER = 'gimmi.brun@pec.it'      # L'indirizzo, p.es. tuoNome@gmail.com
+        PASS = '6PROPRIO1BRUN'                 # La password (qui leggibile da tutti !!)
         MAILBOX = 'INBOX'
         CARTELLA_ACQUISTI = 'C:/Programmi/EasyPHP-5.3.9/www/webstore/dati/brungimmi/fattureElettronicheAcquisto/'
         CARTELLA_RICEVUTE_VENDITE = 'C:/Programmi/EasyPHP-5.3.9/www/webstore/dati/brungimmi/fattureVenditaXML/RICEVUTE/'
@@ -38,6 +40,8 @@ import sys, socket, imaplib, email, os, re, datetime, time
 
 def importa_acquisti(mode):
     config(mode)
+    #print(mode)
+    #print(USER)
     #
     # connect host
     #
@@ -229,6 +233,8 @@ def importa_acquisti(mode):
   
 def importa_vendite(mode):
     config(mode)
+    #print(mode)
+    #print(USER)
     #
     # connect host
     #

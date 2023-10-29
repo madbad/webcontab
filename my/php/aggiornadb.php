@@ -37,7 +37,7 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 	$ultimoDdtNumero =  $row['NumeroUltimoDdt'];
 	}
 
-//$ultimoDdtData= "01/10/2023";
+//$ultimoDdtData= "01/09/2023";
 //$ultimoDdtNumero= "0";
 
 echo "\n<br>Ultimo ddt memorizzato è il";
