@@ -1,4 +1,6 @@
 my/php/core/config.inc.php
+my/python/myconfig.py
+my/php/tmp/
 my/php/temp/
 my/php/telefoni/temp/
 my/php/core/stampe/ftXml/
@@ -7,5 +9,6 @@ my/php/core/stampe/ft/
 my/php/core/stampe/ddt/
 my/php/core/stampe/RICEVUTE/
 my/php/dati/
+my/python/__pycache__/
 varie/
 Thumbs.db
