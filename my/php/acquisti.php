@@ -25,6 +25,19 @@ const copyToClipboard = str => {
     document.getSelection().addRange(selected);   // Restore the original selection
   }
 };
+function filtraFatture(txt){
+	var tabellaFatture = document.getElementById("tabellaFatture");
+	console.log(tabellaFatture);
+	for (var i = 0; i < tabellaFatture.rows.length; i++) {
+	   var riga =  tabellaFatture.rows[i];
+		if(riga.innerText.toUpperCase().includes(txt.toUpperCase())){
+			riga.classList.remove("hide");
+		}else{
+			riga.classList.add("hide");
+		}
+	}
+}
+
 	</script>
 </head>
 <body>
@@ -39,6 +52,7 @@ function searchFormCancel(){
 }
 
 function searchFormSubmit(){
+	/*
 	//fix the url
 	console.log('test1')
 	newurl = window.location.href;
@@ -46,16 +60,14 @@ function searchFormSubmit(){
 
 	newurl = newurl.replace('&searchString=<?php if(isset($_GET['searchString'])){echo $_GET['searchString'];}?>','')
 	console.log('test3')
-	/*
-	if(!newurl.search('\?')){
-		newurl+='?dummy=0'
-	}
-	*/
 	console.log('test4')
 	newurl+="&searchString="+document.querySelector("input[name='searchString'").value;
 	console.log('test5')
 	window.location.href= newurl;
 	console.log('test6')
+	*/
+	filtraFatture(document.querySelector("input[name='searchString'").value);
+	return false;
 }
 </script>
 
@@ -167,7 +179,7 @@ $html.="<td><a href=?anno=$anno&mese=$meseprec>< $meseprec</a></td>";
 $html.="<td>$mese</td>";
 $mesesuc=str_pad(($mese+1).'',2,'0',STR_PAD_LEFT);
 $html.="<td><a href=?anno=$anno&mese=$mesesuc>$mesesuc ></a></td>";
-$html.='</tr><table class="spacedTable, borderTable">'."\n";
+$html.='</tr><table class="spacedTable, borderTable" id="tabellaFatture">'."\n";
 echo $html;
 echo $dir."<br>";
 
