@@ -2282,6 +2282,10 @@ function leggiFatturaXml ($urlFileFattura){
 			//provo con la modalita normale
 			exec('"'.$openSSLDirExecutableUrl.'" smime -verify -noverify -in "'.$urlFileFattura.'" -inform DER -out "'.$fileTemporaneo.'"', $output, $returnvalue);
 
+			if (!file_exists($fileTemporaneo)) {//caso speciale per le fatture enel energia (richiede "cms" ivece di "smime")
+				exec('"'.$openSSLDirExecutableUrl.'" cms -verify -noverify -in "'.$urlFileFattura.'" -inform DER -out "'.$fileTemporaneo.'"', $output, $returnvalue);
+			}
+
 			//se non ce l'ho fatta (non esiste il file estratto dalla firma)
 			//provo prima a decodificare da base64
 			if (!file_exists($fileTemporaneo)) {
@@ -2307,7 +2311,7 @@ function leggiFatturaXml ($urlFileFattura){
 	if (file_exists($fileTemporaneo)) {
 		$xml = simplexml_load_file($fileTemporaneo);
 	} else {
-		echo('<span style="background-color:red;">Non sono riuscito ad estrapolare i contenuti dal file: '.$fileTemporaneo.' for '.$urlFileFattura.'</span>');
+		echo('<br><span style="background-color:red;">Non sono riuscito ad estrapolare i contenuti dal file: '.$fileTemporaneo.' for '.$urlFileFattura.'</span>');
 		return;
 	}
 
