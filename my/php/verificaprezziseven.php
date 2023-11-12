@@ -26,7 +26,7 @@ function verifica($codCliente){
 	$test=new MyList(
 			array(
 				'_type'=>'Riga',
-				'ddt_data'=>array('<>','01/02/21','28/02/21'),
+				'ddt_data'=>array('<>','01/10/23','31/10/23'),
 				//'cod_articolo'=>array('=','847'),
 				'cod_cliente'=>array('=',$codCliente),
 				//'cod_cliente'=>array('=','SOGEG'),

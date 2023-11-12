@@ -13,7 +13,7 @@ set_time_limit ( 0);
 $test=new MyList(
 	array(
 		'_type'=>'Ddt',
-		'data'=>array('<>','01/02/2021', '28/02/2021'),
+		'data'=>array('<>','01/10/2023', '31/10/2023'),
 		'cod_destinatario'=>array('=','SEVEN'),
 		'cod_causale' => array('!=','D')
 	)

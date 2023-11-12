@@ -13,7 +13,7 @@ $ddtodierni=new MyList(
 	array(
 		'_type'=>'Ddt',
 		'data'=>array('=',$today),
-		'cod_destinatario'=>array('=','SOGEG','VALEN','SEVEN'),
+		'cod_destinatario'=>array('=','SOGEG','VALEN','SEVEN','PRIMO','FRUST','BACUL','CENTF','3SOLI','ABBA2','CALIM','PAROD','NUOVI','O2000','AMAT2','QUIRI','VALEN','BELFR','DICA2','PAVAN'),
 		'cod_causale' => array('!=','D')
 	)
 );
@@ -62,8 +62,7 @@ $ddtodierni->iterate(function($obj){
 		}else{
 			echo "\n<BR>".'SOGEGROSS: '.$error;
 		}
-	}
-	if($ddt->cod_destinatario->getVal()=='SEVEN'){
+	}else if($ddt->cod_destinatario->getVal()=='SEVEN'){
 		$error='';
 		
 		
@@ -95,14 +94,12 @@ $ddtodierni->iterate(function($obj){
 		}else{
 			echo "\n<BR>".'SEVEN: '.$error;
 		}
-	}
-
-	if($ddt->cod_destinatario->getVal()=='VALEN'){
+	}else {
 		try{
 			$ddt->inviaMail();
-			echo "\n<BR>".'VALENTINO TOSI: Inviata mail';
+			echo "\n<BR>".' Inviata mail';
 		}catch (Exception $e) {
-			echo "\n<BR>".'VALENTINO TOSI: Errore invio mail!!!';
+			echo "\n<BR>".' Errore invio mail!!!';
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
 		}
 

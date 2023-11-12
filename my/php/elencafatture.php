@@ -677,28 +677,71 @@ $temp.='<br>RAGSOC:'.$cliente->__ragionesociale->getVal();
 */
 	//visulizza
 	$html.= '<td>'.$link.'&do=visualizza">Visualizza</a></td>';
-	
-	if($cliente->__SDIcodice->getVal()=='' && $cliente->__SDIpec->getVal()==''){
-		$html.= '<td style="background-color:red">AnagraficaIncompleta:<br>Mancano codice SDI o PEC<br>';
-		$html.= $link.'&do=generaXml">Genera XML</a><br>';
 
-	}else if($cliente->__ragionesociale->getVal()==''){
-		$html.= $link.'&do=inviaSDI">AnagraficaIncompleta:<br>Manca la ragione sociale/dati anagrafici<br>';
-		$html.= $link.'&do=generaXml">Genera XML</a><br>';
-	}else{
-		if($nomeFileXmlSDI!=''){
-			$html.= '<td style="background-color:#007d02">SDI file: <br>'.$nomeFileXmlSDI.'.</td>';			
+	// **********************************************
+	// stato della fattura
+	// **********************************************
+
+	//fattura inviata ma senza ricevuta
+	if (isFatturaInviata($nomeFileXmlSDI) && !isFatturaRicevuta($nomeFileXmlSDI)){
+	$html.= '<td class="fatturaInviata">SDI file: <br>'.$nomeFileXmlSDI.'.</td>';
+	}
+	//fattura con ricevuta
+	if (isFatturaRicevuta($nomeFileXmlSDI)){
+		$html.= '<td class="fatturaRicevuta">SDI file: <br>'.$nomeFileXmlSDI.'.</td>';							
+	}
+	// fattura da inviare
+	if (!isFatturaInviata($nomeFileXmlSDI)){
+		//manca il codice SDI
+		if($cliente->__SDIcodice->getVal()=='' && $cliente->__SDIpec->getVal()==''){
+			$html.= '<td class="fatturaDaInviareConProblemi">AnagraficaIncompleta:<br>Mancano codice SDI o PEC<br>';
+			$html.= $link.'&do=generaXml">Genera XML</a><br>';
+		//manca l'anagrafica
+		}else if($cliente->__ragionesociale->getVal()==''){
+			$html.= $link.'&do=inviaSDI">AnagraficaIncompleta:<br>Manca la ragione sociale/dati anagrafici<br>';
+			$html.= $link.'&do=generaXml">Genera XML</a><br>';
+		//e' tutto regolare
 		}else{
-			$html.= '<td style="background-color:#6eff14;">'.$link.'&do=generaXml">Genera XML</a><br>';
+			$html.= '<td  class="fatturaDaInviare">'.$link.'&do=generaXml">Genera XML</a><br>';
 			$html.= $link.'&do=inviaSDI">Invio al SDI</a></td>';				
 		}
 	}
+
 	$html.="</tr>\n";
 //	$html.= '<td><a href=""><img src="./img/printer.svg" alt="Stampa" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/pdf.svg" alt="Visualizza PDF" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/email.svg" alt="Invia PEC" width="30px"></a></td>';
 //	$html.= '<td><a href=""><img src="./img/ok.svg" alt="Stato: OK" width="30px"></a></td>';
 });
+
+function isFatturaRicevuta($nomeFileXmlFattura){
+	//nome file fattura:
+	//IT01588530236_2285.xml
+	
+	//nome file ricevuta
+	//IT01588530236_2285_RC_003.xml
+	$nomeFattura = basename($nomeFileXmlFattura, ".xml");
+	
+	if (
+		file_exists("./core/stampe/RICEVUTE/".$nomeFattura.'_RC_001.xml') ||
+		file_exists("./core/stampe/RICEVUTE/".$nomeFattura.'_RC_002.xml') ||
+		file_exists("./core/stampe/RICEVUTE/".$nomeFattura.'_RC_003.xml') ||
+		file_exists("./core/stampe/RICEVUTE/".$nomeFattura.'_RC_004.xml') ||
+		file_exists("./core/stampe/RICEVUTE/".$nomeFattura.'_RC_005.xml')
+		){
+		return true;
+			
+	}else{
+		return false;
+	}
+}
+function isFatturaInviata($nomeFileXmlFattura){
+	if($nomeFileXmlFattura != ''){
+		return true;
+	}else{
+		return false;
+	}
+}
 
 $html.='</table>';
 echo $html;
