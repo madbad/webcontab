@@ -25,12 +25,26 @@ $config->pdfDir=realpath($_SERVER["DOCUMENT_ROOT"]).'/webcontab/my/php/core/stam
 $config->xmlDir=realpath($_SERVER["DOCUMENT_ROOT"]).'/webcontab/my/php/core/stampe/ftXml';
 $config->openSSLDir=realpath($_SERVER["DOCUMENT_ROOT"]).'/webcontab/my/php/libs/openssl-1.0.2q-i386-win32';
 
-
+$config->pathToDbFilesDirect='C://CONTAB';
 /*-------------------------------------
 **    PEC
 -------------------------------------*/
+/*
+   ALSO COPY THE FILES 
+   //conf\openssl.cnf
+   bin\libeay32.dll
+   bin\ssleay32.dll
+   bin\openssl.exe
+   
+   FROM DOWNLOAD/FILE INSTALLAZIONE/openssl-1.0.2q-i386-win32.zip
+   TO C:\Programmi\EasyPHP-5.3.9\php\php539x231020184212
+   AND TO C:\Programmi\EasyPHP-5.3.9\apache\bin
+THIS WILL ENABLE TLS 1.2 REQUIRED FOR SMT AUTENTICATION
+*/
+
 $config->pec=new stdClass();
 $config->pec->Host       = "ssl://smtps.pec.aruba.it"; // SMTP server //ricordarsi di decommentare "extension=php_openssl.dll" nel file php.ini !!! per abilitare l'autenticazione SSL
+//$config->pec->Host       = "smtps.pec.aruba.it"; // SMTP server //ricordarsi di decommentare "extension=php_openssl.dll" nel file php.ini !!! per abilitare l'autenticazione SSL
 $config->pec->SMTPDebug  = 2;                     // (0)don't output any debug info (2)enables SMTP debug information (for testing)
 $config->pec->SMTPAuth   = true;                  // enable SMTP authentication
 $config->pec->Port       = 465;                    // set the SMTP port
@@ -143,6 +157,6 @@ $config->azienda->_titolare->setVal				('Brun Gionni');
 /*-------------------------------------
 **    DATI SDI
 -------------------------------------*/
-//$config->SDIpec = 'sdi01@pec.fatturapa.it';
-$config->SDIpec = 'gionni.brun@gmail.com';
+$config->SDIpec = 'sdi20@pec.fatturapa.it';
+//$config->SDIpec = 'gionni.brun@gmail.com';
 ?>
