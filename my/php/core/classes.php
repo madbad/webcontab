@@ -959,7 +959,7 @@ class Fattura extends MyClass{
 		}
 		
 		$progressivoInvio = str_pad ( $fileCount+1 , $pad_length=5 , $pad_string="0" , $pad_type=STR_PAD_LEFT );
-		$this->progressivoInvioSDI=$progressivoInvio;
+		$this->progressivoInvioSDI=$progressivoInvio + 2283;
 		return $this->progressivoInvioSDI;
 	}
 	
