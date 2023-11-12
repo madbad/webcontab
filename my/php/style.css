@@ -399,3 +399,20 @@ display: inline-block;
 .hide{
 	display:none;
 }
+
+
+.fatturaDaInviare{
+	background-color:#c8ff14;
+}
+
+.fatturaDaInviareConProblemi{
+	background-color:#a8320a;
+}
+
+.fatturaInviata{
+	background-color:#3bff14;
+}
+
+.fatturaRicevuta{
+	background-color:#124508;
+}
