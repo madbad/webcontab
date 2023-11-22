@@ -209,7 +209,7 @@ if( isset($anno) && isset($mese)){
 //  seguono funzioni
 // ##############################################
 function cercaFilesNellaDirectory($dir) {
-    $ignored = array('.', '..', '.svn', '.htaccess','_MT_001.xml','_MT_002.xml','zip','.cache');
+    $ignored = array('.', '..', '.svn', '.htaccess','_MT_001.xml','_MT_002.xml','zip','ricevute','.cache');
 	$ignoredFiles = '_MT_001.xml';
 
     $files = array();    
@@ -229,7 +229,10 @@ function cercaFilesNellaDirectory($dir) {
 function mostraMese($dir){
 	$files = cercaFilesNellaDirectory($dir);
 
+	$count = 0;
+
 	foreach ($files as $key => $file) {
+		$count++;
 		
 		$givePrintedClass = '';
 		if(xmlPrintedStatus($dir.$file)){
@@ -280,6 +283,7 @@ function mostraMese($dir){
 		?>
 
 		<tr>
+			<td><?php echo $count; ?></td>
 			<td style="font-size:0.6em;"><?php echo $fileDate; ?></td>
 			<td><?php echo $fileUrl; ?></td>
 			<td>

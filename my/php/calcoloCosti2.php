@@ -259,6 +259,39 @@ $dbClienti=getDbClienti();
 			font-size: 12px;
 			font-family: tahoma,arial,verdana,sans-serif;
 		}
+		@page {
+		  size: A4;
+		  margin: 0mm;
+		}
+		@media print {
+			html{
+				/*
+				width: 210mm;
+				height: 287mm;
+				*/
+				width: 280mm;
+				height: 200mm;
+				/*background-color:red;*/
+				margin: 0mm;
+				padding:0mm;
+			}
+			/*.pagebreak {page-break-after: always;}*/
+			body{ 
+				width: 478mm;
+				height: 200mm;  /*297*//*350*/
+				/*border:1mm solid black;*/
+				margin: 0mm;
+				padding:0mm;
+				scale: 0.60;
+				/*margin-top: -40mm;*/
+				/*margin-left: -80mm;*/
+				transform-origin: top left;
+				/*baCKGROUND-COLOR:YELLOW;*/
+				overflow:hidden;
+				
+			}
+		}
+		@media print{@page {size: landscape}}
 		</style>
     </head>
      <body>

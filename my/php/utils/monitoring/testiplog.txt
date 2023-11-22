@@ -2,10 +2,10 @@
 Interfaccia: 192.168.1.130 --- 0x2
   Indirizzo Internet    Indirizzo fisico      Tipo
   192.168.1.1           00-d0-d6-54-62-e6     dinamico  
-  192.168.1.2           48-0b-b2-51-49-46     dinamico  
-  192.168.1.5           48-0b-b2-51-b7-6d     dinamico  
-  192.168.1.6           48-0b-b2-51-9d-9d     dinamico  
-  192.168.1.7           48-0b-b2-51-9d-a4     dinamico  
+  192.168.1.7           48-0b-b2-51-49-46     dinamico  
+  192.168.1.8           48-0b-b2-51-b7-6d     dinamico  
+  192.168.1.12          48-0b-b2-51-9d-a4     dinamico  
+  192.168.1.13          48-0b-b2-51-9d-9d     dinamico  
   192.168.1.99          c4-65-16-db-36-aa     dinamico  
   192.168.1.110         e0-cb-4e-eb-14-92     dinamico  
   192.168.1.244         00-00-00-00-00-00     non valido

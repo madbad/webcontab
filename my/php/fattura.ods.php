@@ -211,7 +211,7 @@ MUHAMMAD
 MUHAMMAD ZAKA ULLAH
 VIA COLONNA 50
 46032 CASTELBELFORTE (MN)
--
+04920390236
 ZKLMMM92T10Z236K
 ----
 SCOLARI
@@ -347,7 +347,19 @@ VIA COMUNI N.11
 00941860231
 00941860231
 ----
-
+SATWINDER
+AZ.AGR.KAUR SATWINDER
+VIA MARTIN LUTER KING N.1
+46033 CASTEL D'ARIO (MN)
+02418430209
+KRASWN85C47Z222E
+----
+AMRITPAL
+AZ.AGR.AMRITMALHI DI SINGH AMRITPAL
+VIA ABETONE N.12
+37063 ISOLA DELLA SCALA (VR)
+04942200231
+SNGMTP93C25Z222G
 ";
 $fornitori = explode("----",$fornitori);
 //print_r($fornitori);
@@ -564,7 +576,9 @@ function estraiDatiFattura(){
 		//$fattura->righe[$suddivisore]['RIFDDT'] = $suddivisoreDDT;
 		
 	//	echo "\n<br>".substr($fattura->righe[$suddivisore]['ARTICOLO'],0,4);
-		if(substr($fattura->righe[$suddivisore]['ARTICOLO'],0,6)=="z*MENO"){
+		if(substr($fattura->righe[$suddivisore]['ARTICOLO'],0,4)=="MENO"){
+			//echo 'detected!!!!!!!!!!!!!!!';
+			//echo $fattura->righe[$suddivisore]['PREZZO'];
 			$fattura->righe[$suddivisore]['PREZZO'] = -1*$fattura->righe[$suddivisore]['PREZZO'];
 			$fattura->righe[$suddivisore]['UM'] = 'NR';
 		}

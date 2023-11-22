@@ -7,58 +7,17 @@
 #from ping3 import ping, verbose_ping
 #ping('google.com')  # Returns delay in seconds.
 
-
+import platform    # For getting the operating system name
+import subprocess  # For executing a shell command
+import os
+import re
 import json
+import time
+from datetime import datetime
+from logcelle import checkCelle
 
-#import subprocess as sp
-#ip = "192.168.1.110"
-#status, result = sp.getstatusoutput("ping -c1 -w2" + ip)
-#if(status ==0):
-#    print("UP")
-#else:
-#    print("DOWN")
+runCount = 0
 
-"""
-from scapy.all import *
-
-ans,unans = arping("192.168.1.110/155", verbose=0)
-for s,r in ans:
-    print("{} {}".format(r[Ether].src,s[ARP].pdst))
-	
-print ("hello")
-sec = input('Premi un tasto per cotinuare...\n')
-
-"""
-
-"""
-from getmac import get_mac_address
-#eth_mac = get_mac_address(interface="eth0")
-#win_mac = get_mac_address(interface="Ethernet 3")
-ip_mac = get_mac_address(ip="192.168.0.1")
-ip6_mac = get_mac_address(ip6="::1")
-host_mac = get_mac_address(hostname="localhost")
-updated_mac = get_mac_address(ip="10.0.0.1", network_request=True)
-
-# Changing the port used for updating ARP table (UDP packet)
-from getmac import getmac
-getmac.PORT = 44444  # Default: 55555
-print(getmac.get_mac_address(ip="192.168.0.1", network_request=True))
-
-# Enabling debugging
-from getmac import getmac
-getmac.DEBUG = 2  # DEBUG level 2
-print(getmac.get_mac_address(interface="Ethernet 3"))
-"""
-
-"""
-import ping, socket
-try:
-    ping.verbose_ping('www.google.com', count=3)
-    delay = ping.Ping('www.wikipedia.org', timeout=2000).do()
-except socket.error, e:
-    print "Ping Error:", e
-    
-"""
 class Device:
   def __init__(self, name, mac):
     self.name = name
@@ -66,33 +25,154 @@ class Device:
     self.ip = ''
     self.isOnline = False
 
+# creating list        
+list = {}
 
+# appending instances to list  
+list['Inverter1'] = Device('Inverter1', '48-0b-b2-51-9d-a4');
+list['Inverter2'] = Device('Inverter2', '48-0b-b2-51-b7-6d');
+list['Inverter3'] = Device('Inverter3', '48-0b-b2-51-49-46');
+list['Inverter4'] = Device('Inverter4', '48-0b-b2-51-9d-9d');
+
+#list['PcServer'] = Device('PcServer', 'e0-cb-4e-eb-14-92');
+#list['PcPosto2'] = Device('PcPosto2', 'e0-cb-4e-e9-4e-2d');
+#list['PcPosto3'] = Device('PcPosto3', '00000000000000000');
+#list['PcFrigov'] = Device('PcFrigov', '00-24-21-b6-c9-c6'); # this is me
+
+#list['Stampante'] = Device('Stampante', 'c4-65-16-db-36-aa');
+#list['Rooter'] = Device('Rooter', '00-d0-d6-54-62-e6');
+
+
+def emptyArpTable():
+	command = ['netsh','interface','ip','delete','arpcache']
+	result = subprocess.getoutput(command)
+
+def readArpTable():
+	command = ['arp','-a']
+	result = subprocess.getoutput(command)
+	#print(result)
+	return result
+	
+def parseArpTable():
+	print ("Trying to find the MACs of our devices in the arp table...")
+	arpTable = readArpTable();
+	#print (arpTable)
+	
+	for device in list:
+		#mac = 'e0-cb-4e-eb-14-92'
+		mac = list[device].mac
+		match = re.search(r".*"+mac, arpTable);
+		if match :
+			ip = match.group().replace(mac,'').strip()
+			list[device].ip = ip
+			list[device].isOnline = True
+			#print (match.group())
+			print (device.ljust(15,' '), ip.ljust(15,' '), mac.ljust(15,' '))
+		else:
+			print (device.ljust(15,' '), 'mac/ip not found')
+
+def ping(host):
+	"""
+	Returns True if host (str) responds to a ping request.
+	Remember that a host may not respond to a ping (ICMP) request even if the host name is valid.
+	"""
+
+	# Option for the number of packets as a function of
+	param = '-n' if platform.system().lower()=='windows' else '-c'
+
+	# Building the command. Ex: "ping -c 1 google.com"
+	#command = ['ping', param, '1', host]
+	command = ['Ping', '-n', '1', host, '-w', '10']
+	#print (' '.join(command))
+	
+	result = subprocess.getoutput(command)
+	#print (' '.join(result))
+	
+	foundPingReply = result.find('TTL')
+
+	if foundPingReply > 0:
+		#print ('True ')
+		return True
+	#print ('False ')
+	return False
+	
+def testPreviouslyKnowIPs():
+	print ("Testing our previously know IPs...")
+	result = True
+	try:
+		file = open('./status.json')
+	except:
+		print("Failed to open the file")
+		return False
+	with file as json_file:
+		try:
+			data = json.load(json_file)
+		except:
+			print("There is no json data to read")  
+			return False
+		
+		for device in list:
+			#print(device)
+			#this device is not present on our past log, set as if it was not found and exit the loop
+			if device not in data['devicesData']:
+				pingResult = False
+				result = pingResult
+				break;
+			ip = data['devicesData'][device]['ip'];
+			if ip != "" :
+				pingResult = ping(ip)
+			else:
+				pingResult = False
+				result = pingResult
+				break;
+			print (device.ljust(15,' '), ip.ljust(15,' '), pingResult)
+	#some of the ip failed
+	return result
+
+def writeLog():
+	print ('Final result that will be uploaded...')
+	for obj in list:
+		#pingMacAdress(obj.mac);
+		print (list[obj].name.ljust(15,' '), list[obj].ip.ljust(15,' '),str(list[obj].mac).ljust(15,' '), str(list[obj].isOnline).ljust(15,' '));
+		
+	# datetime object containing current date and time
+	now = datetime.now()
+	# dd/mm/YY H:M:S
+	dateStr = now.strftime("%d/%m/%Y %H:%M:%S")
+	
+	outData ={
+		  "time": time.time(),
+		  "timeStr": dateStr,
+		  "overallStatus": "ok",
+		  "devicesData": list
+	}
+	#jsonStr = json.dumps(list.__dict__)
+
+	
+	outData["celle"] = checkCelle();
+	
+	def obj_dict(obj):
+		return obj.__dict__
+
+	jsonStr = json.dumps(outData, default=obj_dict, sort_keys=True)
+
+	#print (jsonStr)
+
+	#EMPTY THE FILE
+	file = open("status.json", 'w').close()
+	#REOPEN IT IN APPEND MODE
+	file = open("status.json", "a")
+	file.write(jsonStr)
+	file.close()
+
+"""
 def checkDevices():
-	# creating list        
-	list = []
-
-	# appending instances to list  
-	list.append( Device('Inverter1', '48-0b-b2-51-9d-a4') )
-	list.append( Device('Inverter2', '48-0b-b2-51-b7-6d') )
-	list.append( Device('Inverter3', '48-0b-b2-51-49-46') )
-	list.append( Device('Inverter4', '48-0b-b2-51-9d-9d') )
-
-	list.append( Device('PcServer ', 'e0-cb-4e-eb-14-92') )
-	list.append( Device('PcPosto2 ', 'e0-cb-4e-e9-4e-2d') )
-	list.append( Device('PcPosto3 ', '00000000000000000') )
-	#list.append( Device('PcFrigov ', '00-24-21-b6-c9-c6') )
-
-	list.append( Device('Stampante', 'c4-65-16-db-36-aa') )
-	list.append( Device('Rooter   ', '00-d0-d6-54-62-e6') )
-
-
 	#
-	file = open('z:/documenti/testiplog.txt', mode = 'r', encoding = 'utf-8-sig')
+	#file = open('z:/documenti/testiplog.txt', mode = 'r', encoding = 'utf-8-sig')
+	file = open('./testiplog.txt', mode = 'r', encoding = 'utf-8-sig')
 	lines = file.readlines()
 	file.close()
 	linecount=0
-
-
 
 	for line in lines:
 		linecount= linecount+1
@@ -100,9 +180,9 @@ def checkDevices():
 			ip=line[2:15]
 			mac=line[24:41]
 			for obj in list: 
-				if obj.mac== mac:
-					obj.isOnline = True
-					obj.ip = ip.strip()
+				if list[obj].mac== mac:
+					list[obj].isOnline = True
+					list[obj].ip = ip.strip()
 					
 
 	print ("Python code here:");
@@ -114,19 +194,28 @@ def checkDevices():
 
 	for obj in list:
 		#pingMacAdress(obj.mac);
-		print (obj.name, ' ', obj.isOnline, ' ', obj.ip);
+		print (list[obj].name, ' ', list[obj].isOnline, ' ', list[obj].ip);
 		
-
+	outData ={
+		  "time": time.time(),
+		  "overallStatus": "ok",
+		  "devicesData": list
+	}
 	#jsonStr = json.dumps(list.__dict__)
+
+	
+	outData["celle"] = checkCelle();
 	
 	def obj_dict(obj):
 		return obj.__dict__
 
-	jsonStr = json.dumps(list, default=obj_dict)
-	
+	jsonStr = json.dumps(outData, default=obj_dict)
+
+
 	#jsonStr = json.dumps(list)
 	file.write(jsonStr)
 	file.close()
+"""
 
 def sendMail():
 	#send myself an email if something seems to be wrong
@@ -181,8 +270,11 @@ def sendMail():
 #	print ("Mac",mac," was found at ip ",ip);
 
 def updateArpTable():
-	import subprocess
-	subprocess.call([r'Z:\Documenti\testip.bat'])
+	#import subprocess
+	#subprocess.call([r'Z:\Documenti\testip.bat'])
+	for number in range(250):
+		ip = '192.168.1.'+str(number)
+		print(ip, ping(ip))
 
 def uploadStatusFile():
 	import ftplib
@@ -194,11 +286,40 @@ def uploadStatusFile():
 
 
 while True:
-	updateArpTable();
-	checkDevices();
+	runCount = runCount+1
+	print ('This script has run for these times: ',str(runCount))
+	#readArpTable()
+	'''
+	emptyArpTable()
+	for number in range(250):
+		ip = '192.168.1.'+str(number)
+		ping (ip)
+		print(ip)
+	readArpTable()
+	'''
+	#print (list)
+	#break;
+
+	#check if all the IP we remember are still reachable
+	if testPreviouslyKnowIPs():
+		#we found all dont need to do nothing to update our arpTable
+		print ("The previous saved IPs are still valid go on!")
+	else:
+		#some were not found we will need to scan the whole network to re-fill our arp table
+		print ("One or more of the previous saved IPs are no more valid we will need to rescan the whole network!")
+		updateArpTable();
+
+	parseArpTable()
+	writeLog()
 	print('Uploading...');
 	uploadStatusFile();
 	print('Uploaded!');
-	#sleep for 1 minutes
-	import time;
-	time.sleep(60*10)
+	
+	waitMinutes = 5
+	
+	while waitMinutes > 1:
+		print ('Waiting for another ', waitMinutes, ' minutes')
+		waitMinutes = waitMinutes - 1
+		#sleep for 1 minutes
+		time.sleep(60)
+
