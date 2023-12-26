@@ -18,8 +18,8 @@ set_time_limit ( 0);
 
 $params = 	array(
 		'_type'=>'Fattura',
-		'data'=>array('<>','01/06/2020','28/02/2021'),
-		'cod_cliente'=>'SEVEN',
+		'data'=>array('<>','01/07/2023','31/12/2023'),
+		'cod_cliente'=>'PAROD',
 	);
 $paramsC= Array(
 	'codice'=> $params['cod_cliente'],

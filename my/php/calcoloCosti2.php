@@ -292,6 +292,10 @@ $dbClienti=getDbClienti();
 			}
 		}
 		@media print{@page {size: landscape}}
+		#output{
+			padding-top: 4em;	
+		}
+		
 		</style>
     </head>
      <body>
@@ -569,7 +573,7 @@ if (@$_POST['mode']=='print'){
 						"abbuonoPerCollo" => 0.0, //0.3//0.5
 						"costoPedana" => 30,
 						"colliPedana" => $cassapl305013nera->collipedana,
-						"costoCassa" => $cassapl305013nera->costo + $copertina->costo,
+						"costoCassa" => $cassapl305013nera->costo + $vassoio->costo * 6 + $film->costo * 6,
 						"cliente"=>"MARTI");
 	getData($params,'VR','MARTINELLI');
     

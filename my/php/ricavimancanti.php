@@ -67,7 +67,7 @@ foreach ($mancanti as $clienteKey => $clienteValue){
 	
 	if (!isset($_GET['mailacliente']) or $matchCliente){
 		echo '<hr><br><br>'.$clienteKey;
-		echo '<br> <a href="?mailacliente='.$clienteKey.'">Invia mail a: '.$clienteValue['mail'].'</a>';
+		echo '<br> <a href="?mailacliente='.$clienteKey.'&mese='.$mese.'">Invia mail a: '.$clienteValue['mail'].'</a>';
 		echo '<br>';
 	}
 	$elencoDdt='';
@@ -86,7 +86,7 @@ foreach ($mancanti as $clienteKey => $clienteValue){
 		echo '<hr><br><br>'.$clienteKey;		
 		echo '<br><b>Inviata mail!</b>';
 		inviaMailRichiestaRicavi($clienteKey,$clienteValue['mail'],$elencoDdt);
-		//inviaMailRichiestaRicavi($clienteKey,'lafavorita_srl@libero.it',$elencoDdt);
+		inviaMailRichiestaRicavi($clienteKey,'amministrazione@lafavoritasrl.it',$elencoDdt);
 
 	}
 	

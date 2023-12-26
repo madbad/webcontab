@@ -13,7 +13,7 @@ $ddtodierni=new MyList(
 	array(
 		'_type'=>'Ddt',
 		'data'=>array('=',$today),
-		'cod_destinatario'=>array('=','SOGEG','VALEN','SEVEN','PRIMO','FRUST','BACUL','CENTF','3SOLI','ABBA2','CALIM','PAROD','NUOVI','O2000','AMAT2','QUIRI','VALEN','BELFR','DICA2','PAVAN'),
+		'cod_destinatario'=>array('=','SOGEG','VALEN','SEVEN','PRIMO','FRUST','BACUL','CENTF','3SOLI','ABBA2','CALIM','PAROD','NUOVI','O2000','AMAT2','QUIRI','VALEN','BELFR','DICA2','PAVAN','RADIC','ORTO3','GIAC3'),
 		'cod_causale' => array('!=','D')
 	)
 );

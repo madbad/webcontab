@@ -1,0 +1,18 @@
+
+
+git config --system http.sslcainfo "C:\Program Files (x86)\git\bin\curl-ca-bundle.crt"
+
+git config --system http.sslcainfo "C:\Programmi\Git\usr\ssl\certs\ca-bundle.trust.crt"
+git config --system http.sslcainfo "C:\Programmi\Git\mingw32\ssl\certs\ca-bundle.crt"
+
+
+git config --system http.sslcainfo "C:\Programmi\Git\usr\ssl\certs\ca-bundle.crt"
+
+git config http.sslCAinfo "C:\Programmi\Git\usr\ssl\certs\ca-bundle.crt"
+
+git config http.sslCAinfo "/c/Program Files/Git/mingw64/bin/curl-ca-bundle.crt"
+git config --system http.sslCAinfo "C:\Program Files\Git\mingw64\ssl\certs\ca-bundle.crt"
+
+git config --system http.sslCAinfo "C:\Programmi\Git\usr\ssl\certs\ca-bundle.crt"
+
+git config --global url."git@github.com:".insteadOf "https://github.com/"

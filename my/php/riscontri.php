@@ -1,5 +1,3 @@
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 <?php
 include ('./core/config.inc.php');
 
@@ -18,28 +16,25 @@ include ('./core/config.inc.php');
 			font-size: 12px;
 			font-family: tahoma,arial,verdana,sans-serif;
 		}
-
 		.dateform{
 			border: 1px solid #00a3f5;
-		padding: 0.2em;
-			
+			padding: 0.2em;
 		}
 		.dateformtitle{
 			background-color: #00a3f5;
 			width:100%;
-			padding:0.5em;	
+			padding:0.5em;
 			display:inline-block;
 			font-size:1.5em;
 		}
 		.dateselector{
-			padding:0.3em;	
-			font-size:1.2em;	
-			
+			padding:0.3em;
+			font-size:1.2em;
 		}
 		.dateselectordescription{
 			width:10em;
 			display:inline-block;
-			padding:0.8em;	
+			padding:0.8em;
 		}
 		dateselectorcheckbox{
 			font-size:2em;
@@ -47,6 +42,13 @@ include ('./core/config.inc.php');
 			transform: scale(2);
 			
 		}
+		tr:has(input:checked){
+			background-color:#e0ffc2;
+		}
+		tr:hover td{
+			background-color:gray;
+		}
+
 		</style>
 		<script>
 		function aggiornaListaCodici(){
@@ -79,10 +81,115 @@ include ('./core/config.inc.php');
 			}
 			aggiornaListaCodici();
 		}
+		function fixNumber(number){
+			number = String(number).replace('.','');//rimpiazzo il sepratatore migliaia
+			number = String(number).replace(',','.');//sostiuisco la virgola col punto
+			return Number(number);	
+		}
+		/*somma selezionati*/
+		document.addEventListener("DOMContentLoaded", function() {
+			myTables = document.getElementsByClassName("tabellaRiscontri");
+			console.log(myTables);
+			for (var i= 0; i < myTables.length; i++){
+				var myTable = myTables[i];
+				aggiornaTotaliJs(myTable);
+				myTable.addEventListener("click",function(event){
+					//reverse the status of the checkbox
+					var myCheckbox = event.target.parentElement.getElementsByTagName("input")[0];
+					myCheckbox.checked = !myCheckbox.checked;
+					var myTable = event.target.parentElement.parentElement.parentElement
+					aggiornaTotaliJs(myTable);
+					
+				});
+				
+			}
+		});
+		
+		function aggiornaTotaliJs(myTable){
+			var totColli = 0;
+			var totPeso = 0;
+			var totImponibile = 0;
+			//var myTable = myTables[i];
+			for (var h= 0; h < myTable.rows.length; h++){
+				var myRow = myTable.rows[h];
+				//console.log(myRow);
+				if(myRow.getElementsByClassName("colli").length > 0){
+					//console.log('found');
+					if(myRow.getElementsByClassName("riscontriCheckbox")[0].checked){
+						totColli += fixNumber(myRow.getElementsByClassName("colli")[0].innerText);
+						totPeso += fixNumber(myRow.getElementsByClassName("peso")[0].innerText);
+						totImponibile += fixNumber(myRow.getElementsByClassName("imponibile")[0].innerText);
+					}
+				}
+			}
+			
+			let totJsColli = 0;
+			let totJsPeso = 0;
+			let totJsMediaPrezzo = 0;
+			let totJsMediaPeso = 0;
+			let totJsImponibile = 0;
+			
+			//se non è gia presente aggiungo la riga dei totali javascript
+			if(myTable.getElementsByClassName("totJsColli").length > 0){
+				totJsColli = myTable.getElementsByClassName("totJsColli")[0];
+				totJsPeso = myTable.getElementsByClassName("totJsPeso")[0];
+				totJsMediaPrezzo = myTable.getElementsByClassName("totJsMediaPrezzo")[0];
+				totJsMediaPeso = myTable.getElementsByClassName("totJsMediaPeso")[0];
+				totJsImponibile = myTable.getElementsByClassName("totJsImponibile")[0];
+			}else{
+				//aggiunge una riga alla fine della tabella
+				let row = myTable.insertRow(-1); // We are adding at the end
+
+				// Create table cells
+				row.insertCell(0);
+				row.insertCell(1);
+				row.insertCell(2);
+				row.insertCell(3);
+				row.insertCell(4);
+				totJsColli = row.insertCell(5);
+				row.insertCell(6);
+				totJsPeso = row.insertCell(7);
+				row.insertCell(8);
+				row.insertCell(9);
+				totJsMediaPrezzo = row.insertCell(10);
+				totJsMediaPeso = row.insertCell(11);
+				totJsImponibile = row.insertCell(12);
+				
+				//aggiungo le classi
+				totJsColli.classList.add("totJsColli");
+				totJsPeso.classList.add("totJsPeso");
+				totJsMediaPrezzo.classList.add("totJsMediaPrezzo");
+				totJsMediaPeso.classList.add("totJsMediaPeso");
+				totJsImponibile.classList.add("totJsImponibile");
+				
+				//aggiungo un toggle che seleziona de seleziona tutto
+				var myCheckbox = document.createElement("INPUT");
+				myCheckbox.setAttribute("type", "checkbox");
+				myCheckbox.checked=true;
+				myCheckbox.addEventListener("change",function(event){
+					console.log('clicked');
+					var changeTo = !myTable.rows[0].getElementsByTagName("input")[0].checked;
+					console.log(changeTo);
+					for (var h = 0; h < myTable.rows.length; h++){
+						var myRow = myTable.rows[h];
+						if(myRow.getElementsByTagName("input").length > 0){
+							myRow.getElementsByTagName("input")[0].checked = changeTo;
+						}
+					}
+				});
+				myTable.rows[0].cells[0].innerHTML="";
+				myTable.rows[0].cells[0].appendChild(myCheckbox);
+			}
+			//aggiorno i totali
+			totJsColli.innerText = totColli;
+			totJsPeso.innerText = totPeso.toFixed(2);
+			totJsMediaPrezzo.innerText = (totImponibile/totPeso).toFixed(3);
+			totJsMediaPeso.innerText = (totPeso/totColli).toFixed(2);
+			totJsImponibile.innerText = totImponibile.toFixed(2);
+		}
+		
 		</script>
-
 	</head>
-
 	<body>
 <?php
 //$today = date("j/n/Y"); 
@@ -193,49 +300,54 @@ if (@$_GET['mode']=='print'){
 	$color='';
 	if ($obj->prezzo->getVal()=='0.001'){
 		$color=' style="background-color:red;color:white;" ';
+		$checkedString="";
+	}else{
+		$checkedString=" checked";
 	}
 
-		echo '<tr '.$color.'> ';
+		echo "\n".'<tr '.$color.'> ';
 		
-		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
-		echo '<td>'.$obj->ddt_data->getFormatted().'</td>';
-		echo '<td>'.$obj->cod_articolo->getVal().'</td>';
-//		echo '<td>'.$obj->cod_cliente->getVal().' # '.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
-		echo '<td>'.$obj->cod_cliente->getVal().'</td>';
-		echo '<td>'.$obj->colli->getFormatted(0).'</td>';
+		echo "\n".'<td><input type="checkbox" class="riscontriCheckbox" '.$checkedString.'></td>';
+		echo "\n".'<td>'.$obj->ddt_numero->getVal().'</td>';
+		echo "\n".'<td>'.$obj->ddt_data->getFormatted().'</td>';
+		echo "\n".'<td>'.$obj->cod_articolo->getVal().'</td>';
+//		echo "\n".'<td>'.$obj->cod_cliente->getVal().' # '.$obj->cod_cliente->extend()->ragionesociale->getVal().'</td>';
+		echo "\n".'<td>'.$obj->cod_cliente->getVal().'</td>';
+		echo "\n".'<td class="colli">'.$obj->colli->getFormatted(0).'</td>';
 		if($obj->peso_lordo->getVal() != $obj->peso_netto->getVal()){$warningPeso='<span style="color:orange"><b>*****</b></span>';}else{$warningPeso='';};
-		echo '<td>'.$obj->peso_lordo->getFormatted(2).'</td>';
-		echo '<td>'.$obj->peso_netto->getFormatted(2).$warningPeso.'</td>';
+		echo "\n".'<td>'.$obj->peso_lordo->getFormatted(2).'</td>';
+		echo "\n".'<td class="peso">'.$obj->peso_netto->getFormatted(2).$warningPeso.'</td>';
 
-		echo '<td>'.$obj->prezzo->getFormatted(3).'</td>';
+		echo "\n".'<td>'.$obj->prezzo->getFormatted(3).'</td>';
 		$number = number_format($obj->getPrezzoLordo(),3,$separatoreDecimali=',',$separatoreMigliaia='.');
-		echo '<td>'.$number.'</td>';
+		echo "\n".'<td>'.$number.'</td>';
 		$number = number_format($obj->getPrezzoNetto(),3,$separatoreDecimali=',',$separatoreMigliaia='.');
-		echo '<td>'.$number.'</td>';
+		echo "\n".'<td>'.$number.'</td>';
 		$number = number_format($obj->peso_netto->getVal()/$obj->colli->getVal(),2,$separatoreDecimali=',',$separatoreMigliaia='.');
-		echo '<td>'.$number.'</td>';
+		echo "\n".'<td>'.$number.'</td>';
 		$impNetto=$obj->peso_netto->getVal()*$obj->getPrezzoNetto();
 		$number = number_format($impNetto,2,$separatoreDecimali=',',$separatoreMigliaia='.');
-		echo '<td>'.$number.'</td>';
+		echo "\n".'<td  class="imponibile">'.$number.'</td>';
 		$obj->_totImponibileNetto->setVal($impNetto);
 		//echo '<td>'.$obj->imponibile->getVal().'</td>';
-		echo '</tr>';
+		echo "\n".'</tr>';
 	};
 	$stampaTotali= function ($obj){
-		echo '<tr>';
-		echo '<td>'.'-'.'</td>';
-		echo '<td>'.'-'.'</td>';		
-		echo '<td>'.'-'.'</td>';
-		echo '<td>'.'-'.'</td>';
-		echo '<td>'.$obj->sum('colli').'</td>';
-		echo '<td>'.'-'.'</td>';
-		echo '<td>'.$obj->sum('peso_netto').'</td>';
-		echo '<td>'.'-'.'</td>';
-		echo '<td>'.'-'.'</td>';
-		echo '<td>'.round($obj->sum('_totImponibileNetto')/$obj->sum('peso_netto'),4).'</td>'; //media del prezzo
-		echo '<td>'.round($obj->sum('peso_netto')/$obj->sum('colli'),2).'</td>';
-		echo '<td>'.$obj->sum('_totImponibileNetto').'</td>';
-		echo '</tr>';
+		echo "\n".'<tr>';
+		echo "\n".'<td>'.'-'.'</td>';
+		echo "\n".'<td>'.'-'.'</td>';
+		echo "\n".'<td>'.'-'.'</td>';
+		echo "\n".'<td>'.'-'.'</td>';
+		echo "\n".'<td>'.'-'.'</td>';
+		echo "\n".'<td>'.$obj->sum('colli').'</td>';
+		echo "\n".'<td>'.'-'.'</td>';
+		echo "\n".'<td>'.$obj->sum('peso_netto').'</td>';
+		echo "\n".'<td>'.'-'.'</td>';
+		echo "\n".'<td>'.'-'.'</td>';
+		echo "\n".'<td>'.round($obj->sum('_totImponibileNetto')/$obj->sum('peso_netto'),4).'</td>'; //media del prezzo
+		echo "\n".'<td>'.round($obj->sum('peso_netto')/$obj->sum('colli'),2).'</td>';
+		echo "\n".'<td>'.$obj->sum('_totImponibileNetto').'</td>';
+		echo "\n".'</tr>';
 	};
 	$calcolaImponibileNetto= function ($obj){
 		$impNetto=$obj->peso_netto->getVal()*$obj->getPrezzoNetto();
@@ -243,9 +355,9 @@ if (@$_GET['mode']=='print'){
 	};
 
 
-	$tabellaH='<table class="spacedTable, borderTable">';
-	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Art.</td><td>Cliente</td><td>Colli</td><td>Peso lordo<td>Peso netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
-	$tabellaF='</table><br><br>';
+	$tabellaH="\n".'<table class="borderTable tabellaRiscontri">';
+	$tabellaH.="\n".'<tr><td>y/n</td><td>Numero</td><td>Data</td><td>Art.</td><td>Cliente</td><td>Colli</td><td>Peso lordo<td>Peso netto</td><td>Prezzo</td><td>Prezzo L.</td><td>Prezzo N.</td><td>Media peso</td><td>Imponibile Calc.</td></tr>'; //<td>Imponibile Memo.</td>
+	$tabellaF="\n".'</table><br><br>';
 
 //==============================================================================================================================
 /*
@@ -359,7 +471,7 @@ $parametriRicerca = array(
 		$test=new MyList($parametriRicerca);
 		$test->iterate($calcolaImponibileNetto);
 		$stampaTotali($test);
-		echo $tabellaF;			
+		echo $tabellaF;
 	}
 
 
@@ -379,7 +491,7 @@ $parametriRicerca = array(
 		$test=new MyList($parametriRicerca);
 		$test->iterate($calcolaImponibileNetto);
 		$stampaTotali($test);
-		echo $tabellaF;			
+		echo $tabellaF;
 	}
 
 //mediglia
@@ -398,7 +510,7 @@ $parametriRicerca = array(
 		$test=new MyList($parametriRicerca);
 		$test->iterate($calcolaImponibileNetto);
 		$stampaTotali($test);
-		echo $tabellaF;			
+		echo $tabellaF;
 	}
 
 //martinelli
@@ -417,7 +529,7 @@ $parametriRicerca = array(
 		$test=new MyList($parametriRicerca);
 		$test->iterate($calcolaImponibileNetto);
 		$stampaTotali($test);
-		echo $tabellaF;			
+		echo $tabellaF;
 	}
 
 //$codiceDaRimuovere = '4721+';
@@ -449,7 +561,7 @@ $parametriRicerca['cod_articolo']=$arrayCodiciArticoli;
 		$test=new MyList($parametriRicerca);
 		$test->iterate($calcolaImponibileNetto);
 		$stampaTotali($test);
-		echo $tabellaF;			
+		echo $tabellaF;
 	}
 /*
 if(count($tobeRemoved)){
@@ -500,7 +612,7 @@ if(count($tobeRemoved)){
 60 PEPERONE
 */
 /*
-//FINO AL 29/06/17 GIà CONTROLLATO PAN DI ZUCHERO DORO MERCATO
+//FINO AL 29/06/17 GIa CONTROLLATO PAN DI ZUCHERO DORO MERCATO
 
 //SOLO TUTTI I MERCATI
 $dbClienti=getDbClienti();

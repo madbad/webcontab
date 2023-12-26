@@ -265,7 +265,7 @@ if ($contaDdt==0){
 			<tr>
 				<td>-</td>
 				<td><?php echo $riga['articolo']; ?></td>
-				<td> <?php echo number_format($riga['prezzo'],2,',','.'); ?></td>
+				<td> <?php /*echo number_format($riga['prezzo'],2,',','.');*/ ?></td>
 				<td class="textRight"><?php echo number_format($riga['colli'],1,',','.'); ?></td>
 				<td class="textRight"><?php echo $riga['um']; ?></td>
 				<td class="textRight"><?php echo number_format($riga['pesoLordo'],1,',','.'); ?></td>
