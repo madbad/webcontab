@@ -9,11 +9,15 @@ call winhttpjs.bat  http://www.madbad.altervista.org/lavoro/ping.php
 @echo Comunico il mio indirizzo IP...FATTO
 ping 127.0.0.1 -n 1 > nul
 
-@echo Avvio il server php...
-START "" "C:\Programmi\EasyPHP-5.3.9\EasyPHP-5.3.9.exe"
-@echo Avvio il server php...FATTO
-ping 127.0.0.1 -n 91 > nul
+@echo Avvio il monitoraggio stampe...
+START pythonw "C:\Programmi\EasyPHP-5.3.9\www\webcontab\my\python\monitor.py"
+@echo Avvio il  monitoraggio stampe...FATTO
+ping 127.0.0.1 -n 30 > nul
 
+rem @echo Avvio il server php...
+rem START "" "C:\Programmi\EasyPHP-5.3.9\EasyPHP-5.3.9.exe"
+rem @echo Avvio il server php...FATTO
+rem ping 127.0.0.1 -n 40 > nul
 
 rem @echo Avvio Firefox...
 rem START ""  "C:\Programmi\Mozilla Firefox\firefox.exe" -p lafavorita
