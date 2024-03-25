@@ -13,7 +13,7 @@ $ddtodierni=new MyList(
 	array(
 		'_type'=>'Ddt',
 		'data'=>array('=',$today),
-		'cod_destinatario'=>array('=','SOGEG','VALEN','SEVEN','PRIMO','FRUST','BACUL','CENTF','3SOLI','ABBA2','CALIM','PAROD','NUOVI','O2000','AMAT2','QUIRI','VALEN','BELFR','DICA2','PAVAN','RADIC','ORTO3','GIAC3'),
+		'cod_destinatario'=>array('=','SOGEG','VALEN','SEVEN','PRIMO','FRUST','BACUL','CENTF','3SOLI','ABBA2','CALIM','PAROD','NUOVI','O2000','AMAT2','QUIRI','VALEN','BELFR','DICA2','PAVAN','RADIC','ORTO3','GIAC3','GARL2','PAGA2','QUIR2'),
 		'cod_causale' => array('!=','D')
 	)
 );
@@ -112,5 +112,9 @@ $ddtodierni->iterate(function($obj){
 //wait 5 seconds
 //sleep (5);
 
-include ('./polymerMailer.php');
+#include ('./polymerMailer.php');
+
+#SCARICO IL LISTINO DI VERONA
+include ('./scaricalistinovr.php');
+
 ?>

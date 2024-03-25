@@ -13,13 +13,16 @@
 <body>
 <?php
 include ('./core/config.inc.php');
+$additionalForm ='<input type="text" name="codCliente">';
+include ('./selettoredate.inc.php');
 set_time_limit ( 0);
 
 
 $params = 	array(
 		'_type'=>'Fattura',
-		'data'=>array('<>','01/07/2023','31/12/2023'),
-		'cod_cliente'=>'PAROD',
+		'data'=>array('<>',$startDateFormatted,$endDateFormatted),
+		//'cod_cliente'=>'CALIM',
+		'cod_cliente'=>$_POST['codCliente'],
 	);
 $paramsC= Array(
 	'codice'=> $params['cod_cliente'],

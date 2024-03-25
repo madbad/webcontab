@@ -362,6 +362,7 @@ class MyClass extends DefaultClass{
 				$order.=$this->$property->campoDbf;
 			}
 			//eseguo la query
+			//echo 'SELECT *', $where.$order;
 			$result=dbFrom($this->_dbName->getVal(), 'SELECT *', $where.$order);
 			//
 			foreach($result as $row){
@@ -2031,7 +2032,7 @@ $test=new MyList(
 						array_shift($value);//rimuovo la condizione e lascio il valore/valori
 						//$numeroDiValori=count($value);
 						break;
-					case 'LIKE'://diverso da
+					case 'LIKE'://contiene
 						$tOperator=' LIKE ';
 						array_shift($value);//rimuovo la condizione e lascio il valore/valori
 						//$numeroDiValori=count($value);

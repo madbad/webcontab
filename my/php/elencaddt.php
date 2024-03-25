@@ -1,7 +1,6 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="style_print.css" media="print">
 
-
 <?php
 include ('./core/config.inc.php');
 set_time_limit ( 0);
@@ -137,7 +136,7 @@ $test->iterate(function($obj){
 		));
 		//print_r($cliente);
 	}
-
+	$html.= '<td><input type="checkbox"></td>';
 	$html.= '<td>'.$obj->cod_causale->getVal().'</td>';
 	$html.= '<td>'.$obj->numero->getVal().'</td>';
 	$html.= '<td>'.$obj->data->getFormatted().'</td>';

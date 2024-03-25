@@ -16,10 +16,10 @@ $cassapl304013nera = new stdClass();
 $cassapl304013nera->costo = 0.50;
 $cassapl304013nera->collipedana = 150;
 $cassapl305013nera = new stdClass();
-$cassapl305013nera->costo = 0.51;
+$cassapl305013nera->costo = 0.51; //costo base 0,49+conai
 $cassapl305013nera->collipedana = 120;
 $cassapl305016nera = new stdClass();
-$cassapl305016nera->costo = 0.56;
+$cassapl305016nera->costo = 0.56; //costo base 0,54+conai
 $cassapl305016nera->collipedana = 104;
 $cassapl305023nera = new stdClass();
 $cassapl305023nera->costo = 0.77;
@@ -576,6 +576,16 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => $cassapl305013nera->costo + $vassoio->costo * 6 + $film->costo * 6,
 						"cliente"=>"MARTI");
 	getData($params,'VR','MARTINELLI');
+    
+		// CAPPUCCI A PUNTA
+		$params = array('articles' => array('18','18PZ6','18PZ8'),
+						"startDate" => $startDateR,
+						"endDate" => $endDateR,
+						"abbuonoPerCollo" => 0.0, //0.3//0.5
+						"costoPedana" => 50,
+						"colliPedana" => $cassapl305016nera->collipedana,
+						"costoCassa" => $cassapl305016nera->costo);
+	getData($params,'CAPP','MERCATI');    
     
 	}
 }

@@ -20,7 +20,7 @@ MODIFICANDO CON I DATI RELATIVI AL NUOVO ANNO
 $table="BACKUPRIGHEDDT";
 echo $GLOBALS['config']->sqlite->dir.'/myDb.sqlite3'; 
 //select the max date from this year = 2018
-$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2023'"; 
+$query="SELECT MAX( ddt_data ) as DataUltimoDdt  FROM '".$table."' WHERE ddt_data LIKE '%-2024'"; 
 $db = new SQLite3($GLOBALS['config']->sqlite->dir.'/myDb.sqlite3');
 $result = $db->query($query);
 $ultimoDdtData = '';
@@ -37,7 +37,7 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 	$ultimoDdtNumero =  $row['NumeroUltimoDdt'];
 	}
 
-//$ultimoDdtData= "01/09/2023";
+//$ultimoDdtData= "01/01/2024";
 //$ultimoDdtNumero= "0";
 
 echo "\n<br>Ultimo ddt memorizzato è il";

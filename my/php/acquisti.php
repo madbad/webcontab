@@ -192,7 +192,7 @@ if( isset($anno) && isset($mese)){
 	mostraMese($dir);
 }elseif(isset($anno) && !isset($mese)){
 	//mostro l'anno richiesto
-	for ($i = 1; $i <= 11; $i++) {
+	for ($i = 1; $i <= 12; $i++) {
 		if(strlen($i) < 2 ){
 			$mese = '0'.$i;	
 		}else{

@@ -225,9 +225,9 @@ function estraiDatiFattura(){
 	foreach ($righe as $riga) {
 		//print_r($riga);
 		//se è una riga imballaggio passo alla prossima (non la considero)
-		if( strpos($riga->childNodes->item($ARTICOLO)->nodeValue,"IMBALLAGGI NS USCITA")) {continue;}
-		if( strpos($riga->childNodes->item($ARTICOLO)->nodeValue,"IMBALLAGGI NS ENTRATA")) {continue;}
-		if( strpos($riga->childNodes->item($ARTICOLO)->nodeValue,"IMBALLAGGI SALDO")) {continue;}
+		if( $riga->childNodes->item($ARTICOLO)->nodeValue=="IMBALLAGGI NS USCITA") {continue;}
+		if( $riga->childNodes->item($ARTICOLO)->nodeValue=="IMBALLAGGI NS ENTRATA") {continue;}
+		if( $riga->childNodes->item($ARTICOLO)->nodeValue=="IMBALLAGGI SALDO") {continue;}
 
 		//suddivido i totali per articolo
 		$suddivisore = $riga->childNodes->item($ARTICOLO)->nodeValue.$riga->childNodes->item($PREZZO)->nodeValue;
