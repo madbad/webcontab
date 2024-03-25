@@ -40,7 +40,7 @@ function buildEmptyModule($pdf){
 	$def_size=8;
 	//$def_verde= array(85,190,180);//SCURO
 	$def_verde= array(168,236,134);//CHIARO
-	$def_bianco= array(999,999,999);
+	$def_bianco= array(255,255,255);
 	/*##############################
 	  #   RIQUADRI                 #  
 	  ##############################*/
@@ -407,6 +407,10 @@ function addDestinatarioDdt ($ddt,$pdf){
 		'_tipo'=>'fornitore',
 		));
 	}
+
+	//codice destinatario
+	$pdf->SetFont($def_font, 'b', $def_size);
+	$pdf->Text($fromLeft+60, 0*$riga+$mod-3, $destinatario->codice->getVal());
 	
 	$pdf->SetFont($def_font, 'b', $def_size+1.4);
 	$pdf->Text($fromLeft, 0*$riga+$mod, $destinatario->ragionesociale->getVal());
@@ -521,13 +525,22 @@ buildEmptyModule($pdf);
 	$pdf->Text(170, 58+8, '1/1');
 	
 	//causale del trasporto
+	$destinatario=$ddt->cod_destinatario->extend();	
+	
 	if($ddt->cod_causale->getVal()=='V'){
 		//si tratta di "VENDITA" "C/COMMISSIONE"
-		$causale='VENDITA';
+		//SE HA IMPOSTATA UNA PROVVIGIONE MAGGIORE DI UNO E NON È ABBASCIA
+		if( $destinatario->__provvigione->getVal()*1>1 && $destinatario->codice->getVal() != 'ABBA2')
+			$causale='C/COMMISSIONE';	
+		elseif($destinatario->__provvigione->getVal()*1<1 && $destinatario->__classificazione->getVal()=='mercato'){
+			$causale='C/VENDITA';				
+		}else{
+			$causale='VENDITA';	
+		}
 	}else if($ddt->cod_causale->getVal()=='D'){
 		//si tratta di "redo da c/deposito" "c/riparazone" "omaggio" etc...
-		//$causale='RESO DA C/DEP.TO';
-		$causale='OMAGGIO';
+		$causale='RESO C/DEPOSITO';
+		//$causale='OMAGGIO';
 		//$causale='RESO MERCE N/C';
 	}
 	$pdf->Text(18, 58+8, $causale);
