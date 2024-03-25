@@ -51,6 +51,25 @@ if (@$_GET['mode']=='print'){
 		if($mediaCollo*1<100){
 			//continue;
 		}
+		
+		
+		/*CONTROLLO IN SQLITE LE TARE*/
+		$query.="SELECT * FROM 'BACKUPRIGHEDDT'"; 
+		$query.=" WHERE ddt_numero = '".$obj->ddt_numero->getVal()."'"; 
+		$query.=" AND ddt_data = '".$obj->ddt_data->getVal()."'"; 
+		$query.=" AND cod_articolo = '".$obj->cod_articolo->getVal()."'"; 
+		$query.=" AND numero = '".$obj->numero->getVal()."'"; 
+		
+//echo $query;
+		$db = new SQLite3($GLOBALS['config']->sqlite->dir.'/myDb.sqlite3');
+		$result = $db->query($query);
+		$sqldata='';
+		while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+			$sqldata=$row;
+		}
+		
+		/*CONTROLLO IN SQLITE LE TARE*/
+
 	
 		echo '<tr> ';
 		echo '<td>'.$obj->ddt_numero->getVal().'</td>';
@@ -60,6 +79,7 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.round($obj->peso_netto->getVal(),2).'</td>';
 		echo '<td>'.$obj->prezzo->getVal().'</td>';
 		echo '<td>'.$mediaCollo.'</td>';
+		echo '<td>'.round(($sqldata["peso_lordo"]-$sqldata["peso_netto"])/$sqldata["colli"],2).'</td>';
 		echo '<td>'.$bins.'</td>';
 		echo '<td>'.$casse.'</td>';
 		echo '<td><a href="./core/gestioneDdt.php?numero='.$obj->ddt_numero->getVal().'&data='.$obj->ddt_data->getVal().'&cod_causale=V&do=visualizza">vedi</a></td>';
@@ -182,7 +202,7 @@ global $dbClienti;
 	global $sommaCasse;
 	$sommaCasse=0;
 	$tabellaH='<table class="spacedTable, borderTable">';
-	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>media collo</td><td>Bins</td><td>Casse</td><td>+</td></tr>';
+	$tabellaH.='<tr><td>Numero</td><td>Data</td><td>Cliente</td><td>Colli</td><td>Peso Netto</td><td>Prezzo</td><td>media collo</td><td>Tara</td><td>Bins</td><td>Casse</td><td>+</td></tr>';
 	$tabellaF='</table><br>';
 
 	$test=new MyList(
