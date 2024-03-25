@@ -1,9 +1,3 @@
-
-<?php
-include ('./core/config.inc.php');
-
-?>
-
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -15,18 +9,29 @@ include ('./core/config.inc.php');
 
 	<body>
 <?php
+include ('./core/config.inc.php');
+$startDateFormatted = '';
+$endDateFormatted = '';
+$startDate='';
+$endDate='';
+
+include ('./selettoredate.inc.php');
 
 //==============================================================================================================================
 //fino al 31/05/17 ok
 //==============================================================================================================================
 
 function verifica($codCliente){
+	global $startDate;
+	global $endDate;
 	echo "<h1>$codCliente</h1>";
 
 	$test=new MyList(
 			array(
 				'_type'=>'Riga',
-				'ddt_data'=>array('<>','01/10/23','31/10/23'),
+				//'data'=>array('<>',$startDateFormatted, $endDateFormatted),
+				'ddt_data'=>array('<>',$startDate, $endDate),
+				//'ddt_data'=>array('<>','01/10/23','31/10/23'),
 				//'cod_articolo'=>array('=','847'),
 				'cod_cliente'=>array('=',$codCliente),
 				//'cod_cliente'=>array('=','SOGEG'),
@@ -57,5 +62,12 @@ function verifica($codCliente){
 verifica('SEVEN');
 verifica('SOGEG');
 verifica('MARTI');
+verifica('ABBA2');
+
+verifica('LAME2');
+verifica('GIAC3');
+verifica('ORTO3');
+verifica('PAVAN');
+verifica('RADIC');
 ?>
 </body>

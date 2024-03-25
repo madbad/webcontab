@@ -1,47 +1,13 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="style_print.css" media="print">
-
-<?php
-$startDateFormatted = '';
-$endDateFormatted = '';
-
-if(!array_key_exists('startDate', $_POST)){
-	/*todo da sistemare*/
-	$startDate = $_POST['startDate'];
-	$endDate = $_POST['endDate'];
-	
-}else{
-	$giorno = date('d', time());
-	$mese = date('m', time());
-	$anno = date('Y', time());
-	$giorniDelMese = cal_days_in_month(CAL_GREGORIAN,$mese,$anno); 
-	
-	$startDate = '01'.'/'.$mese.'/'.$anno;
-	$endDate = $giorniDelMese.'/'.$mese.'/'.$anno;
-	
-	$startDateFormatted = $anno.'-'.$mese.'-'.'01';
-	$endDateFormatted = $anno.'-'.$mese.'-'.$giorniDelMese;
-
-}
-
-
-?>
-
-<form action="./verificabancaliseven.php" class="dateform hideOnPrint" method="post"> 
-	<span class="dateformtitle">Selezione parametri</span>
-	<br> <span class="dateselectordescription">From:</span>
-	<input class="dateselector" type="date" id="startDate" name="startDate" value="<?php echo $startDateFormatted ?>">
-	<br> <span class="dateselectordescription">to:</span>
-	<input class="dateselector" type="date" id="endDate" name="endDate" value="<?php echo $endDateFormatted ?>">
-	<input type="submit" value="Submit" style="padding:1em;width:20em;">
-</form>
-
-
-
 <?php
 include ('./core/config.inc.php');
-set_time_limit ( 0);
 
+$startDateFormatted = '';
+$endDateFormatted = '';
+$startDate='';
+$endDate='';
+include ('./selettoredate.inc.php');
 
 //posti a terra
 
