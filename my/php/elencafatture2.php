@@ -67,7 +67,7 @@ $test->iterate(function($obj){
 	$importiFattura = $importiFattura[4];
 	
 	
-	if($obj->tipo->getVal()=="n"){
+	if($obj->tipo->getVal()=="n" || $obj->tipo->getVal()=="N"){
 		$importiFattura['imponibile'] = abs($importiFattura['imponibile'])*-1;
 		$importiFattura['importo_iva'] = abs($importiFattura['importo_iva'])*-1;
 	}

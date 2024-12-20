@@ -191,7 +191,7 @@ body {
 	<br><span>Codice Fiscale:</span> 01588530236
 	<br><span>Partita IVA:</span> 01588530236
 	<br><span>Codice SDI:</span> 0000000
-	<br><span>PEC:</span> lafavoria_srl@pec.it
+	<br><span>PEC:</span> lafavorita_srl@pec.it
 </div>
 
 <div id="datiFattura">

@@ -160,6 +160,7 @@ echo '<br><br>';
 		echo "<td>Differenza</td>";
 		echo "<td>Prezzo netto</td>";
 		echo "<td>Prezzo lordo</td>";
+		echo "<td>Annotazioni</td>";
 	echo "</tr>";
 	$ddtlist->iterate(function($obj){
 		global $colliddt;
@@ -215,6 +216,7 @@ echo '<br><br>';
 				$pesoddtPartenza += $partenza['peso_netto'];
 				$differenzaPesoKg = $obj->peso_netto->getVal()-$partenza['peso_netto'];
 				$differenzaPesoPercentuale = $differenzaPesoKg * 100 /$partenza['peso_netto'];
+				$note = $partenza['note'];
 				
 			}else{
 				//echo "<br>NOT found (".$key.")";
@@ -225,7 +227,8 @@ echo '<br><br>';
 				$css = "background-color:lightgreen";
 			}
 			//print_r($partenza);
-			
+//~ echo "<br>Stato: \n" + $obj->ddt_data->getVal();
+//~ echo "<br>Stato: \n" + $obj->peso_netto->getVal() + "0000";
 			
 			$imponibile += $obj->imponibile->getVal();
 			
@@ -262,8 +265,11 @@ echo '<br><br>';
 				$outDescr = str_replace(' GROSSO ','<span style="background-color:black;color:white"> GROSSO </span>',$outDescr); 
 				$outDescr = str_replace(' FLOWPACK ','<span style="background-color:black;color:white"> FLOWPACK </span>',$outDescr); 
 				$outDescr = str_replace(' 21+CM','<span style="background-color:black;color:white"> 21+CM </span>',$outDescr); 
+				$outDescr = str_replace(' SERRA','<span style="background-color:black;color:white"> SERRA </span>',$outDescr); 
 				
 				echo  $outDescr;
+				$descrizione= $outDescr;
+				
 				echo '</td>';
 				//echo $descrizione."</td>";
 				echo "<td $cssRight $css>".number_format($obj->colli->getVal(),0,',','')."</td>";
@@ -284,7 +290,7 @@ echo '<br><br>';
 				if ($_POST['debugPrezziLordi']){
 					echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3,',','')."</td>";
 				}
-				
+				echo "<td $cssRight $css>".$partenza['note']."</td>";
 				//echo "<td $cssRight>".number_format($obj->getPrezzoLordo()*$obj->peso_netto->getVal(),3)."</td>";
 				//echo "<td $cssRight>".number_format($obj->getPrezzoNetto()*$obj->peso_netto->getVal(),3)."</td>";
 				$codArt = $obj->cod_articolo->getVal();
@@ -292,15 +298,17 @@ echo '<br><br>';
 					$prodotti[$codArt]['descrizione']= $descrizione;
 					$prodotti[$codArt]['peso']= 0;
 					$prodotti[$codArt]['importo']= 0;
+					$prodotti[$codArt]['calopeso']= 0;
 				}
 				$prodotti[$codArt]['peso'] += $obj->peso_netto->getVal();
 				$prodotti[$codArt]['importo'] += $obj->getPrezzoLordo() * $obj->peso_netto->getVal();
+				$prodotti[$codArt]['calopeso'] += $differenzaPesoKg; 
 //echo $codArt.'->'.$prodotti[$codArt]['peso']."<br>";
 //echo $codArt.'->'.$prodotti[$codArt]['importo']."<br>";
 //echo $codArt = $prodotti[$codArt]['peso']."<br>";$obj->peso_netto->getVal()
 			echo "</tr>";
 		});
-		echo "<tr style='color:grey'><td colspan='7'>Colli Riscontrati: $colliddt";
+		echo "<tr style='color:grey'><td colspan='8'>Colli Riscontrati: $colliddt";
 		echo " ## Peso: $pesoddtPartenza => ";
 		echo " $pesoddtRiscontrato ##";
 		echo " (".($pesoddtPartenza -$pesoddtRiscontrato).") ##";
@@ -335,22 +343,27 @@ echo '<br><br>';
 	echo	'
 		<tr>
 		<td>Articolo</td>
+		<td>Diff.Peso kg.</td>
+		<td>%</td>
 		<td>Peso</td>
 		<td>Media Prezzo (lordo)</td>
 		</tr>
 	';
+	//ORDINA L'ARRAY
+	ksort($prodotti);
 	foreach($prodotti as $prodotto){
 		if($prodotto['descrizione']=='****'){continue;}
 
 		
 		echo '<tr><td>';
 		echo "\n".$prodotto['descrizione'];
+		echo "<td>".$prodotto['calopeso']." kg.</td>"; //calopeso
+		echo "<td>".number_format($prodotto['calopeso']*100/($prodotto['peso']+$prodotto['calopeso']),0,',','')."%</td>"; //calopeso %"";
 		echo '</td><td STYLE="text-align:right">';
 		echo $prodotto['peso'].' KG';
 		echo '</td><td STYLE="text-align:right">';
 		echo number_format($prodotto['importo'] / $prodotto['peso'],2,',','').' EUR';
 		//echo ": ".$prodotto['importo'];
-		//echo " :::  ".$prodotto['peso'];
 		echo '</td></tr>';
 
 	}

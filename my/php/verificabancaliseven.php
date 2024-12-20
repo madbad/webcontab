@@ -17,7 +17,7 @@ $test=new MyList(
 		'_type'=>'Ddt',
 		//'data'=>array('<>','01/12/2023', '31/12/2023'),
 		'data'=>array('<>',$startDate, $endDate),
-		'cod_destinatario'=>array('=','SEVEN'),
+		'cod_destinatario'=>array('=','SEVE2'),
 		'cod_causale' => array('!=','D')
 	)
 );

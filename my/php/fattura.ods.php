@@ -245,13 +245,14 @@ function estraiDatiFattura(){
 		//$fattura->righe[$suddivisore]['RIFDDT'] = $suddivisoreDDT;
 		
 	//	echo "\n<br>".substr($fattura->righe[$suddivisore]['ARTICOLO'],0,4);
+/*
 		if(substr($fattura->righe[$suddivisore]['ARTICOLO'],0,4)=="MENO"){
-			//echo 'detected!!!!!!!!!!!!!!!';
+			echo 'detected!!!!!!!!!!!!!!!';
 			//echo $fattura->righe[$suddivisore]['PREZZO'];
 			$fattura->righe[$suddivisore]['PREZZO'] = -1*$fattura->righe[$suddivisore]['PREZZO'];
 			$fattura->righe[$suddivisore]['UM'] = 'NR';
 		}
-		
+*/		
 		if (!array_key_exists($suddivisore, $fattura->ddt)){
 			$fattura->ddt[$suddivisoreDDT]=array();
 			$fattura->ddt[$suddivisoreDDT]['numero'] = $riga->childNodes->item($NUMERO)->nodeValue;

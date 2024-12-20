@@ -60,6 +60,7 @@ function verifica($codCliente){
 
 }
 verifica('SEVEN');
+verifica('SEVE2');
 verifica('SOGEG');
 verifica('MARTI');
 verifica('ABBA2');
@@ -69,5 +70,9 @@ verifica('GIAC3');
 verifica('ORTO3');
 verifica('PAVAN');
 verifica('RADIC');
+verifica('ROSSE');
+verifica('PIOVA');
+verifica('BOLLA');
+verifica('HORTU');
 ?>
 </body>

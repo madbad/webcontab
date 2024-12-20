@@ -537,6 +537,12 @@ buildEmptyModule($pdf);
 		}else{
 			$causale='VENDITA';	
 		}
+		
+		//se è specificato un prezzo che non sia 0,001 allora lo considero un ddt di vendita in ogni caso
+		if(ciSonoPrezziInBolla($ddt)){
+			$causale='VENDITA';	
+		}
+		
 	}else if($ddt->cod_causale->getVal()=='D'){
 		//si tratta di "redo da c/deposito" "c/riparazone" "omaggio" etc...
 		$causale='RESO C/DEPOSITO';
@@ -561,7 +567,7 @@ buildEmptyModule($pdf);
 	$pdf->Text(18, 58+8*21.2, 'VISIBILE');/*todo*/
 	
 	//totale colli
-	$pdf->Text(140, 58+8*21.2, $ddt->tot_colli->getFormatted(0)+1);
+	$pdf->Text(140, 58+8*21.2, $ddt->tot_colli->getFormatted(0));
 	
 	//totale peso lordo
 	$pdf->Text(160, 58+8*21.2, $ddt->tot_peso->getFormatted(2));
@@ -668,5 +674,13 @@ buildEmptyModule($pdf);
 	@$pdf->Output($GLOBALS['config']->pdfDir."/ddt/".$nomefile, 'F');	
 }
 
-
+function ciSonoPrezziInBolla($ddt){
+	foreach ($ddt->righe as $key => $value) {
+		$riga=$ddt->righe[$key];
+		if($riga->prezzo->getVal()*1>0.01){
+			return true;	
+		}
+	}
+	return false;
+}
 ?>

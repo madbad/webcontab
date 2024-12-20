@@ -128,6 +128,11 @@ include ('./core/config.inc.php');
 if( isset($_GET['gimmi'])){
 	//gimmi
 	$tipo = './../../../webstore/dati/brungimmi/fattureElettronicheAcquisto/';
+}elseif( isset($_GET['gimmivendite'])){
+	//gimmi vendite
+	$tipo = './../../../webstore/dati/brungimmi/fattureVenditaXML/';
+	$_GET['mese']='';
+	$_GET['anno']='';
 }else{
 	//favorita
 	$tipo = './dati/fattureElettronicheAcquisto/';

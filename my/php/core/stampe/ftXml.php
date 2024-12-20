@@ -204,6 +204,8 @@ function generaXmlFt($myFt){
 		$dati->fattura->pagamento->modalita='MP05';
 		//todo:ho forzato questa a bonifico bancario
 		//exit("Condizione di pagamento non valida '01'");
+	}else if($myFt->cod_pagamento->getVal()=='PA'){ //PAGATO CONTANTI
+		$dati->fattura->pagamento->modalita='MP01';
 	}
 		
 
@@ -246,6 +248,13 @@ function generaXmlFt($myFt){
 
 
 	//================DATI DESTINATARIO FATTURA
+	/*
+	/*
+	if($myFt->cod_cliente->getVal('MORAG')){
+		$myFt->cod_cliente->setVal('AMATO');
+	}
+	*/
+	
 	$cliente=$myFt->cod_cliente->extend();
 
 	/*
@@ -265,9 +274,12 @@ function generaXmlFt($myFt){
 	$dati->destinatario->sede->nazione = "IT";
 	*/
 	$dati->destinatario =  new stdClass();
+	//print_r($cliente);
 	if($cliente->__SDIcodice->getVal()!=''){
 		$dati->destinatario->codiceSDI = $cliente->__SDIcodice->getVal();
-	}
+	}/*else{
+		$dati->destinatario->codiceSDI = '0000000';
+	}*/
 	//se disponibile usa la pec comunicata per SDI, altrimenti la PEC ordinaria (utilizzata in precedenza col vecchio metodo), altrimenti niente
 	if($cliente->__SDIpec->getVal()!=''){
 		$dati->destinatario->pec = $cliente->__SDIpec->getVal();
@@ -322,6 +334,15 @@ function generaXmlFt($myFt){
 		//altro
 		//una td25 per consegne effetuate dal nostro subfornitore direttamente al cliente
 		$dati->fattura->tipo = 'TD24';
+		
+		//if(strpos($dati->fattura->causale, "NOTA DI ADDEBITO")>=0){
+		if(strpos($dati->fattura->causale, "NOTA DI ADDEBITO")!== false){
+			//strpos($a, 'PHP') !== false
+			echo 'e una nota debito';
+			echo $dati->fattura->causale;
+			$dati->fattura->tipo = 'TD05';			
+		}
+		
 	}
 	if($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n'){//se nota di credito
 		$dati->fattura->tipo = 'TD04';
@@ -393,9 +414,10 @@ function generaXmlFt($myFt){
 			continue;
 		}
 		//fine modalita causale
-		
+//echo $riga->descrizione->getVal();		
 		
 		if((strtoupper(substr($riga->descrizione->getVal(),0,9))==strtoupper('D.d.T. N.'))){
+		}elseif(substr($riga->descrizione->getVal(),0,9)=='D.D.T.N.'){
 		}elseif(substr($riga->descrizione->getVal(),0,3)=='DDT'){
 		}elseif(substr($riga->descrizione->getVal(),0,10)=='RIF.NS.DDT'){
 		}elseif(substr($riga->descrizione->getVal(),0,10)=='RIF.VS.DDT'){
@@ -417,8 +439,10 @@ function generaXmlFt($myFt){
 		}
 		*/
 		
-		//SE SI TRATTA DI UNA NOTA DI ACCREDITO CERCO I RIFERIMENTI DDT E FATTURA
-		if ($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n'){
+
+		
+		//SE SI TRATTA DI UNA NOTA DI ACCREDITO o di addebito CERCO I RIFERIMENTI DDT E FATTURA
+		if ($myFt->tipo->getVal()=='N' || $myFt->tipo->getVal()=='n' || (strpos($dati->fattura->causale, "NOTA DI ADDEBITO")>=0)){
 			//echo substr($riga->descrizione->getVal(),0,10);
 			if(substr($riga->descrizione->getVal(),0,10)=='RIF.NS.DDT'){
 			//echo 'Eureca2!';
@@ -469,7 +493,10 @@ function generaXmlFt($myFt){
 //echo $currentDdt->righeDelDDT.' ** '.$riga->descrizione->getVal()."\n<br>";
 		//si tratta di una riga di descrizione ddt
 		//D.d.T. N.3160 - 01.12.2018
+		//D.D.T.N.3160 - 19.11.2023
+
 		if(strtoupper(substr($riga->descrizione->getVal(),0,9))==strtoupper('D.d.T. N.') || substr($riga->descrizione->getVal(),0,3)=='DDT'){
+//echo 'found ddt';
 /*
 			if($currentDdt->righeDelDDT>0){
 				//todo: potrei controllare il ddt e vedere se ci sono righe di puro testo: magari lasciando un warning in un log
@@ -659,6 +686,7 @@ function generaXmlFt($myFt){
 		
 		//mi sa che è un controllo duplicato con quello del blocco "if/elseif" qua sotto
 		if($dati->destinatario->codiceSDI == '' && $dati->destinatario->pec ==''){
+			//print_r($dati->destinatario);
 			exit("Non trovo ne un codice ne un INDIRIZZO PEC da utilizzare");
 		}
 		

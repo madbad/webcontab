@@ -3,19 +3,14 @@ include ('./core/config.inc.php');
 include ('./richiestaricavi.php');
 ?>
 <?php 
-
-if (array_key_exists('mese',$_GET)){
 /*
-	$anno = $_GET['anno'];
-	$mese = $_GET['mese'];
-	$giorni = cal_days_in_month(CAL_GREGORIAN, $mese, $anno); // 31
-*/
+if (array_key_exists('mese',$_GET)){
 	$today = date("j/n/Y"); 
 	$startDate='01/01/2021';
 	$endDate='31/01/2021';
 
 }else{
-	
+*/	
 	$anno = date("Y");
 	$mese = date("n")-1;
 
@@ -31,7 +26,7 @@ if (array_key_exists('mese',$_GET)){
 	date("Y");
 	$startDate='01/'.$mese.'/'.$anno;
 	$endDate=$giorni.'/'.$mese.'/'.$anno;
-}
+//}
 
 
 $mancanti = array();
@@ -42,11 +37,14 @@ $stampaRighe= function ($obj){
 	//echo '<br>'.$obj->ddt_numero->getVal();
 	$ddt = '<br>- n.'.$obj->ddt_numero->getVal().' del '.$obj->ddt_data->getFormatted();
 	if (!in_array($ddt,$mancanti)){
-		@$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()];
+		$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()];
 	}
 	$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()]['codcliente']=$obj->cod_cliente->getVal();
 	$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()]['mail']=$obj->cod_cliente->extend()->__mail->getVal();
 	$mancanti[$obj->cod_cliente->extend()->ragionesociale->getVal()]['ddt'][$ddt]='*';
+
+//print_r($mancanti);
+
 };
 
 $test=new MyList(
@@ -61,8 +59,15 @@ $test=new MyList(
 );
 $test->iterate($stampaRighe);
 
+//echo count($test);
+
+//print_r($mancanti);
+
 foreach ($mancanti as $clienteKey => $clienteValue){
 	
+	//error_reporting(-1);
+	
+	//echo 'test'.$clienteKey;
 	$matchCliente = (substr($clienteKey,0,10) == substr($_GET['mailacliente'],0,10));
 	
 	if (!isset($_GET['mailacliente']) or $matchCliente){
@@ -86,7 +91,7 @@ foreach ($mancanti as $clienteKey => $clienteValue){
 		echo '<hr><br><br>'.$clienteKey;		
 		echo '<br><b>Inviata mail!</b>';
 		inviaMailRichiestaRicavi($clienteKey,$clienteValue['mail'],$elencoDdt);
-		inviaMailRichiestaRicavi($clienteKey,'amministrazione@lafavoritasrl.it',$elencoDdt);
+		//inviaMailRichiestaRicavi($clienteKey,'amministrazione@lafavoritasrl.it',$elencoDdt);
 
 	}
 	

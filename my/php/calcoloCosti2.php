@@ -421,7 +421,7 @@ if (@$_POST['mode']=='print'){
 	
 //scarola  
 	// mercato
-	$params = array("articles" => array('03','03S','03F','03SE'),
+	$params = array("articles" => array('03','03S','03F','03SE','03V'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" =>  0.25, //0.3
@@ -429,7 +429,7 @@ if (@$_POST['mode']=='print'){
 					"colliPedana" => $cassapl305016nera->collipedana,
 					"costoCassa" => $cassapl305016nera->costo + $copertina->costo);
 	getData($params,'SCAROLA','MERCATI');
-	$params = array("articles" => array('03','03S','03F','03SE'),
+	$params = array("articles" => array('03','03S','03F','03SE','03V'),
 					"startDate" => $startDate,
 					"endDate" => $endDate,
 					"abbuonoPerCollo" =>  0.25, //0.3
@@ -461,7 +461,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => $cassapl305013nera->costo + $copertina->costo);
 		getData($params,'CH','MERCATI');
 		// supermercati
-		$params = array("articles" => array('708','808','808+','708-','808-','708--','808--','608','608-','608+'),
+		$params = array("articles" => array('708','808','808+','708-','808-','708--','808--','608','608-','608+','6084316'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.2,
@@ -492,7 +492,7 @@ if (@$_POST['mode']=='print'){
 						"costoCassa" => $cassapl305013nera->costo + $copertina->costo);
 		getData($params,'TV','MERCATI');
 		// supermercati
-		$params = array("articles" => array('729','829','729-','829-','629','629-','629+'),
+		$params = array("articles" => array('729','829','729-','829-','629','629-','629+','6294316'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.4,
@@ -548,7 +548,7 @@ if (@$_POST['mode']=='print'){
 
 //verona
 		// mercato
-		$params = array('articles' => array('05','05G','05P','05PL','05PZ12','05PZ1215','05PZ15','05PZ8'),
+		$params = array('articles' => array('05','05G','05P','05PL','05PZ12','05PZ1215','05PZ15','05PZ8','05PZ4','05PZ5','05PZ18'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.1, //0.3//0.5
@@ -567,7 +567,7 @@ if (@$_POST['mode']=='print'){
 	getData($params,'VR','SUPERMERCATI');
 		// VASSOI
 		// MARTINELLI
-		$params = array('articles' => array('05','05P'),
+		$params = array('articles' => array('05','05G','05P','05PL','05PZ12','05PZ1215','05PZ15','05PZ8','05PZ4','05PZ5','05PZ18'),
 						"startDate" => $startDateR,
 						"endDate" => $endDateR,
 						"abbuonoPerCollo" => 0.0, //0.3//0.5

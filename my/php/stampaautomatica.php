@@ -46,6 +46,8 @@ $listaDDT->iterate(function($myDdt){
 		}else{
 			$numeroCopie = 3;
 		}
+		//FORZA LA STAMPA DI UNA SOLA COPIA
+		//$numeroCopie = 1;
 
 		$sumatrapdfexe = 'C:\Programmi\SumatraPDF\SumatraPDF.exe';
 		$filename = '"'.$myDdt->getPdfFileUrl().'"';

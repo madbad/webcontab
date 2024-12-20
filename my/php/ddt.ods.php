@@ -247,7 +247,7 @@ function estraiDatiDdt(){
 		$nuovaRiga=count ($myDDT->righe);
 		$myDDT->righe[$nuovaRiga]['colli']= $riga->childNodes->item($COLLI)->nodeValue;
 		$myDDT->righe[$nuovaRiga]['articolo'] = $riga->childNodes->item($ARTICOLO)->nodeValue;
-		$myDDT->righe[$nuovaRiga]['pesoLordo'] = round(importNumber($riga->childNodes->item($PESO)->nodeValue)*1 + $riga->childNodes->item($COLLI)->nodeValue *30);
+		$myDDT->righe[$nuovaRiga]['pesoLordo'] = round(importNumber($riga->childNodes->item($PESO)->nodeValue)*1 + $riga->childNodes->item($COLLI)->nodeValue *0.42);
 		$myDDT->righe[$nuovaRiga]['pesoNetto'] = importNumber($riga->childNodes->item($PESO)->nodeValue)*1;
 		$myDDT->righe[$nuovaRiga]['prezzo'] =  importNumber($riga->childNodes->item($PREZZO)->nodeValue);
 		$myDDT->righe[$nuovaRiga]['um'] =  'KG';

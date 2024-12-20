@@ -31,6 +31,7 @@ function inviaMailRichiestaRicavi($cliente,$mailcliente, $elencoDdt){
 			//$mail->AddAddress('lafavorita_srl@libero.it', 'La Favorita Srl'); //mia copia per conoscenza
 			$mail->AddAddress('amministrazione@lafavoritasrl.it', 'La Favorita Srl'); //mia copia per conoscenza
 
+
 			//mi faccio mandare la ricevuta di lettura
 			$mail->ConfirmReadingTo=$gmail->ReplyTo->Mail;
 			$mail->SetFrom($gmail->From->Mail, $gmail->From->Name);

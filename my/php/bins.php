@@ -10,6 +10,11 @@ include ('./core/config.inc.php');
 	<head>
 		<title>WebContab - Uscite imballaggi</title>
 		<meta charset="utf-8">
+		<style>
+		.divisore{
+			border-right:6px solid black !important;
+		}
+		</style>
 	</head>
 
 	<body>
@@ -79,7 +84,7 @@ if (@$_GET['mode']=='print'){
 		echo '<td>'.round($obj->peso_netto->getVal(),2).'</td>';
 		echo '<td>'.$obj->prezzo->getVal().'</td>';
 		echo '<td>'.$mediaCollo.'</td>';
-		echo '<td>'.round(($sqldata["peso_lordo"]-$sqldata["peso_netto"])/$sqldata["colli"],2).'</td>';
+		echo '<td class="divisore">'.round(($sqldata["peso_lordo"]-$sqldata["peso_netto"])/$sqldata["colli"],2).'</td>';
 		echo '<td>'.$bins.'</td>';
 		echo '<td>'.$casse.'</td>';
 		echo '<td><a href="./core/gestioneDdt.php?numero='.$obj->ddt_numero->getVal().'&data='.$obj->ddt_data->getVal().'&cod_causale=V&do=visualizza">vedi</a></td>';

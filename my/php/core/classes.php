@@ -1563,7 +1563,8 @@ class Riga extends MyClass {
 		if ($provvigione*1>0){
 			return $this->prezzo->getVal();
 		}else{
-			$provvigione=12;
+			//$provvigione=12;
+			$provvigione=14;
 			return $this->prezzo->getVal()*(100)/(100-$provvigione);
 		}
 	}

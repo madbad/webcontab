@@ -34,16 +34,22 @@ if(@$_GET['anno']){
 }
 
 
-$clientiWhatsup['AMAT2']="Amato Savino";
-$clientiWhatsup['O2000']="Orto 2000 Gianni";
-$clientiWhatsup['CALIM']="Calimero - STEFANO";
-$clientiWhatsup['ABBA2']="Abbascia Domenico";
-$clientiWhatsup['PRIMO']="Tesini";
-$clientiWhatsup['CENTF']="Fabio Centrofrutta";
-$clientiWhatsup['MANGH']="Manghi Samuele";
-$clientiWhatsup['BACUL']="Pompeo - Bacullo SrL Mi";
-$clientiWhatsup['CAVAG']="Gaspare ExAstro - Cavallaro";
-$clientiWhatsup['PAGA2']="Lazzarin Venditore Fausto Zugno";
+//$clientiWhatsup['AMAT2']="Amato Savino";
+$clientiWhatsup['AMAT2']=array("Amato Michele", "Amato Savino");
+$clientiWhatsup['O2000']=array("Orto 2000 Gianni");
+//$clientiWhatsup['O2000']="Orto 2000 Gianmaria Bailoni";
+$clientiWhatsup['CALIM']=array("Calimero - STEFANO", "Calimero - ANTONIO");
+$clientiWhatsup['ABBA2']=array("Abbascia Domenico");
+$clientiWhatsup['PRIMO']=array("Tesini");
+$clientiWhatsup['CENTF']=array("Fabio Centrofrutta");
+$clientiWhatsup['MANGH']=array("Manghi Samuele");
+$clientiWhatsup['BACUL']=array("Pompeo - Bacullo SrL Mi");
+$clientiWhatsup['TERRE']=array("Pompeo - Bacullo SrL Mi");
+$clientiWhatsup['LAMON']=array("Pompeo - Bacullo SrL Mi");
+$clientiWhatsup['CAVAG']=array("Gaspare ExAstro - Cavallaro");
+$clientiWhatsup['PAGA2']=array("Lazzarin Venditore Fausto Zugno");
+$clientiWhatsup['NUOVI']=array("Nuova Italian Federico");
+$clientiWhatsup["L'OR"]=array("Lortolana");
 
 
 $elencoDDT=new MyList(
@@ -76,25 +82,26 @@ $elencoDDT->iterate(function($obj){
 		);
 		//genero il mio oggetto ddt
 		$myDdt= new Ddt($params);
-		
-		//ricavo il nome testuale del destinatario
-		$destinatario = $clientiWhatsup[$obj->cod_destinatario->getVal()];
-		
+
 		//genero il pdf del ddt
 		//e ricavo il nome del file da allegare (il nome deve essere quello della postazione che esegue selenium)
 		//$myDdt->autoExtend();
 		$myDdt->generaPdf();
-		
-		//copio il file in una cartella raggiungibile da linux
-		//copy($obj->getPdfFileUrl(),'c:/stampeddt/'.$obj->getPdfFileName());
-		
+
 		//$allegato = $obj->getPdfFileUrl();
 		$allegato = '/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/'.$myDdt->getPdfFileName();
 		//$allegato = '/home/brungionni/mnt/dati/stampeddt/'.$obj->getPdfFileName();
+		//copio il file in una cartella raggiungibile da linux
+		//copy($obj->getPdfFileUrl(),'c:/stampeddt/'.$obj->getPdfFileName());
 
-		//python /home/brungionni/Utils/testselenium.py --destinatario="Gaspare ExAstro - Cavallaro" --allegato="/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/20231019_DdT00003600.pdf"
-		$fileContent .= "\n".'python /home/brungionni/Utils/testselenium.py --destinatario="'.$destinatario.'" --allegato="'.$allegato.'"';
-	
+		//per ogni destinatario di questo cliente
+		foreach ($clientiWhatsup[$obj->cod_destinatario->getVal()] as $destinatario){
+			//ricavo il nome testuale del destinatario
+			//$destinatario = $clientiWhatsup[$obj->cod_destinatario->getVal()];
+			//python /home/brungionni/Utils/testselenium.py --destinatario="Gaspare ExAstro - Cavallaro" --allegato="/home/brungionni/mnt/www/webContab/my/php/core/stampe/ddt/20231019_DdT00003600.pdf"
+			$fileContent .= "\n".'python /home/brungionni/Utils/whatsupper.py --destinatario="'.$destinatario.'" --allegato="'.$allegato.'"';
+
+		}
 	}
 	
 });
