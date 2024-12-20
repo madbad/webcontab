@@ -1,0 +1,5 @@
+PRINT "192.168.1.110/OLIVETTI" "C:\CONTAB\_TESTI.PRN"
+
+
+//MORE INFO
+https://support.esri.com/en-us/knowledge-base/how-to-print-a-saved-printready-document-such-as-a-prn-000007007
